@@ -1,0 +1,207 @@
+import { topicMetadata } from "@/lib/seo";
+
+export const metadata = topicMetadata("integral-kavrami");
+
+<Konu slug="integral-kavrami" />
+
+<p className="lead">Belirsiz integral, **türev almanın tersi** işlemdir: türevi verilen bir fonksiyonu geri bulmaktır. Bu konu, ters türev kavramını, integral sabiti $c$'nin neden zorunlu olduğunu ve sınavda doğrudan kullanacağın temel integral kurallarını kurar. Her kuralı türev alarak kontrol etmeyi alışkanlık hâline getir; integralde tek güvenilir denetim budur.</p>
+
+## 1. Ters Türev (Belirsiz İntegral) Kavramı
+
+$F$ fonksiyonunun türevi $f$ ise, yani $F'(x)=f(x)$ ise, $F$'ye $f$'nin bir **ters türevi** (ilkel fonksiyonu) denir. Bunu şöyle gösteririz:
+
+$$\int f(x)\,dx=F(x)+c \quad\Longleftrightarrow\quad F'(x)=f(x)$$
+
+Buradaki $f(x)$'e **integrand**, $dx$'e ise değişkenin $x$ olduğunu belirten **diferansiyel** denir. İntegral almak, "türevi $f(x)$ olan fonksiyon nedir?" sorusunu yanıtlamaktır.
+
+### İntegral Sabiti $c$ Neden Daima Yazılır?
+
+Sabitin türevi sıfırdır. Bu yüzden $F(x)$ bir ters türevse, $F(x)+5$, $F(x)-2$ ve genel olarak $F(x)+c$ de aynı türeve sahiptir. Türevi aynı olan **sonsuz çoklukta** fonksiyon vardır ve bunlar birbirinden yalnızca bir sabitle ayrılır. Bu sonsuz aileyi tek ifadeyle yazmak için integral sabiti $c$ her zaman eklenir.
+
+> **Sık yapılan hata:** Sonuca $+c$ eklemeyi unutmak. Belirsiz integralin cevabı tek bir fonksiyon değil, $+c$'li bir **fonksiyon ailesidir**; $c$'siz cevap eksiktir.
+
+## 2. Temel İntegral Kuralları
+
+Aşağıdaki kuralların her biri, sağ tarafın türevi alınarak doğrulanabilir (türev, soldaki integrand'a eşit çıkar):
+
+| İntegral | Sonuç | Koşul |
+| --- | --- | --- |
+| $\displaystyle\int k\,dx$ | $kx+c$ | $k$ sabit |
+| $\displaystyle\int x^{n}\,dx$ | $\dfrac{x^{n+1}}{n+1}+c$ | $n\ne -1$ |
+| $\displaystyle\int \dfrac{1}{x}\,dx$ | $\ln\lvert x\rvert+c$ | $x\ne 0$ |
+| $\displaystyle\int e^{x}\,dx$ | $e^{x}+c$ | |
+| $\displaystyle\int a^{x}\,dx$ | $\dfrac{a^{x}}{\ln a}+c$ | $a>0,\ a\ne 1$ |
+| $\displaystyle\int \sin x\,dx$ | $-\cos x+c$ | |
+| $\displaystyle\int \cos x\,dx$ | $\sin x+c$ | |
+| $\displaystyle\int \dfrac{1}{\cos^{2}x}\,dx$ | $\tan x+c$ | |
+
+Kuvvet kuralında $n=-1$ değeri payda $n+1=0$ yaptığından **yasaktır**; bu tek durumun karşılığı ayrı bir kuraldır: $\displaystyle\int x^{-1}\,dx=\ln\lvert x\rvert+c$.
+
+### Doğrusallık Kuralları
+
+İntegral doğrusal bir işlemdir: sabit çarpan dışarı alınır, toplam–fark terim terim integrallenir.
+
+$$\int c\,f(x)\,dx=c\int f(x)\,dx \qquad \int \big(f(x)\pm g(x)\big)\,dx=\int f(x)\,dx\pm\int g(x)\,dx$$
+
+Bu iki kural sayesinde polinomları ve birden çok terimli ifadeleri **terim terim** integralleyebiliriz.
+
+<Ornek>
+
+<Soru>
+
+$\displaystyle\int (3x^{2}-4x+5)\,dx$ integralini hesaplayınız.
+
+</Soru>
+
+<Cozum>
+
+1. Doğrusallık ile terim terim ayır: $\displaystyle\int 3x^{2}\,dx-\int 4x\,dx+\int 5\,dx$.
+
+2. Kuvvet kuralını her terime uygula: $3\cdot\dfrac{x^{3}}{3}-4\cdot\dfrac{x^{2}}{2}+5x$.
+
+3. Sadeleştir ve tek bir $c$ ekle: $x^{3}-2x^{2}+5x+c$.
+
+4. Kontrol: $\big(x^{3}-2x^{2}+5x+c\big)'=3x^{2}-4x+5$. İntegrand'a eşit.
+
+<Cevap>$\displaystyle\int (3x^{2}-4x+5)\,dx=x^{3}-2x^{2}+5x+c$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\displaystyle\int \left(\sqrt{x}+\dfrac{1}{x^{2}}\right)\,dx$ integralini hesaplayınız.
+
+</Soru>
+
+<Ipucu>
+
+Kök ve paydadaki kuvvetleri önce **üslü ifadeye** çevir: $\sqrt{x}=x^{1/2}$ ve $\dfrac{1}{x^{2}}=x^{-2}$. Sonra kuvvet kuralını uygula.
+
+</Ipucu>
+
+<Cozum>
+
+1. Terimleri üslü yaz: $\displaystyle\int x^{1/2}\,dx+\int x^{-2}\,dx$.
+
+2. İlk terim ($n=\tfrac{1}{2}$): $\dfrac{x^{3/2}}{3/2}=\dfrac{2}{3}x^{3/2}$.
+
+3. İkinci terim ($n=-2$): $\dfrac{x^{-1}}{-1}=-x^{-1}=-\dfrac{1}{x}$.
+
+4. Birleştir: $\dfrac{2}{3}x^{3/2}-\dfrac{1}{x}+c$.
+
+5. Kontrol: $\left(\dfrac{2}{3}x^{3/2}-\dfrac{1}{x}\right)'=x^{1/2}+x^{-2}=\sqrt{x}+\dfrac{1}{x^{2}}$. Doğru.
+
+<Cevap>$\displaystyle\int \left(\sqrt{x}+\dfrac{1}{x^{2}}\right)\,dx=\dfrac{2}{3}x^{3/2}-\dfrac{1}{x}+c$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\displaystyle\int (2\cos x-e^{x})\,dx$ integralini hesaplayınız.
+
+</Soru>
+
+<Cozum>
+
+1. Doğrusallık ile ayır: $\displaystyle 2\int \cos x\,dx-\int e^{x}\,dx$.
+
+2. Temel kuralları uygula: $\displaystyle\int \cos x\,dx=\sin x$ ve $\displaystyle\int e^{x}\,dx=e^{x}$.
+
+3. Yerine yaz ve $c$ ekle: $2\sin x-e^{x}+c$.
+
+4. Kontrol: $\big(2\sin x-e^{x}+c\big)'=2\cos x-e^{x}$. İntegrand'a eşit.
+
+<Cevap>$\displaystyle\int (2\cos x-e^{x})\,dx=2\sin x-e^{x}+c$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$F'(x)=3x^{2}-2$ ve $F(1)=4$ olduğuna göre $F(x)$ fonksiyonunu bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Önce integral alıp $F(x)$'i $+c$ ile genel hâlde yaz. Sonra verilen başlangıç koşulu $F(1)=4$'ü kullanarak $c$'yi sayısal olarak belirle.
+
+</Ipucu>
+
+<Cozum>
+
+1. $F'(x)$'in integralini al: $\displaystyle F(x)=\int (3x^{2}-2)\,dx=x^{3}-2x+c$.
+
+2. Başlangıç koşulunu yerine yaz: $F(1)=1^{3}-2\cdot 1+c=1-2+c=-1+c$.
+
+3. $-1+c=4$ denkleminden $c$'yi çöz: $c=5$.
+
+4. $c$'yi yerine koy: $F(x)=x^{3}-2x+5$.
+
+5. Kontrol: $F'(x)=3x^{2}-2$ ve $F(1)=1-2+5=4$. Her iki koşul da sağlanır.
+
+<Cevap>$F(x)=x^{3}-2x+5$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\displaystyle\int \dfrac{x^{2}+1}{x}\,dx$ integralini hesaplayınız.
+
+</Soru>
+
+<Ipucu>
+
+Bölme hâlindeki ifadeyi doğrudan integralleyemezsin. Önce payı paydaya **terim terim böl**: $\dfrac{x^{2}+1}{x}=\dfrac{x^{2}}{x}+\dfrac{1}{x}$.
+
+</Ipucu>
+
+<Cozum>
+
+1. İfadeyi terim terim sadeleştir: $\dfrac{x^{2}+1}{x}=x+\dfrac{1}{x}$.
+
+2. İntegrali ayır: $\displaystyle\int x\,dx+\int \dfrac{1}{x}\,dx$.
+
+3. Birinci terim kuvvet kuralıyla: $\displaystyle\int x\,dx=\dfrac{x^{2}}{2}$.
+
+4. İkinci terim $n=-1$ istisnasıyla: $\displaystyle\int \dfrac{1}{x}\,dx=\ln\lvert x\rvert$.
+
+5. Birleştir: $\dfrac{x^{2}}{2}+\ln\lvert x\rvert+c$.
+
+6. Kontrol: $\left(\dfrac{x^{2}}{2}+\ln\lvert x\rvert\right)'=x+\dfrac{1}{x}=\dfrac{x^{2}+1}{x}$. Doğru.
+
+<Cevap>$\displaystyle\int \dfrac{x^{2}+1}{x}\,dx=\dfrac{x^{2}}{2}+\ln\lvert x\rvert+c$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **İntegral sabiti $+c$'yi unutmak.** Belirsiz integralin cevabı bir fonksiyon ailesidir; $+c$ olmadan eksik sayılır.
+- **Kuvvet kuralını $n=-1$'de zorlamak.** $\displaystyle\int x^{-1}\,dx$, payda sıfır olacağından $\dfrac{x^{0}}{0}$ değildir; doğrusu $\ln\lvert x\rvert+c$'dir.
+- **$\displaystyle\int \dfrac{1}{x^{2}}\,dx$'i $\ln$ sanmak.** Burada üs $n=-2$'dir, $n=-1$ değildir; kuvvet kuralı geçerlidir ve sonuç $-\dfrac{1}{x}+c$ olur. Yalnızca $\dfrac{1}{x}$ (yani $x^{-1}$) integralinde $\ln$ çıkar.
+- **İntegral ile türevi karıştırmak.** İntegral, kuvveti **bir artırır** ($x^{n}\to x^{n+1}$); türev ise bir azaltır. Yön karıştığında cevap ters çıkar.
+
+## Sınav İpucu
+
+- **Türev alarak doğrula:** Bulduğun sonucun türevini al; integrand'a eşitse cevap kesin doğrudur. Belirsiz integralde bu, tek ve en hızlı denetimdir.
+- **Önce sadeleştir, sonra integralle:** Bölme veya çarpım içeren ifadeleri ($\frac{x^{2}+1}{x}$, $\sqrt{x}\cdot x$ gibi) doğrudan integralleme; önce terim terim böl ya da üslü forma çevir, ardından kuvvet kuralını uygula.
+- **Başlangıç koşullu sorularda** ($F(a)=b$) önce $+c$'li genel çözümü yaz, sonra koşulu yerine koyup $c$'yi sayısal olarak bul; $c$'yi belirsiz bırakma.
+
+<KonuNav slug="integral-kavrami" />

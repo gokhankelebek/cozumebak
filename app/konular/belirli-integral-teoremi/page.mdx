@@ -1,0 +1,202 @@
+import { topicMetadata } from "@/lib/seo";
+
+export const metadata = topicMetadata("belirli-integral-teoremi");
+
+<Konu slug="belirli-integral-teoremi" />
+
+<p className="lead">Belirsiz integral bir **fonksiyon ailesidir** ($+c$ ile sonsuz tane); belirli integral ise tek bir **sayıdır**. İkisi arasındaki köprüyü **Analizin Temel Teoremi** kurar: türevi bilinen bir antiderivatifi iki sınırda değerlendirip farkını alırız. Bu konu, belirli integralin tanımını, Newton–Leibniz formülünü ve sınavda en çok puan getiren özelliklerini eksiksiz işler.</p>
+
+## 1. Belirli İntegral Bir Sayıdır
+
+$f$ fonksiyonu $[a,b]$ aralığında sürekli olsun. Bu aralıktaki **belirli integral**
+
+$$\int_{a}^{b} f(x)\,dx$$
+
+ifadesi, $a$ ile $b$ arasında belirlenmiş tek bir **gerçek sayıdır**. Burada $a$ alt sınır, $b$ üst sınırdır; $x$ ise **kukla (dummy) değişkendir** — onun yerine başka bir harf yazmak sonucu değiştirmez:
+
+$$\int_{a}^{b} f(x)\,dx=\int_{a}^{b} f(t)\,dt$$
+
+Belirsiz integralle farkı net tutun:
+
+| | Belirsiz integral | Belirli integral |
+| --- | --- | --- |
+| Gösterim | $\displaystyle\int f(x)\,dx$ | $\displaystyle\int_{a}^{b} f(x)\,dx$ |
+| Sonuç | Bir **fonksiyon ailesi** ($F(x)+c$) | Bir **sayı** |
+| $+c$ | Yazılır | Yazılmaz (sadeleşir) |
+
+## 2. Analizin Temel Teoremi (Newton–Leibniz)
+
+$f$, $[a,b]$ üzerinde sürekli ve $F$ onun bir antiderivatifi ise, yani $F'(x)=f(x)$ ise:
+
+$$\int_{a}^{b} f(x)\,dx=\Big[F(x)\Big]_{a}^{b}=F(b)-F(a)$$
+
+Yani integralin değeri, antiderivatifin **üst sınırdaki değeri eksi alt sınırdaki değeridir**. Sıra önemlidir: önce $F(b)$, sonra $F(a)$.
+
+> **Neden $+c$ yazmıyoruz?** Antiderivatif $F(x)+c$ alınsaydı, $\big(F(b)+c\big)-\big(F(a)+c\big)=F(b)-F(a)$ olurdu; $c$ sabiti farkta sadeleşir. Bu yüzden belirli integralde köşeli parantez içine **asla $+c$ yazılmaz**.
+
+## 3. Belirli İntegralin Özellikleri
+
+Aşağıdaki özellikler, integral hesaplarını kısaltır ve sınav sorularının çoğunun temelidir:
+
+| Özellik | Formül |
+| --- | --- |
+| Aynı sınır | $\displaystyle\int_{a}^{a} f(x)\,dx=0$ |
+| Sınır değişimi | $\displaystyle\int_{a}^{b} f(x)\,dx=-\int_{b}^{a} f(x)\,dx$ |
+| Toplam – fark | $\displaystyle\int_{a}^{b}\big(f\pm g\big)\,dx=\int_{a}^{b} f\,dx\pm\int_{a}^{b} g\,dx$ |
+| Sabitle çarpım | $\displaystyle\int_{a}^{b} c\,f(x)\,dx=c\int_{a}^{b} f(x)\,dx$ |
+| Aralık bölme | $\displaystyle\int_{a}^{c} f\,dx+\int_{c}^{b} f\,dx=\int_{a}^{b} f\,dx$ |
+
+> **Dikkat:** Belirli integral bir **işaretli değerdir**, alan değil. $f$ aralıkta negatifse $\int_{a}^{b} f(x)\,dx$ negatif çıkabilir. Alan istendiğinde mutlak değer/işaret ayrı düşünülür.
+
+<Ornek>
+
+<Soru>
+
+$\displaystyle\int_{1}^{3} 2x\,dx$ integralini hesaplayınız.
+
+</Soru>
+
+<Cozum>
+
+1. Antiderivatifi bul: $2x$'in antiderivatifi $x^{2}$'dir (çünkü $\frac{d}{dx}x^{2}=2x$).
+2. Newton–Leibniz uygula: $\displaystyle\int_{1}^{3} 2x\,dx=\Big[x^{2}\Big]_{1}^{3}$.
+3. Üst sınır eksi alt sınır: $3^{2}-1^{2}=9-1=8$.
+
+<Cevap>$\displaystyle\int_{1}^{3} 2x\,dx=8$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\displaystyle\int_{1}^{2} \big(3x^{2}-2x\big)\,dx$ integralini hesaplayınız.
+
+</Soru>
+
+<Ipucu>
+
+Toplam–fark özelliğini kullan; her terimin antiderivatifini ayrı ayrı al, sonra tek bir köşeli parantezde sınırları yerine yaz.
+
+</Ipucu>
+
+<Cozum>
+
+1. Terim terim antiderivatif al: $3x^{2}\to x^{3}$, $\ 2x\to x^{2}$. Yani antiderivatif $x^{3}-x^{2}$.
+2. Newton–Leibniz: $\displaystyle\int_{1}^{2}\big(3x^{2}-2x\big)\,dx=\Big[x^{3}-x^{2}\Big]_{1}^{2}$.
+3. Üst sınır ($x=2$): $2^{3}-2^{2}=8-4=4$.
+4. Alt sınır ($x=1$): $1^{3}-1^{2}=1-1=0$.
+5. Farkı al: $4-0=4$.
+
+<Cevap>$\displaystyle\int_{1}^{2}\big(3x^{2}-2x\big)\,dx=4$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\displaystyle\int_{0}^{\pi/2}\cos x\,dx$ integralini hesaplayınız.
+
+</Soru>
+
+<Cozum>
+
+1. $\cos x$'in antiderivatifi $\sin x$'tir (çünkü $\frac{d}{dx}\sin x=\cos x$).
+2. Newton–Leibniz: $\displaystyle\int_{0}^{\pi/2}\cos x\,dx=\Big[\sin x\Big]_{0}^{\pi/2}$.
+3. Sınırları yerine yaz: $\sin\dfrac{\pi}{2}-\sin 0=1-0=1$.
+
+<Cevap>$\displaystyle\int_{0}^{\pi/2}\cos x\,dx=1$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\displaystyle\int_{0}^{1} e^{x}\,dx$ integralini hesaplayınız.
+
+</Soru>
+
+<Cozum>
+
+1. $e^{x}$'in antiderivatifi yine $e^{x}$'tir (çünkü $\frac{d}{dx}e^{x}=e^{x}$).
+2. Newton–Leibniz: $\displaystyle\int_{0}^{1} e^{x}\,dx=\Big[e^{x}\Big]_{0}^{1}$.
+3. Sınırları yerine yaz: $e^{1}-e^{0}=e-1$.
+
+<Cevap>$\displaystyle\int_{0}^{1} e^{x}\,dx=e-1$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\displaystyle\int_{0}^{2} f(x)\,dx=5$ ve $\displaystyle\int_{2}^{5} f(x)\,dx=3$ veriliyor. $\displaystyle\int_{0}^{5} f(x)\,dx$ kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+$f$'in açık ifadesini bilmene gerek yok. Aralık bölme özelliğini ters yönde kullan.
+
+</Ipucu>
+
+<Cozum>
+
+1. Aralık bölme özelliği: $\displaystyle\int_{0}^{2} f\,dx+\int_{2}^{5} f\,dx=\int_{0}^{5} f\,dx$ ($c=2$ ara noktası).
+2. Verilen değerleri yerine yaz: $5+3=8$.
+
+<Cevap>$\displaystyle\int_{0}^{5} f(x)\,dx=8$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\displaystyle\int_{0}^{1} 2x\,\big(x^{2}+1\big)^{3}\,dx$ integralini **değişken değiştirerek** hesaplayınız.
+
+</Soru>
+
+<Ipucu>
+
+$u=x^{2}+1$ dönüşümünü yap. Değişkenle birlikte **sınırları da $u$ cinsine çevir**; böylece geri $x$'e dönmen gerekmez.
+
+</Ipucu>
+
+<Cozum>
+
+1. Dönüşümü seç: $u=x^{2}+1$. O zaman $du=2x\,dx$ olur ki bu tam payımızdaki $2x\,dx$'tir.
+2. **Sınırları güncelle:** $x=0\Rightarrow u=0^{2}+1=1$ ve $x=1\Rightarrow u=1^{2}+1=2$.
+3. İntegrali $u$ cinsine yaz: $\displaystyle\int_{0}^{1} 2x\,\big(x^{2}+1\big)^{3}\,dx=\int_{1}^{2} u^{3}\,du$.
+4. Antiderivatifi al ve değerlendir: $\displaystyle\int_{1}^{2} u^{3}\,du=\Big[\dfrac{u^{4}}{4}\Big]_{1}^{2}=\dfrac{2^{4}}{4}-\dfrac{1^{4}}{4}=\dfrac{16}{4}-\dfrac{1}{4}=\dfrac{15}{4}$.
+
+<Cevap>$\displaystyle\int_{0}^{1} 2x\,\big(x^{2}+1\big)^{3}\,dx=\dfrac{15}{4}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Sırayı ters çevirmek:** $F(b)-F(a)$ yerine $F(a)-F(b)$ yazmak. Sonuç ters işaretli çıkar. Daima **üst sınır eksi alt sınır**.
+- **Gereksiz $+c$ yazmak:** Belirli integralde sabit sadeleşir; köşeli parantez içine $+c$ koymak gereksizdir.
+- **Sınırları güncellememek:** Değişken değiştirmeli belirli integralde $u$'ya geçtikten sonra sınırları $u$ cinsine çevirmeyi unutmak. Ya sınırları çevir ya da $x$'e geri dön — ikisini karıştırma.
+- **İşareti unutmak:** Belirli integral alan değil, **işaretli değerdir**; negatif çıkabileceğini göz ardı etmek.
+
+## Sınav İpucu
+
+Bir belirli integral gördüğünde refleksin şu olsun: önce **antiderivatifi (belirsiz integrali)** bul, sonra $\Big[F(x)\Big]_{a}^{b}=F(b)-F(a)$ ile bitir. Eğer dönüşüm (değişken değiştirme) yapıyorsan **sınırları da $u$ cinsine çevir**; bu durumda işlemin sonunda $x$'e geri dönmene gerek kalmaz, doğrudan $u$ sınırlarında değerlendirirsin. $f$'in formülü verilmeyip yalnızca bazı integral değerleri verildiğinde, soru kesinlikle **özelliklerle** (aralık bölme, sabitle çarpım, toplam–fark) çözülüyordur.
+
+<KonuNav slug="belirli-integral-teoremi" />
