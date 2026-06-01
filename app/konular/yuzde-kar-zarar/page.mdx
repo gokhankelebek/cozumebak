@@ -1,0 +1,231 @@
+import { topicMetadata } from "@/lib/seo";
+
+export const metadata = topicMetadata("yuzde-kar-zarar");
+
+<Konu slug="yuzde-kar-zarar" />
+
+<p className="lead">Yüzde, kâr-zarar ve faiz; TYT'nin her yıl tekrar eden, hesaplaması basit ama tuzakları çok olan konularıdır. İşin sırrı yüzdeleri **çarpan** olarak görmektir: $\%20$ artış $\times 1{,}2$, $\%20$ azalış $\times 0{,}8$ demektir. Bu mantıkla zam, indirim, kâr ve basit faiz problemlerinin tamamını tek bir bakış açısıyla çözeceğiz.</p>
+
+## 1. Yüzde Hesabı
+
+Bir $x$ sayısının $\%a$'sı, o sayının $\dfrac{a}{100}$ katıdır:
+
+$$x \text{ sayısının } \%a\text{'sı} = \dfrac{a}{100}\cdot x$$
+
+Yüzdeleri kesirle eşleştirmek hesabı hızlandırır:
+
+$$\%20=\dfrac{20}{100}=\dfrac{1}{5},\qquad \%25=\dfrac{1}{4},\qquad \%50=\dfrac{1}{2},\qquad \%10=\dfrac{1}{10}$$
+
+Örneğin $200$ sayısının $\%15$'i:
+
+$$\dfrac{15}{100}\cdot 200=\dfrac{3000}{100}=30$$
+
+## 2. Zam (Artış) ve İndirim (Azalış)
+
+Bir değere $\%a$ **zam** yapılırsa yeni değer, eski değerin $\left(1+\dfrac{a}{100}\right)$ katı; $\%a$ **indirim** yapılırsa $\left(1-\dfrac{a}{100}\right)$ katı olur:
+
+$$\text{Zam: } x\cdot\left(1+\dfrac{a}{100}\right),\qquad \text{İndirim: } x\cdot\left(1-\dfrac{a}{100}\right)$$
+
+| İşlem | Çarpan |
+| --- | --- |
+| $\%20$ zam | $1{,}20$ |
+| $\%25$ zam | $1{,}25$ |
+| $\%20$ indirim | $0{,}80$ |
+| $\%25$ indirim | $0{,}75$ |
+
+> **Püf noktası:** "Zamdan önceki fiyat" sorularında $\%20$'yi **çıkarmaya** çalışma; yeni fiyatı çarpana **böl**. Çünkü zam, eski fiyat üzerinden hesaplanır.
+
+## 3. Ardışık Zam ve İndirim
+
+Birden çok yüzde değişimi üst üste gelirse yüzdeler **toplanmaz**; çarpanlar **çarpılır**. Önce $\%20$ zam, sonra $\%20$ indirim yapılan bir fiyat için:
+
+$$1{,}2\cdot 0{,}8=0{,}96$$
+
+Sonuç ilk fiyatın $\%96$'sıdır; yani toplamda $\%4$ **azalma** olur. "Zam ve indirim eşit, fiyat değişmez" demek yanlıştır.
+
+## 4. Kâr ve Zarar
+
+Bir malın **maliyeti** (alış fiyatı) ile **satış fiyatı** arasındaki fark kâr ya da zarardır:
+
+$$\text{Kâr}=\text{Satış}-\text{Maliyet},\qquad \text{Zarar}=\text{Maliyet}-\text{Satış}$$
+
+TYT'de kâr/zarar yüzdesi, aksi belirtilmedikçe **maliyet** üzerinden hesaplanır:
+
+$$\text{Kâr \%}=\dfrac{\text{Kâr}}{\text{Maliyet}}\cdot 100,\qquad \text{Zarar \%}=\dfrac{\text{Zarar}}{\text{Maliyet}}\cdot 100$$
+
+Buna göre $\%25$ kârla satış demek, satış fiyatının maliyetin $1{,}25$ katı olması demektir.
+
+## 5. Basit Faiz
+
+Basit faizde faiz, her dönem yalnızca **anapara** üzerinden hesaplanır (kazanılan faiz tekrar faiz getirmez). Faiz oranı yıllık ve zaman yıl cinsinden ise:
+
+$$\text{Faiz}=\dfrac{\text{Anapara}\cdot \text{faiz oranı}(\%)\cdot \text{zaman}}{100}$$
+
+Vade sonunda **toplam** birikim, anapara ile faizin toplamıdır. Zaman ay olarak verilirse yıla çevrilir: $6$ ay $=\dfrac{6}{12}=\dfrac{1}{2}$ yıl.
+
+<Ornek>
+
+<Soru>
+
+$200$ sayısının $\%15$'i kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. Yüzde formülünü uygula: $\dfrac{15}{100}\cdot 200$.
+
+2. Sadeleştir: $\dfrac{15\cdot 200}{100}=\dfrac{3000}{100}=30$.
+
+<Cevap>$200$ sayısının $\%15$'i $30$'dur.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir ürüne $\%20$ zam yapılınca fiyatı $240$ TL oluyor. Zamdan önceki fiyat kaç TL'dir?
+
+</Soru>
+
+<Ipucu>
+
+Zam, eski fiyat üzerinden yapılır. Eski fiyat $x$ ise yeni fiyat $1{,}2\cdot x$ olur. $240$ TL'den $\%20$ çıkarma; $1{,}2$'ye böl.
+
+</Ipucu>
+
+<Cozum>
+
+1. Eski fiyat $x$ olsun; $\%20$ zamlı fiyat $1{,}2\cdot x$'tir.
+
+2. Denklemi kur: $1{,}2\cdot x=240$.
+
+3. Çöz: $x=\dfrac{240}{1{,}2}=200$.
+
+<Cevap>Zamdan önceki fiyat $200$ TL'dir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Maliyeti $80$ TL olan bir ürün $\%25$ kârla satılıyor. Satış fiyatı ve kâr kaç TL'dir?
+
+</Soru>
+
+<Cozum>
+
+1. $\%25$ kâr, çarpan olarak $1{,}25$ demektir: Satış $=80\cdot 1{,}25$.
+
+2. Hesapla: $80\cdot 1{,}25=100$ TL.
+
+3. Kârı bul: $\text{Kâr}=\text{Satış}-\text{Maliyet}=100-80=20$ TL.
+
+<Cevap>Satış fiyatı $100$ TL, kâr $20$ TL'dir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir mala önce $\%20$ zam, sonra $\%20$ indirim yapılıyor. Son fiyat, ilk fiyatın yüzde kaçıdır?
+
+</Soru>
+
+<Ipucu>
+
+Ardışık değişimlerde yüzdeleri toplama; çarpanları çarp. $\%20$ zam $=1{,}2$, $\%20$ indirim $=0{,}8$.
+
+</Ipucu>
+
+<Cozum>
+
+1. İlk fiyat $x$ olsun. $\%20$ zamdan sonra: $1{,}2\cdot x$.
+
+2. Bu fiyata $\%20$ indirim: $1{,}2\cdot x\cdot 0{,}8$.
+
+3. Çarpanları çarp: $1{,}2\cdot 0{,}8=0{,}96$, yani son fiyat $0{,}96\cdot x$.
+
+4. Demek ki son fiyat ilk fiyatın $\%96$'sıdır; toplamda $\%4$ azalma vardır.
+
+<Cevap>Son fiyat, ilk fiyatın $\%96$'sıdır ($\%4$ azalma).</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$1000$ TL, yıllık $\%10$ basit faizle $2$ yıl yatırılıyor. Elde edilen faiz ve vade sonundaki toplam kaç TL'dir?
+
+</Soru>
+
+<Cozum>
+
+1. Basit faiz formülünü yaz: $\text{Faiz}=\dfrac{\text{Anapara}\cdot \text{oran}\cdot \text{zaman}}{100}$.
+
+2. Değerleri yerine koy: $\text{Faiz}=\dfrac{1000\cdot 10\cdot 2}{100}$.
+
+3. Hesapla: $\dfrac{20000}{100}=200$ TL.
+
+4. Toplamı bul: $1000+200=1200$ TL.
+
+<Cevap>Faiz $200$ TL, vade sonu toplam $1200$ TL'dir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir ürün $150$ TL'ye alınıp $120$ TL'ye satılıyor. Zarar yüzdesi kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+Zarar yüzdesi maliyet üzerinden hesaplanır: $\dfrac{\text{Zarar}}{\text{Maliyet}}\cdot 100$.
+
+</Ipucu>
+
+<Cozum>
+
+1. Zararı bul: $\text{Zarar}=\text{Maliyet}-\text{Satış}=150-120=30$ TL.
+
+2. Maliyete oranla: $\dfrac{30}{150}=\dfrac{1}{5}$.
+
+3. Yüzdeye çevir: $\dfrac{1}{5}=\%20$.
+
+<Cevap>Zarar yüzdesi $\%20$'dir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Ardışık zam-indirimi toplamak:** $\%20$ zam ile $\%20$ indirim "birbirini götürür, değişim olmaz" sanmak yanlıştır. Çarpanları çarp: $1{,}2\cdot 0{,}8=0{,}96$, yani $\%4$ kayıp olur.
+- **Kâr yüzdesini satış üzerinden almak:** TYT'de kâr/zarar yüzdesi **maliyet** üzerinden hesaplanır. Pay'a kârı, payda'ya maliyeti yaz.
+- **"Önceki fiyatı" yanlış bulmak:** Zamlı fiyattan doğrudan $\%20$ çıkarmak hatalıdır; çarpana ($1{,}2$'ye) **bölmek** gerekir.
+- **Faizde zamanı çevirmemek:** Faiz oranı yıllık verilip süre ay ise, ayı yıla çevir ($8$ ay $=\dfrac{8}{12}$ yıl).
+
+## Sınav İpucu
+
+- Tüm yüzde değişimlerini **çarpanla** yürüt: $\%20$ artış $\to 1{,}2$, $\%20$ azalış $\to 0{,}8$, $\%25$ kâr $\to 1{,}25$. Ardışık değişimlerde bu çarpanları çarpman yeterlidir.
+- "Önceki/orijinal fiyat" istenen sorularda çarpana **böl**; "yeni/son fiyat" istenenlerde çarpanla **çarp**.
+- Kâr-zarar ve basit faizde her zaman önce **referansı** (maliyet mi, anapara mı) belirle; oran daima onun üzerinden işler.
+
+<KonuNav slug="yuzde-kar-zarar" />

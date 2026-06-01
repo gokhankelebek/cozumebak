@@ -1,0 +1,232 @@
+import { topicMetadata } from "@/lib/seo";
+
+export const metadata = topicMetadata("sayi-problemleri");
+
+<Konu slug="sayi-problemleri" />
+
+<p className="lead">Sayı ve kesir problemleri, TYT'nin en çok soru getiren konularından biridir ve aslında tek bir beceriye dayanır: **sözel ifadeyi doğru denkleme çevirmek.** Bilinmeyene $x$ deyip cümleyi parça parça matematiğe çevirdiğinde, geriye yalnızca birinci dereceden bir denklem çözmek kalır. Bu derste çeviri sözlüğünü kurar, sayı ve kesir problemlerini örneklerle işler ve sınavda zaman kazandıran refleksleri ediniriz.</p>
+
+## 1. Sözel İfadeyi Denkleme Çevirme
+
+Her problemin ilk adımı aynıdır: aranan büyüklüğe $x$ de, sonra cümledeki her ifadeyi $x$ cinsinden yaz. Aşağıdaki mini sözlük, en sık geçen kalıpları kapsar.
+
+| Sözel ifade | Matematiksel karşılığı |
+| --- | --- |
+| Bir sayı | $x$ |
+| Bir sayının $3$ katı | $3x$ |
+| Bir sayının $5$ fazlası | $x+5$ |
+| Bir sayının $4$ eksiği | $x-4$ |
+| Bir sayının yarısı | $\dfrac{x}{2}$ |
+| Bir sayının üçte biri | $\dfrac{x}{3}$ |
+| İki katının $3$ fazlası | $2x+3$ |
+| Bir sayının $\dfrac{2}{3}$'ü | $\dfrac{2}{3}x$ |
+
+> **Püf noktası:** "kat" çarpma, "fazlası/eksiği" toplama–çıkarma demektir. "$3$ fazlası" ($x+3$) ile "$3$ katı" ($3x$) bambaşka ifadelerdir; sınavda en çok bu karıştırma puan kaybettirir.
+
+## 2. Sayı Problemleri
+
+Tek bilinmeyenli kurulan problemlerde cümleyi soldan sağa okuyup denkleme dök. Birden fazla sayı varsa, **birini diğeri cinsinden** yazarak yine tek bilinmeyene in.
+
+**Ardışık sayılar:** Ardışık tam sayılar $x,\ x+1,\ x+2,\dots$ şeklindedir. Ancak **ardışık tek** ya da **ardışık çift** sayılar ikişer ikişer artar; doğru gösterim $x,\ x+2,\ x+4,\dots$ olur.
+
+<Ornek>
+
+<Soru>
+
+Bir sayının $3$ katının $5$ fazlası $26$ ise bu sayı kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. Sayıya $x$ diyelim. "$3$ katı" $=3x$, "$5$ fazlası" $=3x+5$.
+
+2. Denklemi kur: $3x+5=26$.
+
+3. $5$'i karşıya at: $3x=21$.
+
+4. Her iki tarafı $3$'e böl: $x=7$.
+
+5. **Doğrulama:** $3\cdot 7+5=21+5=26$. ✓
+
+<Cevap>Sayı $7$'dir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+İki sayının toplamı $40$'tır. Biri diğerinin $3$ katı ise sayılar kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+Küçük sayıya $x$ de; büyük sayı onun $3$ katı, yani $3x$ olur. Toplamları $40$.
+
+</Ipucu>
+
+<Cozum>
+
+1. Küçük sayı $x$ olsun. Diğeri onun $3$ katı: $3x$.
+
+2. Toplamları $40$: $x+3x=40$.
+
+3. Topla: $4x=40$, buradan $x=10$.
+
+4. Diğer sayı: $3x=3\cdot 10=30$.
+
+5. **Doğrulama:** $10+30=40$ ve $30=3\cdot 10$. ✓
+
+<Cevap>Sayılar $10$ ve $30$'dur.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Ardışık iki tek sayının toplamı $36$ ise büyük sayı kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+Ardışık tek sayılar ikişer artar: küçüğü $x$ ise büyüğü $x+2$'dir, $x+1$ değil.
+
+</Ipucu>
+
+<Cozum>
+
+1. Küçük tek sayı $x$ olsun; ardışık tek sayı $x+2$'dir.
+
+2. Toplamları $36$: $x+(x+2)=36$.
+
+3. Sadeleştir: $2x+2=36$, yani $2x=34$ ve $x=17$.
+
+4. Sayılar $17$ ve $19$; büyük olan $19$'dur.
+
+5. **Doğrulama:** $17+19=36$, ikisi de tek. ✓
+
+<Cevap>Büyük sayı $19$'dur.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 3. Kesir Problemleri
+
+Kesir problemlerinde iki kalıp öne çıkar:
+
+- **"Bir sayının $\dfrac{a}{b}$'i"** ifadesi $\dfrac{a}{b}x$ demektir; örneğin "bir sayının $\dfrac{2}{3}$'ü" $=\dfrac{2}{3}x$.
+- **Paydalı denklemlerde** önce paydaları eşitle (veya tüm denklemi paydaların **EKOK**'u ile çarp), böylece kesirlerden kurtul.
+
+<Ornek>
+
+<Soru>
+
+Bir sayının $\dfrac{2}{3}$'ü $18$ ise bu sayı kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. Sayı $x$ olsun. "$\dfrac{2}{3}$'ü" $=\dfrac{2}{3}x$.
+
+2. Denklem: $\dfrac{2}{3}x=18$.
+
+3. Her iki tarafı $\dfrac{3}{2}$ ile çarp: $x=18\cdot\dfrac{3}{2}=27$.
+
+4. **Doğrulama:** $\dfrac{2}{3}\cdot 27=2\cdot 9=18$. ✓
+
+<Cevap>Sayı $27$'dir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir sayının yarısı ile üçte birinin toplamı $25$ ise bu sayı kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+"Yarısı" $=\dfrac{x}{2}$, "üçte biri" $=\dfrac{x}{3}$. Paydaları eşitlemek için ortak payda $6$ kullan.
+
+</Ipucu>
+
+<Cozum>
+
+1. Sayı $x$ olsun: $\dfrac{x}{2}+\dfrac{x}{3}=25$.
+
+2. Ortak payda $6$: $\dfrac{3x}{6}+\dfrac{2x}{6}=25$.
+
+3. Payları topla: $\dfrac{5x}{6}=25$.
+
+4. Her iki tarafı $\dfrac{6}{5}$ ile çarp: $x=25\cdot\dfrac{6}{5}=30$.
+
+5. **Doğrulama:** $\dfrac{30}{2}+\dfrac{30}{3}=15+10=25$. ✓
+
+<Cevap>Sayı $30$'dur.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir kesrin payı, paydasından $4$ eksiktir. Bu kesir $\dfrac{3}{5}$'e eşit olduğuna göre kesir nedir?
+
+</Soru>
+
+<Ipucu>
+
+Paydaya $x$ de; pay paydadan $4$ eksik olduğundan pay $x-4$ olur. İçler–dışlar çarpımıyla denklemi kur.
+
+</Ipucu>
+
+<Cozum>
+
+1. Payda $x$ olsun; pay paydadan $4$ eksik: $x-4$. Kesir $\dfrac{x-4}{x}$.
+
+2. Eşitlik: $\dfrac{x-4}{x}=\dfrac{3}{5}$.
+
+3. İçler–dışlar çarpımı: $5(x-4)=3x$.
+
+4. Dağıt: $5x-20=3x$, buradan $2x=20$ ve $x=10$.
+
+5. Kesir: $\dfrac{x-4}{x}=\dfrac{6}{10}=\dfrac{3}{5}$.
+
+6. **Doğrulama:** $\dfrac{6}{10}$ sadeleşince $\dfrac{3}{5}$ olur. ✓
+
+<Cevap>Kesir $\dfrac{6}{10}=\dfrac{3}{5}$'tir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Sözel ifadeyi yanlış çevirmek:** "$3$ fazlası" ($x+3$) ile "$3$ katı" ($3x$) karıştırılır. Her kelimeyi tek tek matematiğe çevirip kontrol et.
+- **Kesirli denklemde paydaları eşitlememek:** $\dfrac{x}{2}+\dfrac{x}{3}$ ifadesini doğrudan $\dfrac{x}{5}$ sanmak yaygın hatadır. Önce ortak payda al.
+- **Ardışık tek/çift sayıları $x,\ x+1$ yazmak:** Tek ve çift sayılar ikişer artar; doğrusu $x,\ x+2$'dir.
+- **Bilinmeyeni yanlış büyüklüğe atamak:** Birden çok sayıda, bilinmeyeni en sade (genelde en küçük) büyüklüğe ata; diğerlerini onun cinsinden yaz.
+
+## Sınav İpucu
+
+- Bilinmeyeni **en sade büyüklüğe** ata; "biri diğerinin katı" türü ifadelerde küçük sayıya $x$ demek işlemleri kısaltır.
+- Cümleyi **parça parça** matematiğe çevir, sonra denklemi tek seferde kur; baştan sona okumadan denklem yazmaya kalkma.
+- Çözüm bittiğinde sonucu **yerine koyarak** doğrula; TYT'de bu kontrol, çeldiriciye düşmeni önler ve birkaç saniyede yapılır.
+
+<KonuNav slug="sayi-problemleri" />

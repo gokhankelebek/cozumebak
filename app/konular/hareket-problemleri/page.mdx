@@ -1,0 +1,220 @@
+import { topicMetadata } from "@/lib/seo";
+
+export const metadata = topicMetadata("hareket-problemleri");
+
+<Konu slug="hareket-problemleri" />
+
+<p className="lead">Hareket problemleri, **yol – hız – zaman** arasındaki tek bir bağıntıya dayanır: $x=v\cdot t$. TYT'de bu konu birim dönüşümü, karşılıklı/aynı yönde hareket ve ortalama hız soruları olarak çıkar. Püf noktası neredeyse her zaman **birim uyumu** ve doğru bağıntıyı kurmaktır. Bu derste temel formülden başlayıp sınavda en sık çıkan tüm tipleri çözeceğiz.</p>
+
+## 1. Temel Bağıntı: Yol = Hız · Zaman
+
+Sabit hızla giden bir cismin aldığı yol, hızı ile geçen zamanın çarpımıdır:
+
+$$x=v\cdot t$$
+
+Burada $x$ yol, $v$ hız, $t$ zamandır. Bu tek bağıntıdan diğer iki büyüklük çekilir:
+
+$$v=\dfrac{x}{t}\qquad\text{ve}\qquad t=\dfrac{x}{v}$$
+
+Üç büyüklükten ikisi verildiğinde üçüncüsü daima bulunur. Aklında bir "$x=v\cdot t$ üçgeni" tut: üstte $x$, altta $v$ ve $t$ yan yana; aradığını kapat, geriye kalan işlemi oku.
+
+### Birim Uyumu
+
+Bağıntının doğru çalışması için birimlerin uyumlu olması şarttır:
+
+| Hız | Yol | Zaman |
+| --- | --- | --- |
+| km/saat | km | saat |
+| m/saniye | m | saniye |
+
+> **Dikkat:** Hız km/saat ise zaman **saat** cinsinden olmalı. $30$ dakika $=\dfrac{1}{2}$ saat, $45$ dakika $=\dfrac{3}{4}$ saat. Soruda dakika verilip hız km/saat ise, önce dakikayı saate çevir.
+
+Bir hız birimini diğerine çevirirken $1\text{ km}=1000\text{ m}$ ve $1\text{ saat}=3600\text{ saniye}$ kullanılır:
+
+$$1\ \dfrac{\text{km}}{\text{saat}}=\dfrac{1000\ \text{m}}{3600\ \text{s}}=\dfrac{5}{18}\ \dfrac{\text{m}}{\text{s}}$$
+
+## 2. Karşılıklı (Zıt Yönde) Hareket
+
+İki araç **birbirine doğru** hareket ediyorsa, aralarındaki mesafe her iki hızın **toplamı** kadar bir hızla kapanır. İlk mesafe $x$, hızlar $v_1$ ve $v_2$ ise karşılaşma süresi:
+
+$$t=\dfrac{x}{v_1+v_2}$$
+
+Mantık: bir saniyede ilk araç $v_1$, diğeri $v_2$ kadar yol alır; aradaki boşluk toplam $v_1+v_2$ kadar azalır.
+
+## 3. Aynı Yönde Hareket
+
+İki araç **aynı yönde** giderse, arkadaki öndekine hızların **farkı** kadar bir hızla yaklaşır. Arkadaki hızlı araç ($v_1$), önündeki yavaş aracı ($v_2$) yakalamak için aradaki $x$ mesafesini kapatır:
+
+$$t=\dfrac{x}{v_1-v_2}\qquad (v_1>v_2)$$
+
+> **Özet kural:** Karşılıklı harekette hızları **topla**, aynı yönde harekette **çıkar**. Karşılaşma/yakalama süresi her zaman aradaki mesafe bölü bu bağıl hızdır.
+
+## 4. Ortalama Hız
+
+Bir aracın ortalama hızı, hızların aritmetik ortalaması **değildir**. Daima toplam yolun toplam süreye bölümüdür:
+
+$$v_{\text{ort}}=\dfrac{\text{toplam yol}}{\text{toplam süre}}$$
+
+Farklı hızlarda geçen sürelerin uzunlukları farklı olduğu için, yavaş giden hız ortalamayı kendine doğru daha çok çeker.
+
+<Ornek>
+
+<Soru>
+
+$60$ km/saat hızla giden bir araç $3$ saatte kaç km yol alır?
+
+</Soru>
+
+<Cozum>
+
+1. Bağıntıyı yaz: $x=v\cdot t$.
+
+2. Değerleri yerine koy: $x=60\cdot 3=180$ km.
+
+<Cevap>$180$ km.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$240$ km'lik yolu $4$ saatte alan bir aracın hızı kaç km/saattir?
+
+</Soru>
+
+<Cozum>
+
+1. Hız bağıntısını yaz: $v=\dfrac{x}{t}$.
+
+2. Değerleri yerine koy: $v=\dfrac{240}{4}=60$ km/saat.
+
+<Cevap>$60$ km/saat.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Aralarında $300$ km bulunan iki şehirden aynı anda birbirine doğru iki araç çıkıyor. Hızları $90$ km/saat ve $60$ km/saat olduğuna göre kaç saat sonra karşılaşırlar?
+
+</Soru>
+
+<Ipucu>
+
+Araçlar birbirine doğru gittiği için aradaki mesafe, hızların **toplamı** ile kapanır.
+
+</Ipucu>
+
+<Cozum>
+
+1. Karşılaşma süresi bağıntısı: $t=\dfrac{x}{v_1+v_2}$.
+
+2. Hızları topla: $v_1+v_2=90+60=150$ km/saat.
+
+3. Süreyi bul: $t=\dfrac{300}{150}=2$ saat.
+
+<Cevap>$2$ saat sonra karşılaşırlar.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$80$ km/saat hızla giden bir aracın $50$ km önünde, aynı yönde $60$ km/saat hızla giden başka bir araç vardır. Arkadaki araç öndekini kaç saatte yakalar?
+
+</Soru>
+
+<Ipucu>
+
+Aynı yönde hareket: arkadaki öndekine hızların **farkı** kadar bir hızla yaklaşır.
+
+</Ipucu>
+
+<Cozum>
+
+1. Yakalama süresi bağıntısı: $t=\dfrac{x}{v_1-v_2}$.
+
+2. Hızların farkını al: $v_1-v_2=80-60=20$ km/saat.
+
+3. Süreyi bul: $t=\dfrac{50}{20}=2{,}5$ saat.
+
+<Cevap>$2{,}5$ saat.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$72$ km/saat hız kaç m/saniyedir?
+
+</Soru>
+
+<Cozum>
+
+1. Çevrim katsayısını kullan: $1\ \dfrac{\text{km}}{\text{saat}}=\dfrac{5}{18}\ \dfrac{\text{m}}{\text{s}}$.
+
+2. Çarp: $72\cdot\dfrac{5}{18}=4\cdot 5=20$ m/s.
+
+<Cevap>$20$ m/saniye.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir araç iki şehir arasındaki $120$ km'lik yolu gidişte $60$ km/saat, dönüşte $40$ km/saat hızla almıştır. Aracın bu gidiş-dönüş için ortalama hızı kaç km/saattir?
+
+</Soru>
+
+<Ipucu>
+
+Ortalama hız, $\dfrac{60+40}{2}=50$ **değildir**. Toplam yolu toplam süreye böl.
+
+</Ipucu>
+
+<Cozum>
+
+1. Gidiş süresi: $t_1=\dfrac{120}{60}=2$ saat.
+
+2. Dönüş süresi: $t_2=\dfrac{120}{40}=3$ saat.
+
+3. Toplam yol: $120+120=240$ km. Toplam süre: $2+3=5$ saat.
+
+4. Ortalama hız: $v_{\text{ort}}=\dfrac{240}{5}=48$ km/saat.
+
+<Cevap>$48$ km/saat. (Aritmetik ortalama olan $50$'den küçüktür, çünkü yavaş hızla daha uzun süre gidilmiştir.)</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Birim uyumsuzluğu:** Hız km/saat iken zamanı dakika olarak yerine koymak. Önce dakikayı saate çevir ($30$ dk $=0{,}5$ saat).
+- **Karşılıklı harekette hızları çıkarmak:** Araçlar birbirine doğru gidiyorsa hızlar **toplanır**; yalnızca aynı yönde harekette çıkarılır.
+- **Ortalama hızı aritmetik ortalama sanmak:** $v_{\text{ort}}=\dfrac{v_1+v_2}{2}$ yanlıştır. Doğrusu toplam yol bölü toplam süredir.
+- **Çevrimi ters uygulamak:** km/saat'ten m/s'ye geçerken $\dfrac{5}{18}$ ile çarp; m/s'den km/saat'e geçerken $\dfrac{18}{5}$ ile çarp.
+
+## Sınav İpucu
+
+- Her soruda önce **$x=v\cdot t$ üçgenini** kur; aradığın büyüklüğü kapatıp formülü oku.
+- **Karşılıklı** hareketse hızları **topla**, **aynı yönde** ise **çıkar**; karşılaşma/yakalama süresi $=\dfrac{\text{mesafe}}{\text{bağıl hız}}$.
+- Birimleri en başta tek sisteme çevir; km/saat ↔ m/s için $\dfrac{5}{18}$ katsayısını ezberle.
+- Ortalama hız sorularında **daima** toplam yol bölü toplam süre yaz; şıklardaki aritmetik ortalama genellikle çeldiricidir.
+
+<KonuNav slug="hareket-problemleri" />

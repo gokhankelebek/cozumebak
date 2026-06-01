@@ -1,0 +1,229 @@
+import { topicMetadata } from "@/lib/seo";
+
+export const metadata = topicMetadata("oran-oranti-tyt");
+
+<Konu slug="oran-oranti-tyt" />
+
+<p className="lead">**Oran ve orantı**, TYT'nin en çok soru çıkan, en kazançlı konularından biridir; problemler, yüzde, karışım ve hız–zaman sorularının da temelini kurar. Mantığı tek cümleyle özetlenir: iki çokluğu bölerek karşılaştırır (**oran**), iki oranın eşitliğini kurar (**orantı**) ve çoklukların **birlikte mi yoksa ters yönde mi** değiştiğine bakarsın. Bu sayfa, içler-dışlar çarpımından doğru ve ters orantıya, oran paylaştırmadan zincirleme oranlara kadar tüm zemini kurar.</p>
+
+## 1. Oran
+
+**Oran**, iki çokluğun **bölme** ile karşılaştırılmasıdır. $a$ ve $b$ çoklukları için oran $\dfrac{a}{b}$ ya da $a:b$ biçiminde yazılır ($b\ne 0$).
+
+İki temel kural:
+
+- Oranı kurduğun çoklukların **aynı birimde** olması gerekir. $2$ saat ile $30$ dakikayı oranlarken ikisini de dakikaya çevir: $\dfrac{120}{30}=4$.
+- Oran **birimsizdir**; bir sayıdır. "$3:5$" demek, birinci çokluğun $3$ birim, ikincisinin $5$ birim olduğu (yani $\dfrac{a}{b}=\dfrac{3}{5}$) anlamına gelir.
+
+> Bir oranı pay ve paydasını **aynı sayı** ile çarpıp bölersek değeri değişmez: $\dfrac{3}{5}=\dfrac{6}{10}=\dfrac{3k}{5k}$. Bu yüzden $a:b=3:5$ ise $a=3k,\ b=5k$ yazmak en güçlü tekniktir.
+
+## 2. Orantı ve İçler–Dışlar Çarpımı
+
+**Orantı**, iki oranın eşitliğidir:
+
+$$\dfrac{a}{b}=\dfrac{c}{d}$$
+
+Burada $a$ ve $d$ **dışlar**, $b$ ve $c$ **içler** olarak adlandırılır. Bu eşitlikte **içler çarpımı, dışlar çarpımına eşittir** (içler–dışlar çarpımı):
+
+$$\dfrac{a}{b}=\dfrac{c}{d}\;\Longleftrightarrow\; a\cdot d=b\cdot c$$
+
+Bir orantıda bilinmeyen tek terim varsa, içler–dışlar çarpımı onu doğrudan çözer.
+
+## 3. Doğru Orantı
+
+İki çokluktan biri **artarken diğeri de aynı oranda artıyorsa** (ya da biri azalırken diğeri aynı oranda azalıyorsa) bu çokluklar **doğru orantılıdır**. Doğru orantıda **oranları sabittir**:
+
+$$\dfrac{y}{x}=k \quad(k\text{ sabit, orantı sabiti})$$
+
+Yani $x$ iki katına çıkarsa $y$ de iki katına çıkar. Birim fiyat, $1$ işçinin yaptığı iş, sabit hızda alınan yol gibi durumlar doğru orantılıdır.
+
+## 4. Ters Orantı
+
+İki çokluktan biri **artarken diğeri aynı oranda azalıyorsa** bu çokluklar **ters orantılıdır**. Ters orantıda **çarpımları sabittir**:
+
+$$x\cdot y=k \quad(k\text{ sabit})$$
+
+Yani $x$ iki katına çıkarsa $y$ yarıya iner. **İşçi sayısı–iş süresi**, **hız–zaman** (sabit yolda) klasik ters orantı örnekleridir: daha çok işçi → daha kısa süre.
+
+| Durum | İlişki | Kurulan denklem |
+| --- | --- | --- |
+| Biri artarken diğeri **artıyor** | Doğru orantı | $\dfrac{y_1}{x_1}=\dfrac{y_2}{x_2}$ |
+| Biri artarken diğeri **azalıyor** | Ters orantı | $x_1\cdot y_1=x_2\cdot y_2$ |
+
+<Ornek>
+
+<Soru>
+
+$\dfrac{x}{4}=\dfrac{9}{12}$ orantısında $x$ kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. İçler–dışlar çarpımını uygula: $12\cdot x=4\cdot 9$.
+
+2. Sadeleştir: $12x=36$.
+
+3. Her iki tarafı $12$'ye böl: $x=\dfrac{36}{12}=3$.
+
+<Cevap>$x=3$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\dfrac{a}{b}=\dfrac{3}{5}$ ve $a+b=24$ ise $a$ ve $b$ kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+Oranı $a=3k,\ b=5k$ biçiminde ortak bir $k$ ile yaz; sonra toplam koşulunu kullan.
+
+</Ipucu>
+
+<Cozum>
+
+1. Oranı ortak çarpanla yaz: $a=3k,\ b=5k$.
+
+2. Toplam koşulunu yerine koy: $3k+5k=24 \Rightarrow 8k=24$.
+
+3. $k$'yi bul: $k=3$.
+
+4. Değerleri hesapla: $a=3\cdot 3=9,\quad b=5\cdot 3=15$.
+
+<Cevap>$a=9,\ b=15$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$5$ özdeş kalem $20$ TL ise, $8$ özdeş kalem kaç TL'dir?
+
+</Soru>
+
+<Ipucu>
+
+Kalem sayısı artarken fiyat da artar: **doğru orantı**. Önce $1$ kalemin fiyatını bul.
+
+</Ipucu>
+
+<Cozum>
+
+1. İlişki doğru orantıdır: kalem sayısı artarsa fiyat aynı oranda artar.
+
+2. Birim fiyatı bul: $\dfrac{20}{5}=4$ TL (bir kalem).
+
+3. $8$ kalemin fiyatı: $8\cdot 4=32$ TL.
+
+<Cevap>$32$ TL.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$6$ işçi bir işi $10$ günde bitiriyor. Aynı işi $4$ işçi kaç günde bitirir? (İşçilerin iş gücü eşittir.)
+
+</Soru>
+
+<Ipucu>
+
+İşçi sayısı azalırsa süre uzar: **ters orantı**. Çarpımları sabittir: $\text{işçi}\times\text{gün}=\text{sabit}$.
+
+</Ipucu>
+
+<Cozum>
+
+1. İlişki ters orantıdır: işçi sayısı azalırken süre artar.
+
+2. Çarpımın sabitliğini kullan: $6\cdot 10=4\cdot t$.
+
+3. Sabiti hesapla: $60=4t$.
+
+4. $t$'yi bul: $t=\dfrac{60}{4}=15$ gün.
+
+<Cevap>$15$ gün.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$a:b:c=2:3:5$ ve $a+b+c=60$ ise $a,\ b,\ c$ kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. Oranları ortak çarpanla yaz: $a=2k,\ b=3k,\ c=5k$.
+
+2. Toplam koşulunu kur: $2k+3k+5k=60 \Rightarrow 10k=60$.
+
+3. $k$'yi bul: $k=6$.
+
+4. Her birini hesapla: $a=2\cdot 6=12,\quad b=3\cdot 6=18,\quad c=5\cdot 6=30$.
+
+<Cevap>$a=12,\ b=18,\ c=30$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\dfrac{x}{y}=\dfrac{2}{3}$ ve $\dfrac{y}{z}=\dfrac{3}{4}$ ise $x:y:z$ oranı nedir?
+
+</Soru>
+
+<Ipucu>
+
+İki orandaki **ortak terim** $y$'dir. Her iki oranda $y$'nin değeri aynı olacak biçimde oranları birleştir.
+
+</Ipucu>
+
+<Cozum>
+
+1. Birinci orandan $x:y=2:3$.
+
+2. İkinci orandan $y:z=3:4$.
+
+3. Ortak terim $y$ her iki oranda da $3$ olduğundan oranlar doğrudan zincirlenir.
+
+4. Zincirleme oranı yaz: $x:y:z=2:3:4$.
+
+<Cevap>$x:y:z=2:3:4$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Doğru orantı ile ters orantıyı karıştırmak.** "İşçi sayısı artınca süre azalır" gibi açıkça ters orantılı durumda doğru orantı kurmak (ör. $\dfrac{6}{10}=\dfrac{4}{t}$) en sık yapılan hatadır. Önce yön kontrolü yap: çoklukların biri artarken diğeri **artıyor mu, azalıyor mu?**
+- **Birimleri eşitlememek.** $2$ saat ile $30$ dakikayı oranlarken birini çevirmeden $\dfrac{2}{30}$ yazmak yanlıştır; ikisini de aynı birime getir.
+- **Oranı doğrudan değer sanmak.** $a:b=3:5$ ifadesi $a=3,\ b=5$ demek değildir; $a=3k,\ b=5k$ demektir. Ek koşul ($a+b$, $a-b$ vb.) olmadan $a$ ve $b$ tek tek bulunamaz.
+
+## Sınav İpucu
+
+- **Yön testi:** "Biri artarken diğeri de **artıyorsa**" doğru orantı kur (**oranları eşitle**: $\dfrac{y_1}{x_1}=\dfrac{y_2}{x_2}$). "Biri artarken diğeri **azalıyorsa**" ters orantı kur (**çarpımları eşitle**: $x_1 y_1=x_2 y_2$).
+- **Klasik ters orantılar:** işçi sayısı–süre, hız–zaman (sabit yolda), musluk sayısı–doldurma süresi. Soruda bunları görünce refleksle çarpımı sabit tut.
+- **Oran paylaştırma sorularında** her zaman ortak $k$ tekniğini kullan: $a:b:c=p:q:r$ ise $a=pk,\ b=qk,\ c=rk$ yaz, toplamdan $k$'yi çek. Bu yöntem işlemi hızlandırır ve hata payını düşürür.
+
+<KonuNav slug="oran-oranti-tyt" />

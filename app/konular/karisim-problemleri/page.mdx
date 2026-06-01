@@ -1,0 +1,187 @@
+import { topicMetadata } from "@/lib/seo";
+
+export const metadata = topicMetadata("karisim-problemleri");
+
+<Konu slug="karisim-problemleri" />
+
+<p className="lead">Karışım problemleri, içinde belli bir oranda **saf madde** (tuz, alkol, şeker vb.) bulunan çözeltilerin birleştirilmesi, seyreltilmesi veya yoğunlaştırılması üzerine kurulur. Tek bir ilkeyi sağlam kavrarsan tüm soru tipleri aynılaşır: **saf madde miktarı korunur.** Bu konu, o ilkeyi tablo yöntemiyle kusursuz uygulamayı öğretir.</p>
+
+## 1. Temel İlke: Madde Miktarı Korunur
+
+Bir karışımda iki büyüklük vardır: **toplam miktar** (çözeltinin tamamı) ve **saf madde miktarı** (içindeki tuz, alkol vb.). Yüzde oran, bu ikisini birbirine bağlar:
+
+$$\text{Saf madde miktarı}=\text{yüzde oran}\cdot\text{toplam miktar}$$
+
+İki karışım birleştiğinde hem **saf madde miktarları** hem de **toplam miktarlar** ayrı ayrı toplanır. Yeni karışımın oranı ise bu iki toplamın bölümüdür:
+
+$$\text{Yeni oran}=\dfrac{\text{toplam saf madde}}{\text{toplam miktar}}$$
+
+Buradaki en kritik nokta: **yüzde oranlar doğrudan toplanmaz veya ortalanmaz.** Önce her karışımın saf madde miktarını ayrı ayrı bulup toplarsın, sonra yeni oranı hesaplarsın.
+
+### Su Eklemek ve Buharlaşma
+
+| İşlem | Saf madde | Toplam miktar | Oran |
+| --- | --- | --- | --- |
+| Saf **su eklemek** | Değişmez | Artar | **Düşer** (seyrelir) |
+| Su **buharlaşır** | Değişmez | Azalır | **Artar** (yoğunlaşır) |
+| **Saf madde** eklemek | Artar | Artar | **Artar** |
+
+Saf su eklerken veya su buharlaşırken **saf madde miktarı asla değişmez**; yalnızca toplam miktar değişir. Denklemi her zaman bu sabit madde miktarı üzerinden kurarsın.
+
+## 2. Karışım Tablosu Yöntemi
+
+Hatayı en aza indiren yol, her karışımı bir satıra yazıp üç sütun tutmaktır: **oran**, **miktar** ve **madde**. Sütunlar arasında ilişki sabittir:
+
+$$\text{oran}\cdot\text{miktar}=\text{madde}$$
+
+Karışımları alt alta yazar, **miktar** ve **madde** sütunlarını toplar, en alttaki satırda yeni oranı $\dfrac{\text{madde toplamı}}{\text{miktar toplamı}}$ ile bulursun. Bilinmeyen $x$ hangi sütunda gerekiyorsa oraya yerleştirip denklemi kurarsın.
+
+<Ornek>
+
+<Soru>
+
+$\%20$ tuzlu $50$ litrelik çözeltiye $50$ litre saf su eklenirse yeni tuz oranı kaç olur?
+
+</Soru>
+
+<Cozum>
+
+1. Saf su, tuz miktarını değiştirmez; önce mevcut tuzu bul: $0{,}20\cdot 50=10$ litre tuz.
+
+2. Toplam miktar artar: $50+50=100$ litre.
+
+3. Tuz sabit kaldı, toplam $100$ litre oldu. Yeni oran: $\dfrac{10}{100}=0{,}10=\%10$.
+
+<Cevap>Yeni tuz oranı $\%10$'dur.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\%30$ tuzlu $40$ litrelik çözelti ile $\%10$ tuzlu $60$ litrelik çözelti karıştırılırsa elde edilen karışımın tuz oranı kaç olur?
+
+</Soru>
+
+<Ipucu>
+
+Yüzdeleri toplama. Her çözeltinin tuz miktarını ayrı ayrı bul, sonra topla.
+
+</Ipucu>
+
+<Cozum>
+
+1. Birinci çözeltinin tuzu: $0{,}30\cdot 40=12$ litre.
+
+2. İkinci çözeltinin tuzu: $0{,}10\cdot 60=6$ litre.
+
+3. Toplam tuz: $12+6=18$ litre. Toplam miktar: $40+60=100$ litre.
+
+4. Yeni oran: $\dfrac{18}{100}=\%18$.
+
+<Cevap>Karışımın tuz oranı $\%18$'dir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\%25$ alkollü $80$ litrelik çözeltiden kaç litre su buharlaşırsa alkol oranı $\%40$ olur?
+
+</Soru>
+
+<Ipucu>
+
+Buharlaşan su, alkol miktarını değiştirmez. Alkol sabit; sadece toplam miktar azalır.
+
+</Ipucu>
+
+<Cozum>
+
+1. Alkol miktarını bul (buharlaşmada sabit kalır): $0{,}25\cdot 80=20$ litre.
+
+2. Buharlaşan su miktarına $x$ de; yeni toplam miktar $80-x$ olur.
+
+3. Yeni oran $\%40$ olacağından denklemi kur: $\dfrac{20}{80-x}=0{,}40$.
+
+4. Çözümle: $80-x=\dfrac{20}{0{,}40}=50 \Rightarrow x=80-50=30$.
+
+<Cevap>$30$ litre su buharlaşmalıdır.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\%40$ tuzlu çözeltiden $30$ litre alınıp üzerine saf sudan kaç litre eklenirse karışımın tuz oranı $\%24$ olur?
+
+</Soru>
+
+<Cozum>
+
+1. Tuz miktarını bul (su eklerken sabit kalır): $0{,}40\cdot 30=12$ litre.
+
+2. Eklenen su $x$ litre olsun; yeni toplam miktar $30+x$ olur.
+
+3. Yeni oran $\%24$ için denklem: $\dfrac{12}{30+x}=0{,}24$.
+
+4. Çözümle: $30+x=\dfrac{12}{0{,}24}=50 \Rightarrow x=50-30=20$.
+
+<Cevap>$20$ litre su eklenmelidir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\%50$ tuzlu $20$ litrelik çözeltiye kaç litre saf tuz eklenirse karışımın tuz oranı $\%60$ olur?
+
+</Soru>
+
+<Ipucu>
+
+Bu kez eklenen saf maddedir; hem madde sütunu hem miktar sütunu $x$ kadar artar.
+
+</Ipucu>
+
+<Cozum>
+
+1. Başlangıçtaki tuz: $0{,}50\cdot 20=10$ litre.
+
+2. Eklenen saf tuz $x$ litre olsun. Yeni tuz: $10+x$, yeni toplam: $20+x$.
+
+3. Denklemi kur: $\dfrac{10+x}{20+x}=0{,}6$.
+
+4. İçler dışlar çarpımı: $10+x=0{,}6\,(20+x)=12+0{,}6x$.
+
+5. Düzenle: $x-0{,}6x=12-10 \Rightarrow 0{,}4x=2 \Rightarrow x=5$.
+
+<Cevap>$5$ litre saf tuz eklenmelidir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Yüzde oranları doğrudan toplamak veya ortalamak.** $\%30$ ile $\%10$ karışınca sonuç $\%40$ ya da $\%20$ değildir; doğrusu saf madde miktarlarını izleyip $\dfrac{\text{toplam madde}}{\text{toplam miktar}}$ almaktır.
+- **Su eklerken madde miktarının değiştiğini sanmak.** Saf su eklemek veya su buharlaşması saf madde miktarını **değiştirmez**; yalnızca toplam miktar (dolayısıyla oran) değişir.
+- **Toplam miktarı güncellemeyi unutmak.** Su eklendiğinde veya saf madde katıldığında paydadaki toplam miktarı da artırmayı atlama; aksi hâlde oran yanlış çıkar.
+
+## Sınav İpucu
+
+Her soruda **saf madde miktarını ayrı bir sütunda** izle ve "madde miktarı korunur" ilkesiyle denklem kur. Karışımları **oran × miktar = madde** biçiminde bir tabloya dök; bilinmeyeni doğru sütuna yerleştir, miktar ve madde toplamlarını al. Bu düzen, yüzdeleri yanlışlıkla toplama hatasını tamamen ortadan kaldırır ve TYT'de bu soruları saniyeler içinde çözmeni sağlar.
+
+<KonuNav slug="karisim-problemleri" />
