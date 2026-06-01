@@ -1,0 +1,233 @@
+import { topicMetadata } from "@/lib/seo";
+import { IcAcilar, DisAci, Ikizkenar } from "@/components/figures/UcgenFig";
+
+export const metadata = topicMetadata("ucgenler-tyt");
+
+<Konu slug="ucgenler-tyt" />
+
+<p className="lead">Üçgen, TYT geometrisinin temelidir; sınavda doğrudan ya da dolaylı olarak en çok bu konudan soru gelir. Bu derste **iç açılar toplamı**, **dış açı kuralı**, **üçgen eşitsizliği**, **üçgen çeşitleri** ve **kenar–açı ilişkisini** net kurallar ve çözümlü örneklerle işliyoruz. Hepsi ezber değil, mantığıyla.</p>
+
+## 1. İç Açılar Toplamı
+
+Bir üçgenin **iç açıları toplamı her zaman** $180°$'dir:
+
+$$A+B+C=180°$$
+
+Bu kural üçgenin çeşidinden bağımsızdır; eşkenar da olsa geniş açılı da olsa toplam değişmez.
+
+<Figur>
+
+<IcAcilar />
+
+<Altyazi>Şekil 1 — Bir üçgenin üç iç açısı: $A+B+C=180°$.</Altyazi>
+
+</Figur>
+
+İki açı biliniyorsa üçüncüsü doğrudan bulunur: $C=180°-(A+B)$.
+
+<Ornek>
+
+<Soru>
+
+Bir üçgenin iki iç açısı $50°$ ve $70°$ ise üçüncü açı kaç derecedir?
+
+</Soru>
+
+<Cozum>
+
+1. İç açılar toplamı $180°$'dir: $A+B+C=180°$.
+2. Bilinen açıları topla: $50°+70°=120°$.
+3. Üçüncü açıyı çıkar: $C=180°-120°=60°$.
+
+<Cevap>Üçüncü açı $60°$'dir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 2. Dış Açı
+
+Bir köşedeki **dış açı**, o köşenin kenarlarından biri uzatıldığında oluşan açıdır. İki temel özelliği vardır:
+
+- **Bütünlerlik:** Bir köşedeki iç açı ile dış açı **bütünlerdir** (toplamları $180°$): $\hat{i}+\hat{d}=180°$.
+- **Toplam kuralı:** Bir köşedeki dış açı, **komşu olmayan** iki iç açının toplamına eşittir: $\hat{d}=A+C$.
+
+<Figur>
+
+<DisAci />
+
+<Altyazi>Şekil 2 — $B$ köşesindeki dış açı $d$, komşu olmayan $A$ ve $C$ iç açılarının toplamına eşittir.</Altyazi>
+
+</Figur>
+
+> **Neden?** $B$ köşesindeki iç açı ile dış açı bütündür: $\hat{d}=180°-B$. İç açılar toplamından $A+C=180°-B$. İkisi eşit olduğundan $\hat{d}=A+C$ çıkar.
+
+<Ornek>
+
+<Soru>
+
+Bir üçgende iki iç açı $40°$ ve $60°$'dir. Bu iki açıya komşu olmayan üçüncü köşedeki dış açı kaç derecedir?
+
+</Soru>
+
+<Cozum>
+
+1. Dış açı, komşu olmayan iki iç açının toplamına eşittir.
+2. İlgili iki iç açı $40°$ ve $60°$'dir.
+3. Topla: $\hat{d}=40°+60°=100°$.
+
+<Cevap>Dış açı $100°$'dir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir üçgenin bir köşesindeki dış açı $120°$ ise aynı köşedeki iç açı kaç derecedir?
+
+</Soru>
+
+<Ipucu>
+
+Aynı köşede iç açı ile dış açı bütünlerdir; toplamları $180°$'dir.
+
+</Ipucu>
+
+<Cozum>
+
+1. İç açı ile dış açı bütündür: $\hat{i}+\hat{d}=180°$.
+2. Dış açı $120°$ verilmiş: $\hat{i}=180°-120°$.
+3. Sonuç: $\hat{i}=60°$.
+
+<Cevap>İç açı $60°$'dir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 3. Üçgen Eşitsizliği
+
+Bir üçgenin oluşabilmesi için bir kenarın uzunluğu, **diğer iki kenarın farkının mutlak değeri ile toplamı arasında** olmalıdır:
+
+$$|b-c| < a < b+c$$
+
+Yani üçüncü kenar, diğer ikisinin toplamından küçük; farkından büyük olmak zorundadır. Bu sınır değerler (eşitlik) üçgeni bozar, o yüzden eşitsizlik **kesindir** ($a=b+c$ olursa üçgen yassılaşıp doğru parçasına döner).
+
+<Ornek>
+
+<Soru>
+
+Bir üçgenin iki kenarı $5$ ve $8$ birimdir. Üçüncü kenar $x$ hangi aralıkta olmalıdır?
+
+</Soru>
+
+<Cozum>
+
+1. Üçgen eşitsizliğini kur: $|8-5| < x < 8+5$.
+2. Farkı ve toplamı hesapla: $3 < x < 13$.
+3. $x$ bu aralıktaki her değeri alabilir (uç değerler $3$ ve $13$ dâhil değildir).
+
+<Cevap>$3 < x < 13$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 4. Üçgen Çeşitleri
+
+Üçgenler hem **kenarlarına** hem **açılarına** göre sınıflandırılır.
+
+| Sınıflama | Çeşit | Özellik |
+| --- | --- | --- |
+| Kenarına göre | Eşkenar | $3$ kenar eşit; tüm açılar $60°$ |
+| Kenarına göre | İkizkenar | $2$ kenar eşit; taban açıları eşit |
+| Kenarına göre | Çeşitkenar | $3$ kenar da farklı; açılar farklı |
+| Açısına göre | Dar açılı | Tüm açılar $90°$'den küçük |
+| Açısına göre | Dik açılı | Bir açı tam $90°$ |
+| Açısına göre | Geniş açılı | Bir açı $90°$'den büyük |
+
+### İkizkenar Üçgen
+
+İkizkenar üçgende eşit olan iki kenarın karşısındaki açılar (**taban açıları**) eşittir. Eşit olmayan kenarın karşısındaki açıya **tepe açısı** denir.
+
+<Figur>
+
+<Ikizkenar />
+
+<Altyazi>Şekil 3 — İkizkenar üçgen: tik işaretli iki kenar eşit, dolayısıyla taban açıları ($B$ ve $C$) eşittir.</Altyazi>
+
+</Figur>
+
+Tepe açısı $A$ biliniyorsa taban açılarının her biri şöyle bulunur:
+
+$$B=C=\frac{180°-A}{2}$$
+
+<Ornek>
+
+<Soru>
+
+İkizkenar bir üçgende tepe açısı $40°$ ise taban açılarının her biri kaç derecedir?
+
+</Soru>
+
+<Ipucu>
+
+İki taban açısı birbirine eşittir. Toplamları $180°-40°$ olur; bunu ikiye böl.
+
+</Ipucu>
+
+<Cozum>
+
+1. Taban açıları eşit; ikisine $t$ diyelim: $40°+t+t=180°$.
+2. Tepe açısını çıkar: $2t=180°-40°=140°$.
+3. İkiye böl: $t=\dfrac{140°}{2}=70°$.
+
+<Cevap>Taban açılarının her biri $70°$'dir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 5. Kenar–Açı İlişkisi
+
+Bir üçgende **büyük açının karşısında büyük kenar**, küçük açının karşısında küçük kenar bulunur. Açılar arasındaki sıralama, karşılarındaki kenarlar arasında da aynen geçerlidir:
+
+$$A < B < C \;\Rightarrow\; a < b < c$$
+
+Burada $a$, $A$ açısının karşısındaki kenardır. Bu ilişki sayesinde açıları bilinen bir üçgende kenarları, ya da tersini sıralayabiliriz. Eşkenarda tüm açılar eşit olduğundan tüm kenarlar eşittir; ikizkenarda eşit açıların karşısındaki kenarlar eşittir.
+
+<Ornek>
+
+<Soru>
+
+Bir üçgenin iç açıları $x$, $2x$ ve $3x$ olarak veriliyor. Açıları bulun ve üçgenin çeşidini belirleyin.
+
+</Soru>
+
+<Cozum>
+
+1. İç açılar toplamı $180°$'dir: $x+2x+3x=180°$.
+2. Topla: $6x=180°$, buradan $x=30°$.
+3. Açıları yaz: $x=30°$, $2x=60°$, $3x=90°$.
+4. Bir açı tam $90°$ olduğundan üçgen **dik açılı**dır.
+
+<Cevap>Açılar $30°$, $60°$, $90°$; üçgen dik üçgendir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Dış açıyı yanlış hesaplamak:** Dış açı, **komşu olmayan** iki iç açının toplamıdır. Aynı köşedeki iç açıyla karıştırma; o ikisi bütünlerdir (toplamları $180°$).
+- **Üçgen eşitsizliğinde aralığı yanlış kurmak:** Üçüncü kenar için alt sınır kenarların **farkı**, üst sınır **toplamı**dır: $|b-c| < x < b+c$. Sadece toplamı yazıp alt sınırı unutmak yaygın bir hatadır.
+- **İkizkenarda yanlış açıları eşitlemek:** Eşit olan açılar **taban açılarıdır** (eşit kenarların karşısındakiler), tepe açısı değil. Tepe açısı tek başınadır.
+
+## Sınav İpucu
+
+Açı sorularında önce $A+B+C=180°$ ve dış açı kuralını aklına getir; çoğu soru tek denklemle çözülür. Kenar sorusu gördüğünde üçgen eşitsizliğini hemen $|b-c| < x < b+c$ biçiminde kur ve şıkları bu aralığa göre ele. "En büyük/en küçük kenar hangisidir" tipi sorularda kenarları değil **açıları** karşılaştır: büyük açının karşısında büyük kenar vardır.
+
+<KonuNav slug="ucgenler-tyt" />

@@ -1,0 +1,245 @@
+import { topicMetadata } from "@/lib/seo";
+import { Pisagor, Ucgen304560, Ucgen454590 } from "@/components/figures/DikUcgenFig";
+
+export const metadata = topicMetadata("dik-ucgen-pisagor");
+
+<Konu slug="dik-ucgen-pisagor" />
+
+<p className="lead">Bir açısı $90°$ olan üçgene **dik üçgen** denir. Dik açının karşısındaki en uzun kenar **hipotenüs**, diğer iki kenar ise **dik kenar**dır. Bu konuda Pisagor teoremini, sık çıkan Pisagor üçlülerini, $30°$-$60°$-$90°$ ile $45°$-$45°$-$90°$ özel üçgenlerini ve Öklid bağıntılarını TYT düzeyinde, sınav mantığıyla işliyoruz.</p>
+
+## 1. Pisagor Teoremi
+
+Bir dik üçgende **dik kenarların kareleri toplamı, hipotenüsün karesine eşittir**. Dik kenarlar $a$ ve $b$, hipotenüs $c$ olmak üzere:
+
+$$a^{2}+b^{2}=c^{2}$$
+
+Buradaki $c$ daima **hipotenüs**tür; yani dik açının karşısındaki en uzun kenardır. Dik kenarlardan birini bulmak için formül şu şekilde düzenlenir:
+
+$$a^{2}=c^{2}-b^{2}$$
+
+<Figur>
+
+<Pisagor />
+
+<Altyazi>Şekil 1 — Dik kenarları $a$ ve $b$, hipotenüsü $c$ olan dik üçgen. Sol alt köşedeki kare işareti $90°$ açıyı gösterir.</Altyazi>
+
+</Figur>
+
+## 2. Pisagor Üçlüleri
+
+Üçü de **tam sayı** olan ve $a^{2}+b^{2}=c^{2}$ eşitliğini sağlayan $(a,b,c)$ üçlülerine **Pisagor üçlüsü** denir. Bunları ezberlemek sınavda büyük zaman kazandırır. En sık çıkanlar:
+
+| Dik kenar | Dik kenar | Hipotenüs |
+| --- | --- | --- |
+| $3$ | $4$ | $5$ |
+| $5$ | $12$ | $13$ |
+| $8$ | $15$ | $17$ |
+| $7$ | $24$ | $25$ |
+
+Bir üçlünün **tam katları** da Pisagor üçlüsüdür. Örneğin $3$-$4$-$5$ üçlüsünü $2$ ile çarparsak $6$-$8$-$10$, $3$ ile çarparsak $9$-$12$-$15$ elde edilir; bunların hepsi dik üçgendir.
+
+> **Hız ipucu:** Soruda iki kenar bu listedeki bir üçlüye (veya katına) uyuyorsa, hesap yapmadan üçüncü kenarı doğrudan yazabilirsiniz.
+
+## 3. Özel Dik Üçgenler
+
+Bazı dik üçgenlerin açıları sabittir; bu yüzden kenarları arasındaki **oran** her zaman aynıdır. İki özel üçgeni bilmek, trigonometriye girmeden birçok soruyu çözer.
+
+### $30°$-$60°$-$90°$ Üçgeni
+
+Kenarların oranı, **en küçük açının ($30°$) karşısındaki kenardan** başlanarak:
+
+$$x \;:\; x\sqrt{3} \;:\; 2x$$
+
+Burada $x$ en kısa kenar ($30°$ karşısı), $x\sqrt{3}$ orta kenar ($60°$ karşısı), $2x$ ise hipotenüs ($90°$ karşısı). **En kısa kenarın iki katı her zaman hipotenüstür.**
+
+<Figur>
+
+<Ucgen304560 />
+
+<Altyazi>Şekil 2 — $30°$-$60°$-$90°$ üçgeni. Kenarlar $x$, $x\sqrt{3}$ ve $2x$ oranındadır; en kısa kenar $30°$ açısının karşısındadır.</Altyazi>
+
+</Figur>
+
+### $45°$-$45°$-$90°$ Üçgeni
+
+İki açısı eşit ($45°$) olduğundan bu üçgen **ikizkenar dik üçgen**dir. İki dik kenar eşittir ve oran:
+
+$$x \;:\; x \;:\; x\sqrt{2}$$
+
+Yani hipotenüs, bir dik kenarın $\sqrt{2}$ katıdır.
+
+<Figur>
+
+<Ucgen454590 />
+
+<Altyazi>Şekil 3 — $45°$-$45°$-$90°$ (ikizkenar dik) üçgen. İki dik kenar eşit ($x$), hipotenüs $x\sqrt{2}$.</Altyazi>
+
+</Figur>
+
+| Üçgen | Kenar oranı | Notlar |
+| --- | --- | --- |
+| $30°$-$60°$-$90°$ | $x : x\sqrt{3} : 2x$ | En kısa kenar $30°$ karşısında; hipotenüs $=2x$ |
+| $45°$-$45°$-$90°$ | $x : x : x\sqrt{2}$ | İkizkenar; iki dik kenar eşit |
+
+## 4. Öklid Bağıntıları
+
+Dik açıdan hipotenüse bir **yükseklik** indirilirse, hipotenüs $p$ ve $k$ uzunluğunda iki parçaya ayrılır. Yükseklik $h$ için:
+
+$$h^{2}=p\cdot k$$
+
+Ayrıca bir **dik kenarın karesi**, o kenarın hipotenüs üzerindeki **izdüşümü** ile **hipotenüsün** çarpımına eşittir. Dik kenarlar $b$ ve $c$, bunların izdüşümleri sırasıyla $p$ ve $k$, hipotenüs $a=p+k$ olmak üzere:
+
+$$b^{2}=p\cdot a \qquad c^{2}=k\cdot a$$
+
+Bu bağıntılar, yüksekliğin ya da parçaların verildiği sorularda Pisagor'a göre çok daha kısa yoldur.
+
+## 5. Çözümlü Örnekler
+
+<Ornek>
+
+<Soru>
+
+Dik kenarları $6$ ve $8$ olan dik üçgenin hipotenüsü kaç birimdir?
+
+</Soru>
+
+<Cozum>
+
+1. Pisagor teoremini yaz: $c^{2}=6^{2}+8^{2}$.
+2. Kareleri hesapla: $c^{2}=36+64=100$.
+3. Karekök al: $c=\sqrt{100}=10$.
+
+<Cevap>Hipotenüs $10$ birimdir. (Bu, $3$-$4$-$5$ üçlüsünün $2$ katıdır.)</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Hipotenüsü $13$, bir dik kenarı $5$ olan dik üçgende diğer dik kenar kaç birimdir?
+
+</Soru>
+
+<Ipucu>
+
+Hipotenüs en uzun kenardır; bilinmeyen bir **dik kenar** olduğundan $a^{2}=c^{2}-b^{2}$ kullan.
+
+</Ipucu>
+
+<Cozum>
+
+1. Düzenlenmiş formülü yaz: $a^{2}=13^{2}-5^{2}$.
+2. Kareleri hesapla: $a^{2}=169-25=144$.
+3. Karekök al: $a=\sqrt{144}=12$.
+
+<Cevap>Diğer dik kenar $12$ birimdir. ($5$-$12$-$13$ üçlüsü.)</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$45°$-$45°$-$90°$ üçgeninde bir dik kenar $5$ birim ise hipotenüs kaç birimdir?
+
+</Soru>
+
+<Cozum>
+
+1. Oranı hatırla: $x : x : x\sqrt{2}$, yani hipotenüs dik kenarın $\sqrt{2}$ katıdır.
+2. Dik kenar $x=5$ olduğundan hipotenüs $=5\sqrt{2}$.
+
+<Cevap>Hipotenüs $5\sqrt{2}$ birimdir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$30°$-$60°$-$90°$ üçgeninde hipotenüs $10$ birim ise diğer iki kenar kaç birimdir?
+
+</Soru>
+
+<Ipucu>
+
+Oran $x : x\sqrt{3} : 2x$. Hipotenüs $2x$ olduğuna göre önce $x$'i bul.
+
+</Ipucu>
+
+<Cozum>
+
+1. Hipotenüs $2x=10$ olduğundan $x=5$.
+2. $30°$ karşısındaki (en kısa) kenar $x=5$.
+3. $60°$ karşısındaki kenar $x\sqrt{3}=5\sqrt{3}$.
+
+<Cevap>$30°$ karşısı $5$ birim, $60°$ karşısı $5\sqrt{3}$ birimdir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir dik üçgende dik açıdan hipotenüse inen yüksekliğin ayırdığı parçalar $4$ ve $9$ birimdir. Yükseklik kaç birimdir?
+
+</Soru>
+
+<Cozum>
+
+1. Öklid bağıntısı: $h^{2}=p\cdot k$.
+2. Parçaları yerine yaz: $h^{2}=4\cdot 9=36$.
+3. Karekök al: $h=\sqrt{36}=6$.
+
+<Cevap>Yükseklik $6$ birimdir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Kenarları $9$, $12$ ve $x$ olan bir dik üçgende $x$ hipotenüs ise $x$ kaç birimdir?
+
+</Soru>
+
+<Ipucu>
+
+$x$ hipotenüs olduğundan $9$ ve $12$ dik kenardır: $x^{2}=9^{2}+12^{2}$.
+
+</Ipucu>
+
+<Cozum>
+
+1. Pisagor: $x^{2}=9^{2}+12^{2}$.
+2. Kareleri hesapla: $x^{2}=81+144=225$.
+3. Karekök al: $x=\sqrt{225}=15$.
+
+<Cevap>$x=15$ birimdir. Bu üçgen $3$-$4$-$5$ üçlüsünün $3$ katıdır ($9$-$12$-$15$).</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Hipotenüsü yanlış seçmek:** $a^{2}+b^{2}=c^{2}$ formülünde $c$ daima en uzun kenar, yani dik açının karşısındaki kenardır. Bilinmeyen bir dik kenarsa $a^{2}=c^{2}-b^{2}$ kullanılır; toplama değil çıkarma yapılır.
+- **Özel üçgen oranlarını ters uygulamak:** $30°$-$60°$-$90°$ üçgeninde $x\sqrt{3}$'ü hipotenüs sanmak yaygın bir hatadır. Hipotenüs daima $2x$'tir.
+- **$30°$ ve $60°$ karşısındaki kenarları karıştırmak:** En kısa kenar küçük açının ($30°$), uzun dik kenar büyük açının ($60°$) karşısındadır. Büyük açının karşısında daima büyük kenar bulunur.
+
+## Sınav İpucu
+
+Soruda iki kenarın sayısal değeri veriliyorsa önce **Pisagor üçlüsü** olup olmadığını kontrol edin; $3$-$4$-$5$, $5$-$12$-$13$, $8$-$15$-$17$, $7$-$24$-$25$ ve katları çıkarsa karekök hesabına gerek kalmadan sonucu yazarsınız. Açılar $30°$, $45°$ veya $60°$ ise özel üçgen oranlarını kurun. Yükseklik veya hipotenüs parçaları geçiyorsa Öklid bağıntısı ($h^{2}=p\cdot k$) çoğu zaman en kısa yoldur.
+
+<KonuNav slug="dik-ucgen-pisagor" />

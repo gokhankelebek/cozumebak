@@ -1,0 +1,223 @@
+import { topicMetadata } from "@/lib/seo";
+import { TumlerButunler, TersAcilar, ParalelKesen } from "@/components/figures/AcilarFig";
+
+export const metadata = topicMetadata("acilar-dogrular");
+
+<Konu slug="acilar-dogrular" />
+
+<p className="lead">Açılar ve doğrular, geometri sorularının temel taşıdır. Bu konuda **açı türlerini**, **tümler–bütünler** açıları, **kesişen doğrularda ters açıları** ve **paralel iki doğruyu kesen bir doğrunun** oluşturduğu açı ilişkilerini öğreneceksin. TYT'de bu ilişkiler tek başına ya da üçgen sorularının içinde sürekli karşına çıkar; ezber değil, mantığını kavramak gerekir.</p>
+
+## 1. Açı Türleri
+
+Bir açının ölçüsü $x$ olmak üzere açılar büyüklüklerine göre adlandırılır:
+
+| Açı türü | Ölçüsü |
+| --- | --- |
+| **Dar açı** | $0° < x < 90°$ |
+| **Dik açı** | $x = 90°$ |
+| **Geniş açı** | $90° < x < 180°$ |
+| **Doğru açı** | $x = 180°$ |
+| **Tam açı** | $x = 360°$ |
+
+> **Not:** Dik açı bir köşede **küçük bir kare** ile gösterilir. Doğru açı, kenarları zıt yönde uzanan düz bir doğrudur.
+
+## 2. Tümler ve Bütünler Açılar
+
+Ölçüleri toplamı belirli bir değere eşit olan açı çiftlerinin özel adları vardır:
+
+- **Tümler açılar:** Ölçüleri toplamı $90°$ olan iki açıdır. Bir açının tümleri $90° - x$'tir.
+- **Bütünler açılar:** Ölçüleri toplamı $180°$ olan iki açıdır. Bir açının bütünleri $180° - x$'tir.
+
+<Figur>
+
+<TumlerButunler />
+
+<Altyazi>Şekil 1 — Tümler açıların toplamı bir **dik açıyı** ($90°$), bütünler açıların toplamı bir **doğru açıyı** ($180°$) oluşturur.</Altyazi>
+
+</Figur>
+
+## 3. Komşu ve Ters Açılar
+
+İki açının ortak bir köşesi ve ortak bir kenarı varsa bu açılara **komşu açılar** denir. Toplamları $180°$ olan komşu açılara da **komşu bütünler açılar** denir.
+
+İki doğru bir noktada kesiştiğinde **dört açı** oluşur. Bu açılardan **karşılıklı** olanlara **ters açılar** denir ve bunlar her zaman **eşittir**. Yan yana olan (komşu) açılar ise bütünlerdir.
+
+<Figur>
+
+<TersAcilar />
+
+<Altyazi>Şekil 2 — Kesişen iki doğruda karşılıklı (ters) açılar eşittir: $a = a$, $b = b$. Komşu açılar bütünlerdir: $a + b = 180°$.</Altyazi>
+
+</Figur>
+
+## 4. Paralel İki Doğru ve Kesen
+
+Paralel iki doğru ($d_1 \parallel d_2$) bir **kesen** ile kesildiğinde sekiz açı oluşur. Bu açılar arasında sabit ilişkiler vardır:
+
+| İlişki | Sonuç |
+| --- | --- |
+| **Yöndeş açılar** | Eşit |
+| **İç ters açılar** | Eşit |
+| **Dış ters açılar** | Eşit |
+| **Karşı durumlu iç açılar** | Bütünler (toplam $180°$) |
+
+<Figur>
+
+<ParalelKesen />
+
+<Altyazi>Şekil 3 — $d_1 \parallel d_2$ iken kesenin oluşturduğu açılar: yöndeş açılar eşit, iç ters açılar eşittir.</Altyazi>
+
+</Figur>
+
+## 5. Çözümlü Örnekler
+
+<Ornek>
+
+<Soru>
+
+Bir açının ölçüsü $35°$ ise tümleri kaç derecedir?
+
+</Soru>
+
+<Cozum>
+
+1. Tümler açıların toplamı $90°$'dir.
+2. Tümleri $= 90° - 35°$.
+3. Sonuç: $90° - 35° = 55°$.
+
+<Cevap>Tümleri $55°$'dir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$110°$'lik bir açının bütünleri kaç derecedir?
+
+</Soru>
+
+<Cozum>
+
+1. Bütünler açıların toplamı $180°$'dir.
+2. Bütünleri $= 180° - 110°$.
+3. Sonuç: $180° - 110° = 70°$.
+
+<Cevap>Bütünleri $70°$'dir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Kesişen iki doğruda oluşan açılardan biri $70°$ ise, bu açının **ters açısı** ve **komşu açısı** kaç derecedir?
+
+</Soru>
+
+<Ipucu>
+
+Ters açılar eşittir; komşu açılar bütünlerdir (toplamları $180°$).
+
+</Ipucu>
+
+<Cozum>
+
+1. Ters açı, verilen açıya **eşittir**: $70°$.
+2. Komşu açı, verilen açıyla bütünlerdir: $180° - 70° = 110°$.
+
+<Cevap>Ters açı $70°$, komşu açı $110°$'dir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+İki açı bütünlerdir ve ölçüleri sırasıyla $2x$ ile $3x$'tir. $x$ kaçtır ve açılar kaç derecedir?
+
+</Soru>
+
+<Cozum>
+
+1. Bütünler açıların toplamı $180°$: $2x + 3x = 180°$.
+2. Topla: $5x = 180°$.
+3. $x$'i bul: $x = \dfrac{180°}{5} = 36°$.
+4. Açıları hesapla: $2x = 72°$ ve $3x = 108°$.
+
+<Cevap>$x = 36°$; açılar $72°$ ve $108°$'dir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Paralel iki doğru bir kesenle kesiliyor. Bir yöndeş açı $65°$ ise, bu açıyla **karşı durumlu iç açı** kaç derecedir?
+
+</Soru>
+
+<Ipucu>
+
+Karşı durumlu iç açılar bütünlerdir; toplamları $180°$'dir.
+
+</Ipucu>
+
+<Cozum>
+
+1. Karşı durumlu iç açılar bütünlerdir: toplam $180°$.
+2. Aranan açı $= 180° - 65°$.
+3. Sonuç: $180° - 65° = 115°$.
+
+<Cevap>Karşı durumlu iç açı $115°$'dir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir açı, tümlerinin $2$ katına eşittir. Bu açı kaç derecedir?
+
+</Soru>
+
+<Ipucu>
+
+Açıya $x$ dersen tümleri $90° - x$ olur. "Tümlerinin $2$ katı" ifadesini denkleme çevir.
+
+</Ipucu>
+
+<Cozum>
+
+1. Açıya $x$ diyelim; tümleri $90° - x$'tir.
+2. Koşulu yaz: $x = 2(90° - x)$.
+3. Dağıt: $x = 180° - 2x$.
+4. Çöz: $3x = 180° \Rightarrow x = 60°$.
+
+<Cevap>Açı $60°$'dir. (Tümleri $30°$, gerçekten $60° = 2 \cdot 30°$.)</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Tümler ($90°$) ile bütünleri ($180°$) karıştırmak.** "Tümler = $90$, bütünler = $180$" diye sabitle. Tümler kelimesi daha küçük olanı (dik açı) hatırlatsın.
+- **Ters açıyı bütünler sanmak.** Kesişen iki doğruda **karşılıklı** açılar **eşittir**, **komşu** olanlar bütünlerdir. Karşılıklı olanı bütünler sanmak en sık hatadır.
+- **Paralel doğru ilişkilerini şaşırmak.** Yöndeş ve iç ters açılar **eşit**; sadece **karşı durumlu iç açılar** bütünlerdir. Şekilde açının "iç mi dış mı, aynı yönde mi" olduğuna dikkat et.
+
+## Sınav İpucu
+
+Paralel iki doğru ve kesen sorularında **"Z, F ve U" kuralı** çok hızlıdır: $Z$ şeklindeki açılar (iç ters) **eşit**, $F$ şeklindeki açılar (yöndeş) **eşit**, $U$ (aynı taraftaki iç) açılar **bütünlerdir**. Şekli zihninde harfe benzet, ilişkiyi saniyede gör. Ayrıca verilmeyen açıları bulmak için önce **ters açı** ve **komşu bütünler** ilişkilerini kullanarak boşlukları doldur; çoğu soru bu iki adımla çözülür.
+
+<KonuNav slug="acilar-dogrular" />

@@ -1,0 +1,240 @@
+import { topicMetadata } from "@/lib/seo";
+import { BenzerUcgenler, Thales, AlanTabanYukseklik } from "@/components/figures/BenzerlikFig";
+
+export const metadata = topicMetadata("ucgende-benzerlik-alan");
+
+<Konu slug="ucgende-benzerlik-alan" />
+
+<p className="lead">Benzerlik, üçgen sorularının **belkemiğidir**: bir oran kurarsın, bilinmeyen kenarı çekersin. Bu konu benzerliğin tanımını, **AA kuralını**, Thales (temel orantı) teoremini ve alan hesabını tek bir çatı altında toplar. En kritik nokta şudur: kenarların oranı $k$ iken **alanların oranı $k^{2}$**'dir — bunu karıştıran her soruyu kaybeder.</p>
+
+## 1. Benzerlik Nedir?
+
+İki üçgenin **karşılıklı açıları eşit** ve **karşılıklı kenarları orantılı** ise bu üçgenler **benzerdir**. Benzerlik "$\sim$" ile gösterilir.
+
+Karşılıklı kenarların oranına **benzerlik oranı** denir:
+
+$$k=\dfrac{\text{bir kenar}}{\text{onun karşılığı}}$$
+
+### AA (Açı–Açı) Kuralı
+
+Bir üçgenin **iki açısı**, diğer üçgenin iki açısına karşılıklı eşitse üçgenler benzerdir. Üçgende açılar toplamı $180^{\circ}$ olduğundan iki açı eşitse üçüncü de zorunlu olarak eşit olur. TYT'de benzerliği yakalamanın en hızlı yolu **iki eşit açı** aramaktır.
+
+<Figur>
+
+<BenzerUcgenler />
+
+<Altyazi>Şekil 1 — $ABC \sim A'B'C'$. Karşılıklı kenarlar orantılıdır; örneğin $\dfrac{AB}{A'B'}=\dfrac{6}{4}=\dfrac{3}{2}$ benzerlik oranıdır.</Altyazi>
+
+</Figur>
+
+## 2. Benzerlikte Oranlar
+
+Benzerlik oranı $k$ olan iki üçgende **uzunlukla ölçülen** her şeyin oranı $k$'dir:
+
+| Büyüklük | Oran |
+| --- | --- |
+| Karşılıklı kenarlar | $k$ |
+| Çevreler | $k$ |
+| Karşılıklı yükseklikler | $k$ |
+| Karşılıklı kenarortaylar / açıortaylar | $k$ |
+| **Alanlar** | $k^{2}$ |
+
+Alan iki uzunluğun çarpımıyla ($\text{taban}\times\text{yükseklik}$) orantılı olduğundan, kenarlar $k$ katına çıkınca alan $k\cdot k=k^{2}$ katına çıkar.
+
+> **Anahtar:** Kenar oranı $k$ ise **alan oranı $k^{2}$**, hacim oranı $k^{3}$ olur. TYT'de en sık tuzak budur.
+
+## 3. Temel Orantı (Thales) Teoremi
+
+Bir üçgende bir kenara **paralel** çizilen doğru, diğer iki kenarı **orantılı parçalara** böler.
+
+$ABC$ üçgeninde $DE \parallel BC$ ise:
+
+$$\dfrac{AD}{DB}=\dfrac{AE}{EC}$$
+
+Ayrıca $ADE$ üçgeni $ABC$ üçgenine benzerdir ($AA$ kuralı: $A$ açısı ortak, paralellikten dolayı $\widehat{ADE}=\widehat{ABC}$).
+
+<Figur>
+
+<Thales />
+
+<Altyazi>Şekil 2 — $DE \parallel BC$ olduğundan $\dfrac{AD}{DB}=\dfrac{AE}{EC}$, yani $\dfrac{3}{6}=\dfrac{4}{x}$.</Altyazi>
+
+</Figur>
+
+## 4. Üçgenin Alanı
+
+Bir üçgenin alanı, **bir tabanı** ile **o tabana inen yüksekliğin** çarpımının yarısıdır:
+
+$$A=\dfrac{\text{taban}\times\text{yükseklik}}{2}$$
+
+Yükseklik daima **seçilen tabana dik** olmalıdır; gelişigüzel bir kenar yükseklik değildir.
+
+<Figur>
+
+<AlanTabanYukseklik />
+
+<Altyazi>Şekil 3 — Yükseklik (kırmızı kesik çizgi), tepe noktasından tabana **dik** inen doğru parçasıdır.</Altyazi>
+
+</Figur>
+
+**Eşkenar üçgen** için pratik formül: kenar uzunluğu $a$ olan eşkenar üçgenin alanı
+
+$$A=\dfrac{a^{2}\sqrt{3}}{4}$$
+
+## 5. Çözümlü Örnekler
+
+<Ornek>
+
+<Soru>
+
+İki benzer üçgenden küçüğünün bir kenarı $4$, büyüğünün buna karşılık gelen kenarı $6$'dır. Benzerlik oranı $k$ kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. Benzerlik oranı, karşılıklı kenarların oranıdır: $k=\dfrac{\text{büyük kenar}}{\text{karşılığı}}$.
+2. Değerleri yerine yaz: $k=\dfrac{6}{4}$.
+3. Sadeleştir: $k=\dfrac{3}{2}$.
+
+<Cevap>$k=\dfrac{3}{2}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Benzerlik oranı $2$ olan iki üçgenin **alanları** oranı kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+Kenar oranı $k$ ise alan oranı $k$ değil, $k^{2}$'dir.
+
+</Ipucu>
+
+<Cozum>
+
+1. Alanların oranı, benzerlik oranının karesidir: $\dfrac{A_{1}}{A_{2}}=k^{2}$.
+2. $k=2$ için: $k^{2}=2^{2}=4$.
+
+<Cevap>Alanlar oranı $4$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir üçgende tabana paralel bir doğru, bir kenarı $3$ ve $6$ uzunluğunda iki parçaya bölmüştür. Diğer kenarın üst parçası $4$ ise alt parçası $x$ kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+Thales: $\dfrac{AD}{DB}=\dfrac{AE}{EC}$. Üst parçayı üst parçaya, alt parçayı alt parçaya oranla; sakın ters kurma.
+
+</Ipucu>
+
+<Cozum>
+
+1. Thales teoremini yaz: $\dfrac{\text{üst}}{\text{alt}}=\dfrac{\text{üst}}{\text{alt}}$, yani $\dfrac{3}{6}=\dfrac{4}{x}$.
+2. İçler–dışlar çarpımı: $3\cdot x=6\cdot 4$.
+3. $3x=24 \Rightarrow x=8$.
+
+<Cevap>$x=8$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Tabanı $8$, bu tabana ait yüksekliği $5$ olan üçgenin alanı kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. Alan formülü: $A=\dfrac{\text{taban}\times\text{yükseklik}}{2}$.
+2. Değerleri yerine yaz: $A=\dfrac{8\cdot 5}{2}$.
+3. Hesapla: $A=\dfrac{40}{2}=20$.
+
+<Cevap>$A=20$ birimkare.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Kenar uzunluğu $4$ olan **eşkenar** üçgenin alanı kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+Eşkenar üçgende $A=\dfrac{a^{2}\sqrt{3}}{4}$ formülünü kullan.
+
+</Ipucu>
+
+<Cozum>
+
+1. Formülü yaz: $A=\dfrac{a^{2}\sqrt{3}}{4}$.
+2. $a=4$ için: $A=\dfrac{4^{2}\sqrt{3}}{4}=\dfrac{16\sqrt{3}}{4}$.
+3. Sadeleştir: $A=4\sqrt{3}$.
+
+<Cevap>$A=4\sqrt{3}$ birimkare.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Benzer iki üçgenin **çevreleri** oranı $\dfrac{5}{3}$'tür. Küçük üçgenin alanı $9$ ise büyük üçgenin alanı kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+Çevre oranı benzerlik oranına ($k$) eşittir; alan oranı ise $k^{2}$'dir.
+
+</Ipucu>
+
+<Cozum>
+
+1. Çevre oranı benzerlik oranıdır: $k=\dfrac{5}{3}$.
+2. Alan oranı $k^{2}=\left(\dfrac{5}{3}\right)^{2}=\dfrac{25}{9}$.
+3. Büyük alan, küçük alanın $\dfrac{25}{9}$ katıdır: $A_{\text{büyük}}=9\cdot\dfrac{25}{9}$.
+4. Hesapla: $A_{\text{büyük}}=25$.
+
+<Cevap>Büyük üçgenin alanı $25$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Alan oranını $k$ sanmak.** Kenar oranı $k$ ise alan oranı $k^{2}$'dir. Çevre/kenar/yükseklik oranı $k$, alan oranı $k^{2}$ — bu ayrımı asla unutma.
+- **Thales'te orantıyı ters kurmak.** Üst parçayı alt parçaya bölerken iki üçgenin de aynı yönde oranlanması gerekir; $\dfrac{AD}{DB}=\dfrac{AE}{EC}$ kalıbını bozma.
+- **Yüksekliği yanlış kenara indirmek.** Alan formülünde yükseklik, **seçtiğin tabana dik** olmalıdır. Eğik bir kenarı yükseklik sanmak alanı bozar.
+
+## Sınav İpucu
+
+Soruda "benzer" kelimesi geçmese bile **iki eşit açı** görürsen ($AA$) hemen benzerlik kur ve kenarları oranla. **Tabana paralel** bir doğru gördüğünde refleksin Thales olmalı. Alan oranı sorularında önce $k$'yi bul, **sorulan oranı $k^{2}$ ile** yaz; en sık tuzak alan oranını doğrudan $k$ almaktır.
+
+<KonuNav slug="ucgende-benzerlik-alan" />

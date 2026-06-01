@@ -1,0 +1,224 @@
+import { topicMetadata } from "@/lib/seo";
+import { MerkezCevreAci, Teget, DaireDilimi } from "@/components/figures/CemberFig";
+
+export const metadata = topicMetadata("cember-daire-tyt");
+
+<Konu slug="cember-daire-tyt" />
+
+<p className="lead">Çember ve daire, TYT geometrinin en çok soru getiren başlıklarından biridir. Bu konuda **temel kavramları**, çemberdeki **açı bağıntılarını**, **teğetin yarıçapa dikliğini** ve dairenin **çevre, alan ile dilim** formüllerini hatasız oturtacağız. Tüm kural ve örnekler doğrudan sınav formatındadır.</p>
+
+## 1. Temel Kavramlar
+
+**Çember**, bir düzlemde sabit bir noktadan (merkez) eşit uzaklıktaki noktaların oluşturduğu kapalı eğridir. **Daire** ise bu eğri ile içinin tamamıdır.
+
+| Kavram | Anlamı |
+| --- | --- |
+| **Merkez** ($O$) | Tüm noktalara eşit uzaklıktaki sabit nokta |
+| **Yarıçap** ($r$) | Merkezden çember üzerindeki bir noktaya uzaklık |
+| **Çap** ($2r$) | Merkezden geçen, iki ucu çember üzerinde olan en uzun kiriş |
+| **Kiriş** | Çember üzerindeki iki noktayı birleştiren doğru parçası |
+| **Yay** | Çemberin iki nokta arasında kalan parçası |
+| **Teğet** | Çembere yalnızca bir noktada değen doğru |
+
+## 2. Çemberde Açılar
+
+Çemberdeki açıları, **gördükleri yay** üzerinden tanımlarız.
+
+- **Merkez açı:** Köşesi merkezde olan açıdır. Ölçüsü, gördüğü yayın ölçüsüne **eşittir**.
+- **Çevre açı:** Köşesi çember üzerinde olan açıdır. Ölçüsü, gördüğü yayın ölçüsünün **yarısıdır**.
+
+Bu iki kuralı birleştirirsek en sık kullanılan sonuç çıkar:
+
+$$\text{Çevre açı}=\dfrac{\text{Merkez açı}}{2}\qquad(\text{aynı yayı görüyorlarsa})$$
+
+<Figur>
+
+<MerkezCevreAci />
+
+<Altyazi>Şekil 1 — Aynı $AB$ yayını gören merkez açı ($2\alpha$) ve çevre açı ($\alpha$). Çevre açı, merkez açının yarısıdır.</Altyazi>
+
+</Figur>
+
+> **Bağıntı:** Aynı yayı gören tüm çevre açılar birbirine eşittir; çünkü hepsi aynı yayın yarısına eşittir.
+
+## 3. Teğet ve Yarıçap
+
+Bir çembere **değme noktasında** çizilen teğet, o noktadaki yarıçapa **diktir**. Yani teğet ile yarıçap arasındaki açı her zaman $90°$'dir.
+
+<Figur>
+
+<Teget />
+
+<Altyazi>Şekil 2 — $T$ değme noktasındaki teğet, $[OT]$ yarıçapına diktir ($90°$).</Altyazi>
+
+</Figur>
+
+Bu diklik, dış bir noktadan çizilen teğet uzunluğu sorularında dik üçgen kurmamızı sağlar; çoğu teğet sorusu Pisagor ile çözülür.
+
+## 4. Daire Çevresi ve Alanı
+
+Yarıçapı $r$ olan dairenin temel formülleri:
+
+$$\text{Çevre}=2\pi r\qquad\qquad \text{Alan}=\pi r^{2}$$
+
+| Büyüklük | Formül | Birim |
+| --- | --- | --- |
+| Çevre | $2\pi r$ | uzunluk |
+| Alan | $\pi r^{2}$ | uzunluk$^2$ |
+
+## 5. Daire Dilimi (Sektör)
+
+Merkez açısı $\alpha$ olan bir daire dilimi, dairenin tamamının $\dfrac{\alpha}{360}$ oranındaki parçasıdır. Bu oranı hem alana hem yay uzunluğuna uygularız:
+
+$$\text{Dilim alanı}=\dfrac{\alpha}{360}\cdot\pi r^{2}\qquad\quad \text{Yay uzunluğu}=\dfrac{\alpha}{360}\cdot 2\pi r$$
+
+<Figur>
+
+<DaireDilimi />
+
+<Altyazi>Şekil 3 — Merkez açısı $\alpha$ olan taranmış daire dilimi (sektör).</Altyazi>
+
+</Figur>
+
+## 6. Çözümlü Örnekler
+
+<Ornek>
+
+<Soru>
+
+Bir yayı gören merkez açı $80°$ ise, aynı yayı gören çevre açının ölçüsü kaç derecedir?
+
+</Soru>
+
+<Cozum>
+
+1. Aynı yayı gören çevre açı, merkez açının yarısıdır.
+2. Yerine yaz: $\dfrac{80}{2}=40°$.
+
+<Cevap>Çevre açı $40°$'dir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir çevre açının ölçüsü $35°$'dir. Gördüğü yayın ve aynı yayı gören merkez açının ölçüsü kaç derecedir?
+
+</Soru>
+
+<Ipucu>
+
+Çevre açı, gördüğü yayın yarısıdır; merkez açı ise yayın tamamına eşittir.
+
+</Ipucu>
+
+<Cozum>
+
+1. Çevre açı, yayın yarısı olduğundan yay $=2\cdot 35=70°$.
+2. Merkez açı, gördüğü yaya eşit olduğundan merkez açı $=70°$.
+
+<Cevap>Yay $70°$, merkez açı $70°$'dir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Yarıçapı $5$ birim olan dairenin alanı kaç birim karedir?
+
+</Soru>
+
+<Cozum>
+
+1. Alan formülünü yaz: $\pi r^{2}$.
+2. $r=5$ yerine koy: $\pi\cdot 5^{2}=25\pi$.
+
+<Cevap>Alan $25\pi$ birim karedir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Yarıçapı $7$ birim olan dairenin çevresi kaç birimdir?
+
+</Soru>
+
+<Cozum>
+
+1. Çevre formülünü yaz: $2\pi r$.
+2. $r=7$ yerine koy: $2\pi\cdot 7=14\pi$.
+
+<Cevap>Çevre $14\pi$ birimdir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Yarıçapı $4$ birim, merkez açısı $90°$ olan daire diliminin alanı kaç birim karedir?
+
+</Soru>
+
+<Ipucu>
+
+Dilim alanı $=\dfrac{\alpha}{360}\cdot\pi r^{2}$. Önce oranı sadeleştir.
+
+</Ipucu>
+
+<Cozum>
+
+1. Dilim alanı formülü: $\dfrac{\alpha}{360}\cdot\pi r^{2}$.
+2. Oranı yaz: $\dfrac{90}{360}=\dfrac{1}{4}$.
+3. Değerleri yerine koy: $\dfrac{1}{4}\cdot\pi\cdot 4^{2}=\dfrac{1}{4}\cdot 16\pi=4\pi$.
+
+<Cevap>Dilim alanı $4\pi$ birim karedir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Yarıçapı $6$ birim, merkez açısı $60°$ olan daire diliminin yay uzunluğu kaç birimdir?
+
+</Soru>
+
+<Cozum>
+
+1. Yay uzunluğu formülü: $\dfrac{\alpha}{360}\cdot 2\pi r$.
+2. Oranı yaz: $\dfrac{60}{360}=\dfrac{1}{6}$.
+3. Değerleri yerine koy: $\dfrac{1}{6}\cdot 2\pi\cdot 6=\dfrac{1}{6}\cdot 12\pi=2\pi$.
+
+<Cevap>Yay uzunluğu $2\pi$ birimdir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Çevre açıyı merkez açıya eşit sanmak.** Aynı yayı gören çevre açı, merkez açının **yarısıdır**; eşit değildir.
+- **Alan ile çevreyi karıştırmak.** Alan $\pi r^{2}$, çevre ise $2\pi r$'dir. $r$ kareli olan **alandır**.
+- **Dilimde oranı unutmak.** Dilim alanı ve yay uzunluğunda $\dfrac{\alpha}{360}$ oranını çarpmayı atlamak en sık hatadır.
+- **Teğet sorusunda dikliği görmemek.** Değme noktasındaki yarıçap teğete diktir; dik üçgen kurup Pisagor uygulayın.
+
+## Sınav İpucu
+
+ÖSYM dilim sorularında açı çoğu zaman $90°$, $60°$, $120°$, $45°$ gibi seçilir; $\dfrac{\alpha}{360}$ oranını önce $\dfrac{1}{4}$, $\dfrac{1}{6}$, $\dfrac{1}{3}$, $\dfrac{1}{8}$ gibi sade kesre çevirin, işlem hızlanır. Sonuçları $\pi$ cinsinden bırakmaya alışın; ÖSYM şıkları genellikle $\pi$ içerir.
+
+<KonuNav slug="cember-daire-tyt" />

@@ -1,0 +1,246 @@
+import { topicMetadata } from "@/lib/seo";
+import { Paralelkenar, Yamuk, EskenarDortgen } from "@/components/figures/DortgenFig";
+
+export const metadata = topicMetadata("dortgenler-tyt");
+
+<Konu slug="dortgenler-tyt" />
+
+<p className="lead">Dörtgenler ve çokgenler, TYT geometrisinin en çok soru getiren konularından biridir. Bu derste önce **çokgenlerde iç ve dış açı toplamını**, ardından **kare, dikdörtgen, paralelkenar, eşkenar dörtgen ve yamuğun** özelliklerini ve **alan formüllerini** ezbersiz, sebebiyle birlikte öğreneceksin. Tüm formüller sınavda doğrudan işine yarayacak biçimde, örneklerle pekiştirilmiştir.</p>
+
+## 1. Çokgenlerde Açılar
+
+Bir **çokgen**, kenarları doğru parçalarından oluşan kapalı bir şekildir. Kenar sayısı $n$ olan bir çokgende açılarla ilgili iki temel bağıntı vardır.
+
+**İç açılar toplamı.** $n$ kenarlı bir çokgenin iç açılarının toplamı:
+
+$$\text{İç açılar toplamı}=(n-2)\cdot 180°$$
+
+Bunun sebebi, çokgenin bir köşesinden çizilen köşegenlerle $(n-2)$ tane üçgene ayrılması ve her üçgenin iç açıları toplamının $180°$ olmasıdır.
+
+**Dış açılar toplamı.** Çokgen kaç kenarlı olursa olsun, dış açılarının toplamı **her zaman** $360°$'dir:
+
+$$\text{Dış açılar toplamı}=360°$$
+
+**Düzgün çokgen.** Tüm kenarları ve açıları eşit olan çokgene düzgün çokgen denir. Düzgün bir çokgende **bir iç açı**:
+
+$$\text{Bir iç açı}=\dfrac{(n-2)\cdot 180°}{n}$$
+
+| $n$ (kenar) | Çokgen | İç açılar toplamı | Düzgünde bir iç açı |
+| --- | --- | --- | --- |
+| $3$ | Üçgen | $180°$ | $60°$ |
+| $4$ | Dörtgen | $360°$ | $90°$ |
+| $5$ | Beşgen | $540°$ | $108°$ |
+| $6$ | Altıgen | $720°$ | $120°$ |
+
+## 2. Dörtgen ve İç Açıları
+
+**Dörtgen**, dört kenarı olan çokgendir ($n=4$). Buna göre her dörtgenin iç açıları toplamı:
+
+$$(4-2)\cdot 180°=360°$$
+
+Yani bir dörtgenin dört iç açısının toplamı her zaman $360°$'dir. Bu bağıntı, özel dörtgenlerin (kare, dikdörtgen, paralelkenar, eşkenar dörtgen, yamuk) hepsi için geçerlidir.
+
+## 3. Özel Dörtgenler ve Alanları
+
+Aşağıdaki tablo, TYT'de en sık karşına çıkan özel dörtgenlerin alan, çevre ve köşegen bağıntılarını toplar.
+
+| Dörtgen | Alan | Çevre / Köşegen |
+| --- | --- | --- |
+| **Kare** (kenar $a$) | $A=a^{2}$ | Çevre $=4a$, köşegen $=a\sqrt{2}$ |
+| **Dikdörtgen** (kenarlar $a,b$) | $A=a\cdot b$ | Köşegen $=\sqrt{a^{2}+b^{2}}$ |
+| **Paralelkenar** | $A=\text{taban}\times\text{yükseklik}$ | Karşılıklı kenarlar eşit ve paralel |
+| **Eşkenar dörtgen** (köşegenler $e,f$) | $A=\dfrac{e\cdot f}{2}$ | Köşegenler birbirini dik ortalar |
+| **Yamuk** (paralel kenarlar $a,c$; yükseklik $h$) | $A=\dfrac{(a+c)}{2}\cdot h$ | Yalnız bir çift kenar paraleldir |
+
+### Paralelkenar
+
+Paralelkenarın alanı, **taban ile o tabana ait yüksekliğin** çarpımıdır. Yükseklik, tabana çizilen diktir; kenar uzunluğu değildir.
+
+<Figur>
+
+<Paralelkenar />
+
+<Altyazi>Şekil 1 — Paralelkenarda alan $=\text{taban}\times h$. Yükseklik $h$, tabana dik (kesik çizgi) olarak çizilir.</Altyazi>
+
+</Figur>
+
+### Yamuk
+
+Yamukta yalnızca bir çift kenar paraleldir. Alanı, **paralel kenarların toplamının yarısı** ile yüksekliğin çarpımıdır:
+
+$$A=\dfrac{(a+c)}{2}\cdot h$$
+
+<Figur>
+
+<Yamuk />
+
+<Altyazi>Şekil 2 — Yamukta paralel kenarlar $a$ ve $c$, yükseklik ise bunlar arasındaki dik uzaklık $h$'dir.</Altyazi>
+
+</Figur>
+
+### Eşkenar Dörtgen
+
+Eşkenar dörtgenin dört kenarı eşittir ve köşegenleri birbirini **dik** keser. Alanı, **köşegenler çarpımının yarısıdır**:
+
+$$A=\dfrac{e\cdot f}{2}$$
+
+<Figur>
+
+<EskenarDortgen />
+
+<Altyazi>Şekil 3 — Eşkenar dörtgende köşegenler $e$ ve $f$ birbirini dik ortalar; alan köşegenler çarpımının yarısıdır.</Altyazi>
+
+</Figur>
+
+## 4. Çözümlü Örnekler
+
+<Ornek>
+
+<Soru>
+
+Bir beşgenin iç açıları toplamı kaç derecedir?
+
+</Soru>
+
+<Cozum>
+
+1. İç açılar toplamı formülü: $(n-2)\cdot 180°$.
+2. Beşgende $n=5$ yazılır: $(5-2)\cdot 180°=3\cdot 180°=540°$.
+
+<Cevap>$540°$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Düzgün bir altıgenin bir iç açısı kaç derecedir?
+
+</Soru>
+
+<Ipucu>
+
+Düzgün çokgende tüm açılar eşittir; iç açılar toplamını kenar sayısına böl.
+
+</Ipucu>
+
+<Cozum>
+
+1. Bir iç açı formülü: $\dfrac{(n-2)\cdot 180°}{n}$.
+2. Altıgende $n=6$ yazılır: $\dfrac{(6-2)\cdot 180°}{6}=\dfrac{4\cdot 180°}{6}=\dfrac{720°}{6}=120°$.
+
+<Cevap>$120°$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Tabanı $10$ br, bu tabana ait yüksekliği $6$ br olan bir paralelkenarın alanı kaç br$^2$'dir?
+
+</Soru>
+
+<Cozum>
+
+1. Paralelkenarın alanı: $A=\text{taban}\times\text{yükseklik}$.
+2. Değerleri yerine yaz: $A=10\cdot 6=60$.
+
+<Cevap>$60\ \text{br}^2$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Paralel kenarları $8$ br ve $12$ br, yüksekliği $5$ br olan bir yamuğun alanı kaç br$^2$'dir?
+
+</Soru>
+
+<Ipucu>
+
+Önce paralel kenarları topla, sonra yarısını al; en son yükseklikle çarp.
+
+</Ipucu>
+
+<Cozum>
+
+1. Yamuk alanı: $A=\dfrac{(a+c)}{2}\cdot h$.
+2. Paralel kenarları topla: $a+c=8+12=20$.
+3. Yarısını alıp yükseklikle çarp: $A=\dfrac{20}{2}\cdot 5=10\cdot 5=50$.
+
+<Cevap>$50\ \text{br}^2$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Köşegenleri $6$ br ve $8$ br olan bir eşkenar dörtgenin alanı kaç br$^2$'dir?
+
+</Soru>
+
+<Cozum>
+
+1. Eşkenar dörtgen alanı: $A=\dfrac{e\cdot f}{2}$.
+2. Köşegenleri yerine yaz: $A=\dfrac{6\cdot 8}{2}=\dfrac{48}{2}=24$.
+
+<Cevap>$24\ \text{br}^2$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir kenarı $6$ br olan karenin köşegen uzunluğu kaç br'dir?
+
+</Soru>
+
+<Ipucu>
+
+Karede köşegen, kenar uzunluğunun $\sqrt{2}$ katıdır.
+
+</Ipucu>
+
+<Cozum>
+
+1. Karenin köşegeni: $\text{köşegen}=a\sqrt{2}$.
+2. $a=6$ yazılır: $\text{köşegen}=6\sqrt{2}$.
+
+<Cevap>$6\sqrt{2}\ \text{br}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Yamuk alanında paralel kenarları toplamayı ya da $2$'ye bölmeyi unutmak.** Doğrusu önce $a+c$ toplanır, $2$'ye bölünür, sonra $h$ ile çarpılır.
+- **Eşkenar dörtgende köşegen çarpımını $2$'ye bölmemek.** Alan $e\cdot f$ değil, $\dfrac{e\cdot f}{2}$'dir.
+- **İç açı toplamı formülünde $n-2$ yerine başka bir ifade kullanmak.** Doğrusu daima $(n-2)\cdot 180°$'dir; örneğin beşgende $n-2=3$ olur.
+- **Paralelkenarda yükseklik yerine yan kenarı kullanmak.** Alanda kullanılan yükseklik, tabana çizilen diktir; yan kenar uzunluğu değildir.
+
+## Sınav İpucu
+
+ÖSYM, bu konuda çoğunlukla formülün doğrudan uygulanmasını ister. Hızlı ve hatasız çözüm için:
+
+- Şekli kâğıda çiz; **paralel kenarları** ve **yüksekliği** mutlaka işaretle. Yüksekliğin tabana dik olduğunu unutma.
+- Düzgün çokgen sorularında önce iç açılar toplamını bulup kenar sayısına bölmek, çoğu zaman doğrudan iç açıyı ezberlemekten daha güvenlidir.
+- Eşkenar dörtgen ile yamuğu karıştırma: eşkenar dörtgende **köşegenler**, yamukta **paralel kenarlar** alana girer.
+- Karede köşegen $a\sqrt{2}$, dikdörtgende köşegen $\sqrt{a^{2}+b^{2}}$; ikisini birbirine karıştırma.
+
+<KonuNav slug="dortgenler-tyt" />
