@@ -1,0 +1,214 @@
+import { topicMetadata } from "@/lib/seo";
+
+export const metadata = topicMetadata("asal-carpanlar-bolen-sayisi");
+
+<Konu slug="asal-carpanlar-bolen-sayisi" />
+
+<p className="lead">Bir tam sayıyı **asal çarpanlarına ayırmak**, onu en küçük yapı taşlarına çözmektir; bu çözüm her sayı için **tektir**. Bu konuda önce asal çarpanlara ayırmayı, sonra bu yapıdan bir sayının **pozitif bölen sayısını** doğrudan hesaplamayı öğreneceğiz. TYT'de "kaç tam böleni vardır" tipi sorular bu tek formülle saniyeler içinde çözülür.</p>
+
+## 1. Asal Çarpanlara Ayırma
+
+Bir asal sayı, yalnızca $1$'e ve kendisine bölünebilen, $1$'den büyük doğal sayıdır ($2,3,5,7,11,\dots$). **Aritmetiğin Temel Teoremi'ne** göre $1$'den büyük her tam sayı, asal sayıların çarpımı olarak **tek bir biçimde** yazılır.
+
+**Yöntem:** Sayıyı en küçük asaldan ($2$'den) başlayarak bölünebildiği sürece böl; bölünmüyorsa bir sonraki asala ($3,5,7,\dots$) geç. Sonuçta her asalı bir üs ile yazarız.
+
+$$360=2^{3}\cdot 3^{2}\cdot 5^{1}$$
+
+Bölme tablosuyla:
+
+| Sayı | Bölen |
+| --- | --- |
+| $360$ | $2$ |
+| $180$ | $2$ |
+| $90$ | $2$ |
+| $45$ | $3$ |
+| $15$ | $3$ |
+| $5$ | $5$ |
+| $1$ | — |
+
+Doğrulama: $2^{3}\cdot 3^{2}\cdot 5=8\cdot 9\cdot 5=360$. Buradaki $2,3,5$ asallarının üsleri sırasıyla $3,2,1$'dir; **üssü $1$ olan asalı ($5^{1}$) gözden kaçırmamak** önemlidir.
+
+## 2. Pozitif Bölen (Tam Bölen) Sayısı
+
+Bir sayının asal çarpan yapısı
+
+$$N=p^{a}\cdot q^{b}\cdot r^{c}$$
+
+biçimindeyse, $N$'nin **pozitif bölenlerinin sayısı**
+
+$$\big(a+1\big)\big(b+1\big)\big(c+1\big)$$
+
+ile bulunur. Neden $+1$? Çünkü bir böleni oluştururken $p$ asalının üssünü $0,1,2,\dots,a$ değerlerinden, yani $a+1$ farklı şekilde seçebiliriz; aynısı her asal için geçerlidir. Tüm seçimler birbirinden bağımsız olduğundan sayılar **çarpılır**.
+
+> **Önemli:** Bu formül $1$'i ($p^{0}q^{0}r^{0}$) ve sayının kendisini ($p^{a}q^{b}r^{c}$) da bölen olarak sayar. Yani sonuca ayrıca "$+2$" eklemene gerek yoktur; ikisi de zaten dâhildir.
+
+**Tam kareler:** $N$ bir tam kare ise tüm üsleri çifttir, dolayısıyla her $(a+1)$ çarpanı tektir ve bölen sayısı **tek** çıkar. Tersi de doğrudur: pozitif bölen sayısı tek olan sayılar tam karelerdir.
+
+<Ornek>
+
+<Soru>
+
+$360$ sayısını asal çarpanlarına ayırınız.
+
+</Soru>
+
+<Cozum>
+
+1. En küçük asaldan başla: $360=2\cdot 180=2\cdot 2\cdot 90=2\cdot 2\cdot 2\cdot 45$, yani üç kez $2$ ile bölünür.
+
+2. Kalan $45$, $2$ ile bölünmez; $3$ ile dene: $45=3\cdot 15=3\cdot 3\cdot 5$, yani iki kez $3$.
+
+3. Kalan $5$ asaldır: $5=5^{1}$.
+
+4. Üsleri topla: $360=2^{3}\cdot 3^{2}\cdot 5^{1}$. Doğrula: $8\cdot 9\cdot 5=360$.
+
+<Cevap>$360=2^{3}\cdot 3^{2}\cdot 5$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$360$ sayısının kaç tane pozitif böleni vardır?
+
+</Soru>
+
+<Ipucu>
+
+Önce asal çarpanlarına ayır, sonra her üse $1$ ekleyip çarp.
+
+</Ipucu>
+
+<Cozum>
+
+1. Asal çarpan yapısı: $360=2^{3}\cdot 3^{2}\cdot 5^{1}$.
+
+2. Üsler $3,2,1$; her birine $1$ ekle: $4,3,2$.
+
+3. Çarp: $(3+1)(2+1)(1+1)=4\cdot 3\cdot 2=24$.
+
+<Cevap>$360$'ın $24$ pozitif böleni vardır.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$72$ sayısının pozitif bölen sayısını bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Asal çarpanlarına ayır: $72=8\cdot 9=2^{3}\cdot 3^{2}$.
+
+2. Üsler $3$ ve $2$; her birine $1$ ekle: $4$ ve $3$.
+
+3. Çarp: $(3+1)(2+1)=4\cdot 3=12$.
+
+<Cevap>$72$'nin $12$ pozitif böleni vardır.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$N=2^{a}\cdot 3^{2}$ sayısının $15$ tane pozitif böleni olduğuna göre $a$ kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+Bölen sayısı formülünü kur ve oluşan denklemi $a$ için çöz.
+
+</Ipucu>
+
+<Cozum>
+
+1. Bölen sayısı formülü: $(a+1)(2+1)=(a+1)\cdot 3$.
+
+2. Bu sayı $15$'e eşit: $(a+1)\cdot 3=15$.
+
+3. Her iki tarafı $3$'e böl: $a+1=5$.
+
+4. Buradan $a=4$.
+
+<Cevap>$a=4$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$36$ sayısının pozitif bölen sayısının **tek** olduğunu gösteriniz ve nedenini açıklayınız.
+
+</Soru>
+
+<Cozum>
+
+1. Asal çarpanlarına ayır: $36=4\cdot 9=2^{2}\cdot 3^{2}$.
+
+2. Bölen sayısını hesapla: $(2+1)(2+1)=3\cdot 3=9$, bu tek bir sayıdır.
+
+3. Sebep: $36=6^{2}$ bir tam karedir; tüm üsleri ($2,2$) çift olduğundan her $(a+1)$ çarpanı tek olur ve tek sayıların çarpımı tektir.
+
+<Cevap>$36$'nın $9$ pozitif böleni vardır; tam kare olduğu için bu sayı tektir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Pozitif bölen sayısı $6$ olan bir tam sayının asal çarpan yapısı ne biçimde olabilir?
+
+</Soru>
+
+<Ipucu>
+
+$6$'yı, her biri "üs $+1$" olacak şekilde çarpan değerlerine ayır: $6=6\cdot 1$ ve $6=2\cdot 3$.
+
+</Ipucu>
+
+<Cozum>
+
+1. Bölen sayısı $(a+1)(b+1)\cdots=6$ olmalı. $6$'yı çarpanlarına ayır: $6=6\cdot 1$ ve $6=2\cdot 3$.
+
+2. **Birinci durum** $6=6$: tek asal vardır ve $a+1=6\Rightarrow a=5$. Yapı: $p^{5}$ (örnek: $2^{5}=32$).
+
+3. **İkinci durum** $6=2\cdot 3$: iki asal vardır, $a+1=2,\ b+1=3\Rightarrow a=1,\ b=2$. Yapı: $p^{1}\cdot q^{2}$ (örnek: $2^{2}\cdot 3=12$).
+
+4. Doğrula: $32=2^{5}$ için $(5+1)=6$; $12=2^{2}\cdot 3$ için $(2+1)(1+1)=6$.
+
+<Cevap>Sayı ya $p^{5}$ ya da $p^{2}\cdot q$ biçimindedir ($p,q$ farklı asal).</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Üsleri doğrudan çarpmak.** Bölen sayısı üslerin çarpımı değildir; her üse **önce $1$ eklenir**, sonra çarpılır. $2^{3}\cdot 3^{2}$ için cevap $3\cdot 2=6$ değil, $(3+1)(2+1)=12$'dir.
+- **$1$'i ve sayının kendisini ayrıca eklemek.** Formül bu iki böleni zaten içerir; sonuca "$+2$" eklemek yanlıştır.
+- **Üssü $1$ olan asalı atlamak.** $360=2^{3}\cdot 3^{2}\cdot 5$ yapısında $5^{1}$ unutulursa bölen sayısı eksik ($12$) bulunur; doğrusu $24$'tür.
+- **Asal olmayanı asal sanmak.** Ayırmayı $1$ kalana dek sürdür; $45$'i $3$ ile bölmeyi atlayıp "$45$ asal" demek hatadır.
+
+## Sınav İpucu
+
+"Kaç tam (pozitif) böleni vardır?" sorusunu görür görmez sayıyı asal çarpanlarına ayır, **üslere $1$ ekleyip çarp** — başka işleme gerek yok. Bir sayının **tam kare** olup olmadığını anlamak için bölen sayısının tekliğine bak: bölen sayısı tek ise sayı tam karedir. Bölen sayısı verilip üs sorulduğunda formülü kurup denklemi çöz; bölen sayısı küçük (örneğin $6$ veya $8$) verilip "yapısı ne olabilir" denildiğinde o sayıyı çarpan ayrışımlarına ($2\cdot 3$, $2\cdot 2\cdot 2$ gibi) göre olası asal yapıları yaz.
+
+<KonuNav slug="asal-carpanlar-bolen-sayisi" />

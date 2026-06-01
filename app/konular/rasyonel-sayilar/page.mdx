@@ -1,0 +1,221 @@
+import { topicMetadata } from "@/lib/seo";
+
+export const metadata = topicMetadata("rasyonel-sayilar");
+
+<Konu slug="rasyonel-sayilar" />
+
+<p className="lead">Rasyonel sayılar, iki tam sayının oranı olarak yazılabilen sayılardır; kesirler, ondalık gösterimler ve devirli ondalıklar hep bu çatının altındadır. TYT Temel Matematik'te dört işlem, sıralama ve devirli ondalık–kesir dönüşümü doğrudan ya da kurulu problemlerin içinde sürekli karşına çıkar. Bu konu, hata yapmadan ve hızlı çözmen için gereken tüm zemini kurar.</p>
+
+## 1. Rasyonel Sayı ve Kesir Çeşitleri
+
+Bir sayı, $a$ ve $b$ tam sayılar ve $b \ne 0$ olmak üzere $\dfrac{a}{b}$ biçiminde yazılabiliyorsa **rasyonel sayıdır**. Rasyonel sayılar kümesi $\mathbb{Q}$ ile gösterilir. Her tam sayı da rasyoneldir: $5=\dfrac{5}{1}$.
+
+Pozitif kesirler, payın paydaya oranına göre sınıflandırılır:
+
+| Çeşit | Koşul | Örnek |
+| --- | --- | --- |
+| **Basit kesir** | $\text{pay} < \text{payda}$ | $\dfrac{2}{5}$ |
+| **Bileşik kesir** | $\text{pay} \ge \text{payda}$ | $\dfrac{7}{4}$ |
+| **Tam sayılı kesir** | tam kısım + basit kesir | $1\dfrac{3}{4}=\dfrac{7}{4}$ |
+
+> **Önemli:** $\dfrac{a}{b}$ ifadesinde payda asla $0$ olamaz. $\dfrac{3}{0}$ tanımsızdır; ancak $\dfrac{0}{3}=0$ geçerli bir rasyonel sayıdır.
+
+## 2. Dört İşlem
+
+**Toplama ve çıkarma:** Paydalar eşit değilse önce **ortak paydaya** getirilir, sonra paylar toplanır/çıkarılır.
+
+$$\dfrac{a}{b}\pm\dfrac{c}{d}=\dfrac{a\cdot d\pm b\cdot c}{b\cdot d}$$
+
+**Çarpma:** Pay ile pay, payda ile payda çarpılır:
+
+$$\dfrac{a}{b}\cdot\dfrac{c}{d}=\dfrac{a\cdot c}{b\cdot d}$$
+
+**Bölme:** İkinci kesir ters çevrilip çarpılır:
+
+$$\dfrac{a}{b}\div\dfrac{c}{d}=\dfrac{a}{b}\cdot\dfrac{d}{c}=\dfrac{a\cdot d}{b\cdot c}\qquad(c\ne 0)$$
+
+Her işlemin sonunda sonucu **sadeleştir**; sadeleşmiş hâl standart cevaptır.
+
+## 3. Sıralama
+
+Kesirleri büyüklük olarak karşılaştırmanın iki yolu vardır:
+
+- **Ortak payda:** Paydaları eşitle. Pozitif kesirlerde payda eşitse **büyük paylı büyüktür**; pay eşitse **küçük paydalı büyüktür**.
+- **İçler-dışlar (çapraz çarpım):** Paydalar pozitifken $\dfrac{a}{b}$ ile $\dfrac{c}{d}$ için $a\cdot d$ ile $b\cdot c$ karşılaştırılır. $a\cdot d > b\cdot c$ ise $\dfrac{a}{b}>\dfrac{c}{d}$ olur.
+
+## 4. Devirli Ondalık Sayıyı Kesre Çevirme
+
+Bir devirli ondalık sayıyı kesre çevirmenin pratik kuralı şudur:
+
+$$\text{Kesir}=\dfrac{(\text{tüm sayı}) - (\text{devretmeyen kısım})}{\underbrace{9\ldots9}_{\text{devreden basamak}}\,\underbrace{0\ldots0}_{\text{devretmeyen basamak}}}$$
+
+Yani paydaya, **devreden basamak sayısı kadar $9$** ve **virgülden sonra devretmeyen basamak sayısı kadar $0$** yazılır. Özel durumlar:
+
+$$0,\overline{a}=\dfrac{a}{9}\qquad 0,\overline{ab}=\dfrac{ab}{99}$$
+
+## 5. Çözümlü Örnekler
+
+<Ornek>
+
+<Soru>
+
+$\dfrac{2}{3}+\dfrac{1}{4}$ toplamını bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Paydaların ortak katı $12$'dir; her kesri $12$ paydalı yaz.
+
+2. Genişlet: $\dfrac{2}{3}=\dfrac{8}{12}$ ve $\dfrac{1}{4}=\dfrac{3}{12}$.
+
+3. Payları topla: $\dfrac{8}{12}+\dfrac{3}{12}=\dfrac{11}{12}$.
+
+4. $11$ asaldır, $11$ ile $12$'nin ortak böleni yok; sadeleşmez.
+
+<Cevap>$\dfrac{2}{3}+\dfrac{1}{4}=\dfrac{11}{12}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\dfrac{3}{5}\cdot\dfrac{10}{9}$ çarpımını ve $\dfrac{2}{3}\div\dfrac{4}{9}$ bölümünü hesaplayınız.
+
+</Soru>
+
+<Cozum>
+
+1. Çarpma — pay×pay, payda×payda: $\dfrac{3}{5}\cdot\dfrac{10}{9}=\dfrac{30}{45}$.
+
+2. Sadeleştir ($\gcd=15$): $\dfrac{30}{45}=\dfrac{2}{3}$.
+
+3. Bölme — ikinciyi ters çevirip çarp: $\dfrac{2}{3}\div\dfrac{4}{9}=\dfrac{2}{3}\cdot\dfrac{9}{4}=\dfrac{18}{12}$.
+
+4. Sadeleştir ($\gcd=6$): $\dfrac{18}{12}=\dfrac{3}{2}$.
+
+<Cevap>Çarpım $\dfrac{2}{3}$, bölüm $\dfrac{3}{2}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\dfrac{2}{3},\ \dfrac{3}{4},\ \dfrac{5}{6}$ sayılarını küçükten büyüğe sıralayınız.
+
+</Soru>
+
+<Ipucu>
+
+Üç kesrin paydalarını ($3,4,6$) tek bir ortak paydada birleştir; paydalar eşitlenince yalnızca paylara bakarsın.
+
+</Ipucu>
+
+<Cozum>
+
+1. Paydaların en küçük ortak katı $12$'dir.
+
+2. Hepsini $12$ paydaya getir: $\dfrac{2}{3}=\dfrac{8}{12}$, $\dfrac{3}{4}=\dfrac{9}{12}$, $\dfrac{5}{6}=\dfrac{10}{12}$.
+
+3. Paydalar eşit olduğundan paylara göre sırala: $8 < 9 < 10$.
+
+4. Aynı sırayı orijinal kesirlere taşı.
+
+<Cevap>$\dfrac{2}{3} < \dfrac{3}{4} < \dfrac{5}{6}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$0,\overline{4}$ devirli ondalık sayısını kesir olarak yazınız.
+
+</Soru>
+
+<Cozum>
+
+1. Devreden tek basamak ($4$) var; payda tek bir $9$ olur.
+
+2. $0,\overline{4}=\dfrac{4}{9}$.
+
+3. Doğrula: $4\div 9=0,444\ldots=0,\overline{4}$.
+
+<Cevap>$0,\overline{4}=\dfrac{4}{9}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$0,\overline{27}$ devirli ondalık sayısını en sade kesir olarak yazınız.
+
+</Soru>
+
+<Cozum>
+
+1. Devreden iki basamak ($27$) var; payda $99$ olur.
+
+2. $0,\overline{27}=\dfrac{27}{99}$.
+
+3. Sadeleştir ($\gcd=9$): $\dfrac{27}{99}=\dfrac{3}{11}$.
+
+<Cevap>$0,\overline{27}=\dfrac{3}{11}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$0,1\overline{6}$ (yani $0,1666\ldots$) sayısını en sade kesir olarak yazınız.
+
+</Soru>
+
+<Ipucu>
+
+Devretmeyen kısım virgülden sonra $1$ basamak ($1$), devreden kısım $1$ basamak ($6$). Paydaya $1$ tane $9$ ve $1$ tane $0$ yazılır.
+
+</Ipucu>
+
+<Cozum>
+
+1. Pay: tüm sayının ondalık kısmından devretmeyen kısmı çıkar: $16-1=15$.
+
+2. Payda: $1$ devreden basamak için bir $9$, $1$ devretmeyen basamak için bir $0$, yani $90$.
+
+3. Kesri yaz: $0,1\overline{6}=\dfrac{15}{90}$.
+
+4. Sadeleştir ($\gcd=15$): $\dfrac{15}{90}=\dfrac{1}{6}$.
+
+<Cevap>$0,1\overline{6}=\dfrac{1}{6}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Paydaları eşitlemeden toplamak:** $\dfrac{2}{3}+\dfrac{1}{4}$, $\dfrac{2+1}{3+4}=\dfrac{3}{7}$ **değildir**. Önce ortak payda kurulur.
+- **Bölmede ters çevirmeyi unutmak:** $\dfrac{a}{b}\div\dfrac{c}{d}$ işleminde ikinci kesir ters çevrilir; payları ve paydaları doğrudan bölmek yanlıştır.
+- **Sıralamada yalnızca paya (ya da yalnızca paydaya) bakmak:** $\dfrac{3}{4}$ ile $\dfrac{5}{6}$ karşılaştırılırken büyük paylı her zaman büyük değildir; paydalar farklıysa eşitlemek ya da çapraz çarpım yapmak gerekir.
+- **Devirli ondalıkta basamak sayma hatası:** Paydadaki $9$'lar **devreden** basamak kadar, $0$'lar **devretmeyen** basamak kadardır; bunları karıştırmak yanlış kesir verir.
+
+## Sınav İpucu
+
+İki kesri karşılaştırırken ortak payda kurmak yerine **içler-dışlar (çapraz çarpım)** çoğu zaman daha hızlıdır. Paydalar pozitifken $\dfrac{a}{b}$ ile $\dfrac{c}{d}$ için $a\cdot d$ ile $b\cdot c$ çarpımlarını kıyasla: hangisi büyükse o kesir büyüktür. Örneğin $\dfrac{3}{4}$ ile $\dfrac{5}{6}$ için $3\cdot 6=18$ ve $4\cdot 5=20$; $18 < 20$ olduğundan $\dfrac{3}{4} < \dfrac{5}{6}$. Tek bir çarpma satırıyla sonuca varırsın.
+
+<KonuNav slug="rasyonel-sayilar" />

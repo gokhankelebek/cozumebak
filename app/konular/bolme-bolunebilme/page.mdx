@@ -1,0 +1,214 @@
+import { topicMetadata } from "@/lib/seo";
+
+export const metadata = topicMetadata("bolme-bolunebilme");
+
+<Konu slug="bolme-bolunebilme" />
+
+<p className="lead">Bir tam sayının bir başkasına bölünmesi tek bir eşitlikle özetlenir: **bölme algoritması**. Bölünebilme kuralları ise bu algoritmayı her seferinde uygulamadan, yalnızca rakamlara bakarak "tam bölünür mü?" sorusunu yanıtlamamızı sağlar. Bu konu TYT'de doğrudan soru olarak çıkar; ayrıca EBOB–EKOK ve asal çarpanlara ayırma konularının da zeminini kurar.</p>
+
+## 1. Bölme Algoritması
+
+$A$ sayısı $B$ ile bölündüğünde (burada $B \neq 0$), tek bir $Q$ bölümü ve tek bir $R$ kalanı vardır:
+
+$$A = B\cdot Q + R,\qquad 0 \le R < B$$
+
+Burada $A$ **bölünen**, $B$ **bölen**, $Q$ **bölüm**, $R$ **kalan**dır. En kritik koşul şudur:
+
+> **Kalan her zaman bölenden küçüktür:** $0 \le R < B$. Eğer kalan bölene eşit ya da ondan büyük çıkarsa, bölüm henüz tamamlanmamış demektir.
+
+$R = 0$ olduğunda $A = B\cdot Q$ olur; bu duruma **tam bölünme** denir ve "$A$, $B$ ile tam bölünür" deriz.
+
+## 2. Bölünebilme Kuralları
+
+Aşağıdaki kurallar, bir sayının verilen bölene **tam** bölünüp bölünmediğini hızlıca belirler.
+
+| Bölen | Kural | Örnek |
+| --- | --- | --- |
+| $2$ | Son rakam çift ($0,2,4,6,8$) | $138 \to$ son rakam $8 \Rightarrow$ bölünür |
+| $3$ | Rakamlar toplamı $3$'ün katı | $471 \to 4+7+1=12 \Rightarrow$ bölünür |
+| $4$ | Son iki basamağın sayısı $4$'ün katı (ya da $00$) | $1\,724 \to 24 \Rightarrow$ bölünür |
+| $5$ | Son rakam $0$ ya da $5$ | $385 \to$ son rakam $5 \Rightarrow$ bölünür |
+| $6$ | Hem $2$'ye hem $3$'e bölünüyorsa | $132 \to$ çift ve $1+3+2=6 \Rightarrow$ bölünür |
+| $8$ | Son üç basamağın sayısı $8$'in katı | $51\,000 \to 000 \Rightarrow$ bölünür |
+| $9$ | Rakamlar toplamı $9$'un katı | $612 \to 6+1+2=9 \Rightarrow$ bölünür |
+| $10$ | Son rakam $0$ | $4\,560 \to$ son rakam $0 \Rightarrow$ bölünür |
+| $11$ | Birlerden başlayarak $+,-,+,\dots$ alınan dönüşümlü toplam $0$ ya da $11$'in katı | $2\,915 \to 5-1+9-2=11 \Rightarrow$ bölünür |
+
+Tek bir not: $6$ gibi **bileşik** bölenlerde sayıyı aralarında asal çarpanlarına ayırırız ($6 = 2\cdot 3$) ve her çarpanın kuralını ayrı ayrı uygularız.
+
+<Ornek>
+
+<Soru>
+
+$100$ sayısı $7$ ile bölündüğünde bölümü ve kalanı bulunuz; sonucu bölme algoritmasıyla doğrulayınız.
+
+</Soru>
+
+<Cozum>
+
+1. $100$'ü $7$'ye böl: $7\cdot 14 = 98$, geriye $100 - 98 = 2$ kalır.
+
+2. Bölme algoritmasına yerleştir: $100 = 7\cdot 14 + 2$.
+
+3. Kalan koşulunu denetle: $0 \le 2 < 7$ sağlanıyor, kalan bölenden küçük.
+
+<Cevap>Bölüm $Q = 14$, kalan $R = 2$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\overline{4a2}$ üç basamaklı sayısı $3$ ile tam bölünebiliyorsa, $a$ rakamının alabileceği değerleri bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+$3$ ile bölünebilme rakamlar toplamına bakar. $a$ bir rakam olduğundan $0 \le a \le 9$ olmalı.
+
+</Ipucu>
+
+<Cozum>
+
+1. Rakamlar toplamını yaz: $4 + a + 2 = 6 + a$.
+
+2. Bu toplam $3$'ün katı olmalı: $6 + a \in \{6, 9, 12, 15\}$.
+
+3. Karşılık gelen $a$ değerleri: $a \in \{0, 3, 6, 9\}$ (hepsi rakam koşulunu sağlar).
+
+<Cevap>$a \in \{0, 3, 6, 9\}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\overline{53a}$ üç basamaklı sayısı $6$ ile tam bölünebiliyorsa, $a$ rakamını bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+$6 = 2\cdot 3$. Sayı hem $2$'ye (son rakam çift) hem $3$'e (rakam toplamı $3$'ün katı) bölünmeli; iki koşulu aynı anda sağla.
+
+</Ipucu>
+
+<Cozum>
+
+1. **$2$ koşulu:** $a$ çift olmalı, yani $a \in \{0, 2, 4, 6, 8\}$.
+
+2. **$3$ koşulu:** rakam toplamı $5 + 3 + a = 8 + a$, bu da $3$'ün katı olmalı.
+
+3. Çift $a$ değerlerini dene: $8+0=8$, $8+2=10$, $8+4=12$, $8+6=14$, $8+8=16$. Yalnız $8+4=12$, $3$'ün katı.
+
+4. İki koşulu birden yalnızca $a = 4$ sağlar.
+
+<Cevap>$a = 4$, yani sayı $534$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\overline{2b4}$ üç basamaklı sayısı $9$ ile tam bölünebiliyorsa, $b$ rakamını bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $9$ ile bölünebilme rakam toplamına bakar: $2 + b + 4 = 6 + b$.
+
+2. Bu toplam $9$'un katı olmalı. $b$ bir rakam olduğundan $6 + b$ değeri $6$ ile $15$ arasındadır; bu aralıktaki tek $9$ katı $9$'dur.
+
+3. $6 + b = 9 \Rightarrow b = 3$.
+
+<Cevap>$b = 3$, yani sayı $234$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\overline{2b3}$ üç basamaklı sayısı $11$ ile tam bölünebiliyorsa, $b$ rakamını bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Birler basamağından başla; rakamları sırayla $+,-,+$ işaretleriyle topla. Sonuç $0$ ya da $11$'in katı olmalı.
+
+</Ipucu>
+
+<Cozum>
+
+1. Birlerden başlayarak dönüşümlü toplamı yaz: $3 - b + 2 = 5 - b$.
+
+2. Bu değer $0$ ya da $11$'in katı olmalı. $b$ rakam olduğundan $5 - b$ değeri $-4$ ile $5$ arasındadır; bu aralıkta uygun olan tek değer $0$'dır.
+
+3. $5 - b = 0 \Rightarrow b = 5$.
+
+<Cevap>$b = 5$, yani sayı $253$. (Gerçekten $253 = 11\cdot 23$.)</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\overline{37a}$ sayısı $5$ ile bölündüğünde kalanın yalnızca son rakama bağlı olduğunu gösteriniz ve $a = 8$ için kalanı bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+$\overline{37a} = 370 + a$ biçiminde yaz; $370$ sayısı $5$'in katıdır.
+
+</Ipucu>
+
+<Cozum>
+
+1. Sayıyı aç: $\overline{37a} = 370 + a$.
+
+2. $370 = 5\cdot 74$ olduğundan $370$ kısmı $5$'e tam bölünür, kalana etki etmez.
+
+3. Demek ki $\overline{37a}$'nın $5$'e bölümünden kalan, $a$'nın $5$'e bölümünden kalanına eşittir; yani kalanı **yalnızca son rakam** belirler.
+
+4. $a = 8$ için: $8 = 5\cdot 1 + 3$, kalan $3$.
+
+<Cevap>Kalan $a$ rakamına bağlıdır; $a = 8$ için kalan $3$'tür.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Kalanın bölenden büyük olabileceğini sanmak.** Bölme algoritmasında her zaman $0 \le R < B$ olmalıdır. Örneğin $7$'ye bölmede kalan $0,1,2,3,4,5,6$ değerlerinden biridir; $7$ ya da daha büyük bir kalan yanlıştır.
+- **$4$ (ya da $8$) ile bölünebilmede tüm sayıya bakmak.** $4$ için yalnız **son iki**, $8$ için yalnız **son üç** basamak yeterlidir; gerisini incelemek gereksizdir.
+- **$11$ kuralında işaret sırasını şaşırmak.** Dönüşümlü toplam **birler basamağından** başlar ($+,-,+,\dots$). Yön karışırsa sonucun işareti değişebilir, ama $0$ ya da $11$'in katı olma koşulu yine de doğru uygulanmalıdır.
+- **$6$, $12$, $15$ gibi bölenleri tek bir rakam kuralıyla denemek.** Bunlar için ayrı bir "tek kural" yoktur; çarpanlara ayırıp her parçayı denetlemek gerekir.
+
+## Sınav İpucu
+
+Bileşik bölenler için sayıyı **aralarında asal** çarpanlarına ayır ve her birine ilgili bölünebilme kuralını uygula:
+
+$$6 = 2\cdot 3,\qquad 12 = 4\cdot 3,\qquad 15 = 3\cdot 5,\qquad 45 = 9\cdot 5$$
+
+Dikkat: çarpanlar aralarında asal olmalı. Örneğin $12$ için $2\cdot 6$ kullanmak yanlış sonuç verebilir, çünkü $2$ ile $6$ aralarında asal değildir; doğru ayrışım $4\cdot 3$'tür. Bir sayı bu çarpanların **hepsine** birden bölünüyorsa, bileşik bölene de tam bölünür.
+
+<KonuNav slug="bolme-bolunebilme" />
