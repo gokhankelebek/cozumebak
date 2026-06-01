@@ -1,0 +1,215 @@
+import { topicMetadata } from "@/lib/seo";
+
+export const metadata = topicMetadata("uslu-denklemler");
+
+<Konu slug="uslu-denklemler" />
+
+<p className="lead">**Üslü denklemler**, bilinmeyenin üs (kuvvet) olarak bulunduğu denklemlerdir. TYT'de bu tür soruların tamamı tek bir fikre dayanır: **tabanları aynı yap, sonra üsleri eşitle.** Toplama içeren denklemlerde ise araya bir adım daha girer: **ortak çarpan paranteze alma.** Bu derste her iki tekniği örneklerle, her çözümü yerine koyarak doğrulayarak işliyoruz.</p>
+
+## 1. Temel İlke: Tabanlar Eşitse Üsler de Eşittir
+
+$a > 0$ ve $a \ne 1$ olmak üzere temel kural şudur:
+
+$$a^{x}=a^{y}\;\Rightarrow\; x=y$$
+
+Yani **iki tarafın tabanı aynıysa, üsleri de birbirine eşit olmak zorundadır.** Bütün çözüm yöntemi bu kuralı kullanabilecek hâle gelmektir.
+
+> Taban niçin $a \ne 1$? Çünkü $1^{x}=1$ her $x$ için doğrudur; taban $1$ olursa üsler hakkında hiçbir şey söyleyemeyiz. Aynı şekilde tabanın pozitif olması gerekir.
+
+## 2. Yöntem: Aynı Tabanda Yazma
+
+Denklemin bir tarafında **sayı** varsa, o sayıyı diğer tarafın **tabanına göre kuvvet** olarak yazarız. Sık kullanılan kuvvetler:
+
+| Taban | Kuvvetleri |
+| --- | --- |
+| $2$ | $4=2^{2},\ 8=2^{3},\ 16=2^{4},\ 32=2^{5}$ |
+| $3$ | $9=3^{2},\ 27=3^{3},\ 81=3^{4}$ |
+| $5$ | $25=5^{2},\ 125=5^{3}$ |
+
+İki taban da aynı olunca (örneğin $4^{x}$ yerine $2^{2x}$ yazarak) üsleri eşitleriz.
+
+## 3. Ortak Çarpan Paranteze Alma
+
+$a^{x}$ içeren **toplamlarda** doğrudan taban eşitleme işe yaramaz. Bu durumda **en küçük üslü terimi ortak çarpan** olarak dışarı alırız. Temel ipucu:
+
+$$a^{x+k}=a^{x}\cdot a^{k}$$
+
+Örneğin $2^{x+2}=2^{x}\cdot 2^{2}=4\cdot 2^{x}$. Böylece tüm terimlerde ortak olan $a^{x}$ paranteze alınır, denklem tek bir üslü ifadeye iner.
+
+<Ornek>
+
+<Soru>
+
+$2^{x}=32$ denkleminin çözümünü bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Sağ tarafı $2$ tabanında yaz: $32=2^{5}$, yani $2^{x}=2^{5}$.
+
+2. Tabanlar eşit olduğundan üsleri eşitle: $x=5$.
+
+**Doğrulama:** $2^{5}=32$. Doğru.
+
+<Cevap>$x=5$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$3^{x+1}=81$ denkleminin çözümünü bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Sağ tarafı $3$ tabanında yaz: $81=3^{4}$, yani $3^{x+1}=3^{4}$.
+
+2. Tabanlar eşit olduğundan üsleri eşitle: $x+1=4$.
+
+3. $x$'i çek: $x=3$.
+
+**Doğrulama:** $3^{3+1}=3^{4}=81$. Doğru.
+
+<Cevap>$x=3$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$4^{x}=8$ denkleminin çözümünü bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+$4$ ve $8$ ortak bir tabana sahip: ikisi de $2$'nin kuvvetidir. Her iki tarafı $2$ tabanında yaz.
+
+</Ipucu>
+
+<Cozum>
+
+1. Her iki tarafı $2$ tabanına indir: $4=2^{2}$, $8=2^{3}$, yani $\left(2^{2}\right)^{x}=2^{3}\Rightarrow 2^{2x}=2^{3}$.
+
+2. Tabanlar eşit olduğundan üsleri eşitle: $2x=3$.
+
+3. $x$'i çek: $x=\dfrac{3}{2}$.
+
+**Doğrulama:** $4^{3/2}=\left(\sqrt{4}\right)^{3}=2^{3}=8$. Doğru.
+
+<Cevap>$x=\dfrac{3}{2}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$2^{x+2}+2^{x}=20$ denkleminin çözümünü bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Toplam var; doğrudan üs eşitleme yapamazsın. En küçük üslü terim $2^{x}$'i ortak çarpan olarak dışarı al.
+
+</Ipucu>
+
+<Cozum>
+
+1. $2^{x+2}=2^{x}\cdot 2^{2}$ olduğunu kullan: $2^{x}\cdot 2^{2}+2^{x}=20$.
+
+2. En küçük üslü terim $2^{x}$'i paranteze al: $2^{x}\left(2^{2}+1\right)=20$.
+
+3. Parantezi hesapla: $2^{x}\cdot 5=20 \Rightarrow 2^{x}=4$.
+
+4. $4=2^{2}$ yaz ve üsleri eşitle: $2^{x}=2^{2}\Rightarrow x=2$.
+
+**Doğrulama:** $2^{4}+2^{2}=16+4=20$. Doğru.
+
+<Cevap>$x=2$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$5^{x+1}+5^{x}=150$ denkleminin çözümünü bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $5^{x+1}=5^{x}\cdot 5$ olduğunu kullan: $5^{x}\cdot 5+5^{x}=150$.
+
+2. En küçük üslü terim $5^{x}$'i paranteze al: $5^{x}\left(5+1\right)=150$.
+
+3. Parantezi hesapla: $6\cdot 5^{x}=150 \Rightarrow 5^{x}=25$.
+
+4. $25=5^{2}$ yaz ve üsleri eşitle: $5^{x}=5^{2}\Rightarrow x=2$.
+
+**Doğrulama:** $5^{3}+5^{2}=125+25=150$. Doğru.
+
+<Cevap>$x=2$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$9^{x}=27$ denkleminin çözümünü bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+$9$ ve $27$ ortak tabanı $3$ olan sayılardır: $9=3^{2}$, $27=3^{3}$.
+
+</Ipucu>
+
+<Cozum>
+
+1. Her iki tarafı $3$ tabanına indir: $\left(3^{2}\right)^{x}=3^{3}\Rightarrow 3^{2x}=3^{3}$.
+
+2. Tabanlar eşit olduğundan üsleri eşitle: $2x=3$.
+
+3. $x$'i çek: $x=\dfrac{3}{2}$.
+
+**Doğrulama:** $9^{3/2}=\left(\sqrt{9}\right)^{3}=3^{3}=27$. Doğru.
+
+<Cevap>$x=\dfrac{3}{2}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Tabanları eşitlemeden üsleri eşitlemek.** $a^{x}=a^{y}\Rightarrow x=y$ kuralı yalnızca **tabanlar aynıyken** geçerlidir. Önce mutlaka ortak tabana indir.
+- **$4^{x}=8$'i $x=2$ sanmak.** $4^{2}=16\ne 8$ olduğuna dikkat. Doğrusu tabanı $2$'ye indirmektir: $2^{2x}=2^{3}\Rightarrow x=\dfrac{3}{2}$.
+- **Ortak çarpanı yanlış seçmek.** Paranteze her zaman **en küçük üslü** terim alınır. $2^{x+2}+2^{x}$ ifadesinde ortak çarpan $2^{x+2}$ değil, $2^{x}$'tir.
+- **Ara basamağı atlamak.** $2^{x}=4$ bulununca $4=2^{2}$ yazıp $x=2$ demek gerekir; rastgele bir değer yazmak yanlıştır.
+
+## Sınav İpucu
+
+- Bir tarafta **çıplak sayı** varsa, onu diğer tarafın tabanına göre kuvvet olarak yaz: $8=2^{3}$, $27=3^{3}$, $32=2^{5}$, $81=3^{4}$. Bu, $2$, $3$ ve $5$ tabanlarının kuvvetlerini ezberlemekle hızlanır.
+- **Toplam içeren** üslü denklemlerde ilk hamle her zaman **ortak çarpan paranteze almaktır.** $a^{x+k}=a^{x}\cdot a^{k}$ açılımıyla en küçük üslü terimi dışarı al; geriye kalan parantez bir sayıya iner ve denklem tek üslü ifadeye dönüşür.
+
+<KonuNav slug="uslu-denklemler" />

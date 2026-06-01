@@ -1,0 +1,214 @@
+import { topicMetadata } from "@/lib/seo";
+
+export const metadata = topicMetadata("uslu-ifadeler");
+
+<Konu slug="uslu-ifadeler" />
+
+<p className="lead">Üslü ifade, aynı sayının kendisiyle tekrarlı çarpımını kısaca yazmanın yoludur: $a^{n}$, $a$ tabanının $n$ kez çarpımıdır. Bu konuda üs kurallarını, negatif ve sıfır üssü, parantezin işaret üzerindeki belirleyici rolünü ve $10$'un kuvvetleriyle bilimsel gösterimi işliyoruz. TYT'de üslü ifadeler hem tek başına hem de köklü sayılar, sayı basamakları ve denklemlerin içinde sürekli karşımıza çıkar.</p>
+
+## 1. Üs Kuralları
+
+Aşağıdaki kurallar tüm üslü işlemlerin temelidir. Tabloda $a,b\ne 0$ kabul edilir; $m,n$ ise tam sayıdır.
+
+| Kural | Formül |
+| --- | --- |
+| Çarpma (taban aynı) | $a^{m}\cdot a^{n}=a^{m+n}$ |
+| Bölme (taban aynı) | $\dfrac{a^{m}}{a^{n}}=a^{m-n}$ |
+| Üssün üssü | $\left(a^{m}\right)^{n}=a^{m\cdot n}$ |
+| Çarpımın kuvveti | $\left(a\cdot b\right)^{n}=a^{n}\,b^{n}$ |
+| Bölümün kuvveti | $\left(\dfrac{a}{b}\right)^{n}=\dfrac{a^{n}}{b^{n}}$ |
+| Sıfır üs | $a^{0}=1$ |
+| Negatif üs | $a^{-n}=\dfrac{1}{a^{n}}$ |
+| Negatif üslü kesir | $\left(\dfrac{a}{b}\right)^{-n}=\left(\dfrac{b}{a}\right)^{n}$ |
+
+> **Dikkat:** Çarpmada üsler **toplanır**, çarpılmaz. $a^{m}\cdot a^{n}=a^{m+n}$'dir, $a^{m\cdot n}$ değil. Üslerin çarpılması yalnızca üssün üssü alındığında ($\left(a^{m}\right)^{n}$) geçerlidir.
+
+## 2. Negatif ve Sıfır Üs
+
+Sıfırdan farklı her sayının sıfırıncı kuvveti $1$'dir: $a^{0}=1$ ($a\ne 0$). Bu, $a^{0}=0$ **değildir**.
+
+Negatif üs, sayının **çarpmaya göre tersini** alır:
+
+$$a^{-n}=\dfrac{1}{a^{n}},\qquad \left(\dfrac{a}{b}\right)^{-n}=\left(\dfrac{b}{a}\right)^{n}$$
+
+Örneğin $2^{-3}=\dfrac{1}{2^{3}}=\dfrac{1}{8}$ ve $\left(\dfrac{2}{3}\right)^{-2}=\left(\dfrac{3}{2}\right)^{2}=\dfrac{9}{4}$.
+
+## 3. İşaret Kuralı: Parantezin Önemi
+
+Negatif tabanlı üslü ifadelerde parantezin olup olmaması sonucu tamamen değiştirir:
+
+| İfade | Anlamı | Sonuç |
+| --- | --- | --- |
+| $(-2)^{2}$ | $(-2)\cdot(-2)$ | $4$ |
+| $-2^{2}$ | $-(2\cdot 2)$ | $-4$ |
+| $(-2)^{3}$ | $(-2)\cdot(-2)\cdot(-2)$ | $-8$ |
+| $-2^{3}$ | $-(2\cdot 2\cdot 2)$ | $-8$ |
+
+Parantez **yoksa** üs yalnızca sayıya etki eder, baştaki eksi dışarıda kalır. Genel kural:
+
+> **İşaret kuralı:** Negatif bir tabanın **çift** kuvveti pozitif, **tek** kuvveti negatiftir. Ama bu yalnızca taban parantez içindeyse ($(-a)^{n}$) geçerlidir. $-a^{n}$ yazımında sonuç her zaman negatiftir (çünkü eksi üssün dışındadır).
+
+## 4. 10'un Kuvvetleri ve Bilimsel Gösterim
+
+$10$'un kuvvetleri basamak değerlerini verir:
+
+$$10^{0}=1,\quad 10^{3}=1000,\quad 10^{-1}=0{,}1,\quad 10^{-4}=0{,}0001$$
+
+Pozitif üs $10$'un kaç basamak büyüdüğünü, negatif üs ondalık kısımda kaç basamak küçüldüğünü gösterir. Çok büyük veya çok küçük sayıları **bilimsel gösterimle** yazarız: $a\cdot 10^{n}$ biçiminde, burada $1\le a < 10$.
+
+Örneğin $0{,}0004=4\cdot 10^{-4}$ ve $52000=5{,}2\cdot 10^{4}$ olur.
+
+<Ornek>
+
+<Soru>
+
+İşlemleri yapınız: $2^{3}\cdot 2^{4}$ ve $\dfrac{3^{6}}{3^{2}}$.
+
+</Soru>
+
+<Cozum>
+
+1. Çarpmada tabanlar aynı olduğundan üsler toplanır: $2^{3}\cdot 2^{4}=2^{3+4}=2^{7}=128$.
+
+2. Bölmede tabanlar aynı olduğundan üsler çıkarılır: $\dfrac{3^{6}}{3^{2}}=3^{6-2}=3^{4}=81$.
+
+<Cevap>$2^{7}=128$ ve $3^{4}=81$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+İşlemleri yapınız: $\left(2^{3}\right)^{2}$ ve $\left(2\cdot 3\right)^{2}$.
+
+</Soru>
+
+<Cozum>
+
+1. Üssün üssünde üsler çarpılır: $\left(2^{3}\right)^{2}=2^{3\cdot 2}=2^{6}=64$.
+
+2. Çarpımın kuvvetinde her çarpan ayrı ayrı üs alır: $\left(2\cdot 3\right)^{2}=2^{2}\cdot 3^{2}=4\cdot 9=36$.
+
+<Cevap>$2^{6}=64$ ve $36$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Hesaplayınız: $2^{-3}$ ve $\left(\dfrac{2}{3}\right)^{-2}$.
+
+</Soru>
+
+<Ipucu>
+
+Negatif üs çarpmaya göre tersi alır; kesirlerde negatif üs payla paydanın yerini değiştirir.
+
+</Ipucu>
+
+<Cozum>
+
+1. Negatif üs: $2^{-3}=\dfrac{1}{2^{3}}=\dfrac{1}{8}$.
+
+2. Negatif üslü kesirde pay ve payda yer değiştirir, üs pozitife döner: $\left(\dfrac{2}{3}\right)^{-2}=\left(\dfrac{3}{2}\right)^{2}=\dfrac{3^{2}}{2^{2}}=\dfrac{9}{4}$.
+
+<Cevap>$2^{-3}=\dfrac{1}{8}$ ve $\left(\dfrac{2}{3}\right)^{-2}=\dfrac{9}{4}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Aşağıdaki ifadeleri işaretlerine dikkat ederek hesaplayınız: $(-2)^{4}$, $\;-2^{4}$ ve $(-3)^{3}$.
+
+</Soru>
+
+<Cozum>
+
+1. $(-2)^{4}$: taban parantez içinde ve üs çift olduğundan sonuç pozitiftir: $(-2)^{4}=16$.
+
+2. $-2^{4}$: parantez yok, üs yalnız $2$'ye etki eder, eksi dışarıda kalır: $-2^{4}=-(2^{4})=-16$.
+
+3. $(-3)^{3}$: taban parantez içinde ve üs tek olduğundan sonuç negatiftir: $(-3)^{3}=-27$.
+
+<Cevap>$16$, $\;-16$ ve $-27$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$2^{5}+2^{5}$ toplamını tek bir üslü ifade olarak yazınız.
+
+</Soru>
+
+<Ipucu>
+
+Eşit terimlerin toplamı çarpma demektir: $x+x=2x$. Toplama işleminde üsler **toplanmaz**.
+
+</Ipucu>
+
+<Cozum>
+
+1. İki eşit terimin toplamı, terimin $2$ katıdır: $2^{5}+2^{5}=2\cdot 2^{5}$.
+
+2. Baştaki $2$'yi $2^{1}$ yazıp aynı tabanlı çarpımı birleştir: $2\cdot 2^{5}=2^{1+5}=2^{6}=64$.
+
+3. Sonuç $4^{10}$ **değildir**; toplamada tabanlar veya üsler birbirine eklenmez.
+
+<Cevap>$2^{5}+2^{5}=2^{6}=64$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+İşlemin sonucunu bulunuz: $\left(5^{0}+2^{-1}\right)\cdot 2$.
+
+</Soru>
+
+<Cozum>
+
+1. Sıfır üs: $5^{0}=1$.
+
+2. Negatif üs: $2^{-1}=\dfrac{1}{2}$.
+
+3. Parantez içini topla: $5^{0}+2^{-1}=1+\dfrac{1}{2}=\dfrac{3}{2}$.
+
+4. $2$ ile çarp: $\dfrac{3}{2}\cdot 2=3$.
+
+<Cevap>$3$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Çarpmada üsleri çarpmak:** $a^{m}\cdot a^{n}$ ifadesini $a^{m\cdot n}$ sanmak. Doğrusu üsler **toplanır**: $a^{m+n}$. Üs çarpımı yalnızca $\left(a^{m}\right)^{n}=a^{m\cdot n}$'de olur.
+- **Parantez–işaret karışıklığı:** $-2^{2}=-4$ iken $(-2)^{2}=4$'tür. Parantez yoksa eksi üssün dışındadır.
+- **Sıfır üssü $0$ sanmak:** $a^{0}=1$'dir ($a\ne 0$), $0$ değil.
+- **Toplamı üs olarak birleştirmek:** $2^{5}+2^{5}$ ifadesini $4^{10}$ veya $2^{10}$ sanmak. Doğrusu ortak çarpan paranteze alınır: $2^{5}+2^{5}=2\cdot 2^{5}=2^{6}$.
+
+## Sınav İpucu
+
+- **Üslü toplamlarda ortak çarpanı paranteze al.** $2^{5}+2^{5}=2^{5}(1+1)=2^{5}\cdot 2=2^{6}$ gibi; bu yöntem $3^{n}+3^{n}+3^{n}=3\cdot 3^{n}=3^{n+1}$ türü soruları saniyeler içinde çözer.
+- **Çarpma ve bölmede önce tabanları eşitle.** Farklı tabanları ortak tabana çevirip ($8=2^{3}$, $9=3^{2}$ gibi) üsleri topla veya çıkar; böylece tek tabanda sadeleşir.
+- **Negatif üs gördüğünde tersini al,** kesirlerde pay-paydayı çevir; işaret kuralında parantezin yerini her zaman kontrol et.
+
+<KonuNav slug="uslu-ifadeler" />

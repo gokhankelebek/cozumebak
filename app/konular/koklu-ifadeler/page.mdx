@@ -1,0 +1,229 @@
+import { topicMetadata } from "@/lib/seo";
+
+export const metadata = topicMetadata("koklu-ifadeler");
+
+<Konu slug="koklu-ifadeler" />
+
+<p className="lead">Köklü ifadeler, üslü sayıların **kesirli üs** olarak yazılmış hâlidir. Bu konuda kökü üs cinsinden tanımlar, kök kurallarını çıkarır, **kök dışına çıkarma** ve **benzer köklü terimlerle dört işlem** tekniklerini işleriz. TYT'de bu konu hem doğrudan sadeleştirme sorularında hem de üslü sayılarla birlikte sık çıkar.</p>
+
+## 1. Kök Tanımı ve Üs–Kök İlişkisi
+
+Bir sayının $n$. dereceden kökü, kesirli üs ile tanımlanır:
+
+$$\sqrt[n]{a}=a^{1/n},\qquad \sqrt[n]{a^{m}}=a^{m/n}$$
+
+Özel olarak **karekök** $n=2$ durumudur ve gösterilirken indis yazılmaz:
+
+$$\sqrt{a}=\sqrt[2]{a}=a^{1/2}$$
+
+> **Tanım kümesi uyarısı:** Karekökte (ve çift dereceli tüm köklerde) kök içi **negatif olamaz**. Yani $\sqrt{a}$ ifadesinin reel sayı olması için $a\ge 0$ olmalıdır. Tek dereceli köklerde ($\sqrt[3]{a}$ gibi) bu kısıt yoktur; $\sqrt[3]{-8}=-2$ tanımlıdır.
+
+## 2. Kök Kuralları
+
+Aşağıdaki kurallarda, çift dereceli kökler için $a\ge 0,\ b\ge 0$ kabul edilir:
+
+| Kural | Formül |
+| --- | --- |
+| Çarpım | $\sqrt[n]{a}\cdot\sqrt[n]{b}=\sqrt[n]{ab}$ |
+| Bölüm | $\dfrac{\sqrt[n]{a}}{\sqrt[n]{b}}=\sqrt[n]{\dfrac{a}{b}}$ |
+| Kökün kökü | $\sqrt[m]{\sqrt[n]{a}}=\sqrt[mn]{a}$ |
+| Kökün kuvveti | $\left(\sqrt{a}\right)^{2}=a$ |
+| Üs–kök | $\sqrt[n]{a^{m}}=a^{m/n}$ |
+
+Bu kuralların tümü üs özelliklerinden gelir; örneğin çarpım kuralı $a^{1/n}\cdot b^{1/n}=(ab)^{1/n}$ eşitliğinin kök yazımıdır.
+
+### Mutlak Değer Kuralı
+
+Çok dikkat edilmesi gereken bir özel durum: bir ifadenin karesinin karekökü, o ifadenin **mutlak değeridir**.
+
+$$\sqrt{a^{2}}=\lvert a\rvert$$
+
+Çünkü karekök sonucu her zaman pozitif ya da sıfırdır. Örneğin $\sqrt{(-4)^{2}}=\sqrt{16}=4=\lvert -4\rvert$, ama $a$ negatifken $\sqrt{a^{2}}=a$ yazmak yanlış olur.
+
+## 3. Kök Dışına Çıkarma
+
+Kök içindeki sayıyı **tam kare** (genel olarak tam $n$. kuvvet) çarpanlarına ayırıp, bu çarpanı kök dışına alırız. $a\ge 0$ için:
+
+$$\sqrt{a^{2}\cdot b}=a\sqrt{b}$$
+
+Örneğin $\sqrt{12}=\sqrt{4\cdot 3}=\sqrt{2^{2}}\cdot\sqrt{3}=2\sqrt{3}$.
+
+Tersine işlem, **kök içine alma**: kök dışındaki çarpan, derecesi kadar kuvvet alınarak içeri sokulur:
+
+$$a\sqrt{b}=\sqrt{a^{2}b}$$
+
+Örneğin $5\sqrt{2}=\sqrt{25\cdot 2}=\sqrt{50}$.
+
+## 4. Kökte Dört İşlem
+
+**Çarpma ve bölme** aynı dereceli köklerde doğrudan kök kurallarıyla yapılır: kök içleri çarpılır/bölünür.
+
+**Toplama ve çıkarma** ise yalnızca **benzer köklü terimler** (kök derecesi ve kök içi aynı olanlar) arasında yapılır. Benzer terimlerde kök dışı katsayılar toplanır, kök kısmı aynen kalır:
+
+$$2\sqrt{3}+5\sqrt{3}=(2+5)\sqrt{3}=7\sqrt{3}$$
+
+Kök içleri farklı görünen terimleri toplamadan önce her kökü mutlaka sadeleştirip benzer hâle getirmeyi dene.
+
+> $\sqrt{a}+\sqrt{b}$ ifadesi **tek bir köke birleşmez**. Toplama kuralı diye bir şey yoktur; sadeleştirmeden sonra benzer terimler varsa toplanır.
+
+<Ornek>
+
+<Soru>
+
+$\sqrt{12}$ ve $\sqrt{50}$ ifadelerini en sade biçimde yazınız.
+
+</Soru>
+
+<Cozum>
+
+1. Kök içlerini tam kare çarpanlarına ayır: $12=4\cdot 3$ ve $50=25\cdot 2$.
+
+2. Tam kareleri kök dışına çıkar: $\sqrt{12}=\sqrt{4}\cdot\sqrt{3}=2\sqrt{3}$.
+
+3. Aynı şekilde: $\sqrt{50}=\sqrt{25}\cdot\sqrt{2}=5\sqrt{2}$.
+
+<Cevap>$\sqrt{12}=2\sqrt{3}$ ve $\sqrt{50}=5\sqrt{2}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\sqrt{8}\cdot\sqrt{2}$ ve $\dfrac{\sqrt{18}}{\sqrt{2}}$ işlemlerinin sonucunu bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Aynı dereceli köklerde çarpma/bölme için kök içlerini birleştir: $\sqrt{a}\cdot\sqrt{b}=\sqrt{ab}$ ve $\dfrac{\sqrt{a}}{\sqrt{b}}=\sqrt{\dfrac{a}{b}}$.
+
+</Ipucu>
+
+<Cozum>
+
+1. Çarpımda kök içlerini birleştir: $\sqrt{8}\cdot\sqrt{2}=\sqrt{8\cdot 2}=\sqrt{16}=4$.
+
+2. Bölümde kök içlerini birleştir: $\dfrac{\sqrt{18}}{\sqrt{2}}=\sqrt{\dfrac{18}{2}}=\sqrt{9}=3$.
+
+<Cevap>$\sqrt{8}\cdot\sqrt{2}=4$ ve $\dfrac{\sqrt{18}}{\sqrt{2}}=3$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\sqrt{12}+\sqrt{27}$ toplamını hesaplayınız.
+
+</Soru>
+
+<Ipucu>
+
+Köklü terimleri doğrudan toplayamazsın. Önce her kökü sadeleştir, ardından benzer (kök içi aynı) terimleri topla.
+
+</Ipucu>
+
+<Cozum>
+
+1. Her kökü sadeleştir: $\sqrt{12}=\sqrt{4\cdot 3}=2\sqrt{3}$.
+
+2. Diğer kökü sadeleştir: $\sqrt{27}=\sqrt{9\cdot 3}=3\sqrt{3}$.
+
+3. Artık ikisi de $\sqrt{3}$ köklü, yani benzer terim. Katsayıları topla: $2\sqrt{3}+3\sqrt{3}=5\sqrt{3}$.
+
+<Cevap>$\sqrt{12}+\sqrt{27}=5\sqrt{3}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\sqrt[3]{16}$ ifadesini en sade biçimde yazınız.
+
+</Soru>
+
+<Ipucu>
+
+Küp kökte kök içini **tam küp** çarpanına ayır: $8=2^{3}$ bir tam küptür.
+
+</Ipucu>
+
+<Cozum>
+
+1. Kök içini tam küp çarpanına ayır: $16=8\cdot 2$.
+
+2. Tam küpü kök dışına çıkar: $\sqrt[3]{16}=\sqrt[3]{8}\cdot\sqrt[3]{2}=2\sqrt[3]{2}$.
+
+<Cevap>$\sqrt[3]{16}=2\sqrt[3]{2}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$a\ge 0$ olmak üzere $\sqrt[4]{a^{2}}$ ifadesini sadeleştirin ve $\left(\sqrt{5}\right)^{2}$ değerini bulun.
+
+</Soru>
+
+<Cozum>
+
+1. Üs–kök ilişkisini kullan: $\sqrt[4]{a^{2}}=a^{2/4}$.
+
+2. Üssü sadeleştir: $a^{2/4}=a^{1/2}=\sqrt{a}$.
+
+3. Kökün karesi kök içini verir: $\left(\sqrt{5}\right)^{2}=5$.
+
+<Cevap>$\sqrt[4]{a^{2}}=\sqrt{a}$ ve $\left(\sqrt{5}\right)^{2}=5$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\sqrt{(-4)^{2}}$ ifadesinin değerini bulunuz ve sonucu $\sqrt{a^{2}}=\lvert a\rvert$ kuralıyla açıklayınız.
+
+</Soru>
+
+<Cozum>
+
+1. Önce kök içindeki kareyi hesapla: $(-4)^{2}=16$.
+
+2. Karekökü al: $\sqrt{16}=4$.
+
+3. Kuralla doğrula: $\sqrt{(-4)^{2}}=\lvert -4\rvert=4$. Burada $\sqrt{(-4)^{2}}=-4$ demek **yanlış olurdu**, çünkü karekök negatif olamaz.
+
+<Cevap>$\sqrt{(-4)^{2}}=4=\lvert -4\rvert$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **$\sqrt{a}+\sqrt{b}=\sqrt{a+b}$ sanmak.** Yanlış. Örnek: $\sqrt{9}+\sqrt{16}=3+4=7$, oysa $\sqrt{9+16}=\sqrt{25}=5$. İkisi eşit değil.
+- **$\sqrt{a^{2}}=a$ yazmak.** Doğrusu $\sqrt{a^{2}}=\lvert a\rvert$'dir; $a$ negatif olabileceğinden mutlak değer şarttır.
+- **Benzer olmayan kökleri toplamak.** $2\sqrt{3}+5\sqrt{2}$ tek bir köke birleşmez; kök içleri farklı olduğu için bu toplam sadeleşmeden kalır.
+- **Sadeleştirmeden toplamaya kalkmak.** $\sqrt{12}+\sqrt{27}$ terimleri sadeleştirilince benzer olur; sadeleştirmeden "benzemiyor" deyip bırakmak hatadır.
+
+## Sınav İpucu
+
+- Kökü sadeleştirirken kök içini **en büyük tam kare çarpanına** ayır: $\sqrt{72}=\sqrt{36\cdot 2}=6\sqrt{2}$. Küçük çarpanla başlarsan (ör. $\sqrt{4\cdot 18}$) birkaç adım daha uğraşırsın.
+- Köklü toplam/çıkarma sorularında **önce her kökü ayrı ayrı sadeleştir**, sonra benzer terimleri grupla. Çoğu TYT sorusu sadeleştirme sonrası tek terime iner.
+- $\sqrt{a^{2}}$ tipi ifadelerde, $a$'nın işareti belirsizse cevabı **mutlak değerle** ver; bu, ÖSYM'nin sık kontrol ettiği bir ayrıntıdır.
+- Payda kök varsa (ör. $\dfrac{1}{\sqrt{2}}$) ifadeyi paydayı rasyonel yaparak sadeleştirme ayrı bir teknik gerektirir; o konu ilgili derste ayrıntılı işlenir.
+
+<KonuNav slug="koklu-ifadeler" />

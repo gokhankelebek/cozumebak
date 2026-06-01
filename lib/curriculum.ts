@@ -254,8 +254,10 @@ export const TOPICS: Topic[] = [
   { slug: "rasyonel-sayilar", title: "Rasyonel Sayılar", track: "tyt", unit: "sayilar-tyt", summary: "Kesir çeşitleri, kesirlerde dört işlem, sıralama ve devirli ondalık gösterimin kesre çevrilmesi.", minutes: 9, difficulty: "Orta", questionCount: 22, status: "published", keywords: ["rasyonel sayılar", "kesir", "ondalık", "devirli ondalık", "kesir sıralama"] },
 
   // ── TYT · Üslü-Köklü ──
-  { slug: "uslu-ifadeler", title: "Üslü İfadeler", track: "tyt", unit: "uslu-koklu-tyt", summary: "Üs kuralları ve üslü denklemler.", minutes: 6, difficulty: "Orta", questionCount: 22, status: "soon" },
-  { slug: "koklu-ifadeler", title: "Köklü İfadeler", track: "tyt", unit: "uslu-koklu-tyt", summary: "Kök kuralları, paydayı rasyonel yapma.", minutes: 6, difficulty: "Orta", questionCount: 20, status: "soon" },
+  { slug: "uslu-ifadeler", title: "Üslü İfadeler", track: "tyt", unit: "uslu-koklu-tyt", summary: "Üs kuralları (çarpma, bölme, üssün üssü), negatif ve sıfır üs, 10'un kuvvetleri ve işaret kuralları.", minutes: 9, difficulty: "Orta", questionCount: 26, status: "published", keywords: ["üslü sayılar", "üs kuralları", "negatif üs", "sıfır üs", "10 kuvvetleri"] },
+  { slug: "uslu-denklemler", title: "Üslü Denklemler", track: "tyt", unit: "uslu-koklu-tyt", summary: "Tabanları eşitleyerek üslü denklem çözme ve ortak çarpan paranteze alma teknikleri.", minutes: 8, difficulty: "Orta", questionCount: 20, status: "published", keywords: ["üslü denklem", "taban eşitleme", "ortak çarpan", "denklem"] },
+  { slug: "koklu-ifadeler", title: "Köklü İfadeler", track: "tyt", unit: "uslu-koklu-tyt", summary: "Kök kuralları, üs–kök ilişkisi, kök dışına çıkarma ve köklü ifadelerde dört işlem.", minutes: 9, difficulty: "Orta", questionCount: 24, status: "published", keywords: ["köklü sayılar", "kök kuralları", "kök dışına çıkarma", "karekök"] },
+  { slug: "paydayi-rasyonel-yapma", title: "Paydayı Rasyonel Yapma", track: "tyt", unit: "uslu-koklu-tyt", summary: "Tek terimli ve eşlenikli paydalarda kökü paydadan kaldırma (rasyonelleştirme).", minutes: 7, difficulty: "Orta", questionCount: 18, status: "published", keywords: ["paydayı rasyonel yapma", "eşlenik", "rasyonelleştirme", "kök"] },
 
   // ── TYT · Problemler ──
   { slug: "sayi-problemleri", title: "Sayı Problemleri", track: "tyt", unit: "oran-problem-tyt", summary: "Sayılarla kurulan denklem problemleri.", minutes: 7, difficulty: "Orta", questionCount: 24, status: "soon" },

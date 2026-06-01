@@ -1,0 +1,197 @@
+import { topicMetadata } from "@/lib/seo";
+
+export const metadata = topicMetadata("paydayi-rasyonel-yapma");
+
+<Konu slug="paydayi-rasyonel-yapma" />
+
+<p className="lead">Paydada kök bulunan kesirler, hem sadeleştirme hem de karşılaştırma için elverişsizdir. **Paydayı rasyonel yapma**, kesrin değerini değiştirmeden paydadaki kökü kaldırma işlemidir. TYT'de köklü ifadelerin sadeleştirilmesinde ve cevap şıklarının standart biçime getirilmesinde sürekli karşına çıkar. Bu konuda tek terimli ve iki terimli (eşlenikli) paydaların ikisini de refleks hâline getireceğiz.</p>
+
+## 1. Temel Fikir
+
+Bir kesrin **pay ve paydası aynı (sıfırdan farklı) ifadeyle çarpılırsa kesrin değeri değişmez**:
+
+$$\dfrac{a}{b}=\dfrac{a\cdot k}{b\cdot k}\qquad (k\neq 0)$$
+
+Amacımız $k$'yı öyle seçmektir ki **payda köksüz (rasyonel) hâle gelsin**. Burada işimize yarayan iki temel özdeşlik şudur:
+
+$$\sqrt{b}\cdot\sqrt{b}=b\qquad\text{ve}\qquad (\sqrt{a}-\sqrt{b})(\sqrt{a}+\sqrt{b})=a-b$$
+
+## 2. Tek Terimli Payda
+
+Payda yalnızca $\sqrt{b}$ biçimindeyse, pay ve paydayı $\sqrt{b}$ ile çarparız. Çünkü $\sqrt{b}\cdot\sqrt{b}=b$ olur ve payda köksüz kalır:
+
+$$\dfrac{a}{\sqrt{b}}=\dfrac{a}{\sqrt{b}}\cdot\dfrac{\sqrt{b}}{\sqrt{b}}=\dfrac{a\sqrt{b}}{b}$$
+
+> **Püf nokta:** Paydayı kökten kurtarmak için onu **kendisiyle** çarpman yeterli. Payı da aynı kökle çarpmayı asla unutma; yoksa kesrin değeri değişir.
+
+## 3. İki Terimli Payda (Eşlenik)
+
+Payda $\sqrt{a}+\sqrt{b}$ ya da $\sqrt{a}+c$ gibi **iki terimliyse**, ifadeyi kendisiyle çarpmak kökü kaldırmaz; aksine yeni kökler doğurur. Bunun yerine **eşlenik** ile çarparız.
+
+Eşlenik, ifadenin **iki terimi arasındaki işareti değiştirerek** elde edilir:
+
+| İfade | Eşleniği |
+| --- | --- |
+| $\sqrt{a}+\sqrt{b}$ | $\sqrt{a}-\sqrt{b}$ |
+| $\sqrt{a}-\sqrt{b}$ | $\sqrt{a}+\sqrt{b}$ |
+| $\sqrt{a}+c$ | $\sqrt{a}-c$ |
+
+İki kareler farkı özdeşliği sayesinde sonuç köksüz olur:
+
+$$(\sqrt{a}-\sqrt{b})(\sqrt{a}+\sqrt{b})=a-b\qquad (\sqrt{a}-c)(\sqrt{a}+c)=a-c^{2}$$
+
+Yani paydayı eşleniğiyle çarptığında payda **daima** $a-b$ gibi rasyonel bir sayıya iner.
+
+<Ornek>
+
+<Soru>
+
+$\dfrac{1}{\sqrt{2}}$ ifadesinin paydasını rasyonel yapınız.
+
+</Soru>
+
+<Cozum>
+
+1. Payda tek terimli ($\sqrt{2}$) olduğundan pay ve paydayı $\sqrt{2}$ ile çarp.
+2. Çarpımı yaz: $\dfrac{1}{\sqrt{2}}\cdot\dfrac{\sqrt{2}}{\sqrt{2}}=\dfrac{\sqrt{2}}{\sqrt{2}\cdot\sqrt{2}}$.
+3. Paydayı sadeleştir: $\sqrt{2}\cdot\sqrt{2}=2$.
+
+<Cevap>$\dfrac{1}{\sqrt{2}}=\dfrac{\sqrt{2}}{2}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\dfrac{6}{\sqrt{3}}$ ifadesinin paydasını rasyonel yapıp sonucu sadeleştiriniz.
+
+</Soru>
+
+<Cozum>
+
+1. Pay ve paydayı $\sqrt{3}$ ile çarp: $\dfrac{6}{\sqrt{3}}\cdot\dfrac{\sqrt{3}}{\sqrt{3}}=\dfrac{6\sqrt{3}}{3}$.
+2. Pay ve paydadaki $3$'leri sadeleştir: $\dfrac{6\sqrt{3}}{3}=2\sqrt{3}$.
+
+<Cevap>$\dfrac{6}{\sqrt{3}}=2\sqrt{3}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\dfrac{\sqrt{2}}{\sqrt{6}}$ ifadesinin paydasını rasyonel yapıp en sade biçimde yazınız.
+
+</Soru>
+
+<Ipucu>
+
+Tek terimli paydadır; $\sqrt{6}$ ile çarp. Sonra pay'daki kökü $\sqrt{12}=2\sqrt{3}$ olarak çarpanlarına ayır.
+
+</Ipucu>
+
+<Cozum>
+
+1. Pay ve paydayı $\sqrt{6}$ ile çarp: $\dfrac{\sqrt{2}}{\sqrt{6}}\cdot\dfrac{\sqrt{6}}{\sqrt{6}}=\dfrac{\sqrt{12}}{6}$.
+2. Pay'daki kökü sadeleştir: $\sqrt{12}=\sqrt{4\cdot 3}=2\sqrt{3}$, yani $\dfrac{2\sqrt{3}}{6}$.
+3. Pay ve paydayı $2$ ile sadeleştir: $\dfrac{2\sqrt{3}}{6}=\dfrac{\sqrt{3}}{3}$.
+
+<Cevap>$\dfrac{\sqrt{2}}{\sqrt{6}}=\dfrac{\sqrt{3}}{3}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\dfrac{1}{\sqrt{3}-1}$ ifadesinin paydasını rasyonel yapınız.
+
+</Soru>
+
+<Ipucu>
+
+Payda iki terimli; eşleniği $\sqrt{3}+1$ ile çarp. Payda $(\sqrt{3})^{2}-1^{2}$ olacak.
+
+</Ipucu>
+
+<Cozum>
+
+1. Paydanın eşleniği $\sqrt{3}+1$'dir. Pay ve paydayı bununla çarp.
+2. Çarpımı kur: $\dfrac{1}{\sqrt{3}-1}\cdot\dfrac{\sqrt{3}+1}{\sqrt{3}+1}=\dfrac{\sqrt{3}+1}{(\sqrt{3}-1)(\sqrt{3}+1)}$.
+3. Paydayı kareler farkıyla hesapla: $(\sqrt{3}-1)(\sqrt{3}+1)=3-1=2$.
+
+<Cevap>$\dfrac{1}{\sqrt{3}-1}=\dfrac{\sqrt{3}+1}{2}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\dfrac{2}{\sqrt{5}+\sqrt{3}}$ ifadesinin paydasını rasyonel yapıp sadeleştiriniz.
+
+</Soru>
+
+<Cozum>
+
+1. Paydanın eşleniği $\sqrt{5}-\sqrt{3}$'tür. Pay ve paydayı bununla çarp.
+2. Çarpımı kur: $\dfrac{2}{\sqrt{5}+\sqrt{3}}\cdot\dfrac{\sqrt{5}-\sqrt{3}}{\sqrt{5}-\sqrt{3}}=\dfrac{2(\sqrt{5}-\sqrt{3})}{(\sqrt{5}+\sqrt{3})(\sqrt{5}-\sqrt{3})}$.
+3. Paydayı hesapla: $(\sqrt{5}+\sqrt{3})(\sqrt{5}-\sqrt{3})=5-3=2$.
+4. Pay ve paydadaki $2$'leri sadeleştir: $\dfrac{2(\sqrt{5}-\sqrt{3})}{2}=\sqrt{5}-\sqrt{3}$.
+
+<Cevap>$\dfrac{2}{\sqrt{5}+\sqrt{3}}=\sqrt{5}-\sqrt{3}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\dfrac{\sqrt{5}+\sqrt{2}}{\sqrt{5}-\sqrt{2}}$ ifadesinin paydasını rasyonel yapınız.
+
+</Soru>
+
+<Ipucu>
+
+Eşlenik $\sqrt{5}+\sqrt{2}$ ile çarp. Bu durumda pay $(\sqrt{5}+\sqrt{2})^{2}$ olur; tam kare açılımını $(x+y)^2=x^2+2xy+y^2$ ile aç.
+
+</Ipucu>
+
+<Cozum>
+
+1. Paydanın eşleniği $\sqrt{5}+\sqrt{2}$'dir. Pay ve paydayı bununla çarp.
+2. Pay tam kare olur: $(\sqrt{5}+\sqrt{2})^{2}=5+2\sqrt{5}\cdot\sqrt{2}+2=7+2\sqrt{10}$.
+3. Payda kareler farkı olur: $(\sqrt{5}-\sqrt{2})(\sqrt{5}+\sqrt{2})=5-2=3$.
+
+<Cevap>$\dfrac{\sqrt{5}+\sqrt{2}}{\sqrt{5}-\sqrt{2}}=\dfrac{7+2\sqrt{10}}{3}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Yalnız payı veya yalnız paydayı çarpmak:** Eşlenikle (ya da $\sqrt{b}$ ile) çarparken **hem pay hem payda** aynı ifadeyle çarpılmalıdır. Yalnızca birini çarparsan kesrin değeri değişir.
+- **Eşleniği yanlış seçmek:** Eşlenikte **işaret değişir**. $\sqrt{5}+\sqrt{3}$ ifadesinin eşleniği $\sqrt{5}-\sqrt{3}$'tür; aynı işaretle ($\sqrt{5}+\sqrt{3}$ ile) çarpmak payda kökünü kaldırmaz.
+- **Paydadaki özdeşliği yanlış hesaplamak:** $(\sqrt{a}-\sqrt{b})(\sqrt{a}+\sqrt{b})=a-b$'dir, $\sqrt{a-b}$ değil. Sonuç kök içine alınmaz.
+- **Sonucu sadeleştirmeyi unutmak:** $\dfrac{6\sqrt{3}}{3}$ gibi ifadelerde pay ve payda ortak çarpanını sadeleştirip $2\sqrt{3}$ yazmak gerekir.
+
+## Sınav İpucu
+
+- **Tek terimli payda** ($\sqrt{b}$) görürsen, pay ve paydayı doğrudan $\sqrt{b}$ ile çarp.
+- **İki terimli payda** ($\sqrt{a}\pm\sqrt{b}$ veya $\sqrt{a}\pm c$) görürsen **eşlenikle** ($\sqrt{a}\mp\sqrt{b}$) çarp.
+- Eşlenikten sonra payda **daima** $a-b$ gibi köksüz bir sayıdır; bunu refleksle yaz ve ardından pay ile sadeleştir.
+- Cevap şıkları çoğu zaman sadeleştirilmiş biçimde verilir; işlemi bitirince sonucu mutlaka en sade hâle indir.
+
+<KonuNav slug="paydayi-rasyonel-yapma" />
