@@ -1,0 +1,204 @@
+import { topicMetadata } from "@/lib/seo";
+
+export const metadata = topicMetadata("turev-alma-kurallari");
+
+<Konu slug="turev-alma-kurallari" />
+
+<p className="lead">Türevin limit tanımını her seferinde uygulamak yorucu ve hataya açıktır. Bu konu, türevi **mekanik olarak** hesaplamayı sağlayan kuralları işler: kuvvet, sabit, sabitle çarpım, toplam-fark, **çarpım**, **bölüm** ve **zincir** kuralı. AYT türev sorularının büyük çoğunluğu bu kuralların bileşiminden ibarettir; bunları akıcı kullanmak sınavda hız ve doğruluk demektir.</p>
+
+## 1. Kuvvet (Üs) Kuralı
+
+Her reel $n$ için ($n$ negatif veya rasyonel de olabilir):
+
+$$\frac{d}{dx}\left(x^{n}\right)=n\,x^{n-1}$$
+
+Bu kuralın gücü, kökleri ve kesirleri **üslü biçime** çevirdiğinizde ortaya çıkar:
+
+| İfade | Üslü biçim | Türevi |
+| --- | --- | --- |
+| $\sqrt{x}$ | $x^{1/2}$ | $\dfrac{1}{2}x^{-1/2}=\dfrac{1}{2\sqrt{x}}$ |
+| $\dfrac{1}{x}$ | $x^{-1}$ | $-x^{-2}=-\dfrac{1}{x^{2}}$ |
+| $\dfrac{1}{x^{2}}$ | $x^{-2}$ | $-2x^{-3}=-\dfrac{2}{x^{3}}$ |
+| $\sqrt[3]{x}$ | $x^{1/3}$ | $\dfrac{1}{3}x^{-2/3}=\dfrac{1}{3\sqrt[3]{x^{2}}}$ |
+
+> **Sık yapılan hata:** $\sqrt{x}$ ya da $\dfrac{1}{x}$ gibi ifadeleri üslü biçime çevirmeden türev almaya çalışmak. Önce $x^{1/2}$, $x^{-1}$ yazın; sonra kuvvet kuralını uygulayın.
+
+## 2. Doğrusal Kurallar
+
+| Kural | Formül |
+| --- | --- |
+| Sabit | $(c)'=0$ |
+| Sabitle çarpım | $(c\cdot f)'=c\cdot f'$ |
+| Toplam – fark | $(f\pm g)'=f'\pm g'$ |
+
+Bu üç kural sayesinde polinomların türevi terim terim alınır. Sabitle çarpımda katsayı türevin **dışında** kalır.
+
+## 3. Çarpım ve Bölüm Kuralları
+
+Çarpım ve bölümün türevi, çarpanların türevlerinin **çarpımı/bölümü değildir**. Doğru formüller:
+
+$$\big(f\cdot g\big)'=f'g+f\,g'$$
+
+$$\left(\frac{f}{g}\right)'=\frac{f'g-f\,g'}{g^{2}},\qquad g(x)\ne 0$$
+
+Bölüm kuralında **pay sırası** önemlidir: önce $(\text{payın türevi})\cdot(\text{payda})$, sonra eksi $(\text{pay})\cdot(\text{paydanın türevi})$.
+
+## 4. Zincir Kuralı
+
+Bileşke fonksiyonun türevi, **dıştan içe** alınır: dış fonksiyonun türevi çarpı iç fonksiyonun türevi.
+
+$$\big(f(g(x))\big)'=f'(g(x))\cdot g'(x)$$
+
+En sık karşılaşılan özel hâli **genelleştirilmiş kuvvet kuralıdır**:
+
+$$\Big(\big[u(x)\big]^{n}\Big)'=n\,\big[u(x)\big]^{n-1}\cdot u'(x)$$
+
+Buradaki $u'(x)$ çarpanına **iç türev** denir; zincir kuralında en çok unutulan parçadır.
+
+| Bileşik fonksiyon | Türevi |
+| --- | --- |
+| $(ax+b)^{n}$ | $n(ax+b)^{n-1}\cdot a$ |
+| $\sqrt{u(x)}$ | $\dfrac{u'(x)}{2\sqrt{u(x)}}$ |
+| $\dfrac{1}{u(x)}$ | $-\dfrac{u'(x)}{[u(x)]^{2}}$ |
+
+<Ornek>
+
+<Soru>
+
+$f(x)=3x^{4}-2\sqrt{x}+\dfrac{5}{x}$ fonksiyonunun türevini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+$\sqrt{x}=x^{1/2}$ ve $\dfrac{5}{x}=5x^{-1}$ yazıp her terime kuvvet kuralını uygulayın.
+
+</Ipucu>
+
+<Cozum>
+
+1. Üslü biçime geç: $f(x)=3x^{4}-2x^{1/2}+5x^{-1}$.
+2. Terim terim türev al: $f'(x)=3\cdot 4x^{3}-2\cdot\dfrac{1}{2}x^{-1/2}+5\cdot(-1)x^{-2}$.
+3. Sadeleştir: $f'(x)=12x^{3}-x^{-1/2}-5x^{-2}$.
+4. Kök ve kesir biçimine dön: $f'(x)=12x^{3}-\dfrac{1}{\sqrt{x}}-\dfrac{5}{x^{2}}$.
+
+<Cevap>$f'(x)=12x^{3}-\dfrac{1}{\sqrt{x}}-\dfrac{5}{x^{2}}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=(x^{2}+1)(x^{3}-x)$ fonksiyonunun türevini çarpım kuralıyla bulup sadeleştiriniz.
+
+</Soru>
+
+<Cozum>
+
+1. Çarpanları ve türevlerini belirle: $f=x^{2}+1$, $f'=2x$; $\;g=x^{3}-x$, $g'=3x^{2}-1$.
+2. Çarpım kuralını uygula: $f'(x)=2x(x^{3}-x)+(x^{2}+1)(3x^{2}-1)$.
+3. Aç: $2x^{4}-2x^{2}+(3x^{4}-x^{2}+3x^{2}-1)=2x^{4}-2x^{2}+3x^{4}+2x^{2}-1$.
+4. Benzer terimleri topla: $f'(x)=5x^{4}-1$.
+
+<Cevap>$f'(x)=5x^{4}-1$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=\dfrac{2x+1}{x^{2}-3}$ fonksiyonunun türevini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Bölüm kuralında sıra: $\dfrac{(\text{pay})'\cdot(\text{payda})-(\text{pay})\cdot(\text{payda})'}{(\text{payda})^{2}}$.
+
+</Ipucu>
+
+<Cozum>
+
+1. Parçaları belirle: pay $f=2x+1$, $f'=2$; payda $g=x^{2}-3$, $g'=2x$.
+2. Bölüm kuralını yaz: $f'(x)=\dfrac{2(x^{2}-3)-(2x+1)(2x)}{(x^{2}-3)^{2}}$.
+3. Payı aç: $2x^{2}-6-(4x^{2}+2x)=2x^{2}-6-4x^{2}-2x$.
+4. Sadeleştir: $f'(x)=\dfrac{-2x^{2}-2x-6}{(x^{2}-3)^{2}}$.
+
+<Cevap>$f'(x)=\dfrac{-2x^{2}-2x-6}{(x^{2}-3)^{2}}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Türevleri bulunuz: (a) $f(x)=(3x^{2}-5)^{4}$, (b) $g(x)=\sqrt{x^{2}+1}$.
+
+</Soru>
+
+<Ipucu>
+
+İki soruda da dış işlem (üs almak / karekök) ile iç fonksiyonu ayırt edin; iç türevi unutmayın.
+
+</Ipucu>
+
+<Cozum>
+
+1. (a) Genelleştirilmiş kuvvet kuralı: $u=3x^{2}-5$, $u'=6x$.
+2. $f'(x)=4(3x^{2}-5)^{3}\cdot 6x=24x(3x^{2}-5)^{3}$.
+3. (b) Karekökü üslü yaz: $g(x)=(x^{2}+1)^{1/2}$, iç $u=x^{2}+1$, $u'=2x$.
+4. $g'(x)=\dfrac{1}{2}(x^{2}+1)^{-1/2}\cdot 2x=\dfrac{x}{\sqrt{x^{2}+1}}$.
+
+<Cevap>$f'(x)=24x(3x^{2}-5)^{3}$ ve $g'(x)=\dfrac{x}{\sqrt{x^{2}+1}}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=x^{2}(2x-1)^{3}$ fonksiyonunun türevini bulup çarpanlarına ayırınız.
+
+</Soru>
+
+<Ipucu>
+
+Bu bir **çarpım** ($x^{2}$ ile $(2x-1)^{3}$); ikinci çarpanın türevi için ayrıca **zincir** kuralı gerekir.
+
+</Ipucu>
+
+<Cozum>
+
+1. Çarpanlar: $f=x^{2}$, $f'=2x$; $\;g=(2x-1)^{3}$.
+2. $g$ için zincir kuralı: $g'=3(2x-1)^{2}\cdot 2=6(2x-1)^{2}$.
+3. Çarpım kuralı: $f'(x)=2x(2x-1)^{3}+x^{2}\cdot 6(2x-1)^{2}$.
+4. Ortak çarpan $2x(2x-1)^{2}$ parantezine al: $f'(x)=2x(2x-1)^{2}\big[(2x-1)+3x\big]=2x(2x-1)^{2}(5x-1)$.
+
+<Cevap>$f'(x)=2x(2x-1)^{2}(5x-1)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Çarpımın türevini ayrı ayrı çarpmak:** $(fg)'\ne f'g'$. Doğrusu $(fg)'=f'g+fg'$ — iki terimli.
+- **Zincir kuralında iç türevi unutmak:** $\big((3x^{2}-5)^{4}\big)'$ yalnızca $4(3x^{2}-5)^{3}$ değildir; $\cdot\,6x$ çarpanı şarttır.
+- **Bölüm kuralında pay sırası ve işaret:** Pay $f'g-fg'$ şeklindedir, $fg'-f'g$ değil. Sırayı karıştırmak işareti ters çevirir.
+- **Kök/kesir ifadelerini üslü biçime çevirmemek:** $\sqrt{x}$ ve $\dfrac{1}{x}$ doğrudan türevlenmez; önce $x^{1/2}$, $x^{-1}$ yazın.
+
+## Sınav İpucu
+
+AYT türev sorularının çoğu, zincir kuralının çarpım veya bölümle **bileşimidir**. Karmaşık bir ifadeyle karşılaşınca **önce en dıştaki işlemi** belirleyin: "Bu bir çarpım mı, bölüm mü, yoksa bir kuvvet mi?" Buna göre dış kuralı seçin, iç parçaları sonra türevleyin. Çıkan sonucu çoğunlukla **ortak çarpan parantezine** alabilirsiniz; şıklar genellikle çarpanlanmış biçimde verilir.
+
+<KonuNav slug="turev-alma-kurallari" />

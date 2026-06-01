@@ -1,0 +1,151 @@
+import { topicMetadata } from "@/lib/seo";
+
+export const metadata = topicMetadata("turev-formul-ozeti");
+
+<Konu slug="turev-formul-ozeti" />
+
+<p className="lead">Bu sayfa **tüm türev ünitesinin özetidir**: temel kurallar, özel fonksiyon türevleri, türev–grafik ilişkisi, geometrik/fiziksel anlam ve AYT'de en çok çıkan soru tipleri tek bir başvuru tablosunda. Sınavdan önce bir kez baştan sona oku; formülleri ezberle, taktikleri içselleştir. Detaylı işleniş için ilgili konulara bak — burada **hız ve doğruluk** esastır.</p>
+
+## Temel Kurallar
+
+Türevi limit tanımından her seferinde almak yerine doğrudan bu kuralları kullanırız:
+
+| Kural | Formül |
+| --- | --- |
+| Sabit | $(c)'=0$ |
+| Kuvvet (üs) kuralı | $(x^{n})'=n\,x^{n-1}$ |
+| Sabitle çarpım | $(c\,f)'=c\,f'$ |
+| Toplam – fark | $(f\pm g)'=f'\pm g'$ |
+| Çarpım kuralı | $(f\,g)'=f'g+f\,g'$ |
+| Bölüm kuralı | $\left(\dfrac{f}{g}\right)'=\dfrac{f'g-f\,g'}{g^{2}}$ |
+| Zincir kuralı | $\big(f(g(x))\big)'=f'(g(x))\cdot g'(x)$ |
+
+> **Sınav refleksi:** Önce fonksiyonun **yapısını** tanı (çarpım mı, bölüm mü, bileşke mi?), sonra kuralı seç. Çoğu hata yanlış kural seçiminden değil, **iç türevi unutmaktan** çıkar.
+
+## Özel Fonksiyonların Türevleri
+
+| Fonksiyon | Türevi |
+| --- | --- |
+| $\sin x$ | $\cos x$ |
+| $\cos x$ | $-\sin x$ |
+| $\tan x$ | $\dfrac{1}{\cos^{2} x}$ |
+| $\cot x$ | $-\dfrac{1}{\sin^{2} x}$ |
+| $e^{x}$ | $e^{x}$ |
+| $a^{x}$ | $a^{x}\ln a$ |
+| $\ln x$ | $\dfrac{1}{x}$ |
+| $\log_{a} x$ | $\dfrac{1}{x\ln a}$ |
+| $\arcsin x$ | $\dfrac{1}{\sqrt{1-x^{2}}}$ |
+| $\arctan x$ | $\dfrac{1}{1+x^{2}}$ |
+
+> **İç fonksiyonla birleştir:** $\big(\ln u\big)'=\dfrac{u'}{u}$, $\big(e^{u}\big)'=u'\,e^{u}$, $\big(\sin u\big)'=u'\cos u$. Tablodaki türevler $x$ yerine $u(x)$ geldiğinde mutlaka $u'$ çarpanıyla gelir.
+
+## Türev ve Grafik (Özet)
+
+Birinci türev **eğimi/yön**, ikinci türev **bükülmeyi** anlatır:
+
+| Koşul | Grafiğin yorumu |
+| --- | --- |
+| $f'(x) > 0$ | Fonksiyon o aralıkta **artandır** |
+| $f'(x) < 0$ | Fonksiyon o aralıkta **azalandır** |
+| $f'(x)=0$ | **Kritik nokta** (ekstremum adayı) |
+| $f''(x) > 0$ | Grafik **konkav yukarı** (dışbükey) |
+| $f''(x) < 0$ | Grafik **konkav aşağı** (içbükey) |
+| $f''$ işaret değiştirir | **Dönüm (büküm) noktası** |
+| $f'(c)=0$ ve $f''(c) > 0$ | $c$'de **yerel minimum** (ikinci türev testi) |
+| $f'(c)=0$ ve $f''(c) < 0$ | $c$'de **yerel maksimum** (ikinci türev testi) |
+
+> **İkinci türev testi belirsizse:** $f'(c)=0$ ve $f''(c)=0$ ise test sonuç vermez; bu durumda $f'$'nün **işaret değişimine** (birinci türev testi) bak.
+
+## Anlam (Geometrik & Fiziksel)
+
+| Bağlam | Yorum |
+| --- | --- |
+| **Geometrik** | $f'(a)$, $\big(a,f(a)\big)$ noktasındaki **teğetin eğimidir** |
+| **Normal eğimi** | Teğete dik doğrunun eğimi $-\dfrac{1}{f'(a)}$ |
+| **Fiziksel** | Konum $s(t)\to$ hız $s'(t)\to$ ivme $s''(t)$ |
+| **Analitik** | $f'(a)$, $x=a$ civarında **anlık değişim hızı** |
+
+Teğet doğru denklemi: $y-f(a)=f'(a)\,(x-a)$. Normal doğru denklemi: $y-f(a)=-\dfrac{1}{f'(a)}\,(x-a)$.
+
+## Sık Yapılan 10 Hata
+
+1. **Zincir kuralında iç türevi unutmak.** $\big(\sin 2x\big)'=2\cos 2x$, sadece $\cos 2x$ değil.
+2. **Çarpımın türevini ayrı ayrı almak.** $(f\,g)'\ne f'g'$; doğrusu $(f\,g)'=f'g+f\,g'$.
+3. **Bölüm kuralında işaret/sıra hatası.** Pay $f'g-f\,g'$ olmalı; $f\,g'-f'g$ yazmak işareti ters çevirir.
+4. **$\ln u$ türevini yanlış almak.** $\big(\ln u\big)'=\dfrac{u'}{u}$'dur; sadece $\dfrac{1}{u}$ değil.
+5. **$a^{x}$ ile $x^{a}$'yı karıştırmak.** $(a^{x})'=a^{x}\ln a$ (üstel), ama $(x^{a})'=a\,x^{a-1}$ (kuvvet).
+6. **Süreklilikten türevlenebilirliği çıkarmak.** Süreklilik $\not\Rightarrow$ türevlenebilirlik; $|x|$ fonksiyonu $x=0$'da sürekli ama türevsizdir.
+7. **$f'(c)=0$'ı her zaman ekstremum sanmak.** $f(x)=x^{3}$'te $f'(0)=0$ ama $x=0$ ekstremum değil, dönüm noktasıdır.
+8. **$f''(c)=0$'ı her zaman dönüm noktası sanmak.** $f(x)=x^{4}$'te $f''(0)=0$ ama işaret değişmediği için dönüm yok; nokta minimumdur.
+9. **Normal eğimini yanlış yazmak.** Normal eğimi teğet eğiminin **ters-negatifidir**: $-\dfrac{1}{f'(a)}$, sadece $-f'(a)$ değil.
+10. **L'Hôpital'i belirsiz olmayanda uygulamak.** Kural yalnız $\dfrac{0}{0}$ veya $\dfrac{\infty}{\infty}$ için geçerlidir; önce belirsizliği doğrula.
+
+## AYT'de Türev Soru Tipleri
+
+| Soru tipi | Hızlı yaklaşım |
+| --- | --- |
+| **Limit tanımı** | $\lim\limits_{h\to 0}\dfrac{f(x+h)-f(x)}{h}$ yaz, payı çarpanla, $h$ ile sadeleştir |
+| **Kural uygulama** | Yapıyı tanı (çarpım/bölüm/bileşke), uygun kuralı uygula, iç türevi unutma |
+| **Teğet / normal** | $m=f'(a)$ bul; teğet $y-f(a)=m(x-a)$, normal eğimi $-\tfrac{1}{m}$ |
+| **Artan-azalan & ekstremum** | $f'(x)=0$ köklerini bul, işaret tablosu kur, işaret değişimine bak |
+| **İkinci türev / konkavlık** | $f''(x)$'in işaretine bak; $f''$'nün işaret değiştirdiği yer dönüm noktası |
+| **Optimizasyon** | Değişkeni tek harfe indir, kısıtı yerine koy, $f'=0$ ile uç değeri bul |
+| **L'Hôpital / limit** | Önce $\tfrac{0}{0}$ ya da $\tfrac{\infty}{\infty}$ olduğunu doğrula, sonra pay ve paydanın türevini al |
+
+## Hızlı Örnekler
+
+<Ornek>
+
+<Soru>
+
+$f(x)=x^{2}\,e^{x}$ fonksiyonunun türevini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Bu bir **çarpım**; $(f\,g)'=f'g+f\,g'$ kuralını uygula. $\big(e^{x}\big)'=e^{x}$ olduğunu hatırla.
+
+</Ipucu>
+
+<Cozum>
+
+1. Çarpanları seç: $u=x^{2}$, $v=e^{x}$.
+2. Türevleri al: $u'=2x$, $v'=e^{x}$.
+3. Çarpım kuralı: $f'(x)=u'v+u\,v'=2x\,e^{x}+x^{2}e^{x}$.
+4. Ortak çarpan $e^{x}$'i paranteze al: $f'(x)=e^{x}\,(x^{2}+2x)$.
+
+<Cevap>$f'(x)=e^{x}\,(x^{2}+2x)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=x^{3}-3x$ fonksiyonunun yerel ekstremum noktalarını ikinci türev testiyle belirleyiniz.
+
+</Soru>
+
+<Ipucu>
+
+Önce $f'(x)=0$ ile kritik noktaları bul, sonra her birinde $f''$'nün işaretine bak.
+
+</Ipucu>
+
+<Cozum>
+
+1. Birinci türev: $f'(x)=3x^{2}-3=3(x-1)(x+1)$.
+2. Kritik noktalar: $f'(x)=0 \Rightarrow x=-1$ ve $x=1$.
+3. İkinci türev: $f''(x)=6x$.
+4. Test: $f''(-1)=-6 < 0 \Rightarrow x=-1$ yerel **maksimum**; $f''(1)=6 > 0 \Rightarrow x=1$ yerel **minimum**.
+
+<Cevap>$x=-1$'de yerel maksimum, $x=1$'de yerel minimum.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<KonuNav slug="turev-formul-ozeti" />

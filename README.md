@@ -1,0 +1,108 @@
+# çözümebak — Next.js + MDX
+
+Türk lise matematiği referans sitesi. Tasarım dili HTML prototipiyle birebir aynı;
+fark şu: artık **içerik MDX olarak yazılıyor**, çatı (header/footer/grid) ve bileşenler
+tek yerde yaşıyor ve matematik **derleme anında** (sunucuda) HTML'e dönüştürülüyor —
+yani SEO için kusursuz.
+
+## Çalıştırma
+
+```bash
+npm install
+npm run dev      # http://localhost:3000
+npm run build    # üretim derlemesi (statik HTML üretir)
+```
+
+## Yeni konu eklemek (2 adım)
+
+Tüm site **tek bir kaynaktan** beslenir: [`lib/curriculum.ts`](lib/curriculum.ts).
+Bu dosya grades → units → topics ağacını tutar; index sayfaları, breadcrumb,
+önceki/sonraki, arama ve sitemap hepsi buradan türetilir.
+
+**1. Manifest'e konuyu ekle** — `lib/curriculum.ts` içindeki `TOPICS` dizisine bir
+girdi ekle (içerik hazır olunca `status: "published"`):
+
+```ts
+{
+  slug: "ikinci-derece-fonksiyonlar",
+  title: "İkinci Dereceden Fonksiyonlar",
+  track: "10",
+  unit: "ikinci-derece-10",
+  summary: "Parabol, tepe noktası ve kökler.",
+  minutes: 6, difficulty: "Kolay", questionCount: 18,
+  status: "published",
+},
+```
+
+**2. MDX dosyasını oluştur** — `app/konular/ikinci-derece-fonksiyonlar/page.mdx`:
+
+```mdx
+import { topicMetadata } from "@/lib/seo";
+
+export const metadata = topicMetadata("ikinci-derece-fonksiyonlar");
+
+<Konu slug="ikinci-derece-fonksiyonlar" />
+
+Bir parabolün tepe noktası: $x = -\dfrac{b}{2a}$.
+
+<Ornek>
+  <Soru>$f(x)=x^2-4x+3$ parabolünün tepe noktasını bulunuz.</Soru>
+  <Cozum>
+
+  1. $x = -\dfrac{b}{2a} = -\dfrac{-4}{2} = 2$.
+  2. $f(2) = 4 - 8 + 3 = -1$.
+
+  <Cevap>Tepe noktası $(2,\,-1)$.</Cevap>
+
+  </Cozum>
+</Ornek>
+```
+
+## Yazara açık bileşenler (her MDX dosyasında otomatik kullanılır)
+
+| Bileşen | İş |
+| --- | --- |
+| `<Konu slug="…"/>` | Breadcrumb + başlık + etiket çipleri — hepsi manifest'ten gelir |
+| `<KonuNav slug="…"/>` | Önceki/sonraki konu (aynı ünitede, manifest'ten) |
+| `<KonuBaslik …/>` | Manuel başlık (tek seferlik sayfalar için; normalde `<Konu>` kullan) |
+| `<Ornek>` | Çözümlü örnek kutusu |
+| `<Soru>` | Soru metni etiketi |
+| `<Ipucu>` | Açılır ipucu |
+| `<Cozum>` | İmza etkileşim: "Çözüme Bak" → adım adım çözüm (yeşil) |
+| `<Cevap>` | Yeşil sonuç kutusu |
+| `<Figur>` / `<Altyazi>` | Şekil ve alt yazı |
+
+Düz markdown numaralı liste `<Cozum>` içine konunca otomatik olarak numaralı
+adım çemberlerine dönüşür. Tablolar `.konu` içinde otomatik stillenir.
+
+## Mimari notları
+
+- **Tek kaynak (manifest):** [`lib/curriculum.ts`](lib/curriculum.ts) — grades/units/topics
+  ağacı. Index sayfaları (`/9-sinif` … `/ayt`, `/konular`), breadcrumb, önceki/sonraki,
+  arama indeksi ve `sitemap.xml` hepsi buradan türetilir.
+- **Tek çatı:** `app/layout.tsx` (header + footer + kareli grid + fontlar + KaTeX CSS).
+- **Tasarım sistemi:** `app/globals.css` — tüm CSS değişkenleriyle tema burada.
+- **İstemci adaları:** sadece `components/SiteHeader.tsx` (scroll) ve
+  `components/SearchBox.tsx` (anlık arama). Geri kalan her şey sunucuda statik HTML.
+- **Arama:** `components/SearchBox.tsx` + `lib/searchIndex.ts` — manifest'ten üretilen
+  statik indekste, Türkçe-duyarlı (ı/türev) anlık eşleme. Backend yok.
+- **Konu durumu:** her topic `status: "published" | "soon"`. `soon` konular index'te
+  görünür ama tıklanınca "Yakında" stub sayfası (`noindex`) açar — içerik gelince sadece
+  `status`'ü çevirip MDX dosyasını eklemen yeterli.
+- **SEO:** Matematik `remark-math` + `rehype-katex` ile derleme anında HTML'e çevrilir;
+  her konunun `metadata`'sı `lib/seo.ts`'teki `topicMetadata(slug)`'tan gelir.
+
+## Yayına alma (Vercel)
+
+Ek yapılandırma gerekmez — Next.js 15 App Router Vercel'de otomatik algılanır.
+
+```bash
+npm i -g vercel   # bir kez
+vercel            # önizleme dağıtımı
+vercel --prod     # üretim
+```
+
+`app/layout.tsx` içindeki `metadataBase` `https://cozumebak.com` olarak ayarlı; alan adını
+Vercel proje ayarlarından bağla. `sitemap.xml` ve `robots.txt` otomatik üretilir.
+**Not:** `output: "export"` (statik export) eklenmedi — metadata route'ları ve OG görsel
+üretimi (`next/og`) için Vercel Node runtime gerekiyor; sayfalar zaten SSG olarak statiktir.

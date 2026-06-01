@@ -1,0 +1,54 @@
+import Link from "next/link";
+import { getTopic, getUnit, trackMeta, breadcrumb } from "@/lib/curriculum";
+
+// Manifest-driven lesson header. The author writes only <Konu slug="..."/> at
+// the top of the MDX; breadcrumb, eyebrow, title and chips all come from
+// lib/curriculum.ts. Reuses the existing .crumb / .konu-head / .chips CSS.
+export default function Konu({ slug }: { slug: string }) {
+  const topic = getTopic(slug);
+  if (!topic) return null;
+
+  const tm = trackMeta(topic.track);
+  const unit = getUnit(topic.unit);
+  const crumbs = breadcrumb(slug);
+  const eyebrow = unit ? `${tm.label} · ${unit.title}` : tm.label;
+
+  const chips = [
+    topic.minutes ? `~${topic.minutes} dk okuma` : null,
+    topic.difficulty ? `Zorluk: ${topic.difficulty}` : null,
+    topic.questionCount ? `${topic.questionCount} çözümlü soru` : null,
+  ].filter(Boolean) as string[];
+
+  return (
+    <>
+      <nav className="crumb">
+        {crumbs.map((c, i) => {
+          const last = i === crumbs.length - 1;
+          return (
+            <span key={i}>
+              {i > 0 && " › "}
+              {c.href && !last ? (
+                <Link href={c.href}>{c.label}</Link>
+              ) : last ? (
+                <strong>{c.label}</strong>
+              ) : (
+                c.label
+              )}
+            </span>
+          );
+        })}
+      </nav>
+      <header className="konu-head">
+        <p className="eyebrow">{eyebrow}</p>
+        <h1>{topic.title}</h1>
+        {chips.length > 0 && (
+          <div className="chips">
+            {chips.map((e, i) => (
+              <span key={i}>{e}</span>
+            ))}
+          </div>
+        )}
+      </header>
+    </>
+  );
+}

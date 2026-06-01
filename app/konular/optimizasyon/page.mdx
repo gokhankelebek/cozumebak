@@ -1,0 +1,166 @@
+import { topicMetadata } from "@/lib/seo";
+
+export const metadata = topicMetadata("optimizasyon");
+
+<Konu slug="optimizasyon" />
+
+<p className="lead">Optimizasyon problemleri, bir **kısıt altında** bir büyüklüğü (alan, hacim, maliyet, uzaklık) **en büyük** ya da **en küçük** yapan değeri arar. Türevin gücü tam burada ortaya çıkar: optimize edilecek büyüklük tek değişkenli bir fonksiyona indirildiğinde, $f'=0$ koşulu kritik noktaları verir, ikinci türev veya işaret incelemesi ise bunun maksimum mı minimum mu olduğunu söyler. AYT'de sözel kurulumuyla sık çıkan, puanı yüksek bir konudur.</p>
+
+## 1. Yöntem: 5 Adımlı Yol
+
+Hemen hemen her optimizasyon problemi aynı iskelete oturur. Bu beş adımı sırayla uygulamak, sözel karmaşayı mekanik bir hesaba çevirir.
+
+| Adım | Yapılan iş |
+| --- | --- |
+| **1. Değişken tanımla** | Bilinmeyen uzunlukları $x$, $y$, $r$, $h$ gibi harflerle adlandır; bir şekil çiz |
+| **2. Kısıt denklemini yaz** | Problemin verdiği sabit bağıntı (çevre, hacim, toplam) bir denklem olarak yazılır |
+| **3. Tek değişkene indir** | Optimize edilecek büyüklüğü, kısıtı kullanarak **tek** değişkenle ifade et |
+| **4. $f'=0$ çöz** | Türevi sıfırlayıp kritik noktaları bul |
+| **5. Doğrula** | İkinci türev / işaret tablosu ile maks–min ayrımı yap, **tanım aralığı ve uç noktaları** kontrol et |
+
+> **Püf noktası:** 5. adımı atlamak en sık kaybedilen puandır. $f'=0$ size bir aday verir; o adayın gerçekten istenen uç değer olduğunu **mutlaka** ikinci türev işaretiyle veya $f'$ işaret değişimiyle gösterin.
+
+İkinci türev testi kısaca şöyledir: $f'(c)=0$ olan bir $c$ noktasında
+
+$$f''(c) > 0 \;\Rightarrow\; \text{yerel minimum},\qquad f''(c) < 0 \;\Rightarrow\; \text{yerel maksimum}.$$
+
+## 2. Çözümlü Örnekler
+
+<Ornek>
+
+<Soru>
+
+Çevresi $40\,\text{m}$ olan dikdörtgenler arasında alanı en büyük olanın boyutlarını ve bu en büyük alanı bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Kenarlara $x$ ve $y$ de; çevre kısıtından $y$'yi $x$ cinsinden yazıp alanı tek değişkenli yap.
+
+</Ipucu>
+
+<Cozum>
+
+1. **Değişken:** Kenarlar $x$ ve $y$ olsun, $x > 0$, $y > 0$.
+2. **Kısıt:** Çevre $2x+2y=40 \Rightarrow x+y=20 \Rightarrow y=20-x$.
+3. **Tek değişken:** Alan $A(x)=x\,y=x(20-x)=20x-x^{2}$, tanım aralığı $0 < x < 20$.
+4. **Türev sıfır:** $A'(x)=20-2x=0 \Rightarrow x=10$.
+5. **Doğrula:** $A''(x)=-2 < 0$ olduğundan $x=10$ bir **maksimumdur**. Bu durumda $y=20-10=10$ ve $A=10\cdot 10=100$.
+
+<Cevap>Kenarlar $10\,\text{m}\times 10\,\text{m}$ (bir **kare**); en büyük alan $100\,\text{m}^{2}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Kenar uzunluğu $12$ birim olan kare bir kartonun dört köşesinden $x\times x$ boyutunda kareler kesilip kenarlar yukarı katlanarak üstü açık bir kutu yapılıyor. Hacmi en büyük yapan $x$ değerini ve bu hacmi bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Tabanın bir kenarı $12-2x$ olur, yükseklik ise $x$'tir. Hacmi $x$ cinsinden yazıp türevini al.
+
+</Ipucu>
+
+<Cozum>
+
+1. **Değişken:** Kesilen karenin kenarı $x$; katlamadan sonra yükseklik $x$, taban kenarı $12-2x$.
+2. **Tanım aralığı:** Taban kenarı pozitif olmalı: $12-2x > 0 \Rightarrow 0 < x < 6$.
+3. **Tek değişken:** Hacim $V(x)=x(12-2x)^{2}$.
+4. **Türev sıfır:** Çarpım kuralıyla
+
+$$V'(x)=(12-2x)^{2}+x\cdot 2(12-2x)(-2)=(12-2x)\big[(12-2x)-4x\big]=(12-2x)(12-6x).$$
+
+   $V'(x)=0 \Rightarrow 12-2x=0$ (yani $x=6$, sınırda elenir) ya da $12-6x=0 \Rightarrow x=2$.
+5. **Doğrula:** $0 < x < 2$ için $V' > 0$, $2 < x < 6$ için $V' < 0$; işaret $+$'dan $-$'ye döndüğü için $x=2$ bir **maksimumdur**. $V(2)=2\cdot(12-4)^{2}=2\cdot 8^{2}=2\cdot 64=128$.
+
+<Cevap>$x=2$ birim; en büyük hacim $128$ birim küp.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Hacmi sabit $V$ olan, üstü açık silindir biçimli bir kabın **en az malzeme** ile (en küçük yüzey alanıyla) yapılabilmesi için taban yarıçapı $r$ ne olmalıdır?
+
+</Soru>
+
+<Ipucu>
+
+Yüzey = taban dairesi + yan yüz. Hacim kısıtından $h$'yi çek, yüzeyi yalnız $r$ cinsinden yaz.
+
+</Ipucu>
+
+<Cozum>
+
+1. **Değişken:** Taban yarıçapı $r > 0$, yükseklik $h > 0$.
+2. **Kısıt:** Hacim $V=\pi r^{2}h \Rightarrow h=\dfrac{V}{\pi r^{2}}$.
+3. **Tek değişken:** Üstü açık olduğundan yüzey, taban ($\pi r^{2}$) artı yan yüzdür ($2\pi r h$):
+
+$$A(r)=\pi r^{2}+2\pi r h=\pi r^{2}+2\pi r\cdot\frac{V}{\pi r^{2}}=\pi r^{2}+\frac{2V}{r}.$$
+
+4. **Türev sıfır:** $A'(r)=2\pi r-\dfrac{2V}{r^{2}}=0 \Rightarrow 2\pi r=\dfrac{2V}{r^{2}} \Rightarrow r^{3}=\dfrac{V}{\pi} \Rightarrow r=\sqrt[3]{\dfrac{V}{\pi}}$.
+5. **Doğrula:** $A''(r)=2\pi+\dfrac{4V}{r^{3}} > 0$ (her $r > 0$ için) olduğundan bu nokta bir **minimumdur**. Yükseklik ise $h=\dfrac{V}{\pi r^{2}}$ ile bulunur; $r^{3}=\dfrac{V}{\pi}$ yerine konursa $h=r$ çıkar (yükseklik yarıçapa eşit).
+
+<Cevap>$r=\sqrt[3]{\dfrac{V}{\pi}}$ ve bu durumda $h=r$. Örneğin $V=\pi$ ise $r=1$, $h=1$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$y=x^{2}$ parabolü üzerindeki noktalar arasında $(0,3)$ noktasına **en yakın** olanını bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Uzaklığın kendisi yerine **karesini** minimize et; karekök artan fonksiyon olduğundan minimum aynı noktada oluşur ve hesap kolaylaşır.
+
+</Ipucu>
+
+<Cozum>
+
+1. **Değişken:** Parabol üzerindeki nokta $(x,\,x^{2})$ biçimindedir.
+2. **Büyüklük:** $(0,3)$'e uzaklığın karesi
+
+$$D^{2}(x)=(x-0)^{2}+(x^{2}-3)^{2}=x^{2}+(x^{2}-3)^{2}.$$
+
+3. **Türev sıfır:** Zincir kuralıyla
+
+$$\frac{d}{dx}D^{2}=2x+2(x^{2}-3)\cdot 2x=2x+4x(x^{2}-3)=2x\big[1+2(x^{2}-3)\big]=2x(2x^{2}-5).$$
+
+   $\dfrac{d}{dx}D^{2}=0 \Rightarrow x=0$ ya da $2x^{2}-5=0 \Rightarrow x^{2}=\dfrac{5}{2}$, yani $x=\pm\sqrt{\dfrac{5}{2}}$.
+4. **Adayları karşılaştır:** $x=0$ için $D^{2}=0+9=9$. $x^{2}=\dfrac{5}{2}$ için $D^{2}=\dfrac{5}{2}+\left(\dfrac{5}{2}-3\right)^{2}=\dfrac{5}{2}+\dfrac{1}{4}=\dfrac{11}{4}$.
+5. **Doğrula:** $\dfrac{11}{4}=2{,}75 < 9$ olduğundan minimum $x=\pm\sqrt{\dfrac{5}{2}}$ noktalarında; $x=0$ ise yerel maksimum benzeri bir tepe verir. En küçük uzaklık $\sqrt{\dfrac{11}{4}}=\dfrac{\sqrt{11}}{2}$.
+
+<Cevap>En yakın noktalar $\left(\pm\sqrt{\dfrac{5}{2}},\;\dfrac{5}{2}\right)$; en küçük uzaklık $\dfrac{\sqrt{11}}{2}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Kısıtı kullanmadan iki değişkenle kalmak:** Türev tek değişkene göre alınır. Kısıt denklemini ($2x+2y=40$, $\pi r^{2}h=V$ gibi) mutlaka kullanıp ikinci değişkeni yok et.
+- **Maks–min doğrulamasını atlamak:** $f'=0$ yalnızca aday verir. İkinci türev işareti ya da $f'$'in işaret değişimiyle maksimum mu minimum mu olduğunu göster.
+- **Tanım aralığını ve uç noktaları gözardı etmek:** $0 < x < 6$ gibi fiziksel kısıtların dışındaki kökleri (örneğin $x=6$) eleyin; kapalı aralıklarda uç noktaların değerlerini de karşılaştırın.
+- **Uzaklığın kendisini minimize etmeye çalışmak:** Karekökle uğraşmak yerine $D^{2}$'yi minimize et; karekök artan olduğundan minimum yeri değişmez.
+
+## Sınav İpucu
+
+Sözel bir soruda "**en büyük / en küçük / en az / en çok**" ifadelerini gördüğün an refleksin şu olsun: önce **kısıtı** yaz, ardından optimize edilecek büyüklüğü **tek değişkene** indir. Şekil çizmek, hangi uzunluğun değişken hangisinin sabit olduğunu netleştirir ve kısıtı kurmayı kolaylaştırır. Çoğu AYT sorusunda hesap kısa, asıl iş doğru kurulumdadır.
+
+<KonuNav slug="optimizasyon" />

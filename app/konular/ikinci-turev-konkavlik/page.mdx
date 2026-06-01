@@ -1,0 +1,179 @@
+import { topicMetadata } from "@/lib/seo";
+
+export const metadata = topicMetadata("ikinci-turev-konkavlik");
+
+<Konu slug="ikinci-turev-konkavlik" />
+
+<p className="lead">Birinci türev grafiğin **eğimini** anlatır; ikinci türev ise grafiğin **bükülme yönünü** — konkavlığı — verir. $f''$'nün işareti eğrinin $\cup$ mı yoksa $\cap$ mı olduğunu, işaret değiştirdiği yerler ise **dönüm noktalarını** belirler. Ayrıca ikinci türev, kritik noktaları sınıflandırmak için en hızlı araçtır: **ikinci türev testi**. Bu konu AYT'de ekstremum ve grafik sorularının belkemiğidir.</p>
+
+## 1. Konkavlık ve İkinci Türevin İşareti
+
+Bir aralıkta ikinci türevin işareti, grafiğin o aralıktaki bükülme yönünü belirler:
+
+| Koşul | Konkavlık | Şekil | Eş anlamı |
+| --- | --- | --- | --- |
+| $f''(x) > 0$ | Konkav **yukarı** | $\cup$ | dışbükey |
+| $f''(x) < 0$ | Konkav **aşağı** | $\cap$ | içbükey |
+
+Sezgi: $f''>0$ ise eğim $f'$ **artar** (grafik giderek dikleşir, tas yukarı bakar); $f''<0$ ise eğim **azalır** (grafik yukarı doğru bükülür, tas aşağı bakar).
+
+$$f''(x)=\big(f'(x)\big)'=\frac{d^{2}y}{dx^{2}}$$
+
+## 2. Dönüm (Büküm) Noktası
+
+**Dönüm noktası**, grafiğin konkavlığının yön değiştirdiği — yani $f''$'nün **işaret değiştirdiği** — noktadır.
+
+$$x=c \text{ dönüm noktası} \iff f''(c)=0 \text{ (veya tanımsız)} \;\textbf{ve}\; f'' \text{ burada işaret değiştirir.}$$
+
+> **Dikkat:** $f''(c)=0$ olması **tek başına yetmez**. İşaret değişimi şarttır. Aksi hâlde $c$ dönüm noktası değildir (bkz. Örnek 4, $f(x)=x^4$).
+
+## 3. İkinci Türev Testi
+
+$f'(c)=0$ olan bir kritik noktada ($c$):
+
+| Koşul | Sonuç |
+| --- | --- |
+| $f''(c) > 0$ | $c$'de **yerel minimum** ($\cup$) |
+| $f''(c) < 0$ | $c$'de **yerel maksimum** ($\cap$) |
+| $f''(c) = 0$ | Test **sonuçsuz** — birinci türev (işaret tablosu) testine dön |
+
+Bu test, kritik noktanın türünü tek bir değer hesabıyla verdiği için sınavda işaret tablosundan çok daha hızlıdır.
+
+<Ornek>
+
+<Soru>
+
+$f(x)=x^{3}$ fonksiyonunun konkavlığını inceleyiniz ve varsa dönüm noktasını bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. İkinci türevi al: $f'(x)=3x^{2}$, $f''(x)=6x$.
+2. $f''(x)=0 \Rightarrow x=0$. Bu, olası dönüm noktasıdır.
+3. İşaret incele: $x < 0$ için $f''(x) < 0$ → konkav aşağı ($\cap$); $x > 0$ için $f''(x) > 0$ → konkav yukarı ($\cup$).
+4. $x=0$'da işaret değiştiği için burası gerçek bir dönüm noktasıdır.
+
+<Cevap>$(-\infty,0)$ konkav aşağı, $(0,\infty)$ konkav yukarı; $x=0$ **dönüm noktasıdır**.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=x^{4}-6x^{2}$ fonksiyonunun konkav yukarı/aşağı olduğu aralıkları ve dönüm noktalarını bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+İkinci türevi çarpanlarına ayırıp kökleri bul; bu kökler arasında $f''$'nün işaretine bak.
+
+</Ipucu>
+
+<Cozum>
+
+1. Türevleri al: $f'(x)=4x^{3}-12x$, $f''(x)=12x^{2}-12$.
+2. Çarpanlara ayır: $f''(x)=12(x^{2}-1)=12(x-1)(x+1)$.
+3. Kökler $x=-1$ ve $x=1$. İşaret tablosu: dışta ($|x| > 1$) $f''(x) > 0$, içte ($-1 < x < 1$) $f''(x) < 0$.
+4. Her iki kökte de işaret değiştiğinden ikisi de dönüm noktasıdır.
+
+<Cevap>Konkav yukarı: $(-\infty,-1)\cup(1,\infty)$; konkav aşağı: $(-1,1)$. Dönüm noktaları: $x=\pm 1$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=x^{3}-3x$ fonksiyonunun yerel ekstremum noktalarını **ikinci türev testiyle** sınıflandırınız.
+
+</Soru>
+
+<Cozum>
+
+1. Kritik noktalar: $f'(x)=3x^{2}-3=0 \Rightarrow x^{2}=1 \Rightarrow x=\pm 1$.
+2. İkinci türevi al: $f''(x)=6x$.
+3. $x=-1$: $f''(-1)=-6 < 0$ → **yerel maksimum**.
+4. $x=1$: $f''(1)=6 > 0$ → **yerel minimum**.
+
+<Cevap>$x=-1$ yerel maksimum, $x=1$ yerel minimum. (Değerler: $f(-1)=2$, $f(1)=-2$.)</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=x^{4}$ fonksiyonunda $f''(0)=0$ olmasına rağmen $x=0$ neden dönüm noktası **değildir**? $x=0$ ne tür bir noktadır?
+
+</Soru>
+
+<Ipucu>
+
+Dönüm noktası için $f''$'nün işaret **değiştirmesi** gerekir. $f''(x)$'in işaretini $x=0$'ın iki yanında kontrol et.
+
+</Ipucu>
+
+<Cozum>
+
+1. Türevleri al: $f'(x)=4x^{3}$, $f''(x)=12x^{2}$.
+2. $f''(x)=12x^{2}\ge 0$ her $x$ için; özelde $f''(0)=0$.
+3. İşaret incele: hem $x < 0$ hem $x > 0$ için $f''(x) > 0$. İşaret **değişmiyor** → konkavlık her iki yanda da $\cup$.
+4. İşaret değişmediği için $x=0$ dönüm noktası değildir. $f'(0)=0$ ve çevresinde $f''>0$ olduğundan ($\cup$) burası **yerel minimumdur**.
+
+<Cevap>$x=0$ dönüm noktası değildir; işaret değişmediği için **yerel minimumdur**.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=x^{3}+ax^{2}+bx$ fonksiyonunun dönüm noktası $(1,-2)$ ise $a$ ve $b$ değerlerini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+İki koşul var: dönüm noktasında $f''=0$ olmalı ve nokta grafiğin üzerinde olmalı ($f(1)=-2$).
+
+</Ipucu>
+
+<Cozum>
+
+1. Türevleri al: $f'(x)=3x^{2}+2ax+b$, $f''(x)=6x+2a$.
+2. Dönüm koşulu: $f''(1)=0 \Rightarrow 6+2a=0 \Rightarrow a=-3$.
+3. Nokta grafikte: $f(1)=1+a+b=-2$. $a=-3$ yerine: $1-3+b=-2 \Rightarrow b=0$.
+4. Kontrol: $f''(x)=6x-6=6(x-1)$, $x=1$'de işaret değiştirir → gerçek dönüm noktası.
+
+<Cevap>$a=-3$, $b=0$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **$f''(c)=0$ olan her noktayı dönüm noktası sanmak.** İşaret değişimi şarttır; $f(x)=x^{4}$'te $f''(0)=0$ ama dönüm yoktur.
+- **Konkavlık terimlerini karıştırmak.** $f''>0 \Rightarrow$ konkav yukarı ($\cup$, dışbükey); $f''<0 \Rightarrow$ konkav aşağı ($\cap$, içbükey).
+- **İkinci türev testi $f''(c)=0$ verdiğinde sonuç çıkarmak.** Bu durumda test sonuçsuzdur; birinci türevin işaret tablosuna dönmek gerekir.
+- **Dönüm noktası ile ekstremum noktasını karıştırmak.** Ekstremumda $f'=0$; dönüm noktasında $f''=0$ (ve işaret değişir). Bunlar farklı kavramlardır.
+
+## Sınav İpucu
+
+- Bir kritik noktanın **türü** (maks/min) soruluyorsa önce **ikinci türev testini** dene: tek değer hesabıyla sonuç verir, en hızlısıdır.
+- İkinci türev testi $f''(c)=0$ verirse zaman kaybetmeden işaret tablosuna geç.
+- Polinomda dönüm noktası ararken $f''(x)$'i **çarpanlara ayır**; köklerin etrafında işaret değişimini kontrol etmeyi unutma.
+- Kübik fonksiyonun ($ax^{3}+\dots$) **tam bir** dönüm noktası vardır ve grafiğin simetri merkezidir.
+
+<KonuNav slug="ikinci-turev-konkavlik" />

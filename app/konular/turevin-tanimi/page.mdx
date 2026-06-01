@@ -1,0 +1,167 @@
+import TurevGrafik from "@/components/figures/TurevGrafik";
+import { topicMetadata } from "@/lib/seo";
+
+export const metadata = topicMetadata("turevin-tanimi");
+
+<Konu slug="turevin-tanimi" />
+
+<p className="lead">Türev, bir fonksiyonun **anlık değişim hızını** ölçer; geometrik olarak bir noktadaki **teğetin eğimini** verir. Bu ilk konu, türevin limit tanımından temel kurallarına ve türevlenebilirlik–süreklilik ilişkisine kadar tüm zemini kurar. Türev serisinin geri kalanı bu temele dayanır.</p>
+
+## 1. Türevin Tanımı
+
+$f$ fonksiyonunun $x$ noktasındaki türevi, **ortalama değişim oranının** ($h\to 0$ için) limitidir:
+
+$$f'(x)=\lim_{h\to 0}\frac{f(x+h)-f(x)}{h}$$
+
+Burada $h$ küçüldükçe, $x$ ile $x+h$ noktalarını birleştiren **kesen doğru**, $x$ noktasındaki **teğet doğruya** yaklaşır. Yani $f'(x)$, grafiğe $\big(x,\,f(x)\big)$ noktasında çizilen teğetin eğimidir.
+
+Aynı limitin bir noktaya ($x=a$) sabitlenmiş hâli şöyle de yazılır:
+
+$$f'(a)=\lim_{x\to a}\frac{f(x)-f(a)}{x-a}$$
+
+<Figur>
+
+<TurevGrafik />
+
+<Altyazi>Şekil 1 — $f(x)=x^3-6x^2+9x+1$ eğrisi. $x=1$ noktasında teğet yataydır (eğim $=0$), bu da yerel maksimuma işaret eder.</Altyazi>
+
+</Figur>
+
+### Türevin İki Yüzü
+
+| Yorum | Anlamı |
+| --- | --- |
+| **Geometrik** | $f'(a)$, $\big(a,f(a)\big)$ noktasındaki teğetin eğimidir |
+| **Fiziksel** | Konum $s(t)$ ise $s'(t)$ **anlık hızı**, $s''(t)$ ivmeyi verir |
+| **Analitik** | $f'(a)$, $x=a$ civarında $f$'nin **anlık değişim hızıdır** |
+
+### Türevin Gösterimleri
+
+Aynı kavram için kullanılan eşdeğer gösterimler:
+
+$$f'(x)=\frac{dy}{dx}=\frac{d}{dx}\,f(x)=\dot{y}$$
+
+## 2. Bir Noktada Türevlenebilirlik
+
+$f'(a)$ limitinin **var ve sonlu** olması için soldan ve sağdan türevlerin eşit olması gerekir:
+
+$$f'_-(a)=\lim_{h\to 0^-}\frac{f(a+h)-f(a)}{h}\quad=\quad f'_+(a)=\lim_{h\to 0^+}\frac{f(a+h)-f(a)}{h}$$
+
+Bu eşitlik bozulursa fonksiyon o noktada **türevlenemez**. Türevin olmadığı tipik durumlar: **köşe/sivri uç** ($|x|$ in $x=0$'da), **dikey teğet** ($\sqrt[3]{x}$ in $x=0$'da) ve **süreksizlik**.
+
+## 3. Süreklilik ve Türevlenebilirlik
+
+Aralarındaki yön tek taraflıdır:
+
+$$f,\ a\text{'da türevlenebilir} \;\Rightarrow\; f,\ a\text{'da süreklidir}$$
+
+Tersi **doğru değildir**: süreklilik türevlenebilirliği gerektirmez. $f(x)=|x|$ fonksiyonu $x=0$'da süreklidir ama soldan türev $-1$, sağdan türev $+1$ olduğundan türevlenemez.
+
+> **Sık yapılan hata:** "Süreklilik varsa türev de vardır" sanmak. Doğrusu: türev varsa süreklilik kesin vardır; ama süreklilik tek başına türevi garanti etmez.
+
+## 4. Temel Türev Kuralları
+
+Limit tanımını her seferinde uygulamak yerine, aşağıdaki kuralları doğrudan kullanırız (ayrıntılı işlenişi bir sonraki konuda):
+
+| Kural | Formül |
+| --- | --- |
+| Sabit | $\dfrac{d}{dx}(c)=0$ |
+| Kuvvet (üs) kuralı | $\dfrac{d}{dx}\left(x^{n}\right)=n\,x^{n-1}$ |
+| Sabitle çarpım | $\big(c\cdot f\big)'=c\cdot f'$ |
+| Toplam – fark | $\big(f\pm g\big)'=f'\pm g'$ |
+| Çarpım kuralı | $\big(f\cdot g\big)'=f'g+f\,g'$ |
+| Bölüm kuralı | $\left(\dfrac{f}{g}\right)'=\dfrac{f'g-f\,g'}{g^{2}}$ |
+| Zincir kuralı | $\big(f(g(x))\big)'=f'(g(x))\cdot g'(x)$ |
+
+### Sık Kullanılan Türevler
+
+| Fonksiyon | Türevi |
+| --- | --- |
+| $\sin x$ | $\cos x$ |
+| $\cos x$ | $-\sin x$ |
+| $e^{x}$ | $e^{x}$ |
+| $\ln x$ | $\dfrac{1}{x}$ |
+| $a^{x}$ | $a^{x}\ln a$ |
+
+<Ornek>
+
+<Soru>
+
+$f(x)=x^{2}-3x$ fonksiyonunun türevini **limit tanımını kullanarak** bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Tanımı yaz: $f'(x)=\lim\limits_{h\to 0}\dfrac{f(x+h)-f(x)}{h}$.
+2. Pay'ı aç: $f(x+h)=(x+h)^2-3(x+h)=x^2+2xh+h^2-3x-3h$.
+3. Farkı al: $f(x+h)-f(x)=2xh+h^2-3h=h(2x+h-3)$.
+4. $h$'ye böl ve limiti al: $f'(x)=\lim\limits_{h\to 0}(2x+h-3)=2x-3$.
+
+<Cevap>$f'(x)=2x-3$. (Kuvvet kuralı da aynı sonucu verir.)</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=x^{3}-6x^{2}+9x+1$ fonksiyonunun grafiğine $x=1$ noktasında çizilen teğetin eğimini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Bir noktadaki teğetin eğimi, fonksiyonun o noktadaki türevine eşittir: $m=f'(1)$. Önce $f'(x)$'i bul, sonra $x=1$ değerini yerine yaz.
+
+</Ipucu>
+
+<Cozum>
+
+1. Teğetin eğimi, fonksiyonun o noktadaki türevidir: $m=f'(1)$.
+2. Kuvvet, sabitle çarpım ve toplam kurallarıyla türevi al: $f'(x)=3x^{2}-12x+9$.
+3. $x=1$ değerini yerine yaz: $f'(1)=3\cdot 1^{2}-12\cdot 1+9=3-12+9=0$.
+4. Eğim sıfır olduğundan teğet yataydır; $(1,5)$ noktasında fonksiyon **yerel maksimum** yapar (bkz. Şekil 1).
+
+<Cevap>Teğetin eğimi $m=0$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=\begin{cases}x^2,& x\le 1\\ 2x-1,& x>1\end{cases}$ fonksiyonu $x=1$ noktasında türevlenebilir mi?
+
+</Soru>
+
+<Ipucu>
+
+Önce sürekliliği, sonra soldan ve sağdan türevlerin eşitliğini kontrol et.
+
+</Ipucu>
+
+<Cozum>
+
+1. **Süreklilik:** Soldan değer $1^2=1$, sağdan değer $2\cdot 1-1=1$. Eşit, süreklidir.
+2. **Soldan türev:** $x\le 1$ için $f'(x)=2x \Rightarrow f'_-(1)=2$.
+3. **Sağdan türev:** $x>1$ için $f'(x)=2 \Rightarrow f'_+(1)=2$.
+4. Soldan ve sağdan türev eşit ($2=2$) olduğundan fonksiyon $x=1$'de türevlenebilirdir ve $f'(1)=2$.
+
+<Cevap>Evet; $f'(1)=2$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Limit tanımında $h$'yi sadeleştirmeden $h=0$ koymak:** $\frac{0}{0}$ belirsizliği çıkar. Önce payı çarpanlarına ayırıp $h$ ile sadeleştir.
+- **Süreklilik ⇒ türevlenebilirlik** sanmak. (Doğrusu tam tersi yönde geçerlidir.)
+- Köşe noktalarında ($|x|$ gibi) türevin var olduğunu sanmak; orada soldan ve sağdan türev farklıdır.
+
+<KonuNav slug="turevin-tanimi" />

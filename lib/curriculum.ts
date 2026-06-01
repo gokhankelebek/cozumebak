@@ -1,0 +1,358 @@
+// ─────────────────────────────────────────────────────────────────────────────
+// çözümebak — CURRICULUM MANIFEST (single source of truth)
+//
+// Index pages, breadcrumbs, prev/next, search and the sitemap all derive from
+// this ONE file. To add a topic:
+//   1. add a Topic entry below (status: "published" once the lesson exists),
+//   2. drop app/konular/<slug>/page.mdx with <Konu slug="<slug>"/> at the top.
+// Everything else (card, breadcrumb, prev/next, search, sitemap) appears
+// automatically. Array order within a unit defines the lesson sequence.
+// ─────────────────────────────────────────────────────────────────────────────
+
+export type Track = "9" | "10" | "11" | "12" | "tyt" | "ayt";
+export type Difficulty = "Kolay" | "Orta" | "Zor";
+export type Status = "published" | "soon";
+
+export interface Topic {
+  slug: string; // unique site-wide → /konular/<slug>
+  title: string;
+  track: Track;
+  unit: string; // references Unit.slug
+  summary?: string; // 1-line; used in cards + search + meta fallback
+  minutes?: number; // estimated reading time
+  difficulty?: Difficulty;
+  questionCount?: number;
+  status: Status; // "published" = has MDX; "soon" = stub page
+  keywords?: string[]; // extra search terms / synonyms
+}
+
+export interface Unit {
+  slug: string; // unique site-wide (anchor id on track pages)
+  title: string;
+  track: Track;
+  order: number;
+}
+
+export interface TrackMeta {
+  key: Track;
+  label: string; // "12. Sınıf" / "AYT Matematik"
+  shortLabel: string; // "12" / "AYT" → ccard-badge
+  kind: "grade" | "exam";
+  route: string; // "/12-sinif" | "/ayt"
+  blurb: string;
+  order: number;
+}
+
+// ── Tracks ───────────────────────────────────────────────────────────────────
+
+export const TRACKS: TrackMeta[] = [
+  {
+    key: "9",
+    label: "9. Sınıf",
+    shortLabel: "9",
+    kind: "grade",
+    route: "/9-sinif",
+    blurb:
+      "Lise matematiğinin temeli: kümeler, gerçek sayılar, denklem ve eşitsizlikler, üçgenler ve fonksiyona giriş.",
+    order: 1,
+  },
+  {
+    key: "10",
+    label: "10. Sınıf",
+    shortLabel: "10",
+    kind: "grade",
+    route: "/10-sinif",
+    blurb:
+      "Sayma ve olasılık, fonksiyonlar, polinomlar, ikinci dereceden denklemler ve dörtgenlerle geometri.",
+    order: 2,
+  },
+  {
+    key: "11",
+    label: "11. Sınıf",
+    shortLabel: "11",
+    kind: "grade",
+    route: "/11-sinif",
+    blurb:
+      "Trigonometri, analitik geometri, fonksiyonlarda işlemler, çember ve daire ile katı cisimler.",
+    order: 3,
+  },
+  {
+    key: "12",
+    label: "12. Sınıf",
+    shortLabel: "12",
+    kind: "grade",
+    route: "/12-sinif",
+    blurb:
+      "Üstel ve logaritmik fonksiyonlar, diziler, türev ve integral — analizin tam temeli.",
+    order: 4,
+  },
+  {
+    key: "tyt",
+    label: "TYT Matematik",
+    shortLabel: "TYT",
+    kind: "exam",
+    route: "/tyt",
+    blurb:
+      "Temel Yeterlilik Testi matematiği: temel kavramlardan problemlere, sınavın tüm konu başlıkları.",
+    order: 5,
+  },
+  {
+    key: "ayt",
+    label: "AYT Matematik",
+    shortLabel: "AYT",
+    kind: "exam",
+    route: "/ayt",
+    blurb:
+      "Alan Yeterlilik Testi ileri matematiği: limit, türev, integral, trigonometri ve logaritma.",
+    order: 6,
+  },
+];
+
+// ── Units ────────────────────────────────────────────────────────────────────
+
+export const UNITS: Unit[] = [
+  // 9. Sınıf
+  { slug: "kumeler-9", title: "Kümeler", track: "9", order: 1 },
+  { slug: "denklem-esitsizlik-9", title: "Denklem ve Eşitsizlikler", track: "9", order: 2 },
+  { slug: "ucgenler-9", title: "Üçgenler", track: "9", order: 3 },
+  { slug: "fonksiyonlar-9", title: "Fonksiyonlar", track: "9", order: 4 },
+  { slug: "olasilik-9", title: "Olasılık", track: "9", order: 5 },
+  // 10. Sınıf
+  { slug: "sayma-olasilik-10", title: "Sayma ve Olasılık", track: "10", order: 1 },
+  { slug: "fonksiyonlar-10", title: "Fonksiyonlar", track: "10", order: 2 },
+  { slug: "polinomlar-10", title: "Polinomlar", track: "10", order: 3 },
+  { slug: "ikinci-derece-10", title: "İkinci Dereceden Denklemler", track: "10", order: 4 },
+  { slug: "dortgenler-10", title: "Dörtgenler ve Çokgenler", track: "10", order: 5 },
+  { slug: "analitik-10", title: "Doğrunun Analitik İncelenmesi", track: "10", order: 6 },
+  // 11. Sınıf
+  { slug: "trigonometri-11", title: "Trigonometri", track: "11", order: 1 },
+  { slug: "analitik-11", title: "Analitik Geometri", track: "11", order: 2 },
+  { slug: "fonksiyonlarda-islemler-11", title: "Fonksiyonlarda İşlemler", track: "11", order: 3 },
+  { slug: "denklem-esitsizlik-11", title: "Denklem ve Eşitsizlik Sistemleri", track: "11", order: 4 },
+  { slug: "cember-daire-11", title: "Çember ve Daire", track: "11", order: 5 },
+  { slug: "katı-cisimler-11", title: "Uzay Geometri (Katı Cisimler)", track: "11", order: 6 },
+  // 12. Sınıf
+  { slug: "ustel-logaritma-12", title: "Üstel ve Logaritmik Fonksiyonlar", track: "12", order: 1 },
+  { slug: "diziler-12", title: "Diziler", track: "12", order: 2 },
+  { slug: "trigonometri-12", title: "Trigonometri", track: "12", order: 3 },
+  { slug: "turev-12", title: "Türev", track: "12", order: 4 },
+  { slug: "integral-12", title: "İntegral", track: "12", order: 5 },
+  // TYT
+  { slug: "temel-kavramlar-tyt", title: "Temel Kavramlar", track: "tyt", order: 1 },
+  { slug: "sayilar-tyt", title: "Sayılar ve Bölünebilme", track: "tyt", order: 2 },
+  { slug: "uslu-koklu-tyt", title: "Üslü ve Köklü İfadeler", track: "tyt", order: 3 },
+  { slug: "oran-problem-tyt", title: "Oran-Orantı ve Problemler", track: "tyt", order: 4 },
+  { slug: "geometri-tyt", title: "Temel Geometri", track: "tyt", order: 5 },
+  // AYT
+  { slug: "limit-ayt", title: "Limit ve Süreklilik", track: "ayt", order: 1 },
+  { slug: "turev-ayt", title: "Türev", track: "ayt", order: 2 },
+  { slug: "integral-ayt", title: "İntegral", track: "ayt", order: 3 },
+  { slug: "trigonometri-ayt", title: "Trigonometri", track: "ayt", order: 4 },
+  { slug: "logaritma-ayt", title: "Logaritma", track: "ayt", order: 5 },
+];
+
+// ── Topics ───────────────────────────────────────────────────────────────────
+// All "soon" except the one live lesson (turevin-tanimi). The user fills these
+// in over time by adding an MDX file and flipping status to "published".
+
+export const TOPICS: Topic[] = [
+  // ── 9. Sınıf · Kümeler ──
+  { slug: "kumelerde-temel-kavramlar", title: "Kümelerde Temel Kavramlar", track: "9", unit: "kumeler-9", summary: "Küme, eleman, alt küme ve evrensel küme kavramları.", minutes: 5, difficulty: "Kolay", questionCount: 12, status: "soon" },
+  { slug: "kumelerde-islemler", title: "Kümelerde İşlemler", track: "9", unit: "kumeler-9", summary: "Birleşim, kesişim, fark ve tümleyen işlemleri.", minutes: 6, difficulty: "Kolay", questionCount: 16, status: "soon" },
+  { slug: "kume-problemleri", title: "Küme Problemleri", track: "9", unit: "kumeler-9", summary: "Venn şemasıyla iki ve üç kümeli problem çözümleri.", minutes: 7, difficulty: "Orta", questionCount: 18, status: "soon" },
+
+  // ── 9. Sınıf · Denklem ve Eşitsizlikler ──
+  { slug: "gercek-sayilar", title: "Gerçek Sayılar", track: "9", unit: "denklem-esitsizlik-9", summary: "Sayı kümeleri ve gerçek sayılar üzerinde işlemler.", minutes: 5, difficulty: "Kolay", questionCount: 14, status: "soon" },
+  { slug: "birinci-derece-denklemler", title: "Birinci Dereceden Denklemler", track: "9", unit: "denklem-esitsizlik-9", summary: "Bir bilinmeyenli birinci dereceden denklem çözümleri.", minutes: 6, difficulty: "Kolay", questionCount: 20, status: "soon" },
+  { slug: "birinci-derece-esitsizlikler", title: "Birinci Dereceden Eşitsizlikler", track: "9", unit: "denklem-esitsizlik-9", summary: "Eşitsizlik çözüm kümeleri ve sayı doğrusunda gösterim.", minutes: 6, difficulty: "Orta", questionCount: 16, status: "soon" },
+  { slug: "mutlak-deger", title: "Mutlak Değer", track: "9", unit: "denklem-esitsizlik-9", summary: "Mutlak değerli denklem ve eşitsizliklerin çözümü.", minutes: 7, difficulty: "Orta", questionCount: 18, status: "soon", keywords: ["mutlak"] },
+  { slug: "oran-oranti", title: "Oran ve Orantı", track: "9", unit: "denklem-esitsizlik-9", summary: "Doğru ve ters orantı, orantı problemleri.", minutes: 6, difficulty: "Kolay", questionCount: 15, status: "soon" },
+
+  // ── 9. Sınıf · Üçgenler ──
+  { slug: "ucgende-acilar", title: "Üçgende Açılar", track: "9", unit: "ucgenler-9", summary: "İç açı, dış açı ve açı bağıntıları.", minutes: 5, difficulty: "Kolay", questionCount: 14, status: "soon" },
+  { slug: "ucgende-kenar-aci-bagintilari", title: "Üçgende Kenar-Açı Bağıntıları", track: "9", unit: "ucgenler-9", summary: "Kenar uzunlukları ile açılar arasındaki ilişki.", minutes: 6, difficulty: "Orta", questionCount: 12, status: "soon" },
+  { slug: "dik-ucgen-trigonometri", title: "Dik Üçgende Trigonometri", track: "9", unit: "ucgenler-9", summary: "Pisagor, Öklid bağıntıları ve temel trigonometrik oranlar.", minutes: 8, difficulty: "Orta", questionCount: 22, status: "soon", keywords: ["pisagor", "öklid", "sinüs", "kosinüs"] },
+  { slug: "ucgenin-alani", title: "Üçgenin Alanı", track: "9", unit: "ucgenler-9", summary: "Alan formülleri ve özel üçgenlerde alan.", minutes: 6, difficulty: "Orta", questionCount: 16, status: "soon" },
+
+  // ── 9. Sınıf · Fonksiyonlar ──
+  { slug: "fonksiyon-kavrami", title: "Fonksiyon Kavramı", track: "9", unit: "fonksiyonlar-9", summary: "Fonksiyon tanımı, tanım ve görüntü kümesi.", minutes: 6, difficulty: "Kolay", questionCount: 14, status: "soon" },
+  { slug: "fonksiyon-cesitleri", title: "Fonksiyon Çeşitleri", track: "9", unit: "fonksiyonlar-9", summary: "Bire bir, örten, içine ve birim fonksiyonlar.", minutes: 7, difficulty: "Orta", questionCount: 16, status: "soon" },
+  { slug: "fonksiyon-grafikleri", title: "Fonksiyonların Grafikleri", track: "9", unit: "fonksiyonlar-9", summary: "Grafik okuma ve temel fonksiyon grafikleri.", minutes: 7, difficulty: "Orta", questionCount: 15, status: "soon" },
+
+  // ── 9. Sınıf · Olasılık ──
+  { slug: "basit-olaylarin-olasiligi", title: "Basit Olayların Olasılığı", track: "9", unit: "olasilik-9", summary: "Örnek uzay, olay ve olasılık hesabı.", minutes: 6, difficulty: "Kolay", questionCount: 14, status: "soon" },
+
+  // ── 10. Sınıf · Sayma ve Olasılık ──
+  { slug: "siralama-secme", title: "Sıralama ve Seçme (Permütasyon-Kombinasyon)", track: "10", unit: "sayma-olasilik-10", summary: "Permütasyon, kombinasyon ve sayma yöntemleri.", minutes: 8, difficulty: "Orta", questionCount: 24, status: "soon", keywords: ["permütasyon", "kombinasyon", "faktöriyel"] },
+  { slug: "binom-acilimi", title: "Binom Açılımı", track: "10", unit: "sayma-olasilik-10", summary: "Binom teoremi ve genel terim.", minutes: 7, difficulty: "Orta", questionCount: 14, status: "soon" },
+  { slug: "kosullu-olasilik", title: "Koşullu Olasılık", track: "10", unit: "sayma-olasilik-10", summary: "Bağımlı-bağımsız olaylar ve koşullu olasılık.", minutes: 7, difficulty: "Zor", questionCount: 16, status: "soon" },
+
+  // ── 10. Sınıf · Fonksiyonlar ──
+  { slug: "fonksiyonlarda-islemler-10", title: "Fonksiyonlarda İşlemler", track: "10", unit: "fonksiyonlar-10", summary: "Toplama, çıkarma, çarpma ve bölme işlemleri.", minutes: 6, difficulty: "Orta", questionCount: 14, status: "soon" },
+  { slug: "bileske-fonksiyon", title: "Bileşke Fonksiyon", track: "10", unit: "fonksiyonlar-10", summary: "İki fonksiyonun bileşkesi ve özellikleri.", minutes: 7, difficulty: "Orta", questionCount: 18, status: "soon" },
+  { slug: "ters-fonksiyon", title: "Ters Fonksiyon", track: "10", unit: "fonksiyonlar-10", summary: "Bir fonksiyonun tersi ve grafik simetrisi.", minutes: 7, difficulty: "Orta", questionCount: 16, status: "soon" },
+
+  // ── 10. Sınıf · Polinomlar ──
+  { slug: "polinom-kavrami", title: "Polinom Kavramı", track: "10", unit: "polinomlar-10", summary: "Polinom tanımı, derece ve katsayılar.", minutes: 5, difficulty: "Kolay", questionCount: 12, status: "soon" },
+  { slug: "polinomlarda-bolme", title: "Polinomlarda Bölme ve Çarpanlara Ayırma", track: "10", unit: "polinomlar-10", summary: "Kalan, bölüm ve çarpanlara ayırma yöntemleri.", minutes: 8, difficulty: "Orta", questionCount: 20, status: "soon", keywords: ["çarpanlara ayırma", "kalan teoremi"] },
+
+  // ── 10. Sınıf · İkinci Dereceden Denklemler ──
+  { slug: "ikinci-derece-denklem-cozumu", title: "İkinci Dereceden Denklemlerin Çözümü", track: "10", unit: "ikinci-derece-10", summary: "Diskriminant, kök bulma ve çarpanlara ayırma.", minutes: 8, difficulty: "Orta", questionCount: 22, status: "soon", keywords: ["diskriminant", "delta"] },
+  { slug: "kokler-katsayilar", title: "Kökler ve Katsayılar İlişkisi", track: "10", unit: "ikinci-derece-10", summary: "Kökler toplamı, çarpımı ve simetrik ifadeler.", minutes: 6, difficulty: "Orta", questionCount: 16, status: "soon" },
+  { slug: "parabol", title: "Parabol", track: "10", unit: "ikinci-derece-10", summary: "İkinci derece fonksiyonun grafiği, tepe noktası ve eksen kesişimleri.", minutes: 8, difficulty: "Orta", questionCount: 20, status: "soon", keywords: ["tepe noktası", "parabol"] },
+
+  // ── 10. Sınıf · Dörtgenler ──
+  { slug: "dortgenler-cokgenler", title: "Çokgenler ve Dörtgenler", track: "10", unit: "dortgenler-10", summary: "Çokgenlerde açı ve dörtgen çeşitleri.", minutes: 6, difficulty: "Orta", questionCount: 14, status: "soon" },
+  { slug: "ozel-dortgenler", title: "Özel Dörtgenler", track: "10", unit: "dortgenler-10", summary: "Paralelkenar, dikdörtgen, eşkenar dörtgen, yamuk.", minutes: 8, difficulty: "Orta", questionCount: 22, status: "soon" },
+
+  // ── 10. Sınıf · Analitik ──
+  { slug: "dogrunun-analitik-incelenmesi", title: "Doğrunun Analitik İncelenmesi", track: "10", unit: "analitik-10", summary: "Eğim, doğru denklemi ve iki doğrunun durumu.", minutes: 8, difficulty: "Orta", questionCount: 20, status: "soon", keywords: ["eğim", "doğru denklemi"] },
+
+  // ── 11. Sınıf · Trigonometri ──
+  { slug: "yonlu-acilar", title: "Yönlü Açılar ve Birim Çember", track: "11", unit: "trigonometri-11", summary: "Radyan-derece dönüşümü ve birim çember.", minutes: 7, difficulty: "Orta", questionCount: 16, status: "soon", keywords: ["radyan", "birim çember"] },
+  { slug: "trigonometrik-fonksiyonlar", title: "Trigonometrik Fonksiyonlar", track: "11", unit: "trigonometri-11", summary: "Sinüs, kosinüs, tanjant fonksiyonları ve grafikleri.", minutes: 9, difficulty: "Orta", questionCount: 24, status: "soon" },
+  { slug: "toplam-fark-formulleri", title: "Toplam-Fark ve İki Kat Açı Formülleri", track: "11", unit: "trigonometri-11", summary: "Trigonometrik toplam, fark ve yarım açı formülleri.", minutes: 9, difficulty: "Zor", questionCount: 20, status: "soon" },
+  { slug: "trigonometrik-denklemler", title: "Trigonometrik Denklemler", track: "11", unit: "trigonometri-11", summary: "Temel trigonometrik denklemlerin çözüm kümeleri.", minutes: 8, difficulty: "Zor", questionCount: 18, status: "soon" },
+
+  // ── 11. Sınıf · Analitik Geometri ──
+  { slug: "iki-nokta-arasi-uzaklik", title: "İki Nokta Arası Uzaklık ve Doğru", track: "11", unit: "analitik-11", summary: "Uzaklık formülü, orta nokta ve doğru denklemleri.", minutes: 7, difficulty: "Orta", questionCount: 16, status: "soon" },
+  { slug: "cemberin-analitik-incelenmesi", title: "Çemberin Analitik İncelenmesi", track: "11", unit: "analitik-11", summary: "Çember denklemi, merkez ve yarıçap.", minutes: 8, difficulty: "Orta", questionCount: 18, status: "soon" },
+
+  // ── 11. Sınıf · Fonksiyonlarda İşlemler ──
+  { slug: "ikinci-derece-fonksiyonlar", title: "İkinci Dereceden Fonksiyonlar ve Grafikler", track: "11", unit: "fonksiyonlarda-islemler-11", summary: "Parabol grafikleri ve dönüşümler.", minutes: 8, difficulty: "Orta", questionCount: 18, status: "soon" },
+  { slug: "fonksiyonlarin-donusumleri", title: "Fonksiyonların Dönüşümleri", track: "11", unit: "fonksiyonlarda-islemler-11", summary: "Öteleme, yansıma ve grafik dönüşümleri.", minutes: 7, difficulty: "Orta", questionCount: 14, status: "soon" },
+
+  // ── 11. Sınıf · Çember ve Daire ──
+  { slug: "cemberde-acilar", title: "Çemberde Açılar", track: "11", unit: "cember-daire-11", summary: "Merkez, çevre ve teğet-kiriş açıları.", minutes: 8, difficulty: "Orta", questionCount: 20, status: "soon" },
+  { slug: "dairede-alan-cevre", title: "Dairede Alan ve Çevre", track: "11", unit: "cember-daire-11", summary: "Daire dilimi, daire kesmesi alan ve yay uzunluğu.", minutes: 6, difficulty: "Orta", questionCount: 14, status: "soon" },
+
+  // ── 12. Sınıf · Üstel ve Logaritmik ──
+  { slug: "ustel-fonksiyon", title: "Üstel Fonksiyon", track: "12", unit: "ustel-logaritma-12", summary: "Üstel fonksiyon, grafiği ve üstel denklemler.", minutes: 7, difficulty: "Orta", questionCount: 16, status: "soon" },
+  { slug: "logaritma-fonksiyonu", title: "Logaritma Fonksiyonu", track: "12", unit: "ustel-logaritma-12", summary: "Logaritma tanımı, özellikleri ve grafiği.", minutes: 8, difficulty: "Orta", questionCount: 20, status: "soon", keywords: ["log", "ln", "logaritma"] },
+  { slug: "logaritmali-denklemler", title: "Logaritmik Denklem ve Eşitsizlikler", track: "12", unit: "ustel-logaritma-12", summary: "Logaritmalı denklem ve eşitsizlik çözümleri.", minutes: 8, difficulty: "Zor", questionCount: 18, status: "soon" },
+
+  // ── 12. Sınıf · Diziler ──
+  { slug: "dizi-kavrami", title: "Dizi Kavramı", track: "12", unit: "diziler-12", summary: "Dizi tanımı, genel terim ve dizi çeşitleri.", minutes: 6, difficulty: "Kolay", questionCount: 12, status: "soon" },
+  { slug: "aritmetik-dizi", title: "Aritmetik Dizi", track: "12", unit: "diziler-12", summary: "Ortak fark, genel terim ve toplam formülü.", minutes: 7, difficulty: "Orta", questionCount: 18, status: "soon" },
+  { slug: "geometrik-dizi", title: "Geometrik Dizi", track: "12", unit: "diziler-12", summary: "Ortak çarpan, genel terim ve toplam.", minutes: 7, difficulty: "Orta", questionCount: 18, status: "soon" },
+
+  // ── 12. Sınıf · Türev ──
+  { slug: "turevde-uygulamalar", title: "Türevin Uygulamaları", track: "12", unit: "turev-12", summary: "Artan-azalan, ekstremum ve optimizasyon problemleri.", minutes: 9, difficulty: "Zor", questionCount: 24, status: "soon", keywords: ["ekstremum", "maksimum", "minimum", "optimizasyon"] },
+
+  // ── 12. Sınıf · İntegral ──
+  { slug: "belirsiz-integral", title: "Belirsiz İntegral", track: "12", unit: "integral-12", summary: "Ters türev, temel integral kuralları.", minutes: 8, difficulty: "Orta", questionCount: 20, status: "soon" },
+  { slug: "belirli-integral", title: "Belirli İntegral ve Alan", track: "12", unit: "integral-12", summary: "Belirli integral, alan ve hacim hesabı.", minutes: 9, difficulty: "Zor", questionCount: 22, status: "soon" },
+
+  // ── TYT · Temel Kavramlar ──
+  { slug: "temel-kavramlar", title: "Temel Kavramlar", track: "tyt", unit: "temel-kavramlar-tyt", summary: "Sayı kümeleri, ardışık sayılar ve temel işlemler.", minutes: 6, difficulty: "Kolay", questionCount: 24, status: "soon" },
+  { slug: "bolme-bolunebilme", title: "Bölme ve Bölünebilme", track: "tyt", unit: "sayilar-tyt", summary: "Bölünebilme kuralları, EBOB-EKOK.", minutes: 7, difficulty: "Orta", questionCount: 26, status: "soon", keywords: ["ebob", "ekok", "bölünebilme"] },
+  { slug: "rasyonel-sayilar", title: "Rasyonel Sayılar", track: "tyt", unit: "sayilar-tyt", summary: "Kesirlerle işlemler ve sıralama.", minutes: 6, difficulty: "Kolay", questionCount: 20, status: "soon" },
+
+  // ── TYT · Üslü-Köklü ──
+  { slug: "uslu-ifadeler", title: "Üslü İfadeler", track: "tyt", unit: "uslu-koklu-tyt", summary: "Üs kuralları ve üslü denklemler.", minutes: 6, difficulty: "Orta", questionCount: 22, status: "soon" },
+  { slug: "koklu-ifadeler", title: "Köklü İfadeler", track: "tyt", unit: "uslu-koklu-tyt", summary: "Kök kuralları, paydayı rasyonel yapma.", minutes: 6, difficulty: "Orta", questionCount: 20, status: "soon" },
+
+  // ── TYT · Problemler ──
+  { slug: "sayi-problemleri", title: "Sayı Problemleri", track: "tyt", unit: "oran-problem-tyt", summary: "Sayılarla kurulan denklem problemleri.", minutes: 7, difficulty: "Orta", questionCount: 24, status: "soon" },
+  { slug: "yuzde-kar-zarar", title: "Yüzde, Kâr-Zarar Problemleri", track: "tyt", unit: "oran-problem-tyt", summary: "Yüzde hesapları, kâr-zarar ve faiz.", minutes: 7, difficulty: "Orta", questionCount: 26, status: "soon", keywords: ["yüzde", "faiz", "kar zarar"] },
+  { slug: "hareket-problemleri", title: "Hareket Problemleri", track: "tyt", unit: "oran-problem-tyt", summary: "Hız, zaman, yol ve karşılaşma problemleri.", minutes: 8, difficulty: "Zor", questionCount: 22, status: "soon" },
+
+  // ── AYT · Limit ──
+  { slug: "limit-kavrami", title: "Limit Kavramı", track: "ayt", unit: "limit-ayt", summary: "Soldan-sağdan limit ve limit kuralları.", minutes: 8, difficulty: "Orta", questionCount: 20, status: "soon", keywords: ["limit"] },
+  { slug: "süreklilik", title: "Süreklilik", track: "ayt", unit: "limit-ayt", summary: "Bir noktada ve aralıkta süreklilik.", minutes: 7, difficulty: "Orta", questionCount: 16, status: "soon" },
+
+  // ── AYT · Türev (TAM PAKET — sıralı seri) ──
+  { slug: "turevin-tanimi", title: "Türevin Tanımı ve Temel Kuralları", track: "ayt", unit: "turev-ayt", summary: "Türevin limit tanımı, anlık değişim, teğet eğimi, süreklilik–türevlenebilirlik ilişkisi ve temel kurallar.", minutes: 9, difficulty: "Orta", questionCount: 18, status: "published", keywords: ["türev", "eğim", "teğet", "limit tanımı", "anlık değişim"] },
+  { slug: "turev-alma-kurallari", title: "Türev Alma Kuralları", track: "ayt", unit: "turev-ayt", summary: "Kuvvet, çarpım, bölüm ve zincir kuralı — adım adım, çözümlü örneklerle.", minutes: 10, difficulty: "Orta", questionCount: 26, status: "published", keywords: ["zincir kuralı", "çarpım kuralı", "bölüm kuralı", "kuvvet kuralı"] },
+  { slug: "ozel-fonksiyon-turevleri", title: "Trigonometrik, Üstel ve Logaritmik Türevler", track: "ayt", unit: "turev-ayt", summary: "sin, cos, tan, e^x, a^x, ln x ve ters trigonometrik fonksiyonların türevleri.", minutes: 10, difficulty: "Orta", questionCount: 24, status: "published", keywords: ["trigonometrik türev", "üstel türev", "logaritma türevi", "sinüs türev"] },
+  { slug: "kapali-parametrik-turev", title: "Kapalı, Parametrik ve Yüksek Mertebeden Türev", track: "ayt", unit: "turev-ayt", summary: "Kapalı (implicit) türev, parametrik türev, ters fonksiyon türevi ve ardışık türevler.", minutes: 10, difficulty: "Zor", questionCount: 20, status: "published", keywords: ["kapalı türev", "parametrik türev", "ikinci türev", "implicit"] },
+  { slug: "teget-normal", title: "Teğet ve Normal Doğrusu", track: "ayt", unit: "turev-ayt", summary: "Bir eğriye çizilen teğet ve normalin denklemi, açısı ve uygulamaları.", minutes: 8, difficulty: "Orta", questionCount: 22, status: "published", keywords: ["teğet", "normal", "teğet denklemi", "eğim"] },
+  { slug: "artan-azalan-ekstremum", title: "Artan-Azalan Fonksiyonlar ve Yerel Ekstremum", track: "ayt", unit: "turev-ayt", summary: "Türevin işaretiyle artan/azalan aralıklar, yerel maksimum–minimum ve birinci türev testi.", minutes: 10, difficulty: "Orta", questionCount: 26, status: "published", keywords: ["artan azalan", "ekstremum", "yerel maksimum", "kritik nokta"] },
+  { slug: "ikinci-turev-konkavlik", title: "İkinci Türev, Konkavlık ve Dönüm Noktaları", track: "ayt", unit: "turev-ayt", summary: "Konkavlık (bükeylik), dönüm noktası ve ikinci türev testiyle ekstremum belirleme.", minutes: 9, difficulty: "Zor", questionCount: 20, status: "published", keywords: ["konkavlık", "dönüm noktası", "ikinci türev testi", "bükey"] },
+  { slug: "optimizasyon", title: "Optimizasyon (Maksimum-Minimum) Problemleri", track: "ayt", unit: "turev-ayt", summary: "Gerçek hayat maks-min problemleri: alan, hacim, maliyet ve mesafe optimizasyonu.", minutes: 11, difficulty: "Zor", questionCount: 24, status: "published", keywords: ["optimizasyon", "maksimum minimum", "en büyük hacim", "uygulama"] },
+  { slug: "lhopital-belirsizlik", title: "L'Hôpital Kuralı ve Belirsizlik Durumları", track: "ayt", unit: "turev-ayt", summary: "0/0 ve ∞/∞ belirsizliklerini türevle çözme; L'Hôpital kuralının doğru kullanımı.", minutes: 8, difficulty: "Zor", questionCount: 18, status: "published", keywords: ["lhopital", "belirsizlik", "limit", "0/0"] },
+  { slug: "turev-formul-ozeti", title: "Türev Formülleri ve Sınav Taktikleri", track: "ayt", unit: "turev-ayt", summary: "Tüm türev kurallarının tek sayfalık özeti, sık yapılan hatalar ve YKS soru tipleri.", minutes: 7, difficulty: "Kolay", questionCount: 30, status: "published", keywords: ["türev formülleri", "özet", "sınav taktiği", "yks türev"] },
+
+  // ── AYT · İntegral ──
+  { slug: "integral-kavrami", title: "İntegral Kavramı", track: "ayt", unit: "integral-ayt", summary: "Belirsiz integral ve temel integral teknikleri.", minutes: 8, difficulty: "Zor", questionCount: 20, status: "soon" },
+  { slug: "integralde-alan", title: "İntegral ile Alan Hesabı", track: "ayt", unit: "integral-ayt", summary: "Eğri altında kalan alan ve iki eğri arası alan.", minutes: 9, difficulty: "Zor", questionCount: 22, status: "soon" },
+
+  // ── AYT · Logaritma ──
+  { slug: "logaritma-ayt-konu", title: "Logaritma (AYT)", track: "ayt", unit: "logaritma-ayt", summary: "Logaritma özellikleri ve ileri logaritmik denklemler.", minutes: 8, difficulty: "Zor", questionCount: 18, status: "soon" },
+];
+
+// ── Derivation helpers (pure, no IO) ─────────────────────────────────────────
+
+export function getTopic(slug: string): Topic | undefined {
+  return TOPICS.find((t) => t.slug === slug);
+}
+
+export function getUnit(slug: string): Unit | undefined {
+  return UNITS.find((u) => u.slug === slug);
+}
+
+export function trackMeta(track: Track): TrackMeta {
+  const m = TRACKS.find((t) => t.key === track);
+  if (!m) throw new Error(`Unknown track: ${track}`);
+  return m;
+}
+
+export function topicsByTrack(track: Track): Topic[] {
+  return TOPICS.filter((t) => t.track === track);
+}
+
+export function topicsByUnit(unitSlug: string): Topic[] {
+  return TOPICS.filter((t) => t.unit === unitSlug);
+}
+
+export function unitsByTrack(track: Track): Unit[] {
+  return UNITS.filter((u) => u.track === track).sort((a, b) => a.order - b.order);
+}
+
+export function publishedTopics(): Topic[] {
+  return TOPICS.filter((t) => t.status === "published");
+}
+
+export function soonTopics(): Topic[] {
+  return TOPICS.filter((t) => t.status === "soon");
+}
+
+export interface Crumb {
+  label: string;
+  href?: string;
+}
+
+/** Breadcrumb for a topic: Anasayfa › Track › Unit › Topic (last has no href). */
+export function breadcrumb(slug: string): Crumb[] {
+  const topic = getTopic(slug);
+  if (!topic) return [{ label: "Anasayfa", href: "/" }];
+  const tm = trackMeta(topic.track);
+  const unit = getUnit(topic.unit);
+  const crumbs: Crumb[] = [
+    { label: "Anasayfa", href: "/" },
+    { label: tm.label, href: tm.route },
+  ];
+  if (unit) crumbs.push({ label: unit.title, href: `${tm.route}#${unit.slug}` });
+  crumbs.push({ label: topic.title });
+  return crumbs;
+}
+
+/** Prev/next within the SAME unit, published-only (lessons never dead-end). */
+export function siblings(slug: string): { prev?: Topic; next?: Topic } {
+  const topic = getTopic(slug);
+  if (!topic) return {};
+  const published = topicsByUnit(topic.unit).filter((t) => t.status === "published");
+  const i = published.findIndex((t) => t.slug === slug);
+  if (i === -1) return {};
+  return { prev: published[i - 1], next: published[i + 1] };
+}
+
+/** Aggregate stats for a track (used on homepage cards). */
+export function trackStats(track: Track): { units: number; topics: number; questions: number } {
+  const topics = topicsByTrack(track);
+  return {
+    units: unitsByTrack(track).length,
+    topics: topics.length,
+    questions: topics.reduce((sum, t) => sum + (t.questionCount ?? 0), 0),
+  };
+}

@@ -1,0 +1,219 @@
+import { topicMetadata } from "@/lib/seo";
+
+export const metadata = topicMetadata("artan-azalan-ekstremum");
+
+<Konu slug="artan-azalan-ekstremum" />
+
+<p className="lead">Bir fonksiyonun **nerede yükseldiğini, nerede alçaldığını** ve **tepe/çukur noktalarını** belirlemek, türevin en çok soru getiren uygulamasıdır. Anahtar tek bir fikirdir: $f'$'nün **işareti** $f$'nin gidişatını, $f'$'nün **işaret değiştirmesi** de yerel ekstremumları ele verir. Bu konuda kritik nokta, birinci türev testi ve işaret tablosunu eksiksiz işliyoruz.</p>
+
+## 1. Artanlık ve Azalanlık
+
+Bir aralıkta türevin işareti, fonksiyonun o aralıktaki davranışını tam olarak belirler:
+
+$$f'(x) > 0 \;\Rightarrow\; f \text{ artandır}, \qquad f'(x) < 0 \;\Rightarrow\; f \text{ azalandır}.$$
+
+Sezgi: $f'(x)$ teğetin eğimidir. Eğim pozitifse grafik yukarı, negatifse aşağı gider. Bir $(a,b)$ aralığının **her** noktasında $f'(x) > 0$ ise $f$ o aralıkta artan; her noktasında $f'(x) < 0$ ise azalandır.
+
+> **Dikkat:** Artanlık/azalanlık daima bir **aralık** üzerinde tanımlıdır, tek bir noktada değil. "$x=2$'de artan" demek anlamsızdır; doğrusu "$x=2$'yi içeren bir aralıkta artan"dır.
+
+## 2. Kritik Nokta
+
+$f$'nin tanım kümesindeki bir $x$ değeri, eğer
+
+$$f'(x)=0 \quad \text{veya} \quad f'(x) \text{ tanımsız}$$
+
+ise **kritik noktadır**. Fonksiyon yön değiştirebileceği için (artandan azalana ya da tersi) ekstremumlar yalnızca kritik noktalarda aranır. Çoğu polinomda kritik noktalar $f'(x)=0$ denkleminin kökleridir.
+
+## 3. Birinci Türev Testi
+
+Kritik nokta $x=c$ civarında $f'$'nün işaretine bakılır:
+
+| $x=c$ etrafında $f'$ işareti | Sonuç |
+| --- | --- |
+| $+ \to -$ (artandan azalana) | $x=c$ **yerel maksimum** |
+| $- \to +$ (azalandan artana) | $x=c$ **yerel minimum** |
+| İşaret değişmiyor ($+\to+$ veya $-\to-$) | **Ekstremum yok** |
+
+Yani önemli olan $f'(c)=0$ olması değil, $f'$'nün $c$'de **işaret değiştirmesidir**. Pratikte: $f'$'yü çarpanlara ayır, köklerini sayı doğrusuna diz, her aralıkta işaretini belirle. Bu tabloya **işaret tablosu** denir.
+
+## 4. İşaret Tablosu Örneği
+
+$f(x)=x^{3}-3x$ için $f'(x)=3x^{2}-3=3(x-1)(x+1)$. Kökler $x=-1$ ve $x=1$:
+
+| Aralık | $(-\infty,-1)$ | $(-1,1)$ | $(1,\infty)$ |
+| --- | --- | --- | --- |
+| $f'(x)$ işareti | $+$ | $-$ | $+$ |
+| $f$ davranışı | artan | azalan | artan |
+
+$x=-1$'de $+\to-$ olduğundan yerel maksimum, $x=1$'de $-\to+$ olduğundan yerel minimum vardır.
+
+<Ornek>
+
+<Soru>
+
+$f(x)=x^{3}-3x$ fonksiyonunun artan/azalan aralıklarını ve yerel ekstremum **değerlerini** bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Türevi al ve çarpanlara ayır: $f'(x)=3x^{2}-3=3(x-1)(x+1)$.
+
+2. Kritik noktalar: $f'(x)=0 \Rightarrow x=-1$ ve $x=1$.
+
+3. İşaret tablosu: $(-\infty,-1)$ ve $(1,\infty)$ aralıklarında $f'(x) > 0$ (artan); $(-1,1)$ aralığında $f'(x) < 0$ (azalan).
+
+4. Ekstremum türü: $x=-1$'de $f'$ işareti $+\to-$ (yerel maks), $x=1$'de $-\to+$ (yerel min).
+
+5. Değerleri hesapla: $f(-1)=(-1)^{3}-3(-1)=-1+3=2$ ve $f(1)=1-3=-2$.
+
+<Cevap>Artan: $(-\infty,-1)\cup(1,\infty)$, azalan: $(-1,1)$. Yerel maksimum $f(-1)=2$, yerel minimum $f(1)=-2$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=x^{3}-6x^{2}+9x+1$ fonksiyonunun yerel maksimum ve yerel minimum noktalarını bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+$f'(x)$ ikinci dereceden bir ifade çıkar; ortak çarpan $3$'ü ayırıp parantezi çarpanlara ayır.
+
+</Ipucu>
+
+<Cozum>
+
+1. Türevi al: $f'(x)=3x^{2}-12x+9=3(x^{2}-4x+3)=3(x-1)(x-3)$.
+
+2. Kritik noktalar: $x=1$ ve $x=3$.
+
+3. İşaret tablosu: $(-\infty,1)$'de $f'(x) > 0$, $(1,3)$'te $f'(x) < 0$, $(3,\infty)$'da $f'(x) > 0$.
+
+4. $x=1$'de $f'$ işareti $+\to-$ → yerel maksimum; $x=3$'te $-\to+$ → yerel minimum.
+
+5. Değerler: $f(1)=1-6+9+1=5$ ve $f(3)=27-54+27+1=1$.
+
+<Cevap>Yerel maksimum $(1,5)$; yerel minimum $(3,1)$. (Bu eğri, "Türevin Tanımı" konusundaki şekille aynıdır.)</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=x^{4}-2x^{2}$ fonksiyonunun bütün yerel ekstremumlarını sınıflandırınız.
+
+</Soru>
+
+<Ipucu>
+
+$f'(x)$'te ortak çarpan $4x$'i ayır; geriye iki kareler farkı kalır.
+
+</Ipucu>
+
+<Cozum>
+
+1. Türevi al ve çarpanlara ayır: $f'(x)=4x^{3}-4x=4x(x^{2}-1)=4x(x-1)(x+1)$.
+
+2. Kritik noktalar: $x=-1$, $x=0$, $x=1$.
+
+3. İşaret tablosu (soldan sağa): $(-\infty,-1)$'de $-$, $(-1,0)$'da $+$, $(0,1)$'de $-$, $(1,\infty)$'da $+$.
+
+| Aralık | $(-\infty,-1)$ | $(-1,0)$ | $(0,1)$ | $(1,\infty)$ |
+| --- | --- | --- | --- | --- |
+| $f'(x)$ | $-$ | $+$ | $-$ | $+$ |
+| $f$ | azalan | artan | azalan | artan |
+
+4. $x=-1$: $-\to+$ → yerel min; $x=0$: $+\to-$ → yerel maks; $x=1$: $-\to+$ → yerel min.
+
+5. Değerler: $f(\pm 1)=1-2=-1$ ve $f(0)=0$.
+
+<Cevap>Yerel minimum $f(\pm 1)=-1$; yerel maksimum $f(0)=0$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=x^{3}$ fonksiyonunun $x=0$ noktasında yerel ekstremumu var mıdır?
+
+</Soru>
+
+<Ipucu>
+
+$f'(0)=0$ olması ekstremum için **yeterli değildir**; işaret değişimine bak.
+
+</Ipucu>
+
+<Cozum>
+
+1. Türev: $f'(x)=3x^{2}$.
+
+2. Kritik nokta: $f'(x)=0 \Rightarrow x=0$.
+
+3. İşaret incele: $x\neq 0$ için $3x^{2} > 0$. Yani hem $(-\infty,0)$ hem $(0,\infty)$ aralığında $f'(x) > 0$.
+
+4. $f'$ işaret değiştirmediğinden ($+\to+$) $x=0$ ekstremum **değildir**; $f$ her yerde artandır. $x=0$ bir **yatay büküm (dönüm) noktasıdır**.
+
+<Cevap>Ekstremum yoktur; $x=0$ yatay büküm noktasıdır.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$a$ hangi değerler için $f(x)=x^{3}+ax^{2}+3x-5$ fonksiyonu **tüm gerçek sayılarda artandır**?
+
+</Soru>
+
+<Ipucu>
+
+Her yerde artan olması için her $x$ için $f'(x)\ge 0$ olmalı. Bu, ikinci dereceden $f'$'nün diskriminantına bağlıdır.
+
+</Ipucu>
+
+<Cozum>
+
+1. Türev: $f'(x)=3x^{2}+2ax+3$.
+
+2. $f$'nin her yerde artan olması için her $x$ için $f'(x)\ge 0$ gerekir. Baş katsayı $3 > 0$ olduğundan parabol yukarı açılır; koşul diskriminantın pozitif olmamasıdır.
+
+3. Diskriminant: $\Delta=(2a)^{2}-4\cdot 3\cdot 3=4a^{2}-36$.
+
+4. $\Delta\le 0 \Rightarrow 4a^{2}\le 36 \Rightarrow a^{2}\le 9 \Rightarrow -3\le a\le 3$.
+
+<Cevap>$-3\le a\le 3$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **$f'(c)=0$'ı her zaman ekstremum sanmak.** İşaret değişmiyorsa ekstremum yoktur; klasik örnek $f(x)=x^{3}$, $x=0$'da $f'=0$ ama yatay büküm.
+- **Yerel ile mutlak ekstremumu karıştırmak.** Yerel maksimum yalnızca *yakın çevrede* en büyüktür; fonksiyonun her yerdeki en büyük değeri olmayabilir.
+- **$f'$'nün tanımsız olduğu kritik noktaları atlamak.** Köşe noktaları (ör. $|x|$'in $x=0$'ı) veya dikey teğetlerde $f'=0$ olmasa da ekstremum olabilir.
+- **Aralık uç noktalarını gözardı etmek.** Kapalı $[a,b]$ aralığında mutlak ekstremum, uç noktalarda da olabilir; sadece iç kritik noktalara bakmak yetmez.
+
+## Sınav İpucu
+
+- Mekanik adım: $f'$'yü **çarpanlara ayır → kökleri sayı doğrusuna diz → her aralıkta işaret bak**. Bu üç adım soruların büyük çoğunluğunu çözer.
+- İşareti hızlı bulmak için her aralıktan bir **deneme değeri** seçip $f'$'de yerine koy; tüm çarpanların işaretini ayrı ayrı saymaktan daha hızlıdır.
+- "Her yerde artan/azalan" tipi parametre sorularında ($f'$ ikinci dereceyse) çözüm **diskriminanttan** gelir: $\Delta\le 0$.
+- Yön değişimini hatırla: tablo soldan sağa $+,-,+$ ise sırasıyla **maks, min** çıkar.
+
+<KonuNav slug="artan-azalan-ekstremum" />

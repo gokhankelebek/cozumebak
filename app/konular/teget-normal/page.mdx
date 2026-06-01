@@ -1,0 +1,208 @@
+import { topicMetadata } from "@/lib/seo";
+
+export const metadata = topicMetadata("teget-normal");
+
+<Konu slug="teget-normal" />
+
+<p className="lead">Türevin geometrik anlamı, bir eğriye verilen noktada çizilen **teğetin eğimidir**. Bu konu, teğet ve ona dik olan **normal** doğrularının denklemlerini, bunların eğim ilişkisini, eğri ile bir doğrunun paralellik/diklik koşullarını ve dış noktadan teğet problemlerini eksiksiz işler. AYT'de bu tip sorular doğrudan türev ile bir noktanın koordinat geometrisini birleştirir.</p>
+
+## 1. Teğet Doğrusunun Denklemi
+
+$f$ türevlenebilir bir fonksiyon olsun. Eğri üzerindeki $\big(a,f(a)\big)$ noktasında çizilen **teğetin eğimi** $f'(a)$'dır. Bir noktası ve eğimi bilinen doğrunun denklemiyle:
+
+$$y-f(a)=f'(a)\,(x-a)$$
+
+Teğetin eğimi her zaman türevden gelir: $m_T=f'(a)$.
+
+## 2. Normal Doğrusunun Denklemi
+
+**Normal**, teğet doğrusuna değme noktasında **dik** olan doğrudur. Birbirine dik iki doğrunun eğimleri çarpımı $-1$ olduğundan, normalin eğimi teğet eğiminin **ters-negatifidir**:
+
+$$m_{N}=-\frac{1}{f'(a)}\qquad(f'(a)\neq 0)$$
+
+Buradan normalin denklemi:
+
+$$y-f(a)=-\frac{1}{f'(a)}\,(x-a)$$
+
+## 3. Teğetin Eksenle Yaptığı Açı
+
+Teğetin $x$ ekseniyle yaptığı (pozitif yönde ölçülen) açı $\theta$ ise, eğim bu açının tanjantıdır:
+
+$$\tan\theta=f'(a)$$
+
+| Durum | Koşul | Sonuç |
+| --- | --- | --- |
+| **Yatay teğet** | $f'(a)=0$ | Teğet $x$ eksenine paralel; normal düşey |
+| **Düşey teğet** | $f'(a)$ tanımsız | Teğet $y$ eksenine paralel; **normal yatay** olur |
+| **Paralellik** | $f'(a)=m$ | Teğet, eğimi $m$ olan doğruya paraleldir |
+| **Diklik** | $f'(a)=-\dfrac{1}{m}$ | Teğet, eğimi $m$ olan doğruya diktir |
+
+> **Dikkat:** "Teğet şu doğruya **paralel**" demek eğimler **eşit** demektir; "**dik**" demek eğimlerin çarpımı $-1$ demektir. İkisini karıştırmak en sık hatadır.
+
+## 4. Çözüm Stratejisi
+
+Bir teğet/normal sorusunda izlenecek sıra:
+
+1. **Değme noktasını netleştir.** Nokta eğri üzerindeyse $f(a)$'yı hesapla; eğri üzerinde değilse değme noktasını $\big(a,f(a)\big)$ olarak bilinmeyenle al.
+2. **Eğimi bul:** $m_T=f'(a)$.
+3. **Koşulu uygula:** paralellik/diklik veya dış noktadan geçme koşulundan $a$'yı çöz.
+4. **Doğru denklemini yaz.**
+
+<Ornek>
+
+<Soru>
+
+$y=x^{2}-4x+3$ eğrisine $x=1$ noktasında çizilen **teğetin** denklemini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Değme noktasının $y$ değeri: $f(1)=1-4+3=0$, yani nokta $(1,0)$.
+
+2. Türev: $f'(x)=2x-4$.
+
+3. Eğim: $m_T=f'(1)=2\cdot 1-4=-2$.
+
+4. Teğet denklemi: $y-0=-2(x-1)\Rightarrow y=-2x+2$.
+
+<Cevap>$y=-2x+2$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Aynı $y=x^{2}-4x+3$ eğrisine $(1,0)$ noktasında çizilen **normalin** denklemini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Normalin eğimi, teğet eğiminin ters-negatifidir: $m_N=-\dfrac{1}{f'(1)}$.
+
+</Ipucu>
+
+<Cozum>
+
+1. Önceki örnekten teğet eğimi $f'(1)=-2$.
+
+2. Normalin eğimi: $m_N=-\dfrac{1}{-2}=\dfrac{1}{2}$.
+
+3. Normal denklemi: $y-0=\dfrac{1}{2}(x-1)$.
+
+4. Sadeleştir: $y=\dfrac{x-1}{2}$.
+
+<Cevap>$y=\dfrac{x-1}{2}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$y=x^{3}$ eğrisinin $y=3x+5$ doğrusuna **paralel** olan teğetlerinin denklemlerini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Paralellik eğimlerin eşitliğidir. Önce $f'(x)$'i verilen doğrunun eğimine eşitleyip değme noktasını bul.
+
+</Ipucu>
+
+<Cozum>
+
+1. Verilen doğrunun eğimi $m=3$. Paralellik için teğetin eğimi de $3$ olmalı.
+
+2. Türev: $f'(x)=3x^{2}$. Koşul: $3x^{2}=3\Rightarrow x^{2}=1\Rightarrow x=\pm 1$.
+
+3. Değme noktaları: $x=1$ için $(1,1)$; $x=-1$ için $(-1,-1)$.
+
+4. $(1,1)$ teğeti: $y-1=3(x-1)\Rightarrow y=3x-2$.
+
+5. $(-1,-1)$ teğeti: $y-(-1)=3\big(x-(-1)\big)\Rightarrow y=3x+2$.
+
+<Cevap>$y=3x-2$ ve $y=3x+2$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$y=x^{2}$ eğrisine, eğri **üzerinde olmayan** $(0,-1)$ noktasından çizilen teğet doğrularının denklemlerini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Nokta eğri üzerinde değil; doğrudan formüle koyma. Değme noktasını $\big(a,a^{2}\big)$ al, teğet eğimini iki yoldan yazıp eşitle.
+
+</Ipucu>
+
+<Cozum>
+
+1. Değme noktası eğri üzerinde olsun: $\big(a,a^{2}\big)$. Türev $f'(x)=2x$ olduğundan bu noktadaki teğet eğimi $2a$'dır.
+
+2. Aynı eğim, teğetin geçtiği $(0,-1)$ ile değme noktası arasındaki eğime de eşit olmalı: $\dfrac{a^{2}-(-1)}{a-0}=\dfrac{a^{2}+1}{a}$.
+
+3. İki ifadeyi eşitle: $2a=\dfrac{a^{2}+1}{a}\Rightarrow 2a^{2}=a^{2}+1\Rightarrow a^{2}=1\Rightarrow a=\pm 1$.
+
+4. $a=1$: değme noktası $(1,1)$, eğim $2$, teğet $y-1=2(x-1)\Rightarrow y=2x-1$.
+
+5. $a=-1$: değme noktası $(-1,1)$, eğim $-2$, teğet $y-1=-2(x+1)\Rightarrow y=-2x-1$.
+
+6. Kontrol: her iki doğru da $x=0$ için $y=-1$ verir; $(0,-1)$'den geçerler.
+
+<Cevap>$y=2x-1$ ve $y=-2x-1$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$y=x^{3}-3x$ eğrisinin **yatay teğetinin** olduğu noktaları ve bu noktalardaki **normal** doğrularını bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Yatay teğet koşulu: $f'(x)=0$. Türev: $f'(x)=3x^{2}-3$.
+
+2. $3x^{2}-3=0\Rightarrow x^{2}=1\Rightarrow x=\pm 1$.
+
+3. Noktalar: $f(1)=1-3=-2\Rightarrow(1,-2)$; $f(-1)=-1+3=2\Rightarrow(-1,2)$.
+
+4. Teğet yatay ($m_T=0$) olduğundan normal **düşeydir**; düşey doğrunun denklemi $x=$ sabittir.
+
+5. $(1,-2)$ noktasındaki normal: $x=1$. $(-1,2)$ noktasındaki normal: $x=-1$.
+
+<Cevap>Yatay teğet noktaları $(1,-2)$ ve $(-1,2)$; normaller sırasıyla $x=1$ ve $x=-1$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Noktayı eğri üzerinde sanıp koordinatını doğrudan formüle koymak.** Önce $f(a)$ hesaplanmalı; nokta eğri üzerinde değilse değme noktası bilinmeyenle alınır.
+- **Normal eğiminde ters işareti unutmak.** $m_N=-\dfrac{1}{f'(a)}$; yalnızca $\dfrac{1}{f'(a)}$ yazmak yanlıştır.
+- **"Paralel" ile "dik" koşulunu karıştırmak.** Paralel: $f'(a)=m$. Dik: $f'(a)\cdot m=-1$.
+- **Yatay teğette normali eğimli yazmaya çalışmak.** $f'(a)=0$ ise normal düşeydir ($x=a$); $m_N=-\dfrac{1}{0}$ tanımsızdır.
+
+## Sınav İpucu
+
+"Teğet şu doğruya **paralel/dik**" tipindeki sorularda önce **eğim koşulundan değme noktasını** bul: paralellikte $f'(a)=m$, diklikte $f'(a)=-\dfrac{1}{m}$. Eğri üzerinde olmayan bir noktadan teğet isteniyorsa değme noktasını $\big(a,f(a)\big)$ alıp "türevden gelen eğim = iki nokta eğimi" denklemini kur. Yatay/düşey teğet anahtar kelimeleri sırasıyla $f'(a)=0$ ve $f'(a)$ tanımsız koşullarına çevrilir.
+
+<KonuNav slug="teget-normal" />
