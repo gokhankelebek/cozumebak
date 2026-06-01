@@ -1,0 +1,316 @@
+import { topicMetadata } from "@/lib/seo";
+import { Parabol } from "@/components/figures/ParabolFig";
+
+export const metadata = topicMetadata("parabol-ayt");
+
+<Konu slug="parabol-ayt" />
+
+<p className="lead">**Parabol**, ikinci dereceden bir fonksiyonun ($y=ax^{2}+bx+c$, $a\ne 0$) grafiğidir. Bu konu, parabolün **kollarının yönünü**, **tepe noktasını**, **simetri eksenini** ve **eksen kesişimlerini** tek bir çatı altında toplar. Bu dört büyüklüğü doğru hesaplayabilen biri, parabolle ilgili hemen her soruyu kısa yoldan çözebilir.</p>
+
+## 1. Genel Denklem ve Kolların Yönü
+
+İkinci dereceden fonksiyon $y=ax^{2}+bx+c$ biçimindedir ve $a\ne 0$ olmak zorundadır (aksi hâlde doğru elde edilir). Grafiği bir paraboldür ve **kolların yönünü baş katsayı $a$ belirler:**
+
+| Durum | Kolların yönü | Tepe noktası |
+| --- | --- | --- |
+| $a > 0$ | yukarı | en **küçük** nokta (minimum) |
+| $a < 0$ | aşağı | en **büyük** nokta (maksimum) |
+
+Yani $a>0$ iken parabol en küçük değerini, $a<0$ iken en büyük değerini tepe noktasında alır.
+
+## 2. Tepe Noktası ve Simetri Ekseni
+
+Parabolün dönüm yaptığı nokta **tepe noktasıdır.** Apsisi her zaman şu formülle bulunur:
+
+$$x_{T}=-\dfrac{b}{2a}$$
+
+Tepe noktasının ordinatı, bu apsisi fonksiyonda yerine koyarak elde edilir. Böylece tepe noktası:
+
+$$T\left(-\dfrac{b}{2a},\ f\!\left(-\dfrac{b}{2a}\right)\right)$$
+
+Parabol bu noktadan geçen **dikey doğruya göre simetriktir.** Bu doğruya **simetri ekseni** denir:
+
+$$x=-\dfrac{b}{2a}$$
+
+Fonksiyonun **en küçük / en büyük değeri**, tepe noktasının $y$ değerine ($f\!\left(-\dfrac{b}{2a}\right)$) eşittir.
+
+## 3. Eksen Kesişimleri
+
+- **$y$ ekseni kesişimi:** $x=0$ koyarız, $y=c$ çıkar. Yani parabol $y$ eksenini her zaman $(0,c)$ noktasında keser.
+- **$x$ ekseni kesişimleri:** $y=0$ denkleminin, yani $ax^{2}+bx+c=0$ denkleminin **kökleridir.** Diskriminant $\Delta=b^{2}-4ac$ olmak üzere $\Delta>0$ ise iki, $\Delta=0$ ise bir (tepe $x$ ekseni üzerinde), $\Delta<0$ ise sıfır kesişim vardır.
+
+<Figur>
+
+<Parabol />
+
+<Altyazi>Şekil 1 — $y=x^{2}-4x+3$ parabolü. $a>0$ olduğundan kollar yukarıdadır. Tepe noktası $T(2,-1)$, simetri ekseni kesik çizgiyle gösterilen $x=2$ doğrusudur. Parabol $x$ eksenini $x=1$ ve $x=3$ köklerinde, $y$ eksenini $(0,3)$ noktasında keser.</Altyazi>
+
+</Figur>
+
+## 4. Örneklerle Pekiştirme
+
+<Ornek>
+
+<Soru>
+
+$y=x^{2}-4x+3$ parabolünün tepe noktasını bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Apsisi bul: $a=1,\ b=-4$ olduğundan $x_{T}=-\dfrac{b}{2a}=-\dfrac{-4}{2\cdot 1}=2$.
+2. Ordinatı bul: $y_{T}=2^{2}-4\cdot 2+3=4-8+3=-1$.
+
+<Cevap>$T(2,-1)$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$y=x^{2}-4x+3$ parabolünün $x$ eksenini kestiği noktaları (köklerini) bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $y=0$ yaz: $x^{2}-4x+3=0$.
+2. Çarpanlara ayır: $(x-1)(x-3)=0$.
+3. Kökleri oku: $x=1$ veya $x=3$.
+
+<Cevap>Parabol $x$ eksenini $x=1$ ve $x=3$ noktalarında keser.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$y=-x^{2}+2x+3$ parabolünün tepe noktasını ve en büyük değerini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Burada $a=-1<0$ olduğundan kollar aşağıdır; tepe noktası **en büyük** noktadır.
+2. Apsis: $x_{T}=-\dfrac{b}{2a}=-\dfrac{2}{2\cdot(-1)}=1$.
+3. Ordinat: $y_{T}=-(1)^{2}+2\cdot 1+3=-1+2+3=4$.
+
+<Cevap>Tepe noktası $T(1,4)$; en büyük değer $4$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$y=x^{2}-6x+5$ parabolünün simetri ekseninin denklemini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Simetri ekseni $x=-\dfrac{b}{2a}$ doğrusudur.
+2. $a=1,\ b=-6$ koy: $x=-\dfrac{-6}{2\cdot 1}=3$.
+
+<Cevap>Simetri ekseni $x=3$ doğrusudur.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$y=x^{2}-4x+3$ parabolünün $y$ eksenini kestiği noktayı bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $y$ ekseni üzerinde $x=0$'dır.
+2. $x=0$ koy: $y=0^{2}-4\cdot 0+3=3$. Bu, $c$ sabitine eşittir.
+
+<Cevap>Parabol $y$ eksenini $(0,3)$ noktasında keser.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Çözümlü Sorular
+
+<Ornek>
+
+<Soru>
+
+$y=x^{2}+2x-8$ parabolünün tepe noktasını bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Önce $x_{T}=-\dfrac{b}{2a}$ ile apsisi bul; bulduğun değeri fonksiyonda yerine koyarak ordinatı hesapla.
+
+</Ipucu>
+
+<Cozum>
+
+1. Katsayılar: $a=1,\ b=2,\ c=-8$.
+2. Apsis: $x_{T}=-\dfrac{2}{2\cdot 1}=-1$.
+3. Ordinat: $y_{T}=(-1)^{2}+2\cdot(-1)-8=1-2-8=-9$.
+
+<Cevap>$T(-1,-9)$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$y=2x^{2}-8x+6$ parabolünün $x$ eksenini kestiği noktaları bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+$y=0$ koyup ikinci dereceden denklemi çöz. Önce tüm terimleri ortak bir çarpana bölmek kökleri kolaylaştırır.
+
+</Ipucu>
+
+<Cozum>
+
+1. $y=0$ yaz: $2x^{2}-8x+6=0$.
+2. Her terimi $2$'ye böl: $x^{2}-4x+3=0$.
+3. Çarpanlara ayır: $(x-1)(x-3)=0$, buradan $x=1$ veya $x=3$.
+
+<Cevap>Parabol $x$ eksenini $x=1$ ve $x=3$ noktalarında keser.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$y=2x^{2}-8x+6$ fonksiyonunun en küçük değerini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+$a>0$ olduğundan en küçük değer tepe noktasının $y$ değeridir. Önce $x_{T}$'yi bul.
+
+</Ipucu>
+
+<Cozum>
+
+1. $a=2>0$ olduğundan tepe noktası minimumdur.
+2. Apsis: $x_{T}=-\dfrac{-8}{2\cdot 2}=2$.
+3. En küçük değer: $y_{T}=2\cdot 2^{2}-8\cdot 2+6=8-16+6=-2$.
+
+<Cevap>En küçük değer $-2$ (tepe noktası $(2,-2)$).</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$y=-2x^{2}+4x+1$ fonksiyonunun en büyük değerini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+$a<0$ olduğundan kollar aşağıdadır ve fonksiyonun bir en büyük değeri vardır; bu değer tepe noktasının ordinatıdır.
+
+</Ipucu>
+
+<Cozum>
+
+1. $a=-2<0$ olduğundan tepe noktası maksimumdur.
+2. Apsis: $x_{T}=-\dfrac{4}{2\cdot(-2)}=1$.
+3. En büyük değer: $y_{T}=-2\cdot 1^{2}+4\cdot 1+1=-2+4+1=3$.
+
+<Cevap>En büyük değer $3$ (tepe noktası $(1,3)$).</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$y=x^{2}-8x+12$ parabolünün simetri ekseninin denklemini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Simetri ekseni $x=-\dfrac{b}{2a}$ dikey doğrusudur. İşareti unutma: $b=-8$.
+
+</Ipucu>
+
+<Cozum>
+
+1. Katsayılar: $a=1,\ b=-8$.
+2. Simetri ekseni: $x=-\dfrac{-8}{2\cdot 1}=4$.
+
+<Cevap>Simetri ekseni $x=4$ doğrusudur.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Tepe noktası $T(1,-4)$ olan ve $(3,0)$ noktasından geçen parabolün denklemini $y=ax^{2}+bx+c$ biçiminde yazınız.
+
+</Soru>
+
+<Ipucu>
+
+Tepe noktası verildiğinde **tepe biçimini** kullan: $y=a(x-r)^{2}+k$, burada $T(r,k)$ tepe noktasıdır. Geçtiği noktayla $a$'yı bul.
+
+</Ipucu>
+
+<Cozum>
+
+1. Tepe biçimini yaz: $T(1,-4)$ için $y=a(x-1)^{2}-4$.
+2. $(3,0)$ noktasını yerine koy: $0=a(3-1)^{2}-4=4a-4$, buradan $a=1$.
+3. Aç ve düzenle: $y=(x-1)^{2}-4=x^{2}-2x+1-4=x^{2}-2x-3$.
+
+<Cevap>$y=x^{2}-2x-3$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Tepe apsisini işaretsiz almak.** Formül $x_{T}=-\dfrac{b}{2a}$ şeklindedir; baştaki **eksi işaretini** atıp $\dfrac{b}{2a}$ yazmak en sık hatadır. Özellikle $b<0$ iken işaret iki kez etki eder.
+- **$a<0$ durumunda tepenin maksimum olduğunu unutmak.** Kollar aşağı açıldığında ($a<0$) tepe noktası en **büyük** noktadır; bunu minimum sanıp "en küçük değer" demek yanlıştır.
+- **$y$ eksenini kesim noktasını yanlış almak.** $y$ ekseni kesişimi her zaman $(0,c)$'dir; $x$ eksenini kesim noktalarıyla ($\Delta$ köklerle) karıştırmamak gerekir.
+
+## Sınav İpucu
+
+> Bir parabol sorusuna başlamadan önce şu üç değeri otomatik olarak yaz: baş katsayının işareti ($a$ — kolların yönü), $x_{T}=-\dfrac{b}{2a}$ (tepe ve simetri ekseni) ve $c$ (y kesişimi). Tepe noktası verilip denklem isteniyorsa **tepe biçimini** ($y=a(x-r)^{2}+k$) kullan; köklerle ilgili bir soruysa $\Delta=b^{2}-4ac$ işaretine bak. Bu refleks, çoğu parabol sorusunu tek satırda bitirir.
+
+<KonuNav slug="parabol-ayt" />

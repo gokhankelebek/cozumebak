@@ -149,11 +149,16 @@ export const UNITS: Unit[] = [
   { slug: "geometri-tyt", title: "Temel Geometri", track: "tyt", order: 9 },
   { slug: "analitik-kati-tyt", title: "Analitik Geometri ve Katı Cisimler", track: "tyt", order: 10 },
   // AYT
-  { slug: "limit-ayt", title: "Limit ve Süreklilik", track: "ayt", order: 1 },
-  { slug: "turev-ayt", title: "Türev", track: "ayt", order: 2 },
-  { slug: "integral-ayt", title: "İntegral", track: "ayt", order: 3 },
+  { slug: "fonksiyonlar-ayt", title: "Fonksiyonlar", track: "ayt", order: 1 },
+  { slug: "polinomlar-ayt", title: "Polinomlar", track: "ayt", order: 2 },
+  { slug: "ikinci-derece-ayt", title: "İkinci Dereceden Denklemler ve Parabol", track: "ayt", order: 3 },
   { slug: "trigonometri-ayt", title: "Trigonometri", track: "ayt", order: 4 },
-  { slug: "logaritma-ayt", title: "Logaritma", track: "ayt", order: 5 },
+  { slug: "logaritma-ayt", title: "Üstel Fonksiyon ve Logaritma", track: "ayt", order: 5 },
+  { slug: "diziler-ayt", title: "Diziler", track: "ayt", order: 6 },
+  { slug: "limit-ayt", title: "Limit ve Süreklilik", track: "ayt", order: 7 },
+  { slug: "turev-ayt", title: "Türev", track: "ayt", order: 8 },
+  { slug: "integral-ayt", title: "İntegral", track: "ayt", order: 9 },
+  { slug: "analitik-ayt", title: "Analitik Geometri", track: "ayt", order: 10 },
 ];
 
 // ── Topics ───────────────────────────────────────────────────────────────────
@@ -325,8 +330,40 @@ export const TOPICS: Topic[] = [
   { slug: "belirli-integral-teoremi", title: "Belirli İntegral ve Analizin Temel Teoremi", track: "ayt", unit: "integral-ayt", summary: "Belirli integral, Newton–Leibniz (Analizin Temel Teoremi) ve belirli integralin özellikleri.", minutes: 10, difficulty: "Zor", questionCount: 24, status: "published", keywords: ["belirli integral", "newton leibniz", "analizin temel teoremi", "integral özellikleri"] },
   { slug: "integralde-alan", title: "İntegral ile Alan Hesabı", track: "ayt", unit: "integral-ayt", summary: "Eğri ile eksen arası alan, eksen altı bölgeler ve iki eğri arasında kalan alanın hesabı.", minutes: 10, difficulty: "Zor", questionCount: 22, status: "published", keywords: ["integralle alan", "eğri altında alan", "iki eğri arası alan"] },
 
-  // ── AYT · Logaritma ──
-  { slug: "logaritma-ayt-konu", title: "Logaritma (AYT)", track: "ayt", unit: "logaritma-ayt", summary: "Logaritma özellikleri ve ileri logaritmik denklemler.", minutes: 8, difficulty: "Zor", questionCount: 18, status: "soon" },
+  // ── AYT · Fonksiyonlar ──
+  { slug: "fonksiyon-cesitleri-ayt", title: "Fonksiyon ve Çeşitleri", track: "ayt", unit: "fonksiyonlar-ayt", summary: "Fonksiyon tanımı, bire bir-örten, çift-tek fonksiyon, artan-azalan ve tanım-görüntü kümesi.", minutes: 10, difficulty: "Orta", questionCount: 22, status: "published", keywords: ["fonksiyon", "bire bir", "örten", "çift fonksiyon", "tek fonksiyon"] },
+  { slug: "bileske-ters-fonksiyon-ayt", title: "Bileşke ve Ters Fonksiyon", track: "ayt", unit: "fonksiyonlar-ayt", summary: "Bileşke fonksiyon (fog), ters fonksiyon ve bunların özellikleri.", minutes: 9, difficulty: "Orta", questionCount: 20, status: "published", keywords: ["bileşke fonksiyon", "ters fonksiyon", "fog"] },
+  { slug: "ozel-fonksiyonlar-ayt", title: "Parçalı, Mutlak Değer ve İşaret Fonksiyonu", track: "ayt", unit: "fonksiyonlar-ayt", summary: "Parçalı fonksiyon, mutlak değer fonksiyonu, işaret fonksiyonu ve grafik dönüşümleri.", minutes: 9, difficulty: "Zor", questionCount: 18, status: "published", keywords: ["parçalı fonksiyon", "mutlak değer fonksiyonu", "grafik dönüşümü"] },
+
+  // ── AYT · Polinomlar ──
+  { slug: "polinom-kavrami-ayt", title: "Polinom Kavramı ve İşlemler", track: "ayt", unit: "polinomlar-ayt", summary: "Polinom tanımı, derece, katsayılar toplamı, sabit terim ve polinomlarda dört işlem.", minutes: 9, difficulty: "Orta", questionCount: 22, status: "published", keywords: ["polinom", "derece", "katsayılar toplamı", "sabit terim"] },
+  { slug: "polinomlarda-bolme-ayt", title: "Polinomlarda Bölme ve Çarpanlara Ayırma", track: "ayt", unit: "polinomlar-ayt", summary: "Polinom bölmesi, kalan ve bölüm teoremi, çarpanlara ayırma ve kökler.", minutes: 10, difficulty: "Zor", questionCount: 20, status: "published", keywords: ["polinom bölme", "kalan teoremi", "çarpan teoremi", "kök"] },
+
+  // ── AYT · İkinci Dereceden Denklemler ve Parabol ──
+  { slug: "ikinci-derece-denklem-ayt", title: "İkinci Dereceden Denklemler", track: "ayt", unit: "ikinci-derece-ayt", summary: "Diskriminant, kök bulma, kökler toplamı-çarpımı ve kök-katsayı ilişkileri.", minutes: 10, difficulty: "Orta", questionCount: 24, status: "published", keywords: ["ikinci dereceden denklem", "diskriminant", "kökler toplamı", "delta"] },
+  { slug: "ikinci-derece-esitsizlik-ayt", title: "İkinci Dereceden Eşitsizlikler", track: "ayt", unit: "ikinci-derece-ayt", summary: "Parabolün işaretiyle ikinci dereceden eşitsizliklerin çözümü ve işaret tablosu.", minutes: 9, difficulty: "Zor", questionCount: 20, status: "published", keywords: ["ikinci dereceden eşitsizlik", "işaret tablosu", "parabol işareti"] },
+  { slug: "parabol-ayt", title: "Parabol", track: "ayt", unit: "ikinci-derece-ayt", summary: "İkinci dereceden fonksiyonun grafiği: tepe noktası, eksen kesişimleri ve simetri ekseni.", minutes: 10, difficulty: "Zor", questionCount: 22, status: "published", keywords: ["parabol", "tepe noktası", "simetri ekseni", "ikinci derece fonksiyon"] },
+
+  // ── AYT · Trigonometri ──
+  { slug: "birim-cember-ayt", title: "Açılar ve Birim Çember", track: "ayt", unit: "trigonometri-ayt", summary: "Yönlü açılar, derece-radyan dönüşümü, birim çember ve esas ölçü.", minutes: 10, difficulty: "Orta", questionCount: 22, status: "published", keywords: ["birim çember", "radyan", "derece", "yönlü açı", "esas ölçü"] },
+  { slug: "trigonometrik-fonksiyonlar-ayt", title: "Trigonometrik Fonksiyonlar ve Değerleri", track: "ayt", unit: "trigonometri-ayt", summary: "Özel açıların trigonometrik değerleri, bölgelere göre işaret ve indirgeme formülleri.", minutes: 11, difficulty: "Zor", questionCount: 24, status: "published", keywords: ["trigonometrik değerler", "özel açılar", "bölge işaretleri", "indirgeme"] },
+  { slug: "trigonometrik-ozdeslikler-ayt", title: "Trigonometrik Özdeşlikler", track: "ayt", unit: "trigonometri-ayt", summary: "Temel özdeşlikler, toplam-fark ve iki kat açı formülleri.", minutes: 10, difficulty: "Zor", questionCount: 22, status: "published", keywords: ["trigonometrik özdeşlik", "toplam fark formülü", "iki kat açı"] },
+  { slug: "trigonometrik-denklemler-ayt", title: "Trigonometrik Denklemler", track: "ayt", unit: "trigonometri-ayt", summary: "Temel trigonometrik denklemlerin çözüm kümesi ve genel çözüm.", minutes: 9, difficulty: "Zor", questionCount: 18, status: "published", keywords: ["trigonometrik denklem", "çözüm kümesi", "genel çözüm"] },
+  { slug: "ucgende-trigonometri-ayt", title: "Üçgende Trigonometri (Sinüs-Kosinüs Teoremi)", track: "ayt", unit: "trigonometri-ayt", summary: "Sinüs teoremi, kosinüs teoremi ve üçgende alan formülleri.", minutes: 9, difficulty: "Zor", questionCount: 18, status: "published", keywords: ["sinüs teoremi", "kosinüs teoremi", "üçgende alan"] },
+
+  // ── AYT · Üstel Fonksiyon ve Logaritma ──
+  { slug: "ustel-fonksiyon-ayt", title: "Üstel Fonksiyon", track: "ayt", unit: "logaritma-ayt", summary: "Üstel fonksiyonun tanımı, grafiği ve üstel denklemler.", minutes: 8, difficulty: "Orta", questionCount: 18, status: "published", keywords: ["üstel fonksiyon", "üstel denklem", "e sayısı"] },
+  { slug: "logaritma-kavrami-ayt", title: "Logaritma Kavramı ve Özellikleri", track: "ayt", unit: "logaritma-ayt", summary: "Logaritmanın tanımı, çarpım-bölüm-üs özellikleri, taban değiştirme ve doğal logaritma.", minutes: 10, difficulty: "Zor", questionCount: 24, status: "published", keywords: ["logaritma", "log özellikleri", "ln", "taban değiştirme"] },
+  { slug: "logaritmik-denklem-ayt", title: "Logaritmik Denklem ve Eşitsizlikler", track: "ayt", unit: "logaritma-ayt", summary: "Logaritmalı denklem ve eşitsizliklerin çözümü ile tanım kümesi koşulları.", minutes: 9, difficulty: "Zor", questionCount: 18, status: "published", keywords: ["logaritmik denklem", "logaritmik eşitsizlik", "tanım kümesi"] },
+
+  // ── AYT · Diziler ──
+  { slug: "dizi-kavrami-ayt", title: "Dizi Kavramı", track: "ayt", unit: "diziler-ayt", summary: "Dizi tanımı, genel terim, sonlu-sonsuz diziler ve dizilerde işlemler.", minutes: 8, difficulty: "Orta", questionCount: 18, status: "published", keywords: ["dizi", "genel terim", "dizi kavramı"] },
+  { slug: "aritmetik-dizi-ayt", title: "Aritmetik Dizi", track: "ayt", unit: "diziler-ayt", summary: "Ortak fark, genel terim formülü ve aritmetik dizinin ilk n terim toplamı.", minutes: 9, difficulty: "Orta", questionCount: 22, status: "published", keywords: ["aritmetik dizi", "ortak fark", "ilk n terim toplamı"] },
+  { slug: "geometrik-dizi-ayt", title: "Geometrik Dizi", track: "ayt", unit: "diziler-ayt", summary: "Ortak çarpan, genel terim ve geometrik dizinin terim toplamı.", minutes: 9, difficulty: "Orta", questionCount: 20, status: "published", keywords: ["geometrik dizi", "ortak çarpan", "terim toplamı"] },
+
+  // ── AYT · Analitik Geometri ──
+  { slug: "dogru-analitik-ayt", title: "Doğrunun Analitik İncelenmesi", track: "ayt", unit: "analitik-ayt", summary: "Eğim, doğru denklemi, paralel-dik doğrular ve bir noktanın doğruya uzaklığı.", minutes: 10, difficulty: "Zor", questionCount: 24, status: "published", keywords: ["doğru denklemi", "eğim", "paralel dik", "nokta doğru uzaklığı"] },
+  { slug: "cember-analitik-ayt", title: "Çemberin Analitik İncelenmesi", track: "ayt", unit: "analitik-ayt", summary: "Çemberin standart ve genel denklemi, merkez-yarıçap ve doğru-çember ilişkisi.", minutes: 9, difficulty: "Zor", questionCount: 20, status: "published", keywords: ["çember denklemi", "merkez yarıçap", "analitik çember"] },
 ];
 
 // ── Derivation helpers (pure, no IO) ─────────────────────────────────────────

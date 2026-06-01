@@ -1,0 +1,340 @@
+import { topicMetadata } from "@/lib/seo";
+import { CemberMerkez } from "@/components/figures/CemberAnalitikFig";
+
+export const metadata = topicMetadata("cember-analitik-ayt");
+
+<Konu slug="cember-analitik-ayt" />
+
+<p className="lead">Çember, düzlemde sabit bir **merkez** noktasına eşit uzaklıkta (yarıçap kadar) bulunan noktaların kümesidir. Bu konuda çemberin **standart** ve **genel** denklemini, bu denklemlerden merkez ile yarıçapı okumayı ve bir noktanın çembere göre konumunu inceleyeceğiz. AYT'de çember soruları, doğrunun analitik incelenmesiyle birleşince güçlü bir araç olur.</p>
+
+## 1. Çemberin Standart Denklemi
+
+Merkezi $M(a,b)$ ve yarıçapı $r$ olan çember üzerindeki her $P(x,y)$ noktası, merkezden $r$ kadar uzaktadır. İki nokta arası uzaklık formülünden:
+
+$$(x-a)^{2}+(y-b)^{2}=r^{2}$$
+
+Bu, çemberin **standart (merkez–yarıçap) denklemidir**. Denklemde $a$, $b$ ve $r$ doğrudan görünür; bu yüzden merkez ve yarıçapı okumak en kolay biçimdir.
+
+**Merkezi orijinde** olan çemberde ($a=0,\ b=0$) denklem sadeleşir:
+
+$$x^{2}+y^{2}=r^{2}$$
+
+<Figur>
+
+<CemberMerkez />
+
+<Altyazi>Şekil 1 — Merkezi $O(a,b)$, yarıçapı $r$ olan çember. Merkezden çembere çizilen her doğru parçası $r$ uzunluğundadır; standart denklem $(x-a)^{2}+(y-b)^{2}=r^{2}$ bu uzaklığı ifade eder.</Altyazi>
+
+</Figur>
+
+<Ornek>
+
+<Soru>
+
+Merkezi $(2,-1)$, yarıçapı $3$ olan çemberin standart denklemini yazınız.
+
+</Soru>
+
+<Cozum>
+
+1. Standart denklemi yaz: $(x-a)^{2}+(y-b)^{2}=r^{2}$.
+
+2. $a=2,\ b=-1,\ r=3$ değerlerini yerine koy: $(x-2)^{2}+(y-(-1))^{2}=3^{2}$.
+
+3. İşaretleri düzenle: $(x-2)^{2}+(y+1)^{2}=9$.
+
+<Cevap>$(x-2)^{2}+(y+1)^{2}=9$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$x^{2}+y^{2}=25$ çemberinin merkezini ve yarıçapını bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Denklemi standart biçimle karşılaştır: $(x-0)^{2}+(y-0)^{2}=25$.
+
+2. Merkez $(a,b)=(0,0)$, yani orijin.
+
+3. Yarıçap $r=\sqrt{25}=5$.
+
+<Cevap>Merkez $(0,0)$, yarıçap $r=5$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 2. Çemberin Genel Denklemi
+
+Standart denklemdeki kareleri açıp düzenlersek, çember $x^{2}$ ve $y^{2}$ katsayıları eşit (ve $xy$ terimi olmayan) ikinci dereceden bir denkleme dönüşür. Bu **genel denklemdir**:
+
+$$x^{2}+y^{2}+Dx+Ey+F=0$$
+
+Bu denklemin merkez ve yarıçapı şöyledir:
+
+$$\text{Merkez}=\left(-\dfrac{D}{2},\,-\dfrac{E}{2}\right),\qquad r=\sqrt{\left(\dfrac{D}{2}\right)^{2}+\left(\dfrac{E}{2}\right)^{2}-F}$$
+
+| Biçim | Denklem | Merkez | Yarıçap |
+| --- | --- | --- | --- |
+| Standart | $(x-a)^{2}+(y-b)^{2}=r^{2}$ | $(a,b)$ | $r$ |
+| Genel | $x^{2}+y^{2}+Dx+Ey+F=0$ | $\left(-\tfrac{D}{2},-\tfrac{E}{2}\right)$ | $\sqrt{\left(\tfrac{D}{2}\right)^{2}+\left(\tfrac{E}{2}\right)^{2}-F}$ |
+
+> **Not:** Karekökün içi pozitif değilse gerçek bir çember oluşmaz. İçi $0$ ise çember tek bir noktaya (nokta çember), negatifse hiçbir gerçek noktaya karşılık gelmez.
+
+<Ornek>
+
+<Soru>
+
+$x^{2}+y^{2}-6x+4y+9=0$ çemberinin merkezini ve yarıçapını bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Genel denklemde $D$, $E$, $F$ katsayılarını belirle; merkez $\left(-\dfrac{D}{2},-\dfrac{E}{2}\right)$ ve $r=\sqrt{\left(\tfrac{D}{2}\right)^{2}+\left(\tfrac{E}{2}\right)^{2}-F}$ formüllerini kullan.
+
+</Ipucu>
+
+<Cozum>
+
+1. Katsayıları oku: $D=-6,\ E=4,\ F=9$.
+
+2. Merkezi bul: $\left(-\dfrac{-6}{2},\,-\dfrac{4}{2}\right)=(3,-2)$.
+
+3. Yarıçapı bul: $r=\sqrt{(-3)^{2}+2^{2}-9}=\sqrt{9+4-9}=\sqrt{4}=2$.
+
+<Cevap>Merkez $(3,-2)$, yarıçap $r=2$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 3. Bir Noktanın Çembere Göre Konumu
+
+Bir $P(x_{0},y_{0})$ noktasının değeri standart denklemde yerine konup $r^{2}$ ile karşılaştırılır. Aslında karşılaştırılan, noktanın merkeze uzaklığının karesi ile yarıçapın karesidir.
+
+| Durum | Koşul | Anlamı |
+| --- | --- | --- |
+| Üzerinde | $(x_{0}-a)^{2}+(y_{0}-b)^{2}=r^{2}$ | Nokta çember üzerinde |
+| İçinde | $(x_{0}-a)^{2}+(y_{0}-b)^{2}<r^{2}$ | Nokta iç bölgede |
+| Dışında | $(x_{0}-a)^{2}+(y_{0}-b)^{2}>r^{2}$ | Nokta dış bölgede |
+
+<Ornek>
+
+<Soru>
+
+$(3,4)$ noktası $x^{2}+y^{2}=25$ çemberinin üzerinde midir?
+
+</Soru>
+
+<Cozum>
+
+1. Noktayı sol tarafta yerine koy: $3^{2}+4^{2}=9+16=25$.
+
+2. Sonuç $r^{2}=25$ değerine eşittir.
+
+3. Eşitlik sağlandığından nokta çember üzerindedir.
+
+<Cevap>Evet, $(3,4)$ noktası çember üzerindedir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 4. Çapın Uç Noktaları Verildiğinde
+
+Bir çapın iki uç noktası verilirse, çapın **orta noktası** merkezi, çap uzunluğunun **yarısı** ise yarıçapı verir.
+
+<Ornek>
+
+<Soru>
+
+Bir çemberin çapının uç noktaları $(0,0)$ ve $(4,0)$ olduğuna göre çemberin standart denklemini yazınız.
+
+</Soru>
+
+<Cozum>
+
+1. Merkez, çapın orta noktasıdır: $\left(\dfrac{0+4}{2},\dfrac{0+0}{2}\right)=(2,0)$.
+
+2. Yarıçap, merkez ile bir uç noktanın uzaklığıdır: $r=\sqrt{(2-0)^{2}+(0-0)^{2}}=2$.
+
+3. Standart denklemi yaz: $(x-2)^{2}+(y-0)^{2}=2^{2}$, yani $(x-2)^{2}+y^{2}=4$.
+
+<Cevap>$(x-2)^{2}+y^{2}=4$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Çözümlü Sorular
+
+<Ornek>
+
+<Soru>
+
+Merkezi $(-3,2)$, yarıçapı $\sqrt{5}$ olan çemberin standart denklemini yazınız.
+
+</Soru>
+
+<Cozum>
+
+1. Standart biçimi kur: $(x-a)^{2}+(y-b)^{2}=r^{2}$.
+
+2. $a=-3,\ b=2,\ r=\sqrt{5}$ değerlerini koy: $(x-(-3))^{2}+(y-2)^{2}=(\sqrt{5})^{2}$.
+
+3. Düzenle: $(x+3)^{2}+(y-2)^{2}=5$.
+
+<Cevap>$(x+3)^{2}+(y-2)^{2}=5$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$x^{2}+y^{2}+2x-8y+8=0$ çemberinin merkezini ve yarıçapını bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+$D=2,\ E=-8,\ F=8$. Merkez $\left(-\dfrac{D}{2},-\dfrac{E}{2}\right)$, yarıçap karekök formülüyle bulunur.
+
+</Ipucu>
+
+<Cozum>
+
+1. Katsayıları oku: $D=2,\ E=-8,\ F=8$.
+
+2. Merkezi bul: $\left(-\dfrac{2}{2},\,-\dfrac{-8}{2}\right)=(-1,4)$.
+
+3. Yarıçapı bul: $r=\sqrt{1^{2}+(-4)^{2}-8}=\sqrt{1+16-8}=\sqrt{9}=3$.
+
+<Cevap>Merkez $(-1,4)$, yarıçap $r=3$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$(1,-2)$ noktasının $(x-4)^{2}+(y+2)^{2}=16$ çemberine göre konumunu belirleyiniz.
+
+</Soru>
+
+<Cozum>
+
+1. Noktayı sol tarafta yerine koy: $(1-4)^{2}+(-2+2)^{2}=(-3)^{2}+0^{2}=9$.
+
+2. Yarıçapın karesiyle karşılaştır: $r^{2}=16$. Burada $9<16$.
+
+3. Sol taraf $r^{2}$ değerinden küçük olduğundan nokta çemberin iç bölgesindedir.
+
+<Cevap>Nokta çemberin **içindedir**.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir çemberin çapının uç noktaları $(2,3)$ ve $(8,11)$ olduğuna göre çemberin merkezini ve yarıçapını bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Merkez çapın orta noktası, yarıçap ise çap uzunluğunun yarısıdır.
+
+</Ipucu>
+
+<Cozum>
+
+1. Merkez, orta noktadır: $\left(\dfrac{2+8}{2},\dfrac{3+11}{2}\right)=(5,7)$.
+
+2. Çap uzunluğu: $\sqrt{(8-2)^{2}+(11-3)^{2}}=\sqrt{36+64}=\sqrt{100}=10$.
+
+3. Yarıçap, çapın yarısıdır: $r=\dfrac{10}{2}=5$.
+
+<Cevap>Merkez $(5,7)$, yarıçap $r=5$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Merkezi orijinde olan ve $(6,8)$ noktasından geçen çemberin denklemini yazınız.
+
+</Soru>
+
+<Cozum>
+
+1. Merkez orijinde olduğundan denklem $x^{2}+y^{2}=r^{2}$ biçimindedir.
+
+2. Çember $(6,8)$ noktasından geçtiğine göre yarıçapın karesi, bu noktanın merkeze uzaklığının karesidir: $r^{2}=6^{2}+8^{2}=36+64=100$.
+
+3. Denklemi yaz: $x^{2}+y^{2}=100$.
+
+<Cevap>$x^{2}+y^{2}=100$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Merkezi $(5,-3)$ olan ve $x$ eksenine teğet olan çemberin standart denklemini yazınız.
+
+</Soru>
+
+<Ipucu>
+
+Bir çember $x$ eksenine teğetse, yarıçap merkezin $x$ eksenine uzaklığına, yani merkezin $y$ koordinatının mutlak değerine eşittir.
+
+</Ipucu>
+
+<Cozum>
+
+1. $x$ eksenine uzaklık, merkezin $y$ koordinatının mutlak değeridir: $r=|-3|=3$.
+
+2. Standart denklemi kur: $(x-5)^{2}+(y-(-3))^{2}=3^{2}$.
+
+3. Düzenle: $(x-5)^{2}+(y+3)^{2}=9$.
+
+<Cevap>$(x-5)^{2}+(y+3)^{2}=9$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Genel denklemde merkezi işaretsiz almak.** Merkez $\left(\dfrac{D}{2},\dfrac{E}{2}\right)$ değil, $\left(-\dfrac{D}{2},-\dfrac{E}{2}\right)$ olarak alınır. İşaretleri ters çevirmeyi unutma.
+- **Standart denklemde $(x-a)$ işaretini şaşırmak.** Merkez $a=-3$ ise terim $(x-(-3))=(x+3)$ olur; "$-3$ gördüm, eksi yazayım" diye $(x-3)$ yazmak yanlıştır.
+- **Yarıçap ile yarıçap karesini karıştırmak.** Standart denklemin sağ tarafı $r^{2}$'dir; örneğin sağ taraf $25$ ise yarıçap $25$ değil $\sqrt{25}=5$ olur.
+- **Genel denklemde karekökün içini eksik hesaplamak.** $F$ terimini çıkarmayı unutmak ($-F$) yarıçapı hatalı bulmaya yol açar.
+
+## Sınav İpucu
+
+> Genel denklemden hızlı okuma için şu kestirmeyi kullan: merkezin koordinatları, $x$ ve $y$'nin **lineer katsayılarının yarısının ters işaretlisidir**. $x^{2}+y^{2}+Dx+Ey+F=0$ denkleminde merkez $\left(-\tfrac{D}{2},-\tfrac{E}{2}\right)$; yarıçapın karesi ise $r^{2}=\left(\tfrac{D}{2}\right)^{2}+\left(\tfrac{E}{2}\right)^{2}-F$. Soru "yarıçap" değil "yarıçapın karesi" veya "çap" isterse aceleyle yanlış yanıt işaretlememek için ne istendiğini iki kez oku.
+
+<KonuNav slug="cember-analitik-ayt" />

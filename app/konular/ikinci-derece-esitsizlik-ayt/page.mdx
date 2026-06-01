@@ -1,0 +1,362 @@
+import { topicMetadata } from "@/lib/seo";
+
+export const metadata = topicMetadata("ikinci-derece-esitsizlik-ayt");
+
+<Konu slug="ikinci-derece-esitsizlik-ayt" />
+
+<p className="lead">İkinci dereceden eşitsizlikler, $ax^2+bx+c$ ifadesinin **hangi $x$ değerlerinde pozitif, hangilerinde negatif** olduğunu bulma sorusudur. İfade aslında bir **parabol** olduğundan, köklerini bulup bir **işaret tablosu** kurmak çözümü doğrudan verir. Bu konu, fonksiyon işaretleri, tanım kümesi ve eşitsizlik sistemleri gibi pek çok AYT konusunun temelini oluşturur.</p>
+
+## 1. Parabolün İşareti
+
+$f(x)=ax^2+bx+c$ ifadesinin grafiği bir paraboldür. Eşitsizliği çözmek demek, bu parabolün **$x$ eksenine göre yerini** (üstünde mi, altında mı) belirlemek demektir.
+
+Önce $ax^2+bx+c=0$ denkleminin köklerine, yani $\Delta=b^2-4ac$ değerine bakılır:
+
+| Durum | Kök sayısı | İşaret |
+| --- | --- | --- |
+| $\Delta > 0$ | İki farklı kök $x_1 < x_2$ | Köklerin **dışında** $a$ ile aynı, **arasında** $a$ ile zıt |
+| $\Delta = 0$ | Çift (çakışık) kök | Kök hariç her yerde $a$ ile **aynı** işaret |
+| $\Delta < 0$ | Reel kök yok | Her $x$ için $a$ ile **aynı** işaret |
+
+### İşaret Kuralı
+
+İki farklı kök ($x_1 < x_2$) olduğunda, $a > 0$ için kural şöyledir:
+
+> Parabol köklerin **dışında pozitif**, **arasında negatif**tir. ($a < 0$ ise işaretler tam tersine döner.)
+
+Bu kuralı bir işaret tablosuyla göstermek en güvenli yoldur. $a>0$ ve kökler $x_1 < x_2$ için:
+
+| Aralık | $(-\infty,x_1)$ | $(x_1,x_2)$ | $(x_2,\infty)$ |
+| --- | --- | --- | --- |
+| $ax^2+bx+c$ işareti | $+$ | $-$ | $+$ |
+
+<Ornek>
+
+<Soru>
+
+$x^2-5x+6 > 0$ eşitsizliğinin çözüm kümesini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Kökleri bul: $x^2-5x+6=0 \Rightarrow (x-2)(x-3)=0 \Rightarrow x_1=2,\ x_2=3$.
+
+2. Baş katsayı $a=1 > 0$ olduğundan parabol köklerin **dışında pozitif**, arasında negatiftir.
+
+3. İşaret tablosu:
+
+| Aralık | $(-\infty,2)$ | $(2,3)$ | $(3,\infty)$ |
+| --- | --- | --- | --- |
+| İşaret | $+$ | $-$ | $+$ |
+
+4. $> 0$ istendiğinden pozitif aralıkları seç (kökler dahil değil): $x < 2$ ya da $x > 3$.
+
+<Cevap>$(-\infty,2)\cup(3,\infty)$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$x^2-5x+6 < 0$ eşitsizliğinin çözüm kümesini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Kökler aynı ($2$ ve $3$); bu kez $< 0$ istendiği için işaret tablosunda **negatif** olan aralığı seç.
+
+</Ipucu>
+
+<Cozum>
+
+1. Kökler bir önceki örnekteki gibi $x_1=2,\ x_2=3$.
+
+2. $a=1 > 0$ olduğundan ifade **arasında negatif**tir.
+
+3. $< 0$ istendiğinden negatif aralığı seç (kökler dahil değil): $2 < x < 3$.
+
+<Cevap>$(2,3)$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$x^2-4 \le 0$ eşitsizliğinin çözüm kümesini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Çarpanlara ayır: $x^2-4=(x-2)(x+2)$; kökler $x_1=-2,\ x_2=2$.
+
+2. $a=1 > 0$ olduğundan ifade köklerin **arasında negatif**tir.
+
+3. Eşitsizlik $\le 0$ olduğundan **kökler de çözüme dahildir** (eşitlik durumu).
+
+<Cevap>$[-2,\,2]$, yani $-2\le x\le 2$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$x^2+x+1 > 0$ eşitsizliğinin çözüm kümesini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Önce diskriminantı hesapla. $\Delta < 0$ ise reel kök yoktur ve ifade her zaman aynı işaretlidir.
+
+</Ipucu>
+
+<Cozum>
+
+1. Diskriminantı hesapla: $\Delta=1^2-4\cdot 1\cdot 1=1-4=-3 < 0$.
+
+2. $\Delta < 0$ olduğundan reel kök yoktur; ifade her $x$ için $a$ ile **aynı** işaretlidir.
+
+3. $a=1 > 0$ olduğundan ifade her $x$ için pozitiftir. $> 0$ koşulu daima sağlanır.
+
+<Cevap>$\mathbb{R}$ (tüm reel sayılar)</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$-x^2+4 > 0$ eşitsizliğinin çözüm kümesini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Baş katsayı negatif ($a=-1$). Bu durumda işaret kuralı terse döner: parabol köklerin **arasında pozitif**tir.
+
+</Ipucu>
+
+<Cozum>
+
+1. Kökleri bul: $-x^2+4=0 \Rightarrow x^2=4 \Rightarrow x_1=-2,\ x_2=2$.
+
+2. $a=-1 < 0$ olduğundan kural ters döner: ifade köklerin **arasında pozitif**, dışında negatiftir.
+
+3. İşaret tablosu:
+
+| Aralık | $(-\infty,-2)$ | $(-2,2)$ | $(2,\infty)$ |
+| --- | --- | --- | --- |
+| İşaret | $-$ | $+$ | $-$ |
+
+4. $> 0$ istendiğinden pozitif aralığı seç: $-2 < x < 2$.
+
+<Cevap>$(-2,2)$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Çözümlü Sorular
+
+<Ornek>
+
+<Soru>
+
+$x^2-x-6 \ge 0$ eşitsizliğinin çözüm kümesini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Çarpanlara ayır: $x^2-x-6=(x-3)(x+2)$; kökler $x_1=-2,\ x_2=3$.
+
+2. $a=1 > 0$ olduğundan ifade köklerin **dışında pozitif**tir.
+
+3. İşaret tablosu:
+
+| Aralık | $(-\infty,-2)$ | $(-2,3)$ | $(3,\infty)$ |
+| --- | --- | --- | --- |
+| İşaret | $+$ | $-$ | $+$ |
+
+4. $\ge 0$ istendiğinden pozitif aralıkları kökler **dahil** seç: $x\le -2$ ya da $x\ge 3$.
+
+<Cevap>$(-\infty,-2]\cup[3,\infty)$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$2x^2-7x+3 < 0$ eşitsizliğinin çözüm kümesini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Kökleri bul. Diskriminant: $\Delta=(-7)^2-4\cdot 2\cdot 3=49-24=25$, $\sqrt{\Delta}=5$.
+
+2. $x=\dfrac{7\pm 5}{4}$ olduğundan $x_1=\dfrac{2}{4}=\dfrac{1}{2}$, $x_2=\dfrac{12}{4}=3$.
+
+3. $a=2 > 0$ olduğundan ifade köklerin **arasında negatif**tir.
+
+4. $< 0$ istendiğinden negatif aralığı seç (kökler dahil değil): $\dfrac{1}{2} < x < 3$.
+
+<Cevap>$\left(\dfrac{1}{2},\,3\right)$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$-x^2+2x+8 \ge 0$ eşitsizliğinin çözüm kümesini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Baş katsayı negatif. İstersen tüm eşitsizliği $-1$ ile çarp; ancak o zaman eşitsizlik yönünü çevirmeyi unutma.
+
+</Ipucu>
+
+<Cozum>
+
+1. Kökleri bul: $-x^2+2x+8=0$. Her iki tarafı $-1$ ile çarp: $x^2-2x-8=0 \Rightarrow (x-4)(x+2)=0$, kökler $x_1=-2,\ x_2=4$.
+
+2. Orijinal ifadede $a=-1 < 0$ olduğundan parabol köklerin **arasında pozitif**, dışında negatiftir.
+
+3. İşaret tablosu:
+
+| Aralık | $(-\infty,-2)$ | $(-2,4)$ | $(4,\infty)$ |
+| --- | --- | --- | --- |
+| İşaret | $-$ | $+$ | $-$ |
+
+4. $\ge 0$ istendiğinden pozitif aralığı kökler **dahil** seç: $-2\le x\le 4$.
+
+<Cevap>$[-2,\,4]$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$x^2-6x+9 > 0$ eşitsizliğinin çözüm kümesini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+İfade tam kare olabilir. $\Delta$ değerini kontrol et; $\Delta=0$ ise çift kök vardır.
+
+</Ipucu>
+
+<Cozum>
+
+1. Tam kare olarak yaz: $x^2-6x+9=(x-3)^2$. Çift kök $x=3$ ($\Delta=0$).
+
+2. $(x-3)^2$ ifadesi $x=3$ dışında her zaman pozitiftir; $x=3$'te ise $0$ olur.
+
+3. $> 0$ (kesin pozitif) istendiğinden $x=3$ noktası **dahil edilmez**.
+
+<Cevap>$x\ne 3$, yani $\mathbb{R}\setminus\{3\}$ veya $(-\infty,3)\cup(3,\infty)$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$(x-1)(x+4) < 0$ eşitsizliğinin çözüm kümesini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+İfade zaten çarpanlarına ayrılmış. Açmadan, kökleri doğrudan oku ve işaret tablosu kur.
+
+</Ipucu>
+
+<Cozum>
+
+1. Kökleri doğrudan oku: $x-1=0 \Rightarrow x=1$ ve $x+4=0 \Rightarrow x=-4$. Sıralı kökler $x_1=-4,\ x_2=1$.
+
+2. Açılmış hâlde baş katsayı $a=1 > 0$ olur; ifade köklerin **arasında negatif**tir.
+
+3. İşaret tablosu:
+
+| Aralık | $(-\infty,-4)$ | $(-4,1)$ | $(1,\infty)$ |
+| --- | --- | --- | --- |
+| İşaret | $+$ | $-$ | $+$ |
+
+4. $< 0$ istendiğinden negatif aralığı seç: $-4 < x < 1$.
+
+<Cevap>$(-4,\,1)$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$x^2+4x+5 \le 0$ eşitsizliğinin çözüm kümesini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Önce diskriminanta bak. $\Delta < 0$ ise ifade her yerde aynı işaretlidir; bu işaret istenen yönü sağlıyor mu?
+
+</Ipucu>
+
+<Cozum>
+
+1. Diskriminantı hesapla: $\Delta=4^2-4\cdot 1\cdot 5=16-20=-4 < 0$.
+
+2. $\Delta < 0$ ve $a=1 > 0$ olduğundan ifade her $x$ için **pozitiftir**; hiçbir zaman $0$ ya da negatif olamaz.
+
+3. $\le 0$ koşulunu sağlayan hiçbir $x$ yoktur.
+
+<Cevap>$\varnothing$ (boş küme)</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Kökler arası / dışı işaretini karıştırmak.** $a > 0$ için ifade köklerin **dışında pozitif**, **arasında negatif**tir. "Arası eksi, dışı artı" diye sabitlemek (a pozitifken) işi kolaylaştırır.
+- **$a < 0$ durumunda kuralı çevirmeyi unutmak.** Baş katsayı negatifse parabol aşağı açıktır; işaretler tersine döner: köklerin arasında pozitif, dışında negatif. Emin olmak için işaret tablosunu mutlaka kur.
+- **Kapalı/açık aralık karıştırması.** $< 0$ ya da $> 0$ ise kökler çözüme dahil **değildir** (açık aralık); $\le 0$ ya da $\ge 0$ ise kökler dahildir (kapalı aralık).
+- **$\Delta < 0$ olduğunda "çözüm yok" demek.** Reel kök olmaması ifadenin işaretsiz olduğu anlamına gelmez; ifade her yerde $a$ ile aynı işarettedir. Bu durumda çözüm ya $\mathbb{R}$ ya da $\varnothing$ olur.
+
+## Sınav İpucu
+
+> İşaret tablosu kurarken **kökleri küçükten büyüğe** sıralayın ve en sağdaki aralığa **her zaman $a$'nın işaretini** yazın; sola doğru ilerledikçe her kökte işaret değişir (çift kök hariç). Eşitsizliğin yönüne ($<,\le,>,\ge$) göre uygun işaretli aralıkları seçtikten sonra, son adımda **eşitlik var mı** diye kontrol edip parantez tipini (açık/kapalı) belirleyin.
+
+<KonuNav slug="ikinci-derece-esitsizlik-ayt" />

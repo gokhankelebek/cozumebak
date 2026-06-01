@@ -1,0 +1,304 @@
+import { topicMetadata } from "@/lib/seo";
+
+export const metadata = topicMetadata("trigonometrik-denklemler-ayt");
+
+<Konu slug="trigonometrik-denklemler-ayt" />
+
+<p className="lead">Trigonometrik denklemler, içinde $\sin x$, $\cos x$ ya da $\tan x$ gibi trigonometrik ifadeler bulunan denklemlerdir. Bu fonksiyonlar **periyodik** olduğundan, bir trigonometrik denklemin (genellikle) **sonsuz** çözümü vardır ve bu çözümler $k\in\mathbb{Z}$ içeren bir **genel çözüm** ailesiyle yazılır. Bu konu, denklemi temel biçime indirgemeyi, özel açıları tanımayı ve hem genel çözümü hem de $[0,2\pi)$ aralığındaki çözüm kümesini bulmayı öğretir.</p>
+
+## 1. Genel Çözüm Formülleri
+
+Önce denklemi her zaman $\sin x=a$, $\cos x=a$ veya $\tan x=a$ biçimine indirgeriz; ardından $a$ değerini veren bir özel açı $\alpha$ buluruz. Genel çözümler $k\in\mathbb{Z}$ olmak üzere şöyledir:
+
+| Denklem | Genel çözüm |
+| --- | --- |
+| $\sin x=\sin\alpha$ | $x=\alpha+2k\pi$ veya $x=\pi-\alpha+2k\pi$ |
+| $\cos x=\cos\alpha$ | $x=\pm\alpha+2k\pi$ |
+| $\tan x=\tan\alpha$ | $x=\alpha+k\pi$ |
+
+Dikkat: $\sin$ ve $\cos$ için periyot $2\pi$, fakat $\tan$ için periyot $\pi$'dir. Bu yüzden tanjant denkleminde tek bir aile yeterlidir.
+
+### Özel Açı Değerleri
+
+| $\alpha$ | $\sin\alpha$ | $\cos\alpha$ | $\tan\alpha$ |
+| --- | --- | --- | --- |
+| $0$ | $0$ | $1$ | $0$ |
+| $\dfrac{\pi}{6}$ | $\dfrac12$ | $\dfrac{\sqrt3}{2}$ | $\dfrac{\sqrt3}{3}$ |
+| $\dfrac{\pi}{4}$ | $\dfrac{\sqrt2}{2}$ | $\dfrac{\sqrt2}{2}$ | $1$ |
+| $\dfrac{\pi}{3}$ | $\dfrac{\sqrt3}{2}$ | $\dfrac12$ | $\sqrt3$ |
+| $\dfrac{\pi}{2}$ | $1$ | $0$ | tanımsız |
+
+## 2. Sinüslü Denklemler
+
+$\sin x=a$ denkleminin çözümü için $-1\le a\le 1$ olmalıdır. Çözüm **iki aile** içerir, çünkü birim çemberde aynı sinüs değerini veren iki açı vardır (biri $\alpha$, diğeri $\pi-\alpha$).
+
+<Ornek>
+
+<Soru>
+
+$\sin x=\dfrac12$ denkleminin genel çözümünü bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $\dfrac12$ değerini veren özel açı: $\alpha=\dfrac{\pi}{6}$ (yani $30^{\circ}$).
+
+2. Sinüs için iki aile yaz: $x=\dfrac{\pi}{6}+2k\pi$ veya $x=\pi-\dfrac{\pi}{6}+2k\pi$.
+
+3. İkinci aileyi sadeleştir: $\pi-\dfrac{\pi}{6}=\dfrac{5\pi}{6}$ (yani $150^{\circ}$).
+
+<Cevap>$x=\dfrac{\pi}{6}+2k\pi$ veya $x=\dfrac{5\pi}{6}+2k\pi,\ k\in\mathbb{Z}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 3. Kosinüslü Denklemler
+
+$\cos x=a$ denkleminde birim çemberde aynı kosinüs değerini $\alpha$ ve $-\alpha$ açıları verir. Bu yüzden çözüm $x=\pm\alpha+2k\pi$ tek satırla yazılır.
+
+<Ornek>
+
+<Soru>
+
+$\cos x=-\dfrac12$ denkleminin genel çözümünü bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $-\dfrac12$ negatif olduğundan açı 2. bölgededir; $\cos\alpha=-\dfrac12$ veren açı $\alpha=\dfrac{2\pi}{3}$ (yani $120^{\circ}$).
+
+2. Kosinüs için genel çözüm: $x=\pm\dfrac{2\pi}{3}+2k\pi$.
+
+3. $-\dfrac{2\pi}{3}$ ailesini $[0,2\pi)$ karşılığıyla yazarsak $\dfrac{4\pi}{3}$ (yani $240^{\circ}$) elde edilir.
+
+<Cevap>$x=\dfrac{2\pi}{3}+2k\pi$ veya $x=\dfrac{4\pi}{3}+2k\pi,\ k\in\mathbb{Z}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 4. Tanjantlı Denklemler
+
+$\tan x=a$ her $a\in\mathbb{R}$ için çözülebilir (kısıt yoktur). Periyot $\pi$ olduğundan genel çözüm tek aileyle yazılır: $x=\alpha+k\pi$.
+
+<Ornek>
+
+<Soru>
+
+$\tan x=1$ denkleminin genel çözümünü bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $\tan\alpha=1$ veren özel açı: $\alpha=\dfrac{\pi}{4}$ (yani $45^{\circ}$).
+
+2. Tanjant için periyot $\pi$ olduğundan genel çözüm tek ailedir: $x=\dfrac{\pi}{4}+k\pi$.
+
+<Cevap>$x=\dfrac{\pi}{4}+k\pi,\ k\in\mathbb{Z}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 5. Önce Sadeleştirme: Temel Biçime İndirgemek
+
+Karşımıza çoğu zaman doğrudan $\sin x=a$ biçiminde değil, düzenlenmesi gereken bir denklem çıkar. Önce $\sin x$, $\cos x$ ya da $\tan x$'i yalnız bırakırız.
+
+<Ornek>
+
+<Soru>
+
+$2\sin x-1=0$ denkleminin genel çözümünü bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Önce $\sin x$'i yalnız bırak; denklemi $\sin x=a$ biçimine getir, sonra özel açıyı bul.
+
+</Ipucu>
+
+<Cozum>
+
+1. $\sin x$'i yalnız bırak: $2\sin x=1 \Rightarrow \sin x=\dfrac12$.
+
+2. Özel açı $\alpha=\dfrac{\pi}{6}$ olduğundan sinüsün iki ailesini yaz: $x=\dfrac{\pi}{6}+2k\pi$ veya $x=\dfrac{5\pi}{6}+2k\pi$.
+
+<Cevap>$x=\dfrac{\pi}{6}+2k\pi$ veya $x=\dfrac{5\pi}{6}+2k\pi,\ k\in\mathbb{Z}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+> **Çözüm aralığı uyarısı:** Soru "$[0,2\pi)$ aralığında çözüm kümesi" istiyorsa, genel çözümde $k$'ye küçük tam sayı değerleri ($k=0,1,\dots$) vererek bu aralığa düşen açıları seçeriz; aralık dışındakileri atarız.
+
+## Çözümlü Sorular
+
+<Ornek>
+
+<Soru>
+
+$\cos x=0$ denkleminin $[0,2\pi)$ aralığındaki çözüm kümesini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $\cos x=0$ olan özel açı $\alpha=\dfrac{\pi}{2}$'dir; genel çözüm $x=\pm\dfrac{\pi}{2}+2k\pi$.
+
+2. $[0,2\pi)$ aralığına düşen değerleri seç: $+\dfrac{\pi}{2}$ ailesinden $k=0$ ile $\dfrac{\pi}{2}$.
+
+3. $-\dfrac{\pi}{2}$ ailesinden $k=1$ ile $-\dfrac{\pi}{2}+2\pi=\dfrac{3\pi}{2}$.
+
+<Cevap>$\left\{\dfrac{\pi}{2},\ \dfrac{3\pi}{2}\right\}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\sin x=\dfrac{\sqrt3}{2}$ denkleminin $[0,2\pi)$ aralığındaki çözüm kümesini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Önce genel çözümü yaz, sonra $k=0$ değerleriyle aralığa düşen açıları seç.
+
+</Ipucu>
+
+<Cozum>
+
+1. $\dfrac{\sqrt3}{2}$ değerini veren özel açı $\alpha=\dfrac{\pi}{3}$'tür.
+
+2. Sinüs için iki aile: $x=\dfrac{\pi}{3}+2k\pi$ veya $x=\pi-\dfrac{\pi}{3}+2k\pi=\dfrac{2\pi}{3}+2k\pi$.
+
+3. $k=0$ alındığında her iki değer de $[0,2\pi)$ içindedir: $\dfrac{\pi}{3}$ ve $\dfrac{2\pi}{3}$.
+
+<Cevap>$\left\{\dfrac{\pi}{3},\ \dfrac{2\pi}{3}\right\}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$2\cos x+\sqrt3=0$ denkleminin genel çözümünü bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $\cos x$'i yalnız bırak: $2\cos x=-\sqrt3 \Rightarrow \cos x=-\dfrac{\sqrt3}{2}$.
+
+2. $\cos\alpha=\dfrac{\sqrt3}{2}$ veren açı $\dfrac{\pi}{6}$; değer negatif olduğundan ana açı $\alpha=\pi-\dfrac{\pi}{6}=\dfrac{5\pi}{6}$ (yani $150^{\circ}$).
+
+3. Kosinüs için genel çözüm: $x=\pm\dfrac{5\pi}{6}+2k\pi$. Negatif aileyi $[0,2\pi)$ karşılığıyla yazarsak $\dfrac{7\pi}{6}$ (yani $210^{\circ}$).
+
+<Cevap>$x=\dfrac{5\pi}{6}+2k\pi$ veya $x=\dfrac{7\pi}{6}+2k\pi,\ k\in\mathbb{Z}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\sin 2x=\dfrac12$ denkleminin genel çözümünü bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+$2x$'i tek bir bilinmeyen gibi düşün; önce $2x$ için genel çözümü yaz, en son $2$'ye böl.
+
+</Ipucu>
+
+<Cozum>
+
+1. $2x$'i bir bütün kabul et; $\sin(2x)=\dfrac12$ için özel açı $\dfrac{\pi}{6}$.
+
+2. Sinüs için iki aile: $2x=\dfrac{\pi}{6}+2k\pi$ veya $2x=\dfrac{5\pi}{6}+2k\pi$.
+
+3. Her iki tarafı $2$'ye böl: $x=\dfrac{\pi}{12}+k\pi$ veya $x=\dfrac{5\pi}{12}+k\pi$.
+
+<Cevap>$x=\dfrac{\pi}{12}+k\pi$ veya $x=\dfrac{5\pi}{12}+k\pi,\ k\in\mathbb{Z}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$2\sin^{2}x-\sin x=0$ denkleminin $[0,2\pi)$ aralığındaki çözüm kümesini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Ortak çarpanı ayır: $\sin x$ paranteze alınır. Çarpımı sıfır yapan iki durumu ayrı ayrı çöz.
+
+</Ipucu>
+
+<Cozum>
+
+1. Ortak çarpana ayır: $\sin x\,(2\sin x-1)=0$.
+
+2. **Birinci durum** $\sin x=0$: $[0,2\pi)$ aralığında $x=0$ ve $x=\pi$.
+
+3. **İkinci durum** $2\sin x-1=0 \Rightarrow \sin x=\dfrac12$: $[0,2\pi)$ aralığında $x=\dfrac{\pi}{6}$ ve $x=\dfrac{5\pi}{6}$.
+
+4. Tüm çözümleri birleştir.
+
+<Cevap>$\left\{0,\ \dfrac{\pi}{6},\ \dfrac{5\pi}{6},\ \pi\right\}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\tan\left(x-\dfrac{\pi}{6}\right)=\sqrt3$ denkleminin genel çözümünü bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $\tan\alpha=\sqrt3$ veren özel açı $\alpha=\dfrac{\pi}{3}$.
+
+2. Tanjant için tek aile (periyot $\pi$): $x-\dfrac{\pi}{6}=\dfrac{\pi}{3}+k\pi$.
+
+3. $\dfrac{\pi}{6}$'yı karşı tarafa at: $x=\dfrac{\pi}{3}+\dfrac{\pi}{6}+k\pi=\dfrac{\pi}{2}+k\pi$.
+
+<Cevap>$x=\dfrac{\pi}{2}+k\pi,\ k\in\mathbb{Z}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **$\sin x=a$ (veya $\cos x=a$) denkleminde tek bir çözüm yazmak.** Sinüs ve kosinüs denklemlerinde birim çemberde aynı değeri veren **iki açı ailesi** vardır; yalnız $x=\alpha+2k\pi$ yazmak çözümlerin yarısını kaybettirir. (Tanjantta ise periyot $\pi$ olduğu için tek aile yeterlidir.)
+- **$[0,2\pi)$ kısıtını gözardı etmek.** Soru belirli bir aralıkta çözüm kümesi istiyorsa, genel çözümü yazıp $k$'ye değer vererek aralığa düşen açıları seçmek gerekir; sonsuz aileyi cevap olarak vermek yanlıştır. Ayrıca aralığın kapalı/açık uçlarına dikkat: $[0,2\pi)$'de $2\pi$ dahil değildir.
+- **$\sin 2x$ tipinde önce $x$'i tek bırakmak.** Önce $2x$ için genel çözümü (iki aile, $+2k\pi$ ile) yazıp **en sonda** $2$'ye bölmek gerekir. Bölme işlemini erken yapmak çözüm ailelerini eksik bırakır.
+- **$\sin^2 x$ içeren denklemde $\sin x$ ile sadeleştirmek.** $2\sin^2 x=\sin x$ ifadesini doğrudan $\sin x$'e bölmek $\sin x=0$ çözümünü yok eder; bunun yerine tüm terimleri bir tarafa toplayıp **çarpanlara ayırmak** gerekir.
+
+## Sınav İpucu
+
+> AYT'de trigonometrik denklemde yapılacak ilk iş, denklemi mutlaka $\sin x=a$, $\cos x=a$ veya $\tan x=a$ temel biçimine indirgemektir. Sonra şu refleksi uygula: **sinüs ve kosinüs için iki aile, tanjant için tek aile.** Cevap şıkları çoğunlukla $[0,2\pi)$ veya $[0,360^{\circ})$ aralığındaki açıları istediğinden, genel çözümü bulduktan sonra $k=0,1$ verip aralığa düşen değerleri seçmeyi unutma. Negatif değerli denklemlerde ($\cos x=-\tfrac12$ gibi) açının hangi bölgede olduğunu birim çemberden hızlıca belirlemek işaret hatalarını önler.
+
+<KonuNav slug="trigonometrik-denklemler-ayt" />

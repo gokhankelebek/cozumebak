@@ -1,0 +1,327 @@
+import { topicMetadata } from "@/lib/seo";
+
+export const metadata = topicMetadata("ozel-fonksiyonlar-ayt");
+
+<Konu slug="ozel-fonksiyonlar-ayt" />
+
+<p className="lead">Bazı fonksiyonlar tanım kümesinin farklı bölgelerinde farklı kurallarla tanımlanır ya da özel bir işleyişe sahiptir. **Parçalı**, **mutlak değer**, **işaret** ve **tam değer (taban)** fonksiyonları bunların başında gelir. Bu konu, bu özel fonksiyonların değerlerini doğru hesaplamayı, parçalı tanımlarını okumayı ve temel grafik dönüşümlerini kavramayı amaçlar.</p>
+
+## 1. Parçalı Fonksiyon
+
+Parçalı fonksiyon, tanım kümesinin farklı aralıklarında farklı kurallarla tanımlanan fonksiyondur:
+
+$$f(x)=\begin{cases}\dots,& x<a\\ \dots,& x\ge a\end{cases}$$
+
+Bir değer hesaplarken yapılacak tek şey, verilen $x$'in **hangi parçaya düştüğüne** bakmak ve o parçanın kuralını uygulamaktır. Aralık koşulundaki $<$, $\le$ ayrımına dikkat edilmelidir.
+
+<Ornek>
+
+<Soru>
+
+$f(x)=\begin{cases}x^2,& x\le 1\\ 2x+1,& x>1\end{cases}$ olduğuna göre $f(0)$ ve $f(2)$ değerlerini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $x=0$ için: $0\le 1$ olduğundan üst parça geçerlidir, $f(0)=0^2=0$.
+
+2. $x=2$ için: $2>1$ olduğundan alt parça geçerlidir, $f(2)=2\cdot 2+1=5$.
+
+<Cevap>$f(0)=0$ ve $f(2)=5$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 2. Mutlak Değer Fonksiyonu
+
+Bir sayının mutlak değeri, onun sayı doğrusunda sıfıra olan uzaklığıdır; bu nedenle hiçbir zaman negatif olmaz. $f(x)=\lvert x\rvert$ fonksiyonunun parçalı tanımı şöyledir:
+
+$$\lvert x\rvert=\begin{cases}x,& x\ge 0\\ -x,& x<0\end{cases}$$
+
+$\lvert x-a\rvert$ ifadesi ise $x$ ile $a$ arasındaki uzaklığı verir. İçerinin işaretine göre değerlendirilir: içerideki ifade negatifse işareti değiştirilerek pozitife çevrilir.
+
+<Ornek>
+
+<Soru>
+
+$\lvert -5\rvert$ ve $\lvert 3-7\rvert$ değerlerini hesaplayınız.
+
+</Soru>
+
+<Cozum>
+
+1. $\lvert -5\rvert$: içeride negatif değer var, mutlak değer onu pozitife çevirir, $\lvert -5\rvert=5$.
+
+2. $\lvert 3-7\rvert=\lvert -4\rvert=4$.
+
+<Cevap>$\lvert -5\rvert=5$ ve $\lvert 3-7\rvert=4$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 3. İşaret Fonksiyonu
+
+İşaret (signum) fonksiyonu, bir sayının yalnızca işaretini taşır:
+
+$$\operatorname{sgn}(x)=\begin{cases}1,& x>0\\ 0,& x=0\\ -1,& x<0\end{cases}$$
+
+Yani pozitif girdiler için $1$, negatif girdiler için $-1$, sıfır için $0$ döner. Bir çarpımın ya da bölümün $\operatorname{sgn}$ değerini bulurken işaret kuralları kullanılabilir.
+
+<Ornek>
+
+<Soru>
+
+$\operatorname{sgn}(-4)$ değerini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $-4<0$ olduğundan işaret fonksiyonu $-1$ değerini verir.
+
+<Cevap>$\operatorname{sgn}(-4)=-1$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 4. Tam Değer (Taban) Fonksiyonu
+
+$\lfloor x\rfloor$ ile gösterilen tam değer (taban) fonksiyonu, $x$'ten **büyük olmayan en büyük tam sayıyı** verir. Sayı doğrusunda $x$'in solundaki (veya kendisi tam sayıysa kendisi olan) en yakın tam sayıdır.
+
+| $x$ | $\lfloor x\rfloor$ | Açıklama |
+| --- | --- | --- |
+| $2{,}7$ | $2$ | $2{,}7$'den büyük olmayan en büyük tam sayı $2$ |
+| $5$ | $5$ | tam sayının tabanı kendisidir |
+| $-1{,}3$ | $-2$ | $-1{,}3$'ten büyük olmayan en büyük tam sayı $-2$'dir |
+
+> **Dikkat:** Negatif sayılarda taban "aşağıya" yuvarlar. $\lfloor -1{,}3\rfloor$, $-1$ değil $-2$'dir; çünkü $-1$ sayısı $-1{,}3$'ten **büyüktür** ve koşulu sağlamaz.
+
+<Ornek>
+
+<Soru>
+
+$\lfloor 2{,}7\rfloor$ ve $\lfloor -1{,}3\rfloor$ değerlerini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $\lfloor 2{,}7\rfloor$: $2{,}7$'den büyük olmayan en büyük tam sayı $2$'dir.
+
+2. $\lfloor -1{,}3\rfloor$: $-1{,}3$'ten küçük veya eşit tam sayılar $\dots,-3,-2$'dir; bunların en büyüğü $-2$'dir.
+
+<Cevap>$\lfloor 2{,}7\rfloor=2$ ve $\lfloor -1{,}3\rfloor=-2$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 5. Grafik Dönüşümleri
+
+Bir $y=f(x)$ grafiğinden, basit dönüşümlerle yeni grafikler elde edilir:
+
+| Dönüşüm | Etki |
+| --- | --- |
+| $f(x)+c$ | grafiği $c$ birim **yukarı/aşağı** kaydırır |
+| $f(x-c)$ | grafiği $c$ birim **sağa/sola** kaydırır |
+| $-f(x)$ | grafiği **$x$-eksenine göre yansıtır** |
+
+Örneğin $f(x)=\lvert x\rvert$ grafiği, $V$ şeklindedir; $f(x)=\lvert x-3\rvert$ ise aynı $V$'nin $3$ birim sağa kaymış hâlidir (tepe noktası $x=3$'tedir).
+
+<Ornek>
+
+<Soru>
+
+$f(x)=\lvert x-3\rvert$ olduğuna göre $f(1)$ değerini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $x=1$ değerini yerine yaz: $f(1)=\lvert 1-3\rvert=\lvert -2\rvert$.
+
+2. Mutlak değeri al: $\lvert -2\rvert=2$.
+
+<Cevap>$f(1)=2$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Çözümlü Sorular
+
+<Ornek>
+
+<Soru>
+
+$f(x)=\begin{cases}3x-2,& x<0\\ x^2+1,& 0\le x<2\\ 5,& x\ge 2\end{cases}$ olduğuna göre $f(-1)+f(1)+f(3)$ toplamını bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Her bir $x$ değeri için önce hangi aralığa düştüğünü belirle, sonra o aralığın kuralını uygula.
+
+</Ipucu>
+
+<Cozum>
+
+1. $f(-1)$: $-1<0$ olduğundan birinci parça, $f(-1)=3\cdot(-1)-2=-5$.
+
+2. $f(1)$: $0\le 1<2$ olduğundan ikinci parça, $f(1)=1^2+1=2$.
+
+3. $f(3)$: $3\ge 2$ olduğundan üçüncü parça, $f(3)=5$.
+
+4. Topla: $-5+2+5=2$.
+
+<Cevap>$f(-1)+f(1)+f(3)=2$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$g(x)=\lvert 2x-6\rvert-\lvert x+1\rvert$ olduğuna göre $g(4)$ değerini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $x=4$ değerini yerine yaz: $g(4)=\lvert 2\cdot 4-6\rvert-\lvert 4+1\rvert$.
+
+2. İçerileri hesapla: $\lvert 8-6\rvert-\lvert 5\rvert=\lvert 2\rvert-\lvert 5\rvert$.
+
+3. Mutlak değerleri al ve çıkar: $2-5=-3$.
+
+<Cevap>$g(4)=-3$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\operatorname{sgn}(-3)\cdot\operatorname{sgn}(5)+\operatorname{sgn}(0)$ işleminin sonucunu bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Her $\operatorname{sgn}$ değerini ayrı ayrı bul: pozitif için $1$, negatif için $-1$, sıfır için $0$.
+
+</Ipucu>
+
+<Cozum>
+
+1. $\operatorname{sgn}(-3)=-1$ (negatif).
+
+2. $\operatorname{sgn}(5)=1$ (pozitif).
+
+3. $\operatorname{sgn}(0)=0$ (sıfır).
+
+4. Yerine koy: $(-1)\cdot 1+0=-1$.
+
+<Cevap>Sonuç $-1$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\lfloor 4{,}9\rfloor+\lfloor -2{,}5\rfloor$ toplamını bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $\lfloor 4{,}9\rfloor$: $4{,}9$'dan büyük olmayan en büyük tam sayı $4$'tür.
+
+2. $\lfloor -2{,}5\rfloor$: $-2{,}5$'ten büyük olmayan en büyük tam sayı $-3$'tür ($-2$ sayısı $-2{,}5$'ten büyüktür, koşulu sağlamaz).
+
+3. Topla: $4+(-3)=1$.
+
+<Cevap>$\lfloor 4{,}9\rfloor+\lfloor -2{,}5\rfloor=1$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=\lfloor x\rfloor$ olduğuna göre, $\lfloor 3{,}2\rfloor+\lfloor 3{,}8\rfloor$ ile $\lfloor 3{,}2+3{,}8\rfloor$ değerlerini karşılaştırınız.
+
+</Soru>
+
+<Ipucu>
+
+Önce her iki ifadeyi ayrı ayrı hesapla; tabanların toplamı her zaman toplamın tabanına eşit olmak zorunda değildir.
+
+</Ipucu>
+
+<Cozum>
+
+1. Soldaki ifade: $\lfloor 3{,}2\rfloor+\lfloor 3{,}8\rfloor=3+3=6$.
+
+2. Sağdaki ifade: $\lfloor 3{,}2+3{,}8\rfloor=\lfloor 7\rfloor=7$.
+
+3. Karşılaştır: $6\ne 7$ olduğundan iki ifade eşit değildir; tabanların toplamı toplamın tabanından küçük çıkabilir.
+
+<Cevap>$\lfloor 3{,}2\rfloor+\lfloor 3{,}8\rfloor=6$, $\lfloor 7\rfloor=7$; eşit değildirler.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=\lvert x\rvert$ grafiğinin $2$ birim sağa ve $3$ birim yukarı kaydırılmasıyla elde edilen fonksiyon $g(x)$'tir. $g(x)$ ifadesini yazınız ve $g(2)$ değerini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Sağa kaydırma $x$ yerine $x-c$ yazmak, yukarı kaydırma ise $+c$ eklemektir.
+
+</Ipucu>
+
+<Cozum>
+
+1. $2$ birim sağa kaydırma: $x$ yerine $x-2$ yazılır, $\lvert x-2\rvert$ olur.
+
+2. $3$ birim yukarı kaydırma: ifadeye $+3$ eklenir, $g(x)=\lvert x-2\rvert+3$.
+
+3. $g(2)$ değeri: $g(2)=\lvert 2-2\rvert+3=0+3=3$ (tepe noktası).
+
+<Cevap>$g(x)=\lvert x-2\rvert+3$ ve $g(2)=3$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Parçalı fonksiyonda yanlış parçayı seçmek:** $x$ değerinin hangi aralığa düştüğünü dikkatlice belirle; özellikle uç noktalarda $<$ ile $\le$ ayrımını gözden kaçırma.
+- **Negatif sayılarda tabanı yanlış almak:** $\lfloor -1{,}3\rfloor$ değerini $-1$ sanmak yaygın bir hatadır; doğrusu $-2$'dir, çünkü taban fonksiyonu daima **aşağıya** (sayı doğrusunda sola) gider.
+- **Mutlak değerin içini hesaplamadan işlem yapmak:** Önce parantez içini sayısal olarak bul, sonra mutlak değeri al; $\lvert 3-7\rvert$ ifadesi $\lvert 3\rvert-\lvert 7\rvert$ ile karıştırılmamalıdır.
+
+## Sınav İpucu
+
+> Bu özel fonksiyonlarda sorular neredeyse her zaman **değer hesaplatır**. Üç adımlı bir refleks geliştir: (1) verilen $x$ için doğru parçayı/kuralı seç, (2) içeriyi sayısal olarak hesapla, (3) mutlak değer/işaret/taban kuralını en son uygula. Negatif tam değer sorularında "aşağıya yuvarla" cümlesini aklından geçir; bu tek alışkanlık en sık kaybedilen puanı kurtarır.
+
+<KonuNav slug="ozel-fonksiyonlar-ayt" />

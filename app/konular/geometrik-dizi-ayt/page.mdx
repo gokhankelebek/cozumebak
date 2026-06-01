@@ -1,0 +1,321 @@
+import { topicMetadata } from "@/lib/seo";
+
+export const metadata = topicMetadata("geometrik-dizi-ayt");
+
+<Konu slug="geometrik-dizi-ayt" />
+
+<p className="lead">Geometrik dizi, ardışık terimleri arasındaki **oranın sabit** olduğu bir dizidir. Bu sabit orana **ortak çarpan** denir. Bir terimden diğerine geçerken hep aynı sayıyla çarpılır; bu yüzden geometrik diziler **üstel büyüme** ve **azalma** modellerinin temelidir. Bu konu, genel terim, ilk $n$ terim toplamı ve geometrik orta gibi tüm temel araçları kurar.</p>
+
+## 1. Geometrik Dizi ve Ortak Çarpan
+
+Bir dizide ardışık terimler arasındaki oran sabitse, bu diziye **geometrik dizi** denir. Bu sabit orana **ortak çarpan** denir ve $r$ ile gösterilir:
+
+$$r=\dfrac{a_{n+1}}{a_n}\qquad (r\ne 0)$$
+
+Yani her terim, bir önceki terimin $r$ katıdır: $a_{n+1}=a_n\cdot r$. Örneğin $2,\,6,\,18,\,54,\dots$ dizisinde her terim bir öncekinin $3$ katıdır, dolayısıyla $r=3$'tür.
+
+| Dizi | Ortak çarpan $r$ |
+| --- | --- |
+| $5,\,10,\,20,\,40,\dots$ | $2$ |
+| $81,\,27,\,9,\,3,\dots$ | $\dfrac{1}{3}$ |
+| $1,\,-2,\,4,\,-8,\dots$ | $-2$ |
+
+## 2. Genel Terim
+
+İlk terim $a_1$ ve ortak çarpan $r$ ise, $n$. terim:
+
+$$a_n=a_1\cdot r^{\,n-1}$$
+
+Üssün $n-1$ olmasının nedeni, $a_1$'e ulaşmak için **hiç çarpma yapılmamış** olmasıdır: $a_1=a_1\cdot r^{0}$. İkinci terime bir kez, üçüncü terime iki kez çarpılır.
+
+<Ornek>
+
+<Soru>
+
+$a_1=2$ ve $r=3$ olan geometrik dizide $a_5$ terimini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Genel terim formülünü yaz: $a_n=a_1\cdot r^{\,n-1}$.
+
+2. Değerleri yerine koy: $a_5=2\cdot 3^{5-1}=2\cdot 3^{4}$.
+
+3. Hesapla: $3^4=81$, dolayısıyla $a_5=2\cdot 81=162$.
+
+<Cevap>$a_5=162$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$3,\,6,\,12,\dots$ geometrik dizisinin $8$. terimini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Ortak çarpanı belirle: $r=\dfrac{6}{3}=2$, ilk terim $a_1=3$.
+
+2. Genel terimi uygula: $a_8=3\cdot 2^{8-1}=3\cdot 2^{7}$.
+
+3. Hesapla: $2^7=128$, dolayısıyla $a_8=3\cdot 128=384$.
+
+<Cevap>$a_8=384$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 3. İlk $n$ Terim Toplamı
+
+Geometrik dizinin ilk $n$ teriminin toplamı ($r\ne 1$ için):
+
+$$S_n=\dfrac{a_1\,(r^{n}-1)}{r-1}$$
+
+Burada üssün **$n-1$ değil $n$** olduğuna dikkat et: toplamda $n$ tane terim vardır. Eğer $r=1$ ise tüm terimler eşittir ve $S_n=n\cdot a_1$ olur.
+
+<Ornek>
+
+<Soru>
+
+$a_1=1$ ve $r=2$ olan geometrik dizide ilk $4$ terimin toplamı $S_4$ nedir?
+
+</Soru>
+
+<Cozum>
+
+1. Toplam formülünü yaz: $S_n=\dfrac{a_1\,(r^{n}-1)}{r-1}$.
+
+2. Değerleri yerine koy: $S_4=\dfrac{1\cdot(2^{4}-1)}{2-1}$.
+
+3. Hesapla: $2^4=16$, dolayısıyla $S_4=\dfrac{16-1}{1}=15$.
+
+<Cevap>$S_4=15$ (yani $1+2+4+8=15$)</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 4. İki Terimden Ortak Çarpan
+
+İki terim biliniyorsa, aralarındaki "adım sayısı" üs olur. Örneğin $a_1$ ve $a_4$ veriliyse, $a_4=a_1\cdot r^{3}$ olduğundan $r^{3}$ doğrudan elde edilir.
+
+<Ornek>
+
+<Soru>
+
+$a_1=5$ ve $a_4=40$ olan geometrik dizinin ortak çarpanını bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Genel terimi $4$. terim için yaz: $a_4=a_1\cdot r^{4-1}=a_1\cdot r^{3}$.
+
+2. Değerleri yerine koy: $40=5\cdot r^{3}$, buradan $r^{3}=\dfrac{40}{5}=8$.
+
+3. Küp kökü al: $r=\sqrt[3]{8}=2$.
+
+<Cevap>$r=2$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 5. Geometrik Orta
+
+Ardışık üç terim $a,\,b,\,c$ geometrik dizi oluşturuyorsa, ortadaki terim ilk ve son terimin **geometrik ortasıdır**:
+
+$$\dfrac{b}{a}=\dfrac{c}{b}\;\Rightarrow\; b^{2}=a\cdot c$$
+
+<Ornek>
+
+<Soru>
+
+$4$ ve $9$ sayıları arasına, üçü birlikte geometrik dizi oluşturacak şekilde bir sayı yerleştirilecek. Bu pozitif sayıyı bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Geometrik orta koşulunu yaz: $b^{2}=a\cdot c$.
+
+2. Değerleri yerine koy: $b^{2}=4\cdot 9=36$.
+
+3. Pozitif kökü al: $b=\sqrt{36}=6$.
+
+<Cevap>$b=6$ (yani $4,\,6,\,9$ dizisinde $r=\dfrac{3}{2}$)</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Çözümlü Sorular
+
+<Ornek>
+
+<Soru>
+
+$a_1=7$ ve $r=2$ olan geometrik dizinin genel terimini ($a_n$) yazınız ve $a_6$ değerini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Genel terim formülüne değerleri koy: $a_n=7\cdot 2^{\,n-1}$.
+
+2. $n=6$ için yaz: $a_6=7\cdot 2^{6-1}=7\cdot 2^{5}$.
+
+3. Hesapla: $2^5=32$, dolayısıyla $a_6=7\cdot 32=224$.
+
+<Cevap>$a_n=7\cdot 2^{\,n-1}$ ve $a_6=224$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir geometrik dizide $a_2=12$ ve $a_5=96$ veriliyor. Ortak çarpan $r$'yi bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+İki terim arasındaki adım sayısı üs olur: $a_5=a_2\cdot r^{\,5-2}$.
+
+</Ipucu>
+
+<Cozum>
+
+1. Terimleri birbirine bağla: $a_5=a_2\cdot r^{5-2}=a_2\cdot r^{3}$.
+
+2. Değerleri yerine koy: $96=12\cdot r^{3}$, buradan $r^{3}=\dfrac{96}{12}=8$.
+
+3. Küp kökü al: $r=\sqrt[3]{8}=2$.
+
+<Cevap>$r=2$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$2,\,6,\,18,\,\dots$ geometrik dizisinin ilk $5$ teriminin toplamını bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Verileri belirle: $a_1=2$, $r=\dfrac{6}{2}=3$, $n=5$.
+
+2. Toplam formülünü uygula: $S_5=\dfrac{a_1\,(r^{5}-1)}{r-1}=\dfrac{2\,(3^{5}-1)}{3-1}$.
+
+3. Hesapla: $3^5=243$, dolayısıyla $S_5=\dfrac{2\,(243-1)}{2}=243-1=242$.
+
+<Cevap>$S_5=242$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$3$ ile $48$ sayıları arasındaki pozitif geometrik ortayı bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Üç terim geometrik dizi oluşturduğunda $b^{2}=a\cdot c$ eşitliği geçerlidir.
+
+</Ipucu>
+
+<Cozum>
+
+1. Geometrik orta koşulunu yaz: $b^{2}=a\cdot c$.
+
+2. Değerleri yerine koy: $b^{2}=3\cdot 48=144$.
+
+3. Pozitif kökü al: $b=\sqrt{144}=12$.
+
+<Cevap>$b=12$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$5,\,10,\,20,\,\dots$ geometrik dizisinde $a_n=1280$ ise bu terim **kaçıncı** terimdir?
+
+</Soru>
+
+<Ipucu>
+
+Genel terimi yaz ve $2$'nin kuvvetlerini eşitleyerek $n$'yi çek.
+
+</Ipucu>
+
+<Cozum>
+
+1. Verileri belirle: $a_1=5$, $r=\dfrac{10}{5}=2$.
+
+2. Genel terimi eşitle: $5\cdot 2^{\,n-1}=1280$, buradan $2^{\,n-1}=\dfrac{1280}{5}=256$.
+
+3. $256=2^{8}$ olduğundan $n-1=8$, dolayısıyla $n=9$.
+
+<Cevap>$1280$, dizinin $9$. terimidir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir geometrik dizinin ilk terimi $a_1=3$, ortak çarpanı $r=2$'dir. İlk $n$ terimin toplamı $S_n=189$ olduğuna göre $n$ kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. Toplam formülünü yaz: $S_n=\dfrac{a_1\,(r^{n}-1)}{r-1}=\dfrac{3\,(2^{n}-1)}{2-1}=3\,(2^{n}-1)$.
+
+2. Eşitliği kur: $3\,(2^{n}-1)=189$, buradan $2^{n}-1=63$, yani $2^{n}=64$.
+
+3. $64=2^{6}$ olduğundan $n=6$.
+
+<Cevap>$n=6$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Genel terimde üssü $r^{n}$ yazmak.** Doğrusu $a_n=a_1\cdot r^{\,n-1}$'dir; ilk terime ulaşmak için hiç çarpma yapılmadığından üs $n-1$ olmalıdır. Örneğin $a_1=2,\ r=3$ için $a_5=2\cdot 3^{4}=162$'dir, $2\cdot 3^{5}=486$ değil.
+- **Toplamda $r-1$'e bölmeyi unutmak.** $S_n=\dfrac{a_1\,(r^{n}-1)}{r-1}$ formülündeki paydayı atlamak en sık görülen hatadır. $r=2$ gibi durumlarda payda $1$ olduğu için fark edilmeyebilir; başka $r$ değerlerinde ciddi hataya yol açar.
+- **Geometrik ortayı aritmetik ortayla karıştırmak.** Geometrik dizide orta terim $b=\sqrt{a\cdot c}$'dir, $\dfrac{a+c}{2}$ değil.
+
+## Sınav İpucu
+
+> İki terim ($a_p$ ve $a_q$) verildiğinde ortak çarpanı bulmanın kestirme yolu: aralarındaki **adım sayısı üs olur**. $a_q=a_p\cdot r^{\,q-p}$ yazılır ve $r^{\,q-p}$ doğrudan çekilir. Örneğin $a_2$ ve $a_5$ verilmişse $r^{3}=\dfrac{a_5}{a_2}$ olur; tek tek terim hesaplamaya gerek kalmaz.
+
+<KonuNav slug="geometrik-dizi-ayt" />

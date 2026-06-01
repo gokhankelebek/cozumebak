@@ -1,0 +1,337 @@
+import { topicMetadata } from "@/lib/seo";
+
+export const metadata = topicMetadata("aritmetik-dizi-ayt");
+
+<Konu slug="aritmetik-dizi-ayt" />
+
+<p className="lead">Aritmetik dizi, ardışık terimleri arasındaki **farkın sabit** olduğu özel bir dizidir. Bu konu; genel terim, ortak fark ve ilk $n$ terim toplamı formüllerini kurar ve bunları AYT düzeyinde sınav sorularına uygular. Formüller kısa olsa da soruların çoğu, verilen iki bilgiyi denklem sistemine dönüştürmeyi gerektirir.</p>
+
+## 1. Ortak Fark
+
+Bir dizide her terim ile bir önceki terim arasındaki fark sabitse, bu diziye **aritmetik dizi**; bu sabit farka da **ortak fark** denir ve $d$ ile gösterilir:
+
+$$d=a_{n+1}-a_n$$
+
+Örneğin $3,7,11,15,\dots$ dizisinde her terim bir öncekinden $4$ fazla olduğundan $d=4$ tür. $d>0$ ise dizi artan, $d<0$ ise azalandır.
+
+## 2. Genel Terim
+
+İlk terim $a_1$ ve ortak fark $d$ bilindiğinde, $n.$ terim doğrudan yazılabilir:
+
+$$a_n=a_1+(n-1)d$$
+
+Bu formül, $a_1$ üzerine $(n-1)$ kez $d$ eklendiğini ifade eder; ikinci terime gelmek için **bir** kez, üçüncü terim için **iki** kez ekleriz.
+
+<Ornek>
+
+<Soru>
+
+$a_1=3$ ve $d=4$ olan aritmetik dizinin $10.$ terimini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Genel terim formülünü yaz: $a_n=a_1+(n-1)d$.
+
+2. $n=10$ değerlerini yerine koy: $a_{10}=3+(10-1)\cdot 4=3+9\cdot 4$.
+
+3. İşlemi bitir: $a_{10}=3+36=39$.
+
+<Cevap>$a_{10}=39$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$2,5,8,\dots$ aritmetik dizisinin $20.$ terimini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Önce ortak farkı $d=a_2-a_1$ ile bul, sonra genel terim formülünü uygula.
+
+</Ipucu>
+
+<Cozum>
+
+1. Ortak farkı bul: $d=5-2=3$, ilk terim $a_1=2$.
+
+2. Genel terimi yaz: $a_{20}=2+(20-1)\cdot 3=2+19\cdot 3$.
+
+3. Hesapla: $a_{20}=2+57=59$.
+
+<Cevap>$a_{20}=59$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir aritmetik dizide $a_1=5$ ve $a_{10}=32$ ise ortak farkı bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Genel terimi $n=10$ için yaz: $a_{10}=a_1+9d$.
+
+2. Bilinenleri yerleştir: $32=5+9d$.
+
+3. $d$ için çöz: $9d=27 \Rightarrow d=\dfrac{32-5}{9}=3$.
+
+<Cevap>$d=3$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 3. İlk $n$ Terim Toplamı
+
+İlk $n$ terimin toplamı $S_n$ ile gösterilir. İki eşdeğer formül kullanılır:
+
+$$S_n=\dfrac{n\,(a_1+a_n)}{2}=\dfrac{n\,\big(2a_1+(n-1)d\big)}{2}$$
+
+İlk biçim **son terim** $a_n$ bilindiğinde, ikinci biçim ise $a_1$ ve $d$ bilindiğinde pratiktir.
+
+<Ornek>
+
+<Soru>
+
+$1+2+3+\cdots+100$ toplamını bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Bu, $a_1=1$, $d=1$, $a_{100}=100$ olan aritmetik dizinin ilk $100$ teriminin toplamıdır.
+
+2. Son terimli formülü uygula: $S_{100}=\dfrac{100\,(a_1+a_{100})}{2}=\dfrac{100\,(1+100)}{2}$.
+
+3. Hesapla: $S_{100}=\dfrac{100\cdot 101}{2}=5050$.
+
+<Cevap>$S_{100}=5050$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$a_1=2$ ve $d=3$ olan aritmetik dizinin ilk $10$ teriminin toplamını bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $a_1$ ve $d$ bilindiğinden ikinci formülü kullan: $S_n=\dfrac{n\,\big(2a_1+(n-1)d\big)}{2}$.
+
+2. $n=10$ için yerleştir: $S_{10}=\dfrac{10\,\big(2\cdot 2+(10-1)\cdot 3\big)}{2}=\dfrac{10\,(4+27)}{2}$.
+
+3. Hesapla: $S_{10}=\dfrac{10\cdot 31}{2}=155$.
+
+<Cevap>$S_{10}=155$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 4. Orta Terim
+
+Ardışık üç terimden ortadaki, diğer ikisinin **aritmetik ortalamasına** eşittir:
+
+$$a_n=\dfrac{a_{n-1}+a_{n+1}}{2}$$
+
+Bu, $a_n-a_{n-1}=a_{n+1}-a_n$ eşitliğinin (ortak farkın sabitliğinin) doğrudan sonucudur. Üç terimli bir aritmetik dizide $x,\;y,\;z$ verildiğinde $2y=x+z$ yazmak çoğu soruyu kısaltır.
+
+## Çözümlü Sorular
+
+<Ornek>
+
+<Soru>
+
+Genel terimi $a_n=4n-1$ olan dizinin ilk terimini ve ortak farkını bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+İlk terim için $n=1$, ortak fark için $a_{n+1}-a_n$ farkını kullan.
+
+</Ipucu>
+
+<Cozum>
+
+1. İlk terimi bul: $a_1=4\cdot 1-1=3$.
+
+2. İkinci terimi bul: $a_2=4\cdot 2-1=7$.
+
+3. Ortak fark: $d=a_2-a_1=7-3=4$.
+
+<Cevap>$a_1=3,\ d=4$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir aritmetik dizide $a_3=11$ ve $a_7=27$ ise $a_1$ ve $d$ değerlerini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+İki terimi de $a_1$ ve $d$ cinsinden yazıp denklem sistemi kur.
+
+</Ipucu>
+
+<Cozum>
+
+1. Terimleri genel terimle yaz: $a_3=a_1+2d=11$ ve $a_7=a_1+6d=27$.
+
+2. İkinci denklemden birinciyi çıkar: $4d=16 \Rightarrow d=4$.
+
+3. $d=4$ değerini ilk denkleme koy: $a_1+2\cdot 4=11 \Rightarrow a_1=3$.
+
+<Cevap>$a_1=3,\ d=4$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$5,9,13,\dots$ aritmetik dizisinde $101$ kaçıncı terimdir?
+
+</Soru>
+
+<Ipucu>
+
+$a_n=101$ yazıp $n$ için çöz.
+
+</Ipucu>
+
+<Cozum>
+
+1. Diziyi tanı: $a_1=5$, $d=9-5=4$.
+
+2. Genel terimi $101$ e eşitle: $5+(n-1)\cdot 4=101$.
+
+3. $n$ için çöz: $(n-1)\cdot 4=96 \Rightarrow n-1=24 \Rightarrow n=25$.
+
+<Cevap>$101$, dizinin $25.$ terimidir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$3,7,11,\dots,79$ aritmetik dizisinin tüm terimlerinin toplamını bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Önce $79$ un kaçıncı terim olduğunu bul, sonra toplam formülünü uygula.
+
+</Ipucu>
+
+<Cozum>
+
+1. Diziyi tanı: $a_1=3$, $d=4$, son terim $a_n=79$.
+
+2. Terim sayısını bul: $3+(n-1)\cdot 4=79 \Rightarrow (n-1)\cdot 4=76 \Rightarrow n=20$.
+
+3. Toplamı hesapla: $S_{20}=\dfrac{20\,(a_1+a_{20})}{2}=\dfrac{20\,(3+79)}{2}=\dfrac{20\cdot 82}{2}=820$.
+
+<Cevap>$S_{20}=820$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir aritmetik dizide $a_4=20$ ve $a_9=45$ ise ilk $9$ terimin toplamını bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Önce $d$ ve $a_1$ değerlerini bul, ardından $a_9$ zaten verili olduğundan son terimli toplam formülünü kullan.
+
+</Ipucu>
+
+<Cozum>
+
+1. Terimleri yaz: $a_4=a_1+3d=20$ ve $a_9=a_1+8d=45$.
+
+2. Çıkarma ile $d$ bul: $5d=25 \Rightarrow d=5$; sonra $a_1+3\cdot 5=20 \Rightarrow a_1=5$.
+
+3. Toplamı hesapla: $S_9=\dfrac{9\,(a_1+a_9)}{2}=\dfrac{9\,(5+45)}{2}=\dfrac{9\cdot 50}{2}=225$.
+
+<Cevap>$S_9=225$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Ardışık terimleri aritmetik dizi oluşturan $x-3,\;2x+1,\;5x-1$ ifadelerinde $x$ değerini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Orta terim, diğer ikisinin ortalamasıdır: $2\cdot(2x+1)=(x-3)+(5x-1)$.
+
+</Ipucu>
+
+<Cozum>
+
+1. Orta terim özelliğini yaz: $2(2x+1)=(x-3)+(5x-1)$.
+
+2. İki tarafı düzenle: $4x+2=6x-4$.
+
+3. $x$ için çöz: $2+4=6x-4x \Rightarrow 6=2x \Rightarrow x=3$.
+
+<Cevap>$x=3$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Genel terimde $(n-1)d$ yerine $nd$ yazmak.** $a_1$ üzerine $d$, dizinin $n.$ terimine kadar yalnızca $(n-1)$ kez eklenir; doğru formül $a_n=a_1+(n-1)d$ tir.
+- **Toplam formülünde $a_n$ bulunmadan son terimli biçimi uygulamak.** $S_n=\dfrac{n\,(a_1+a_n)}{2}$ kullanmadan önce $a_n$ mutlaka hesaplanmalı; $a_n$ bilinmiyorsa $S_n=\dfrac{n\,\big(2a_1+(n-1)d\big)}{2}$ biçimi tercih edilir.
+- **Terim sayısını yanlış belirlemek.** $a_1,\dots,a_n$ aralığında terim sayısı $n$ dir; "kaçıncı terim" sorularında çıkan $n$ doğrudan terim sayısıdır.
+
+## Sınav İpucu
+
+> İki terimi verilen sorularda ($a_p$ ve $a_q$ gibi) her ikisini de $a_1$ ve $d$ cinsinden yazıp denklemleri taraf tarafa çıkarın: $a_q-a_p=(q-p)d$ eşitliği $d$ yi tek adımda verir. Ardından $d$ yi bir denkleme koyup $a_1$ i bulun. Bu yöntem aritmetik dizi sorularının büyük çoğunluğunu çözer.
+
+<KonuNav slug="aritmetik-dizi-ayt" />

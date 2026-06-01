@@ -1,0 +1,306 @@
+import { topicMetadata } from "@/lib/seo";
+
+export const metadata = topicMetadata("dizi-kavrami-ayt");
+
+<Konu slug="dizi-kavrami-ayt" />
+
+<p className="lead">**Dizi**, terimleri belirli bir kurala göre sıralanmış sonsuz (ya da sonlu) bir sayı listesidir. Aslında tanım kümesi **pozitif tam sayılar** olan özel bir fonksiyondur. Bu konu, dizinin tanımını, genel terim kavramını ve artan–azalan dizileri kurar; aritmetik ve geometrik diziler bu temele dayanır.</p>
+
+## 1. Dizinin Tanımı
+
+Bir **dizi**, tanım kümesi pozitif tam sayılar kümesi $\mathbb{Z}^{+}=\{1,2,3,\dots\}$ olan bir fonksiyondur. Görüntü kümesi genellikle gerçek sayılardır:
+
+$$a:\mathbb{Z}^{+}\to\mathbb{R},\qquad a(n)=a_n$$
+
+Burada $a_n$ sayısına dizinin **genel terimi** denir ve dizinin tamamı $(a_n)$ ile gösterilir. $n=1,2,3,\dots$ değerleri sırasıyla **1. terim, 2. terim, 3. terim** olarak adlandırılır.
+
+| Gösterim | Anlamı |
+| --- | --- |
+| $(a_n)$ | Dizinin kendisi (tüm terimler) |
+| $a_n$ | Genel terim (n. terim) |
+| $a_1,\ a_2,\ a_3$ | Sırasıyla 1., 2., 3. terim |
+| $n\in\mathbb{Z}^{+}$ | Terim sırası daima pozitif tam sayıdır |
+
+### Genel Terimden Terim Bulma
+
+Genel terimi bilinen bir dizinin istenen herhangi bir terimini bulmak için $n$ yerine o terimin sırasını yazmak yeterlidir. Örneğin $a_5$ için $n=5$ yazılır.
+
+<Ornek>
+
+<Soru>
+
+Genel terimi $a_n=2n+1$ olan dizinin 1. ve 5. terimlerini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. **1. terim** için $n=1$ yaz: $a_1=2\cdot 1+1=3$.
+
+2. **5. terim** için $n=5$ yaz: $a_5=2\cdot 5+1=11$.
+
+<Cevap>$a_1=3,\ a_5=11$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Genel terimi $a_n=n^{2}-n$ olan dizinin 4. terimini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $n=4$ değerini genel terimde yerine yaz: $a_4=4^{2}-4$.
+
+2. İşlemi yap: $a_4=16-4=12$.
+
+<Cevap>$a_4=12$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Genel terimi $a_n=\dfrac{n}{n+1}$ olan dizinin 3. terimini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $n=3$ değerini yerine yaz: $a_3=\dfrac{3}{3+1}$.
+
+2. Paydayı topla: $a_3=\dfrac{3}{4}$.
+
+<Cevap>$a_3=\dfrac{3}{4}$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 2. Bir Sayı Dizinin Kaçıncı Terimidir?
+
+Verilen bir sayının dizinin terimi olup olmadığını anlamak için genel terimi o sayıya eşitleriz ve $n$'i çözeriz. Bulunan $n$ değeri **pozitif tam sayı** ise, sayı dizinin terimidir; aksi hâlde değildir.
+
+<Ornek>
+
+<Soru>
+
+$40$ sayısı, genel terimi $a_n=3n-2$ olan dizinin bir terimi midir? Terim ise kaçıncı terimdir?
+
+</Soru>
+
+<Ipucu>
+
+Genel terimi $40$'a eşitle ve $n$'i çöz. Çıkan $n$ pozitif tam sayı olmalı.
+
+</Ipucu>
+
+<Cozum>
+
+1. Genel terimi $40$'a eşitle: $3n-2=40$.
+
+2. $n$'i çöz: $3n=42 \Rightarrow n=14$.
+
+3. $n=14$ pozitif tam sayı olduğundan $40$ sayısı dizinin **14. terimidir**.
+
+<Cevap>Evet; $40$ sayısı dizinin 14. terimidir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 3. Artan ve Azalan Diziler
+
+Bir dizinin terimleri sıra ilerledikçe sürekli büyüyor veya küçülüyor olabilir:
+
+| Tür | Koşul |
+| --- | --- |
+| **Artan dizi** | Her $n\in\mathbb{Z}^{+}$ için $a_{n+1}>a_n$ |
+| **Azalan dizi** | Her $n\in\mathbb{Z}^{+}$ için $a_{n+1}<a_n$ |
+
+İncelemenin pratik yolu: $a_{n+1}-a_n$ farkının işaretine bakmaktır. Fark her zaman **pozitifse** dizi artan, her zaman **negatifse** azalandır.
+
+Bazı diziler ne artan ne azalandır. Örneğin $a_n=(-1)^n\cdot n$ dizisinin terimleri $-1,\ 2,\ -3,\ 4,\dots$ şeklinde işaret değiştirerek gider; bu dizi ne artan ne azalandır. (Burada $a_3=(-1)^3\cdot 3=-3$.)
+
+<Ornek>
+
+<Soru>
+
+Genel terimi $a_n=3n-2$ olan dizinin artan mı azalan mı olduğunu inceleyiniz.
+
+</Soru>
+
+<Cozum>
+
+1. Ardışık iki terim arasındaki farkı yaz: $a_{n+1}-a_n$.
+
+2. $a_{n+1}=3(n+1)-2=3n+1$ olduğundan fark: $(3n+1)-(3n-2)=3$.
+
+3. Fark her $n$ için $3>0$ (pozitif sabit) olduğundan dizi **artandır**.
+
+<Cevap>Dizi artandır ($a_{n+1}-a_n=3>0$).</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Çözümlü Sorular
+
+<Ornek>
+
+<Soru>
+
+Genel terimi $a_n=n^{2}+2n$ olan dizinin 6. terimini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $n=6$ değerini genel terimde yerine yaz: $a_6=6^{2}+2\cdot 6$.
+
+2. İşlemi yap: $a_6=36+12=48$.
+
+<Cevap>$a_6=48$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$23$ sayısı, genel terimi $a_n=4n-1$ olan dizinin kaçıncı terimidir?
+
+</Soru>
+
+<Ipucu>
+
+Genel terimi $23$'e eşitle; $n$ pozitif tam sayı çıkmalı.
+
+</Ipucu>
+
+<Cozum>
+
+1. Genel terimi $23$'e eşitle: $4n-1=23$.
+
+2. $n$'i çöz: $4n=24 \Rightarrow n=6$.
+
+3. $n=6$ pozitif tam sayı olduğundan $23$ dizinin 6. terimidir.
+
+<Cevap>$6.$ terim</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$50$ sayısı, genel terimi $a_n=3n+1$ olan dizinin bir terimi midir?
+
+</Soru>
+
+<Ipucu>
+
+$n$'i çöz; pozitif **tam** sayı çıkmazsa sayı dizinin terimi değildir.
+
+</Ipucu>
+
+<Cozum>
+
+1. Genel terimi $50$'ye eşitle: $3n+1=50$.
+
+2. $n$'i çöz: $3n=49 \Rightarrow n=\dfrac{49}{3}$.
+
+3. $n$ tam sayı olmadığından ($n\notin\mathbb{Z}^{+}$) $50$ sayısı dizinin bir terimi **değildir**.
+
+<Cevap>Hayır; $50$ bu dizinin terimi değildir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Genel terimi $a_n=\dfrac{1}{n}$ olan dizinin artan mı azalan mı olduğunu inceleyiniz.
+
+</Soru>
+
+<Cozum>
+
+1. Ardışık terimlerin farkına bak: $a_{n+1}-a_n=\dfrac{1}{n+1}-\dfrac{1}{n}$.
+
+2. Ortak paydada birleştir: $\dfrac{n-(n+1)}{n(n+1)}=\dfrac{-1}{n(n+1)}$.
+
+3. $n\in\mathbb{Z}^{+}$ için payda $n(n+1)>0$ olduğundan fark daima negatiftir.
+
+4. $a_{n+1}-a_n<0$ olduğundan dizi **azalandır**.
+
+<Cevap>Dizi azalandır.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Genel terimi $a_n=2n-3$ olan dizide $a_4+a_7$ toplamını bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. **4. terim** için $n=4$: $a_4=2\cdot 4-3=5$.
+
+2. **7. terim** için $n=7$: $a_7=2\cdot 7-3=11$.
+
+3. Topla: $a_4+a_7=5+11=16$.
+
+<Cevap>$a_4+a_7=16$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Genel terimi $a_n=\dfrac{n+1}{2n}$ olan dizinin 5. terimini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $n=5$ değerini genel terimde yerine yaz: $a_5=\dfrac{5+1}{2\cdot 5}$.
+
+2. Pay ve paydayı hesapla: $a_5=\dfrac{6}{10}$.
+
+3. Kesri sadeleştir: $a_5=\dfrac{3}{5}$.
+
+<Cevap>$a_5=\dfrac{3}{5}$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Terim sırası $n$'in pozitif tam sayı olması gerektiğini unutmak.** Bir sayının dizinin terimi olup olmadığını ararken, denklemden $n=\dfrac{49}{3}$ gibi kesirli bir değer çıkıyorsa o sayı dizinin terimi **değildir**. Çözümü pozitif tam sayı çıkmayan $n$ değerini geçerli sanmayın.
+- **$a_n$ ile $n$'i karıştırmak.** $n$, terimin **sırasını** (kaçıncı terim olduğunu) gösterir; $a_n$ ise o sıradaki **terimin değeridir**. "23 kaçıncı terim?" diye sorulduğunda istenen $n$'dir, $a_n$ değil.
+
+<KonuNav slug="dizi-kavrami-ayt" />

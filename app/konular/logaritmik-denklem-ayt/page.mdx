@@ -1,0 +1,333 @@
+import { topicMetadata } from "@/lib/seo";
+
+export const metadata = topicMetadata("logaritmik-denklem-ayt");
+
+<Konu slug="logaritmik-denklem-ayt" />
+
+<p className="lead">Logaritmik denklem ve eşitsizliklerde her şeyin önünde gelen tek bir altın kural vardır: **önce tanım kümesi**. Logaritmanın içi her zaman pozitif olmak zorunda olduğundan, bulduğun her kökü mutlaka bu koşula göre süzersin. Bu konu, denklem çözmenin adımlarını, eşitsizlikte tabanın yönü nasıl belirlediğini ve yabancı kökleri ayıklamayı baştan sona kurar.</p>
+
+## 1. Tanım Kümesi: Her Şeyin Başı
+
+$\log_a f(x)$ ifadesinin tanımlı olması için iki koşul gerekir:
+
+| Koşul | Açıklama |
+| --- | --- |
+| $f(x) > 0$ | Logaritmanın **içi (argümanı)** pozitif olmalı |
+| $a > 0,\ a \ne 1$ | Taban pozitif ve $1$'den farklı olmalı |
+
+Bir denklem çözerken bulunan değer, bu koşulları sağlamıyorsa **yabancı kök** adını alır ve atılır. Bu yüzden çözümün son adımı her zaman **tanım kümesine göre kontroldür**.
+
+## 2. Logaritmik Denklem Çözme
+
+İki temel kalıp vardır:
+
+$$\log_a f(x)=b \;\Rightarrow\; f(x)=a^{b}$$
+
+$$\log_a f(x)=\log_a g(x) \;\Rightarrow\; f(x)=g(x)\quad\big(f(x)>0,\ g(x)>0\big)$$
+
+İkinci kalıpta, tabanlar aynı olduğunda argümanları eşitleriz; ama hem $f(x)$ hem $g(x)$ pozitif olmalıdır.
+
+<Ornek>
+
+<Soru>
+
+$\log_2(x-1)=3$ denklemini çözünüz.
+
+</Soru>
+
+<Cozum>
+
+1. **Tanım kümesi:** $x-1>0 \Rightarrow x>1$.
+
+2. Denklemi üslü biçime geçir: $x-1=2^{3}=8$.
+
+3. Çöz: $x=9$.
+
+4. **Kontrol:** $9>1$ olduğundan kök tanım kümesindedir.
+
+<Cevap>$x=9$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\log_3(2x+1)=2$ denklemini çözünüz.
+
+</Soru>
+
+<Cozum>
+
+1. **Tanım kümesi:** $2x+1>0 \Rightarrow x>-\dfrac{1}{2}$.
+
+2. Üslü biçime geç: $2x+1=3^{2}=9$.
+
+3. Çöz: $2x=8 \Rightarrow x=4$.
+
+4. **Kontrol:** $4>-\dfrac{1}{2}$ sağlanır.
+
+<Cevap>$x=4$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 3. Logaritmaları Birleştirme
+
+Birden fazla logaritma içeren denklemlerde önce çarpım/bölüm kurallarıyla tek logaritmaya indiririz:
+
+$$\log_a m+\log_a n=\log_a(mn),\qquad \log_a m-\log_a n=\log_a\dfrac{m}{n}$$
+
+Birleştirme **yeni kökler doğurabileceğinden**, tanım kümesi kontrolü burada daha da kritiktir.
+
+<Ornek>
+
+<Soru>
+
+$\log x+\log(x-3)=1$ denklemini çözünüz. (Taban $10$.)
+
+</Soru>
+
+<Ipucu>
+
+Önce iki logaritmayı tek logaritmada topla; sonra $\log_{10} A=1 \Rightarrow A=10$ kuralını kullan. Tanım için **hem** $x>0$ **hem** $x-3>0$ gerektiğini unutma.
+
+</Ipucu>
+
+<Cozum>
+
+1. **Tanım kümesi:** $x>0$ ve $x-3>0 \Rightarrow x>3$.
+
+2. Logaritmaları birleştir: $\log\big(x(x-3)\big)=1$.
+
+3. Üslü biçime geç: $x(x-3)=10^{1}=10$.
+
+4. Düzenle: $x^{2}-3x-10=0 \Rightarrow (x-5)(x+2)=0$.
+
+5. Kökler $x=5$ ve $x=-2$. **Kontrol:** $x=5>3$ kabul; $x=-2$ tanım dışı, **atılır**.
+
+<Cevap>$x=5$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 4. Logaritmik Eşitsizlik: Taban Yönü Belirler
+
+Eşitsizlikte tabanın $1$'den büyük mü küçük mü olduğu, eşitsizliğin yönünü doğrudan etkiler:
+
+| Taban | Kural | Yön |
+| --- | --- | --- |
+| $a>1$ | $\log_a f<\log_a g \Rightarrow 0<f<g$ | Korunur |
+| $0<a<1$ | $\log_a f<\log_a g \Rightarrow f>g>0$ | **Değişir** |
+
+Her iki durumda da çözüm kümesini **tanım kümesiyle kesiştirmek** zorunludur; çünkü logaritmanın içi yine pozitif olmalıdır.
+
+<Ornek>
+
+<Soru>
+
+$\log_2(x-1)<3$ eşitsizliğini çözünüz.
+
+</Soru>
+
+<Cozum>
+
+1. **Tanım kümesi:** $x-1>0 \Rightarrow x>1$.
+
+2. Taban $2>1$ olduğundan yön korunur. Sağ tarafı $\log_2 8=3$ biçiminde yaz: $\log_2(x-1)<\log_2 8$.
+
+3. Argümanları karşılaştır: $x-1<8 \Rightarrow x<9$.
+
+4. Tanım kümesiyle kesiştir: $x>1$ ve $x<9$.
+
+<Cevap>$1<x<9$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Çözümlü Sorular
+
+<Ornek>
+
+<Soru>
+
+$\log_5(3x-2)=2$ denklemini çözünüz.
+
+</Soru>
+
+<Cozum>
+
+1. **Tanım kümesi:** $3x-2>0 \Rightarrow x>\dfrac{2}{3}$.
+
+2. Üslü biçime geç: $3x-2=5^{2}=25$.
+
+3. Çöz: $3x=27 \Rightarrow x=9$.
+
+4. **Kontrol:** $9>\dfrac{2}{3}$ sağlanır.
+
+<Cevap>$x=9$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\log_2(x+1)+\log_2(x-1)=3$ denklemini çözünüz.
+
+</Soru>
+
+<Ipucu>
+
+İki logaritmayı $\log_2\big[(x+1)(x-1)\big]$ olarak birleştir; çarpım $x^{2}-1$ verir. Tanım için $x>1$ olması gerektiğine dikkat et.
+
+</Ipucu>
+
+<Cozum>
+
+1. **Tanım kümesi:** $x+1>0$ ve $x-1>0 \Rightarrow x>1$.
+
+2. Logaritmaları birleştir: $\log_2\big[(x+1)(x-1)\big]=3 \Rightarrow \log_2(x^{2}-1)=3$.
+
+3. Üslü biçime geç: $x^{2}-1=2^{3}=8$.
+
+4. Çöz: $x^{2}=9 \Rightarrow x=3$ veya $x=-3$.
+
+5. **Kontrol:** $x=3>1$ kabul; $x=-3$ tanım dışı, **atılır**.
+
+<Cevap>$x=3$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\log_3(x+6)=\log_3(2x+1)$ denklemini çözünüz.
+
+</Soru>
+
+<Cozum>
+
+1. **Tanım kümesi:** $x+6>0$ ve $2x+1>0 \Rightarrow x>-\dfrac{1}{2}$.
+
+2. Tabanlar aynı olduğundan argümanları eşitle: $x+6=2x+1$.
+
+3. Çöz: $6-1=2x-x \Rightarrow x=5$.
+
+4. **Kontrol:** $x=5>-\dfrac{1}{2}$; her iki argüman da pozitif ($11>0,\ 11>0$).
+
+<Cevap>$x=5$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\log_4(x)+\log_4(x-6)=2$ denklemini çözünüz.
+
+</Soru>
+
+<Ipucu>
+
+Birleştir, $\log_4 A=2 \Rightarrow A=16$ kuralını uygula ve ikinci dereceden denklemi çöz. Kökleri $x>6$ koşuluna göre süz.
+
+</Ipucu>
+
+<Cozum>
+
+1. **Tanım kümesi:** $x>0$ ve $x-6>0 \Rightarrow x>6$.
+
+2. Birleştir: $\log_4\big[x(x-6)\big]=2$.
+
+3. Üslü biçime geç: $x(x-6)=4^{2}=16$.
+
+4. Düzenle: $x^{2}-6x-16=0 \Rightarrow (x-8)(x+2)=0$.
+
+5. Kökler $x=8$ ve $x=-2$. **Kontrol:** $x=8>6$ kabul; $x=-2$ tanım dışı, **atılır**.
+
+<Cevap>$x=8$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\log_3(2x-1)\ge 2$ eşitsizliğini çözünüz.
+
+</Soru>
+
+<Cozum>
+
+1. **Tanım kümesi:** $2x-1>0 \Rightarrow x>\dfrac{1}{2}$.
+
+2. Taban $3>1$, yön korunur. Sağ tarafı $\log_3 9=2$ yaz: $\log_3(2x-1)\ge\log_3 9$.
+
+3. Argümanları karşılaştır: $2x-1\ge 9 \Rightarrow 2x\ge 10 \Rightarrow x\ge 5$.
+
+4. Tanım kümesiyle kesiştir: $x\ge 5$ zaten $x>\dfrac{1}{2}$ içinde kalır.
+
+<Cevap>$x\ge 5$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\log_{1/2}(x-3)>1$ eşitsizliğini çözünüz.
+
+</Soru>
+
+<Ipucu>
+
+Taban $\dfrac{1}{2}$, yani $0<a<1$. Bu durumda argümanları karşılaştırırken eşitsizliğin **yönü değişir**. Ayrıca $x-3>0$ koşulunu da unutma.
+
+</Ipucu>
+
+<Cozum>
+
+1. **Tanım kümesi:** $x-3>0 \Rightarrow x>3$.
+
+2. Sağ tarafı $\log_{1/2}\dfrac{1}{2}=1$ biçiminde yaz: $\log_{1/2}(x-3)>\log_{1/2}\dfrac{1}{2}$.
+
+3. Taban $0<\dfrac{1}{2}<1$ olduğundan yön **değişir**: $x-3<\dfrac{1}{2}$.
+
+4. Çöz: $x<\dfrac{7}{2}$.
+
+5. Tanım kümesiyle kesiştir: $x>3$ ve $x<\dfrac{7}{2}$.
+
+<Cevap>$3<x<\dfrac{7}{2}$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Tanım kümesini kontrol etmemek.** Denklemi çözüp bulduğun her kökü mutlaka $f(x)>0$ koşuluna göre süz. Örneğin $\log x+\log(x-3)=1$ denkleminde $x=-2$ cebirsel olarak çıkar ama logaritmanın içi negatif olacağından **yabancı köktür**, atılır.
+- **$0<a<1$ tabanında yönü çevirmemek.** $\log_{1/2}$ gibi $1$'den küçük tabanlı eşitsizliklerde argümanlara geçerken eşitsizliğin yönü **ters döner**. Yönü korursan çözüm kümesi tamamen yanlış çıkar.
+- **Logaritmaları birleştirmeden argümanları eşitlemek.** $\log_a m+\log_a n$ ifadesi $\log_a(mn)$'dir, $\log_a(m+n)$ değildir.
+
+## Sınav İpucu
+
+> Logaritmik bir denklem ya da eşitsizlikte **ilk işin** tanım kümesini yazmak olsun: argümanları $>0$, tabanı $0<a\ne 1$ koşullarını en başta bir köşeye not et. Çözümün sonunda bulduğun kökleri bu koşullarla süz. Eşitsizliklerde ise tabana bak: $a>1$ ise yön korunur, $0<a<1$ ise yön değişir. Bu iki refleks, soruların çok büyük kısmını hatasız çözdürür.
+
+<KonuNav slug="logaritmik-denklem-ayt" />

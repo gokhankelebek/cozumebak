@@ -1,0 +1,366 @@
+import { topicMetadata } from "@/lib/seo";
+
+export const metadata = topicMetadata("ustel-fonksiyon-ayt");
+
+<Konu slug="ustel-fonksiyon-ayt" />
+
+<p className="lead">Üstel fonksiyon, değişkenin **üs** olarak yer aldığı $f(x)=a^{x}$ biçimindeki fonksiyondur. Nüfus artışı, bileşik faiz ve radyoaktif bozunma gibi pek çok olayı modelleyen bu fonksiyon, AYT'de hem grafik–değer sorularında hem de **üstel denklem** ve **üstel eşitsizlik** çözümlerinde sık karşımıza çıkar. Bu konu, tabanı eşitleme tekniğini ve eşitsizliklerde tabana göre yön kuralını sağlam bir biçimde kurar.</p>
+
+## 1. Üstel Fonksiyonun Tanımı
+
+$a > 0$ ve $a\ne 1$ olmak üzere
+
+$$f(x)=a^{x}$$
+
+biçimindeki fonksiyona **üstel fonksiyon** denir. Tabanın bu koşulları sağlaması gerekir: $a=1$ ise $1^{x}=1$ sabit fonksiyon olur, $a\le 0$ ise (örneğin $(-2)^{1/2}$) bazı $x$ değerlerinde tanımsızlık doğar.
+
+Temel özellikler:
+
+| Özellik | Açıklama |
+| --- | --- |
+| **Tanım kümesi** | Tüm gerçek sayılar, $x\in\mathbb{R}$ |
+| **Değer kümesi** | Daima pozitif, $f(x) > 0$ |
+| **Sabit nokta** | $f(0)=a^{0}=1$; grafik $(0,1)$ noktasından geçer |
+| **Asimptot** | $x$ ekseni ($y=0$) yatay asimptottur |
+
+Tabanın büyüklüğü fonksiyonun **artan/azalan** oluşunu belirler:
+
+| Taban | Davranış |
+| --- | --- |
+| $a > 1$ | Fonksiyon **artandır** (örn. $2^{x}$, $3^{x}$, $e^{x}$) |
+| $0 < a < 1$ | Fonksiyon **azalandır** (örn. $\left(\tfrac12\right)^{x}$, $\left(\tfrac13\right)^{x}$) |
+
+### Doğal Taban $e$
+
+Matematikte özel bir taban olan $e\approx 2{,}718$ sayısına **doğal taban** (Euler sayısı) denir. $e > 1$ olduğundan $f(x)=e^{x}$ artan bir üstel fonksiyondur ve türev–integral konularında temel rol oynar.
+
+<Ornek>
+
+<Soru>
+
+$f(x)=a^{x}$ üstel fonksiyonu için $f(0)$ değerini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Üstel fonksiyonun tanımında $x=0$ yazalım: $f(0)=a^{0}$.
+
+2. Sıfırıncı kuvvet kuralı gereği ($a\ne 0$) her tabanın sıfırıncı kuvveti $1$'dir: $a^{0}=1$.
+
+<Cevap>$f(0)=1$. Bu yüzden tüm üstel fonksiyonların grafiği $(0,1)$ noktasından geçer.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 2. Üstel Denklem
+
+Bilinmeyenin üste geldiği denklemlere **üstel denklem** denir. Temel strateji: **iki tarafı aynı tabana getir, sonra üsleri eşitle.**
+
+$$a^{f(x)}=a^{g(x)} \;\Rightarrow\; f(x)=g(x)\qquad (a > 0,\ a\ne 1)$$
+
+<Ornek>
+
+<Soru>
+
+$2^{x}=8$ denkleminin çözümünü bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Sağ tarafı $2$ tabanında yaz: $8=2^{3}$.
+
+2. Denklem $2^{x}=2^{3}$ olur. Tabanlar eşit olduğundan üsleri eşitle: $x=3$.
+
+<Cevap>$x=3$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+Taban $0 < a < 1$ olduğunda da yöntem aynıdır; negatif üs çıkması olağandır.
+
+<Ornek>
+
+<Soru>
+
+$\left(\dfrac{1}{2}\right)^{x}=8$ denkleminin çözümünü bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Her iki tarafı $2$ tabanında yaz: $\left(\dfrac{1}{2}\right)^{x}=\left(2^{-1}\right)^{x}=2^{-x}$ ve $8=2^{3}$.
+
+2. Denklem $2^{-x}=2^{3}$ olur. Üsleri eşitle: $-x=3$.
+
+3. Buradan $x=-3$ bulunur.
+
+<Cevap>$x=-3$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$3^{x+1}=9$ denkleminin çözümünü bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Sağ tarafı $3$ tabanında yaz: $9=3^{2}$.
+
+2. Denklem $3^{x+1}=3^{2}$ olur. Üsleri eşitle: $x+1=2$.
+
+3. Buradan $x=1$ bulunur.
+
+<Cevap>$x=1$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+### Ortak Çarpan Parantezine Alma
+
+Aynı tabanlı fakat üsleri farklı terimlerin **toplamı** verildiğinde, en küçük üslü terimi ortak çarpan olarak parantezine alırız.
+
+<Ornek>
+
+<Soru>
+
+$2^{x+2}+2^{x}=20$ denkleminin çözümünü bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Üslü ifade kuralıyla aç: $2^{x+2}=2^{x}\cdot 2^{2}=4\cdot 2^{x}$.
+
+2. Denklem $4\cdot 2^{x}+2^{x}=20$ olur. $2^{x}$ ortak parantezine al: $2^{x}(4+1)=20$, yani $5\cdot 2^{x}=20$.
+
+3. Buradan $2^{x}=4=2^{2}$, dolayısıyla $x=2$.
+
+<Cevap>$x=2$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 3. Üstel Eşitsizlik
+
+Üstel eşitsizliklerde de iki taraf aynı tabana getirilir; ancak **üsleri karşılaştırırken tabanın türüne dikkat etmek** gerekir.
+
+$$a > 1 \;:\; a^{f}\;<\;a^{g} \;\Rightarrow\; f < g \quad (\textbf{yön korunur})$$
+
+$$0 < a < 1 \;:\; a^{f}\;<\;a^{g} \;\Rightarrow\; f > g \quad (\textbf{yön değişir})$$
+
+Bunun nedeni, $a > 1$ için fonksiyonun **artan**, $0 < a < 1$ için **azalan** olmasıdır. Azalan bir fonksiyonda büyük çıktıya küçük girdi karşılık geldiğinden eşitsizlik yön değiştirir.
+
+<Ornek>
+
+<Soru>
+
+$2^{x} > 8$ eşitsizliğinin çözüm kümesini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Sağ tarafı $2$ tabanında yaz: $8=2^{3}$, böylece $2^{x} > 2^{3}$.
+
+2. Taban $2 > 1$ olduğundan fonksiyon artandır; üsler arasında **yön korunur**: $x > 3$.
+
+<Cevap>$x > 3$, yani çözüm kümesi $(3,\infty)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\left(\dfrac{1}{3}\right)^{x} > 9$ eşitsizliğinin çözüm kümesini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Önce $9$'u $\tfrac13$ tabanında yaz: $9=3^{2}=\left(\tfrac13\right)^{-2}$. Taban $0 < a < 1$ olduğu için üsleri karşılaştırırken eşitsizlik yönünü ters çevirmeyi unutma.
+
+</Ipucu>
+
+<Cozum>
+
+1. Her iki tarafı $\dfrac13$ tabanında yaz: $9=3^{2}=\left(\dfrac13\right)^{-2}$, böylece $\left(\dfrac13\right)^{x} > \left(\dfrac13\right)^{-2}$.
+
+2. Taban $0 < \dfrac13 < 1$ olduğundan fonksiyon azalandır; üsleri karşılaştırırken **yön değişir**: $x < -2$.
+
+<Cevap>$x < -2$, yani çözüm kümesi $(-\infty,-2)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+> **Püf noktası:** Eşitsizlikte tabanı eşitledikten sonra kendine sor: "Taban $1$'den büyük mü, küçük mü?" $a > 1$ ise yön aynı kalır; $0 < a < 1$ ise yönü ters çevir. Bu tek soru en sık hatayı önler.
+
+## Çözümlü Sorular
+
+<Ornek>
+
+<Soru>
+
+$5^{2x-1}=125$ denkleminin çözümünü bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Sağ tarafı $5$ tabanında yaz: $125=5^{3}$.
+
+2. Denklem $5^{2x-1}=5^{3}$ olur. Üsleri eşitle: $2x-1=3$.
+
+3. Çöz: $2x=4 \Rightarrow x=2$.
+
+<Cevap>$x=2$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$9^{x}=27$ denkleminin çözümünü bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Hem $9$ hem $27$ ortak bir tabana, $3$'e yazılabilir: $9=3^{2}$, $27=3^{3}$.
+
+</Ipucu>
+
+<Cozum>
+
+1. İki tarafı $3$ tabanında yaz: $9^{x}=\left(3^{2}\right)^{x}=3^{2x}$ ve $27=3^{3}$.
+
+2. Denklem $3^{2x}=3^{3}$ olur. Üsleri eşitle: $2x=3$.
+
+3. Buradan $x=\dfrac{3}{2}$.
+
+<Cevap>$x=\dfrac{3}{2}$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$3^{x+1}+3^{x}=36$ denkleminin çözümünü bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Üslü ifadeyi aç: $3^{x+1}=3^{x}\cdot 3=3\cdot 3^{x}$.
+
+2. Denklem $3\cdot 3^{x}+3^{x}=36$ olur. $3^{x}$ ortak parantezine al: $3^{x}(3+1)=36$, yani $4\cdot 3^{x}=36$.
+
+3. Buradan $3^{x}=9=3^{2}$, dolayısıyla $x=2$.
+
+<Cevap>$x=2$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$3^{x}\le 81$ eşitsizliğinin çözüm kümesini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Sağ tarafı $3$ tabanında yaz: $81=3^{4}$, böylece $3^{x}\le 3^{4}$.
+
+2. Taban $3 > 1$ olduğundan fonksiyon artandır; **yön korunur**: $x\le 4$.
+
+<Cevap>$x\le 4$, yani çözüm kümesi $(-\infty,4]$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\left(\dfrac{1}{2}\right)^{x}\le \dfrac{1}{16}$ eşitsizliğinin çözüm kümesini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+$\dfrac{1}{16}$ sayısını $\dfrac12$ tabanında yaz. Taban $1$'den küçük olduğu için yön kuralına dikkat et.
+
+</Ipucu>
+
+<Cozum>
+
+1. Sağ tarafı $\dfrac12$ tabanında yaz: $\dfrac{1}{16}=\left(\dfrac12\right)^{4}$, böylece $\left(\dfrac12\right)^{x}\le \left(\dfrac12\right)^{4}$.
+
+2. Taban $0 < \dfrac12 < 1$ olduğundan fonksiyon azalandır; üsleri karşılaştırırken **yön değişir**: $x\ge 4$.
+
+<Cevap>$x\ge 4$, yani çözüm kümesi $[4,\infty)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=2\cdot 3^{x}$ fonksiyonu için $f(2)$ değerini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Fonksiyonda $x=2$ yaz: $f(2)=2\cdot 3^{2}$.
+
+2. Üslü ifadeyi hesapla: $3^{2}=9$.
+
+3. Çarp: $f(2)=2\cdot 9=18$.
+
+<Cevap>$f(2)=18$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **$0 < a < 1$ tabanlı eşitsizlikte yönü çevirmemek.** Örneğin $\left(\tfrac13\right)^{x} > 9$ çözümünde yanlışlıkla $x > -2$ yazmak. Taban $1$'den küçükse fonksiyon **azalandır**, bu yüzden üsleri karşılaştırırken eşitsizlik **yön değiştirir**: doğru cevap $x < -2$.
+- **Tabanları eşitlemeden üsleri eşitlemek.** $2^{x}=8$ denkleminde "üsler $x$ ve $8$" diye düşünüp $x=8$ yazmak yanlıştır. Önce $8=2^{3}$ yazılır, sonra üsler eşitlenir: $x=3$.
+- **Ortak çarpanı yanlış almak.** $2^{x+2}+2^{x}$ ifadesinde $2^{x}$ parantezine alırken $2^{x+2}=4\cdot 2^{x}$ olduğunu unutup $2^{x}(2+1)$ gibi yazmak. Doğrusu $2^{x}(4+1)$'dir.
+- **$f(0)=0$ sanmak.** Üstel fonksiyonda $f(0)=a^{0}=1$'dir, $0$ değil.
+
+## Sınav İpucu
+
+Üstel denklem ve eşitsizliklerde neredeyse her zaman ilk hamle **iki tarafı ortak tabana getirmektir**: $4,8,16$ için taban $2$; $9,27,81$ için taban $3$; $\tfrac12,\tfrac14$ için yine taban $2$ (negatif üsle). Tabanlar eşitlendikten sonra denklemde **üsleri eşitle**, eşitsizlikte ise tabanın $1$'den büyük mü küçük mü olduğuna bakıp **yön kuralını** uygula. Toplam–fark biçimindeki denklemlerde en küçük üslü terimi parantezine almak işi kısaltır.
+
+<KonuNav slug="ustel-fonksiyon-ayt" />

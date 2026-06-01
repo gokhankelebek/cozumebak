@@ -1,0 +1,376 @@
+import { topicMetadata } from "@/lib/seo";
+
+export const metadata = topicMetadata("ikinci-derece-denklem-ayt");
+
+<Konu slug="ikinci-derece-denklem-ayt" />
+
+<p className="lead">İkinci dereceden (kuadratik) denklem $ax^2+bx+c=0$ ($a\ne 0$) biçimindeki denklemdir ve AYT'nin en sık çıkan konularından biridir. Bu derste denklemi **çarpanlara ayırma** ile çözmeyi, **diskriminant** ($\Delta$) ile kök sayısını yorumlamayı, **kök formülünü** ve **kök–katsayı (Vieta) bağıntılarını** adım adım işleyeceğiz.</p>
+
+## 1. İkinci Dereceden Denklem Nedir?
+
+En yüksek dereceli terimi ikinci dereceden olan denklem **ikinci dereceden denklem** adını alır:
+
+$$ax^2+bx+c=0,\qquad a\ne 0$$
+
+Burada $a$ baş katsayı, $b$ orta katsayı, $c$ ise sabit terimdir. $a\ne 0$ koşulu zorunludur; aksi hâlde denklem birinci dereceden ($bx+c=0$) olurdu. Denklemi sağlayan $x$ değerlerine denklemin **kökleri** (çözümleri) denir.
+
+## 2. Çarpanlara Ayırma ile Çözüm
+
+$x^2+bx+c=0$ biçimindeki (baş katsayısı $1$ olan) denklemlerde, **çarpımı $c$, toplamı $b$** olan iki sayı aranır. Genel hâlde ($a\ne 1$) ise **çarpımı $a\cdot c$, toplamı $b$** olan iki sayı bulunur ve orta terim bu iki parçaya bölünerek gruplama yapılır.
+
+<Ornek>
+
+<Soru>
+
+$x^2-5x+6=0$ denklemini çarpanlara ayırarak çözünüz.
+
+</Soru>
+
+<Cozum>
+
+1. Çarpımı $6$, toplamı $-5$ olan iki sayı ara: bunlar $-2$ ve $-3$.
+
+2. Çarpanlara ayır: $x^2-5x+6=(x-2)(x-3)=0$.
+
+3. Her çarpanı sıfıra eşitle: $x-2=0 \Rightarrow x=2$ veya $x-3=0 \Rightarrow x=3$.
+
+<Cevap>$x=2$ veya $x=3$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 3. Diskriminant ($\Delta$) ve Kök Sayısı
+
+Köklerin sayısını ve türünü, denklemi çözmeden önce **diskriminant** belirler:
+
+$$\Delta=b^2-4ac$$
+
+| $\Delta$ değeri | Kök durumu |
+| --- | --- |
+| $\Delta > 0$ | İki farklı reel kök |
+| $\Delta = 0$ | Çift (eşit) kök — tek bir reel kök |
+| $\Delta < 0$ | Reel kök yok |
+
+<Ornek>
+
+<Soru>
+
+$x^2-4x+4=0$ denkleminin köklerini, önce diskriminantı bularak inceleyiniz.
+
+</Soru>
+
+<Cozum>
+
+1. Katsayılar: $a=1$, $b=-4$, $c=4$.
+
+2. Diskriminant: $\Delta=b^2-4ac=(-4)^2-4\cdot 1\cdot 4=16-16=0$.
+
+3. $\Delta=0$ olduğundan denklemin **çift (eşit) kökü** vardır. Denklem $(x-2)^2=0$ biçiminde yazılır.
+
+4. Tek kök: $x=2$.
+
+<Cevap>$\Delta=0$; çift kök $x=2$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$x^2+x+1=0$ denkleminin reel kökü var mıdır?
+
+</Soru>
+
+<Cozum>
+
+1. Katsayılar: $a=1$, $b=1$, $c=1$.
+
+2. Diskriminant: $\Delta=1^2-4\cdot 1\cdot 1=1-4=-3$.
+
+3. $\Delta=-3 < 0$ olduğundan denklemin **reel kökü yoktur**.
+
+<Cevap>Reel kök yoktur ($\Delta < 0$).</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 4. Kök Formülü
+
+Çarpanlara ayrılamayan denklemler için her zaman geçerli olan genel çözüm **kök formülüdür**:
+
+$$x=\dfrac{-b\pm\sqrt{\Delta}}{2a}=\dfrac{-b\pm\sqrt{b^2-4ac}}{2a}$$
+
+Buradaki $\pm$ işareti iki kökü verir: $x_1=\dfrac{-b+\sqrt{\Delta}}{2a}$ ve $x_2=\dfrac{-b-\sqrt{\Delta}}{2a}$. Tüm payın $2a$'ya bölündüğüne dikkat et.
+
+<Ornek>
+
+<Soru>
+
+$x^2-5x+6=0$ denklemini kök formülüyle çözünüz ve sonucu çarpanlara ayırma ile karşılaştırınız.
+
+</Soru>
+
+<Cozum>
+
+1. Katsayılar: $a=1$, $b=-5$, $c=6$.
+
+2. Diskriminant: $\Delta=(-5)^2-4\cdot 1\cdot 6=25-24=1$.
+
+3. Formülü uygula: $x=\dfrac{-(-5)\pm\sqrt{1}}{2\cdot 1}=\dfrac{5\pm 1}{2}$.
+
+4. İki kök: $x_1=\dfrac{5+1}{2}=3$ ve $x_2=\dfrac{5-1}{2}=2$.
+
+<Cevap>$x=2$ veya $x=3$ — çarpanlara ayırma ile aynı sonuç.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 5. Kök–Katsayı (Vieta) Bağıntıları
+
+Kökleri bulmadan, köklerin **toplamını** ve **çarpımını** doğrudan katsayılardan elde edebiliriz:
+
+$$x_1+x_2=-\dfrac{b}{a},\qquad x_1\cdot x_2=\dfrac{c}{a}$$
+
+Bu bağıntılar, **simetrik ifadelerin** hesabını kolaylaştırır. Sık kullanılan bir özdeşlik:
+
+$$x_1^2+x_2^2=(x_1+x_2)^2-2x_1x_2$$
+
+Ayrıca kökleri $x_1$ ve $x_2$ olan (baş katsayısı $1$) denklem şöyle kurulur:
+
+$$x^2-(x_1+x_2)\,x+x_1x_2=0$$
+
+<Ornek>
+
+<Soru>
+
+$x^2-6x+4=0$ denkleminin kökleri $x_1$ ve $x_2$ olsun. $x_1+x_2$, $x_1x_2$ ve $x_1^2+x_2^2$ değerlerini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Kökleri bulmana gerek yok. Toplam ve çarpımı Vieta bağıntılarıyla al, sonra $x_1^2+x_2^2=(x_1+x_2)^2-2x_1x_2$ özdeşliğini kullan.
+
+</Ipucu>
+
+<Cozum>
+
+1. Katsayılar: $a=1$, $b=-6$, $c=4$.
+
+2. Köklerin toplamı: $x_1+x_2=-\dfrac{b}{a}=-\dfrac{-6}{1}=6$.
+
+3. Köklerin çarpımı: $x_1x_2=\dfrac{c}{a}=\dfrac{4}{1}=4$.
+
+4. Simetrik ifade: $x_1^2+x_2^2=(x_1+x_2)^2-2x_1x_2=6^2-2\cdot 4=36-8=28$.
+
+<Cevap>$x_1+x_2=6$, $x_1x_2=4$, $x_1^2+x_2^2=28$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Kökleri $2$ ve $3$ olan, baş katsayısı $1$ olan ikinci dereceden denklemi yazınız.
+
+</Soru>
+
+<Cozum>
+
+1. Toplam ve çarpımı hesapla: $x_1+x_2=2+3=5$, $x_1x_2=2\cdot 3=6$.
+
+2. Genel kalıba yerleştir: $x^2-(x_1+x_2)\,x+x_1x_2=0$.
+
+3. Yerine koy: $x^2-5x+6=0$.
+
+<Cevap>$x^2-5x+6=0$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Çözümlü Sorular
+
+<Ornek>
+
+<Soru>
+
+$2x^2-7x+3=0$ denklemini çarpanlara ayırarak çözünüz.
+
+</Soru>
+
+<Ipucu>
+
+Baş katsayı $1$ değil. Çarpımı $a\cdot c=2\cdot 3=6$, toplamı $b=-7$ olan iki sayı ara ve orta terimi böl.
+
+</Ipucu>
+
+<Cozum>
+
+1. Çarpımı $6$, toplamı $-7$ olan sayılar: $-1$ ve $-6$.
+
+2. Orta terimi böl: $2x^2-x-6x+3=0$.
+
+3. Gruplara ayır: $x(2x-1)-3(2x-1)=0 \Rightarrow (2x-1)(x-3)=0$.
+
+4. Çözümler: $2x-1=0 \Rightarrow x=\dfrac{1}{2}$ veya $x-3=0 \Rightarrow x=3$.
+
+<Cevap>$x=\dfrac{1}{2}$ veya $x=3$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$x^2-6x+m=0$ denkleminin iki farklı reel kökü olması için $m$ hangi koşulu sağlamalıdır?
+
+</Soru>
+
+<Ipucu>
+
+İki farklı reel kök için $\Delta > 0$ olmalı. $\Delta$'yı $m$ cinsinden yaz ve eşitsizliği çöz.
+
+</Ipucu>
+
+<Cozum>
+
+1. Katsayılar: $a=1$, $b=-6$, $c=m$.
+
+2. Diskriminant: $\Delta=(-6)^2-4\cdot 1\cdot m=36-4m$.
+
+3. İki farklı reel kök koşulu: $\Delta > 0 \Rightarrow 36-4m > 0$.
+
+4. Çöz: $4m < 36 \Rightarrow m < 9$.
+
+<Cevap>$m < 9$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$x^2-2x-5=0$ denkleminin kökleri $x_1$ ve $x_2$ ise $\dfrac{1}{x_1}+\dfrac{1}{x_2}$ değerini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Paydaları eşitleyince $\dfrac{1}{x_1}+\dfrac{1}{x_2}=\dfrac{x_1+x_2}{x_1x_2}$ olur. Toplam ve çarpımı Vieta ile al.
+
+</Ipucu>
+
+<Cozum>
+
+1. Vieta: $x_1+x_2=-\dfrac{-2}{1}=2$ ve $x_1x_2=\dfrac{-5}{1}=-5$.
+
+2. İfadeyi tek kesir yap: $\dfrac{1}{x_1}+\dfrac{1}{x_2}=\dfrac{x_2+x_1}{x_1x_2}=\dfrac{x_1+x_2}{x_1x_2}$.
+
+3. Değerleri yerleştir: $\dfrac{2}{-5}=-\dfrac{2}{5}$.
+
+<Cevap>$\dfrac{1}{x_1}+\dfrac{1}{x_2}=-\dfrac{2}{5}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$x^2+kx+9=0$ denkleminin çift (eşit) kökü olması için $k$ değerlerini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Çift kök için $\Delta=0$ olmalı. $\Delta$'yı $k$ cinsinden yazıp sıfıra eşitle; iki ayrı $k$ değeri çıkacak.
+
+</Ipucu>
+
+<Cozum>
+
+1. Katsayılar: $a=1$, $b=k$, $c=9$.
+
+2. Diskriminant: $\Delta=k^2-4\cdot 1\cdot 9=k^2-36$.
+
+3. Çift kök koşulu: $\Delta=0 \Rightarrow k^2-36=0 \Rightarrow k^2=36$.
+
+4. Çöz: $k=6$ veya $k=-6$.
+
+<Cevap>$k=6$ veya $k=-6$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir ikinci dereceden denklemin köklerinin toplamı $7$, çarpımı $10$'dur. Bu kökleri ve denklemi bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Köklerden $x^2-(\text{toplam})\,x+(\text{çarpım})=0$ kalıbını kur: $x^2-7x+10=0$.
+
+2. Çarpanlara ayır: çarpımı $10$, toplamı $-7$ olan sayılar $-2$ ve $-5$, yani $(x-2)(x-5)=0$.
+
+3. Kökler: $x=2$ veya $x=5$. (Kontrol: $2+5=7$, $2\cdot 5=10$.)
+
+<Cevap>Denklem $x^2-7x+10=0$; kökler $x=2$ ve $x=5$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$3x^2-2x+1=0$ denkleminin kök formülüyle reel kökü olup olmadığını inceleyiniz.
+
+</Soru>
+
+<Cozum>
+
+1. Katsayılar: $a=3$, $b=-2$, $c=1$.
+
+2. Diskriminant: $\Delta=(-2)^2-4\cdot 3\cdot 1=4-12=-8$.
+
+3. $\Delta=-8 < 0$ olduğundan $\sqrt{\Delta}$ reel değildir; kök formülü reel sonuç vermez.
+
+4. Sonuç: Denklemin reel kökü yoktur.
+
+<Cevap>Reel kök yoktur ($\Delta=-8 < 0$).</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Kök formülünde $2a$'ya bölmeyi unutmak.** $x=\dfrac{-b\pm\sqrt{\Delta}}{2a}$ ifadesinde tüm pay $2a$'ya bölünür; yalnızca $\sqrt{\Delta}$ değil, $-b$ terimi de bu paydanın içindedir.
+- **Köklerin toplamını $+\dfrac{b}{a}$ sanmak.** Doğrusu $x_1+x_2=-\dfrac{b}{a}$'dır (işaret eksi). Çarpım ise $x_1x_2=+\dfrac{c}{a}$'dır.
+- **$a\ne 0$ koşulunu gözden kaçırmak.** $a=0$ ise denklem ikinci dereceden olmaktan çıkar; diskriminant ve kök formülü uygulanamaz.
+- **$\Delta < 0$ durumunda "kök yok" yerine "çözüm yok" gibi davranmak.** Reel kök yoktur; ancak karmaşık (kompleks) sayılar kümesinde iki kök vardır.
+
+## Sınav İpucu
+
+> Köklerin sayısı veya işareti soruluyorsa, denklemi çözmeden önce **diskriminanta** bak: $\Delta > 0$ iki farklı reel kök, $\Delta=0$ çift kök, $\Delta < 0$ reel kök yok. Toplam–çarpım ($-\dfrac{b}{a}$ ve $\dfrac{c}{a}$) ya da simetrik ifade ($x_1^2+x_2^2$, $\dfrac{1}{x_1}+\dfrac{1}{x_2}$ gibi) soruluyorsa kökleri tek tek bulmaya çalışma; **Vieta bağıntıları** çoğu zaman dakikalar kazandırır.
+
+<KonuNav slug="ikinci-derece-denklem-ayt" />

@@ -1,0 +1,345 @@
+import { topicMetadata } from "@/lib/seo";
+
+export const metadata = topicMetadata("fonksiyon-cesitleri-ayt");
+
+<Konu slug="fonksiyon-cesitleri-ayt" />
+
+<p className="lead">Fonksiyon, AYT matematiğinin omurgasıdır: limit, türev ve integral konularının hepsi fonksiyon kavramı üzerine kurulur. Bu konuda bir bağıntının ne zaman fonksiyon olduğunu, **tanım–değer–görüntü** kümelerini ve **bire bir, örten, içine, çift, tek** fonksiyon türlerini örneklerle inceliyoruz.</p>
+
+## 1. Fonksiyon Tanımı
+
+$A$ ve $B$ boştan farklı iki küme olsun. $A$ kümesindeki **her** elemanı $B$ kümesindeki **bir tek** elemana eşleyen bağıntıya $A$'dan $B$'ye **fonksiyon** denir ve $f:A\to B$ ile gösterilir.
+
+Bir bağıntının fonksiyon olması için iki koşul birlikte sağlanmalıdır:
+
+| Koşul | Anlamı |
+| --- | --- |
+| **Tanımlılık** | $A$'nın her elemanının bir görüntüsü vardır (açıkta eleman kalmaz) |
+| **Tek değerlilik** | Her elemanın görüntüsü tektir ($x$'e iki farklı değer atanamaz) |
+
+### Tanım, Değer ve Görüntü Kümesi
+
+- **Tanım kümesi** ($A$): Fonksiyona giren elemanların kümesidir.
+- **Değer kümesi** ($B$): Çıktıların seçildiği hedef kümedir.
+- **Görüntü kümesi** ($f(A)$): Fiilen elde edilen değerlerin kümesidir; her zaman $f(A)\subseteq B$ olur.
+
+Örneğin $f:\mathbb{R}\to\mathbb{R}$, $f(x)=x^2$ için tanım kümesi $\mathbb{R}$, değer kümesi $\mathbb{R}$, fakat görüntü kümesi $[0,\infty)$'dur çünkü kareler negatif olamaz.
+
+## 2. Bire Bir, Örten ve İçine Fonksiyonlar
+
+| Tür | Tanım | Sezgi |
+| --- | --- | --- |
+| **Bire bir (injektif)** | $x_1\ne x_2 \Rightarrow f(x_1)\ne f(x_2)$ | Farklı girdiler farklı çıktı verir |
+| **Örten (sürjektif)** | $f(A)=B$ | Değer kümesinde açıkta eleman kalmaz |
+| **İçine** | $f(A)\ne B$ | Örten olmayan; bazı değerler alınmaz |
+
+Bire bir olma koşulunu kontrol etmenin pratik yolu: $f(x_1)=f(x_2)$ kabul edip $x_1=x_2$ sonucuna ulaşabiliyorsak fonksiyon bire birdir.
+
+<Ornek>
+
+<Soru>
+
+$f:\mathbb{R}\to\mathbb{R}$, $f(x)=2x+1$ fonksiyonunun bire bir olduğunu gösteriniz.
+
+</Soru>
+
+<Cozum>
+
+1. $f(x_1)=f(x_2)$ kabul et: $2x_1+1=2x_2+1$.
+
+2. Her iki taraftan $1$ çıkar: $2x_1=2x_2$.
+
+3. $2$'ye böl: $x_1=x_2$.
+
+Farklı girdiler için görüntüler de farklı olacağından fonksiyon bire birdir.
+
+<Cevap>$f(x)=2x+1$ bire birdir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f:\mathbb{R}\to\mathbb{R}$, $f(x)=x^2$ fonksiyonunun bire bir olup olmadığını inceleyiniz.
+
+</Soru>
+
+<Cozum>
+
+1. Farklı iki girdi seç: $x_1=-2$ ve $x_2=2$ alalım. Bunlar farklıdır ($-2\ne 2$).
+
+2. Görüntülerini hesapla: $f(-2)=4$ ve $f(2)=4$.
+
+3. Farklı girdiler aynı görüntüyü verdi ($f(-2)=f(2)$), bu yüzden bire bir olma koşulu bozulur.
+
+<Cevap>$f(x)=x^2$, $\mathbb{R}$ üzerinde bire bir **değildir**.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f:\mathbb{R}\to\mathbb{R}$, $f(x)=x^2$ fonksiyonu örten midir?
+
+</Soru>
+
+<Ipucu>
+
+Örtenlik için görüntü kümesinin değer kümesine ($\mathbb{R}$) eşit olması gerekir. Negatif bir değer (örneğin $-1$) elde edilebiliyor mu?
+
+</Ipucu>
+
+<Cozum>
+
+1. Değer kümesi $\mathbb{R}$'dir; örten olması için her gerçek sayı bir görüntü olmalıdır.
+
+2. $f(x)=x^2\ge 0$ olduğundan görüntü kümesi $[0,\infty)$'dur.
+
+3. Örneğin $-1$ değeri hiçbir $x$ için elde edilemez ($x^2=-1$'in gerçek çözümü yok), yani $f(A)=[0,\infty)\ne\mathbb{R}=B$.
+
+<Cevap>$f(x)=x^2$ örten **değildir** (içine fonksiyondur).</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 3. Çift ve Tek Fonksiyonlar
+
+Tanım kümesi orijine göre simetrik bir fonksiyon için:
+
+$$f(-x)=f(x)\ \text{ise } f \text{ çift fonksiyondur} \quad(y\text{ eksenine göre simetri})$$
+
+$$f(-x)=-f(x)\ \text{ise } f \text{ tek fonksiyondur} \quad(\text{orijine göre simetri})$$
+
+> **Pratik kural:** Sadece çift dereceli kuvvetlerden (ve sabitten) oluşan polinom **çifttir**; sadece tek dereceli kuvvetlerden oluşan polinom **tektir**. İkisi karışırsa fonksiyon ne çift ne tektir.
+
+<Ornek>
+
+<Soru>
+
+$f(x)=x^2$ fonksiyonunun çift fonksiyon olduğunu gösteriniz.
+
+</Soru>
+
+<Cozum>
+
+1. $x$ yerine $-x$ yaz: $f(-x)=(-x)^2$.
+
+2. Sadeleştir: $(-x)^2=x^2=f(x)$.
+
+3. $f(-x)=f(x)$ sağlandığından fonksiyon çifttir; grafiği $y$ eksenine göre simetriktir.
+
+<Cevap>$f(x)=x^2$ çift fonksiyondur.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=x^3$ fonksiyonunun tek fonksiyon olduğunu gösteriniz.
+
+</Soru>
+
+<Cozum>
+
+1. $x$ yerine $-x$ yaz: $f(-x)=(-x)^3$.
+
+2. Sadeleştir: $(-x)^3=-x^3=-f(x)$.
+
+3. $f(-x)=-f(x)$ sağlandığından fonksiyon tektir; grafiği orijine göre simetriktir.
+
+<Cevap>$f(x)=x^3$ tek fonksiyondur.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 4. Özel Fonksiyonlar
+
+| Fonksiyon | Tanım | Özellik |
+| --- | --- | --- |
+| **Sabit** | $f(x)=c$ | Her girdiyi tek bir $c$ değerine eşler; grafiği yatay doğru |
+| **Birim** | $f(x)=x$ | Her elemanı kendisine eşler; bire bir ve örtendir |
+| **Doğrusal** | $f(x)=ax+b,\ a\ne 0$ | Grafiği doğrudur; $a\ne 0$ ise bire bir ve örtendir |
+
+Sabit fonksiyon $f(x)=c$ bire bir **değildir** (tüm girdiler aynı çıktıyı verir) ve genelde örten de değildir. Doğrusal fonksiyon $f(x)=ax+b$'de $b=0$ özel durumunda $f(x)=ax$ elde edilir; bu bir tek fonksiyondur çünkü $f(-x)=-ax=-f(x)$.
+
+## Çözümlü Sorular
+
+<Ornek>
+
+<Soru>
+
+$f:\mathbb{R}\to\mathbb{R}$, $f(x)=3x-7$ fonksiyonunun bire bir olduğunu inceleyiniz.
+
+</Soru>
+
+<Cozum>
+
+1. $f(x_1)=f(x_2)$ kabul et: $3x_1-7=3x_2-7$.
+
+2. Her iki tarafa $7$ ekle: $3x_1=3x_2$.
+
+3. $3$'e böl: $x_1=x_2$.
+
+Eşit görüntüler ancak eşit girdilerden geldiği için fonksiyon bire birdir.
+
+<Cevap>$f(x)=3x-7$ bire birdir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=x^4-3x^2+5$ fonksiyonunun çift mi, tek mi yoksa hiçbiri mi olduğunu belirleyiniz.
+
+</Soru>
+
+<Ipucu>
+
+$f(-x)$ ifadesini hesapla ve $f(x)$ ile $-f(x)$'e karşılaştır. Tüm üsler çift mi?
+
+</Ipucu>
+
+<Cozum>
+
+1. $x$ yerine $-x$ yaz: $f(-x)=(-x)^4-3(-x)^2+5$.
+
+2. Üsleri sadeleştir: $(-x)^4=x^4$ ve $(-x)^2=x^2$, dolayısıyla $f(-x)=x^4-3x^2+5$.
+
+3. Sonuç $f(x)$ ile aynı: $f(-x)=f(x)$.
+
+Tüm kuvvetler çift dereceli (ve bir sabit) olduğundan fonksiyon çifttir.
+
+<Cevap>$f(x)=x^4-3x^2+5$ çift fonksiyondur.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=x^3+2x$ fonksiyonunun çift mi, tek mi olduğunu belirleyiniz.
+
+</Soru>
+
+<Cozum>
+
+1. $x$ yerine $-x$ yaz: $f(-x)=(-x)^3+2(-x)$.
+
+2. Sadeleştir: $(-x)^3=-x^3$ ve $2(-x)=-2x$, dolayısıyla $f(-x)=-x^3-2x$.
+
+3. Ortak parantez al: $-x^3-2x=-(x^3+2x)=-f(x)$.
+
+$f(-x)=-f(x)$ sağlandığından fonksiyon tektir.
+
+<Cevap>$f(x)=x^3+2x$ tek fonksiyondur.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=2x^2-5x+1$ fonksiyonu için $f(-x)$ ifadesini bulunuz ve fonksiyonun çift mi tek mi olduğunu söyleyiniz.
+
+</Soru>
+
+<Cozum>
+
+1. $x$ yerine $-x$ yaz: $f(-x)=2(-x)^2-5(-x)+1$.
+
+2. Sadeleştir: $2x^2+5x+1$.
+
+3. Karşılaştır: $f(x)=2x^2-5x+1$ olduğundan $f(-x)\ne f(x)$ (orta terimin işareti farklı), yani çift değildir. Ayrıca $-f(x)=-2x^2+5x-1$ olduğundan $f(-x)\ne -f(x)$, yani tek de değildir.
+
+<Cevap>$f(-x)=2x^2+5x+1$; fonksiyon ne çift ne tektir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=ax+b$ doğrusal fonksiyonu $f(1)=5$ ve $f(3)=11$ koşullarını sağlıyor. $a$ ve $b$ değerlerini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Verilen iki koşulu yerine koyarak iki bilinmeyenli denklem sistemi kur, sonra denklemleri taraf tarafa çıkararak $a$'yı yalnız bırak.
+
+</Ipucu>
+
+<Cozum>
+
+1. Koşulları yaz: $f(1)=a+b=5$ ve $f(3)=3a+b=11$.
+
+2. İkinci denklemden birinciyi çıkar: $(3a+b)-(a+b)=11-5 \Rightarrow 2a=6$.
+
+3. $a=3$ bulunur; $a+b=5$ denkleminde yerine koy: $3+b=5 \Rightarrow b=2$.
+
+<Cevap>$a=3,\ b=2$, yani $f(x)=3x+2$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f:[0,\infty)\to[k,\infty)$, $f(x)=x^2+3$ fonksiyonunun örten olması için $k$ değeri kaç olmalıdır?
+
+</Soru>
+
+<Ipucu>
+
+Örtenlik için görüntü kümesinin değer kümesine eşit olması gerekir. Tanım kümesi $[0,\infty)$ iken $x^2$'nin alabileceği en küçük değer nedir?
+
+</Ipucu>
+
+<Cozum>
+
+1. Tanım kümesi $[0,\infty)$ olduğundan $x\ge 0$ için $x^2\ge 0$, en küçük değer $x=0$'da $0$'dır.
+
+2. Buna $3$ eklenince $f(x)=x^2+3\ge 3$ olur; $x$ büyüdükçe değer sınırsız artar. Yani görüntü kümesi $[3,\infty)$'dur.
+
+3. Fonksiyonun örten olması için değer kümesi görüntü kümesine eşit olmalı: $[k,\infty)=[3,\infty) \Rightarrow k=3$.
+
+<Cevap>$k=3$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Çift/tek koşulunu $f(-x)$ ile karıştırmak:** Çift için $f(-x)=f(x)$, tek için $f(-x)=-f(x)$ olmalıdır. $f(-x)$'i bulup hangisine eşit olduğunu kontrol etmeden karar vermeyin; eşitlik sağlanmıyorsa fonksiyon ne çift ne tektir.
+- **"Bire bir" ile "örten"i karıştırmak:** Bire birlik girdilere bakar ($x_1\ne x_2\Rightarrow f(x_1)\ne f(x_2)$); örtenlik çıktılara bakar ($f(A)=B$). Bunlar bağımsız özelliklerdir; biri sağlanırken diğeri sağlanmayabilir.
+- **Görüntü kümesi ile değer kümesini eş tutmak:** Daima $f(A)\subseteq B$'dir; eşitlik yalnızca fonksiyon örtense geçerlidir.
+- **$f(x)=x^2$'yi tüm $\mathbb{R}$'de bire bir/örten sanmak:** $\mathbb{R}$ üzerinde ne bire bir ne örtendir; tanım kümesi $[0,\infty)$ ile sınırlandırılırsa bire bir olur.
+
+## Sınav İpucu
+
+> Çift/tek incelemesinde önce **polinomun üslerine** bakın: tüm üsler çiftse (sabit dahil) fonksiyon çift, tümü tekse fonksiyon tektir; karışıksa hemen "ne çift ne tek" diyebilirsiniz; $f(-x)$ hesabıyla zaman kaybetmenize gerek kalmaz.
+
+<KonuNav slug="fonksiyon-cesitleri-ayt" />

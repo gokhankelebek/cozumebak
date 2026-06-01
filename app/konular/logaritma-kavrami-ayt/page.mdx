@@ -1,0 +1,343 @@
+import { topicMetadata } from "@/lib/seo";
+
+export const metadata = topicMetadata("logaritma-kavrami-ayt");
+
+<Konu slug="logaritma-kavrami-ayt" />
+
+<p className="lead">Logaritma, üs almanın **ters işlemidir**: "Tabanı kaçıncı kuvvete çıkarırsam bu sayıyı elde ederim?" sorusunun cevabıdır. AYT'de logaritma; özelliklerin uygulanması, taban değiştirme ve denklem çözümünün temelini oluşturur. Bu konu, tanımdan başlayıp tüm özellikleri ezbersiz biçimde kurar.</p>
+
+## 1. Logaritmanın Tanımı
+
+$a > 0$, $a\ne 1$ ve $b > 0$ olmak üzere logaritma şöyle tanımlanır:
+
+$$\log_a b=c \iff a^{c}=b$$
+
+Yani $\log_a b$, **$a$ tabanını $b$ yapan üstür**. Buradaki koşullar zorunludur: taban pozitif ve $1$'den farklı, **logaritması alınan sayı ise kesinlikle pozitif** olmalıdır.
+
+İki taban o kadar sık kullanılır ki özel adları vardır:
+
+| Gösterim | Anlamı | Tabanı |
+| --- | --- | --- |
+| $\log x$ | Onluk (bayağı) logaritma | $\log_{10} x$ |
+| $\ln x$ | Doğal logaritma | $\log_{e} x$ ($e\approx 2{,}718$) |
+
+<Ornek>
+
+<Soru>
+
+$\log_2 8$ değerini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Tanımı yaz: $\log_2 8=c \iff 2^{c}=8$.
+
+2. $8=2^{3}$ olduğundan $2^{c}=2^{3}$, yani $c=3$.
+
+<Cevap>$\log_2 8=3$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\log_3 \dfrac{1}{9}$ değerini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Tanım: $\log_3 \dfrac{1}{9}=c \iff 3^{c}=\dfrac{1}{9}$.
+
+2. $\dfrac{1}{9}=3^{-2}$ olduğundan $3^{c}=3^{-2}$, yani $c=-2$.
+
+<Cevap>$\log_3 \dfrac{1}{9}=-2$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 2. Temel Eşitlikler
+
+Tanımdan doğrudan çıkan ve sürekli kullanılan dört eşitlik:
+
+| Eşitlik | Neden? |
+| --- | --- |
+| $\log_a 1=0$ | $a^{0}=1$ |
+| $\log_a a=1$ | $a^{1}=a$ |
+| $\log_a a^{n}=n$ | $a^{n}=a^{n}$ |
+| $a^{\log_a b}=b$ | Logaritma ile üssün ters işlem olması |
+
+<Ornek>
+
+<Soru>
+
+$\log 10000$ değerini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Belirtilmemiş taban $10$'dur. $10000$ sayısını $10$'un kuvveti olarak yaz.
+
+</Ipucu>
+
+<Cozum>
+
+1. $\log 10000=\log_{10} 10000$.
+
+2. $10000=10^{4}$ olduğundan $\log_{10} 10^{4}=4$ (çünkü $\log_a a^{n}=n$).
+
+<Cevap>$\log 10000=4$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 3. Logaritmanın Özellikleri
+
+$a > 0$, $a\ne 1$ ve $x,y > 0$ olmak üzere:
+
+| Özellik | Formül |
+| --- | --- |
+| Çarpımın logaritması | $\log_a(xy)=\log_a x+\log_a y$ |
+| Bölümün logaritması | $\log_a \dfrac{x}{y}=\log_a x-\log_a y$ |
+| Üssün logaritması | $\log_a x^{n}=n\log_a x$ |
+| Taban değiştirme | $\log_a b=\dfrac{\log_c b}{\log_c a}$ |
+| Taban–sayı yer değişimi | $\log_a b=\dfrac{1}{\log_b a}$ |
+
+> **Dikkat:** Toplama–çıkarma yalnızca **çarpım ve bölümde** logaritmayı parçalar. $\log_a(x+y)$ ifadesi $\log_a x+\log_a y$ **değildir**.
+
+<Ornek>
+
+<Soru>
+
+$\log_2 24-\log_2 3$ değerini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Çıkarma, bölümün logaritmasıdır: $\log_2 24-\log_2 3=\log_2 \dfrac{24}{3}$.
+
+2. Sadeleştir: $\log_2 8=3$ (çünkü $2^{3}=8$).
+
+<Cevap>$3$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\log 6$ ifadesini $\log 2$ ve $\log 3$ cinsinden yazınız.
+
+</Soru>
+
+<Cozum>
+
+1. $6=2\cdot 3$ olduğundan çarpım özelliğini uygula.
+
+2. $\log 6=\log(2\cdot 3)=\log 2+\log 3$.
+
+<Cevap>$\log 6=\log 2+\log 3$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\log_2 5\cdot \log_5 8$ çarpımının değerini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Taban değiştirme formülü, ortak bir tabanda yazıldığında **zincirleme** sadeleşme sağlar.
+
+</Ipucu>
+
+<Cozum>
+
+1. Her iki çarpanı $10$ tabanında yaz: $\log_2 5=\dfrac{\log 5}{\log 2}$, $\log_5 8=\dfrac{\log 8}{\log 5}$.
+
+2. Çarp ve sadeleştir: $\dfrac{\log 5}{\log 2}\cdot \dfrac{\log 8}{\log 5}=\dfrac{\log 8}{\log 2}=\log_2 8$.
+
+3. $\log_2 8=3$.
+
+<Cevap>$\log_2 5\cdot \log_5 8=3$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Çözümlü Sorular
+
+<Ornek>
+
+<Soru>
+
+$\log_3 45-\log_3 5$ değerini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Çıkarma, bölümün logaritmasıdır: $\log_3 45-\log_3 5=\log_3 \dfrac{45}{5}$.
+
+2. Sadeleştir: $\log_3 9$.
+
+3. $9=3^{2}$ olduğundan $\log_3 9=2$.
+
+<Cevap>$2$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\log_2 3=a$ olduğuna göre $\log_2 24$ ifadesini $a$ cinsinden yazınız.
+
+</Soru>
+
+<Ipucu>
+
+$24$ sayısını $2$'nin kuvveti ile $3$'ün çarpımı şeklinde ayrıştır.
+
+</Ipucu>
+
+<Cozum>
+
+1. Çarpanlara ayır: $24=8\cdot 3=2^{3}\cdot 3$.
+
+2. Çarpım özelliği: $\log_2 24=\log_2 2^{3}+\log_2 3$.
+
+3. $\log_2 2^{3}=3$ ve $\log_2 3=a$ yerine yaz: $3+a$.
+
+<Cevap>$\log_2 24=a+3$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\log_8 32$ değerini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Hem taban hem de sayı $2$'nin kuvvetidir. Taban değiştirme veya tanım ile $2$ tabanına geç.
+
+</Ipucu>
+
+<Cozum>
+
+1. $8=2^{3}$, $32=2^{5}$ yaz.
+
+2. Tanım: $\log_8 32=c \iff 8^{c}=32 \iff 2^{3c}=2^{5}$.
+
+3. Üsleri eşitle: $3c=5 \Rightarrow c=\dfrac{5}{3}$.
+
+<Cevap>$\log_8 32=\dfrac{5}{3}$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\log_a b=4$ olduğuna göre $\log_b a$ değerini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Taban–sayı yer değişimi özelliği: $\log_b a=\dfrac{1}{\log_a b}$.
+
+2. $\log_a b=4$ yerine yaz: $\log_b a=\dfrac{1}{4}$.
+
+<Cevap>$\log_b a=\dfrac{1}{4}$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\log 2=x$ ve $\log 3=y$ olduğuna göre $\log 12$ ifadesini $x$ ve $y$ cinsinden yazınız.
+
+</Soru>
+
+<Cozum>
+
+1. Çarpanlara ayır: $12=4\cdot 3=2^{2}\cdot 3$.
+
+2. Çarpım ve üs özellikleri: $\log 12=\log 2^{2}+\log 3=2\log 2+\log 3$.
+
+3. $\log 2=x$, $\log 3=y$ yerine yaz: $2x+y$.
+
+<Cevap>$\log 12=2x+y$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$2^{\log_2 7+\log_2 3}$ ifadesinin değerini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Önce üstteki toplamı tek bir logaritmaya indirge, sonra $a^{\log_a b}=b$ eşitliğini kullan.
+
+</Ipucu>
+
+<Cozum>
+
+1. Çarpım özelliği ile üssü birleştir: $\log_2 7+\log_2 3=\log_2 21$.
+
+2. İfade $2^{\log_2 21}$ hâline gelir.
+
+3. $a^{\log_a b}=b$ olduğundan $2^{\log_2 21}=21$.
+
+<Cevap>$21$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **$\log(x+y)$ ifadesini $\log x+\log y$ sanmak.** Logaritma yalnızca **çarpımı** toplama, **bölümü** çıkarmaya dönüştürür; toplam ve farkın içine girmez. Örneğin $\log(2+3)=\log 5$ iken $\log 2+\log 3=\log 6$'dır; ikisi eşit değildir.
+- **Tanım koşulu $b > 0$'ı unutmak.** Logaritması alınan sayı pozitif olmalıdır; $\log_a 0$ veya negatif sayıların logaritması tanımsızdır. Denklem çözerken bulunan kökleri bu koşula göre **mutlaka denetle**.
+- **Taban koşullarını ihmal etmek.** Taban $a > 0$ ve $a\ne 1$ olmalıdır; $\log_1 b$ tanımsızdır.
+
+## Sınav İpucu
+
+> Logaritmalı bir ifadeyi sadeleştirmeden önce tüm sayıları **ortak bir tabanın kuvveti** olarak yazmayı dene ($8=2^{3}$, $\dfrac{1}{9}=3^{-2}$ gibi). Sayıyı tabanın kuvvetine çevirmek, çoğu soruyu özellik uygulamadan tek adımda bitirir. Farklı tabanlar karışmışsa önce taban değiştirme ile hepsini aynı tabana indir; çoğu zaman zincirleme sadeleşme ortaya çıkar.
+
+<KonuNav slug="logaritma-kavrami-ayt" />

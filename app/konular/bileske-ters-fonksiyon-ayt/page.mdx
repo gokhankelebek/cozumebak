@@ -1,0 +1,309 @@
+import { topicMetadata } from "@/lib/seo";
+
+export const metadata = topicMetadata("bileske-ters-fonksiyon-ayt");
+
+<Konu slug="bileske-ters-fonksiyon-ayt" />
+
+<p className="lead">**Bileşke fonksiyon**, bir fonksiyonun çıktısını başka bir fonksiyona girdi olarak vermektir; **ters fonksiyon** ise bir fonksiyonun yaptığı işlemi geri alır. Bu iki kavram AYT'de hem tek başına hem de iç içe sıkça sorulur. Bu derste bileşkenin sıralı işleyişini, doğrusal fonksiyonların tersini ve bileşkenin tersi kuralını adım adım kuruyoruz.</p>
+
+## 1. Bileşke Fonksiyon
+
+İki fonksiyon $f$ ve $g$ verildiğinde, $f$ ile $g$'nin bileşkesi şöyle tanımlanır:
+
+$$(f\circ g)(x)=f\big(g(x)\big)$$
+
+Burada **önce iç fonksiyon** $g$ uygulanır, sonra çıkan sonuç **dış fonksiyon** $f$'ye verilir. Yani işlem sağdan sola okunur.
+
+> **Dikkat:** Bileşke genelde değişmeli **değildir**: $f\circ g\ne g\circ f$. Sıralama sonucu değiştirir.
+
+<Ornek>
+
+<Soru>
+
+$f(x)=2x+1$ ve $g(x)=x^{2}$ olsun. $(f\circ g)(x)$ ve $(g\circ f)(x)$ ifadelerini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $(f\circ g)(x)=f\big(g(x)\big)=f(x^2)=2x^2+1$.
+
+2. $(g\circ f)(x)=g\big(f(x)\big)=g(2x+1)=(2x+1)^2$.
+
+3. İki sonuç farklıdır; bu da $f\circ g\ne g\circ f$ olduğunu gösterir.
+
+<Cevap>$(f\circ g)(x)=2x^{2}+1$, $(g\circ f)(x)=(2x+1)^{2}$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+Bir noktadaki değer için de önce iç fonksiyonu o noktada hesaplar, sonra dış fonksiyona taşırız.
+
+<Ornek>
+
+<Soru>
+
+Yukarıdaki $f(x)=2x+1$ ve $g(x)=x^{2}$ için $(f\circ g)(2)$ değerini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Önce iç fonksiyon: $g(2)=2^2=4$.
+
+2. Sonra dış fonksiyon: $f(4)=2\cdot 4+1=9$.
+
+<Cevap>$(f\circ g)(2)=9$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 2. Ters Fonksiyon
+
+Bir $f$ fonksiyonunun tersi $f^{-1}$, ancak $f$ **bire bir** ve **örten** ise vardır. Ters fonksiyonun temel özelliği:
+
+$$f(a)=b \iff f^{-1}(b)=a$$
+
+Yani $f$ bir girdiyi bir çıktıya götürürse, $f^{-1}$ o çıktıyı tekrar aynı girdiye geri getirir. Bunun doğrudan sonucu:
+
+$$\big(f\circ f^{-1}\big)(x)=x \quad\text{ve}\quad \big(f^{-1}\circ f\big)(x)=x$$
+
+> **Uyarı:** $f^{-1}$ ifadesi **ters fonksiyon** demektir; $\dfrac{1}{f}$ (çarpmaya göre tersi) değildir. Örneğin $f(x)=x+3$ için $f^{-1}(x)=x-3$'tür, $\dfrac{1}{x+3}$ değil.
+
+### Doğrusal Fonksiyonun Tersi
+
+$f(x)=ax+b$ ($a\ne 0$) biçimindeki doğrusal bir fonksiyonun tersi:
+
+$$f^{-1}(x)=\dfrac{x-b}{a}$$
+
+Bunu bulmak için $y=ax+b$ yazıp $x$'i $y$ cinsinden çözer, sonra değişkenleri yer değiştiririz.
+
+<Ornek>
+
+<Soru>
+
+$f(x)=3x-2$ fonksiyonunun ters fonksiyonunu bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $y=3x-2$ yaz ve $x$'i yalnız bırak: $y+2=3x \Rightarrow x=\dfrac{y+2}{3}$.
+
+2. Değişkenleri yer değiştir ($x\leftrightarrow y$): $f^{-1}(x)=\dfrac{x+2}{3}$.
+
+<Cevap>$f^{-1}(x)=\dfrac{x+2}{3}$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+Belirli bir değerin tersini ararken iki yol vardır: ya $f^{-1}$ formülünü kullanırız ya da $f(a)=b$ denklemini doğrudan çözeriz.
+
+<Ornek>
+
+<Soru>
+
+$f(x)=2x+1$ fonksiyonu için $f^{-1}(5)$ değerini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+$f^{-1}(5)$ demek, "$f$ hangi değerde $5$ verir?" demektir. Yani $f(a)=5$ denklemini çöz.
+
+</Ipucu>
+
+<Cozum>
+
+1. $f^{-1}(5)=a \iff f(a)=5$.
+
+2. Denklemi kur: $2a+1=5$.
+
+3. Çöz: $2a=4 \Rightarrow a=2$.
+
+<Cevap>$f^{-1}(5)=2$ (çünkü $f(2)=5$)</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 3. Bileşkenin Tersi
+
+İki fonksiyonun bileşkesinin tersi alınırken **sıra ters döner**:
+
+$$\big(f\circ g\big)^{-1}=g^{-1}\circ f^{-1}$$
+
+Bunu sezgisel olarak şöyle düşün: $f\circ g$ önce $g$ sonra $f$ uygular. Bu işlemi geri almak için **son yapılanı önce** geri almalıyız — yani önce $f^{-1}$, sonra $g^{-1}$. Bu da $g^{-1}\circ f^{-1}$ demektir.
+
+## Çözümlü Sorular
+
+<Ornek>
+
+<Soru>
+
+$f(x)=x^{2}-1$ ve $g(x)=3x+2$ olsun. $(g\circ f)(2)$ değerini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Önce iç fonksiyon: $f(2)=2^2-1=3$.
+
+2. Sonra dış fonksiyon: $g(3)=3\cdot 3+2=11$.
+
+<Cevap>$(g\circ f)(2)=11$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=\dfrac{2x+3}{x-1}$ fonksiyonunun ters fonksiyonunu bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+$y=\dfrac{2x+3}{x-1}$ yaz, içler dışlar çarpımıyla paydadan kurtul ve $x$'i $y$ cinsinden çöz.
+
+</Ipucu>
+
+<Cozum>
+
+1. $y=\dfrac{2x+3}{x-1}$ yaz: $y(x-1)=2x+3$.
+
+2. Aç ve $x$'li terimleri topla: $yx-y=2x+3 \Rightarrow yx-2x=y+3$.
+
+3. $x$'i parantezine al ve çöz: $x(y-2)=y+3 \Rightarrow x=\dfrac{y+3}{y-2}$.
+
+4. Değişkenleri yer değiştir: $f^{-1}(x)=\dfrac{x+3}{x-2}$.
+
+<Cevap>$f^{-1}(x)=\dfrac{x+3}{x-2}$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=4x-7$ fonksiyonu için $f^{-1}(9)$ değerini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $f^{-1}(9)=a \iff f(a)=9$.
+
+2. Denklemi kur: $4a-7=9$.
+
+3. Çöz: $4a=16 \Rightarrow a=4$.
+
+<Cevap>$f^{-1}(9)=4$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=x+5$ ve $(f\circ g)(x)=3x-1$ veriliyor. $g(x)$ fonksiyonunu bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+$(f\circ g)(x)=f\big(g(x)\big)$ demek $g(x)$'e $5$ ekleyip $3x-1$ elde etmek demektir. Buradan $g(x)$'i yalnız bırak.
+
+</Ipucu>
+
+<Cozum>
+
+1. Bileşkeyi yaz: $(f\circ g)(x)=f\big(g(x)\big)=g(x)+5$.
+
+2. Verilen ifadeye eşitle: $g(x)+5=3x-1$.
+
+3. $g(x)$'i yalnız bırak: $g(x)=3x-1-5=3x-6$.
+
+<Cevap>$g(x)=3x-6$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=2x-3$ ve $g(x)=x+4$ olsun. $\big(f\circ g\big)^{-1}(x)$ ifadesini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+$\big(f\circ g\big)^{-1}=g^{-1}\circ f^{-1}$ kuralını kullanabilirsin; ya da önce $f\circ g$'yi bulup tek seferde tersini alabilirsin.
+
+</Ipucu>
+
+<Cozum>
+
+1. Önce bileşkeyi bul: $(f\circ g)(x)=f(x+4)=2(x+4)-3=2x+5$.
+
+2. Bu doğrusal fonksiyonun tersini al: $y=2x+5 \Rightarrow x=\dfrac{y-5}{2}$.
+
+3. Değişkenleri yer değiştir: $\big(f\circ g\big)^{-1}(x)=\dfrac{x-5}{2}$.
+
+<Cevap>$\big(f\circ g\big)^{-1}(x)=\dfrac{x-5}{2}$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bire bir bir $f$ fonksiyonu için $f(3)=7$ ve $f(7)=2$ veriliyor. $\big(f\circ f\big)^{-1}(2)$ değerini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+$\big(f\circ f\big)^{-1}(2)=a$ demek $\big(f\circ f\big)(a)=2$, yani $f\big(f(a)\big)=2$ demektir. Verilen değerleri geriye doğru izle.
+
+</Ipucu>
+
+<Cozum>
+
+1. $\big(f\circ f\big)^{-1}(2)=a \iff f\big(f(a)\big)=2$.
+
+2. $f(7)=2$ olduğundan $f(a)=7$ olmalı.
+
+3. $f(3)=7$ olduğundan $a=3$ bulunur.
+
+<Cevap>$\big(f\circ f\big)^{-1}(2)=3$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Bileşkede sırayı ters uygulamak:** $(f\circ g)(x)$'te **önce $g$** sonra $f$ gelir. Soldaki $f$'yi önce uygulamak en yaygın hatadır. İşlem sağdan sola okunur.
+- **$f^{-1}$'i $\dfrac{1}{f}$ sanmak:** $f^{-1}$ ters **fonksiyondur**, çarpmaya göre tersi değil. $f(x)=2x$ için $f^{-1}(x)=\dfrac{x}{2}$'dir, $\dfrac{1}{2x}$ değil.
+- **Bileşkenin tersinde sırayı korumak:** $\big(f\circ g\big)^{-1}=g^{-1}\circ f^{-1}$'tir; sıra **ters döner**. $f^{-1}\circ g^{-1}$ yazmak hatalıdır.
+
+## Sınav İpucu
+
+$f^{-1}(a)$ tipi sorularda formül bulmaya çalışmak yerine doğrudan **$f(x)=a$ denklemini çözmek** çoğu zaman daha hızlıdır. Bileşke içeren ters sorularında ise önce bileşkeyi sadeleştirip tek bir fonksiyon hâline getir, sonra tersini al. Doğrusal fonksiyonlarda $f(x)=ax+b \Rightarrow f^{-1}(x)=\dfrac{x-b}{a}$ formülünü ezbere bilmek zaman kazandırır.
+
+<KonuNav slug="bileske-ters-fonksiyon-ayt" />

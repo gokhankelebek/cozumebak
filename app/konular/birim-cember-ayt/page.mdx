@@ -1,0 +1,329 @@
+import { topicMetadata } from "@/lib/seo";
+import { BirimCember } from "@/components/figures/BirimCemberFig";
+
+export const metadata = topicMetadata("birim-cember-ayt");
+
+<Konu slug="birim-cember-ayt" />
+
+<p className="lead">Trigonometrinin tüm dili **açılar** ve **birim çember** üzerine kurulur. Bu konuda yönlü açıyı, derece ile radyan arasındaki dönüşümü, bir açının birim çember üzerindeki yerini (kadranını) ve bir açıyı $[0^{\circ},360^{\circ})$ aralığına indirgeyen **esas ölçü** kavramını öğreneceksin. Bu temel, sinüs–kosinüs değerlerinden trigonometrik denklemlere kadar tüm AYT trigonometri konularının altyapısıdır.</p>
+
+## 1. Yönlü Açı
+
+Bir açı, başlangıç kenarından bitim kenarına doğru bir **dönme** ile oluşur. Dönmenin yönü açıya işaret kazandırır:
+
+- **Pozitif yön:** saat yönünün **tersi** (çoğu zaman matematiksel pozitif yön budur).
+- **Negatif yön:** saat yönü.
+
+Örneğin $+90^{\circ}$ ile $-270^{\circ}$ aynı bitim kenarına ulaşır; biri ters yönden, diğeri saat yönünden döner.
+
+## 2. Derece ve Radyan
+
+Açıyı ölçmenin iki temel birimi vardır. Bunları birbirine bağlayan eşitlik:
+
+$$180^{\circ}=\pi \text{ radyan}$$
+
+Buradan dönüşüm formülleri elde edilir:
+
+$$\text{radyan}=\text{derece}\cdot\dfrac{\pi}{180^{\circ}}\qquad\qquad \text{derece}=\text{radyan}\cdot\dfrac{180^{\circ}}{\pi}$$
+
+| Derece | Radyan |
+| --- | --- |
+| $30^{\circ}$ | $\dfrac{\pi}{6}$ |
+| $45^{\circ}$ | $\dfrac{\pi}{4}$ |
+| $60^{\circ}$ | $\dfrac{\pi}{3}$ |
+| $90^{\circ}$ | $\dfrac{\pi}{2}$ |
+| $180^{\circ}$ | $\pi$ |
+| $360^{\circ}$ | $2\pi$ |
+
+<Ornek>
+
+<Soru>
+
+$60^{\circ}$ açısını radyan cinsinden yazınız.
+
+</Soru>
+
+<Cozum>
+
+1. Dönüşüm formülünü yaz: $\text{radyan}=\text{derece}\cdot\dfrac{\pi}{180^{\circ}}$.
+
+2. Değeri yerine koy: $60\cdot\dfrac{\pi}{180}=\dfrac{60\pi}{180}$.
+
+3. Sadeleştir: $\dfrac{60\pi}{180}=\dfrac{\pi}{3}$.
+
+<Cevap>$60^{\circ}=\dfrac{\pi}{3}$ radyan</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\dfrac{3\pi}{4}$ radyanlık açının derece karşılığını bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Dönüşüm formülünü yaz: $\text{derece}=\text{radyan}\cdot\dfrac{180^{\circ}}{\pi}$.
+
+2. Değeri yerine koy: $\dfrac{3\pi}{4}\cdot\dfrac{180}{\pi}=\dfrac{3\cdot 180}{4}$.
+
+3. Hesapla: $\dfrac{540}{4}=135$.
+
+<Cevap>$\dfrac{3\pi}{4}=135^{\circ}$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 3. Birim Çember ve Bölgeler
+
+**Birim çember**, merkezi orijinde ve yarıçapı $1$ olan çemberdir. Bir açının başlangıç kenarı pozitif $x$ ekseninde alınır; bitim kenarı çemberi bir $P$ noktasında keser. Bu $P$ noktası açının trigonometrik değerlerini taşıdığı için birim çember tüm trigonometrinin merkezindedir.
+
+Çember, eksenler tarafından dört **bölgeye (kadran)** ayrılır:
+
+| Bölge | Açı aralığı |
+| --- | --- |
+| I. bölge | $0^{\circ}$ – $90^{\circ}$ |
+| II. bölge | $90^{\circ}$ – $180^{\circ}$ |
+| III. bölge | $180^{\circ}$ – $270^{\circ}$ |
+| IV. bölge | $270^{\circ}$ – $360^{\circ}$ |
+
+<Figur>
+
+<BirimCember />
+
+<Altyazi>Şekil 1 — Merkezi orijinde olan birim çember. Eksenler düzlemi I, II, III, IV bölgelerine ayırır. Pozitif yönde ölçülen $\alpha$ açısının bitim kenarı (yarıçap) çemberi $P$ noktasında keser.</Altyazi>
+
+</Figur>
+
+<Ornek>
+
+<Soru>
+
+$200^{\circ}$ açısı hangi bölgededir?
+
+</Soru>
+
+<Cozum>
+
+1. Bölge aralıklarına bak: III. bölge $180^{\circ}$ ile $270^{\circ}$ arasıdır.
+
+2. $200^{\circ}$ değeri $180^{\circ}$ ile $270^{\circ}$ arasında yer alır.
+
+<Cevap>III. bölge</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 4. Esas Ölçü
+
+Bir açıya $360^{\circ}$ (veya $2\pi$ radyan) eklemek ya da çıkarmak, bitim kenarını değiştirmez; aynı noktaya geri dönülür. Bu nedenle her açının $[0^{\circ},360^{\circ})$ aralığında bir **esas ölçüsü** vardır.
+
+> **Esas ölçü:** Açıdan $360^{\circ}$'nin (veya radyanda $2\pi$'nin) tam katlarını atarak elde edilen, $[0^{\circ},360^{\circ})$ — radyanda $[0,2\pi)$ — aralığındaki değerdir.
+
+Negatif açılarda, sonuç pozitif aralığa düşene kadar $360^{\circ}$ (veya $2\pi$) eklenir.
+
+<Ornek>
+
+<Soru>
+
+$400^{\circ}$ açısının esas ölçüsünü bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $360^{\circ}$'nin katını at: $400^{\circ}-360^{\circ}=40^{\circ}$.
+
+2. Sonuç $[0^{\circ},360^{\circ})$ aralığındadır.
+
+<Cevap>$40^{\circ}$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$-60^{\circ}$ açısının esas ölçüsünü bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Açı negatif olduğundan, sonucu $[0^{\circ},360^{\circ})$ aralığına taşımak için $360^{\circ}$ eklemen gerekir.
+
+</Ipucu>
+
+<Cozum>
+
+1. Negatif açıya $360^{\circ}$ ekle: $-60^{\circ}+360^{\circ}=300^{\circ}$.
+
+2. Sonuç $[0^{\circ},360^{\circ})$ aralığındadır.
+
+<Cevap>$300^{\circ}$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Çözümlü Sorular
+
+<Ornek>
+
+<Soru>
+
+$1110^{\circ}$ açısının esas ölçüsünü bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $1110$'u $360$'a böl: $1110=3\cdot 360+30$ olur (çünkü $3\cdot 360=1080$).
+
+2. $360^{\circ}$'nin katlarını at: $1110^{\circ}-1080^{\circ}=30^{\circ}$.
+
+3. Sonuç $[0^{\circ},360^{\circ})$ aralığındadır.
+
+<Cevap>$30^{\circ}$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\dfrac{13\pi}{6}$ radyanlık açının esas ölçüsünü bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+$2\pi=\dfrac{12\pi}{6}$ olduğunu kullan; bu değerin katlarını çıkar.
+
+</Ipucu>
+
+<Cozum>
+
+1. $2\pi$'yi aynı paydayla yaz: $2\pi=\dfrac{12\pi}{6}$.
+
+2. Bir tam tur çıkar: $\dfrac{13\pi}{6}-\dfrac{12\pi}{6}=\dfrac{\pi}{6}$.
+
+3. Sonuç $[0,2\pi)$ aralığındadır.
+
+<Cevap>$\dfrac{\pi}{6}$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$225^{\circ}$ açısı hangi bölgededir?
+
+</Soru>
+
+<Cozum>
+
+1. Bölge aralığına bak: III. bölge $180^{\circ}$ ile $270^{\circ}$ arasıdır.
+
+2. $225^{\circ}$ değeri bu aralıkta yer alır: $180^{\circ}<225^{\circ}<270^{\circ}$.
+
+<Cevap>III. bölge</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$-500^{\circ}$ açısının esas ölçüsünü bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Sonuç pozitif olana kadar $360^{\circ}$ ekle: $-500^{\circ}+360^{\circ}=-140^{\circ}$.
+
+2. Hâlâ negatif; bir kez daha ekle: $-140^{\circ}+360^{\circ}=220^{\circ}$.
+
+3. Sonuç $[0^{\circ},360^{\circ})$ aralığındadır.
+
+<Cevap>$220^{\circ}$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\dfrac{5\pi}{4}$ radyanlık açının derece karşılığını bulunuz ve hangi bölgede olduğunu söyleyiniz.
+
+</Soru>
+
+<Cozum>
+
+1. Dereceye çevir: $\dfrac{5\pi}{4}\cdot\dfrac{180}{\pi}=\dfrac{5\cdot 180}{4}=\dfrac{900}{4}=225^{\circ}$.
+
+2. Bölgesini belirle: $225^{\circ}$ değeri $180^{\circ}$ ile $270^{\circ}$ arasındadır, yani III. bölge.
+
+<Cevap>$225^{\circ}$, III. bölge</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$1280^{\circ}$ açısının esas ölçüsünü bulup hangi bölgede olduğunu belirleyiniz.
+
+</Soru>
+
+<Ipucu>
+
+Önce $360^{\circ}$'nin kaç tam katının çıkacağını bul: $1280$'i $360$'a böl.
+
+</Ipucu>
+
+<Cozum>
+
+1. $360$'a böl: $1280=3\cdot 360+200$ olur (çünkü $3\cdot 360=1080$ ve $1280-1080=200$).
+
+2. Esas ölçü: $1280^{\circ}-1080^{\circ}=200^{\circ}$.
+
+3. Bölgesini belirle: $200^{\circ}$ değeri $180^{\circ}$ ile $270^{\circ}$ arasındadır, yani III. bölge.
+
+<Cevap>Esas ölçü $200^{\circ}$; III. bölge</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **$180^{\circ}=\pi$** olduğunu unutup dönüşümü $360^{\circ}=\pi$ ile yapmak. Doğrusu $180^{\circ}=\pi$ radyan, $360^{\circ}=2\pi$ radyandır.
+- Negatif bir açının esas ölçüsünü bulurken $360^{\circ}$ (veya $2\pi$) **eklemeyi unutmak**. Sonuç $[0^{\circ},360^{\circ})$ aralığına gelene kadar tur ekleneceğini hatırla; $-500^{\circ}$ örneğindeki gibi gerekirse iki kez ekle.
+- $360^{\circ}$'nin tam katını yanlış hesaplamak. Önce açıyı $360$'a bölüp **kalanı** al; kalan doğrudan esas ölçüdür.
+
+## Sınav İpucu
+
+Esas ölçüde sayısal işi hızlandırmak için açıyı $360$'a böldüğünde **kalanı** doğrudan oku: $1110\div 360$ işleminde bölüm $3$, kalan $30$ olduğundan esas ölçü $30^{\circ}$'dir. Radyanda ise her zaman $2\pi$'yi sorunun paydasıyla yazıp ($\dfrac{13\pi}{6}$ için $2\pi=\dfrac{12\pi}{6}$) çıkarma yapmak işlemi sadeleştirir. Negatif açılarda ise refleks olarak "sonuç negatifse $360^{\circ}$ ekle" kuralını uygula.
+
+<KonuNav slug="birim-cember-ayt" />

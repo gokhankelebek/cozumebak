@@ -1,0 +1,345 @@
+import { topicMetadata } from "@/lib/seo";
+
+export const metadata = topicMetadata("ucgende-trigonometri-ayt");
+
+<Konu slug="ucgende-trigonometri-ayt" />
+
+<p className="lead">Bir üçgenin **kenarları ile açıları** arasındaki bağıntılar, dik üçgenle sınırlı kalmaz: **sinüs** ve **kosinüs teoremleri**, herhangi bir üçgende eksik kenar veya açıyı bulmamızı sağlar. Bu konu, AYT'de geometri ve trigonometriyi birleştiren en verimli başlıklardan biridir.</p>
+
+## 1. Temel Gösterim ve Üç Teorem
+
+Bir üçgende kenarlar $a$, $b$, $c$ ile, bu kenarların **karşısındaki** açılar $A$, $B$, $C$ ile gösterilir. Yani $a$ kenarı $A$ açısının karşısındadır.
+
+### Sinüs Teoremi
+
+Bir üçgende her kenarın, karşısındaki açının sinüsüne oranı sabittir ve bu oran **çevrel çemberin yarıçapının iki katına** eşittir:
+
+$$\dfrac{a}{\sin A}=\dfrac{b}{\sin B}=\dfrac{c}{\sin C}=2R$$
+
+Burada $R$, üçgenin çevrel çemberinin yarıçapıdır. Bu teorem genellikle **bir kenar ile karşı açısı** bilindiğinde işe yarar.
+
+### Kosinüs Teoremi
+
+Bir kenarın karesini, diğer iki kenar ve aralarındaki açı cinsinden verir:
+
+$$a^{2}=b^{2}+c^{2}-2bc\cos A$$
+
+Döngüsel olarak diğer kenarlar için de yazılır:
+
+$$b^{2}=a^{2}+c^{2}-2ac\cos B,\qquad c^{2}=a^{2}+b^{2}-2ab\cos C$$
+
+Açıyı yalnız bırakacak şekilde de düzenlenebilir:
+
+$$\cos A=\dfrac{b^{2}+c^{2}-a^{2}}{2bc}$$
+
+Bu teorem, **iki kenar ile aralarındaki açı** ya da **üç kenar** bilindiğinde kullanılır.
+
+### Üçgenin Alanı
+
+İki kenar ve **aralarındaki** açı biliniyorsa alan, kenar uzunlukları ile açının sinüsünden bulunur:
+
+$$\text{Alan}=\dfrac{1}{2}\,b\,c\,\sin A=\dfrac{1}{2}\,a\,c\,\sin B=\dfrac{1}{2}\,a\,b\,\sin C$$
+
+| Bilinenler | Kullanılacak araç |
+| --- | --- |
+| İki kenar + aralarındaki açı | Kosinüs teoremi (kenar), alan formülü |
+| Üç kenar | Kosinüs teoremi (açı) |
+| Bir kenar + karşı açı (+ bir veri) | Sinüs teoremi, $2R$ |
+
+<Ornek>
+
+<Soru>
+
+Bir üçgende $b=5$, $c=8$ ve aralarındaki açı $A=60^{\circ}$ ise $a$ kenarını bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Kosinüs teoremini yaz: $a^{2}=b^{2}+c^{2}-2bc\cos A$.
+
+2. Değerleri yerine koy: $a^{2}=25+64-2\cdot 5\cdot 8\cdot\cos 60^{\circ}$.
+
+3. $\cos 60^{\circ}=\dfrac{1}{2}$ olduğundan: $a^{2}=89-80\cdot\dfrac{1}{2}=89-40=49$.
+
+4. Kök al: $a=\sqrt{49}=7$.
+
+<Cevap>$a=7$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir üçgende $a=10$ ve $A=30^{\circ}$ ise çevrel çemberin yarıçapı $R$ kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+Sinüs teoreminin $\dfrac{a}{\sin A}=2R$ kısmını kullan. $\sin 30^{\circ}=\dfrac{1}{2}$.
+
+</Ipucu>
+
+<Cozum>
+
+1. Sinüs teoremi: $\dfrac{a}{\sin A}=2R$.
+
+2. Yerine koy: $2R=\dfrac{10}{\sin 30^{\circ}}=\dfrac{10}{1/2}=20$.
+
+3. İkiye böl: $R=10$.
+
+<Cevap>$R=10$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+İki kenarı $6$ ve $8$ birim, bu kenarlar arasındaki açı $30^{\circ}$ olan üçgenin alanını bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Alan formülü: $\text{Alan}=\dfrac{1}{2}\,b\,c\,\sin A$.
+
+2. Değerleri yaz: $\text{Alan}=\dfrac{1}{2}\cdot 6\cdot 8\cdot\sin 30^{\circ}$.
+
+3. $\sin 30^{\circ}=\dfrac{1}{2}$ olduğundan: $\text{Alan}=\dfrac{1}{2}\cdot 6\cdot 8\cdot\dfrac{1}{2}=12$.
+
+<Cevap>Alan $=12$ birimkare</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Kenarları $a=7$, $b=5$, $c=3$ olan üçgende $A$ açısını bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+En büyük kenar ($a$) en büyük açının karşısındadır. Kosinüs teoremini açı için düzenlenmiş hâlde kullan.
+
+</Ipucu>
+
+<Cozum>
+
+1. Açı için kosinüs teoremi: $\cos A=\dfrac{b^{2}+c^{2}-a^{2}}{2bc}$.
+
+2. Yerine koy: $\cos A=\dfrac{25+9-49}{2\cdot 5\cdot 3}=\dfrac{-15}{30}=-\dfrac{1}{2}$.
+
+3. Kosinüsü $-\dfrac{1}{2}$ olan açı: $A=120^{\circ}$.
+
+<Cevap>$A=120^{\circ}$ (üçgen geniş açılıdır)</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir üçgende $a=6$, $b=4$ ve $A=90^{\circ}$ ise $\sin B$ değerini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Sinüs teoremi: $\dfrac{a}{\sin A}=\dfrac{b}{\sin B}$.
+
+2. Yerine koy: $\dfrac{6}{\sin 90^{\circ}}=\dfrac{4}{\sin B}$, yani $\dfrac{6}{1}=\dfrac{4}{\sin B}$.
+
+3. İçler-dışlar çarpımı: $6\sin B=4 \Rightarrow \sin B=\dfrac{4}{6}=\dfrac{2}{3}$.
+
+<Cevap>$\sin B=\dfrac{2}{3}$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Çözümlü Sorular
+
+<Ornek>
+
+<Soru>
+
+Bir üçgende $b=7$, $c=3$ ve aralarındaki açı $A=120^{\circ}$ ise $a$ kenarını bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Kosinüs teoremi: $a^{2}=b^{2}+c^{2}-2bc\cos A$.
+
+2. $\cos 120^{\circ}=-\dfrac{1}{2}$ olduğuna dikkat et: $a^{2}=49+9-2\cdot 7\cdot 3\cdot\left(-\dfrac{1}{2}\right)$.
+
+3. İşareti doğru uygula: $a^{2}=58+21=79$.
+
+4. Kök al: $a=\sqrt{79}$.
+
+<Cevap>$a=\sqrt{79}$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Kenarları $a=8$, $b=7$, $c=5$ olan üçgenin alanını bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Önce bir açının kosinüsünü kosinüs teoremiyle bul, sonra o açının sinüsünü hesaplayıp alan formülünü uygula.
+
+</Ipucu>
+
+<Cozum>
+
+1. $a$ karşısındaki $A$ açısı için: $\cos A=\dfrac{b^{2}+c^{2}-a^{2}}{2bc}=\dfrac{49+25-64}{2\cdot 7\cdot 5}=\dfrac{10}{70}=\dfrac{1}{7}$.
+
+2. Sinüsü bul: $\sin A=\sqrt{1-\cos^{2}A}=\sqrt{1-\dfrac{1}{49}}=\sqrt{\dfrac{48}{49}}=\dfrac{4\sqrt{3}}{7}$.
+
+3. Alan formülü ($A$ açısı $b$ ile $c$ arasındadır): $\text{Alan}=\dfrac{1}{2}\,b\,c\,\sin A=\dfrac{1}{2}\cdot 7\cdot 5\cdot\dfrac{4\sqrt{3}}{7}$.
+
+4. Sadeleştir: $\text{Alan}=\dfrac{1}{2}\cdot 5\cdot 4\sqrt{3}=10\sqrt{3}$.
+
+<Cevap>Alan $=10\sqrt{3}$ birimkare</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Çevrel çemberinin yarıçapı $R=6$ olan bir üçgende $A=45^{\circ}$ ise $A$ açısının karşısındaki $a$ kenarını bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Sinüs teoremi: $\dfrac{a}{\sin A}=2R$, yani $a=2R\sin A$.
+
+2. Değerleri yerine koy: $a=2\cdot 6\cdot\sin 45^{\circ}=12\cdot\dfrac{\sqrt{2}}{2}$.
+
+3. Sadeleştir: $a=6\sqrt{2}$.
+
+<Cevap>$a=6\sqrt{2}$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir kenarı $a=6$ olan eşkenar üçgenin çevrel çemberinin yarıçapı $R$ kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+Eşkenar üçgende her açı $60^{\circ}$ olduğundan sinüs teoremi doğrudan uygulanır.
+
+</Ipucu>
+
+<Cozum>
+
+1. Eşkenar üçgende her iç açı $60^{\circ}$'dir: $A=60^{\circ}$.
+
+2. Sinüs teoremi: $2R=\dfrac{a}{\sin A}=\dfrac{6}{\sin 60^{\circ}}=\dfrac{6}{\dfrac{\sqrt{3}}{2}}=\dfrac{12}{\sqrt{3}}$.
+
+3. Paydayı rasyonelleştir: $2R=\dfrac{12}{\sqrt{3}}\cdot\dfrac{\sqrt{3}}{\sqrt{3}}=\dfrac{12\sqrt{3}}{3}=4\sqrt{3}$.
+
+4. İkiye böl: $R=2\sqrt{3}$.
+
+<Cevap>$R=2\sqrt{3}$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+İki kenarı $a=5$ ve $b=5$ olan ikizkenar üçgende, bu eşit kenarlar arasındaki tepe açısı $C=120^{\circ}$ ise tabana ($c$ kenarına) ait uzunluğu bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Tepe açısı $C$, $a$ ile $b$ kenarları arasındadır; karşısındaki kenar $c$'dir. Kosinüs teoremi: $c^{2}=a^{2}+b^{2}-2ab\cos C$.
+
+2. $\cos 120^{\circ}=-\dfrac{1}{2}$ ile: $c^{2}=25+25-2\cdot 5\cdot 5\cdot\left(-\dfrac{1}{2}\right)$.
+
+3. İşareti uygula: $c^{2}=50+25=75$.
+
+4. Kök al: $c=\sqrt{75}=5\sqrt{3}$.
+
+<Cevap>$c=5\sqrt{3}$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir üçgende kenarlar $a=4$, $b=6$ ve aralarındaki açı $C=60^{\circ}$ ise $c$ kenarını ve üçgenin alanını bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+$C$ açısı $a$ ile $b$ arasındadır; bu yüzden hem kosinüs teoremi hem de alan formülü bu iki kenar üzerinden yazılır.
+
+</Ipucu>
+
+<Cozum>
+
+1. Kosinüs teoremi: $c^{2}=a^{2}+b^{2}-2ab\cos C=16+36-2\cdot 4\cdot 6\cdot\dfrac{1}{2}$.
+
+2. Hesapla: $c^{2}=52-24=28 \Rightarrow c=\sqrt{28}=2\sqrt{7}$.
+
+3. Alan formülü: $\text{Alan}=\dfrac{1}{2}\,a\,b\,\sin C=\dfrac{1}{2}\cdot 4\cdot 6\cdot\sin 60^{\circ}$.
+
+4. $\sin 60^{\circ}=\dfrac{\sqrt{3}}{2}$ ile: $\text{Alan}=12\cdot\dfrac{\sqrt{3}}{2}=6\sqrt{3}$.
+
+<Cevap>$c=2\sqrt{7}$ ve Alan $=6\sqrt{3}$ birimkare</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Kosinüs teoremindeki $-2bc\cos A$ işaretini şaşırmak.** Formül $a^{2}=b^{2}+c^{2}-2bc\cos A$ şeklindedir; açı geniş ($90^{\circ}$ ile $180^{\circ}$ arası) olduğunda $\cos A$ negatif olur ve $-2bc\cos A$ terimi **pozitife** dönerek kenarı büyütür. Önce $\cos A$'nın işaretini doğru belirleyip sonra yerine koy.
+- **Alan formülünde açının iki kenar arasındaki açı olması gerektiğini gözden kaçırmak.** $\dfrac{1}{2}bc\sin A$ formülünde $A$ açısı, $b$ ile $c$ kenarlarının **arasında** olmalıdır. Karşı açıyı kullanırsan sonuç yanlış çıkar; gerekirse önce o açıyı bulmalısın.
+- **Sinüs teoreminde kenarı yanlış açıyla eşleştirmek.** Daima kenarın **karşısındaki** açıyı kullan: $a$ ile $A$, $b$ ile $B$ eşleşir.
+
+## Sınav İpucu
+
+> Hangi teoremi seçeceğine bilinenlere bakarak karar ver: **iki kenar + aralarındaki açı** ya da **üç kenar** varsa **kosinüs teoremi**; **bir kenar ile karşı açısı** varsa **sinüs teoremi** (ve $2R$ ile çevrel çember). Alan için elinde iki kenar ve **aralarındaki** açı olup olmadığını kontrol et. $\cos 60^{\circ}=\dfrac{1}{2}$, $\cos 120^{\circ}=-\dfrac{1}{2}$, $\sin 30^{\circ}=\dfrac{1}{2}$, $\sin 60^{\circ}=\dfrac{\sqrt{3}}{2}$ değerlerini ezbere bilmek, bu soruları saniyeler içinde çözmeni sağlar.
+
+<KonuNav slug="ucgende-trigonometri-ayt" />
