@@ -1,0 +1,137 @@
+import { topicMetadata } from "@/lib/seo";
+
+export const metadata = topicMetadata("ardisik-turev");
+
+<Konu slug="ardisik-turev" />
+
+<p className="lead">Bir fonksiyonun türevi yine bir fonksiyondur; onu tekrar türeterek **ikinci, üçüncü, …** mertebeden türevleri elde ederiz. Bu **ardışık türevler**, ikinci türevin ekstremum ve konkavlık yorumundan, fizikteki hız–ivme ilişkisine kadar pek çok yerde karşımıza çıkar. MEB 12. sınıf müfredatının doğrudan kazanımıdır.</p>
+
+## 1. Tanım ve Gösterim
+
+$f$ fonksiyonunun türevi $f'$'yü tekrar türetirsek **ikinci türevi** buluruz; bunu sürdürerek daha yüksek mertebeleri elde ederiz:
+
+$$f'(x)\;\xrightarrow{\ '\ }\;f''(x)\;\xrightarrow{\ '\ }\;f'''(x)\;\xrightarrow{\ '\ }\;f^{(4)}(x)\;\to\;\cdots$$
+
+Dördüncü mertebeden itibaren üs gösterimi parantez içinde yazılır. Eşdeğer gösterimler:
+
+$$f''(x)=\frac{d^{2}y}{dx^{2}},\qquad f^{(n)}(x)=\frac{d^{n}y}{dx^{n}}$$
+
+> **Dikkat:** $f^{(n)}(x)$ ile $\big(f(x)\big)^{n}$ karıştırılmamalıdır. Birincisi $n$. **türev**, ikincisi fonksiyonun $n$. **kuvvetidir**.
+
+## 2. Polinomlarda Ardışık Türev
+
+Her türev derecesi $1$ azaltır; bir polinomun derecesinden sonraki türevler sıfırdır.
+
+| Fonksiyon | $f'$ | $f''$ | $f'''$ | $f^{(4)}$ |
+| --- | --- | --- | --- | --- |
+| $x^{4}$ | $4x^{3}$ | $12x^{2}$ | $24x$ | $24$ |
+| $x^{3}$ | $3x^{2}$ | $6x$ | $6$ | $0$ |
+
+<Ornek>
+
+<Soru>
+
+$f(x)=2x^{4}-3x^{2}+5x-1$ fonksiyonunun $f''(x)$ ve $f'''(x)$ türevlerini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Birinci türev: $f'(x)=8x^{3}-6x+5$.
+
+2. İkinci türev: $f''(x)=24x^{2}-6$.
+
+3. Üçüncü türev: $f'''(x)=48x$.
+
+<Cevap>$f''(x)=24x^{2}-6$ ve $f'''(x)=48x$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 3. Trigonometrik Fonksiyonlarda Türev Döngüsü
+
+$\sin x$ ve $\cos x$'in türevleri **dört adımda** başa döner:
+
+$$\sin x \;\xrightarrow{\ '\ }\; \cos x \;\xrightarrow{\ '\ }\; -\sin x \;\xrightarrow{\ '\ }\; -\cos x \;\xrightarrow{\ '\ }\; \sin x$$
+
+Bu yüzden $\sin x$'in $n$. türevi yalnızca $n$'in $4$'e bölümünden kalana bağlıdır.
+
+<Ornek>
+
+<Soru>
+
+$f(x)=\sin x$ fonksiyonunun $f^{(2026)}(x)$ türevini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Türev $4$ adımda döndüğü için $2026$'yı $4$'e böl, kalana bak: kalan $0$ ise $\sin x$, $1$ ise $\cos x$, $2$ ise $-\sin x$, $3$ ise $-\cos x$.
+
+</Ipucu>
+
+<Cozum>
+
+1. Döngü periyodu $4$: $f^{(n)}$ yalnız $n$'in $4$ ile bölümünden kalana bağlıdır.
+
+2. $2026=4\cdot 506+2$ olduğundan kalan $2$'dir.
+
+3. Kalan $2$, döngüde $-\sin x$'e karşılık gelir.
+
+<Cevap>$f^{(2026)}(x)=-\sin x$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 4. Fiziksel Anlam: Konum, Hız, İvme
+
+Ardışık türevin en somut uygulaması harekettir. Bir cismin konumu $s(t)$ ise, **hız** birinci türev, **ivme** ikinci türevdir:
+
+$$v(t)=s'(t),\qquad a(t)=s''(t)$$
+
+<Ornek>
+
+<Soru>
+
+Bir cismin konumu $s(t)=t^{3}-6t^{2}+9t$ (metre, $t$ saniye) ile veriliyor. $t=2$ anındaki hızı ve ivmeyi bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Hız, konumun türevidir: $v(t)=s'(t)=3t^{2}-12t+9$.
+
+2. İvme, hızın türevidir: $a(t)=v'(t)=s''(t)=6t-12$.
+
+3. $t=2$ için hız: $v(2)=3\cdot 4-12\cdot 2+9=12-24+9=-3\ \text{m/s}$.
+
+4. $t=2$ için ivme: $a(2)=6\cdot 2-12=0\ \text{m/s}^{2}$.
+
+<Cevap>$t=2$ anında hız $-3\ \text{m/s}$, ivme $0\ \text{m/s}^{2}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 5. İkinci Türevin Grafik Anlamı
+
+İkinci türev, grafiğin **bükülme yönünü** belirler ve kritik noktaları sınıflandırır (ayrıntısı *İkinci Türev, Konkavlık ve Dönüm Noktaları* konusunda):
+
+- $f''(x) > 0$ ise grafik **konkav yukarı** ($\cup$), $f''(x) < 0$ ise **konkav aşağı** ($\cap$).
+- $f'(c)=0$ ve $f''(c) > 0$ ise $c$ yerel minimum; $f''(c) < 0$ ise yerel maksimumdur.
+
+## Sık Yapılan Hatalar
+
+- **$f^{(n)}$ ile $f^{n}$'i karıştırmak.** $f^{(2026)}$ türev mertebesidir, kuvvet değil.
+- **Yüksek mertebe trig türevinde işaret döngüsünü yanlış saymak.** Döngü $\cos,\,-\sin,\,-\cos,\,\sin$ sırasıyla ilerler; $n\bmod 4$'ü dikkatli hesapla.
+- **İvmeyi konumun birinci türevi sanmak.** Hız birinci, **ivme ikinci** türevdir.
+
+## Sınav İpucu
+
+- $\sin x$, $\cos x$ gibi periyodik türevlerde büyük mertebeleri tek tek almak yerine önce $n\bmod 4$'ü hesapla.
+- Polinomlarda her türev derecesi $1$ azaltır; $n$. dereceden bir polinomun $(n+1)$. türevi sıfırdır.
+- Hareket problemlerinde "hız" deyince birinci, "ivme" deyince ikinci türeve geç; işaret yorumunu (yavaşlama/hızlanma) gözden kaçırma.
+
+<KonuNav slug="ardisik-turev" />

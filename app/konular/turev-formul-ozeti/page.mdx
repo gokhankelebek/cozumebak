@@ -34,8 +34,6 @@ Türevi limit tanımından her seferinde almak yerine doğrudan bu kuralları ku
 | $a^{x}$ | $a^{x}\ln a$ |
 | $\ln x$ | $\dfrac{1}{x}$ |
 | $\log_{a} x$ | $\dfrac{1}{x\ln a}$ |
-| $\arcsin x$ | $\dfrac{1}{\sqrt{1-x^{2}}}$ |
-| $\arctan x$ | $\dfrac{1}{1+x^{2}}$ |
 
 > **İç fonksiyonla birleştir:** $\big(\ln u\big)'=\dfrac{u'}{u}$, $\big(e^{u}\big)'=u'\,e^{u}$, $\big(\sin u\big)'=u'\cos u$. Tablodaki türevler $x$ yerine $u(x)$ geldiğinde mutlaka $u'$ çarpanıyla gelir.
 
@@ -78,7 +76,7 @@ Teğet doğru denklemi: $y-f(a)=f'(a)\,(x-a)$. Normal doğru denklemi: $y-f(a)=-
 7. **$f'(c)=0$'ı her zaman ekstremum sanmak.** $f(x)=x^{3}$'te $f'(0)=0$ ama $x=0$ ekstremum değil, dönüm noktasıdır.
 8. **$f''(c)=0$'ı her zaman dönüm noktası sanmak.** $f(x)=x^{4}$'te $f''(0)=0$ ama işaret değişmediği için dönüm yok; nokta minimumdur.
 9. **Normal eğimini yanlış yazmak.** Normal eğimi teğet eğiminin **ters-negatifidir**: $-\dfrac{1}{f'(a)}$, sadece $-f'(a)$ değil.
-10. **L'Hôpital'i belirsiz olmayanda uygulamak.** Kural yalnız $\dfrac{0}{0}$ veya $\dfrac{\infty}{\infty}$ için geçerlidir; önce belirsizliği doğrula.
+10. **$f^{(n)}$ ile $f^{n}$'i karıştırmak.** $f^{(n)}$ ardışık türev mertebesidir; ivme $s''(t)$, hız değil ikinci türevdir.
 
 ## AYT'de Türev Soru Tipleri
 
@@ -90,7 +88,7 @@ Teğet doğru denklemi: $y-f(a)=f'(a)\,(x-a)$. Normal doğru denklemi: $y-f(a)=-
 | **Artan-azalan & ekstremum** | $f'(x)=0$ köklerini bul, işaret tablosu kur, işaret değişimine bak |
 | **İkinci türev / konkavlık** | $f''(x)$'in işaretine bak; $f''$'nün işaret değiştirdiği yer dönüm noktası |
 | **Optimizasyon** | Değişkeni tek harfe indir, kısıtı yerine koy, $f'=0$ ile uç değeri bul |
-| **L'Hôpital / limit** | Önce $\tfrac{0}{0}$ ya da $\tfrac{\infty}{\infty}$ olduğunu doğrula, sonra pay ve paydanın türevini al |
+| **Ardışık türev & fizik** | Hız $=s'(t)$, ivme $=s''(t)$; $f''$ işaretiyle konkavlık yorumla |
 
 ## Hızlı Örnekler
 

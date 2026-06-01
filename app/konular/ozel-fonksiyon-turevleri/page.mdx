@@ -20,11 +20,8 @@ Aşağıdaki türevler doğrudan ezberlenmelidir. Tüm açılar **radyan** kabul
 | $a^{x}$ | $a^{x}\ln a$ |
 | $\ln x$ | $\dfrac{1}{x}$ |
 | $\log_a x$ | $\dfrac{1}{x\ln a}$ |
-| $\arcsin x$ | $\dfrac{1}{\sqrt{1-x^{2}}}$ |
-| $\arccos x$ | $-\dfrac{1}{\sqrt{1-x^{2}}}$ |
-| $\arctan x$ | $\dfrac{1}{1+x^{2}}$ |
 
-İki ikiliyi birlikte aklında tut: $\sin\to\cos$ ile $\cos\to-\sin$ **işaret farkıyla** simetriktir; aynı şekilde $\arcsin$ ile $\arccos$ türevleri yalnızca işaretle ayrılır.
+İki ikiliyi birlikte aklında tut: $\sin\to\cos$ ile $\cos\to-\sin$ yalnızca **işaret farkıyla** simetriktir; aynı şekilde $\tan$ ve $\cot$ türevleri de işaretle ayrılır.
 
 ## 2. Zincir Kuralıyla Genelleştirilmiş Biçimler
 
@@ -39,8 +36,8 @@ Tabloya da $u$ ekleyerek geçişi netleştirelim:
 | Genel form | Türevi |
 | --- | --- |
 | $\tan u$ | $\dfrac{u'}{\cos^{2}u}$ |
+| $\cos u$ | $-u'\sin u$ |
 | $\log_a u$ | $\dfrac{u'}{u\ln a}$ |
-| $\arctan u$ | $\dfrac{u'}{1+u^{2}}$ |
 
 > **Sık yapılan hata:** $\dfrac{d}{dx}\sin(3x)=\cos(3x)$ yazmak. Doğrusu argümanın türevi olan $3$ ile çarpılmalıdır: $\dfrac{d}{dx}\sin(3x)=3\cos(3x)$.
 
@@ -141,17 +138,17 @@ $\tan x$'in türevinin $\sec^{2}x=\dfrac{1}{\cos^{2}x}$ olduğunu unutma.
 
 <Soru>
 
-$\dfrac{d}{dx}5^{x}$ ve $\dfrac{d}{dx}\arctan\!\big(x^{2}\big)$ türevlerini bulunuz.
+$\dfrac{d}{dx}5^{x}$ ve $\dfrac{d}{dx}\tan\!\big(3x\big)$ türevlerini bulunuz.
 
 </Soru>
 
 <Cozum>
 
 1. Üstel için $\big(a^{x}\big)'=a^{x}\ln a$ formülünde $a=5$: $\big(5^{x}\big)'=5^{x}\ln 5$.
-2. İkinci ifadede $\big(\arctan u\big)'=\dfrac{u'}{1+u^{2}}$, $u=x^{2}$, $u'=2x$.
-3. Yerine koy: $\dfrac{2x}{1+\big(x^{2}\big)^{2}}=\dfrac{2x}{1+x^{4}}$.
+2. İkinci ifadede $\big(\tan u\big)'=\dfrac{u'}{\cos^{2}u}$, $u=3x$, $u'=3$.
+3. Yerine koy: $\dfrac{3}{\cos^{2}(3x)}$.
 
-<Cevap>$\dfrac{d}{dx}5^{x}=5^{x}\ln 5$ ve $\dfrac{d}{dx}\arctan\!\big(x^{2}\big)=\dfrac{2x}{1+x^{4}}$.</Cevap>
+<Cevap>$\dfrac{d}{dx}5^{x}=5^{x}\ln 5$ ve $\dfrac{d}{dx}\tan\!\big(3x\big)=\dfrac{3}{\cos^{2}(3x)}$.</Cevap>
 
 </Cozum>
 
