@@ -1,0 +1,201 @@
+import { topicMetadata } from "@/lib/seo";
+import { Birlesim, Kesisim, Fark } from "@/components/figures/KumelerFig";
+
+export const metadata = topicMetadata("kumeler-tyt");
+
+<Konu slug="kumeler-tyt" />
+
+<p className="lead">Kümeler, TYT'nin en temel ve en sık çıkan konularından biridir; doğru kurulduğunda neredeyse garanti puandır. Bu derste küme kavramından işlemlere ($\cup$, $\cap$, $\setminus$, tümleyen) ve eleman sayısı formülüne kadar her şeyi, Venn şemaları ve çözümlü örneklerle adım adım kuruyoruz.</p>
+
+## 1. Temel Kavramlar
+
+**Küme**, iyi tanımlanmış nesnelerin topluluğudur; bu nesnelerin her birine **eleman** denir.
+
+| Kavram | Gösterim | Anlamı |
+| --- | --- | --- |
+| Eleman olma | $a\in A$ | $a$, $A$ kümesinin elemanıdır |
+| Eleman olmama | $a\notin A$ | $a$, $A$ kümesinin elemanı değildir |
+| Alt küme | $A\subset B$ | $A$'nın her elemanı $B$'dedir |
+| Boş küme | $\varnothing$ | Hiç elemanı olmayan küme |
+| Evrensel küme | $E$ | İlgili tüm elemanları kapsayan küme |
+| Eleman sayısı | $s(A)$ | $A$ kümesindeki eleman sayısı |
+
+Örneğin $A=\{1,2,3\}$ kümesi için $2\in A$, $5\notin A$ ve $s(A)=3$ olur. **Boş küme** her kümenin alt kümesidir: $\varnothing\subset A$.
+
+## 2. Kümelerde İşlemler
+
+### Birleşim — $A\cup B$
+
+$A$ ya da $B$ kümelerinden **en az birinde** bulunan tüm elemanların kümesidir.
+
+<Figur>
+
+<Birlesim />
+
+<Altyazi>Şekil 1 — $A\cup B$: her iki dairenin tamamı taranmıştır (en az birine ait olan elemanlar).</Altyazi>
+
+</Figur>
+
+### Kesişim — $A\cap B$
+
+$A$ ve $B$ kümelerinin **ikisinde de** bulunan ortak elemanların kümesidir.
+
+<Figur>
+
+<Kesisim />
+
+<Altyazi>Şekil 2 — $A\cap B$: yalnız ortak (çakışan) bölge taranmıştır.</Altyazi>
+
+</Figur>
+
+### Fark — $A\setminus B$
+
+$A$'da bulunup $B$'de bulunmayan elemanların kümesidir.
+
+<Figur>
+
+<Fark />
+
+<Altyazi>Şekil 3 — $A\setminus B$: $A$'nın, $B$ dışında kalan kısmı taranmıştır.</Altyazi>
+
+</Figur>
+
+### Tümleyen — $A'$
+
+Evrensel küme $E$ içinde, $A$'da **bulunmayan** elemanların kümesidir: $A'=E\setminus A$.
+
+## 3. Eleman Sayısı
+
+İki kümenin birleşimindeki eleman sayısı için temel formül:
+
+$$s(A\cup B)=s(A)+s(B)-s(A\cap B)$$
+
+Buradaki $-\,s(A\cap B)$ terimi şart: $s(A)$ ile $s(B)$ toplandığında ortak bölge **iki kez** sayılır, bu yüzden bir kez geri çıkarılır.
+
+<Ornek>
+
+<Soru>
+
+$A=\{1,2,3\}$ ve $B=\{2,3,4\}$ kümeleri için $A\cup B$, $A\cap B$ ve $A\setminus B$ kümelerini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. **Birleşim:** İki kümedeki tüm elemanları bir kez yaz: $A\cup B=\{1,2,3,4\}$.
+2. **Kesişim:** Her iki kümede de olan ortak elemanlar: $A\cap B=\{2,3\}$.
+3. **Fark:** $A$'da olup $B$'de olmayan elemanlar: $A\setminus B=\{1\}$.
+
+<Cevap>$A\cup B=\{1,2,3,4\}$, $A\cap B=\{2,3\}$, $A\setminus B=\{1\}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$s(A)=20$, $s(B)=15$ ve $s(A\cap B)=8$ ise $s(A\cup B)$ kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+$s(A\cup B)=s(A)+s(B)-s(A\cap B)$ formülünü doğrudan uygula.
+
+</Ipucu>
+
+<Cozum>
+
+1. Formülü yaz: $s(A\cup B)=s(A)+s(B)-s(A\cap B)$.
+2. Değerleri yerine koy: $s(A\cup B)=20+15-8$.
+3. Hesapla: $s(A\cup B)=27$.
+
+<Cevap>$s(A\cup B)=27$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir sınıftaki $30$ öğrenciden $18$'i matematik, $15$'i fizik kursuna gidiyor; $7$'si her iki kursa da gidiyor. **Yalnızca bir** kursa giden kaç öğrenci vardır?
+
+</Soru>
+
+<Ipucu>
+
+Önce ortak bölgeyi ($7$) yerleştir; ardından "yalnız matematik" ve "yalnız fizik" sayılarını ayrı ayrı bulup topla. Dikkat: soru "en az biri"ni değil, "yalnızca biri"ni soruyor.
+
+</Ipucu>
+
+<Cozum>
+
+1. **İkisine de gidenler:** $s(M\cap F)=7$ (Venn şemasının ortasına yazılır).
+2. **Yalnız matematik:** $18-7=11$.
+3. **Yalnız fizik:** $15-7=8$.
+4. **Yalnızca biri:** $11+8=19$.
+
+<Cevap>$19$ öğrenci yalnızca bir kursa gitmektedir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$s(A\cup B)=27$, $s(A)=20$ ve $s(B)=15$ ise $s(A\cap B)$ kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. Aynı formülü kesişim için düzenle: $s(A\cap B)=s(A)+s(B)-s(A\cup B)$.
+2. Değerleri yerine koy: $s(A\cap B)=20+15-27$.
+3. Hesapla: $s(A\cap B)=8$.
+
+<Cevap>$s(A\cap B)=8$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$3$ elemanlı bir kümenin kaç alt kümesi vardır?
+
+</Soru>
+
+<Ipucu>
+
+$n$ elemanlı bir kümenin alt küme sayısı $2^{n}$'dir. Boş küme ve kümenin kendisi de alt küme olarak sayılır.
+
+</Ipucu>
+
+<Cozum>
+
+1. Kural: $n$ elemanlı kümenin $2^{n}$ alt kümesi vardır.
+2. Burada $n=3$ olduğundan: $2^{3}=8$.
+
+<Cevap>$8$ alt küme vardır.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Kesişimi iki kez saymak:** $s(A\cup B)$ hesabında $s(A\cap B)$ terimi **bir kez çıkarılmalıdır**; çıkarmayı unutmak sonucu şişirir.
+- **"Yalnızca biri" ile "en az biri"ni karıştırmak:** "En az biri" $=s(A\cup B)$ iken; "yalnızca biri" $=s(A\cup B)-s(A\cap B)$'dir.
+- **Boş kümeyi atlamak:** $\varnothing$ her kümenin alt kümesidir; alt küme sayarken unutulmamalıdır.
+
+> **Sınav ipucu:** İki kümeli problemlerde önce Venn şemasını çiz. Ortak bölgeyi ($A\cap B$) en başta yerleştir, sonra dışa doğru "yalnız $A$" ve "yalnız $B$" sayılarını doldur. Bu sıra, çoğu hatayı baştan engeller.
+
+<KonuNav slug="kumeler-tyt" />

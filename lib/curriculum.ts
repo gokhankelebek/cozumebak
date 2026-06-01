@@ -141,8 +141,13 @@ export const UNITS: Unit[] = [
   { slug: "temel-kavramlar-tyt", title: "Temel Kavramlar", track: "tyt", order: 1 },
   { slug: "sayilar-tyt", title: "Sayılar ve Bölünebilme", track: "tyt", order: 2 },
   { slug: "uslu-koklu-tyt", title: "Üslü ve Köklü İfadeler", track: "tyt", order: 3 },
-  { slug: "oran-problem-tyt", title: "Oran-Orantı ve Problemler", track: "tyt", order: 4 },
-  { slug: "geometri-tyt", title: "Temel Geometri", track: "tyt", order: 5 },
+  { slug: "cebir-tyt", title: "Çarpanlara Ayırma, Denklem ve Eşitsizlikler", track: "tyt", order: 4 },
+  { slug: "oran-problem-tyt", title: "Oran-Orantı ve Problemler", track: "tyt", order: 5 },
+  { slug: "kumeler-mantik-tyt", title: "Kümeler ve Mantık", track: "tyt", order: 6 },
+  { slug: "fonksiyonlar-tyt", title: "Fonksiyonlar", track: "tyt", order: 7 },
+  { slug: "sayma-olasilik-tyt", title: "Sayma, Olasılık ve İstatistik", track: "tyt", order: 8 },
+  { slug: "geometri-tyt", title: "Temel Geometri", track: "tyt", order: 9 },
+  { slug: "analitik-kati-tyt", title: "Analitik Geometri ve Katı Cisimler", track: "tyt", order: 10 },
   // AYT
   { slug: "limit-ayt", title: "Limit ve Süreklilik", track: "ayt", order: 1 },
   { slug: "turev-ayt", title: "Türev", track: "ayt", order: 2 },
@@ -274,6 +279,28 @@ export const TOPICS: Topic[] = [
   { slug: "ucgende-benzerlik-alan", title: "Üçgende Benzerlik ve Alan", track: "tyt", unit: "geometri-tyt", summary: "Benzer üçgenler, benzerlik oranı, temel orantı (Thales) ve üçgenin alan formülleri.", minutes: 10, difficulty: "Orta", questionCount: 22, status: "published", keywords: ["benzerlik", "benzer üçgen", "thales", "üçgenin alanı"] },
   { slug: "dortgenler-tyt", title: "Dörtgenler ve Çokgenler", track: "tyt", unit: "geometri-tyt", summary: "Çokgenlerde iç-dış açı toplamı; kare, dikdörtgen, paralelkenar, eşkenar dörtgen ve yamuğun özellikleri ve alanları.", minutes: 10, difficulty: "Orta", questionCount: 22, status: "published", keywords: ["dörtgen", "çokgen", "paralelkenar", "yamuk", "alan"] },
   { slug: "cember-daire-tyt", title: "Çember ve Daire", track: "tyt", unit: "geometri-tyt", summary: "Çemberde merkez ve çevre açı, teğet; dairenin alanı, çevresi, daire dilimi ve yay uzunluğu.", minutes: 9, difficulty: "Orta", questionCount: 20, status: "published", keywords: ["çember", "daire", "merkez açı", "çevre açı", "daire alanı"] },
+
+  // ── TYT · Çarpanlara Ayırma, Denklem ve Eşitsizlikler ──
+  { slug: "carpanlara-ayirma-tyt", title: "Çarpanlara Ayırma ve Özdeşlikler", track: "tyt", unit: "cebir-tyt", summary: "Ortak çarpan, gruplandırma, temel özdeşlikler (tam kare, iki kare farkı, küpler) ve ikinci derece üç terimliyi çarpanlara ayırma.", minutes: 9, difficulty: "Orta", questionCount: 24, status: "published", keywords: ["çarpanlara ayırma", "özdeşlik", "iki kare farkı", "tam kare"] },
+  { slug: "birinci-derece-denklem-tyt", title: "Birinci Dereceden Denklem ve Eşitsizlikler", track: "tyt", unit: "cebir-tyt", summary: "ax+b=0 denklemi, birinci dereceden eşitsizlikler, çözüm kümesi, aralıklar ve sayı doğrusunda gösterim.", minutes: 8, difficulty: "Orta", questionCount: 22, status: "published", keywords: ["birinci dereceden denklem", "eşitsizlik", "çözüm kümesi", "aralık"] },
+  { slug: "mutlak-deger-tyt", title: "Mutlak Değer", track: "tyt", unit: "cebir-tyt", summary: "Mutlak değerin tanımı ve özellikleri; mutlak değerli denklem ve eşitsizliklerin çözümü.", minutes: 8, difficulty: "Orta", questionCount: 20, status: "published", keywords: ["mutlak değer", "mutlak değerli denklem", "mutlak değerli eşitsizlik"] },
+
+  // ── TYT · Kümeler ve Mantık ──
+  { slug: "kumeler-tyt", title: "Kümeler", track: "tyt", unit: "kumeler-mantik-tyt", summary: "Küme kavramı, kümelerde işlemler (birleşim, kesişim, fark, tümleyen), Venn şeması ve eleman sayısı problemleri.", minutes: 9, difficulty: "Orta", questionCount: 22, status: "published", keywords: ["kümeler", "birleşim", "kesişim", "venn şeması", "eleman sayısı"] },
+  { slug: "mantik-tyt", title: "Mantık", track: "tyt", unit: "kumeler-mantik-tyt", summary: "Önerme, bileşik önermeler (ve, veya, ise, ancak ve ancak), doğruluk tablosu, totoloji ve niceleyiciler.", minutes: 8, difficulty: "Orta", questionCount: 16, status: "published", keywords: ["mantık", "önerme", "doğruluk tablosu", "bileşik önerme"] },
+
+  // ── TYT · Fonksiyonlar ──
+  { slug: "fonksiyon-kavrami-tyt", title: "Fonksiyon Kavramı ve Çeşitleri", track: "tyt", unit: "fonksiyonlar-tyt", summary: "Fonksiyon tanımı, tanım ve görüntü kümesi; bire bir, örten, içine, sabit, birim ve doğrusal fonksiyonlar.", minutes: 9, difficulty: "Orta", questionCount: 20, status: "published", keywords: ["fonksiyon", "tanım kümesi", "bire bir", "örten", "doğrusal fonksiyon"] },
+  { slug: "fonksiyon-grafik-tyt", title: "Fonksiyon Grafikleri ve İşlemleri", track: "tyt", unit: "fonksiyonlar-tyt", summary: "Grafik okuma, fonksiyon değerleri, bileşke fonksiyon (fog) ve ters fonksiyon (TYT düzeyi).", minutes: 9, difficulty: "Orta", questionCount: 20, status: "published", keywords: ["fonksiyon grafiği", "bileşke fonksiyon", "ters fonksiyon", "grafik okuma"] },
+
+  // ── TYT · Sayma, Olasılık ve İstatistik ──
+  { slug: "permutasyon-kombinasyon-tyt", title: "Permütasyon ve Kombinasyon", track: "tyt", unit: "sayma-olasilik-tyt", summary: "Sayma yolları (toplama-çarpma), faktöriyel, permütasyon ve kombinasyon ile sıralama-seçme problemleri.", minutes: 10, difficulty: "Orta", questionCount: 22, status: "published", keywords: ["permütasyon", "kombinasyon", "faktöriyel", "sayma"] },
+  { slug: "olasilik-tyt", title: "Olasılık", track: "tyt", unit: "sayma-olasilik-tyt", summary: "Örnek uzay, olay, klasik olasılık; bağımlı-bağımsız ve bileşik olayların olasılığı.", minutes: 9, difficulty: "Orta", questionCount: 20, status: "published", keywords: ["olasılık", "örnek uzay", "olay", "bağımsız olay"] },
+  { slug: "veri-istatistik-tyt", title: "Veri ve İstatistik", track: "tyt", unit: "sayma-olasilik-tyt", summary: "Aritmetik ortalama, ortanca (medyan), tepe değer (mod), açıklık ve grafik (sütun, daire) okuma.", minutes: 8, difficulty: "Kolay", questionCount: 18, status: "published", keywords: ["istatistik", "ortalama", "medyan", "mod", "grafik okuma"] },
+
+  // ── TYT · Analitik Geometri ve Katı Cisimler ──
+  { slug: "analitik-geometri-tyt", title: "Analitik Geometri", track: "tyt", unit: "analitik-kati-tyt", summary: "Koordinat düzlemi, iki nokta arası uzaklık, orta nokta, doğrunun eğimi ve denklemi.", minutes: 9, difficulty: "Orta", questionCount: 20, status: "published", keywords: ["analitik geometri", "iki nokta arası uzaklık", "eğim", "doğru denklemi", "orta nokta"] },
+  { slug: "kati-cisimler-tyt", title: "Katı Cisimler (Uzay Geometri)", track: "tyt", unit: "analitik-kati-tyt", summary: "Dikdörtgenler prizması, küp, silindir, piramit, koni ve kürenin hacim ve yüzey alanı.", minutes: 10, difficulty: "Orta", questionCount: 20, status: "published", keywords: ["katı cisimler", "prizma", "silindir", "koni", "küre", "hacim"] },
 
   // ── AYT · Limit ──
   { slug: "limit-kavrami", title: "Limit Kavramı: Soldan ve Sağdan Limit", track: "ayt", unit: "limit-ayt", summary: "Sezgisel limit, soldan–sağdan limit, limitin varlığı, grafikten ve parçalı fonksiyonlarda limit okuma.", minutes: 9, difficulty: "Orta", questionCount: 20, status: "published", keywords: ["limit", "soldan limit", "sağdan limit", "parçalı fonksiyon"] },

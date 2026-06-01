@@ -1,0 +1,253 @@
+import { topicMetadata } from "@/lib/seo";
+
+export const metadata = topicMetadata("carpanlara-ayirma-tyt");
+
+<Konu slug="carpanlara-ayirma-tyt" />
+
+<p className="lead">Çarpanlara ayırma, bir cebirsel ifadeyi **çarpımlar biçiminde** yazmaktır. TYT'de sadeleştirme, denklem çözme ve özdeşlik sorularının çoğu, ifadeyi önce çarpanlarına ayırmakla kısa yoldan çözülür. Bu konuda ortak çarpan, gruplandırma, temel özdeşlikler ve ikinci derece üç terimlilerin çarpanlara ayrılışını işliyoruz. Her çarpanlamayı **geri çarpıp doğrula** alışkanlığı kazan.</p>
+
+## 1. Ortak Çarpana Ayırma
+
+Bir ifadenin her teriminde ortak olan çarpanı **parantezin dışına** alırız. Bu, dağılma özelliğinin ters yönde uygulanmasıdır:
+
+$$ab+ac=a(b+c)$$
+
+Ortak çarpan, terimlerin **en büyük ortak böleni** (katsayılarda) ile **en küçük üslü ortak değişkenin** çarpımıdır.
+
+<Ornek>
+
+<Soru>
+
+$6x^2+9x$ ifadesini çarpanlarına ayırınız.
+
+</Soru>
+
+<Cozum>
+
+1. Katsayıların ortak böleni $\mathrm{OBEB}(6,9)=3$.
+
+2. Ortak değişken $x$ (her iki terimde de var, en küçük üs $1$).
+
+3. Ortak çarpan $3x$'i dışarı al: $6x^2+9x=3x(2x+3)$.
+
+4. Doğrula: $3x\cdot 2x+3x\cdot 3=6x^2+9x$. Tamam.
+
+<Cevap>$6x^2+9x=3x(2x+3)$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 2. Gruplandırma ile Çarpanlara Ayırma
+
+Tek ortak çarpanı olmayan ama genellikle **dört terimli** ifadelerde terimleri ikişerli gruplarız, her gruptan ortak çarpanı alırız ve ortaya çıkan **ortak paranteze** göre tekrar ayırırız.
+
+$$ax+ay+bx+by=a(x+y)+b(x+y)=(x+y)(a+b)$$
+
+<Ornek>
+
+<Soru>
+
+$x^3+x^2+x+1$ ifadesini çarpanlarına ayırınız.
+
+</Soru>
+
+<Ipucu>
+
+Terimleri $(x^3+x^2)$ ve $(x+1)$ olarak ikişerli grupla; ilk gruptan $x^2$, ikinci gruptan $1$ ortak çarpan çıkar.
+
+</Ipucu>
+
+<Cozum>
+
+1. İkişerli grupla: $(x^3+x^2)+(x+1)$.
+
+2. Birinci gruptan $x^2$ çık: $x^3+x^2=x^2(x+1)$.
+
+3. İkinci grup zaten $(x+1)$.
+
+4. Ortak parantez $(x+1)$'e göre ayır: $x^2(x+1)+(x+1)=(x+1)(x^2+1)$.
+
+5. Doğrula: $(x+1)(x^2+1)=x^3+x+x^2+1=x^3+x^2+x+1$. Tamam.
+
+<Cevap>$x^3+x^2+x+1=(x+1)(x^2+1)$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 3. Temel Özdeşlikler
+
+Aşağıdaki özdeşlikleri **ezberle ve her iki yönde tanı**: hem açılımı (soldan sağa) hem de çarpanlamayı (sağdan sola) hızlıca yapabilmelisin.
+
+| Özdeşlik | Açılım / Çarpanlama |
+| --- | --- |
+| Tam kare (toplam) | $(a+b)^2=a^2+2ab+b^2$ |
+| Tam kare (fark) | $(a-b)^2=a^2-2ab+b^2$ |
+| İki kare farkı | $a^2-b^2=(a-b)(a+b)$ |
+| Küp (toplam) | $(a+b)^3=a^3+3a^2b+3ab^2+b^3$ |
+| Küp (fark) | $(a-b)^3=a^3-3a^2b+3ab^2-b^3$ |
+| İki küp toplamı | $a^3+b^3=(a+b)(a^2-ab+b^2)$ |
+| İki küp farkı | $a^3-b^3=(a-b)(a^2+ab+b^2)$ |
+
+> **Dikkat:** $a^2+b^2$ (iki kare **toplamı**) reel sayılarda çarpanlarına ayrılamaz. Sadece $a^2-b^2$ (iki kare **farkı**) ayrılır.
+
+İki küp toplamı özdeşliğindeki orta terimde işaretin **ters** olduğuna dikkat: $a^3+b^3=(a+b)(a^2\,{-}\,ab+b^2)$. Buradaki ikinci çarpan tam kare **değildir** ($-2ab$ değil, $-ab$).
+
+<Ornek>
+
+<Soru>
+
+$x^2-16$ ifadesini çarpanlarına ayırınız.
+
+</Soru>
+
+<Cozum>
+
+1. İki kare farkı biçiminde yaz: $x^2-16=x^2-4^2$.
+
+2. $a=x,\ b=4$ için $a^2-b^2=(a-b)(a+b)$ uygula: $(x-4)(x+4)$.
+
+3. Doğrula: $(x-4)(x+4)=x^2+4x-4x-16=x^2-16$. Tamam.
+
+<Cevap>$x^2-16=(x-4)(x+4)$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$x^2+6x+9$ ifadesini çarpanlarına ayırınız.
+
+</Soru>
+
+<Ipucu>
+
+İlk ve son terim tam kare ($x^2$ ve $3^2$). Orta terimin $2\cdot x\cdot 3=6x$ olup olmadığını kontrol et; uyuyorsa tam karedir.
+
+</Ipucu>
+
+<Cozum>
+
+1. $x^2=(x)^2$ ve $9=3^2$; tam kare adayı.
+
+2. Orta terim kontrolü: $2\cdot x\cdot 3=6x$. İfadedeki orta terimle aynı.
+
+3. $(a+b)^2=a^2+2ab+b^2$ ile $a=x,\ b=3$: $x^2+6x+9=(x+3)^2$.
+
+4. Doğrula: $(x+3)^2=x^2+6x+9$. Tamam.
+
+<Cevap>$x^2+6x+9=(x+3)^2$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$x^3-8$ ifadesini çarpanlarına ayırınız.
+
+</Soru>
+
+<Cozum>
+
+1. İki küp farkı biçiminde yaz: $x^3-8=x^3-2^3$.
+
+2. $a^3-b^3=(a-b)(a^2+ab+b^2)$ ile $a=x,\ b=2$: $(x-2)(x^2+2x+4)$.
+
+3. Doğrula: $(x-2)(x^2+2x+4)=x^3+2x^2+4x-2x^2-4x-8=x^3-8$. Tamam.
+
+<Cevap>$x^3-8=(x-2)(x^2+2x+4)$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 4. İkinci Derece Üç Terimli: $x^2+bx+c$
+
+Baş katsayısı $1$ olan $x^2+bx+c$ ifadesini ayırmak için, **çarpımı $c$, toplamı $b$** olan iki sayı bulunur. Bu iki sayı $m$ ve $n$ ise:
+
+$$x^2+bx+c=(x+m)(x+n)\quad\text{burada}\quad m\cdot n=c,\ \ m+n=b$$
+
+İşaret stratejisi: $c>0$ ise iki sayı **aynı işaretli** ($b$'nin işaretinde), $c<0$ ise **zıt işaretlidir**.
+
+<Ornek>
+
+<Soru>
+
+$x^2-5x+6$ ifadesini çarpanlarına ayırınız.
+
+</Soru>
+
+<Ipucu>
+
+Çarpımı $+6$, toplamı $-5$ olan iki sayı ara. $c>0$ ve $b<0$ olduğundan ikisi de negatif olmalı.
+
+</Ipucu>
+
+<Cozum>
+
+1. Çarpımı $c=6$, toplamı $b=-5$ olan iki sayı gerekir.
+
+2. $c>0$, $b<0$ olduğundan iki sayı da negatif. Adaylar: $-2$ ve $-3$.
+
+3. Kontrol: $(-2)\cdot(-3)=6$ ve $(-2)+(-3)=-5$. Uydu.
+
+4. Çarpanlara ayır: $x^2-5x+6=(x-2)(x-3)$.
+
+5. Doğrula: $(x-2)(x-3)=x^2-3x-2x+6=x^2-5x+6$. Tamam.
+
+<Cevap>$x^2-5x+6=(x-2)(x-3)$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\dfrac{x^2-9}{x^2+x-12}$ ifadesini sadeleştiriniz $(x\neq 3,\ x\neq -4)$.
+
+</Soru>
+
+<Ipucu>
+
+Pay iki kare farkı; payda ise çarpımı $-12$, toplamı $+1$ olan iki sayı ile ayrılan üç terimli. Ortak çarpanı sadeleştir.
+
+</Ipucu>
+
+<Cozum>
+
+1. Payı ayır: $x^2-9=(x-3)(x+3)$.
+
+2. Paydayı ayır: çarpımı $-12$, toplamı $+1$ olan sayılar $+4$ ve $-3$; yani $x^2+x-12=(x-3)(x+4)$.
+
+3. Ortak çarpan $(x-3)$'ü sadeleştir: $\dfrac{(x-3)(x+3)}{(x-3)(x+4)}=\dfrac{x+3}{x+4}$.
+
+<Cevap>$\dfrac{x+3}{x+4}$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **$a^2-b^2$ ile $a^2+b^2$'yi karıştırmak.** Yalnızca iki kare **farkı** çarpanlarına ayrılır: $a^2-b^2=(a-b)(a+b)$. İki kare **toplamı** $a^2+b^2$ reel sayılarda ayrılamaz.
+- **$(a+b)^2=a^2+b^2$ sanmak.** Orta terim $2ab$ unutulur. Doğrusu $(a+b)^2=a^2+2ab+b^2$.
+- **Üç terimliyi yanlış iki sayıyla bölmek.** $x^2+bx+c$ için seçtiğin iki sayı **hem** çarpımı $c$ **hem** toplamı $b$ vermeli; sadece birini sağlamak yetmez.
+- **İki küp özdeşliğinin orta terimini tam kare sanmak.** $a^3-b^3=(a-b)(a^2+ab+b^2)$; ikinci çarpanda $+2ab$ değil, $+ab$ vardır.
+
+## Sınav İpucu
+
+- Sadeleştirme, denklem ve özdeşlik sorularında refleksin **önce çarpanlara ayırmak** olsun; çoğu soru bir ortak çarpan sadeleşince kısalır.
+- **İki kare farkını** ($a^2-b^2$) ve **tam kareyi** ilk bakışta tanı: ilk ve son terim tam kare mi, orta terim $2ab$ mi diye bak.
+- Üç terimlide önce **ortak çarpan** var mı kontrol et; varsa onu çıkarınca sayılar küçülür ve iki sayıyı bulmak kolaylaşır.
+- $c<0$ ise iki sayı **zıt işaretli**, $c>0$ ise **aynı işaretli**dir; bu, doğru sayıları hızlı bulmanı sağlar.
+
+<KonuNav slug="carpanlara-ayirma-tyt" />

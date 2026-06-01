@@ -1,0 +1,203 @@
+import { topicMetadata } from "@/lib/seo";
+
+export const metadata = topicMetadata("birinci-derece-denklem-tyt");
+
+<Konu slug="birinci-derece-denklem-tyt" />
+
+<p className="lead">Birinci dereceden denklem ve eşitsizlikler, TYT'nin en temel ama en çok puan getiren konularından biridir. Bilinmeyenin **en büyük üssü 1** olan bu ifadeler; sayı problemlerinden geometri kurulumlarına kadar her yerde karşına çıkar. Burada denklemi tek bir köke indirgemeyi, eşitsizlikte **yön kuralını** ve çözümü **aralık** olarak yazmayı öğreneceksin.</p>
+
+## 1. Birinci Dereceden Denklem
+
+Bilinmeyeni $x$ olan ve $x$'in en büyük üssü $1$ olan denklem **birinci derecedendir**. Genel biçimi:
+
+$$ax+b=0,\qquad a\ne 0 \;\Rightarrow\; x=-\frac{b}{a}$$
+
+$a\ne 0$ koşulu şarttır: $a=0$ olursa $x$ kaybolur ve denklem birinci dereceden olmaktan çıkar.
+
+**Çözüm adımları:**
+
+1. Varsa parantezleri aç.
+2. Bilinmeyenli terimleri bir tarafta, sayıları diğer tarafta topla (terim taraf değiştirirken işareti değişir).
+3. Bilinmeyenin katsayısına böl.
+
+<Ornek>
+
+<Soru>
+
+$3x-7=8$ denklemini çözünüz.
+
+</Soru>
+
+<Cozum>
+
+1. Sayıyı sağ tarafa at: $3x=8+7=15$.
+
+2. Katsayıya böl: $x=\dfrac{15}{3}=5$.
+
+3. **Doğrulama:** $3\cdot 5-7=15-7=8$. Doğru.
+
+<Cevap>$x=5$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$2(x-1)+3=x+6$ denklemini çözünüz.
+
+</Soru>
+
+<Cozum>
+
+1. Sol tarafta parantezi aç: $2x-2+3=x+6 \Rightarrow 2x+1=x+6$.
+
+2. Bilinmeyenleri sola, sayıları sağa topla: $2x-x=6-1$.
+
+3. Sadeleştir: $x=5$.
+
+4. **Doğrulama:** Sol $=2(5-1)+3=8+3=11$, sağ $=5+6=11$. Eşit.
+
+<Cevap>$x=5$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 2. Birinci Dereceden Eşitsizlik
+
+Eşitsizlik, $=$ yerine $<,\ >,\ \le,\ \ge$ işaretlerinden birini içerir. Çözüm adımları denklemdekiyle **aynıdır**, tek bir kritik fark vardır:
+
+> **Yön kuralı:** Bir eşitsizliği **negatif** bir sayıyla çarptığında veya böldüğünde eşitsizliğin **yönü değişir** ($<$ ise $>$ olur). Pozitif sayıyla çarpıp bölmede yön değişmez.
+
+<Ornek>
+
+<Soru>
+
+$2x-3 < 7$ eşitsizliğini çözünüz ve çözüm aralığını yazınız.
+
+</Soru>
+
+<Cozum>
+
+1. Sayıyı sağa at: $2x < 7+3 \Rightarrow 2x < 10$.
+
+2. Pozitif katsayı $2$'ye böl (yön değişmez): $x < 5$.
+
+3. Çözüm aralığı: $(-\infty,\,5)$.
+
+<Cevap>$x < 5$, yani $x\in(-\infty,\,5)$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$-2x > 6$ eşitsizliğini çözünüz.
+
+</Soru>
+
+<Ipucu>
+
+Bilinmeyenin katsayısı negatif. İki tarafı $-2$'ye bölerken yönü çevirmeyi unutma.
+
+</Ipucu>
+
+<Cozum>
+
+1. İki tarafı $-2$'ye böl. Negatife böldüğümüz için yön değişir: $x < -3$.
+
+2. **Doğrulama:** $x=-4$ deneyelim: $-2\cdot(-4)=8 > 6$. Sağladı. $x=0$ ise $0 > 6$ yanlış; demek ki $-3$'ten küçük olmalı.
+
+3. Çözüm aralığı: $(-\infty,\,-3)$.
+
+<Cevap>$x < -3$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 3. Çözüm Kümesi ve Aralık Gösterimi
+
+Eşitsizliğin çözümü genellikle bir **aralıktır**. Aralık yazarken:
+
+- Uç değer **dâhilse** (yani $\le$ ya da $\ge$) **köşeli parantez** kullanılır: $[\ ]$.
+- Uç değer **dâhil değilse** (yani $<$ ya da $>$) **yuvarlak parantez** kullanılır: $(\ )$.
+- $-\infty$ ve $+\infty$ için **her zaman** yuvarlak parantez kullanılır.
+
+| Eşitsizlik | Aralık | Uçlar |
+| --- | --- | --- |
+| $x < 5$ | $(-\infty,\,5)$ | açık |
+| $x \le 5$ | $(-\infty,\,5]$ | sağ kapalı |
+| $-1 \le x$ | $[-1,\,\infty)$ | sol kapalı |
+| $-1 \le x < 3$ | $[-1,\,3)$ | sol kapalı, sağ açık |
+
+**Çift eşitsizlik** ($a \le x < b$ gibi), $x$'i ortada yalnız bırakacak şekilde **her üç bölgeye aynı işlemi** uygulayarak çözülür.
+
+<Ornek>
+
+<Soru>
+
+$-1 \le 2x-1 < 5$ çift eşitsizliğini çözünüz ve çözüm aralığını yazınız.
+
+</Soru>
+
+<Cozum>
+
+1. Üç tarafa da $+1$ ekle: $-1+1 \le 2x < 5+1 \Rightarrow 0 \le 2x < 6$.
+
+2. Üç tarafı da pozitif $2$'ye böl (yön değişmez): $0 \le x < 3$.
+
+3. Sol uç dâhil ($\le$), sağ uç hariç ($<$): aralık $[0,\,3)$.
+
+<Cevap>$0 \le x < 3$, yani $x\in[0,\,3)$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 4. Kesirli Denklemler
+
+Paydaları varsa, tüm terimleri paydaların **en küçük ortak katına (EKOK)** genişletip kesirden kurtulmak en pratik yoldur.
+
+<Ornek>
+
+<Soru>
+
+$\dfrac{x}{2}+\dfrac{x}{3}=5$ denklemini çözünüz.
+
+</Soru>
+
+<Cozum>
+
+1. Paydaların EKOK'u $6$. Sol tarafı paydası $6$ olacak şekilde topla: $\dfrac{3x}{6}+\dfrac{2x}{6}=\dfrac{5x}{6}$.
+
+2. Denklem $\dfrac{5x}{6}=5$ oldu. İki tarafı $6$ ile çarp: $5x=30$.
+
+3. $5$'e böl: $x=6$.
+
+4. **Doğrulama:** $\dfrac{6}{2}+\dfrac{6}{3}=3+2=5$. Doğru.
+
+<Cevap>$x=6$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Yön kuralını unutmak (en kritik hata):** Eşitsizliği negatif bir sayıyla çarpıp böldüğünde yönü çevirmemek. $-2x > 6$ sonucu $x > -3$ değil, $x < -3$'tür.
+- **Aralıkta kapalı/açık ucu karıştırmak:** $x \le 5$ için sağ uç **kapalıdır** $(-\infty,\,5]$; $x < 5$ için **açıktır** $(-\infty,\,5)$. Sonsuz uç daima açıktır.
+- **Parantez açarken işaret hatası:** $-(x-3)$ ifadesi $-x+3$'tür, $-x-3$ değil. Önündeki eksi tüm terimlerin işaretini çevirir.
+- **Terim taraf değiştirirken işaret koymamak:** $3x-7=8$'de $-7$ sağa geçerken $+7$ olur.
+
+## Sınav İpucu
+
+Bir eşitsizlikte bilinmeyenin önündeki **katsayı negatifse**, son adımda böldüğünde **yönü çevirmeyi** asla unutma; ÖSYM'nin en sevdiği tuzaktır. Şüphe duyarsan bulduğun aralıktan bir sayı seç, orijinal eşitsizlikte yerine koy ve sağladığını gör. Çözüm kümesi sorulduğunda cevabı **aralık biçiminde** yazmaya, kapalı/açık uçları doğru seçmeye dikkat et.
+
+<KonuNav slug="birinci-derece-denklem-tyt" />

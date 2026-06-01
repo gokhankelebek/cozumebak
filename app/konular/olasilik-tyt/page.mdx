@@ -1,0 +1,217 @@
+import { topicMetadata } from "@/lib/seo";
+
+export const metadata = topicMetadata("olasilik-tyt");
+
+<Konu slug="olasilik-tyt" />
+
+<p className="lead">Olasılık, bir olayın gerçekleşme şansını sayısal olarak ölçer. TYT'de olasılık soruları çoğunlukla sayma yöntemleriyle birleşir: doğru kurulmuş bir **örnek uzay** ve dikkatli bir **uygun durum sayımı** ile sorular hızla çözülür. Bu konu, klasik olasılık tanımından tümleyen ve bağımsız olaylara kadar TYT'nin ihtiyaç duyduğu tüm temeli kurar.</p>
+
+## 1. Örnek Uzay ve Olay
+
+Bir rastgele deneyde ortaya çıkabilecek **tüm olası sonuçların kümesine** örnek uzay denir ve $S$ ile gösterilir. Örnek uzayın herhangi bir alt kümesine de **olay** denir.
+
+Örneğin bir zar atıldığında örnek uzay $S=\{1,2,3,4,5,6\}$ olur; bu durumda $\text{s}(S)=6$'dır. "Çift sayı gelmesi" olayı ise $A=\{2,4,6\}$ alt kümesidir.
+
+| Kavram | Gösterim | Açıklama |
+| --- | --- | --- |
+| Örnek uzay | $S$ | Tüm olası sonuçların kümesi |
+| Olay | $A\subseteq S$ | Örnek uzayın bir alt kümesi |
+| İmkânsız olay | $\varnothing$ | Hiç gerçekleşmeyen olay |
+| Kesin olay | $S$ | Her zaman gerçekleşen olay |
+
+## 2. Klasik (Eş Olasılıklı) Olasılık
+
+Bir deneyin tüm sonuçları **eş olasılıklı** ise, bir $A$ olayının olasılığı uygun durum sayısının tüm durum sayısına oranıdır:
+
+$$P(A)=\dfrac{\text{istenen (uygun) durum sayısı}}{\text{tüm durum sayısı}}=\dfrac{\text{s}(A)}{\text{s}(S)}$$
+
+Olasılığı hesaplarken iki şeyi doğru saymak yeterlidir: önce örnek uzayın eleman sayısı $\text{s}(S)$, sonra olayın eleman sayısı $\text{s}(A)$.
+
+## 3. Olasılığın Temel Kuralları
+
+Her olayın olasılığı $0$ ile $1$ arasındadır:
+
+$$0\le P(A)\le 1$$
+
+- İmkânsız olayın olasılığı $P(\varnothing)=0$'dır.
+- Kesin olayın olasılığı $P(S)=1$'dir.
+- Bir $A$ olayının **tümleyeni** $A'$ (olayın gerçekleşmemesi) için:
+
+$$P(A')=1-P(A)$$
+
+Tümleyen kuralı, "en az bir" türü sorularda büyük kolaylık sağlar: doğrudan saymak yerine, olmama olasılığını $1$'den çıkarmak çoğu zaman çok daha kısadır.
+
+## 4. Bağımsız ve Bileşik Olaylar
+
+Bir olayın gerçekleşmesi diğerinin olasılığını **etkilemiyorsa** bu iki olay **bağımsızdır**. Ardışık atışlar (zar, para) ve yerine koyarak çekmeler tipik bağımsız deneylerdir. Bağımsız $A$ ve $B$ olaylarının **birlikte** gerçekleşme olasılığı çarpımla bulunur:
+
+$$P(A\cap B)=P(A)\cdot P(B)$$
+
+İki olaydan **en az birinin** olması ("veya") durumunda ise olasılıklar genelde toplanır; olaylar **ayrık** (ortak sonucu olmayan) ise:
+
+$$P(A\cup B)=P(A)+P(B)$$
+
+> **Anahtar ayrım:** "ve / birlikte / ardışık" ifadeleri **çarpmayı**, "veya / ya da" ifadeleri (ayrık olaylarda) **toplamayı** gösterir.
+
+<Ornek>
+
+<Soru>
+
+Bir zar atılıyor. Üst yüze **çift sayı** gelme olasılığı nedir?
+
+</Soru>
+
+<Cozum>
+
+1. Örnek uzay: $S=\{1,2,3,4,5,6\}$, yani $\text{s}(S)=6$.
+
+2. Uygun durumlar (çift sayılar): $A=\{2,4,6\}$, yani $\text{s}(A)=3$.
+
+3. Olasılık: $P(A)=\dfrac{3}{6}=\dfrac{1}{2}$.
+
+<Cevap>$P(A)=\dfrac{1}{2}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir zar atıldığında üst yüze **asal sayı** gelme olasılığı nedir?
+
+</Soru>
+
+<Ipucu>
+
+$1$ asal değildir. $6$'ya kadar olan asal sayıları belirle: $2,\,3,\,5$.
+
+</Ipucu>
+
+<Cozum>
+
+1. Örnek uzay: $\text{s}(S)=6$.
+
+2. Asal sayılar: $A=\{2,3,5\}$, yani $\text{s}(A)=3$.
+
+3. Olasılık: $P(A)=\dfrac{3}{6}=\dfrac{1}{2}$.
+
+<Cevap>$P(A)=\dfrac{1}{2}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+İçinde $3$ kırmızı ve $2$ mavi top bulunan bir torbadan rastgele bir top çekiliyor. Çekilen topun **kırmızı** olma olasılığı nedir?
+
+</Soru>
+
+<Cozum>
+
+1. Toplam top sayısı: $3+2=5$, yani $\text{s}(S)=5$.
+
+2. Kırmızı top sayısı: $\text{s}(A)=3$.
+
+3. Olasılık: $P(A)=\dfrac{3}{5}$.
+
+<Cevap>$P(A)=\dfrac{3}{5}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir madenî para arka arkaya **$2$ kez** atılıyor. İkisinin de **yazı** gelme olasılığı nedir?
+
+</Soru>
+
+<Ipucu>
+
+Ardışık atışlar bağımsızdır; her atışta yazı gelme olasılığı $\dfrac{1}{2}$'dir. "İkisi de" ifadesi çarpmayı gösterir.
+
+</Ipucu>
+
+<Cozum>
+
+1. Atışlar bağımsız olduğundan olasılıkları çarparız.
+
+2. Her atışta yazı: $P(Y)=\dfrac{1}{2}$.
+
+3. İkisi de yazı: $P(Y\cap Y)=\dfrac{1}{2}\cdot\dfrac{1}{2}=\dfrac{1}{4}$.
+
+<Cevap>$P=\dfrac{1}{4}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+İki zar birlikte atılıyor. Üst yüzlerdeki sayıların **toplamının $7$** olma olasılığı nedir?
+
+</Soru>
+
+<Ipucu>
+
+İki zarın örnek uzayı $6\cdot 6=36$ sonuçtan oluşur. Toplamı $7$ yapan sıralı ikilileri tek tek listele.
+
+</Ipucu>
+
+<Cozum>
+
+1. Tüm durum sayısı: $6\cdot 6=36$.
+
+2. Toplamı $7$ yapan ikililer: $(1,6),(2,5),(3,4),(4,3),(5,2),(6,1)$ → toplam $6$ tane.
+
+3. Olasılık: $P=\dfrac{6}{36}=\dfrac{1}{6}$.
+
+<Cevap>$P=\dfrac{1}{6}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir olayın gerçekleşme olasılığı $\dfrac{2}{5}$ ise, bu olayın **gerçekleşmeme** olasılığı nedir?
+
+</Soru>
+
+<Cozum>
+
+1. Gerçekleşmeme olasılığı tümleyendir: $P(A')=1-P(A)$.
+
+2. Yerine yaz: $P(A')=1-\dfrac{2}{5}=\dfrac{5}{5}-\dfrac{2}{5}=\dfrac{3}{5}$.
+
+<Cevap>$P(A')=\dfrac{3}{5}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Örnek uzayı (tüm durum sayısını) yanlış saymak.** Özellikle iki zarda toplam $36$ sonuç olduğunu unutup $12$ ile bölmek tipik bir hatadır. Önce $\text{s}(S)$'i emin olana kadar belirle.
+- **Bağımsız olaylarda olasılıkları toplamak.** "İkisi de / birlikte / ardışık" durumlarında olasılıklar **çarpılır**, toplanmaz.
+- **$1$'den büyük bir olasılık bulup hatayı fark etmemek.** Her olasılık $0\le P(A)\le 1$ aralığındadır; $1$'i aşan bir sonuç kesinlikle yanlıştır.
+- **Sonucu sadeleştirmemek.** $\dfrac{6}{36}$ gibi sonuçları daima en sade hâline ($\dfrac{1}{6}$) indir.
+
+## Sınav İpucu
+
+- **"ve / birlikte / ardışık"** geçen sorularda olasılıkları **çarp**; **"veya / ya da"** (ayrık olaylar) geçen sorularda **topla**.
+- **"En az bir"** türü sorularda tümleyen ($1-P$) çoğu zaman en kısa yoldur: hiç olmama olasılığını bulup $1$'den çıkar.
+- Soruya başlamadan önce $\text{s}(S)$'i net yaz; sayım hatalarının büyük kısmı yanlış örnek uzaydan kaynaklanır.
+
+<KonuNav slug="olasilik-tyt" />

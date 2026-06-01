@@ -1,0 +1,194 @@
+import { topicMetadata } from "@/lib/seo";
+import { IkiNokta, Egim } from "@/components/figures/AnalitikFig";
+
+export const metadata = topicMetadata("analitik-geometri-tyt");
+
+<Konu slug="analitik-geometri-tyt" />
+
+<p className="lead">Analitik geometri, **noktaları sayılarla** (koordinatlarla) ifade ederek geometriyi cebire çevirir. Bu konuda iki nokta arası uzaklık, orta nokta, eğim ve doğru denklemini öğreneceğiz. Bunlar TYT'de hem geometri hem de fonksiyon sorularının temelini oluşturur.</p>
+
+## 1. Koordinat Düzlemi
+
+Düzlemdeki her nokta bir sıralı ikili $A(x,y)$ ile gösterilir. Burada $x$ değerine **apsis** (yatay konum), $y$ değerine **ordinat** (dikey konum) denir. İki eksen $O(0,0)$ noktasında, yani **orijinde** kesişir.
+
+<Figur>
+
+<IkiNokta />
+
+<Altyazi>Şekil 1 — $A(1,2)$ ve $B(4,6)$ noktaları ve aralarındaki doğru parçası. Uzaklık ve orta nokta bu iki nokta üzerinden hesaplanır.</Altyazi>
+
+</Figur>
+
+## 2. İki Nokta Arası Uzaklık
+
+$A(x_1,y_1)$ ve $B(x_2,y_2)$ noktaları arasındaki uzaklık, Pisagor teoreminden gelir:
+
+$$|AB|=\sqrt{(x_2-x_1)^2+(y_2-y_1)^2}$$
+
+Farkların **karesi** alındığı için işaretin önemi yoktur: $(x_2-x_1)^2=(x_1-x_2)^2$.
+
+<Ornek>
+
+<Soru>
+
+$A(1,2)$ ve $B(4,6)$ noktaları arasındaki uzaklığı bulunuz.
+
+</Soru>
+
+<Cozum>
+
+Formülde yerine yazalım:
+
+$$|AB|=\sqrt{(4-1)^2+(6-2)^2}=\sqrt{3^2+4^2}=\sqrt{9+16}=\sqrt{25}=5$$
+
+<Cevap>$|AB|=5$ birim.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Orijin $O(0,0)$ ile $C(3,4)$ noktası arasındaki uzaklığı bulunuz.
+
+</Soru>
+
+<Cozum>
+
+$$|OC|=\sqrt{(3-0)^2+(4-0)^2}=\sqrt{9+16}=\sqrt{25}=5$$
+
+<Cevap>$|OC|=5$ birim.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 3. Orta Nokta
+
+$A(x_1,y_1)$ ve $B(x_2,y_2)$ noktalarını birleştiren doğru parçasının orta noktası, koordinatların **aritmetik ortalamasıdır**:
+
+$$\left(\dfrac{x_1+x_2}{2},\ \dfrac{y_1+y_2}{2}\right)$$
+
+<Ornek>
+
+<Soru>
+
+$A(2,3)$ ve $B(6,9)$ noktalarının orta noktasını bulunuz.
+
+</Soru>
+
+<Cozum>
+
+Apsis ve ordinatların ortalamasını alalım:
+
+$$\left(\dfrac{2+6}{2},\ \dfrac{3+9}{2}\right)=\left(\dfrac{8}{2},\ \dfrac{12}{2}\right)=(4,6)$$
+
+<Cevap>Orta nokta $(4,6)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 4. Eğim
+
+Bir doğrunun **eğimi** $m$, doğrunun ne kadar dik olduğunu ölçer. İki noktadan geçen doğru için:
+
+$$m=\dfrac{y_2-y_1}{x_2-x_1}=\dfrac{\Delta y}{\Delta x}=\dfrac{\text{dikey değişim}}{\text{yatay değişim}}$$
+
+<Figur>
+
+<Egim />
+
+<Altyazi>Şekil 2 — $A(1,2)$ ve $B(4,8)$ noktalarından geçen doğru. Yatay değişim $\Delta x=3$, dikey değişim $\Delta y=6$ olduğundan eğim $m=\dfrac{6}{3}=2$.</Altyazi>
+
+</Figur>
+
+<Ornek>
+
+<Soru>
+
+$A(1,2)$ ve $B(4,8)$ noktalarından geçen doğrunun eğimini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+$$m=\dfrac{y_2-y_1}{x_2-x_1}=\dfrac{8-2}{4-1}=\dfrac{6}{3}=2$$
+
+<Cevap>Eğim $m=2$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 5. Doğru Denklemi
+
+Bir doğru, eğimi $m$ ve $y$ eksenini kestiği nokta $n$ ile şöyle yazılır:
+
+$$y=mx+n$$
+
+Burada $m$ **eğim**, $n$ ise doğrunun $y$ eksenini kestiği noktanın ordinatıdır ($x=0$ iken $y=n$).
+
+<Ornek>
+
+<Soru>
+
+Eğimi $2$ olan ve $y$ eksenini $1$ noktasında kesen doğrunun denklemini yazınız.
+
+</Soru>
+
+<Cozum>
+
+$m=2$ ve $n=1$ değerlerini $y=mx+n$ formülünde yerine yazalım:
+
+$$y=2x+1$$
+
+<Cevap>$y=2x+1$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$A(0,1)$ ve $B(2,5)$ noktalarından geçen doğrunun denklemini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Önce eğimi hesapla, sonra $A(0,1)$ noktası $y$ ekseni üzerinde olduğu için $n$'yi doğrudan oku.
+
+</Ipucu>
+
+<Cozum>
+
+1. Eğimi bul:
+
+$$m=\dfrac{5-1}{2-0}=\dfrac{4}{2}=2$$
+
+2. $A(0,1)$ noktasının apsisi $0$ olduğundan bu nokta $y$ eksenindedir; yani $n=1$.
+
+3. Denklemi yaz:
+
+$$y=2x+1$$
+
+<Cevap>$y=2x+1$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Uzaklıkta farkların karesini almayı unutmak.** $|AB|=\sqrt{(x_2-x_1)^2+(y_2-y_1)^2}$; farklar mutlaka karelenir, bu yüzden işaret hata yapsanız bile sonuç değişmez.
+- **Eğimi ters yazmak.** Doğrusu $\dfrac{\Delta y}{\Delta x}$, yani **dikey değişim / yatay değişim**; $\dfrac{\Delta x}{\Delta y}$ yazmak yanlıştır.
+- **Orta noktada $2$'ye bölmeyi unutmak.** Koordinatları topladıktan sonra mutlaka $2$'ye bölün.
+
+> **Sınav ipucu:** $3$-$4$-$5$ ve $5$-$12$-$13$ Pisagor üçlülerini ezberleyin; uzaklık sorularında karekökü saniyeler içinde sonuçlandırır. Eğimi ise her zaman "dikey değişim bölü yatay değişim" diye hatırlayın.
+
+<KonuNav slug="analitik-geometri-tyt" />

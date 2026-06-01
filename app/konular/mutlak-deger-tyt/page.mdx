@@ -1,0 +1,204 @@
+import { topicMetadata } from "@/lib/seo";
+
+export const metadata = topicMetadata("mutlak-deger-tyt");
+
+<Konu slug="mutlak-deger-tyt" />
+
+<p className="lead">Mutlak değer, bir sayının **sayı doğrusunda sıfıra olan uzaklığıdır**; bu yüzden işareti ne olursa olsun sonuç **daima sıfır ya da pozitiftir**. Bu konu, mutlak değerin tanımından temel özelliklerine, mutlak değerli denklem ve eşitsizliklerin çözümüne kadar TYT'de doğrudan karşına çıkan her şeyi kapsar.</p>
+
+## 1. Tanım
+
+Bir $x$ gerçek sayısının mutlak değeri parçalı (cebirsel) olarak şöyle tanımlanır:
+
+$$\lvert x\rvert=\begin{cases}x,& x\ge 0\\ -x,& x<0\end{cases}$$
+
+Sözel olarak: $\lvert x\rvert$, $x$ sayısının sayı doğrusunda **sıfıra uzaklığıdır**. Uzaklık negatif olamayacağından her zaman $\lvert x\rvert\ge 0$ olur. Örneğin $\lvert 5\rvert=5$ ve $\lvert -5\rvert=-(-5)=5$.
+
+> **Dikkat:** $x<0$ olduğunda $\lvert x\rvert=-x$ ifadesi **pozitif** bir sayıdır; çünkü negatif bir sayının işaretini değiştirmek onu pozitif yapar. "$-x$" görüp "negatif" sanmak en sık yapılan yanılgıdır.
+
+## 2. Temel Özellikler
+
+| Özellik | Açıklama |
+| --- | --- |
+| $\lvert x\rvert\ge 0$ | Mutlak değer asla negatif olamaz |
+| $\lvert -x\rvert=\lvert x\rvert$ | Zıt işaretli sayıların mutlak değeri eşittir |
+| $\lvert a\cdot b\rvert=\lvert a\rvert\cdot\lvert b\rvert$ | Çarpımın mutlak değeri = mutlak değerlerin çarpımı |
+| $\lvert a-b\rvert=\lvert b-a\rvert$ | İki sayı arasındaki uzaklık simetriktir |
+
+Ayrıca $\lvert x\rvert=0$ olması için tek koşul $x=0$ olmasıdır.
+
+## 3. Mutlak Değerli Denklem
+
+Temel kural: $a\ge 0$ olmak üzere
+
+$$\lvert x\rvert=a \;\Rightarrow\; x=a \ \text{veya}\ x=-a$$
+
+Yani mutlak değeri $a$ olan **iki** sayı vardır: $+a$ ve $-a$. Genel olarak içerideki ifade $f(x)$ ise:
+
+$$\lvert f(x)\rvert=a \;\Rightarrow\; f(x)=a \ \text{veya}\ f(x)=-a$$
+
+Kısaca $f(x)=\pm a$ yazılır ve her iki denklem ayrı ayrı çözülür.
+
+**Önemli:** Sağ taraf **negatif** ise ($a<0$) denklemin **çözümü yoktur**; çünkü mutlak değer negatif bir sonuca eşit olamaz.
+
+## 4. Mutlak Değerli Eşitsizlik
+
+İki temel yapı vardır ve birbirine karıştırılmamalıdır:
+
+$$\lvert x\rvert < a \;\Rightarrow\; -a < x < a \quad(\text{tek aralık, "arada"})$$
+
+$$\lvert x\rvert > a \;\Rightarrow\; x < -a \ \text{veya}\ x > a \quad(\text{iki ayrı aralık, "dışında"})$$
+
+Buradaki $a$ pozitif kabul edilir. $\le$ ve $\ge$ durumlarında uç noktalar çözüme dâhil edilir (eşitlik korunur).
+
+<Ornek>
+
+<Soru>
+
+$\lvert -5\rvert$ ve $\lvert 3-7\rvert$ değerlerini hesaplayınız.
+
+</Soru>
+
+<Cozum>
+
+1. $\lvert -5\rvert$: $-5<0$ olduğundan $\lvert -5\rvert=-(-5)=5$.
+
+2. $\lvert 3-7\rvert=\lvert -4\rvert$: $-4<0$ olduğundan $\lvert -4\rvert=4$.
+
+<Cevap>$\lvert -5\rvert=5$ ve $\lvert 3-7\rvert=4$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\lvert 2x-4\rvert=6$ denkleminin çözüm kümesini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+İçerideki ifadeyi $\pm 6$'ya eşitle: $2x-4=6$ veya $2x-4=-6$. İki denklemi ayrı çöz.
+
+</Ipucu>
+
+<Cozum>
+
+1. Kuralı uygula: $2x-4=6$ veya $2x-4=-6$.
+
+2. Birinci denklem: $2x=10 \Rightarrow x=5$.
+
+3. İkinci denklem: $2x=-2 \Rightarrow x=-1$.
+
+<Cevap>$x=5$ veya $x=-1$; yani çözüm kümesi $\{-1,\,5\}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\lvert x-1\rvert < 3$ eşitsizliğini sağlayan $x$ değerlerini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. "Arada" kuralını uygula: $-3 < x-1 < 3$.
+
+2. Her tarafa $1$ ekle: $-3+1 < x < 3+1$.
+
+3. Sonuç: $-2 < x < 4$.
+
+<Cevap>$-2 < x < 4$, yani $x\in(-2,\,4)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\lvert x+2\rvert \ge 5$ eşitsizliğinin çözüm kümesini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+"Dışında" yapısı: $\lvert f(x)\rvert\ge a$ ise $f(x)\ge a$ veya $f(x)\le -a$. İki aralığı ayrı yaz.
+
+</Ipucu>
+
+<Cozum>
+
+1. "Dışında" kuralını uygula: $x+2\ge 5$ veya $x+2\le -5$.
+
+2. Birinci durum: $x\ge 3$.
+
+3. İkinci durum: $x\le -7$.
+
+<Cevap>$x\ge 3$ veya $x\le -7$; yani $x\in(-\infty,\,-7]\cup[3,\,\infty)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\lvert 3x\rvert=12$ denklemini çözünüz.
+
+</Soru>
+
+<Cozum>
+
+1. $\lvert 3x\rvert=12 \Rightarrow 3x=12$ veya $3x=-12$.
+
+2. Birinci denklem: $x=4$.
+
+3. İkinci denklem: $x=-4$.
+
+<Cevap>$x=\pm 4$, yani çözüm kümesi $\{-4,\,4\}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\lvert x\rvert=-3$ denkleminin çözümü var mıdır?
+
+</Soru>
+
+<Cozum>
+
+1. Mutlak değer her zaman $\lvert x\rvert\ge 0$'dır; yani sonucu asla negatif olamaz.
+
+2. Sağ taraf $-3<0$ olduğundan eşitlik hiçbir $x$ için sağlanamaz.
+
+<Cevap>Çözüm yoktur; çözüm kümesi boş kümedir ($\varnothing$).</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Tek kök almak:** $\lvert x\rvert=a$ denkleminde yalnızca $x=a$ yazıp $x=-a$ kökünü unutmak. Mutlak değerli denklemde (sağ taraf pozitifse) **iki kök** vardır: $\pm a$.
+- **Eşitsizlik yapılarını karıştırmak:** $\lvert x\rvert < a$ ("arada", tek aralık $-a<x<a$) ile $\lvert x\rvert > a$ ("dışında", iki ayrı aralık) çözümlerini birbirinin yerine kullanmak.
+- **Çözümsüzlüğü görmemek:** $\lvert x\rvert=$ (negatif sayı) biçimindeki denklemin çözümsüz olduğunu fark etmeyip cebirsel işlem yapmaya çalışmak.
+
+## Sınav İpucu
+
+İki yapıyı tek cümleyle hatırla: $\lvert f(x)\rvert < a$ demek $f(x)$ değerinin $-a$ ile $a$ **arasında** kalması ($-a<f(x)<a$); $\lvert f(x)\rvert > a$ demek ise $f(x)$ değerinin bu aralığın **dışında** olması (iki ayrı aralık) demektir. Eşitsizliğe çözmeden önce "arada mı, dışında mı?" diye sor; yön doğru seçilince işlemler kendiliğinden gelir.
+
+<KonuNav slug="mutlak-deger-tyt" />

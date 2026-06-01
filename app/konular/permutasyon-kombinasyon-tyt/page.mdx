@@ -1,0 +1,189 @@
+import { topicMetadata } from "@/lib/seo";
+
+export const metadata = topicMetadata("permutasyon-kombinasyon-tyt");
+
+<Konu slug="permutasyon-kombinasyon-tyt" />
+
+<p className="lead">Permütasyon ve kombinasyon, "kaç farklı şekilde?" sorusunun TYT'deki iki temel aracıdır. İkisini ayıran tek soru vardır: **sıra önemli mi, değil mi?** Sıralama önemliyse permütasyon, yalnızca "kimler seçildi" önemliyse kombinasyon. Bu konuda önce sayma ilkelerini ve faktöriyeli kurar, sonra her iki kavramı net bir ayrımla işleriz.</p>
+
+## 1. Sayma İlkeleri
+
+Tüm permütasyon ve kombinasyon formülleri iki basit ilkeye dayanır.
+
+**Toplama yoluyla sayma ("ya ... ya da"):** Bir iş ya $a$ farklı yolla ya da $b$ farklı yolla (aynı anda değil) yapılabiliyorsa, toplam yol sayısı $a+b$'dir.
+
+**Çarpma yoluyla sayma ("önce ... sonra"):** Bir iş ardışık adımlardan oluşuyorsa ve birinci adım $a$, ikinci adım $b$ farklı yolla yapılabiliyorsa, toplam yol sayısı $a\cdot b$'dir.
+
+> **Kısa kural:** "ya ... ya da" görünce **topla**, "önce ... sonra" (peş peşe seçim) görünce **çarp**.
+
+<Ornek>
+
+<Soru>
+
+Bir öğrenci $3$ farklı gömlek ve $2$ farklı pantolondan kaç farklı kombin (gömlek + pantolon) oluşturabilir?
+
+</Soru>
+
+<Cozum>
+
+Önce gömlek seçilir ($3$ yol), sonra pantolon seçilir ($2$ yol). Ardışık seçim olduğundan **çarparız**:
+
+$$3\cdot 2=6$$
+
+<Cevap>$6$ farklı kombin.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 2. Faktöriyel
+
+Bir pozitif tam sayının faktöriyeli, o sayıdan $1$'e kadar olan tüm doğal sayıların çarpımıdır:
+
+$$n!=n\cdot (n-1)\cdot (n-2)\cdots 2\cdot 1$$
+
+Örneğin $5!=5\cdot 4\cdot 3\cdot 2\cdot 1=120$. Özel tanım gereği:
+
+$$0!=1$$
+
+Faktöriyel bölmelerinde tüm çarpanları açmaya gerek yoktur; sadeleştirme yapılır:
+
+$$\dfrac{6!}{4!}=\dfrac{6\cdot 5\cdot 4!}{4!}=6\cdot 5=30$$
+
+## 3. Permütasyon (Sıralama)
+
+**Permütasyon, sıranın önemli olduğu** dizilişlerdir. $n$ farklı elemanın tamamının sıralanış sayısı:
+
+$$n!$$
+
+$n$ elemandan $r$ tanesinin sıralı seçimi (sıralanışı) ise:
+
+$$P(n,r)=\dfrac{n!}{(n-r)!}=n\cdot (n-1)\cdots (n-r+1)$$
+
+Pratikte $P(n,r)$, $n$'den başlayıp **azalarak** $r$ tane çarpan yazmaktır.
+
+<Ornek>
+
+<Soru>
+
+$4$ kişi tek sıralı bir banka kaç farklı şekilde oturabilir?
+
+</Soru>
+
+<Cozum>
+
+$4$ kişinin tamamı sıralanacağından tüm permütasyon sayısı:
+
+$$4!=4\cdot 3\cdot 2\cdot 1=24$$
+
+<Cevap>$24$ farklı şekilde.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$5$ kişilik bir gruptan biri başkan, biri başkan yardımcısı seçilecektir. Bu seçim kaç farklı şekilde yapılır?
+
+</Soru>
+
+<Ipucu>
+
+Başkan ile yardımcı **farklı görevlerdir**; aynı iki kişi rolleri değişince yeni bir seçim sayılır. Sıra önemli, yani permütasyon.
+
+</Ipucu>
+
+<Cozum>
+
+Sıra önemli olduğundan $P(5,2)$ kullanırız ($5$'ten başlayıp azalarak $2$ çarpan):
+
+$$P(5,2)=5\cdot 4=20$$
+
+<Cevap>$20$ farklı şekilde.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 4. Kombinasyon (Seçme)
+
+**Kombinasyon, sıranın önemli olmadığı** seçimlerdir. $n$ elemandan $r$ tanesinin seçimi:
+
+$$C(n,r)=\dbinom{n}{r}=\dfrac{n!}{r!\,(n-r)!}$$
+
+Permütasyondan tek farkı paydadaki $r!$'dir: aynı $r$ elemanın kendi içindeki $r!$ sıralanışı tek bir grup sayıldığından bölünür.
+
+<Ornek>
+
+<Soru>
+
+$5$ kişilik bir gruptan $2$ kişilik bir komisyon kaç farklı şekilde seçilir?
+
+</Soru>
+
+<Ipucu>
+
+Komisyonda görev ayrımı yok; aynı iki kişi hangi sırayla seçilirse seçilsin tek bir komisyondur. Sıra önemsiz, yani kombinasyon.
+
+</Ipucu>
+
+<Cozum>
+
+Sıra önemsiz olduğundan $C(5,2)$ kullanırız:
+
+$$C(5,2)=\dfrac{5\cdot 4}{2\cdot 1}=\dfrac{20}{2}=10$$
+
+<Cevap>$10$ farklı komisyon.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$8$ futbolcudan $3$ kişilik bir takım kaç farklı şekilde kurulur?
+
+</Soru>
+
+<Cozum>
+
+Takım bir gruptur, sıra önemsiz; $C(8,3)$ kullanırız:
+
+$$C(8,3)=\dfrac{8\cdot 7\cdot 6}{3\cdot 2\cdot 1}=\dfrac{336}{6}=56$$
+
+<Cevap>$56$ farklı takım.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 5. Permütasyon mu, Kombinasyon mu?
+
+Soruyu çözmeden önce verilecek tek karar: sıra önemli mi?
+
+| Durum | Hangisi? | Anahtar kelimeler |
+| --- | --- | --- |
+| **Sıra önemli** | Permütasyon | sıralama, diziliş, şifre, başkan-yardımcı, sıraya dizmek |
+| **Sıra önemsiz** | Kombinasyon | seçmek, grup, takım, komisyon, ikili-üçlü grup |
+
+Aynı $n$ ve $r$ için $P(n,r)$ her zaman $C(n,r)$'den büyük (ya da eşit) çıkar; çünkü $P(n,r)=C(n,r)\cdot r!$.
+
+## Sık Yapılan Hatalar
+
+- **Sıralıyı sırasızla karıştırmak.** "Başkan ve yardımcı seç" sıralıdır (permütasyon), "komisyon seç" sırasızdır (kombinasyon). Önce sıranın önemli olup olmadığına karar ver.
+- **Çarpma ile toplama yolunu karıştırmak.** "Önce ... sonra" ardışık adımlar **çarpılır**; "ya ... ya da" ayrık durumlar **toplanır**.
+- **$0!=1$ olduğunu unutmak.** $C(n,n)=\dfrac{n!}{n!\,0!}=1$ gibi sonuçlarda bu tanım kullanılır.
+- Kombinasyonda paydadaki $r!$'i unutup permütasyon sonucunu yazmak.
+
+## Sınav İpucu
+
+- Soruda **sıra/yer/görev** önemliyse permütasyon; yalnız **"kimler seçildi"** önemliyse kombinasyon.
+- Hesabı kısaltmak için $C(n,r)=C(n,n-r)$ kısayolunu kullan. Örneğin $C(10,8)=C(10,2)=\dfrac{10\cdot 9}{2}=45$; üç değil iki çarpanla işin biter.
+- $P(n,r)$'yi formül ezberlemeden yaz: $n$'den başla, **azalarak $r$ çarpan** al.
+
+<KonuNav slug="permutasyon-kombinasyon-tyt" />

@@ -1,0 +1,187 @@
+import { topicMetadata } from "@/lib/seo";
+import { DogruGrafik, GrafikOkuma } from "@/components/figures/FonksiyonFig";
+
+export const metadata = topicMetadata("fonksiyon-grafik-tyt");
+
+<Konu slug="fonksiyon-grafik-tyt" />
+
+<p className="lead">Bir fonksiyonu **grafiğinden okumak**, **doğrusal fonksiyonun** denklemini kurmak, iki fonksiyonu **bileşke** ile birleştirmek ve **ters fonksiyonu** bulmak — TYT'de sık çıkan ve birbirini tamamlayan dört temel beceridir. Bu konu, hepsini net kurallar ve doğrulanmış örneklerle bir araya getirir.</p>
+
+## 1. Grafik Okuma
+
+Bir fonksiyonun grafiği, $\big(x,\,f(x)\big)$ noktalarından oluşur. Buradan iki şeyi hızlıca okuruz:
+
+- **Değer okuma:** $f(a)$, grafikte $x=a$ noktasının **dikey karşılığıdır** (yani o $x$ değerine karşılık gelen $y$).
+- **Kök okuma:** $f(x)=0$ denkleminin çözümü, grafiğin **$x$ eksenini kestiği** noktanın apsisidir.
+
+<Figur>
+
+<GrafikOkuma />
+
+<Altyazi>Şekil 1 — $x=2$ için $f(2)$ değeri: $x=2$'den dikey, oradan yatay gidilerek $y$ ekseninde $f(2)=5$ okunur.</Altyazi>
+
+</Figur>
+
+> **Dikkat:** $f(a)$ ile kök birbirine karıştırılmamalı. $f(a)$ bir $y$ değeridir; kök ise $f(x)=0$ olan bir $x$ değeridir.
+
+## 2. Doğrusal Fonksiyon Grafiği
+
+$f(x)=ax+b$ biçimindeki bir fonksiyonun grafiği bir **doğrudur**. Burada:
+
+| Katsayı | Anlamı |
+| --- | --- |
+| $b$ | Doğrunun **$y$ eksenini kestiği** nokta ($f(0)=b$) |
+| $a$ | Doğrunun **eğimi** (birim $x$ artışında $y$'nin değişimi) |
+
+İki noktası bilinen bir doğrunun eğimi:
+
+$$a=\dfrac{f(x_2)-f(x_1)}{x_2-x_1}$$
+
+<Figur>
+
+<DogruGrafik />
+
+<Altyazi>Şekil 2 — $y=2x+1$ doğrusu. $y$ eksenini $b=1$ noktasında keser; eğimi $a=2$'dir.</Altyazi>
+
+</Figur>
+
+## 3. Bileşke Fonksiyon
+
+İki fonksiyon, biri diğerinin içine yazılarak birleştirilir:
+
+$$(f\circ g)(x)=f\big(g(x)\big)$$
+
+Kural: **önce iç fonksiyon ($g$), sonra dış fonksiyon ($f$)** uygulanır. Sıra önemlidir; genelde
+
+$$f\circ g\ne g\circ f$$
+
+## 4. Ters Fonksiyon
+
+$f^{-1}$, $f$'nin yaptığı işlemi **geri alan** fonksiyondur. Bulmak için $y=f(x)$ yazılır, $x$ ile $y$ yer değiştirilir ve $y$ çözülür. Doğrusal durumda:
+
+$$f(x)=ax+b \;\Rightarrow\; f^{-1}(x)=\dfrac{x-b}{a}\quad (a\ne 0)$$
+
+> **Sık yapılan hata:** $f^{-1}(x)$'i $\dfrac{1}{f(x)}$ sanmak. Ters fonksiyon, **çarpmaya göre ters değildir**; bileşkeye göre tersidir: $f\big(f^{-1}(x)\big)=x$.
+
+<Ornek>
+
+<Soru>
+
+$f(x)=2x+1$ ve $g(x)=x^2$ için $(f\circ g)(x)$ ile $(g\circ f)(x)$ ifadelerini bulunuz; eşit olup olmadıklarını söyleyiniz.
+
+</Soru>
+
+<Cozum>
+
+1. $(f\circ g)(x)=f\big(g(x)\big)=f(x^2)=2x^2+1$.
+2. $(g\circ f)(x)=g\big(f(x)\big)=g(2x+1)=(2x+1)^2$.
+3. $2x^2+1$ ile $(2x+1)^2=4x^2+4x+1$ aynı ifade değildir.
+
+<Cevap>$(f\circ g)(x)=2x^2+1$, $(g\circ f)(x)=(2x+1)^2$; eşit değiller.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Yine $f(x)=2x+1$ ve $g(x)=x^2$ olmak üzere $(f\circ g)(2)$ değerini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+En içteki fonksiyondan başla: önce $g(2)$'yi hesapla, sonucu $f$'ye ver.
+
+</Ipucu>
+
+<Cozum>
+
+1. İç fonksiyon: $g(2)=2^2=4$.
+2. Dış fonksiyon: $f(4)=2\cdot 4+1=9$.
+
+<Cevap>$(f\circ g)(2)=9$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=2x+1$ fonksiyonunun tersini bulunuz ve $f^{-1}(5)$ değerini hesaplayarak doğrulayınız.
+
+</Soru>
+
+<Cozum>
+
+1. $y=2x+1$ yaz, $x$ ile $y$'yi değiştir: $x=2y+1$.
+2. $y$'yi çöz: $2y=x-1 \Rightarrow y=\dfrac{x-1}{2}$, yani $f^{-1}(x)=\dfrac{x-1}{2}$.
+3. Kontrol: $f^{-1}(5)=\dfrac{5-1}{2}=2$. Gerçekten $f(2)=2\cdot 2+1=5$ olduğundan tutarlı.
+
+<Cevap>$f^{-1}(x)=\dfrac{x-1}{2}$ ve $f^{-1}(5)=2$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir doğrusal fonksiyonun grafiğinde $f(0)=1$ ve $f(2)=5$ okunuyor. Bu fonksiyonun kuralını yazınız.
+
+</Soru>
+
+<Ipucu>
+
+Doğrusal fonksiyonda $b=f(0)$'dır; eğimi de iki noktadan $a=\dfrac{f(2)-f(0)}{2-0}$ ile bul.
+
+</Ipucu>
+
+<Cozum>
+
+1. $b=f(0)=1$.
+2. Eğim: $a=\dfrac{f(2)-f(0)}{2-0}=\dfrac{5-1}{2}=2$.
+3. Kural: $f(x)=ax+b=2x+1$.
+
+<Cevap>$f(x)=2x+1$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=2x-6$ fonksiyonunun kökünü bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Kök, $f(x)=0$ denkleminin çözümüdür: $2x-6=0$.
+2. Çöz: $2x=6 \Rightarrow x=3$.
+
+<Cevap>Kök $x=3$; grafik $x$ eksenini $(3,0)$ noktasında keser.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Bileşkede sırayı ters uygulamak:** $f\circ g$ ile $g\circ f$ farklıdır; her zaman **en içteki fonksiyondan** başla.
+- **Ters fonksiyonu $\dfrac{1}{f(x)}$ sanmak:** Ters fonksiyon çarpmaya göre ters **değildir**; $y=f(x)$'te $x$ ile $y$'yi değiştirip $y$'yi çözerek bulunur.
+- **Grafikten $f(a)$ yerine kökü okumak:** $f(a)$ bir $y$ değeridir (dikey karşılık); kök ise $x$ eksenini kesen $x$ değeridir.
+
+## Sınav İpucu
+
+- **Bileşke:** "En içteki önce." Sayısal soruda iç fonksiyonun değerini bulup dış fonksiyona taşı.
+- **Ters fonksiyon:** $y=f(x)$ yaz, $x$ ile $y$'yi değiştir, $y$'yi çöz.
+
+<KonuNav slug="fonksiyon-grafik-tyt" />

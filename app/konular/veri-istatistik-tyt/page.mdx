@@ -1,0 +1,226 @@
+import { topicMetadata } from "@/lib/seo";
+import { SutunGrafik, DaireGrafik } from "@/components/figures/IstatistikFig";
+
+export const metadata = topicMetadata("veri-istatistik-tyt");
+
+<Konu slug="veri-istatistik-tyt" />
+
+<p className="lead">İstatistik, bir **veri kümesini** özetlemenin yollarını verir. Bu konuda bir sayı dizisinin **ortalamasını**, **ortancasını (medyan)**, **tepe değerini (mod)** ve **açıklığını** hesaplamayı; ardından **sütun** ve **daire** grafiklerini doğru okumayı öğreneceğiz. TYT'de bu konu hem hızlı puan hem de grafik yorumlama sorusu olarak karşına çıkar.</p>
+
+## 1. Aritmetik Ortalama
+
+Bir veri kümesinin aritmetik ortalaması $\overline{x}$, tüm değerlerin toplamının veri sayısına bölümüdür:
+
+$$\overline{x}=\dfrac{\text{verilerin toplamı}}{\text{veri sayısı}}$$
+
+Ortalama, verinin "ağırlık merkezini" temsil eder; aşırı büyük ya da küçük bir değerden (uç değer) etkilenir.
+
+<Ornek>
+
+<Soru>
+
+$4,\ 6,\ 8,\ 10$ verilerinin aritmetik ortalamasını bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Toplamı al: $4+6+8+10=28$.
+2. Veri sayısına böl: $\overline{x}=\dfrac{28}{4}=7$.
+
+<Cevap>$\overline{x}=7$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 2. Ortanca (Medyan)
+
+Medyan, veriler **küçükten büyüğe sıralandığında** tam ortada kalan değerdir. Sıralama yapmadan medyan bulunamaz.
+
+- Veri sayısı **tek** ise: ortadaki tek değer medyandır.
+- Veri sayısı **çift** ise: ortadaki **iki** değerin ortalaması medyandır.
+
+<Ornek>
+
+<Soru>
+
+$3,\ 5,\ 7,\ 9,\ 11$ verilerinin medyanını bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Veri zaten sıralı ve $5$ tane (tek sayı).
+2. Ortadaki değer $3.$ sıradakidir: $7$.
+
+<Cevap>Medyan $=7$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$2,\ 4,\ 6,\ 8$ verilerinin medyanını bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Veri sayısı çift olduğunda medyan tek bir değer değildir; ortadaki **iki** değerin ortalamasını al.
+
+</Ipucu>
+
+<Cozum>
+
+1. Veri sıralı ve $4$ tane (çift sayı).
+2. Ortadaki iki değer $4$ ve $6$.
+3. Bunların ortalaması: $\dfrac{4+6}{2}=5$.
+
+<Cevap>Medyan $=5$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 3. Tepe Değer (Mod)
+
+Mod, veri kümesinde **en çok tekrar eden** değerdir. Bir kümede birden fazla mod olabilir; hiç tekrar yoksa mod yoktur.
+
+<Ornek>
+
+<Soru>
+
+$2,\ 3,\ 3,\ 5,\ 7$ verilerinin modunu bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Her değerin tekrar sayısına bak: $3$ değeri **iki kez**, diğerleri birer kez geçiyor.
+2. En çok tekrar eden değer $3$ olduğundan mod $3$'tür.
+
+<Cevap>Mod $=3$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 4. Açıklık
+
+Açıklık (ranj), verinin **en büyük** değeri ile **en küçük** değeri arasındaki farktır; verinin yayılımını ölçer:
+
+$$\text{Açıklık}=\text{en büyük değer}-\text{en küçük değer}$$
+
+<Ornek>
+
+<Soru>
+
+$12,\ 5,\ 9,\ 20,\ 7$ verilerinin açıklığını bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. En büyük değer $20$, en küçük değer $5$.
+2. Açıklık $=20-5=15$.
+
+<Cevap>Açıklık $=15$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 5. Sütun Grafiği Okuma
+
+Sütun grafiğinde her **kategori** (örneğin gün) bir sütunla gösterilir; sütunun **yüksekliği** o kategorinin değerini verir. Ortalama, medyan ve mod gibi ölçüleri doğrudan sütun yüksekliklerinden okuyabilirsin.
+
+<Figur>
+
+<SutunGrafik />
+
+<Altyazi>Şekil 1 — Bir kırtasiyenin günlere göre sattığı kitap sayısı: Pazartesi $4$, Salı $8$, Çarşamba $6$, Perşembe $10$. Sütun yüksekliği o günün satışını gösterir. Dört günün ortalaması $\dfrac{4+8+6+10}{4}=7$ kitaptır.</Altyazi>
+
+</Figur>
+
+## 6. Daire Grafiği Okuma
+
+Daire grafiğinde bütün, $100\%$ ya da $360°$'lik tam bir daire olarak alınır. Her seçeneğin payı bir **dilim** ile gösterilir. Bir dilimin merkez açısı ve yüzdesi şöyle hesaplanır:
+
+$$\text{Dilim açısı}=\dfrac{\text{parça}}{\text{toplam}}\cdot 360° \qquad\qquad \text{Yüzde}=\dfrac{\text{parça}}{\text{toplam}}\cdot 100$$
+
+<Figur>
+
+<DaireGrafik />
+
+<Altyazi>Şekil 2 — $40$ kişinin tercih ettiği seçenekler. A seçeneğini $10$ kişi seçtiyse bu dilimin merkez açısı $\dfrac{10}{40}\cdot 360°=90°$, yüzdesi ise $\dfrac{10}{40}\cdot 100=25\%$ olur.</Altyazi>
+
+</Figur>
+
+<Ornek>
+
+<Soru>
+
+Bir ankete katılan $40$ kişiden $10$'u A seçeneğini işaretlemiştir. Daire grafiğinde A seçeneğine karşılık gelen dilimin merkez açısını bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Dilim açısı $=\dfrac{\text{parça}}{\text{toplam}}\cdot 360°$ formülünü kullan.
+
+</Ipucu>
+
+<Cozum>
+
+1. Parça $10$, toplam $40$.
+2. Formülü uygula: $\dfrac{10}{40}\cdot 360°=\dfrac{1}{4}\cdot 360°=90°$.
+
+<Cevap>A diliminin merkez açısı $90°$'dir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 7. Pekiştirme Sorusu
+
+<Ornek>
+
+<Soru>
+
+$6,\ 9,\ 4,\ 9,\ 2$ veri kümesi için ortalama, medyan, mod ve açıklığı bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Medyanı bulmadan önce veriyi mutlaka küçükten büyüğe **sırala**.
+
+</Ipucu>
+
+<Cozum>
+
+1. **Ortalama:** $\dfrac{6+9+4+9+2}{5}=\dfrac{30}{5}=6$.
+2. **Sırala:** $2,\ 4,\ 6,\ 9,\ 9$.
+3. **Medyan:** $5$ veri (tek), ortadaki değer $6$.
+4. **Mod:** en çok tekrar eden değer $9$ (iki kez).
+5. **Açıklık:** $9-2=7$.
+
+<Cevap>Ortalama $6$, medyan $6$, mod $9$, açıklık $7$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Medyan bulurken veriyi sıralamayı unutmak.** Önce her zaman küçükten büyüğe sırala, sonra ortadakini seç.
+- **Çift veri sayısında medyanı tek bir değer sanmak.** Ortadaki **iki** değerin ortalamasını almalısın.
+- **Mod ile medyanı karıştırmak.** Mod en çok tekrar eden değerdir; medyan ise sıralı listenin ortasıdır.
+
+> **Sınav ipucu:** Medyanda önce **SIRALA**. Daire grafiğinde dilim açısı $=\dfrac{\text{parça}}{\text{toplam}}\cdot 360°$, yüzde $=\dfrac{\text{parça}}{\text{toplam}}\cdot 100$.
+
+<KonuNav slug="veri-istatistik-tyt" />

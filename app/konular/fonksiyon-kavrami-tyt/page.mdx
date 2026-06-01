@@ -1,0 +1,209 @@
+import { topicMetadata } from "@/lib/seo";
+
+export const metadata = topicMetadata("fonksiyon-kavrami-tyt");
+
+<Konu slug="fonksiyon-kavrami-tyt" />
+
+<p className="lead">Fonksiyon, iki küme arasında **kurallı bir eşleme**dir: bir kümedeki her elemanı, diğer kümede **bir tek** elemana bağlar. TYT'de fonksiyon sorularının tamamı bu tek cümlelik tanımdan türer. Bu konuda fonksiyonun tanımını, üç temel kümeyi (tanım, değer, görüntü) ve fonksiyon çeşitlerini netleştirip $f(a)$ tipi soruları hatasız çözeceğiz.</p>
+
+## 1. Fonksiyon Tanımı
+
+$A$ ve $B$ iki boş olmayan küme olsun. $A$'nın **her** elemanını $B$'nin **bir ve yalnız bir** elemanına eşleyen bağıntıya, $A$'dan $B$'ye bir **fonksiyon** denir ve
+
+$$f:A\to B$$
+
+biçiminde yazılır. $x\in A$ elemanının eşlendiği $B$ elemanına $x$'in **görüntüsü** denir ve $f(x)$ ile gösterilir.
+
+Bir bağıntının fonksiyon olması için iki koşul birlikte sağlanmalıdır:
+
+| Koşul | Anlamı |
+| --- | --- |
+| **Her eleman eşlenmeli** | $A$'da açıkta (görüntüsüz) eleman kalamaz |
+| **Tek görüntü olmalı** | Bir elemanın iki farklı görüntüsü olamaz |
+
+> **Kısa kural:** Tanım kümesindeki her noktadan **tam olarak bir** ok çıkmalıdır. Hiç ok çıkmayan ya da iki ok çıkan eleman varsa o bağıntı fonksiyon değildir.
+
+## 2. Tanım, Değer ve Görüntü Kümesi
+
+$f:A\to B$ fonksiyonunda üç küme ayırt edilir:
+
+| Küme | Tanımı | Gösterim |
+| --- | --- | --- |
+| **Tanım kümesi** | $f$'in tanımlı olduğu kümedir ($A$) | tüm $x$ değerleri |
+| **Değer kümesi** | Görüntülerin **seçildiği** kümedir ($B$) | hedef küme |
+| **Görüntü kümesi** | Gerçekten oluşan görüntülerin kümesidir | $B$'nin alt kümesi |
+
+Görüntü kümesi her zaman değer kümesinin bir alt kümesidir; eşit olmak zorunda **değildir**. Bu ayrım, ileride "örten fonksiyon" tanımının temelini oluşturur.
+
+## 3. Fonksiyon Çeşitleri
+
+| Çeşit | Tanımı | Örnek |
+| --- | --- | --- |
+| **Bire bir** | Farklı elemanların görüntüleri de farklıdır | $f(x)=2x$ |
+| **Örten** | Görüntü kümesi $=$ değer kümesi | her $y\in B$ kullanılır |
+| **İçine** | En az bir değer elemanı görüntü olarak çıkmaz | örten olmayan |
+| **Sabit** | Her elemanı tek bir değere eşler, $f(x)=c$ | $f(x)=5$ |
+| **Birim** | Her elemanı kendisine eşler, $f(x)=x$ | $f(3)=3$ |
+| **Doğrusal** | $f(x)=ax+b$ biçimindedir, $a\neq 0$ | $f(x)=3x-1$ |
+
+Bir fonksiyon aynı anda birden çok özellik taşıyabilir; örneğin birim fonksiyon $f(x)=x$ hem bire bir hem örtendir.
+
+<Ornek>
+
+<Soru>
+
+$f(x)=2x+1$ fonksiyonu için $f(3)$ ve $f(-2)$ değerlerini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+$x$ yerine istenen değeri doğrudan yazarız.
+
+1. $f(3)=2\cdot 3+1=6+1=7$.
+2. $f(-2)=2\cdot(-2)+1=-4+1=-3$.
+
+<Cevap>$f(3)=7$ ve $f(-2)=-3$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=x^{2}-1$ fonksiyonu için $f(0)$ ve $f(3)$ değerlerini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $f(0)=0^{2}-1=0-1=-1$.
+2. $f(3)=3^{2}-1=9-1=8$.
+
+<Cevap>$f(0)=-1$ ve $f(3)=8$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=3x-5$ fonksiyonu için $f(a)=4$ ise $a$ değeri kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+$f(a)$ ifadesini elde etmek için $x$ yerine $a$ yaz, sonra çıkan denklemi $a$ için çöz.
+
+</Ipucu>
+
+<Cozum>
+
+1. $x$ yerine $a$ yaz: $f(a)=3a-5$.
+2. Verilen eşitliği kur: $3a-5=4$.
+3. Çöz: $3a=9 \Rightarrow a=3$.
+
+<Cevap>$a=3$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Doğrusal bir $f(x)=ax+b$ fonksiyonu için $f(1)=5$ ve $f(2)=8$ veriliyor. $a$ ve $b$ değerlerini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+İki bilinmeyen ($a$ ve $b$) için iki denklem kur. Denklemleri taraf tarafa çıkarırsan $b$ yok olur.
+
+</Ipucu>
+
+<Cozum>
+
+1. $f(1)=5 \Rightarrow a+b=5$.
+2. $f(2)=8 \Rightarrow 2a+b=8$.
+3. İkinci denklemden birinciyi çıkar: $(2a+b)-(a+b)=8-5 \Rightarrow a=3$.
+4. $a=3$ değerini birinciye yaz: $3+b=5 \Rightarrow b=2$.
+
+<Cevap>$a=3$ ve $b=2$, yani $f(x)=3x+2$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$A=\{1,2,3\}$ ve $B=\{a,b,c\}$ kümeleri veriliyor. Aşağıdaki bağıntılardan hangisi $A$'dan $B$'ye bir fonksiyondur?
+
+$R_1=\{(1,a),(1,b),(2,c),(3,a)\}$
+
+$R_2=\{(1,a),(2,a),(3,c)\}$
+
+</Soru>
+
+<Ipucu>
+
+Her tanım elemanından tam olarak bir ok çıkmalı. Aynı birinci bileşenin iki kez tekrar etmesi, o elemanın iki görüntüsü olduğu anlamına gelir.
+
+</Ipucu>
+
+<Cozum>
+
+1. $R_1$ bağıntısında $1$ elemanı hem $a$ hem $b$ ile eşlenmiş. Bir elemanın iki görüntüsü olduğundan $R_1$ **fonksiyon değildir**.
+2. $R_2$ bağıntısında $1\to a$, $2\to a$, $3\to c$. Her tanım elemanının tek görüntüsü var (farklı elemanların aynı görüntüye gitmesi sorun değildir). Bu yüzden $R_2$ bir fonksiyondur.
+
+<Cevap>Yalnızca $R_2$ bir fonksiyondur.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=\dfrac{2x-1}{x-3}$ fonksiyonu hangi $x$ değerinde tanımsızdır?
+
+</Soru>
+
+<Ipucu>
+
+Rasyonel bir ifadede payda asla $0$ olamaz. Paydayı sıfır yapan değeri bul; o değer tanım kümesinden çıkarılır.
+
+</Ipucu>
+
+<Cozum>
+
+1. Payda sıfır olamaz: $x-3\neq 0$.
+2. Paydayı sıfır yapan değeri bul: $x-3=0 \Rightarrow x=3$.
+3. Demek ki fonksiyon $x=3$'te tanımsızdır; tanım kümesi $\mathbb{R}\setminus\{3\}$ olur.
+
+<Cevap>$f$ fonksiyonu $x=3$ değerinde tanımsızdır.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Bir elemanın iki görüntüsü olan bağıntıyı fonksiyon sanmak.** Bir tanım elemanından iki ok çıkıyorsa (örneğin $1\to a$ ve $1\to b$) o bağıntı fonksiyon değildir.
+- **Değer kümesi ile görüntü kümesini karıştırmak.** Değer kümesi $B$ hedef kümedir; görüntü kümesi ise gerçekten oluşan görüntülerden ibarettir ve $B$'nin alt kümesidir. Eşit olmaları gerekmez.
+- **Rasyonel fonksiyonda paydayı sıfır yapan değeri tanım kümesinden çıkarmayı unutmak.** $\dfrac{2x-1}{x-3}$ ifadesinde $x=3$ tanım kümesine dahil edilemez.
+
+## Sınav İpucu
+
+$f(a)=$ değer tipi sorularda zaman kaybetmeden $a$'yı doğrudan kuralda yerine koy; denklem çıkıyorsa onu çöz. "Bu bağıntı fonksiyon mudur?" sorularında ise tek soruya odaklan: **her tanım elemanının bir ve yalnız bir görüntüsü var mı?** Hiç görüntüsü olmayan ya da iki görüntüsü olan tek bir eleman bile varsa, cevap "fonksiyon değildir".
+
+<KonuNav slug="fonksiyon-kavrami-tyt" />
