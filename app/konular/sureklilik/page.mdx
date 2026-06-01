@@ -1,0 +1,197 @@
+import { topicMetadata } from "@/lib/seo";
+
+export const metadata = topicMetadata("sureklilik");
+
+<Konu slug="sureklilik" />
+
+<p className="lead">Bir fonksiyonun grafiğini **kalemi kâğıttan kaldırmadan** çizebiliyorsak, o fonksiyon süreklidir. Sezgisel bu resmin arkasında, limitle kurulan kesin bir tanım vardır. Bu konu sürekliliğin üç koşulunu, süreksizlik türlerini ve sınavların favorisi olan parçalı fonksiyon–parametre sorularını eksiksiz işler.</p>
+
+## 1. Bir Noktada Süreklilik
+
+$f$ fonksiyonunun $x=a$ noktasında **sürekli** olması için aşağıdaki **üç koşulun birlikte** sağlanması gerekir:
+
+$$
+f(a)\text{ tanımlı}\quad\wedge\quad \lim_{x\to a}f(x)\text{ var}\quad\wedge\quad \lim_{x\to a}f(x)=f(a)
+$$
+
+Koşulları sırayla okuyalım:
+
+| Koşul | Anlamı |
+| --- | --- |
+| **(1)** $f(a)$ tanımlı | $a$, fonksiyonun tanım kümesindedir |
+| **(2)** $\lim\limits_{x\to a}f(x)$ var | Soldan limit $=$ sağdan limit (ikisi de sonlu) |
+| **(3)** $\lim\limits_{x\to a}f(x)=f(a)$ | Limit, fonksiyon değerine eşittir |
+
+İkinci koşul, soldan ve sağdan limitlerin eşitliğini içerir:
+
+$$\lim_{x\to a^{-}}f(x)=\lim_{x\to a^{+}}f(x)$$
+
+Bu üç koşuldan **biri bile** bozulursa, $f$ fonksiyonu $x=a$ noktasında **süreksizdir**.
+
+> **Püf noktası:** Soruyu çözerken üç koşulu her zaman bu sırayla yaz. Genellikle önce $f(a)$'yı, sonra soldan ve sağdan limitleri hesaplar, en sonda hepsini karşılaştırırsın.
+
+### Bilinen Sürekli Fonksiyonlar
+
+| Fonksiyon türü | Süreklilik |
+| --- | --- |
+| Polinomlar | **Her** reel sayıda süreklidir |
+| Rasyonel fonksiyon $\dfrac{P(x)}{Q(x)}$ | Paydayı sıfır yapmayan ($Q(x)\ne 0$) her noktada süreklidir |
+| $\sin x,\ \cos x,\ e^{x}$ | Her reel sayıda süreklidir |
+| $\ln x,\ \sqrt{x}$ | Tanımlı oldukları her noktada süreklidir |
+
+## 2. Süreksizlik Türleri
+
+Bir noktada süreklilik bozulduğunda, **hangi koşulun** bozulduğuna göre süreksizlik üçe ayrılır:
+
+| Tür | Durum |
+| --- | --- |
+| **Kaldırılabilir (giderilebilir)** | Limit **var ve sonlu**, ama $f(a)$ tanımsız ya da $\lim\ne f(a)$ |
+| **Sıçrama** | Soldan ve sağdan limit **ikisi de sonlu** fakat **birbirinden farklı** |
+| **Sonsuz** | Soldan ya da sağdan limit $\pm\infty$ olur |
+
+Kaldırılabilir süreksizlikte, sadece $a$ noktasındaki değeri $\lim\limits_{x\to a}f(x)$ olarak yeniden tanımlayarak fonksiyonu sürekli hâle getirebiliriz; "kaldırılabilir" adı buradan gelir. Sıçrama ve sonsuz süreksizlikte ise tek bir değer değiştirerek süreklilik sağlanamaz.
+
+## 3. Parçalı Fonksiyonlarda Süreklilik
+
+Parçalı tanımlı bir fonksiyonun her parçası kendi aralığında (polinom, rasyonel vb. olduğundan) zaten süreklidir. Tek kontrol edilecek yer, **parçaların birleştiği noktalardır**. Orada üç koşulu sınarız.
+
+Sınavlarda en sık gelen biçim, fonksiyonu sürekli yapacak **parametreyi** belirlemektir. Bunun anahtarı tek bir denklemdir:
+
+$$\lim_{x\to a^{-}}f(x)=\lim_{x\to a^{+}}f(x)=f(a)$$
+
+### Aralıkta Süreklilik
+
+$f$ bir $(c,d)$ açık aralığındaki **her** noktada sürekliyse, $f$ bu aralıkta süreklidir. Kapalı aralık $[c,d]$ için uçlarda **tek taraflı** süreklilik aranır: $\lim\limits_{x\to c^{+}}f(x)=f(c)$ ve $\lim\limits_{x\to d^{-}}f(x)=f(d)$.
+
+<Ornek>
+
+<Soru>
+
+$f(x)=\dfrac{x^{2}-1}{x-1}$ fonksiyonu $x=1$ noktasında sürekli midir? Süreksizse türünü belirleyiniz.
+
+</Soru>
+
+<Cozum>
+
+1. **(1) Tanımlılık:** $x=1$ için payda $x-1=0$ olur, dolayısıyla $f(1)$ **tanımsızdır**. İlk koşul bozuldu, fonksiyon süreksizdir.
+2. **(2) Limit:** $x\ne 1$ için pay çarpanlarına ayrılır: $\dfrac{x^{2}-1}{x-1}=\dfrac{(x-1)(x+1)}{x-1}=x+1$.
+3. Limiti al: $\lim\limits_{x\to 1}f(x)=\lim\limits_{x\to 1}(x+1)=2$. Limit **var ve sonlu**.
+4. Limit sonlu olmasına rağmen $f(1)$ tanımsız olduğundan süreksizlik **kaldırılabilir** türdendir. ($f(1)=2$ tanımlansaydı fonksiyon sürekli olurdu.)
+
+<Cevap>Süreksizdir; **kaldırılabilir (giderilebilir)** süreksizlik.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=\begin{cases}x^{2},& x\le 1\\ ax+1,& x>1\end{cases}$ fonksiyonu $x=1$ noktasında sürekli olacak şekilde $a$ değerini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Süreklilik için soldan limit $=$ sağdan limit $=$ $f(1)$ olmalıdır. Bu denklemi kurup $a$'yı çek.
+
+</Ipucu>
+
+<Cozum>
+
+1. **$f(1)$ değeri:** $x\le 1$ parçası geçerli, $f(1)=1^{2}=1$.
+2. **Soldan limit:** $x\to 1^{-}$ için $x\le 1$ parçası kullanılır: $\lim\limits_{x\to 1^{-}}f(x)=1^{2}=1$.
+3. **Sağdan limit:** $x\to 1^{+}$ için $x>1$ parçası kullanılır: $\lim\limits_{x\to 1^{+}}f(x)=a\cdot 1+1=a+1$.
+4. **Süreklilik koşulu:** $\lim\limits_{x\to 1^{-}}=\lim\limits_{x\to 1^{+}}=f(1)\Rightarrow a+1=1\Rightarrow a=0$.
+
+<Cevap>$a=0$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=\begin{cases}x+1,& x<2\\ x+4,& x\ge 2\end{cases}$ fonksiyonunun $x=2$ noktasındaki süreksizlik türünü belirleyiniz.
+
+</Soru>
+
+<Cozum>
+
+1. **Soldan limit:** $x\to 2^{-}$ için $x<2$ parçası: $\lim\limits_{x\to 2^{-}}f(x)=2+1=3$.
+2. **Sağdan limit:** $x\to 2^{+}$ için $x\ge 2$ parçası: $\lim\limits_{x\to 2^{+}}f(x)=2+4=6$.
+3. Soldan limit $3$, sağdan limit $6$; ikisi de **sonlu** ama $3\ne 6$. Limit yoktur, fonksiyon süreksizdir.
+4. İki tek taraflı limit sonlu ve farklı olduğundan süreksizlik **sıçrama** türündedir. (Grafikte $x=2$'de $3$ ten $6$ ya bir atlama vardır.)
+
+<Cevap>**Sıçrama** süreksizliği.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=\dfrac{1}{x-2}$ fonksiyonunun $x=2$ noktasındaki süreksizlik türünü belirleyiniz.
+
+</Soru>
+
+<Cozum>
+
+1. **Tanımlılık:** $x=2$ için payda $x-2=0$ olur, $f(2)$ tanımsızdır.
+2. **Sağdan limit:** $x\to 2^{+}$ iken $x-2\to 0^{+}$, dolayısıyla $\lim\limits_{x\to 2^{+}}\dfrac{1}{x-2}=+\infty$.
+3. **Soldan limit:** $x\to 2^{-}$ iken $x-2\to 0^{-}$, dolayısıyla $\lim\limits_{x\to 2^{-}}\dfrac{1}{x-2}=-\infty$.
+4. Tek taraflı limitler sonsuz olduğundan süreksizlik **sonsuz** türündedir. ($x=2$ doğrusu grafiğin düşey asimptotudur.)
+
+<Cevap>**Sonsuz** süreksizlik.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=\begin{cases}ax+b,& x<1\\ 3,& x=1\\ x^{2}+2,& x>1\end{cases}$ fonksiyonu $x=1$ noktasında sürekli olacak şekilde $a$ ve $b$ değerlerini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Üç koşulu sırayla yaz. $f(1)=3$ verildiğine göre hem soldan hem sağdan limit $3$ e eşit olmalıdır. Bu iki denklemden $a$ ve $b$ yi çöz.
+
+</Ipucu>
+
+<Cozum>
+
+1. **Fonksiyon değeri:** Verilen tanıma göre $f(1)=3$.
+2. **Sağdan limit:** $x\to 1^{+}$ için $x>1$ parçası: $\lim\limits_{x\to 1^{+}}f(x)=1^{2}+2=3$. Bu, $f(1)=3$ ile zaten uyumlu.
+3. **Soldan limit:** $x\to 1^{-}$ için $x<1$ parçası: $\lim\limits_{x\to 1^{-}}f(x)=a\cdot 1+b=a+b$.
+4. **Süreklilik koşulu:** Üç değerin eşitliği için $a+b=3$. Tek denklem, iki bilinmeyen olduğundan sonsuz çözüm vardır; örneğin $a=1$ için $b=2$.
+
+<Cevap>Süreklilik için $a+b=3$ olmalıdır (ör. $a=1,\ b=2$).</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Sadece limitin varlığını kontrol edip $\lim\limits_{x\to a}f(x)=f(a)$ koşulunu atlamak.** Limit var diye fonksiyon sürekli olmaz; limitin $f(a)$'ya **eşit** olması da şarttır.
+- **Kaldırılabilir ile sıçrama süreksizliğini karıştırmak.** Kaldırılabilirde limit **vardır** (soldan = sağdan); sıçramada soldan ile sağdan limit **farklıdır**.
+- **Parçalı fonksiyonda tek taraftan limit almak.** Birleşme noktasında hem soldan hem sağdan limit hesaplanmalı; çoğu hata yalnız bir parçayı kullanmaktan doğar.
+- **Sonsuz süreksizliği "kaldırılabilir" sanmak.** Limit $\pm\infty$ ise hiçbir değer atayarak süreklilik sağlanamaz.
+
+## Sınav İpucu
+
+- Süreklilik sorusunda **üç koşulu sırayla yaz**: $f(a)$ tanımlı mı, limit var mı, limit $=f(a)$ mı?
+- Parçalı fonksiyon parametresinde tek kurtarıcı denklem: $\lim\limits_{x\to a^{-}}f(x)=\lim\limits_{x\to a^{+}}f(x)=f(a)$.
+- Süreksizlik türünü belirlemek için önce **soldan ve sağdan limitlere** bak: ikisi de sonlu ve eşit $\Rightarrow$ kaldırılabilir; sonlu ama farklı $\Rightarrow$ sıçrama; biri $\pm\infty$ $\Rightarrow$ sonsuz.
+- Rasyonel fonksiyonlarda süreksizlik adayları, **paydayı sıfır yapan** $x$ değerleridir; her birinde payı çarpanlarına ayırıp sadeleşip sadeleşmediğine bak.
+
+<KonuNav slug="sureklilik" />

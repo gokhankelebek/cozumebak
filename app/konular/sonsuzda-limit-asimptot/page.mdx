@@ -1,0 +1,207 @@
+import { topicMetadata } from "@/lib/seo";
+
+export const metadata = topicMetadata("sonsuzda-limit-asimptot");
+
+<Konu slug="sonsuzda-limit-asimptot" />
+
+<p className="lead">Bir fonksiyonun $x$ çok büyürken (ya da çok küçülürken) nasıl davrandığını ve hangi noktalarda sınırsızca büyüyüp küçüldüğünü incelemek, **asimptotları** bulmanın anahtarıdır. Bu konu, sonsuzdaki limitleri **derece karşılaştırması** ile, düşey ve yatay asimptotları ise tek taraflı limitlerle hızlıca çözmeyi öğretir. AYT'de rasyonel fonksiyon limitleri ve asimptot soruları bu yöntemlerle saniyeler içinde biter.</p>
+
+## 1. Sonsuzda Limit: Temel Sonuç
+
+$x$ sınırsızca büyürken ($x\to\infty$) ya da küçülürken ($x\to-\infty$) fonksiyonun değerini incelemek istiyoruz. Tüm hesabın temelinde şu sonuç yatar:
+
+$$\lim_{x\to\infty}\frac{1}{x}=0 \qquad\text{ve}\qquad \lim_{x\to-\infty}\frac{1}{x}=0$$
+
+Genel olarak $k$ pozitif bir tam sayı ise $\lim\limits_{x\to\pm\infty}\dfrac{1}{x^{k}}=0$ olur. Pay sabit, payda sınırsızca büyüyorsa oran sıfıra gider.
+
+## 2. Rasyonel Fonksiyonda $\frac{\infty}{\infty}$ — Derece Kuralı
+
+$x\to\infty$ iken pay ve payda ayrı ayrı sonsuza gidiyorsa $\frac{\infty}{\infty}$ belirsizliği oluşur. Rasyonel fonksiyonda bu belirsizlik **derece karşılaştırması** ile çözülür. Pay derecesi $n$, payda derecesi $m$ olsun:
+
+| Durum | $\lim\limits_{x\to\pm\infty}\dfrac{P(x)}{Q(x)}$ |
+| --- | --- |
+| $n < m$ (pay derecesi küçük) | $0$ |
+| $n = m$ (dereceler eşit) | baş katsayıların oranı |
+| $n > m$ (pay derecesi büyük) | $\pm\infty$ |
+
+**Neden?** Pay ve paydayı en büyük dereceli terime böleriz; geri kalan tüm terimler $\frac{1}{x^{k}}$ biçiminde olduğundan sıfıra gider. Örneğin:
+
+$$\lim_{x\to\infty}\frac{3x^{2}+1}{x^{2}-5}=\lim_{x\to\infty}\frac{3+\dfrac{1}{x^{2}}}{1-\dfrac{5}{x^{2}}}=\frac{3+0}{1-0}=3$$
+
+> **Pratik kural:** $\frac{\infty}{\infty}$ rasyonel limitte yalnızca **en yüksek dereceli terimlere** bak. Dereceler eşitse limit baş katsayıların oranıdır; pay küçükse $0$, pay büyükse $\pm\infty$'dur.
+
+## 3. Sonsuz Limit ve Düşey Asimptot
+
+$\lim\limits_{x\to a}f(x)=\pm\infty$ ise fonksiyon $x=a$ doğrusuna yaklaşırken sınırsızca büyür/küçülür; bu durumda $x=a$ doğrusu **düşey asimptottur**.
+
+Rasyonel fonksiyonda düşey asimptot adayları **paydayı sıfır yapan** $x$ değerleridir. Ancak bir değer aynı zamanda payı da sıfır yapıyorsa önce **sadeleştirme** yapılmalıdır; sadeleştirme sonrası hâlâ paydayı sıfır yapan değerler düşey asimptottur.
+
+Düşey asimptotta limit $+\infty$ mu $-\infty$ mu olduğunu anlamak için $x\to a^{+}$ ve $x\to a^{-}$ için **paydanın işareti** ayrı ayrı incelenir.
+
+## 4. Yatay Asimptot
+
+$\lim\limits_{x\to\infty}f(x)=L$ veya $\lim\limits_{x\to-\infty}f(x)=L$ ise (burada $L$ sonlu bir sayı) $y=L$ doğrusu **yatay asimptottur**. Rasyonel fonksiyonda yatay asimptot doğrudan derece kuralından okunur:
+
+- $n < m$ ise $y=0$ (sıfır doğrusu),
+- $n = m$ ise $y=\dfrac{\text{pay baş katsayı}}{\text{payda baş katsayı}}$,
+- $n > m$ ise yatay asimptot **yoktur**.
+
+<Ornek>
+
+<Soru>
+
+$\lim\limits_{x\to\infty}\dfrac{2x+1}{x^{2}+3}$ limitini hesaplayınız.
+
+</Soru>
+
+<Cozum>
+
+1. Pay derecesi $n=1$, payda derecesi $m=2$. Belirsizlik $\frac{\infty}{\infty}$.
+2. Pay derecesi paydadan **küçük** ($n < m$).
+3. Derece kuralına göre limit $0$'dır.
+
+<Cevap>$\lim\limits_{x\to\infty}\dfrac{2x+1}{x^{2}+3}=0$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\lim\limits_{x\to\infty}\dfrac{x^{3}-1}{x+2}$ limitini hesaplayınız.
+
+</Soru>
+
+<Ipucu>
+
+Pay ve payda derecelerini karşılaştır; pay derecesi büyükse limit sonlu olamaz.
+
+</Ipucu>
+
+<Cozum>
+
+1. Pay derecesi $n=3$, payda derecesi $m=1$. Belirsizlik $\frac{\infty}{\infty}$.
+2. Pay derecesi paydadan **büyük** ($n > m$), yani baş terim $\dfrac{x^{3}}{x}=x^{2}$ gibi davranır.
+3. $x\to\infty$ iken $x^{2}\to\infty$ olduğundan limit $+\infty$'dur.
+
+<Cevap>$\lim\limits_{x\to\infty}\dfrac{x^{3}-1}{x+2}=\infty$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=\dfrac{2x+1}{x-3}$ fonksiyonunun düşey ve yatay asimptotlarını bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. **Düşey asimptot:** Paydayı sıfır yap: $x-3=0\Rightarrow x=3$. Bu değer payı sıfır yapmaz ($2\cdot 3+1=7\neq 0$), o hâlde $x=3$ düşey asimptottur.
+2. **Yatay asimptot:** Pay ve payda dereceleri eşit ($n=m=1$).
+3. Baş katsayıların oranı: pay baş katsayı $2$, payda baş katsayı $1$, oran $\dfrac{2}{1}=2$.
+4. O hâlde $y=2$ yatay asimptottur.
+
+<Cevap>Düşey asimptot $x=3$, yatay asimptot $y=2$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\lim\limits_{x\to 2^{+}}\dfrac{1}{x-2}$ ve $\lim\limits_{x\to 2^{-}}\dfrac{1}{x-2}$ limitlerini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Pay pozitif sabit; sonucun işaretini paydanın $x\to 2$ yakınındaki işareti belirler.
+
+</Ipucu>
+
+<Cozum>
+
+1. **Sağdan ($x\to 2^{+}$):** $x$, $2$'den büyük olduğundan $x-2$ küçük **pozitif** sayıdır. Pay $1$ pozitif olduğundan oran $+\infty$'a gider.
+2. **Soldan ($x\to 2^{-}$):** $x$, $2$'den küçük olduğundan $x-2$ küçük **negatif** sayıdır. Pozitif pay bölü negatif küçük sayı $-\infty$'a gider.
+3. Sol ve sağ limitler farklı işaretlidir; $x=2$ düşey asimptottur.
+
+<Cevap>$\lim\limits_{x\to 2^{+}}\dfrac{1}{x-2}=+\infty,\quad \lim\limits_{x\to 2^{-}}\dfrac{1}{x-2}=-\infty$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\lim\limits_{x\to\infty}\dfrac{\sqrt{x^{2}+1}}{x}$ limitini hesaplayınız.
+
+</Soru>
+
+<Ipucu>
+
+$x\to\infty$ iken $x > 0$ olduğundan $\sqrt{x^{2}}=x$ alınır. Kök içini $x^{2}$ parantezine al.
+
+</Ipucu>
+
+<Cozum>
+
+1. Kök içini düzenle: $\sqrt{x^{2}+1}=\sqrt{x^{2}\left(1+\dfrac{1}{x^{2}}\right)}=|x|\sqrt{1+\dfrac{1}{x^{2}}}$.
+2. $x\to\infty$ için $x > 0$, dolayısıyla $|x|=x$ alınır.
+3. İfadeyi yaz: $\dfrac{\sqrt{x^{2}+1}}{x}=\dfrac{x\sqrt{1+\frac{1}{x^{2}}}}{x}=\sqrt{1+\dfrac{1}{x^{2}}}$.
+4. $x\to\infty$ iken $\dfrac{1}{x^{2}}\to 0$, böylece ifade $\sqrt{1+0}=1$'e gider.
+
+<Cevap>$\lim\limits_{x\to\infty}\dfrac{\sqrt{x^{2}+1}}{x}=1$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$g(x)=\dfrac{x^{2}-4}{x-2}$ fonksiyonunun $x=2$ noktasında düşey asimptotu var mıdır?
+
+</Soru>
+
+<Ipucu>
+
+Paydayı sıfır yapan değer payı da sıfır yapıyorsa önce sadeleştir.
+
+</Ipucu>
+
+<Cozum>
+
+1. $x=2$ hem paydayı ($2-2=0$) hem payı ($2^{2}-4=0$) sıfır yapar; doğrudan asimptot diyemeyiz.
+2. Payı çarpanlara ayır: $x^{2}-4=(x-2)(x+2)$.
+3. Sadeleştir: $g(x)=\dfrac{(x-2)(x+2)}{x-2}=x+2$ (burada $x\neq 2$).
+4. Sadeleşmiş ifadenin paydası kalmadığından $x=2$ düşey asimptot **değildir**; orada yalnızca tanımsız (delik) bir nokta vardır ve $\lim\limits_{x\to 2}g(x)=4$.
+
+<Cevap>$x=2$ düşey asimptot değildir; fonksiyonun limiti $4$'tür.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Derece kuralını ters uygulamak:** Pay derecesi büyükse ($n > m$) limit $\pm\infty$'dur, $0$ değil; pay derecesi küçükse ($n < m$) limit $0$'dır, $\infty$ değil.
+- **Yatay asimptotu sabit terimlerin oranı sanmak.** Dereceler eşitken yatay asimptot **baş katsayıların** oranıdır (örneğin $\frac{3x^2+1}{x^2-5}$ için $y=3$), sabit terimlerin değil.
+- **Düşey asimptotta sol/sağ işareti incelemeden $\infty$ demek.** Limit bir yönden $+\infty$, diğerinden $-\infty$ olabilir; her zaman $x\to a^{+}$ ve $x\to a^{-}$ ayrı bakılır.
+- **Payı VE paydayı birlikte sıfır yapan noktayı doğrudan düşey asimptot sanmak.** Önce sadeleştir; sadeleştikten sonra paydayı sıfır yapmıyorsa orası asimptot değil, deliktir.
+
+## Sınav İpucu
+
+$\frac{\infty}{\infty}$ biçiminde rasyonel bir limit gördüğünde refleksin **derece karşılaştırması** olsun: dereceleri yaz, eşitse baş katsayıların oranını al, pay küçükse $0$, pay büyükse $\pm\infty$ de. Asimptot sorusunda ise düşey için paydanın köklerini (sadeleştirdikten sonra), yatay için $x\to\pm\infty$ limitini kullan. Bu iki refleks, konunun neredeyse tüm sorularını çözer.
+
+<KonuNav slug="sonsuzda-limit-asimptot" />

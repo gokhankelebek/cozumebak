@@ -1,0 +1,191 @@
+import { topicMetadata } from "@/lib/seo";
+
+export const metadata = topicMetadata("limit-kavrami");
+
+<Konu slug="limit-kavrami" />
+
+<p className="lead">Limit, bir fonksiyonun bir noktaya **yaklaşırken** hangi değere doğru gittiğini inceler; fonksiyonun o noktadaki değerini değil, **çevresindeki davranışını** ölçer. Bu ayrım analizin tüm yapı taşıdır: süreklilik, türev ve integral kavramları doğrudan limit üzerine kurulur. Bu konu, sezgisel limit tanımını, soldan–sağdan limiti ve limitin varlık koşulunu net biçimde oturtur.</p>
+
+## 1. Sezgisel Limit Kavramı
+
+$x$ değişkeni $a$ sayısına (ona eşit olmadan) sınırsızca yaklaşırken $f(x)$ değerleri tek bir $L$ sayısına yaklaşıyorsa, $f$'nin $x=a$'da limiti $L$'dir ve şöyle yazarız:
+
+$$\lim_{x\to a} f(x)=L$$
+
+Buradaki kilit nokta şudur: $x$, $a$'ya yaklaşır ama **$x\ne a$**'dır. Bu yüzden limit, $f(a)$ değerinden tamamen bağımsızdır; hatta $f(a)$ **tanımsız** olsa bile limit var olabilir.
+
+## 2. Soldan ve Sağdan Limit
+
+$x$, $a$'ya iki yönden yaklaşabilir:
+
+| Gösterim | Anlamı |
+| --- | --- |
+| $\lim\limits_{x\to a^{-}} f(x)$ | **Soldan limit**: $x$, $a$'ya $a$'dan **küçük** değerlerle yaklaşır ($x < a$) |
+| $\lim\limits_{x\to a^{+}} f(x)$ | **Sağdan limit**: $x$, $a$'ya $a$'dan **büyük** değerlerle yaklaşır ($x > a$) |
+
+Bu ikisine **tek taraflı limitler** denir.
+
+### Limitin Varlık Koşulu
+
+Bir noktadaki (iki taraflı) limit, ancak iki tek taraflı limit **var ve birbirine eşitse** vardır:
+
+$$\lim_{x\to a} f(x)=L \;\iff\; \lim_{x\to a^{-}} f(x)=\lim_{x\to a^{+}} f(x)=L$$
+
+Soldan ve sağdan limitler birbirinden farklıysa, $\lim\limits_{x\to a} f(x)$ **yoktur**.
+
+> **Sık yapılan hata:** Limiti, fonksiyonun o noktadaki değeri $f(a)$ ile karıştırmak. Limit, $a$'nın **çevresindeki** davranışla ilgilenir; $f(a)$ ister tanımlı olsun ister olmasın, isterse limitten farklı bir değer alsın, limiti değiştirmez.
+
+## 3. Grafikten ve Parçalı Fonksiyonlarda Limit
+
+Bir grafikte $x=a$'ya soldan ve sağdan ilerleyip eğrinin **hangi yüksekliğe** yaklaştığına bakarız. İki yön aynı yüksekliğe gidiyorsa limit o değerdir; farklı yüksekliklere (örneğin bir **sıçrama** noktasına) gidiyorsa limit yoktur.
+
+Parçalı (cases) ve mutlak değerli fonksiyonlarda, parçaların değiştiği noktada soldan ve sağdan **farklı kurallar** geçerli olur; bu yüzden o noktada limit mutlaka **iki tarafı ayrı** hesaplanarak incelenir.
+
+<Ornek>
+
+<Soru>
+
+$\lim\limits_{x\to 2}(3x-1)$ limitini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $f(x)=3x-1$ bir **polinomdur**; polinomlarda $x$, $a$'ya yaklaşırken $f(x)$, $f(a)$'ya yaklaşır (doğrudan yerine yazma).
+
+2. $x=2$ değerini yerine yaz: $3\cdot 2-1=5$.
+
+3. Soldan ve sağdan yaklaşımda da aynı $5$ değeri elde edilir; limit vardır.
+
+<Cevap>$\lim\limits_{x\to 2}(3x-1)=5$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=\begin{cases}x+1,& x<1\\[2pt] 4-x,& x\ge 1\end{cases}$ fonksiyonu için $\lim\limits_{x\to 1} f(x)$ var mıdır?
+
+</Soru>
+
+<Ipucu>
+
+$x=1$, parçaların değiştiği noktadır. Soldan limit için $x+1$ kuralını, sağdan limit için $4-x$ kuralını kullan.
+
+</Ipucu>
+
+<Cozum>
+
+1. **Soldan limit** ($x < 1$, kural $x+1$): $\lim\limits_{x\to 1^{-}} (x+1)=1+1=2$.
+
+2. **Sağdan limit** ($x \ge 1$, kural $4-x$): $\lim\limits_{x\to 1^{+}} (4-x)=4-1=3$.
+
+3. Soldan limit $2$, sağdan limit $3$; bunlar **eşit değildir**.
+
+4. Varlık koşulu sağlanmadığından iki taraflı limit yoktur.
+
+<Cevap>$\lim\limits_{x\to 1} f(x)$ **yoktur** (soldan $2\ne$ sağdan $3$).</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=\dfrac{x^{2}-4}{x-2}$ fonksiyonu için $\lim\limits_{x\to 2} f(x)$ değerini bulunuz. $f(2)$ tanımlı mıdır?
+
+</Soru>
+
+<Ipucu>
+
+$x=2$ yazarsan $\frac{0}{0}$ belirsizliği çıkar. Payı çarpanlarına ayırıp sadeleştir; limitte $x\ne 2$ olduğunu unutma.
+
+</Ipucu>
+
+<Cozum>
+
+1. Doğrudan yerine yazınca pay ve payda sıfırlanır: $\frac{0}{0}$ belirsizliği oluşur.
+
+2. Payı çarpanlara ayır: $x^{2}-4=(x-2)(x+2)$.
+
+3. Limitte $x\to 2$ olduğundan $x\ne 2$'dir; bu yüzden $x-2$ ile sadeleştirilebilir: $f(x)=x+2$ (her $x\ne 2$ için).
+
+4. Sadeleşen ifadenin limitini al: $\lim\limits_{x\to 2}(x+2)=2+2=4$.
+
+5. Buna karşılık $f(2)$'de payda $2-2=0$ olduğundan $f(2)$ **tanımsızdır**.
+
+<Cevap>$\lim\limits_{x\to 2} f(x)=4$ olmasına rağmen $f(2)$ tanımsızdır. Limitin varlığı, $f(2)$'nin tanımlı olmasını gerektirmez.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\lim\limits_{x\to 0}\dfrac{|x|}{x}$ limitini inceleyiniz.
+
+</Soru>
+
+<Ipucu>
+
+Mutlak değeri tanıma göre aç: $x>0$ için $|x|=x$, $x<0$ için $|x|=-x$. Soldan ve sağdan ayrı bak.
+
+</Ipucu>
+
+<Cozum>
+
+1. **Sağdan** ($x\to 0^{+}$, yani $x>0$): $|x|=x$ olduğundan $\dfrac{|x|}{x}=\dfrac{x}{x}=1$. Demek ki $\lim\limits_{x\to 0^{+}}\dfrac{|x|}{x}=1$.
+
+2. **Soldan** ($x\to 0^{-}$, yani $x<0$): $|x|=-x$ olduğundan $\dfrac{|x|}{x}=\dfrac{-x}{x}=-1$. Demek ki $\lim\limits_{x\to 0^{-}}\dfrac{|x|}{x}=-1$.
+
+3. Soldan limit $-1$, sağdan limit $+1$; eşit değiller.
+
+<Cevap>Soldan ve sağdan limitler farklı olduğundan $\lim\limits_{x\to 0}\dfrac{|x|}{x}$ **yoktur**.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir $g$ fonksiyonunun grafiği $x=3$ noktasında **sıçrama** yapıyor: $x$, $3$'e soldan yaklaşırken eğri $1$ yüksekliğine, sağdan yaklaşırken $5$ yüksekliğine gidiyor. Ayrıca grafik üzerinde $g(3)=1$ olarak işaretli. $\lim\limits_{x\to 3} g(x)$ var mıdır?
+
+</Soru>
+
+<Cozum>
+
+1. Grafikten **soldan limit**: $\lim\limits_{x\to 3^{-}} g(x)=1$.
+
+2. Grafikten **sağdan limit**: $\lim\limits_{x\to 3^{+}} g(x)=5$.
+
+3. İki taraflı limitler farklı ($1\ne 5$) olduğundan iki taraflı limit yoktur.
+
+4. $g(3)=1$ olması bu sonucu değiştirmez; fonksiyon değeri ile limit ayrı kavramlardır.
+
+<Cevap>$\lim\limits_{x\to 3} g(x)$ **yoktur**. ($g(3)=1$ tanımlı olsa da limit varlık koşulunu sağlamaz.)</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Limiti $f(a)$ ile karıştırmak.** $\lim\limits_{x\to a} f(x)$, $f(a)$'dan farklı olabilir; $f(a)$ tanımsızken bile limit var olabilir (bkz. Örnek 3).
+- **Tek taraflı limitleri kontrol etmeden "limit var" demek.** Özellikle parçalı veya sıçramalı grafiklerde, soldan ve sağdan limit eşit olmadan iki taraflı limitten söz edilemez.
+- **Mutlak değerli / parçalı fonksiyonlarda soldan–sağdan ayrımını atlamak.** $\dfrac{|x|}{x}$ gibi ifadelerde tek bir kuralla işlem yapmak yanlış sonuca götürür; her yön kendi kuralıyla hesaplanır.
+- **Sadeleştirmeden $\frac{0}{0}$ görünce "limit yoktur" demek.** $\frac{0}{0}$ bir **belirsizliktir**, sonuç değildir; çarpanlara ayırıp sadeleştirince çoğu zaman limit bulunur.
+
+## Sınav İpucu
+
+Parçalı tanımlı veya mutlak değer içeren bir fonksiyonun, kuralın değiştiği noktadaki limiti soruluyorsa **mutlaka soldan ve sağdan limiti ayrı ayrı hesapla**. İkisi eşitse limit o ortak değerdir; farklıysa limit yoktur. Kural değişmeyen "iç" noktalarda ise doğrudan yerine yazma genellikle yeterlidir. Rasyonel ifadelerde $\frac{0}{0}$ çıkarsa paniğe gerek yok: çarpanlara ayır, sadeleştir, sonra yerine yaz.
+
+<KonuNav slug="limit-kavrami" />
