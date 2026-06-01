@@ -1,0 +1,211 @@
+import { topicMetadata } from "@/lib/seo";
+
+export const metadata = topicMetadata("ardisik-sayilar");
+
+<Konu slug="ardisik-sayilar" />
+
+<p className="lead">**Ardışık sayılar**, belirli bir kurala göre birbirini izleyen sayılardır: tam sayılarda her terim bir öncekinden $1$ fazla, çift ve tek sayılarda ise $2$ fazladır. TYT'de bu konu hem doğrudan soru olarak hem de problem çözümünde araç olarak karşına çıkar. Bu derste gösterimleri, toplam ve ortalama formüllerini ve işlemi kısaltan pratikleri öğreneceksin.</p>
+
+## 1. Ardışık Sayı Gösterimleri
+
+Bir sayıya $n$ dersek, ardışık sayıları tek bir bilinmeyenle yazarız. Bu, problemleri denkleme dökmenin en hızlı yoludur.
+
+| Tür | Gösterim | Ardışık terimler arası fark |
+| --- | --- | --- |
+| Ardışık tam sayılar | $n,\ n+1,\ n+2,\ \cdots$ | $1$ |
+| Ardışık çift sayılar | $n,\ n+2,\ n+4,\ \cdots$ ($n$ çift) | $2$ |
+| Ardışık tek sayılar | $n,\ n+2,\ n+4,\ \cdots$ ($n$ tek) | $2$ |
+
+> **Dikkat:** Ardışık çift ve ardışık tek sayılarda fark $1$ değil $2$'dir. Örneğin ardışık çift sayılar $4,\ 6,\ 8$; ardışık tek sayılar $5,\ 7,\ 9$ biçimindedir.
+
+## 2. Ardışık Sayıların Toplamı
+
+Ardışık sayılar bir **aritmetik sıra** oluşturduğundan, toplamları ilk ve son terimin ortalamasının terim sayısıyla çarpımına eşittir:
+
+$$\text{Toplam}=\dfrac{(\text{ilk}+\text{son})\cdot \text{terim sayısı}}{2}$$
+
+Buradaki kritik nokta **terim sayısıdır**. İki tam sayı arasındaki (ikisi dahil) terim sayısı şöyle bulunur:
+
+$$\text{terim sayısı}=\text{son}-\text{ilk}+1$$
+
+İlk $n$ sayma sayısının toplamı için bu formülün özel hâli sık kullanılır:
+
+$$1+2+3+\cdots+n=\dfrac{n(n+1)}{2}$$
+
+## 3. Ardışık Sayıların Ortalaması
+
+Ardışık sayıların **aritmetik ortalaması**, ilk ve son terimin ortalamasıdır:
+
+$$\text{Ortalama}=\dfrac{\text{ilk}+\text{son}}{2}$$
+
+Terim sayısı **tek** ise ortalama, tam ortadaki terime eşittir (ve bir tam sayıdır). Terim sayısı **çift** ise ortalama, ortadaki iki terimin arasında kalır ve genelde sayıların hiçbirine eşit değildir.
+
+<Ornek>
+
+<Soru>
+
+Ardışık üç tam sayının toplamı $72$ ise bu sayıları bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Terim sayısı tek olduğundan **orta terime** $x$ demek işlemi kısaltır.
+
+</Ipucu>
+
+<Cozum>
+
+1. Orta terime $x$ diyelim; sayılar $x-1,\ x,\ x+1$ olur.
+
+2. Toplamı yaz: $(x-1)+x+(x+1)=3x$.
+
+3. Denklemi kur ve çöz: $3x=72\Rightarrow x=24$.
+
+4. Sayılar: $23,\ 24,\ 25$.
+
+<Cevap>Sayılar $23,\ 24,\ 25$'tir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$1+2+3+\cdots+100$ toplamını hesaplayınız.
+
+</Soru>
+
+<Cozum>
+
+1. İlk $n$ sayma sayısının toplam formülünü kullan: $1+2+\cdots+n=\dfrac{n(n+1)}{2}$.
+
+2. $n=100$ değerini yerine yaz: $\dfrac{100\cdot 101}{2}$.
+
+3. İşlemi bitir: $\dfrac{10100}{2}=5050$.
+
+<Cevap>Toplam $5050$'dir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Ardışık beş çift sayının toplamı $70$ ise en küçük sayı kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+Terim sayısı tek; orta terime $x$ de, toplam $=5x$ olur.
+
+</Ipucu>
+
+<Cozum>
+
+1. Orta (üçüncü) terime $x$ diyelim; sayılar $x-4,\ x-2,\ x,\ x+2,\ x+4$ olur.
+
+2. Toplamı yaz: bu beş terimin toplamı $5x$'tir.
+
+3. Denklemi çöz: $5x=70\Rightarrow x=14$.
+
+4. Sayılar: $10,\ 12,\ 14,\ 16,\ 18$; en küçüğü $10$.
+
+<Cevap>En küçük sayı $10$'dur.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$20$ ile $40$ arasındaki (ikisi de dahil) tam sayıların toplamını bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Terim sayısını bul: $40-20+1=21$.
+
+2. Toplam formülünü uygula: $\text{Toplam}=\dfrac{(20+40)\cdot 21}{2}$.
+
+3. İşlemi bitir: $\dfrac{60\cdot 21}{2}=\dfrac{1260}{2}=630$.
+
+<Cevap>Toplam $630$'dur.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Ardışık dört tam sayının toplamı $54$ ise bu sayıları bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Terim sayısı çift olduğundan orta terim yoktur; en küçüğe $n$ deyip $n,\ n+1,\ n+2,\ n+3$ yazmak en pratiğidir.
+
+</Ipucu>
+
+<Cozum>
+
+1. Sayılara $n,\ n+1,\ n+2,\ n+3$ diyelim.
+
+2. Toplamı yaz: $n+(n+1)+(n+2)+(n+3)=4n+6$.
+
+3. Denklemi çöz: $4n+6=54\Rightarrow 4n=48\Rightarrow n=12$.
+
+4. Sayılar: $12,\ 13,\ 14,\ 15$.
+
+<Cevap>Sayılar $12,\ 13,\ 14,\ 15$'tir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Ardışık üç tek sayının toplamı $51$ ise en büyük sayı kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. Orta terime $x$ diyelim; ardışık tek sayılar olduğundan sayılar $x-2,\ x,\ x+2$ olur.
+
+2. Toplamı yaz: $(x-2)+x+(x+2)=3x$.
+
+3. Denklemi çöz: $3x=51\Rightarrow x=17$.
+
+4. Sayılar $15,\ 17,\ 19$; en büyüğü $19$.
+
+<Cevap>En büyük sayı $19$'dur.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Ardışık çift/tek sayılarda farkı $1$ sanmak.** Doğrusu fark $2$'dir: çift sayılar $n,\ n+2,\ n+4$; tek sayılar da $n,\ n+2,\ n+4$ biçiminde yazılır.
+- **Terim sayısını "son $-$ ilk" almak.** Doğrusu "son $-$ ilk $+1$"dir. $20$ ile $40$ arasında $40-20=20$ değil, $21$ terim vardır.
+- **Çift sayıda terimde ortalamayı bir terime eşit sanmak.** Yalnızca terim sayısı tek ise ortalama tam ortadaki terime eşittir; çift sayıda terimde ortalama sayıların hiçbiri olmayabilir.
+
+## Sınav İpucu
+
+Ardışık terim sayısı **tek** ise orta terime $x$ de: toplam doğrudan $\text{terim sayısı}\times x$ olur. Örneğin ardışık $5$ sayının toplamı $5x$, ardışık $3$ sayının toplamı $3x$'tir. Böylece tek denklemle, sadeleştirme yapmadan orta terimi bulur ve diğer terimleri saniyeler içinde yazarsın.
+
+<KonuNav slug="ardisik-sayilar" />

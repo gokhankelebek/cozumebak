@@ -1,0 +1,228 @@
+import { topicMetadata } from "@/lib/seo";
+
+export const metadata = topicMetadata("temel-kavramlar");
+
+<Konu slug="temel-kavramlar" />
+
+<p className="lead">Sayılar, matematiğin alfabesidir. Bu konu; doğal, tam, rasyonel, irrasyonel ve gerçek sayı **kümelerini** ve bu kümelerdeki sayıların **çeşitlerini** (çift–tek, pozitif–negatif, asal, aralarında asal) tek tek tanımlar. TYT'de doğrudan soru gelir; ayrıca üslü sayılar, köklü sayılar, mutlak değer gibi tüm konuların temelini oluşturur. Tanımlar kısa ama uç durumlar ($0$, $1$, $2$) sınavda en çok hata yapılan yerlerdir.</p>
+
+## 1. Sayı Kümeleri
+
+Sayıları, içerme ilişkisiyle birbirini kapsayan kümelerde sınıflandırırız.
+
+| Küme | Sembol | Tanım / Örnek |
+| --- | --- | --- |
+| Doğal sayılar | $\mathbb{N}$ | $\mathbb{N}=\{0,1,2,3,\dots\}$ |
+| Tam sayılar | $\mathbb{Z}$ | $\mathbb{Z}=\{\dots,-2,-1,0,1,2,\dots\}$ |
+| Rasyonel sayılar | $\mathbb{Q}$ | $\mathbb{Q}=\left\{\dfrac{a}{b}\,:\,a,b\in\mathbb{Z},\ b\ne 0\right\}$ |
+| İrrasyonel sayılar | $\mathbb{Q}'$ | Rasyonel olmayan gerçek sayılar; ör. $\sqrt{2},\ \pi$ |
+| Gerçek (reel) sayılar | $\mathbb{R}$ | Rasyonel ile irrasyonellerin birleşimi |
+
+**Rasyonel sayılar** $\dfrac{a}{b}$ biçiminde yazılabilen sayılardır; ondalık açılımı ya **sonludur** ($\dfrac{1}{4}=0{,}25$) ya da **devirlidir** ($\dfrac{1}{3}=0{,}333\ldots$).
+
+**İrrasyonel sayıların** ondalık açılımı ise **sonsuz ve devirsizdir**; bu nedenle hiçbiri $\dfrac{a}{b}$ kesri olarak yazılamaz. Örnek: $\sqrt{2}=1{,}41421\ldots$ ve $\pi=3{,}14159\ldots$
+
+Kümeler arasındaki içerme zinciri:
+
+$$\mathbb{N}\subset\mathbb{Z}\subset\mathbb{Q}\subset\mathbb{R}$$
+
+İrrasyoneller $\mathbb{Q}$'nün dışında, $\mathbb{R}$'nin içindedir. Yani her gerçek sayı ya rasyoneldir ya da irrasyoneldir; ikisi birden olamaz.
+
+> **Sık yapılan hata:** $\sqrt{2}$ irrasyoneldir diye **her köklü sayı irrasyonel** sanılır. Oysa kök içi tam kareyse sonuç rasyoneldir: $\sqrt{4}=2$, $\sqrt{9}=3$ rasyoneldir.
+
+### Rakam ile Sayı Farkı
+
+**Rakam**, sayıları yazmakta kullandığımız sembollerdir: $0,1,2,3,4,5,6,7,8,9$ olmak üzere toplam **$10$ rakam** vardır. **Sayı** ise bu rakamların bir araya gelmesiyle oluşan büyüklüktür. Örneğin $25$ bir sayıdır; $2$ ve $5$ ise onu oluşturan rakamlardır.
+
+## 2. Sayı Çeşitleri
+
+### Çift ve Tek Sayılar
+
+Bir $k\in\mathbb{Z}$ için **çift sayı** $2k$, **tek sayı** $2k+1$ biçiminde yazılır.
+
+| Tür | Genel ifade | Örnekler |
+| --- | --- | --- |
+| Çift | $2k$ | $\dots,-4,-2,0,2,4,\dots$ |
+| Tek | $2k+1$ | $\dots,-3,-1,1,3,5,\dots$ |
+
+Önemli: **$0$ çifttir** (çünkü $0=2\cdot 0$). Çift–tek sınıflaması tüm tam sayılar için geçerlidir; negatif sayılar da çift ya da tektir.
+
+### Pozitif ve Negatif Sayılar
+
+Sıfırdan büyük sayılar **pozitif** ($a > 0$), sıfırdan küçükler **negatiftir** ($a < 0$). Burada kilit nokta: **$0$ ne pozitif ne de negatiftir.** Sıfır, pozitiflerle negatifleri ayıran nötr sayıdır.
+
+### Asal Sayılar
+
+**Asal sayı**, $1$'den büyük olup yalnızca $1$'e ve kendisine bölünebilen doğal sayıdır. İlk asallar:
+
+$$2,\ 3,\ 5,\ 7,\ 11,\ 13,\ 17,\ 19,\ 23,\ \dots$$
+
+Dikkat edilmesi gereken üç nokta:
+
+- **$1$ asal değildir** (yalnızca bir tane böleni vardır, oysa asal için tam iki bölen gerekir).
+- **$2$ en küçük asal sayıdır** ve **tek çift asal sayıdır**; $2$ dışındaki tüm asallar tektir.
+- Asallık yalnızca $1$'den büyük doğal sayılar için tanımlıdır; $0$ ve negatif sayılar asal olamaz.
+
+### Aralarında Asal Sayılar
+
+İki ya da daha çok sayının **ortak böleni yalnızca $1$** ise bu sayılara **aralarında asal** denir. Sayıların kendileri asal olmak zorunda değildir.
+
+Örnek: $8=2^3$ ve $15=3\cdot 5$ sayılarının ortak böleni sadece $1$'dir; bu yüzden $8$ ile $15$ aralarında asaldır.
+
+## Örnekler
+
+<Ornek>
+
+<Soru>
+
+$\sqrt{2},\quad -3,\quad \dfrac{1}{2},\quad 0,\quad \pi$ sayılarının her birini **ait olduğu en dar küme** ile eşleştiriniz.
+
+</Soru>
+
+<Ipucu>
+
+"En dar küme", o sayıyı içeren ve içerme zincirinde en içte kalan kümedir. Önce sayının kesir/ondalık biçimine bak.
+
+</Ipucu>
+
+<Cozum>
+
+1. $\sqrt{2}=1{,}414\ldots$ açılımı sonsuz ve devirsiz: **irrasyonel** ($\mathbb{R}$ içinde, $\mathbb{Q}$ dışında).
+2. $-3$ negatif bir tam sayı, kesir değil: **tam sayı** ($\mathbb{Z}$).
+3. $\dfrac{1}{2}$ tam sayı değil ama kesir: **rasyonel** ($\mathbb{Q}$).
+4. $0$ hem doğal hem tam sayıdır; en dar küme **doğal sayı** ($\mathbb{N}$).
+5. $\pi=3{,}1415\ldots$ açılımı sonsuz ve devirsiz: **irrasyonel**.
+
+<Cevap>$\sqrt{2}\to$ irrasyonel, $-3\to$ tam, $\dfrac{1}{2}\to$ rasyonel, $0\to$ doğal, $\pi\to$ irrasyonel.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+En küçük asal sayı kaçtır? En küçük **iki basamaklı** asal sayı kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. Asal sayılar $1$'den büyük doğal sayılardandır; $1$ asal değildir.
+2. $1$'den büyük en küçük doğal sayı $2$'dir ve yalnızca $1$ ile $2$'ye bölünür: **en küçük asal $2$**.
+3. İki basamaklı sayılar $10$'dan başlar. $10=2\cdot 5$ asal değildir; bir sonraki $11$ yalnızca $1$ ve $11$'e bölünür.
+
+<Cevap>En küçük asal $2$; en küçük iki basamaklı asal $11$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$8$ ile $15$ sayıları aralarında asal mıdır?
+
+</Soru>
+
+<Cozum>
+
+1. $8$'in pozitif bölenleri: $1,2,4,8$.
+2. $15$'in pozitif bölenleri: $1,3,5,15$.
+3. İki listenin tek ortak elemanı $1$'dir.
+4. Ortak bölen yalnızca $1$ olduğundan sayılar aralarında asaldır. (Sayıların kendileri asal olmasa da bu sonuç değişmez.)
+
+<Cevap>Evet, $8$ ile $15$ aralarında asaldır.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\dfrac{a}{b}$ ifadesinin rasyonel sayı olması için $b$ üzerine konan koşul nedir? $0{,}333\ldots$ sayısı rasyonel midir?
+
+</Soru>
+
+<Cozum>
+
+1. Rasyonel tanımı $\dfrac{a}{b}$, $a,b\in\mathbb{Z}$ ve $b\ne 0$ ister; **payda sıfır olamaz**, çünkü sıfıra bölme tanımsızdır.
+2. Örneğin $\dfrac{5}{0}$ bir sayı belirtmez; bu nedenle rasyonel değildir.
+3. $0{,}333\ldots$ devirli bir ondalık açılımdır ve $\dfrac{1}{3}$ kesrine eşittir.
+4. $\dfrac{1}{3}$ biçiminde ($b=3\ne 0$) yazılabildiğinden rasyoneldir.
+
+<Cevap>Koşul: $b\ne 0$. $0{,}333\ldots=\dfrac{1}{3}$ rasyoneldir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Aşağıdaki ifadelerin doğru mu yanlış mı olduğunu belirleyiniz.
+
+I. Her tam sayı rasyoneldir.
+
+II. Her rasyonel sayı tam sayıdır.
+
+</Soru>
+
+<Cozum>
+
+1. **I.** Herhangi bir $n$ tam sayısı $\dfrac{n}{1}$ olarak yazılabilir; bu da rasyonel tanımına uyar. Dolayısıyla $\mathbb{Z}\subset\mathbb{Q}$ olup ifade **doğrudur**.
+2. **II.** Ters örnek yeterlidir: $\dfrac{1}{2}$ rasyoneldir ama tam sayı değildir. Bu yüzden ifade **yanlıştır**.
+
+<Cevap>I doğru, II yanlış.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$0$ sayısı için aşağıdakilerden hangileri doğrudur?
+
+I. Çifttir.
+
+II. Pozitiftir.
+
+III. Asaldır.
+
+</Soru>
+
+<Cozum>
+
+1. **I.** $0=2\cdot 0$ olduğundan $0$ çifttir: **doğru**.
+2. **II.** $0$ ne pozitif ne negatiftir; sıfırdan büyük değildir: **yanlış**.
+3. **III.** Asallık $1$'den büyük doğal sayılarda tanımlıdır; $0$ asal olamaz: **yanlış**.
+
+<Cevap>Yalnız I doğrudur.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **$0$'ı pozitif sanmak:** Sıfır ne pozitif ne negatiftir. "Pozitif tam sayılar" denildiğinde $1,2,3,\dots$ kastedilir, $0$ dahil değildir.
+- **$0$'ı asal sanmak:** Asal sayılar $1$'den büyük doğal sayılardır; $0$ asal değildir.
+- **$1$'i asal sanmak:** $1$ asal değildir; en küçük asal $2$'dir.
+- **$2$'yi asal saymamak:** $2$ asaldır ve tek çift asal sayıdır.
+- **Her köklü sayıyı irrasyonel sanmak:** $\sqrt{2}$ irrasyoneldir ama $\sqrt{4}=2$ rasyoneldir. Kök içi tam kareyse sonuç rasyoneldir.
+
+## Sınav İpucu
+
+- Bir sayının "hangi kümeden" olduğu sorulduğunda **en dar kümeyi** seç: $0$ için $\mathbb{N}$, $-3$ için $\mathbb{Z}$, $\dfrac{1}{2}$ için $\mathbb{Q}$.
+- Köklü bir ifadenin rasyonel mi irrasyonel mi olduğunu hızlı anlamak için **kök içine bak**: tam kareyse ($4,9,16,25,\dots$) sonuç rasyonel, değilse irrasyoneldir.
+- Devirli ya da sonlu ondalık $=$ rasyonel; sonsuz ve devirsiz ondalık $=$ irrasyonel.
+- $0$, $1$ ve $2$ ile ilgili özel durumlar (çift–pozitif–asal) sınavda sık çıkar; tanımları ezberden değil, yukarıdaki koşullarla sına.
+
+<KonuNav slug="temel-kavramlar" />

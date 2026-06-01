@@ -1,0 +1,182 @@
+import { topicMetadata } from "@/lib/seo";
+
+export const metadata = topicMetadata("sayi-basamaklari");
+
+<Konu slug="sayi-basamaklari" />
+
+<p className="lead">Bir sayıyı oluşturan rakamların **bulundukları basamağa göre** taşıdıkları değer, TYT'nin en sık çıkan ve en hızlı çözülen konularından birinin temelidir. Bu derste rakam–basamak–değer kavramlarını netleştirip **çözümleme** yöntemini kuruyoruz: $\overline{ab}=10a+b$ gibi bir yazımı kavradığınızda, "rakamları yer değiştiren sayı" veya "rakamları toplamı" tipi problemler anında basit bir cebirsel denkleme dönüşür.</p>
+
+## 1. Rakam, Sayı ve Basamak
+
+**Rakam,** sayıları yazmak için kullanılan $0,1,2,\dots,9$ sembolleridir; toplam **10 rakam** vardır. **Sayı** ise bu rakamların yan yana dizilmesiyle oluşur.
+
+Bir sayının rakamlarını harflerle göstermek için **üst çizgi** kullanırız:
+
+$$\overline{ab}\;=\;\text{rakamları } a \text{ ve } b \text{ olan iki basamaklı sayı}\qquad (a\ne 0)$$
+
+> **Dikkat:** $\overline{ab}$ gösterimi, $a$ ile $b$'nin **çarpımı değildir**. Örneğin $\overline{ab}$ ile $a\cdot b$ tamamen farklı şeylerdir; ilki bir iki basamaklı sayı, ikincisi iki rakamın çarpımıdır.
+
+En yüksek (en soldaki) basamağın rakamı **$0$ olamaz** ($a\ne 0$); aksi hâlde sayı bir basamak küçülür. Örneğin $\overline{ab}$'de $a=0$ olursa elde edilen şey iki basamaklı bir sayı olmaz.
+
+## 2. Basamak Değeri ve Sayı (Rakam) Değeri
+
+Bir rakamın iki ayrı değeri vardır:
+
+- **Sayı (rakam) değeri:** rakamın kendisidir; bulunduğu basamaktan bağımsızdır.
+- **Basamak değeri:** rakamın, bulunduğu basamağa göre kazandığı değerdir.
+
+Örnek olarak $47$ sayısını ele alalım:
+
+| Rakam | Bulunduğu basamak | Sayı değeri | Basamak değeri |
+| --- | --- | --- | --- |
+| $4$ | onlar | $4$ | $40$ |
+| $7$ | birler | $7$ | $7$ |
+
+Görüldüğü gibi $4$ rakamının sayı değeri $4$ iken, onlar basamağında olduğu için basamak değeri $4\cdot 10=40$'tır.
+
+## 3. Bir Sayının Çözümlenmesi
+
+Bir sayıyı, her rakamın **basamak değerlerinin toplamı** biçiminde yazmaya **çözümleme** denir.
+
+**İki basamaklı sayı:**
+
+$$\overline{ab}=10a+b$$
+
+**Üç basamaklı sayı:**
+
+$$\overline{abc}=100a+10b+c$$
+
+Örneğin $305$ sayısında $\overline{abc}$ için $a=3,\ b=0,\ c=5$ olur ve çözümleme $100\cdot 3+10\cdot 0+5=305$ verir. Buradaki $0$ basamağı **boş bırakılmaz**, mutlaka yazılır; aksi hâlde sayı $35$'e dönüşürdü.
+
+### Yararlı Sonuçlar
+
+Çözümlemeyi kullanarak iki klasik sonucu türetelim:
+
+$$\overline{ab}+\overline{ba}=(10a+b)+(10b+a)=11a+11b=11(a+b)$$
+
+$$\overline{ab}-\overline{ba}=(10a+b)-(10b+a)=9a-9b=9(a-b)$$
+
+Bu iki eşitlik, "rakamları yer değiştiren sayı" sorularında doğrudan kullanılır.
+
+<Ornek>
+
+<Soru>
+
+$47$ sayısında $4$ rakamının basamak değeri ile sayı değeri arasındaki fark kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. $4$ rakamı onlar basamağında olduğundan **basamak değeri** $40$'tır.
+2. $4$ rakamının **sayı değeri** $4$'tür.
+3. Fark: $40-4=36$.
+
+<Cevap>$36$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\overline{ab}$ iki basamaklı bir sayıdır. Rakamları yer değiştirildiğinde $\overline{ba}$ sayısı oluşuyor. $\overline{ab}-\overline{ba}$ ifadesinin daima $9$'un katı olduğunu çözümleyerek gösteriniz.
+
+</Soru>
+
+<Cozum>
+
+1. İki sayıyı da çözümle: $\overline{ab}=10a+b$ ve $\overline{ba}=10b+a$.
+2. Farkı al: $\overline{ab}-\overline{ba}=(10a+b)-(10b+a)$.
+3. Düzenle: $=10a+b-10b-a=9a-9b$.
+4. Ortak çarpan parantezine al: $=9(a-b)$.
+
+<Cevap>$\overline{ab}-\overline{ba}=9(a-b)$ olduğundan fark her zaman $9$'un katıdır.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+İki basamaklı bir sayı, rakamlarının toplamının $7$ katına eşittir. Bu koşulu sağlayan tüm sayıları bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Sayıyı $10a+b$, rakamlarının toplamını $a+b$ biçiminde yaz ve eşitliği kur.
+
+</Ipucu>
+
+<Cozum>
+
+1. Sayı $10a+b$, rakamlarının toplamı $a+b$ olduğundan denklem: $10a+b=7(a+b)$.
+2. Sağ tarafı dağıt: $10a+b=7a+7b$.
+3. Düzenle: $10a-7a=7b-b \Rightarrow 3a=6b \Rightarrow a=2b$.
+4. $b=1,2,3,4$ için $a=2,4,6,8$ olur (her birinde $a\ne 0$ ve rakamlar geçerli): sayılar $21,42,63,84$.
+5. Doğrulama: $21$ için rakam toplamı $2+1=3$ ve $7\cdot 3=21$ ✓.
+
+<Cevap>$21,\ 42,\ 63,\ 84$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\overline{ab}+\overline{ba}=121$ olduğuna göre $a+b$ kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. Çözümlemeden bilinen sonucu kullan: $\overline{ab}+\overline{ba}=11(a+b)$.
+2. Eşitliği yaz: $11(a+b)=121$.
+3. Her iki tarafı $11$'e böl: $a+b=11$.
+
+<Cevap>$a+b=11$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Yüzler basamağı $3$, onlar basamağı $0$, birler basamağı $5$ olan üç basamaklı sayı kaçtır? Çözümleme ile gösteriniz.
+
+</Soru>
+
+<Cozum>
+
+1. Üç basamaklı sayının çözümlemesi: $\overline{abc}=100a+10b+c$.
+2. Verilenleri yerine koy: $a=3,\ b=0,\ c=5$.
+3. Hesapla: $100\cdot 3+10\cdot 0+5=300+0+5=305$.
+4. Onlar basamağındaki $0$ atılamaz; yazılmazsa sayı $35$ olurdu.
+
+<Cevap>$305$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **$\overline{ab}$'yi çarpım sanmak:** $\overline{ab}$ bir iki basamaklı sayıdır ($10a+b$), $a\cdot b$ çarpımı değildir.
+- **Basamak değeri ile sayı değerini karıştırmak:** $47$'de $4$'ün sayı değeri $4$, basamak değeri $40$'tır; bunları yer değiştirmemek gerekir.
+- **Çözümlemede sıfır basamağını atlamak:** $305$ sayısında onlar basamağı $0$'dır; bu basamak yazılmazsa sayı $35$'e düşer.
+- **En yüksek basamağın $0$ olabileceğini sanmak:** $\overline{ab}$ ve $\overline{abc}$ gibi yazımlarda en soldaki rakam $0$ olamaz ($a\ne 0$).
+
+## Sınav İpucu
+
+Rakam yer değiştirme, "rakamları toplamı", "rakamları arasındaki fark" tipi sorularda zaman kaybetmeden sayıyı hemen $\overline{ab}=10a+b$ (veya üç basamaklıysa $100a+10b+c$) biçiminde **çözümleyin**. Bu adımdan sonra problem neredeyse her zaman tek bir cebirsel denkleme indirgenir. Ayrıca $\overline{ab}+\overline{ba}=11(a+b)$ ve $\overline{ab}-\overline{ba}=9(a-b)$ sonuçlarını ezberleyin; toplam/fark verilen sorularda saniyeler içinde sonuca götürür.
+
+<KonuNav slug="sayi-basamaklari" />

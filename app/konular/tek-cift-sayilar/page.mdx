@@ -1,0 +1,208 @@
+import { topicMetadata } from "@/lib/seo";
+
+export const metadata = topicMetadata("tek-cift-sayilar");
+
+<Konu slug="tek-cift-sayilar" />
+
+<p className="lead">Tek ve çift sayılar, TYT "Temel Kavramlar" konusunun en çok soru getiren parçasıdır. Burada amaç sayıyı hesaplamak değil, bir ifadenin **parite**sini (tek mi çift mi olduğunu) toplama, çıkarma, çarpma ve üs kurallarıyla **hızlıca** belirlemektir. Bu kuralları ezberlemek yerine $2k$ ve $2k+1$ gösterimiyle bir kez doğrulamak, sınavda saniyeler kazandırır.</p>
+
+## 1. Tanım
+
+Bir tam sayı $2$ ile tam bölünüyorsa **çift**, bölünmüyorsa **tek**tir. $k$ bir tam sayı olmak üzere:
+
+$$\text{çift}=2k,\qquad \text{tek}=2k+1$$
+
+Buna göre $\ldots,-4,-2,0,2,4,\ldots$ çift; $\ldots,-3,-1,1,3,5,\ldots$ tektir.
+
+> **Dikkat:** $0$ çifttir, çünkü $0=2\cdot 0$ olarak yazılır. Sınavda "sıfır tek midir çift midir" tuzağına düşme: **sıfır çifttir.**
+
+## 2. Toplama ve Çıkarma Kuralları
+
+İki sayının toplamının veya farkının paritesi yalnızca terimlerin türüne bağlıdır:
+
+| İşlem | Sonuç |
+| --- | --- |
+| çift $\pm$ çift | çift |
+| tek $\pm$ tek | **çift** |
+| tek $\pm$ çift | tek |
+| çift $\pm$ tek | tek |
+
+**Kural:** Aynı türden iki sayının toplamı/farkı **çift**, farklı türden iki sayının toplamı/farkı **tek**tir.
+
+Bunu $2k$ ve $2m+1$ ile doğrulayalım: tek $+$ tek $=(2k+1)+(2m+1)=2(k+m+1)$, yani çift.
+
+## 3. Çarpma Kuralları
+
+| İşlem | Sonuç |
+| --- | --- |
+| çift $\cdot$ herhangi | **çift** |
+| tek $\cdot$ tek | tek |
+
+**Kural:** Bir çarpımın **çift** olması için en az bir çarpanın çift olması yeterlidir. Çarpımın **tek** olması için ise **tüm** çarpanların tek olması gerekir.
+
+Doğrulama: çift $\cdot$ herhangi $=2k\cdot n=2(kn)$ çifttir; tek $\cdot$ tek $=(2k+1)(2m+1)=2(2km+k+m)+1$ tektir.
+
+## 4. Üs Alma Kuralı
+
+$n$ pozitif tam sayı olmak üzere bir sayının kuvveti, o sayının tekrarlı çarpımıdır; bu yüzden üs alma **pariteyi değiştirmez**:
+
+$$\text{tek}^{\,n}=\text{tek},\qquad \text{çift}^{\,n}=\text{çift}$$
+
+Örneğin $3^{5}=243$ tek, $4^{3}=64$ çifttir. Taban tekse sonuç her zaman tek, taban çiftse sonuç her zaman çifttir.
+
+## 5. Ardışık Sayılar İncelemesi
+
+Ardışık iki tam sayıdan biri mutlaka çifttir. Dolayısıyla bunların çarpımı her zaman çifttir:
+
+$$n(n+1)\ \text{daima çifttir.}$$
+
+Bu sonuç, ifadelerin çift olduğunu kanıtlamada sık kullanılır.
+
+<Ornek>
+
+<Soru>
+
+$a$ tek, $b$ çift sayı olmak üzere aşağıdaki ifadelerin tek mi çift mi olduğunu belirleyiniz:
+
+$$a+b,\qquad a\cdot b,\qquad a^{2}+b,\qquad 3a+2b$$
+
+</Soru>
+
+<Ipucu>
+
+Her terimi ayrı ayrı işaretle (tek/çift), sonra toplama–çarpma kurallarını uygula. Emin olamadığın yerde $a=1$, $b=2$ deneyebilirsin.
+
+</Ipucu>
+
+<Cozum>
+
+1. $a+b$: tek $+$ çift $=$ **tek**.
+2. $a\cdot b$: tek $\cdot$ çift, en az bir çarpan çift olduğundan $=$ **çift**.
+3. $a^{2}+b$: $a^{2}$ tek (üs pariteyi değiştirmez), tek $+$ çift $=$ **tek**.
+4. $3a+2b$: $3a$ tek $\cdot$ tek $=$ tek, $2b$ çift $\cdot$ çift $=$ çift; tek $+$ çift $=$ **tek**.
+
+<Cevap>$a+b$ tek, $a\cdot b$ çift, $a^{2}+b$ tek, $3a+2b$ tektir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$x$ bir tam sayı olmak üzere $x^{2}+x$ ifadesinin daima çift olduğunu gösteriniz.
+
+</Soru>
+
+<Cozum>
+
+1. İfadeyi çarpanlarına ayır: $x^{2}+x=x(x+1)$.
+2. $x$ ile $x+1$ ardışık iki tam sayıdır.
+3. Ardışık iki sayıdan biri mutlaka çift olduğundan, çarpımda en az bir çarpan çifttir.
+4. Çift $\cdot$ herhangi $=$ çift olduğundan $x(x+1)$ her $x$ için çifttir.
+
+<Cevap>$x^{2}+x$ her tam sayı $x$ için daima çifttir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$a\cdot b\cdot c$ çarpımı tek bir sayı ise $a$, $b$ ve $c$ hakkında ne söylenebilir?
+
+</Soru>
+
+<Cozum>
+
+1. Bir çarpımın tek olması için tüm çarpanlar tek olmalıdır.
+2. Çarpanlardan biri bile çift olsaydı, çift $\cdot$ herhangi $=$ çift kuralıyla sonuç çift çıkardı.
+3. Sonuç tek verildiğine göre çift çarpan bulunamaz.
+
+<Cevap>$a$, $b$ ve $c$ sayılarının **üçü de tektir.**</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$a$ ve $b$ tam sayılar olmak üzere $2a+3b$ ifadesi tek ise $b$ hakkında ne söylenebilir?
+
+</Soru>
+
+<Ipucu>
+
+$2a$ teriminin paritesi bellidir. Toplamın tek çıkması için diğer terimin ne olması gerektiğini düşün.
+
+</Ipucu>
+
+<Cozum>
+
+1. $2a$ ifadesi $a$ ne olursa olsun çifttir.
+2. Toplam çift $+\,3b$ biçimindedir. Bu toplamın tek olması için $3b$ teriminin tek olması gerekir (çift $+$ tek $=$ tek).
+3. $3b$ teriminin tek olması için, $3$ tek olduğundan $b$ de tek olmalıdır (tek $\cdot$ tek $=$ tek; eğer $b$ çift olsaydı $3b$ çift olurdu).
+
+<Cevap>$b$ tek bir sayıdır.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Ardışık üç tam sayının toplamı her zaman tek midir çift midir? Belirleyiniz.
+
+</Soru>
+
+<Cozum>
+
+1. Ardışık üç sayıyı $n$, $n+1$, $n+2$ olarak yaz.
+2. Toplamları: $n+(n+1)+(n+2)=3n+3=3(n+1)$.
+3. Paritesi $n+1$ terimine bağlıdır: $n$ çift ise $n+1$ tek, dolayısıyla toplam tek; $n$ tek ise $n+1$ çift, dolayısıyla toplam çift olur.
+
+<Cevap>Ardışık üç sayının toplamı **sabit bir parite vermez**; ortadaki sayı tek ise toplam tek, çift ise toplam çifttir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$5^{12}+7^{9}$ ifadesi tek midir çift midir?
+
+</Soru>
+
+<Cozum>
+
+1. $5$ tek olduğundan $5^{12}$ tektir (üs pariteyi değiştirmez).
+2. $7$ tek olduğundan $7^{9}$ tektir.
+3. Tek $+$ tek $=$ çift kuralıyla toplam çifttir.
+
+<Cevap>İfade çifttir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **tek $\cdot$ çift sonucunu tek sanmak.** En az bir çarpan çift olduğundan sonuç **çift**tir (ör. $3\cdot 4=12$).
+- **Üs alınca paritenin değişeceğini sanmak.** $\text{tek}^{n}$ tek, $\text{çift}^{n}$ çifttir; üs alma pariteyi **değiştirmez**.
+- **"tek $+$ tek $=$ tek" demek.** Doğrusu tek $+$ tek $=$ **çift**tir (aynı türden toplama çift verir).
+- **Sıfırı tek sanmak.** $0$ çifttir.
+
+## Sınav İpucu
+
+Bilinmeyenli ifadelerde kuralları hatırlayamadığında, harflerin yerine küçük somut sayılar koy: tek için $1$, çift için $2$. Örneğin $a$ tek, $b$ çift için $a=1$, $b=2$ alıp $3a+2b=3+4=7$ (tek) sonucunu saniyeler içinde doğrularsın. Bu yöntem hem hız kazandırır hem de yanlış hatırlanan kuralı anında yakalar.
+
+<KonuNav slug="tek-cift-sayilar" />
