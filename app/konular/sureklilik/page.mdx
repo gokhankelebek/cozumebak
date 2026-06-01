@@ -180,6 +180,153 @@ $f(x)=\begin{cases}ax+b,& x<1\\ 3,& x=1\\ x^{2}+2,& x>1\end{cases}$ fonksiyonu $
 
 </Ornek>
 
+## Çözümlü Sorular
+
+<Ornek>
+
+<Soru>
+
+$f(x)=\dfrac{x^{2}-9}{x-3}$ fonksiyonu $x=3$ noktasında kaldırılabilir süreksizliğe sahiptir. Bu süreksizliği gidermek için $f(3)$ kaç olarak tanımlanmalıdır?
+
+</Soru>
+
+<Cozum>
+
+1. $x\ne 3$ için pay çarpanlarına ayrılır: $\dfrac{x^{2}-9}{x-3}=\dfrac{(x-3)(x+3)}{x-3}=x+3$.
+2. Limiti al: $\lim\limits_{x\to 3}f(x)=\lim\limits_{x\to 3}(x+3)=6$.
+3. Süreksizliği gidermek için $f(3)$, limite eşit tanımlanmalıdır.
+
+<Cevap>$f(3)=6$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=\begin{cases}3x-1,& x\le 2\\ x+c,& x>2\end{cases}$ fonksiyonu $x=2$ noktasında sürekli olacak şekilde $c$ değerini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. **$f(2)$ değeri:** $x\le 2$ parçası geçerli: $f(2)=3\cdot 2-1=5$.
+2. **Soldan limit:** $\lim\limits_{x\to 2^{-}}f(x)=3\cdot 2-1=5$.
+3. **Sağdan limit:** $\lim\limits_{x\to 2^{+}}f(x)=2+c$.
+4. **Süreklilik koşulu:** $2+c=5\Rightarrow c=3$.
+
+<Cevap>$c=3$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=\dfrac{x-4}{x^{2}-16}$ fonksiyonunun süreksiz olduğu $x$ değerlerini ve her birindeki süreksizlik türünü belirleyiniz.
+
+</Soru>
+
+<Cozum>
+
+1. Payda $x^{2}-16=(x-4)(x+4)$ olduğundan süreksizlik adayları $x=4$ ve $x=-4$ tür.
+2. $x\ne 4$ için sadeleştir: $\dfrac{x-4}{(x-4)(x+4)}=\dfrac{1}{x+4}$.
+3. **$x=4$:** $\lim\limits_{x\to 4}\dfrac{1}{x+4}=\dfrac{1}{8}$ sonlu; $f(4)$ tanımsız $\Rightarrow$ **kaldırılabilir** süreksizlik.
+4. **$x=-4$:** $\dfrac{1}{x+4}$ ifadesinde payda sıfıra gider, limit $\pm\infty$ $\Rightarrow$ **sonsuz** süreksizlik.
+
+<Cevap>$x=4$ te kaldırılabilir, $x=-4$ te sonsuz süreksizlik.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=\begin{cases}\dfrac{x^{2}-4}{x-2},& x\ne 2\\ k,& x=2\end{cases}$ fonksiyonu her reel sayıda sürekli ise $k$ kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. $x\ne 2$ için sadeleştir: $\dfrac{x^{2}-4}{x-2}=\dfrac{(x-2)(x+2)}{x-2}=x+2$.
+2. Limiti al: $\lim\limits_{x\to 2}f(x)=2+2=4$.
+3. Süreklilik için $f(2)=\lim\limits_{x\to 2}f(x)$ olmalı: $k=4$.
+
+<Cevap>$k=4$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=\begin{cases}ax+3,& x<-1\\ x^{2}-bx,& x\ge -1\end{cases}$ fonksiyonu $x=-1$ de sürekli ve $f(-1)=4$ ise $a+b$ kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. **$f(-1)$ değeri:** $x\ge -1$ parçası: $f(-1)=(-1)^{2}-b(-1)=1+b$. Verilene göre $1+b=4\Rightarrow b=3$.
+2. **Sağdan limit:** $\lim\limits_{x\to -1^{+}}f(x)=1+b=4$.
+3. **Soldan limit:** $\lim\limits_{x\to -1^{-}}f(x)=a(-1)+3=-a+3$.
+4. **Süreklilik:** $-a+3=4\Rightarrow a=-1$. Buradan $a+b=-1+3=2$.
+
+<Cevap>$a+b=2$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$g(x)=\dfrac{x+5}{x^{2}-x-6}$ rasyonel fonksiyonu hangi $x$ değerlerinde süreksizdir?
+
+</Soru>
+
+<Cozum>
+
+1. Rasyonel fonksiyon, paydayı sıfır yapan noktalar dışında süreklidir.
+2. Paydayı çarpanlara ayır: $x^{2}-x-6=(x-3)(x+2)$.
+3. Payda sıfır olur: $x-3=0\Rightarrow x=3$ ve $x+2=0\Rightarrow x=-2$.
+4. Pay ($x+5$) bu değerlerde sıfır olmadığından sadeleşme yoktur; her ikisinde de süreksizdir.
+
+<Cevap>$x=3$ ve $x=-2$ noktalarında süreksizdir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=\begin{cases}x+a,& x\le 0\\ \dfrac{\sin 2x}{x},& x>0\end{cases}$ fonksiyonu $x=0$ da sürekli ise $a$ kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. **$f(0)$ değeri:** $x\le 0$ parçası: $f(0)=0+a=a$.
+2. **Soldan limit:** $\lim\limits_{x\to 0^{-}}f(x)=0+a=a$.
+3. **Sağdan limit:** $\lim\limits_{x\to 0^{+}}\dfrac{\sin 2x}{x}=\lim\limits_{x\to 0^{+}}2\cdot\dfrac{\sin 2x}{2x}=2\cdot 1=2$.
+4. **Süreklilik koşulu:** $a=2$.
+
+<Cevap>$a=2$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
 ## Sık Yapılan Hatalar
 
 - **Sadece limitin varlığını kontrol edip $\lim\limits_{x\to a}f(x)=f(a)$ koşulunu atlamak.** Limit var diye fonksiyon sürekli olmaz; limitin $f(a)$'ya **eşit** olması da şarttır.

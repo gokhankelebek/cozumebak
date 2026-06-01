@@ -205,6 +205,210 @@ $\text{EKOK}(a,12)=60$ ve $\text{EBOB}(a,12)=3$ olduğuna göre $a$ kaçtır?
 
 </Ornek>
 
+## Çözümlü Sorular
+
+<Ornek>
+
+<Soru>
+
+$30$, $45$ ve $75$ sayılarının EBOB'unu bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Asal çarpanlara ayır: $30=2\cdot 3\cdot 5$, $45=3^{2}\cdot 5$, $75=3\cdot 5^{2}$.
+
+2. Üçünde de ortak asal çarpanlar $3$ ve $5$'tir.
+
+3. Ortak çarpanların en küçük üsleri: $3^{1}\cdot 5^{1}=15$.
+
+<Cevap>$\text{EBOB}(30,45,75)=15$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\dfrac{2}{15}$, $\dfrac{4}{9}$ ve $\dfrac{8}{45}$ kesirlerini eşit paydalı yapmak için kullanılacak en küçük ortak payda kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+Paydaların EKOK'u en küçük ortak paydayı verir.
+
+</Ipucu>
+
+<Cozum>
+
+1. Paydaları asal çarpanlara ayır: $15=3\cdot 5$, $9=3^{2}$, $45=3^{2}\cdot 5$.
+
+2. EKOK için tüm çarpanların en büyük üsleri: $3^{2}\cdot 5=9\cdot 5=45$.
+
+3. Demek ki en küçük ortak payda $45$'tir.
+
+<Cevap>$45$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Hem $4$'e hem $6$'ya bölündüğünde $2$ kalanını veren en küçük üç basamaklı sayı kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+Önce $4$ ve $6$'nın katlarını bul, sonra $2$ ekle.
+
+</Ipucu>
+
+<Cozum>
+
+1. Aranan sayı $4k+2$ ve $6m+2$ biçimindedir; yani sayıdan $2$ çıkarınca hem $4$'e hem $6$'ya tam bölünür.
+
+2. $4$ ve $6$'nın ortak katları $\text{EKOK}(4,6)=12$'nin katlarıdır: $12,24,36,\dots$
+
+3. Sayı $12t+2$ biçimindedir. En küçük üç basamaklı değer için $12t+2\geq 100$, yani $12t\geq 98$, $t\geq 8{,}1\dots$ olur; $t=9$.
+
+4. $12\cdot 9+2=108+2=110$. Kontrol: $110-2=108$, $108=4\cdot 27=6\cdot 18$.
+
+<Cevap>$110$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Aralarındaki oran $\dfrac{3}{4}$ olan iki sayının EKOK'u $96$'dır. Bu sayıların toplamı kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+Oran sade ise sayıları $3k$ ve $4k$ al; $3$ ile $4$ aralarında asaldır.
+
+</Ipucu>
+
+<Cozum>
+
+1. Oran $\dfrac{3}{4}$ sade olduğundan sayıları $3k$ ve $4k$ yaz; $k$ bunların EBOB'udur.
+
+2. $3$ ile $4$ aralarında asal olduğundan $\text{EKOK}(3k,4k)=3\cdot 4\cdot k=12k$.
+
+3. $12k=96$ olduğundan $k=8$.
+
+4. Sayılar $3\cdot 8=24$ ve $4\cdot 8=32$. Toplamları $24+32=56$.
+
+<Cevap>$56$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir manav, $48$ elma ve $60$ armudu, her kasede yalnızca bir tür meyve olacak ve tüm kaseler eşit sayıda meyve içerecek biçimde kaselere dolduracaktır. En az kaç kase kullanır?
+
+</Soru>
+
+<Ipucu>
+
+Kase başına meyve sayısı hem $48$'i hem $60$'ı tam bölmeli ve kase sayısı en az olmalı.
+
+</Ipucu>
+
+<Cozum>
+
+1. Her kasede eşit sayıda meyve olacağından kase başına meyve sayısı hem $48$'i hem $60$'ı bölmelidir.
+
+2. Kase sayısı en az olması için her kasedeki meyve en çok olmalı: $\text{EBOB}(48,60)$.
+
+3. $48=2^{4}\cdot 3$, $60=2^{2}\cdot 3\cdot 5$ olduğundan $\text{EBOB}=2^{2}\cdot 3=12$.
+
+4. Her kasede $12$ meyve olur: elmalar $\dfrac{48}{12}=4$, armutlar $\dfrac{60}{12}=5$ kase. Toplam $4+5=9$ kase.
+
+<Cevap>$9$ kase.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+İki sayının EBOB'u $9$, EKOK'u $270$'tir. Bu iki sayının toplamı en çok kaç olabilir?
+
+</Soru>
+
+<Ipucu>
+
+Sayıları $9x$ ve $9y$ yaz; burada $x$ ile $y$ aralarında asaldır.
+
+</Ipucu>
+
+<Cozum>
+
+1. EBOB $9$ olduğundan sayılar $9x$ ve $9y$ biçimindedir ve $\text{EBOB}(x,y)=1$ (aralarında asal).
+
+2. Bu durumda $\text{EKOK}=9xy=270$, yani $xy=30$.
+
+3. Çarpımı $30$ olan aralarında asal $(x,y)$ ikilileri: $(1,30)$, $(2,15)$, $(3,10)$, $(5,6)$.
+
+4. Toplam $9x+9y=9(x+y)$ en büyük olsun diye $x+y$ en büyük olan ikiliyi seç: $(1,30)$ için $x+y=31$.
+
+5. Toplam $9\cdot 31=279$. (Sayılar $9$ ve $270$.)
+
+<Cevap>En çok $279$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir bisiklet pistinde Ali bir turu $40$ saniyede, Veli $50$ saniyede, Can $60$ saniyede tamamlıyor. Aynı çizgiden aynı anda başlayan üçü, başlangıç çizgisinde ilk kez kaç dakika sonra yine birlikte olur?
+
+</Soru>
+
+<Ipucu>
+
+"Yine birlikte" → tur sürelerinin EKOK'u. Sonucu dakikaya çevir.
+
+</Ipucu>
+
+<Cozum>
+
+1. Üçü başlangıçta birlikte olacağı an, $40$, $50$, $60$'ın ortak katı olmalıdır; en küçüğü için EKOK alınır.
+
+2. Asal çarpanlar: $40=2^{3}\cdot 5$, $50=2\cdot 5^{2}$, $60=2^{2}\cdot 3\cdot 5$.
+
+3. EKOK, tüm çarpanların en büyük üsleriyle: $2^{3}\cdot 3\cdot 5^{2}=8\cdot 3\cdot 25=600$ saniye.
+
+4. $600$ saniye $=\dfrac{600}{60}=10$ dakikadır.
+
+<Cevap>$10$ dakika sonra.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
 ## Sık Yapılan Hatalar
 
 - **Üsleri ters almak:** EBOB'da ortak çarpanların **en büyük** üssünü, EKOK'ta **en küçük** üssünü almak. Doğrusu tersidir: EBOB'da **en küçük**, EKOK'ta **en büyük** üs.

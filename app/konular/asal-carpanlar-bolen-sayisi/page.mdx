@@ -200,6 +200,194 @@ $6$'yı, her biri "üs $+1$" olacak şekilde çarpan değerlerine ayır: $6=6\cd
 
 </Ornek>
 
+## Çözümlü Sorular
+
+<Ornek>
+
+<Soru>
+
+$600$ sayısının kaç tane pozitif böleni vardır?
+
+</Soru>
+
+<Cozum>
+
+1. Asal çarpanlarına ayır: $600=8\cdot 75=2^{3}\cdot 3\cdot 5^{2}$.
+
+2. Üsler $3,1,2$; her birine $1$ ekle: $4,2,3$.
+
+3. Çarp: $(3+1)(1+1)(2+1)=4\cdot 2\cdot 3=24$.
+
+<Cevap>$600$'ün $24$ pozitif böleni vardır.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$N=2^{4}\cdot 5^{a}$ sayısının $20$ tane pozitif böleni olduğuna göre $a$ kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. Bölen sayısı formülü: $(4+1)(a+1)=5\cdot(a+1)$.
+
+2. Bu sayı $20$'ye eşit: $5\cdot(a+1)=20$.
+
+3. Her iki tarafı $5$'e böl: $a+1=4$.
+
+4. Buradan $a=3$.
+
+<Cevap>$a=3$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$2^{4}\cdot 3^{3}\cdot 5$ sayısının kaç böleni $2$ ile bölünmez (tek bölendir)?
+
+</Soru>
+
+<Ipucu>
+
+Tek bölenlerde $2$'nin üssü mecburen $0$'dır; geriye kalan asalların üslerini serbestçe seç.
+
+</Ipucu>
+
+<Cozum>
+
+1. Bir bölenin tek olması için $2$'nin üssü $0$ olmalıdır; yani $2$'yi hiç almayız.
+
+2. Geriye $3^{3}\cdot 5$ kısmı kalır; bunun bölen sayısı tek bölenlerin sayısını verir.
+
+3. Üsler $3$ ve $1$; çarp: $(3+1)(1+1)=4\cdot 2=8$.
+
+<Cevap>$8$ tane tek böleni vardır.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+İki basamaklı sayılar içinde pozitif bölen sayısı en fazla olan sayı kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+Küçük asalların düşük üslerini çarparak $100$'ün altında kalan en çok bölenli sayıyı ara.
+
+</Ipucu>
+
+<Cozum>
+
+1. Çok bölen için küçük asalları kullan: $2,3,5$.
+
+2. $96=2^{5}\cdot 3$ için $(5+1)(1+1)=12$ bölen.
+
+3. $72=2^{3}\cdot 3^{2}$ için $(3+1)(2+1)=12$ bölen; $60=2^{2}\cdot 3\cdot 5$ için $(2+1)(1+1)(1+1)=12$ bölen.
+
+4. Bu üç sayı da $12$ ile en yüksektir; başka iki basamaklı sayı $12$'yi geçemez. En küçüğü $60$'tır.
+
+<Cevap>En fazla bölen sayısı $12$'dir; bunu $60$, $72$, $90$ ve $96$ sağlar.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$120$ sayısının kaç tane böleni bir tam karedir?
+
+</Soru>
+
+<Ipucu>
+
+Tam kare bölenlerde her asalın üssü çift olmalıdır; her asal için seçilebilecek çift üs sayısını çarp.
+
+</Ipucu>
+
+<Cozum>
+
+1. Asal çarpanlarına ayır: $120=2^{3}\cdot 3\cdot 5$.
+
+2. Bölenin tam kare olması için her asalın üssü çift seçilmelidir. $2$'nin üssü $0$ veya $2$ olabilir (2 seçenek).
+
+3. $3$'ün üssü yalnız $0$ olabilir (üst sınır $1$, tek çift değer), $5$ için de yalnız $0$ olabilir (birer seçenek).
+
+4. Çarp: $2\cdot 1\cdot 1=2$. Bu bölenler $2^{0}=1$ ve $2^{2}=4$'tür.
+
+<Cevap>$120$'nin $2$ tane tam kare böleni vardır ($1$ ve $4$).</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Tam kare olan ve tam olarak $9$ pozitif böleni bulunan en küçük doğal sayı kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+$9$'u tek çarpanlarına ayır: $9=9\cdot 1$ ve $9=3\cdot 3$. En küçük değer için küçük asalları yüksek üsse ver.
+
+</Ipucu>
+
+<Cozum>
+
+1. Bölen sayısı $(a+1)(b+1)\cdots=9$ olmalı. $9$'u çarpanlarına ayır: $9=9$ ve $9=3\cdot 3$.
+
+2. **Birinci durum** $9=9$: tek asal, $a+1=9\Rightarrow a=8$. En küçük yapı $2^{8}=256$.
+
+3. **İkinci durum** $9=3\cdot 3$: iki asal, üsler $2$ ve $2$. En küçük için küçük asalları kullan: $2^{2}\cdot 3^{2}=4\cdot 9=36$.
+
+4. İki aday $256$ ve $36$; küçüğü $36$'dır. $36=6^{2}$ tam karedir ve bölen sayısı $(2+1)(2+1)=9$.
+
+<Cevap>En küçük sayı $36$'dır.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$x$ ve $y$ farklı asal sayılar olmak üzere $x^{2}\cdot y^{4}$ biçimindeki bir sayının pozitif bölen sayısı kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. Üsler $2$ ve $4$'tür.
+
+2. Her üse $1$ ekle: $3$ ve $5$.
+
+3. Çarp: $(2+1)(4+1)=3\cdot 5=15$.
+
+<Cevap>$15$ pozitif bölen vardır.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
 ## Sık Yapılan Hatalar
 
 - **Üsleri doğrudan çarpmak.** Bölen sayısı üslerin çarpımı değildir; her üse **önce $1$ eklenir**, sonra çarpılır. $2^{3}\cdot 3^{2}$ için cevap $3\cdot 2=6$ değil, $(3+1)(2+1)=12$'dir.

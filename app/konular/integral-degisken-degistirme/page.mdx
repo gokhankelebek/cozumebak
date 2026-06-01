@@ -190,6 +190,186 @@ $\displaystyle\int x\,(x^{2}-5)^{4}\,dx$ integralini hesaplayınız.
 
 </Ornek>
 
+## Çözümlü Sorular
+
+<Ornek>
+
+<Soru>
+
+$\displaystyle\int (3x-2)^{4}\,dx$ integralini hesaplayınız.
+
+</Soru>
+
+<Cozum>
+
+1. İç fonksiyon doğrusal: $u=3x-2$.
+2. Diferansiyeli al: $du=3\,dx \Rightarrow dx=\dfrac{1}{3}\,du$.
+3. $u$ cinsinden yaz: $\displaystyle\int u^{4}\cdot\dfrac{1}{3}\,du=\dfrac{1}{3}\int u^{4}\,du$.
+4. İntegre et: $\dfrac{1}{3}\cdot\dfrac{u^{5}}{5}+c=\dfrac{u^{5}}{15}+c$.
+5. Geri koy: $\dfrac{(3x-2)^{5}}{15}+c$.
+
+<Cevap>$\dfrac{(3x-2)^{5}}{15}+c$. (Türevi: $\dfrac{5(3x-2)^{4}\cdot 3}{15}=(3x-2)^{4}$ ✓)</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\displaystyle\int \dfrac{2x}{x^{2}+4}\,dx$ integralini hesaplayınız.
+
+</Soru>
+
+<Cozum>
+
+1. Değişken seç: $u=x^{2}+4$.
+2. Diferansiyeli al: $du=2x\,dx$. Paydaki $2x\,dx$ aynen var.
+3. $u$ cinsinden yaz: $\displaystyle\int \dfrac{1}{u}\,du$.
+4. İntegre et: $\ln|u|+c$.
+5. Geri koy: $\ln(x^{2}+4)+c$ (payda her zaman pozitif olduğu için mutlak değer açıldı).
+
+<Cevap>$\ln(x^{2}+4)+c$. (Türevi: $\dfrac{2x}{x^{2}+4}$ ✓)</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\displaystyle\int e^{5x}\,dx$ integralini hesaplayınız.
+
+</Soru>
+
+<Cozum>
+
+1. İç fonksiyon doğrusal: $u=5x$.
+2. Diferansiyeli al: $du=5\,dx \Rightarrow dx=\dfrac{1}{5}\,du$.
+3. $u$ cinsinden yaz: $\displaystyle\int e^{u}\cdot\dfrac{1}{5}\,du=\dfrac{1}{5}\int e^{u}\,du$.
+4. İntegre et: $\dfrac{1}{5}e^{u}+c$.
+5. Geri koy: $\dfrac{1}{5}e^{5x}+c$.
+
+<Cevap>$\dfrac{1}{5}e^{5x}+c$. (Türevi: $\dfrac{1}{5}e^{5x}\cdot 5=e^{5x}$ ✓)</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\displaystyle\int \dfrac{\ln x}{x}\,dx$ integralini hesaplayınız.
+
+</Soru>
+
+<Ipucu>
+
+$\ln x$'in türevi $\dfrac{1}{x}$ ve o da integrandda $\dfrac{1}{x}\,dx$ olarak duruyor.
+
+</Ipucu>
+
+<Cozum>
+
+1. Değişken seç: $u=\ln x$.
+2. Diferansiyeli al: $du=\dfrac{1}{x}\,dx$. İntegranddaki $\dfrac{1}{x}\,dx$ tam olarak budur.
+3. $u$ cinsinden yaz: $\displaystyle\int u\,du$.
+4. İntegre et: $\dfrac{u^{2}}{2}+c$.
+5. Geri koy: $\dfrac{(\ln x)^{2}}{2}+c$.
+
+<Cevap>$\dfrac{(\ln x)^{2}}{2}+c$. (Türevi: $\dfrac{2\ln x}{2}\cdot\dfrac{1}{x}=\dfrac{\ln x}{x}$ ✓)</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\displaystyle\int x^{2}\sqrt{x^{3}+1}\,dx$ integralini hesaplayınız.
+
+</Soru>
+
+<Ipucu>
+
+Kök içindeki $x^{3}+1$ ifadesinin türevi $3x^{2}$; integranddaki $x^{2}$ ile yalnızca $3$ kat farkı var.
+
+</Ipucu>
+
+<Cozum>
+
+1. Değişken seç: $u=x^{3}+1$.
+2. Diferansiyeli al: $du=3x^{2}\,dx \Rightarrow x^{2}\,dx=\dfrac{1}{3}\,du$.
+3. $u$ cinsinden yaz: $\displaystyle\int \sqrt{u}\cdot\dfrac{1}{3}\,du=\dfrac{1}{3}\int u^{1/2}\,du$.
+4. İntegre et: $\dfrac{1}{3}\cdot\dfrac{u^{3/2}}{3/2}+c=\dfrac{2}{9}u^{3/2}+c$.
+5. Geri koy: $\dfrac{2}{9}(x^{3}+1)^{3/2}+c$.
+
+<Cevap>$\dfrac{2}{9}(x^{3}+1)\sqrt{x^{3}+1}+c$. (Türevi: $\dfrac{2}{9}\cdot\dfrac{3}{2}(x^{3}+1)^{1/2}\cdot 3x^{2}=x^{2}\sqrt{x^{3}+1}$ ✓)</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\displaystyle\int \dfrac{\cos x}{\sin^{2}x}\,dx$ integralini hesaplayınız.
+
+</Soru>
+
+<Ipucu>
+
+$\sin^{2}x=(\sin x)^{2}$ olarak oku. $\sin x$'in türevi $\cos x$ ve o da payda duruyor.
+
+</Ipucu>
+
+<Cozum>
+
+1. Değişken seç: $u=\sin x$.
+2. Diferansiyeli al: $du=\cos x\,dx$. Paydaki $\cos x\,dx$ tam olarak budur.
+3. $u$ cinsinden yaz: $\displaystyle\int \dfrac{1}{u^{2}}\,du=\int u^{-2}\,du$.
+4. İntegre et: $\dfrac{u^{-1}}{-1}+c=-\dfrac{1}{u}+c$.
+5. Geri koy: $-\dfrac{1}{\sin x}+c$.
+
+<Cevap>$-\dfrac{1}{\sin x}+c$. (Türevi: $-\big(-\sin^{-2}x\big)\cos x=\dfrac{\cos x}{\sin^{2}x}$ ✓)</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\displaystyle\int_{0}^{1} x\,(x^{2}+1)^{3}\,dx$ belirli integralini hesaplayınız.
+
+</Soru>
+
+<Ipucu>
+
+İç fonksiyon $x^{2}+1$, türevi $2x$. Değişkenle birlikte sınırları da $u$ cinsine çevir.
+
+</Ipucu>
+
+<Cozum>
+
+1. Değişken seç: $u=x^{2}+1$, böylece $du=2x\,dx \Rightarrow x\,dx=\dfrac{1}{2}\,du$.
+2. Sınırları çevir: $x=0$ için $u=1$, $x=1$ için $u=2$.
+3. $u$ cinsinden yaz: $\displaystyle\dfrac{1}{2}\int_{1}^{2} u^{3}\,du$.
+4. İntegre et: $\dfrac{1}{2}\cdot\dfrac{u^{4}}{4}\Big|_{1}^{2}=\dfrac{1}{8}\big(2^{4}-1^{4}\big)$.
+5. Hesapla: $\dfrac{1}{8}(16-1)=\dfrac{15}{8}$.
+
+<Cevap>$\dfrac{15}{8}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
 ## Sık Yapılan Hatalar
 
 - **$du$ çarpanını gözden kaçırmak:** Düz yerine koyma ancak integrandda $g'(x)$ (en azından sabit kat farkıyla) varsa çalışır. Örneğin $\displaystyle\int (x^{2}+1)^{3}\,dx$ integralinde $2x$ çarpanı **yoktur**; burada $u=x^{2}+1$ koymak işe yaramaz, çünkü $x\,dx$'i $du$ ile temsil edemeyiz.

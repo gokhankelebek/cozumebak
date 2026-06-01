@@ -193,6 +193,168 @@ Paydayı sıfır yapan değer payı da sıfır yapıyorsa önce sadeleştir.
 
 </Ornek>
 
+## Çözümlü Sorular
+
+<Ornek>
+
+<Soru>
+
+$\lim\limits_{x\to\infty}\dfrac{5x^{2}-3x+7}{2x^{2}+x-1}$ limitini hesaplayınız.
+
+</Soru>
+
+<Cozum>
+
+1. Pay ve payda dereceleri eşittir ($n=m=2$); belirsizlik $\frac{\infty}{\infty}$.
+
+2. Derece kuralına göre limit baş katsayıların oranıdır: $\dfrac{5}{2}$.
+
+<Cevap>$\lim\limits_{x\to\infty}\dfrac{5x^{2}-3x+7}{2x^{2}+x-1}=\dfrac{5}{2}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\lim\limits_{x\to-\infty}\dfrac{4x^{3}+2x}{1-x^{3}}$ limitini hesaplayınız.
+
+</Soru>
+
+<Cozum>
+
+1. Pay ve payda dereceleri eşittir ($n=m=3$); belirsizlik $\frac{\infty}{\infty}$.
+
+2. Pay baş katsayısı $4$, payda baş katsayısı $-1$.
+
+3. Limit baş katsayıların oranıdır: $\dfrac{4}{-1}=-4$.
+
+<Cevap>$\lim\limits_{x\to-\infty}\dfrac{4x^{3}+2x}{1-x^{3}}=-4$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=\dfrac{x^{2}+3}{x^{2}-x-6}$ fonksiyonunun düşey asimptotlarını bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Paydayı çarpanlara ayır: $x^{2}-x-6=(x-3)(x+2)$.
+
+2. Paydayı sıfır yapan değerler $x=3$ ve $x=-2$'dir.
+
+3. Bu değerler payı ($x^{2}+3$) sıfır yapmaz: $3^{2}+3=12\neq 0$ ve $(-2)^{2}+3=7\neq 0$.
+
+4. Sadeleşme olmadığından her iki değer de düşey asimptottur.
+
+<Cevap>Düşey asimptotlar $x=3$ ve $x=-2$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\lim\limits_{x\to\infty}\left(\sqrt{x^{2}+x}-x\right)$ limitini hesaplayınız.
+
+</Soru>
+
+<Cozum>
+
+1. $\infty-\infty$ belirsizliği var; eşleniği ile çarpıp böl: $\sqrt{x^{2}+x}+x$.
+
+2. $\sqrt{x^{2}+x}-x=\dfrac{(x^{2}+x)-x^{2}}{\sqrt{x^{2}+x}+x}=\dfrac{x}{\sqrt{x^{2}+x}+x}$.
+
+3. Pay ve paydayı $x$'e böl; payda $\sqrt{1+\frac{1}{x}}+1$ olur.
+
+4. $x\to\infty$ iken $\dfrac{1}{x}\to 0$, payda $\sqrt{1}+1=2$'ye gider, ifade $\dfrac{1}{2}$ olur.
+
+<Cevap>$\lim\limits_{x\to\infty}\left(\sqrt{x^{2}+x}-x\right)=\dfrac{1}{2}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\lim\limits_{x\to\infty}\dfrac{3^{x}+2^{x}}{3^{x}-1}$ limitini hesaplayınız.
+
+</Soru>
+
+<Cozum>
+
+1. Pay ve paydayı $3^{x}$ ile sadeleştirmek için her terimi $3^{x}$'e böl.
+
+2. Pay: $1+\left(\dfrac{2}{3}\right)^{x}$, payda: $1-\dfrac{1}{3^{x}}$.
+
+3. $x\to\infty$ iken $\left(\dfrac{2}{3}\right)^{x}\to 0$ ve $\dfrac{1}{3^{x}}\to 0$.
+
+4. İfade $\dfrac{1+0}{1-0}=1$'e gider.
+
+<Cevap>$\lim\limits_{x\to\infty}\dfrac{3^{x}+2^{x}}{3^{x}-1}=1$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=\dfrac{2x+5}{x-1}$ fonksiyonu için $\lim\limits_{x\to 1^{+}}f(x)$ ve $\lim\limits_{x\to 1^{-}}f(x)$ limitlerini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $x\to 1$ iken pay $2\cdot 1+5=7$ pozitif sabite yaklaşır; sonucun işaretini payda belirler.
+
+2. **Sağdan ($x\to 1^{+}$):** $x-1$ küçük **pozitif** sayıdır, pozitif pay bölü pozitif küçük sayı $+\infty$'a gider.
+
+3. **Soldan ($x\to 1^{-}$):** $x-1$ küçük **negatif** sayıdır, pozitif pay bölü negatif küçük sayı $-\infty$'a gider.
+
+<Cevap>$\lim\limits_{x\to 1^{+}}f(x)=+\infty,\quad \lim\limits_{x\to 1^{-}}f(x)=-\infty$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=\dfrac{(x-1)(x+4)}{x^{2}-1}$ fonksiyonunun düşey ve yatay asimptotlarını bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Paydayı çarpanlara ayır: $x^{2}-1=(x-1)(x+1)$.
+
+2. Pay ve paydadaki ortak $(x-1)$ çarpanını sadeleştir: $f(x)=\dfrac{x+4}{x+1}$ (burada $x\neq 1$).
+
+3. **Düşey asimptot:** Sadeleşmiş paydayı sıfır yapan $x=-1$; payı sıfır yapmaz ($-1+4=3\neq 0$), düşey asimptottur. $x=1$ ise sadeleştiği için asimptot değil, deliktir.
+
+4. **Yatay asimptot:** Sadeleşmiş ifadede dereceler eşit ($n=m=1$), baş katsayı oranı $\dfrac{1}{1}=1$, yani $y=1$.
+
+<Cevap>Düşey asimptot $x=-1$, yatay asimptot $y=1$; $x=1$ noktası deliktir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
 ## Sık Yapılan Hatalar
 
 - **Derece kuralını ters uygulamak:** Pay derecesi büyükse ($n > m$) limit $\pm\infty$'dur, $0$ değil; pay derecesi küçükse ($n < m$) limit $0$'dır, $\infty$ değil.

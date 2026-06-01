@@ -180,6 +180,163 @@ $\big(\ln u\big)'=\dfrac{u'}{u}$ formülünde $u=\cos x$ al; sonra $\dfrac{\sin 
 
 </Ornek>
 
+## Çözümlü Sorular
+
+<Ornek>
+
+<Soru>
+
+$f(x)=\cos(5x)$ ise $f'(x)$ nedir?
+
+</Soru>
+
+<Cozum>
+
+1. $\big(\cos u\big)'=-u'\sin u$ formülünde $u=5x$.
+2. İç türev: $u'=5$.
+3. Yerine koy: $f'(x)=-5\sin(5x)$.
+
+<Cevap>$f'(x)=-5\sin(5x)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$y=e^{x^{2}}$ fonksiyonunun türevini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $\big(e^{u}\big)'=u'e^{u}$ formülünde $u=x^{2}$.
+2. İç türev: $u'=2x$.
+3. Yerine koy: $y'=2x\,e^{x^{2}}$.
+
+<Cevap>$y'=2x\,e^{x^{2}}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=\sin x\cos x$ ise $f'(x)$ nedir?
+
+</Soru>
+
+<Cozum>
+
+1. Çarpım kuralı: $\big(fg\big)'=f'g+fg'$, $f=\sin x$, $g=\cos x$.
+2. Türevler: $f'=\cos x$, $g'=-\sin x$.
+3. Yerine koy: $f'(x)=\cos x\cos x+\sin x(-\sin x)=\cos^{2}x-\sin^{2}x$.
+4. $\cos^{2}x-\sin^{2}x=\cos(2x)$ özdeşliğiyle sadeleştir.
+
+<Cevap>$f'(x)=\cos^{2}x-\sin^{2}x=\cos(2x)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=x^{2}\ln x$ fonksiyonunun türevini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Çarpım kuralı: $f=x^{2}$, $g=\ln x$.
+2. Türevler: $f'=2x$, $g'=\dfrac{1}{x}$.
+3. Yerine koy: $f'(x)=2x\ln x+x^{2}\cdot\dfrac{1}{x}=2x\ln x+x$.
+4. Ortak $x$ parantezine al: $x(2\ln x+1)$.
+
+<Cevap>$f'(x)=2x\ln x+x=x(2\ln x+1)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=\dfrac{e^{x}}{x}$ fonksiyonunun türevini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Bölüm kuralı: $\left(\dfrac{u}{v}\right)'=\dfrac{u'v-uv'}{v^{2}}$, $u=e^{x}$, $v=x$.
+2. Türevler: $u'=e^{x}$, $v'=1$.
+3. Yerine koy: $f'(x)=\dfrac{e^{x}\cdot x-e^{x}\cdot 1}{x^{2}}=\dfrac{e^{x}(x-1)}{x^{2}}$.
+
+<Cevap>$f'(x)=\dfrac{e^{x}(x-1)}{x^{2}}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=\ln\!\big(x^{3}\sqrt{x+1}\big)$ ise $f'(x)$ nedir?
+
+</Soru>
+
+<Ipucu>
+
+Türev almadan önce logaritma özellikleriyle ifadeyi aç: $\ln(ab)=\ln a+\ln b$ ve $\ln a^{n}=n\ln a$.
+
+</Ipucu>
+
+<Cozum>
+
+1. Logaritmayı aç: $\ln\!\big(x^{3}\sqrt{x+1}\big)=3\ln x+\tfrac12\ln(x+1)$.
+2. $\big(3\ln x\big)'=\dfrac{3}{x}$.
+3. $\big(\tfrac12\ln(x+1)\big)'=\dfrac12\cdot\dfrac{1}{x+1}=\dfrac{1}{2(x+1)}$.
+4. Topla: $f'(x)=\dfrac{3}{x}+\dfrac{1}{2(x+1)}$.
+
+<Cevap>$f'(x)=\dfrac{3}{x}+\dfrac{1}{2(x+1)}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+(Zor) $f(x)=e^{\sin x}$ ise $f'\!\left(\dfrac{\pi}{2}\right)$ değerini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Önce zincir kuralıyla $f'(x)$'i bul, sonra $x=\dfrac{\pi}{2}$ yerine koy. $\sin\dfrac{\pi}{2}=1$, $\cos\dfrac{\pi}{2}=0$.
+
+</Ipucu>
+
+<Cozum>
+
+1. $\big(e^{u}\big)'=u'e^{u}$ formülünde $u=\sin x$, $u'=\cos x$.
+2. Türev: $f'(x)=\cos x\,e^{\sin x}$.
+3. $x=\dfrac{\pi}{2}$ koy: $f'\!\left(\dfrac{\pi}{2}\right)=\cos\dfrac{\pi}{2}\cdot e^{\sin(\pi/2)}=0\cdot e^{1}=0$.
+
+<Cevap>$f'\!\left(\dfrac{\pi}{2}\right)=0$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
 ## Sık Yapılan Hatalar
 
 - **$\big(\ln u\big)'$'i $\dfrac{1}{u}$ sanmak:** doğrusu $\dfrac{u'}{u}$'dur; iç türev $u'$ ile çarpılmalıdır. Örneğin $\big(\ln(x^{2}+1)\big)'=\dfrac{2x}{x^{2}+1}$, $\dfrac{1}{x^{2}+1}$ değil.

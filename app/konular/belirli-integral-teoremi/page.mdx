@@ -188,6 +188,172 @@ $u=x^{2}+1$ dönüşümünü yap. Değişkenle birlikte **sınırları da $u$ ci
 
 </Ornek>
 
+## Çözümlü Sorular
+
+<Ornek>
+
+<Soru>
+
+$\displaystyle\int_{1}^{4}\big(2x-1\big)\,dx$ integralini hesaplayınız.
+
+</Soru>
+
+<Cozum>
+
+1. Terim terim antiderivatif al: $2x\to x^{2}$, $\ -1\to -x$. Antiderivatif $x^{2}-x$.
+2. Newton–Leibniz: $\Big[x^{2}-x\Big]_{1}^{4}$.
+3. Üst sınır ($x=4$): $4^{2}-4=16-4=12$.
+4. Alt sınır ($x=1$): $1^{2}-1=0$.
+5. Farkı al: $12-0=12$.
+
+<Cevap>$\displaystyle\int_{1}^{4}\big(2x-1\big)\,dx=12$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\displaystyle\int_{0}^{9}\sqrt{x}\,dx$ integralini hesaplayınız.
+
+</Soru>
+
+<Ipucu>
+
+$\sqrt{x}=x^{1/2}$ olarak yaz; kuvvet kuralıyla antiderivatif al.
+
+</Ipucu>
+
+<Cozum>
+
+1. Üslü forma geç: $\sqrt{x}=x^{1/2}$.
+2. Antiderivatif: $\dfrac{x^{3/2}}{3/2}=\dfrac{2}{3}x^{3/2}$.
+3. Newton–Leibniz: $\Big[\dfrac{2}{3}x^{3/2}\Big]_{0}^{9}$.
+4. Sınırları yerine yaz: $\dfrac{2}{3}\cdot 9^{3/2}-\dfrac{2}{3}\cdot 0=\dfrac{2}{3}\cdot 27=18$.
+
+<Cevap>$\displaystyle\int_{0}^{9}\sqrt{x}\,dx=18$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\displaystyle\int_{-1}^{1}\big(x^{3}+x\big)\,dx$ integralini hesaplayınız.
+
+</Soru>
+
+<Cozum>
+
+1. Antiderivatifi bul: $x^{3}\to\dfrac{x^{4}}{4}$, $\ x\to\dfrac{x^{2}}{2}$. Antiderivatif $\dfrac{x^{4}}{4}+\dfrac{x^{2}}{2}$.
+2. Üst sınır ($x=1$): $\dfrac{1}{4}+\dfrac{1}{2}=\dfrac{3}{4}$.
+3. Alt sınır ($x=-1$): $\dfrac{(-1)^{4}}{4}+\dfrac{(-1)^{2}}{2}=\dfrac{1}{4}+\dfrac{1}{2}=\dfrac{3}{4}$.
+4. Farkı al: $\dfrac{3}{4}-\dfrac{3}{4}=0$. (İntegrand tek fonksiyon, simetrik aralıkta integrali sıfır.)
+
+<Cevap>$\displaystyle\int_{-1}^{1}\big(x^{3}+x\big)\,dx=0$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\displaystyle\int_{1}^{e}\dfrac{1}{x}\,dx$ integralini hesaplayınız.
+
+</Soru>
+
+<Cozum>
+
+1. $\dfrac{1}{x}$'in antiderivatifi $\ln x$'tir (çünkü $\frac{d}{dx}\ln x=\dfrac{1}{x}$).
+2. Newton–Leibniz: $\Big[\ln x\Big]_{1}^{e}$.
+3. Sınırları yerine yaz: $\ln e-\ln 1=1-0=1$.
+
+<Cevap>$\displaystyle\int_{1}^{e}\dfrac{1}{x}\,dx=1$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\displaystyle\int_{0}^{3} f(x)\,dx=7$ veriliyor. $\displaystyle\int_{0}^{3}\big(2f(x)+1\big)\,dx$ kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+Toplam–fark ve sabitle çarpım özelliklerini kullan; $\int_{0}^{3} 1\,dx$ aralık uzunluğudur.
+
+</Ipucu>
+
+<Cozum>
+
+1. İntegrali parçala: $\displaystyle\int_{0}^{3}\big(2f(x)+1\big)\,dx=2\int_{0}^{3} f(x)\,dx+\int_{0}^{3} 1\,dx$.
+2. İlk terim: $2\cdot 7=14$.
+3. İkinci terim: $\Big[x\Big]_{0}^{3}=3-0=3$.
+4. Topla: $14+3=17$.
+
+<Cevap>$\displaystyle\int_{0}^{3}\big(2f(x)+1\big)\,dx=17$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\displaystyle\int_{0}^{\pi}\sin x\,dx$ integralini hesaplayınız.
+
+</Soru>
+
+<Cozum>
+
+1. $\sin x$'in antiderivatifi $-\cos x$'tir (çünkü $\frac{d}{dx}(-\cos x)=\sin x$).
+2. Newton–Leibniz: $\Big[-\cos x\Big]_{0}^{\pi}$.
+3. Sınırları yerine yaz: $-\cos\pi-\big(-\cos 0\big)=-(-1)+1=1+1=2$.
+
+<Cevap>$\displaystyle\int_{0}^{\pi}\sin x\,dx=2$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\displaystyle\int_{2}^{3}\dfrac{2x}{x^{2}-1}\,dx$ integralini **değişken değiştirerek** hesaplayınız.
+
+</Soru>
+
+<Ipucu>
+
+$u=x^{2}-1$ al; payı tam $du$ verir. Sınırları $u$ cinsine çevir.
+
+</Ipucu>
+
+<Cozum>
+
+1. Dönüşümü seç: $u=x^{2}-1$. O zaman $du=2x\,dx$ olur ki bu tam paydaki ifadedir.
+2. **Sınırları güncelle:** $x=2\Rightarrow u=2^{2}-1=3$ ve $x=3\Rightarrow u=3^{2}-1=8$.
+3. İntegrali $u$ cinsine yaz: $\displaystyle\int_{2}^{3}\dfrac{2x}{x^{2}-1}\,dx=\int_{3}^{8}\dfrac{1}{u}\,du$.
+4. Antiderivatifi al ve değerlendir: $\Big[\ln u\Big]_{3}^{8}=\ln 8-\ln 3=\ln\dfrac{8}{3}$.
+
+<Cevap>$\displaystyle\int_{2}^{3}\dfrac{2x}{x^{2}-1}\,dx=\ln\dfrac{8}{3}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
 ## Sık Yapılan Hatalar
 
 - **Sırayı ters çevirmek:** $F(b)-F(a)$ yerine $F(a)-F(b)$ yazmak. Sonuç ters işaretli çıkar. Daima **üst sınır eksi alt sınır**.

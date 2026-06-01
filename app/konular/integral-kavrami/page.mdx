@@ -191,6 +191,178 @@ Bölme hâlindeki ifadeyi doğrudan integralleyemezsin. Önce payı paydaya **te
 
 </Ornek>
 
+## Çözümlü Sorular
+
+<Ornek>
+
+<Soru>
+
+$\displaystyle\int (x-2)(x+3)\,dx$ integralini hesaplayınız.
+
+</Soru>
+
+<Cozum>
+
+1. Çarpımı önce aç: $(x-2)(x+3)=x^{2}+x-6$.
+
+2. Terim terim integralle: $\displaystyle\int x^{2}\,dx+\int x\,dx-\int 6\,dx$.
+
+3. Kuvvet kuralını uygula: $\dfrac{x^{3}}{3}+\dfrac{x^{2}}{2}-6x+c$.
+
+4. Kontrol: $\left(\dfrac{x^{3}}{3}+\dfrac{x^{2}}{2}-6x\right)'=x^{2}+x-6$. İntegrand'a eşit.
+
+<Cevap>$\displaystyle\int (x-2)(x+3)\,dx=\dfrac{x^{3}}{3}+\dfrac{x^{2}}{2}-6x+c$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\displaystyle\int \left(\dfrac{4}{x}+3e^{x}\right)\,dx$ integralini hesaplayınız.
+
+</Soru>
+
+<Cozum>
+
+1. Doğrusallık ile ayır: $\displaystyle 4\int \dfrac{1}{x}\,dx+3\int e^{x}\,dx$.
+
+2. $n=-1$ istisnası ve üstel kuralı uygula: $4\ln\lvert x\rvert+3e^{x}$.
+
+3. Tek bir $c$ ekle: $4\ln\lvert x\rvert+3e^{x}+c$.
+
+4. Kontrol: $\big(4\ln\lvert x\rvert+3e^{x}\big)'=\dfrac{4}{x}+3e^{x}$. İntegrand'a eşit.
+
+<Cevap>$\displaystyle\int \left(\dfrac{4}{x}+3e^{x}\right)\,dx=4\ln\lvert x\rvert+3e^{x}+c$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\displaystyle\int \sqrt[3]{x}\,dx$ integralini hesaplayınız.
+
+</Soru>
+
+<Cozum>
+
+1. Kökü üslü forma çevir: $\sqrt[3]{x}=x^{1/3}$, yani $n=\dfrac{1}{3}$.
+
+2. Kuvvet kuralını uygula: $\dfrac{x^{4/3}}{4/3}=\dfrac{3}{4}x^{4/3}$.
+
+3. Sabiti ekle: $\dfrac{3}{4}x^{4/3}+c$.
+
+4. Kontrol: $\left(\dfrac{3}{4}x^{4/3}\right)'=\dfrac{3}{4}\cdot\dfrac{4}{3}x^{1/3}=x^{1/3}=\sqrt[3]{x}$. Doğru.
+
+<Cevap>$\displaystyle\int \sqrt[3]{x}\,dx=\dfrac{3}{4}x^{4/3}+c$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\displaystyle\int \left(\dfrac{3}{\cos^{2}x}-\sin x\right)\,dx$ integralini hesaplayınız.
+
+</Soru>
+
+<Cozum>
+
+1. Doğrusallık ile ayır: $\displaystyle 3\int \dfrac{1}{\cos^{2}x}\,dx-\int \sin x\,dx$.
+
+2. Temel kuralları uygula: $\displaystyle\int \dfrac{1}{\cos^{2}x}\,dx=\tan x$ ve $\displaystyle\int \sin x\,dx=-\cos x$.
+
+3. Yerine yaz: $3\tan x-(-\cos x)=3\tan x+\cos x+c$.
+
+4. Kontrol: $\big(3\tan x+\cos x\big)'=\dfrac{3}{\cos^{2}x}-\sin x$. İntegrand'a eşit.
+
+<Cevap>$\displaystyle\int \left(\dfrac{3}{\cos^{2}x}-\sin x\right)\,dx=3\tan x+\cos x+c$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\displaystyle\int \dfrac{x^{3}-x}{x^{2}}\,dx$ integralini hesaplayınız.
+
+</Soru>
+
+<Cozum>
+
+1. Payı paydaya terim terim böl: $\dfrac{x^{3}-x}{x^{2}}=\dfrac{x^{3}}{x^{2}}-\dfrac{x}{x^{2}}=x-\dfrac{1}{x}$.
+
+2. İntegrali ayır: $\displaystyle\int x\,dx-\int \dfrac{1}{x}\,dx$.
+
+3. Kuralları uygula: $\dfrac{x^{2}}{2}-\ln\lvert x\rvert+c$.
+
+4. Kontrol: $\left(\dfrac{x^{2}}{2}-\ln\lvert x\rvert\right)'=x-\dfrac{1}{x}=\dfrac{x^{3}-x}{x^{2}}$. Doğru.
+
+<Cevap>$\displaystyle\int \dfrac{x^{3}-x}{x^{2}}\,dx=\dfrac{x^{2}}{2}-\ln\lvert x\rvert+c$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f'(x)=6x^{2}+2$ ve $f(0)=5$ olduğuna göre $f(2)$ değerini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Türevin integralini al: $\displaystyle f(x)=\int (6x^{2}+2)\,dx=2x^{3}+2x+c$.
+
+2. Başlangıç koşulunu kullan: $f(0)=2\cdot 0+2\cdot 0+c=c=5$, yani $c=5$.
+
+3. Fonksiyonu yaz: $f(x)=2x^{3}+2x+5$.
+
+4. İstenen değeri hesapla: $f(2)=2\cdot 8+2\cdot 2+5=16+4+5=25$.
+
+<Cevap>$f(2)=25$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\displaystyle\int \dfrac{(x+1)^{2}}{x}\,dx$ integralini hesaplayınız.
+
+</Soru>
+
+<Cozum>
+
+1. Payı aç: $(x+1)^{2}=x^{2}+2x+1$.
+
+2. Paydaya terim terim böl: $\dfrac{x^{2}+2x+1}{x}=x+2+\dfrac{1}{x}$.
+
+3. İntegrali ayır: $\displaystyle\int x\,dx+\int 2\,dx+\int \dfrac{1}{x}\,dx$.
+
+4. Kuralları uygula: $\dfrac{x^{2}}{2}+2x+\ln\lvert x\rvert+c$.
+
+5. Kontrol: $\left(\dfrac{x^{2}}{2}+2x+\ln\lvert x\rvert\right)'=x+2+\dfrac{1}{x}=\dfrac{(x+1)^{2}}{x}$. Doğru.
+
+<Cevap>$\displaystyle\int \dfrac{(x+1)^{2}}{x}\,dx=\dfrac{x^{2}}{2}+2x+\ln\lvert x\rvert+c$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
 ## Sık Yapılan Hatalar
 
 - **İntegral sabiti $+c$'yi unutmak.** Belirsiz integralin cevabı bir fonksiyon ailesidir; $+c$ olmadan eksik sayılır.

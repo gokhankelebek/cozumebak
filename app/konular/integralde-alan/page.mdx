@@ -170,6 +170,152 @@ Kesişimleri $2-x^{2}=x^{2}$ denkleminden bul. Tepe noktası daha yüksek olan p
 
 </Ornek>
 
+## Çözümlü Sorular
+
+<Ornek>
+
+<Soru>
+
+$y=2x$ doğrusu ile $y=x^{2}$ parabolü arasında kalan alanı bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Kesişimler: $x^{2}=2x\Rightarrow x^{2}-2x=0\Rightarrow x(x-2)=0\Rightarrow x=0,\ x=2$.
+2. Üst-alt: $x=1$ için $2x=2$, $x^{2}=1$; doğru üstte.
+3. $\displaystyle A=\int_{0}^{2}\big(2x-x^{2}\big)\,dx=\Big[x^{2}-\dfrac{x^{3}}{3}\Big]_{0}^{2}=4-\dfrac{8}{3}=\dfrac{4}{3}$.
+
+<Cevap>$A=\dfrac{4}{3}$ birimkare.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$y=x^{2}-4$ eğrisi ile $x$-ekseni arasında, $x=0$ ile $x=3$ arasında kalan alanı bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Eğri $x=2$'de ekseni kesiyor: $[0,2]$ üzerinde $x^{2}-4\le 0$, $[2,3]$ üzerinde $x^{2}-4\ge 0$. Bölgeyi ayır.
+2. $\displaystyle\int_{0}^{2}\big(x^{2}-4\big)\,dx=\Big[\dfrac{x^{3}}{3}-4x\Big]_{0}^{2}=\dfrac{8}{3}-8=-\dfrac{16}{3}$, mutlak değeri $\dfrac{16}{3}$.
+3. $\displaystyle\int_{2}^{3}\big(x^{2}-4\big)\,dx=\Big[\dfrac{x^{3}}{3}-4x\Big]_{2}^{3}=(9-12)-\Big(\dfrac{8}{3}-8\Big)=-3+\dfrac{16}{3}=\dfrac{7}{3}$.
+4. Topla: $A=\dfrac{16}{3}+\dfrac{7}{3}=\dfrac{23}{3}$.
+
+<Cevap>$A=\dfrac{23}{3}$ birimkare.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$y=\sqrt{x}$ eğrisi ile $y=x$ doğrusu arasında kalan alanı bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Kesişimler: $\sqrt{x}=x\Rightarrow x=x^{2}\Rightarrow x(x-1)=0\Rightarrow x=0,\ x=1$.
+2. Üst-alt: $x=\dfrac{1}{4}$ için $\sqrt{x}=\dfrac{1}{2}$, $x=\dfrac{1}{4}$; $\sqrt{x}$ üstte.
+3. $\displaystyle A=\int_{0}^{1}\big(\sqrt{x}-x\big)\,dx=\Big[\dfrac{2}{3}x^{3/2}-\dfrac{x^{2}}{2}\Big]_{0}^{1}=\dfrac{2}{3}-\dfrac{1}{2}=\dfrac{1}{6}$.
+
+<Cevap>$A=\dfrac{1}{6}$ birimkare.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$y=\sin x$ eğrisi ile $x$-ekseni arasında, $x=0$ ile $x=\pi$ arasında kalan alanı bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $[0,\pi]$ üzerinde $\sin x\ge 0$ olduğundan alan doğrudan integraldir.
+2. $\displaystyle A=\int_{0}^{\pi}\sin x\,dx=\big[-\cos x\big]_{0}^{\pi}$.
+3. Sınırları yerine yaz: $A=-\cos\pi-(-\cos 0)=-(-1)+1=2$.
+
+<Cevap>$A=2$ birimkare.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$y=6-x^{2}$ parabolü ile $y=x$ doğrusu arasında kalan alanı bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Kesişimler: $6-x^{2}=x\Rightarrow x^{2}+x-6=0\Rightarrow (x+3)(x-2)=0\Rightarrow x=-3,\ x=2$.
+2. Üst-alt: $x=0$ için $6-x^{2}=6$, $y=x=0$; parabol üstte.
+3. $\displaystyle A=\int_{-3}^{2}\big((6-x^{2})-x\big)\,dx=\Big[6x-\dfrac{x^{3}}{3}-\dfrac{x^{2}}{2}\Big]_{-3}^{2}$.
+4. Üst sınır: $12-\dfrac{8}{3}-2=\dfrac{22}{3}$. Alt sınır: $-18+9-\dfrac{9}{2}=-\dfrac{27}{2}$.
+5. Fark: $A=\dfrac{22}{3}-\Big(-\dfrac{27}{2}\Big)=\dfrac{44}{6}+\dfrac{81}{6}=\dfrac{125}{6}$.
+
+<Cevap>$A=\dfrac{125}{6}$ birimkare.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$y=\dfrac{1}{x^{2}}$ eğrisi, $x$-ekseni ve $x=1$ ile $x=3$ doğruları arasında kalan alanı bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $[1,3]$ üzerinde $\dfrac{1}{x^{2}}\ge 0$ olduğundan alan doğrudan integraldir.
+2. $\displaystyle A=\int_{1}^{3}x^{-2}\,dx=\Big[-\dfrac{1}{x}\Big]_{1}^{3}$.
+3. Sınırları yerine yaz: $A=-\dfrac{1}{3}-\Big(-1\Big)=1-\dfrac{1}{3}=\dfrac{2}{3}$.
+
+<Cevap>$A=\dfrac{2}{3}$ birimkare.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$y=x^{2}-2x$ parabolü ile $x$-ekseni arasında kalan alanı bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Kökler: $x^{2}-2x=0\Rightarrow x(x-2)=0\Rightarrow x=0,\ x=2$. Sınırlar $0$ ile $2$.
+2. $[0,2]$ üzerinde, örneğin $x=1$ için $1-2=-1<0$; bölge eksenin altında, integral negatif çıkar.
+3. $\displaystyle\int_{0}^{2}\big(x^{2}-2x\big)\,dx=\Big[\dfrac{x^{3}}{3}-x^{2}\Big]_{0}^{2}=\dfrac{8}{3}-4=-\dfrac{4}{3}$.
+4. Alan mutlak değerdir: $A=\dfrac{4}{3}$.
+
+<Cevap>$A=\dfrac{4}{3}$ birimkare.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
 ## Sık Yapılan Hatalar
 
 - **Eksen altı bölgede negatif integrali alan sanmak.** $f(x)\le 0$ ise integral negatif çıkar; alan onun mutlak değeridir. Eğri ekseni kesiyorsa kökten ayırıp her parçanın mutlak değerini topla — aksi hâlde bölgeler birbirini götürür (Örnek 3'teki gibi net integral $0$ olabilir).

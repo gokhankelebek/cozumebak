@@ -152,6 +152,133 @@ $$\frac{d}{dx}D^{2}=2x+2(x^{2}-3)\cdot 2x=2x+4x(x^{2}-3)=2x\big[1+2(x^{2}-3)\big
 
 </Ornek>
 
+## Çözümlü Sorular
+
+<Ornek>
+
+<Soru>
+
+Toplamları $20$ olan iki pozitif sayının çarpımı en çok kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. Sayılar $x$ ve $20-x$ olsun, $0 < x < 20$. Çarpım $P(x)=x(20-x)=20x-x^{2}$.
+2. $P'(x)=20-2x=0 \Rightarrow x=10$.
+3. $P''(x)=-2 < 0$ olduğundan $x=10$ maksimumdur. $P(10)=10\cdot 10=100$.
+
+<Cevap>En büyük çarpım $100$ (sayılar $10$ ve $10$).</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir çiftçi, bir kenarı düz bir duvara dayanan dikdörtgen bir tarlayı çevirmek için $60\,\text{m}$ tel kullanacaktır. Duvar tarafına tel çekilmeyeceğine göre çevrilebilecek en büyük alan kaç $\text{m}^{2}$'dir?
+
+</Soru>
+
+<Cozum>
+
+1. Duvara dik iki kenar $x$, duvara paralel kenar $y$ olsun. Tel yalnız üç kenara çekilir: $2x+y=60 \Rightarrow y=60-2x$.
+2. Alan $A(x)=x\,y=x(60-2x)=60x-2x^{2}$, tanım aralığı $0 < x < 30$.
+3. $A'(x)=60-4x=0 \Rightarrow x=15$, dolayısıyla $y=60-30=30$.
+4. $A''(x)=-4 < 0$ olduğundan maksimumdur. $A=15\cdot 30=450$.
+
+<Cevap>En büyük alan $450\,\text{m}^{2}$ ($x=15\,\text{m}$, $y=30\,\text{m}$).</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=x^{3}-3x^{2}-9x+5$ fonksiyonunun $[0,\,4]$ kapalı aralığındaki en küçük değeri kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. $f'(x)=3x^{2}-6x-9=3(x^{2}-2x-3)=3(x-3)(x+1)=0 \Rightarrow x=3$ veya $x=-1$.
+2. $x=-1$ aralık dışındadır; aralık içindeki kritik nokta yalnız $x=3$.
+3. Uç noktalar ve kritik nokta karşılaştırılır: $f(0)=5$, $f(3)=27-27-27+5=-22$, $f(4)=64-48-36+5=-15$.
+4. En küçük değer $x=3$'te oluşur: $-22$.
+
+<Cevap>En küçük değer $-22$ ($x=3$).</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Hacmi $32\pi\,\text{cm}^{3}$ olan, üstü ve altı kapalı (tam kapalı) silindir biçimli bir kabın toplam yüzey alanı en az olacak şekilde taban yarıçapı $r$ kaç cm olmalıdır?
+
+</Soru>
+
+<Cozum>
+
+1. Hacim kısıtı: $\pi r^{2}h=32\pi \Rightarrow h=\dfrac{32}{r^{2}}$.
+2. Tam kapalı yüzey: iki taban artı yan yüz: $A(r)=2\pi r^{2}+2\pi r h=2\pi r^{2}+2\pi r\cdot\dfrac{32}{r^{2}}=2\pi r^{2}+\dfrac{64\pi}{r}$.
+3. $A'(r)=4\pi r-\dfrac{64\pi}{r^{2}}=0 \Rightarrow 4\pi r^{3}=64\pi \Rightarrow r^{3}=16 \Rightarrow r=\sqrt[3]{16}=2\sqrt[3]{2}$.
+4. $A''(r)=4\pi+\dfrac{128\pi}{r^{3}} > 0$ olduğundan minimumdur.
+
+<Cevap>$r=\sqrt[3]{16}=2\sqrt[3]{2}\,\text{cm}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Birim çembere (yarıçapı $1$ olan çembere) içten teğet, kenarları eksenlere paralel ve çemberin merkezinden geçen eksenlere göre simetrik bir dikdörtgenin alanı en çok kaçtır? (Köşeleri çember üzerinde olan, $x^{2}+y^{2}=1$ çemberine iç dikdörtgen.)
+
+</Soru>
+
+<Cozum>
+
+1. Birinci bölgedeki köşe $(x,y)$ ile $x^{2}+y^{2}=1 \Rightarrow y=\sqrt{1-x^{2}}$, $0 < x < 1$.
+2. Dikdörtgenin kenarları $2x$ ve $2y$ olduğundan alan $A=2x\cdot 2y=4x\sqrt{1-x^{2}}$.
+3. Hesabı kolaylaştırmak için $A^{2}=16x^{2}(1-x^{2})=16(x^{2}-x^{4})$. $\dfrac{d}{dx}A^{2}=16(2x-4x^{3})=32x(1-2x^{2})=0 \Rightarrow x^{2}=\dfrac{1}{2}$.
+4. $x=\dfrac{1}{\sqrt{2}}$ için $y=\sqrt{1-\tfrac{1}{2}}=\dfrac{1}{\sqrt{2}}$. Alan $A=4\cdot\dfrac{1}{\sqrt{2}}\cdot\dfrac{1}{\sqrt{2}}=4\cdot\dfrac{1}{2}=2$.
+
+<Cevap>En büyük alan $2$ birim kare (kenarları $\sqrt{2}\times\sqrt{2}$ olan kare).</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir ürünün $x$ adet üretildiğinde toplam maliyeti $M(x)=x^{2}-40x+900$ TL'dir. Birim başına ortalama maliyeti $\dfrac{M(x)}{x}$ en küçük yapan üretim miktarı $x$ kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. Ortalama maliyet $O(x)=\dfrac{M(x)}{x}=\dfrac{x^{2}-40x+900}{x}=x-40+\dfrac{900}{x}$, $x > 0$.
+2. $O'(x)=1-\dfrac{900}{x^{2}}=0 \Rightarrow x^{2}=900 \Rightarrow x=30$ (pozitif kök).
+3. $O''(x)=\dfrac{1800}{x^{3}} > 0$ olduğundan $x=30$ minimumdur.
+4. En küçük ortalama maliyet $O(30)=30-40+\dfrac{900}{30}=30-40+30=20$ TL.
+
+<Cevap>$x=30$ adet (en küçük ortalama maliyet $20$ TL).</Cevap>
+
+</Cozum>
+
+</Ornek>
+
 ## Sık Yapılan Hatalar
 
 - **Kısıtı kullanmadan iki değişkenle kalmak:** Türev tek değişkene göre alınır. Kısıt denklemini ($2x+2y=40$, $\pi r^{2}h=V$ gibi) mutlaka kullanıp ikinci değişkeni yok et.

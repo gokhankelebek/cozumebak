@@ -122,6 +122,166 @@ Bir cismin konumu $s(t)=t^{3}-6t^{2}+9t$ (metre, $t$ saniye) ile veriliyor. $t=2
 - $f''(x) > 0$ ise grafik **konkav yukarı** ($\cup$), $f''(x) < 0$ ise **konkav aşağı** ($\cap$).
 - $f'(c)=0$ ve $f''(c) > 0$ ise $c$ yerel minimum; $f''(c) < 0$ ise yerel maksimumdur.
 
+## Çözümlü Sorular
+
+<Ornek>
+
+<Soru>
+
+$f(x)=x^{5}$ fonksiyonunun $f^{(4)}(x)$ türevini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Birinci türev: $f'(x)=5x^{4}$.
+
+2. İkinci türev: $f''(x)=20x^{3}$.
+
+3. Üçüncü türev: $f'''(x)=60x^{2}$.
+
+4. Dördüncü türev: $f^{(4)}(x)=120x$.
+
+<Cevap>$f^{(4)}(x)=120x$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=e^{2x}$ fonksiyonunun $f''(x)$ türevini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Zincir kuralıyla birinci türev: $f'(x)=2e^{2x}$.
+
+2. Tekrar türetelim: $f''(x)=2\cdot 2e^{2x}=4e^{2x}$.
+
+<Cevap>$f''(x)=4e^{2x}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=\ln x$ fonksiyonunun $f'''(x)$ türevini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Birinci türev: $f'(x)=\dfrac{1}{x}=x^{-1}$.
+
+2. İkinci türev: $f''(x)=-x^{-2}=-\dfrac{1}{x^{2}}$.
+
+3. Üçüncü türev: $f'''(x)=2x^{-3}=\dfrac{2}{x^{3}}$.
+
+<Cevap>$f'''(x)=\dfrac{2}{x^{3}}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=\cos x$ fonksiyonunun $f^{(101)}(x)$ türevini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Türev $4$ adımda döner: $\cos x \to -\sin x \to -\cos x \to \sin x \to \cos x$.
+
+2. $101=4\cdot 25+1$ olduğundan kalan $1$'dir.
+
+3. Kalan $1$, döngüde $-\sin x$'e karşılık gelir.
+
+<Cevap>$f^{(101)}(x)=-\sin x$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir cismin konumu $s(t)=2t^{3}-3t^{2}+4$ (metre, $t$ saniye) ile veriliyor. $t=1$ anındaki ivmeyi bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Hız, konumun türevidir: $v(t)=s'(t)=6t^{2}-6t$.
+
+2. İvme, hızın türevidir: $a(t)=v'(t)=s''(t)=12t-6$.
+
+3. $t=1$ için: $a(1)=12\cdot 1-6=6\ \text{m/s}^{2}$.
+
+<Cevap>$t=1$ anında ivme $6\ \text{m/s}^{2}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=ax^{3}+bx^{2}$ fonksiyonu için $f''(0)=4$ ve $f''(1)=10$ veriliyor. $f'''(x)$ türevini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. İkinci türev: $f''(x)=6ax+2b$.
+
+2. $f''(0)=2b=4$ olduğundan $b=2$.
+
+3. $f''(1)=6a+2b=6a+4=10$ olduğundan $6a=6$, yani $a=1$.
+
+4. Üçüncü türev: $f'''(x)=6a=6$.
+
+<Cevap>$f'''(x)=6$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=x^{4}-2x^{3}$ fonksiyonunun grafiği hangi aralıkta konkav yukarıdır?
+
+</Soru>
+
+<Cozum>
+
+1. Birinci türev: $f'(x)=4x^{3}-6x^{2}$.
+
+2. İkinci türev: $f''(x)=12x^{2}-12x=12x(x-1)$.
+
+3. Konkav yukarı için $f''(x) > 0$, yani $12x(x-1) > 0$ olmalı.
+
+4. Çarpanların işaretine göre çözüm: $x < 0$ veya $x > 1$.
+
+<Cevap>$x < 0$ ya da $x > 1$ aralıklarında grafik konkav yukarıdır.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
 ## Sık Yapılan Hatalar
 
 - **$f^{(n)}$ ile $f^{n}$'i karıştırmak.** $f^{(2026)}$ türev mertebesidir, kuvvet değil.

@@ -266,6 +266,183 @@ III. "$x+1=3$"
 
 </Ornek>
 
+## Çözümlü Sorular
+
+<Ornek>
+
+<Soru>
+
+$p=1$, $q=0$, $r=1$ veriliyor. $(p\wedge \neg q)\vee r$ bileşik önermesinin doğruluk değerini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Önce parçaları hesaplayalım: $\neg q=\neg 0=1$.
+
+2. $p\wedge\neg q=1\wedge 1=1$.
+
+3. Son adımda "veya" uygulayalım: $(1)\vee r=1\vee 1=1$.
+
+<Cevap>$(p\wedge\neg q)\vee r=1$ (doğru).</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$p\Leftrightarrow q$ çift koşullu önermesi $0$ (yanlış) ise, $p$ ile $q$ arasında nasıl bir ilişki vardır?
+
+</Soru>
+
+<Cozum>
+
+1. $p\Leftrightarrow q$ yalnızca $p$ ile $q$ **aynı** doğruluk değerindeyken doğrudur.
+
+2. Sonuç $0$ (yanlış) olduğuna göre $p$ ile $q$ aynı değerde **değildir**.
+
+3. Yani biri doğruyken öteki yanlıştır: $(p=1,\ q=0)$ ya da $(p=0,\ q=1)$ durumları geçerlidir.
+
+<Cevap>$p$ ile $q$ farklı doğruluk değerlerine sahiptir (biri $1$, öteki $0$).</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$p\Rightarrow q$ önermesini $\neg p\vee q$ eşdeğerliğiyle, $p=0$, $q=0$ için hesaplayıp sonucu doğrulayınız.
+
+</Soru>
+
+<Cozum>
+
+1. Eşdeğerlik: $p\Rightarrow q\equiv \neg p\vee q$.
+
+2. $\neg p=\neg 0=1$ olur.
+
+3. $\neg p\vee q=1\vee 0=1$.
+
+4. Tabloyla karşılaştıralım: $p=0,\ q=0$ satırında $p\Rightarrow q=1$ idi; eşdeğerlik doğrulandı.
+
+<Cevap>$p\Rightarrow q=1$ (doğru); eşdeğerlik tutar.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\neg(p\vee \neg q)$ ifadesini De Morgan kuralıyla sadeleştiriniz.
+
+</Soru>
+
+<Cozum>
+
+1. De Morgan: "veya"nın değili, parçaların değilinin "ve"sidir: $\neg(a\vee b)\equiv \neg a\wedge\neg b$.
+
+2. Burada $a=p$, $b=\neg q$ alalım: $\neg(p\vee\neg q)\equiv \neg p\wedge\neg(\neg q)$.
+
+3. Çifte olumsuzlama: $\neg(\neg q)=q$.
+
+4. Böylece ifade $\neg p\wedge q$ olur.
+
+<Cevap>$\neg(p\vee\neg q)\equiv \neg p\wedge q$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$p\vee\neg p$ ve $p\wedge\neg p$ bileşik önermeleri için: hangisi totoloji, hangisi çelişkidir?
+
+</Soru>
+
+<Cozum>
+
+1. $p\vee\neg p$: $p=1$ iken $1\vee 0=1$; $p=0$ iken $0\vee 1=1$. Her durumda $1$.
+
+2. Demek ki $p\vee\neg p$ daima doğrudur $\to$ **totoloji**.
+
+3. $p\wedge\neg p$: $p=1$ iken $1\wedge 0=0$; $p=0$ iken $0\wedge 1=0$. Her durumda $0$.
+
+4. Demek ki $p\wedge\neg p$ daima yanlıştır $\to$ **çelişki**.
+
+<Cevap>$p\vee\neg p$ totoloji, $p\wedge\neg p$ çelişkidir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+"Bazı sayılar çifttir." önermesinin olumsuzunu (değilini) yazınız.
+
+</Soru>
+
+<Ipucu>
+
+Niceleyici olumsuzlamasında $\exists$ ile $\forall$ yer değiştirir; içerideki yargı da olumsuzlanır.
+
+</Ipucu>
+
+<Cozum>
+
+1. Önerme $\exists x:\ x$ çifttir biçimindedir.
+
+2. Olumsuzlama kuralı: $\neg\big(\exists x:\ p(x)\big)\equiv \forall x:\ \neg p(x)$.
+
+3. Buna göre "Bazı sayılar çifttir"in değili: her sayı için "çift değildir".
+
+4. Sözel karşılığı: "Hiçbir sayı çift değildir" (yani "Her sayı tektir/çift değildir").
+
+<Cevap>"Hiçbir sayı çift değildir."</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\neg p\Rightarrow q$ koşullu önermesinin doğruluk tablosunu kurunuz ve sonucun kaç satırda doğru olduğunu söyleyiniz.
+
+</Soru>
+
+<Cozum>
+
+1. Önce her satır için $\neg p$ değerini bulalım, sonra $\neg p\Rightarrow q$ koşullusunu uygulayalım (yalnız öncül $1$, sonuç $0$ iken yanlış).
+
+| $p$ | $q$ | $\neg p$ | $\neg p\Rightarrow q$ |
+| --- | --- | --- | --- |
+| $1$ | $1$ | $0$ | $1$ |
+| $1$ | $0$ | $0$ | $1$ |
+| $0$ | $1$ | $1$ | $1$ |
+| $0$ | $0$ | $1$ | $0$ |
+
+2. Yalnızca son satırda ($p=0,\ q=0$) öncül $\neg p=1$ ve sonuç $q=0$ olduğundan önerme yanlıştır.
+
+3. Diğer üç satırda sonuç doğrudur.
+
+<Cevap>$3$ satırda doğru, $1$ satırda ($p=0,\ q=0$) yanlıştır.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
 ## Sık Yapılan Hatalar
 
 - **$p\Rightarrow q$'yu yanlış okumak:** Bu önerme yalnız $p=1,\ q=0$ iken yanlıştır. Öncül yanlışsa ($p=0$) sonuç her zaman doğrudur. Bu satırları karıştırmak en çok puan kaybettiren hatadır.

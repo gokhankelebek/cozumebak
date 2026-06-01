@@ -177,6 +177,200 @@ Bir $g$ fonksiyonunun grafiği $x=3$ noktasında **sıçrama** yapıyor: $x$, $3
 
 </Ornek>
 
+## Çözümlü Sorular
+
+<Ornek>
+
+<Soru>
+
+$\lim\limits_{x\to -1}(x^{2}+2x-3)$ limitini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. İfade bir polinomdur; doğrudan yerine yazma yapılabilir.
+
+2. $x=-1$ yaz: $(-1)^{2}+2\cdot(-1)-3=1-2-3=-4$.
+
+<Cevap>$\lim\limits_{x\to -1}(x^{2}+2x-3)=-4$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\lim\limits_{x\to 3}\dfrac{x^{2}-9}{x-3}$ limitini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Yerine yazınca $\dfrac{9-9}{3-3}=\dfrac{0}{0}$ belirsizliği çıkar.
+
+2. Payı çarpanlara ayır: $x^{2}-9=(x-3)(x+3)$.
+
+3. $x\to 3$ olduğundan $x\ne 3$'tür; $x-3$ ile sadeleştir: ifade $x+3$ olur.
+
+4. Limit: $\lim\limits_{x\to 3}(x+3)=3+3=6$.
+
+<Cevap>$\lim\limits_{x\to 3}\dfrac{x^{2}-9}{x-3}=6$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=\begin{cases}2x+1,& x\le 2\\[2pt] x^{2}-1,& x>2\end{cases}$ fonksiyonu için $\lim\limits_{x\to 2} f(x)$ var mıdır?
+
+</Soru>
+
+<Ipucu>
+
+$x=2$ kuralın değiştiği noktadır. Soldan ve sağdan limiti ayrı hesapla.
+
+</Ipucu>
+
+<Cozum>
+
+1. **Soldan limit** ($x\le 2$, kural $2x+1$): $\lim\limits_{x\to 2^{-}}(2x+1)=2\cdot 2+1=5$.
+
+2. **Sağdan limit** ($x>2$, kural $x^{2}-1$): $\lim\limits_{x\to 2^{+}}(x^{2}-1)=2^{2}-1=3$.
+
+3. Soldan $5$, sağdan $3$; eşit değiller.
+
+<Cevap>$\lim\limits_{x\to 2} f(x)$ **yoktur** (soldan $5\ne$ sağdan $3$).</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\lim\limits_{x\to 4}\dfrac{x-4}{\sqrt{x}-2}$ limitini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Yerine yazınca $\frac{0}{0}$ çıkar. Paydanın eşleniği $\sqrt{x}+2$ ile genişlet veya payı çarpanlara ayır.
+
+</Ipucu>
+
+<Cozum>
+
+1. Yerine yazınca $\dfrac{4-4}{\sqrt{4}-2}=\dfrac{0}{0}$ belirsizliği oluşur.
+
+2. Payı $x-4=(\sqrt{x}-2)(\sqrt{x}+2)$ biçiminde yaz.
+
+3. $x\to 4$ için $\sqrt{x}\ne 2$ olduğundan $\sqrt{x}-2$ ile sadeleştir: ifade $\sqrt{x}+2$ olur.
+
+4. Limit: $\lim\limits_{x\to 4}(\sqrt{x}+2)=\sqrt{4}+2=2+2=4$.
+
+<Cevap>$\lim\limits_{x\to 4}\dfrac{x-4}{\sqrt{x}-2}=4$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=\dfrac{|x-3|}{x-3}$ fonksiyonu için $\lim\limits_{x\to 3} f(x)$ var mıdır?
+
+</Soru>
+
+<Ipucu>
+
+$x>3$ için $|x-3|=x-3$, $x<3$ için $|x-3|=-(x-3)$. Her yönü ayrı incele.
+
+</Ipucu>
+
+<Cozum>
+
+1. **Sağdan** ($x\to 3^{+}$, yani $x>3$): $|x-3|=x-3$ olduğundan ifade $\dfrac{x-3}{x-3}=1$. Yani $\lim\limits_{x\to 3^{+}} f(x)=1$.
+
+2. **Soldan** ($x\to 3^{-}$, yani $x<3$): $|x-3|=-(x-3)$ olduğundan ifade $\dfrac{-(x-3)}{x-3}=-1$. Yani $\lim\limits_{x\to 3^{-}} f(x)=-1$.
+
+3. Soldan $-1$, sağdan $1$; eşit değiller.
+
+<Cevap>$\lim\limits_{x\to 3} f(x)$ **yoktur** (soldan $-1\ne$ sağdan $1$).</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=\begin{cases}3x+a,& x<2\\[2pt] x^{2}+1,& x\ge 2\end{cases}$ fonksiyonunun $x=2$ noktasında limitinin var olması için $a$ kaç olmalıdır?
+
+</Soru>
+
+<Ipucu>
+
+Limitin var olması için soldan limit, sağdan limite eşit olmalı.
+
+</Ipucu>
+
+<Cozum>
+
+1. **Soldan limit** ($x<2$, kural $3x+a$): $\lim\limits_{x\to 2^{-}}(3x+a)=6+a$.
+
+2. **Sağdan limit** ($x\ge 2$, kural $x^{2}+1$): $\lim\limits_{x\to 2^{+}}(x^{2}+1)=4+1=5$.
+
+3. Limit var ise iki taraf eşittir: $6+a=5$.
+
+4. Buradan $a=-1$ bulunur.
+
+<Cevap>$a=-1$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\lim\limits_{x\to 1}\dfrac{x^{3}-1}{x^{2}-1}$ limitini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Hem pay hem payda $x=1$'de sıfırlanır. Çarpanlara ayır ve ortak çarpanı sadeleştir.
+
+</Ipucu>
+
+<Cozum>
+
+1. Yerine yazınca $\dfrac{1-1}{1-1}=\dfrac{0}{0}$ belirsizliği çıkar.
+
+2. Payı çarpanlara ayır: $x^{3}-1=(x-1)(x^{2}+x+1)$.
+
+3. Paydayı çarpanlara ayır: $x^{2}-1=(x-1)(x+1)$.
+
+4. $x\to 1$ için $x\ne 1$ olduğundan $x-1$ ile sadeleştir: ifade $\dfrac{x^{2}+x+1}{x+1}$ olur.
+
+5. Limit: $\dfrac{1+1+1}{1+1}=\dfrac{3}{2}$.
+
+<Cevap>$\lim\limits_{x\to 1}\dfrac{x^{3}-1}{x^{2}-1}=\dfrac{3}{2}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
 ## Sık Yapılan Hatalar
 
 - **Limiti $f(a)$ ile karıştırmak.** $\lim\limits_{x\to a} f(x)$, $f(a)$'dan farklı olabilir; $f(a)$ tanımsızken bile limit var olabilir (bkz. Örnek 3).

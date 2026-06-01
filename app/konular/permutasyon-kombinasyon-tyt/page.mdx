@@ -173,6 +173,190 @@ Soruyu çözmeden önce verilecek tek karar: sıra önemli mi?
 
 Aynı $n$ ve $r$ için $P(n,r)$ her zaman $C(n,r)$'den büyük (ya da eşit) çıkar; çünkü $P(n,r)=C(n,r)\cdot r!$.
 
+## Çözümlü Sorular
+
+<Ornek>
+
+<Soru>
+
+$\dfrac{7!}{5!}+0!$ ifadesinin değeri kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. Faktöriyel bölmesini sadeleştir: $\dfrac{7!}{5!}=\dfrac{7\cdot 6\cdot 5!}{5!}=7\cdot 6=42$.
+
+2. $0!=1$ olduğundan toplam $42+1=43$ olur.
+
+<Cevap>$43$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir lokantada $4$ farklı çorba, $5$ farklı ana yemek ve $3$ farklı tatlı vardır. Birer çorba, ana yemek ve tatlıdan oluşan bir menü kaç farklı şekilde seçilebilir?
+
+</Soru>
+
+<Cozum>
+
+1. Üç adım ardışık seçilir: önce çorba ($4$), sonra ana yemek ($5$), sonra tatlı ($3$).
+
+2. Çarpma yoluyla sayarız: $4\cdot 5\cdot 3=60$.
+
+<Cevap>$60$ farklı menü.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$0,1,2,3,4$ rakamları kullanılarak rakamları farklı üç basamaklı kaç sayı yazılabilir?
+
+</Soru>
+
+<Ipucu>
+
+Üç basamaklı bir sayının yüzler basamağı $0$ olamaz; bu basamaktan başlayın.
+
+</Ipucu>
+
+<Cozum>
+
+1. Yüzler basamağı $0$ olamaz, kalan $4$ rakamdan biri seçilir: $4$ seçenek.
+
+2. Onlar basamağına $0$ dahil kalan $4$ rakamdan biri gelir: $4$ seçenek.
+
+3. Birler basamağına kalan $3$ rakamdan biri gelir: $3$ seçenek.
+
+4. Çarparız: $4\cdot 4\cdot 3=48$.
+
+<Cevap>$48$ sayı.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$6$ farklı kitap bir rafa yan yana diziliyor. Belirli $2$ kitabın her zaman yan yana bulunduğu kaç farklı diziliş vardır?
+
+</Soru>
+
+<Ipucu>
+
+Yan yana kalması gereken iki kitabı tek bir blok (paket) gibi düşünün.
+
+</Ipucu>
+
+<Cozum>
+
+1. Yan yana olacak $2$ kitabı tek bir blok say. Böylece dizilecek $5$ nesne kalır: $5!=120$.
+
+2. Bloğun içindeki $2$ kitap kendi arasında $2!=2$ şekilde yer değiştirir.
+
+3. Çarparız: $120\cdot 2=240$.
+
+<Cevap>$240$ farklı diziliş.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$6$ erkek ve $4$ kadından oluşan bir gruptan, içinde tam $2$ kadın bulunan $4$ kişilik bir ekip kaç farklı şekilde seçilir?
+
+</Soru>
+
+<Ipucu>
+
+Kadınları ve erkekleri ayrı ayrı seçip sonuçları çarpın.
+
+</Ipucu>
+
+<Cozum>
+
+1. $4$ kadından $2$'sini seç: $C(4,2)=\dfrac{4\cdot 3}{2\cdot 1}=6$.
+
+2. Ekibin kalan $2$ kişisi erkek; $6$ erkekten $2$'sini seç: $C(6,2)=\dfrac{6\cdot 5}{2\cdot 1}=15$.
+
+3. İki bağımsız seçim çarpılır: $6\cdot 15=90$.
+
+<Cevap>$90$ farklı ekip.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir düzlemde, herhangi üçü doğrusal olmayan $7$ nokta veriliyor. Bu noktalardan geçen kaç farklı doğru çizilebilir?
+
+</Soru>
+
+<Ipucu>
+
+Bir doğru iki nokta ile belirlenir ve noktaların sırası önemsizdir.
+
+</Ipucu>
+
+<Cozum>
+
+1. Bir doğru $2$ noktayla belirlenir; sıra önemsiz olduğundan kombinasyon kullanılır.
+
+2. $C(7,2)=\dfrac{7\cdot 6}{2\cdot 1}=21$.
+
+<Cevap>$21$ farklı doğru.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$5$ kız ve $3$ erkek tek sıralı bir banka, erkekler yan yana (bir arada) olacak şekilde kaç farklı şekilde oturabilir?
+
+</Soru>
+
+<Ipucu>
+
+Yan yana oturacak erkekleri tek bir blok sayın, sonra blok içini ayrıca sıralayın.
+
+</Ipucu>
+
+<Cozum>
+
+1. $3$ erkeği tek bir blok say. Sıralanacak nesneler: $5$ kız $+$ $1$ blok $=6$ nesne.
+
+2. Bu $6$ nesne $6!=720$ şekilde sıralanır.
+
+3. Blok içindeki $3$ erkek kendi arasında $3!=6$ şekilde sıralanır.
+
+4. Çarparız: $720\cdot 6=4320$.
+
+<Cevap>$4320$ farklı oturuş.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
 ## Sık Yapılan Hatalar
 
 - **Sıralıyı sırasızla karıştırmak.** "Başkan ve yardımcı seç" sıralıdır (permütasyon), "komisyon seç" sırasızdır (kombinasyon). Önce sıranın önemli olup olmadığına karar ver.

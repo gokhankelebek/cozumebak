@@ -158,6 +158,162 @@ $f(x)=\begin{cases}x^2,& x\le 1\\ 2x-1,& x>1\end{cases}$ fonksiyonu $x=1$ noktas
 
 </Ornek>
 
+## Çözümlü Sorular
+
+<Ornek>
+
+<Soru>
+
+$f(x)=5x^{4}-2x^{3}+7$ fonksiyonunun türevini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Her terime kuvvet kuralını uygula: $\dfrac{d}{dx}(x^n)=n\,x^{n-1}$.
+
+2. $5x^4$ türevi: $20x^3$; $-2x^3$ türevi: $-6x^2$; sabit $7$ türevi: $0$.
+
+3. Topla: $f'(x)=20x^3-6x^2$.
+
+<Cevap>$f'(x)=20x^{3}-6x^{2}$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=\dfrac{4}{x}+\sqrt{x}$ fonksiyonunun $x=4$ noktasındaki türev değerini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Terimleri üs olarak yaz: $f(x)=4x^{-1}+x^{1/2}$.
+
+2. Türevi al: $f'(x)=-4x^{-2}+\dfrac{1}{2}x^{-1/2}=-\dfrac{4}{x^{2}}+\dfrac{1}{2\sqrt{x}}$.
+
+3. $x=4$ yerine yaz: $-\dfrac{4}{16}+\dfrac{1}{2\cdot 2}=-\dfrac{1}{4}+\dfrac{1}{4}=0$.
+
+<Cevap>$f'(4)=0$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=x^{2}+1$ fonksiyonunun $a=2$ noktasındaki türevini, $f'(a)=\lim\limits_{x\to a}\dfrac{f(x)-f(a)}{x-a}$ tanımıyla bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Değerleri yerleştir: $f(2)=5$, dolayısıyla limit $\lim\limits_{x\to 2}\dfrac{(x^2+1)-5}{x-2}=\lim\limits_{x\to 2}\dfrac{x^2-4}{x-2}$.
+
+2. Payı çarpanlara ayır: $x^2-4=(x-2)(x+2)$.
+
+3. Sadeleştir: $\lim\limits_{x\to 2}(x+2)=4$.
+
+<Cevap>$f'(2)=4$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$g(x)=(2x-1)(x^{2}+3)$ fonksiyonunun türevini çarpım kuralıyla bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Çarpanları seç: $u=2x-1$, $v=x^2+3$; türevleri $u'=2$, $v'=2x$.
+
+2. Çarpım kuralı: $g'(x)=u'v+u\,v'=2(x^2+3)+(2x-1)(2x)$.
+
+3. Düzenle: $2x^2+6+4x^2-2x=6x^2-2x+6$.
+
+<Cevap>$g'(x)=6x^{2}-2x+6$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir cismin konumu $s(t)=t^{3}-4t^{2}+5t$ (metre, $t$ saniye) ile veriliyor. Cismin $t=3$ saniyedeki anlık hızını bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Anlık hız, konumun türevidir: $v(t)=s'(t)$.
+
+2. Türevi al: $s'(t)=3t^2-8t+5$.
+
+3. $t=3$ yerine yaz: $3\cdot 9-8\cdot 3+5=27-24+5=8$.
+
+<Cevap>$v(3)=8\ \text{m/s}$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=\dfrac{x-1}{x+2}$ fonksiyonunun türevini bölüm kuralıyla bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Pay ve paydayı belirle: $u=x-1$, $v=x+2$; türevleri $u'=1$, $v'=1$.
+
+2. Bölüm kuralı: $f'(x)=\dfrac{u'v-u\,v'}{v^2}=\dfrac{1\cdot(x+2)-(x-1)\cdot 1}{(x+2)^2}$.
+
+3. Payı sadeleştir: $\dfrac{x+2-x+1}{(x+2)^2}=\dfrac{3}{(x+2)^2}$.
+
+<Cevap>$f'(x)=\dfrac{3}{(x+2)^{2}}$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=\begin{cases}ax+b,& x\le 2\\ x^{2},& x>2\end{cases}$ fonksiyonunun $x=2$ noktasında türevlenebilir olması için $a$ ve $b$ değerlerini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. **Süreklilik** koşulu ($x=2$): soldan $2a+b$, sağdan $2^2=4$. Eşitle: $2a+b=4$.
+
+2. **Türev eşitliği** koşulu: soldan türev $f'_-(2)=a$, sağdan türev ($f'(x)=2x$) $f'_+(2)=4$. Eşitle: $a=4$.
+
+3. $a=4$ değerini süreklilik denklemine koy: $2\cdot 4+b=4 \Rightarrow b=-4$.
+
+<Cevap>$a=4,\ b=-4$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
 ## Sık Yapılan Hatalar
 
 - **Limit tanımında $h$'yi sadeleştirmeden $h=0$ koymak:** $\frac{0}{0}$ belirsizliği çıkar. Önce payı çarpanlarına ayırıp $h$ ile sadeleştir.

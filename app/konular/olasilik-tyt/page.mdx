@@ -201,6 +201,186 @@ Bir olayın gerçekleşme olasılığı $\dfrac{2}{5}$ ise, bu olayın **gerçek
 
 </Ornek>
 
+## Çözümlü Sorular
+
+<Ornek>
+
+<Soru>
+
+Bir madenî para arka arkaya **$3$ kez** atılıyor. **En az bir kez yazı** gelme olasılığı nedir?
+
+</Soru>
+
+<Cozum>
+
+1. Tüm durum sayısı: $2\cdot 2\cdot 2=8$.
+
+2. "En az bir yazı"nın tümleyeni "hiç yazı gelmemesi", yani üçü de tura: $P(\text{hiç yazı})=\dfrac{1}{8}$.
+
+3. Tümleyen kuralı: $P(\text{en az bir yazı})=1-\dfrac{1}{8}=\dfrac{7}{8}$.
+
+<Cevap>$P=\dfrac{7}{8}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+İki zar birlikte atılıyor. Üst yüzlerdeki sayıların **toplamının $5$** olma olasılığı nedir?
+
+</Soru>
+
+<Cozum>
+
+1. Tüm durum sayısı: $6\cdot 6=36$.
+
+2. Toplamı $5$ yapan ikililer: $(1,4),(2,3),(3,2),(4,1)$ → toplam $4$ tane.
+
+3. Olasılık: $P=\dfrac{4}{36}=\dfrac{1}{9}$.
+
+<Cevap>$P=\dfrac{1}{9}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$1$ ile $20$ arasındaki (uçlar dâhil) tam sayılardan rastgele biri seçiliyor. Seçilen sayının **$3$ ile tam bölünebilme** olasılığı nedir?
+
+</Soru>
+
+<Cozum>
+
+1. Tüm durum sayısı: $\text{s}(S)=20$.
+
+2. $3$ ile bölünenler: $3,6,9,12,15,18$ → $6$ tane.
+
+3. Olasılık: $P=\dfrac{6}{20}=\dfrac{3}{10}$.
+
+<Cevap>$P=\dfrac{3}{10}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+İçinde $4$ kırmızı ve $6$ mavi top bulunan bir torbadan **yerine koymadan** arka arkaya $2$ top çekiliyor. **İkisinin de kırmızı** olma olasılığı nedir?
+
+</Soru>
+
+<Ipucu>
+
+Yerine koymadan çekmede ikinci çekiliş, birinci çekilişe bağlı olarak hem uygun durum hem de toplam top sayısını $1$ azaltır.
+
+</Ipucu>
+
+<Cozum>
+
+1. İlk topun kırmızı olması: $\dfrac{4}{10}$.
+
+2. İlk top kırmızı çıktıktan sonra geriye $3$ kırmızı ve toplam $9$ top kalır; ikinci topun kırmızı olması: $\dfrac{3}{9}$.
+
+3. Birlikte gerçekleşme (çarpma): $P=\dfrac{4}{10}\cdot\dfrac{3}{9}=\dfrac{12}{90}=\dfrac{2}{15}$.
+
+<Cevap>$P=\dfrac{2}{15}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir sınıfta bir öğrencinin matematikten geçme olasılığı $0{,}5$, fizikten geçme olasılığı $0{,}4$, **her iki dersten de** geçme olasılığı $0{,}2$'dir. Rastgele seçilen bir öğrencinin **en az bir dersten** geçme olasılığı nedir?
+
+</Soru>
+
+<Ipucu>
+
+"En az bir" durumunda olaylar ayrık değildir; ortak kısmı bir kez çıkarmak gerekir: $P(A\cup B)=P(A)+P(B)-P(A\cap B)$.
+
+</Ipucu>
+
+<Cozum>
+
+1. Toplama kuralı: $P(A\cup B)=P(A)+P(B)-P(A\cap B)$.
+
+2. Yerine yaz: $P(A\cup B)=0{,}5+0{,}4-0{,}2=0{,}7$.
+
+3. Kesir biçimi: $P(A\cup B)=\dfrac{7}{10}$.
+
+<Cevap>$P(A\cup B)=\dfrac{7}{10}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+İki zar birlikte atılıyor. Üst yüzlerin **en az birinin $6$** olma olasılığı nedir?
+
+</Soru>
+
+<Ipucu>
+
+Doğrudan saymak yerine tümleyeni kullan: "en az bir $6$"nın tümleyeni "iki zarda da $6$ gelmemesi"dir.
+
+</Ipucu>
+
+<Cozum>
+
+1. Tüm durum sayısı: $6\cdot 6=36$.
+
+2. Hiç $6$ gelmemesi: her zar için $5$ seçenek, yani $5\cdot 5=25$ durum, $P(\text{hiç }6)=\dfrac{25}{36}$.
+
+3. Tümleyen: $P(\text{en az bir }6)=1-\dfrac{25}{36}=\dfrac{11}{36}$.
+
+<Cevap>$P=\dfrac{11}{36}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir zar atılıyor. Üst yüze gelen sayının **çift olması ya da $5$ olması** olasılığı nedir?
+
+</Soru>
+
+<Ipucu>
+
+Çift sayılar ile $\{5\}$ olayının ortak elemanı yoktur; bu iki olay ayrıktır, olasılıklar toplanır.
+
+</Ipucu>
+
+<Cozum>
+
+1. Çift gelme: $A=\{2,4,6\}$, $P(A)=\dfrac{3}{6}$.
+
+2. $5$ gelme: $B=\{5\}$, $P(B)=\dfrac{1}{6}$.
+
+3. Olaylar ayrık olduğundan: $P(A\cup B)=\dfrac{3}{6}+\dfrac{1}{6}=\dfrac{4}{6}=\dfrac{2}{3}$.
+
+<Cevap>$P=\dfrac{2}{3}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
 ## Sık Yapılan Hatalar
 
 - **Örnek uzayı (tüm durum sayısını) yanlış saymak.** Özellikle iki zarda toplam $36$ sonuç olduğunu unutup $12$ ile bölmek tipik bir hatadır. Önce $\text{s}(S)$'i emin olana kadar belirle.
