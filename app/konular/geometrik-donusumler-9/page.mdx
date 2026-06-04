@@ -1,4 +1,5 @@
 import { topicMetadata } from "@/lib/seo";
+import { YansimaXEkseni, Donme90 } from "@/components/figures/DonusumFig";
 
 export const metadata = topicMetadata("geometrik-donusumler-9");
 
@@ -64,6 +65,14 @@ $x$ eksenine göre yansımada $x$ aynı kalır, yalnız $y$'nin işareti değiş
 
 </Ornek>
 
+<Figur>
+
+<YansimaXEkseni />
+
+<Altyazi>Şekil 1 — $A(3,\ 2)$ noktasının $x$ eksenine göre yansıması $A'(3,\ -2)$. Nokta, $x$ ekseninden eşit uzaklıkta karşı tarafa düşer; $x$ değişmez, yalnız $y$'nin işareti döner.</Altyazi>
+
+</Figur>
+
 ## 3. Dönme
 
 Dönme, bir şekli bir **merkez** etrafında belli bir **açı** kadar çevirir. Orijin etrafındaki sık kullanılan dönmeler:
@@ -73,6 +82,14 @@ Dönme, bir şekli bir **merkez** etrafında belli bir **açı** kadar çevirir.
 - **$270°$ (saat yönünün tersi):** $(x,\ y)\to(y,\ -x)$
 
 $180°$ dönme ile orijine göre yansımanın sonucu aynıdır.
+
+<Figur>
+
+<Donme90 />
+
+<Altyazi>Şekil 2 — $P(4,\ 1)$ noktasının orijin etrafında $90°$ (saat yönünün tersine) dönmesi $P'(-1,\ 4)$. Koordinatlar yer değiştirir ve uygun işaret değişir: $(x,\ y)\to(-y,\ x)$. Orijine uzaklık (yarıçap) korunur.</Altyazi>
+
+</Figur>
 
 <Ornek>
 
@@ -289,12 +306,107 @@ Bir şekil $180°$ döndürülüyor. Şeklin boyutu değişir mi, orijinaliyle e
 
 </Ornek>
 
+<Ornek>
+
+<Soru>
+
+$E(-4,\ 2)$ noktasını orijin etrafında $270°$ (saat yönü tersi) döndür.
+
+</Soru>
+
+<Cozum>
+
+1. Kural: $(x,\ y)\to(y,\ -x)$.
+2. $E(-4,\ 2)\to(2,\ 4)$.
+
+<Cevap>$(2,\ 4)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$F(2,\ -5)$ noktası sağa $3$ ötelenip sonra $y$ eksenine göre yansıtılıyor. Son görüntü nedir?
+
+</Soru>
+
+<Ipucu>
+
+Dönüşümleri **sırayla** uygula: önce öteleme, sonra yansıma.
+
+</Ipucu>
+
+<Cozum>
+
+1. Öteleme (sağa $3$): $(2+3,\ -5)=(5,\ -5)$.
+2. $y$ eksenine göre yansıma $(x,\ y)\to(-x,\ y)$: $(5,\ -5)\to(-5,\ -5)$.
+
+<Cevap>$(-5,\ -5)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir nokta önce $x$ eksenine, sonra $y$ eksenine göre yansıtılınca $(-2,\ 7)$ görüntüsü elde ediliyor. Başlangıç noktası neydi?
+
+</Soru>
+
+<Ipucu>
+
+İki yansıma birlikte $(x,\ y)\to(-x,\ -y)$ verir; bunu **geri** çevirmek için yine işaretleri ters çevir.
+
+</Ipucu>
+
+<Cozum>
+
+1. $x$ ve $y$ eksenine ardışık yansıma $(x,\ y)\to(-x,\ -y)$ ile aynıdır.
+2. Görüntü $(-2,\ 7)$ ise: $(-x,\ -y)=(-2,\ 7)\Rightarrow x=2,\ y=-7$.
+
+<Cevap>$(2,\ -7)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$G(3,\ 5)$ noktası orijin etrafında $90°$ (saat yönü tersi) döndürülüyor, ardından $x$ eksenine göre yansıtılıyor. Son görüntü nedir?
+
+</Soru>
+
+<Ipucu>
+
+Önce $90°$ dönme kuralını uygula, sonra çıkan noktaya yansıma kuralını uygula.
+
+</Ipucu>
+
+<Cozum>
+
+1. $90°$ dönme $(x,\ y)\to(-y,\ x)$: $G(3,\ 5)\to(-5,\ 3)$.
+2. $x$ eksenine göre yansıma $(x,\ y)\to(x,\ -y)$: $(-5,\ 3)\to(-5,\ -3)$.
+
+<Cevap>$(-5,\ -3)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
 ## Sık Yapılan Hatalar
 
 - **Yansımada yanlış değişkenin işaretini değiştirmek.** $x$ eksenine göre $y$'nin, $y$ eksenine göre $x$'in işareti değişir.
 - **Öteleme yönünü ters almak.** Sol/aşağı **çıkarma**, sağ/yukarı **toplamadır**.
 - **Dönmeyi yansıma sanmak.** $90°$ dönmede koordinatlar **yer değiştirir** ($(x,y)\to(-y,x)$); yansımada yalnız işaret değişir.
 - **Dönüşümün boyutu değiştirdiğini sanmak.** Öteleme, yansıma ve dönme boyutu **korur**; sonuç şekil daima orijinaliyle eştir.
+- **Bileşik dönüşümde sırayı önemsememek.** Genelde önce hangi dönüşümü yaparsan sonuç farklı çıkabilir; soruda verilen **sırayı** koru ve her adımı çıkan noktaya uygula.
 
 > **Not:** Bu üç dönüşüm de **eşlik** üretir (boyut korunur). Bir sonraki derste boyutu oranlı biçimde değiştiren **benzerliği** göreceğiz. Koordinat kurallarını ezberlemek yerine bir-iki noktayla deneyerek doğrula.
 

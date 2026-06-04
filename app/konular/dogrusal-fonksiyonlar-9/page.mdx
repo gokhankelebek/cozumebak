@@ -1,5 +1,5 @@
 import { topicMetadata } from "@/lib/seo";
-import { DogruGrafik } from "@/components/figures/FonksiyonFig";
+import { DogruGrafik, GrafikOkuma } from "@/components/figures/FonksiyonFig";
 
 export const metadata = topicMetadata("dogrusal-fonksiyonlar-9");
 
@@ -56,6 +56,16 @@ $$a=\dfrac{y_2-y_1}{x_2-x_1}$$
 - $a>0$ → fonksiyon **artandır** (grafik soldan sağa yükselir).
 - $a<0$ → fonksiyon **azalandır** (grafik soldan sağa alçalır).
 - $a=0$ → $f(x)=b$ **sabit fonksiyon** (yatay doğru; doğrusal sayılmaz).
+
+Bir grafikten değer okumak da kolaydır: bir $x$ değerinden yukarı çıkıp doğruya değdiğimiz noktanın yüksekliği $f(x)$'tir.
+
+<Figur>
+
+<GrafikOkuma />
+
+<Altyazi>Şekil 2 — Grafikten değer okuma. $y=2x+1$ doğrusunda $x=2$'den dik çıkılır; doğruya değen nokta $y=5$ yüksekliğindedir, yani $f(2)=5$.</Altyazi>
+
+</Figur>
 
 <Ornek>
 
@@ -307,6 +317,95 @@ $f(x)=ax+1$ fonksiyonu $(3,\ 10)$ noktasından geçiyorsa $a$ kaçtır?
 1. $(3,10)$'u koy: $10=3a+1\Rightarrow 3a=9\Rightarrow a=3$.
 
 <Cevap>$a=3$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=\dfrac{2}{3}x-2$ fonksiyonunun $x$ eksenini kestiği noktayı bul.
+
+</Soru>
+
+<Cozum>
+
+1. $f(x)=0$: $\dfrac{2}{3}x-2=0\Rightarrow \dfrac{2}{3}x=2\Rightarrow x=3$.
+
+<Cevap>$(3,0)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$A(-1,\ 5)$ ve $B(3,\ -3)$ noktalarından geçen doğrusal fonksiyonu bul.
+
+</Soru>
+
+<Cozum>
+
+1. Eğim: $a=\dfrac{-3-5}{3-(-1)}=\dfrac{-8}{4}=-2$.
+2. $f(x)=-2x+b$; $A(-1,5)$'i koy: $5=-2\cdot(-1)+b\Rightarrow 5=2+b\Rightarrow b=3$.
+
+<Cevap>$f(x)=-2x+3$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=ax+b$ doğrusal fonksiyonu için $f(1)=7$ ve $f(4)=1$ ise $f(0)$ kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+Önce iki noktadan eğimi bul; sonra bir noktayı kullanarak $b$'yi çek. $f(0)=b$'dir.
+
+</Ipucu>
+
+<Cozum>
+
+1. Eğim: $a=\dfrac{1-7}{4-1}=\dfrac{-6}{3}=-2$.
+2. $f(x)=-2x+b$; $f(1)=7$: $-2+b=7\Rightarrow b=9$.
+3. $f(0)=b=9$.
+
+<Cevap>$f(0)=9$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=-3x+12$ fonksiyonunun grafiği ile eksenler arasında kalan üçgenin alanını bul.
+
+</Soru>
+
+<Ipucu>
+
+Eksen kesişimlerini bul; dik kenarlar eksenlerdeki uzunluklardır.
+
+</Ipucu>
+
+<Cozum>
+
+1. $y$ kesişimi: $f(0)=12$, nokta $(0,12)$.
+2. $x$ kesişimi: $-3x+12=0\Rightarrow x=4$, nokta $(4,0)$.
+3. Dik kenarlar $12$ ve $4$; alan $=\dfrac{1}{2}\cdot 4\cdot 12=24$.
+
+<Cevap>$24$ birimkare.</Cevap>
 
 </Cozum>
 

@@ -1,5 +1,6 @@
 import { topicMetadata } from "@/lib/seo";
 import { SutunGrafik } from "@/components/figures/IstatistikFig";
+import { MerkeziEgilim } from "@/components/figures/MerkeziEgilimFig";
 
 export const metadata = topicMetadata("tek-degiskenli-veri-9");
 
@@ -42,6 +43,14 @@ Medyan, veriler **küçükten büyüğe sıralandığında** tam ortadaki değer
 - Veri sayısı **çift** ise: ortadaki **iki** değerin ortalaması.
 
 Medyan, uç değerlerden ortalamadan daha az etkilenir.
+
+<Figur>
+
+<MerkeziEgilim />
+
+<Altyazi>Şekil 1 — $3,\ 4,\ 6,\ 7,\ 9,\ 10$ verisi sayı doğrusuna dizildiğinde medyan, ortadaki iki değer olan $6$ ile $7$'nin tam ortasındadır: $\dfrac{6+7}{2}=6{,}5$. Çift veride medyan bir veri değeri olmak zorunda değildir.</Altyazi>
+
+</Figur>
 
 <Ornek>
 
@@ -125,7 +134,7 @@ Sütun grafiğinde her kategori bir sütunla, değeri sütunun **yüksekliğiyle
 
 <SutunGrafik />
 
-<Altyazi>Şekil 1 — Bir kırtasiyenin günlere göre sattığı kitap sayısı: Pazartesi $4$, Salı $8$, Çarşamba $6$, Perşembe $10$. Ortalama $\dfrac{4+8+6+10}{4}=7$, açıklık $10-4=6$'dır.</Altyazi>
+<Altyazi>Şekil 2 — Bir kırtasiyenin günlere göre sattığı kitap sayısı: Pazartesi $4$, Salı $8$, Çarşamba $6$, Perşembe $10$. Ortalama $\dfrac{4+8+6+10}{4}=7$, açıklık $10-4=6$'dır.</Altyazi>
 
 </Figur>
 
@@ -324,12 +333,111 @@ Bir sınıfın sınav notları sütun grafiğinde $50,\ 70,\ 90,\ 70$ olarak oku
 
 </Ornek>
 
+<Ornek>
+
+<Soru>
+
+$7,\ 7,\ 10,\ 13,\ 13$ verilerinin ortalama, medyan ve modunu bul. Hepsi eşit mi?
+
+</Soru>
+
+<Cozum>
+
+1. Ortalama: $\dfrac{7+7+10+13+13}{5}=\dfrac{50}{5}=10$.
+2. Sırala: $7,\ 7,\ 10,\ 13,\ 13$; $5$ veri (tek), ortadaki $3.$ değer $10$.
+3. Mod: $7$ iki kez, $13$ iki kez tekrar ediyor; **iki mod** var: $7$ ve $13$.
+
+<Cevap>Ortalama $10$, medyan $10$, mod $7$ ve $13$ (iki tepe değerli).</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$5$ kişilik bir takımın boy ortalaması $174$ cm'dir. Takıma boyu $186$ cm olan bir oyuncu katılırsa yeni ortalama kaç olur?
+
+</Soru>
+
+<Ipucu>
+
+Önce $5$ kişinin boy toplamını $5\cdot 174$ ile bul; yeni oyuncuyu ekleyip $6$'ya böl.
+
+</Ipucu>
+
+<Cozum>
+
+1. İlk $5$ kişinin toplamı: $5\cdot 174=870$.
+2. Yeni oyuncuyu ekle: $870+186=1056$.
+3. Yeni ortalama: $\dfrac{1056}{6}=176$ cm.
+
+<Cevap>$176$ cm.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$4,\ 9,\ 9,\ x,\ 14$ verilerinin medyanı $9$, en küçük değeri $4$'tür. Açıklık $12$ ise $x$ kaç olabilir?
+
+</Soru>
+
+<Ipucu>
+
+Açıklık $=$ en büyük $-$ en küçük olduğundan önce en büyük değeri bul; sonra $x$'in bu sıralamayı bozmamasına dikkat et.
+
+</Ipucu>
+
+<Cozum>
+
+1. Açıklık $=$ en büyük $-$ en küçük $=12$; en küçük $4$ olduğundan en büyük $=4+12=16$.
+2. Demek ki verilerden biri $16$ olmalı; listede $14$ var, o hâlde **$x=16$**.
+3. Kontrol: sıralı liste $4,\ 9,\ 9,\ 14,\ 16$; ortadaki $3.$ değer $9$, medyan doğru.
+
+<Cevap>$x=16$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir öğrencinin ilk $3$ sınav ortalaması $70$'tir. Dört sınavın ortalamasını $75$ yapmak için dördüncü sınavdan kaç almalıdır?
+
+</Soru>
+
+<Ipucu>
+
+Dört sınavın olması gereken toplamından, ilk üç sınavın toplamını çıkar.
+
+</Ipucu>
+
+<Cozum>
+
+1. İlk üç sınavın toplamı: $3\cdot 70=210$.
+2. Dört sınavın olması gereken toplamı: $4\cdot 75=300$.
+3. Dördüncü sınav notu: $300-210=90$.
+
+<Cevap>$90$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
 ## Sık Yapılan Hatalar
 
 - **Medyanda sıralamayı atlamak.** Önce her zaman küçükten büyüğe **sırala**, sonra ortadakini seç.
 - **Çift veri sayısında medyanı tek değer sanmak.** Ortadaki **iki** değerin ortalamasını al.
 - **Mod ile medyanı karıştırmak.** Mod en çok tekrar eden değer, medyan sıralı listenin ortasıdır.
 - **Açıklığı veri sayısıyla karıştırmak.** Açıklık $=$ en büyük $-$ en küçük; kaç veri olduğuyla ilgili değildir.
+- **Modu tek değer sanmak.** Bir kümede en yüksek tekrarı birden çok değer paylaşıyorsa **mod birden fazladır**; hiç tekrar yoksa mod **yoktur**.
 
 > **Not:** Bir veri kümesini özetlerken **önce sırala**. Ortalama uç değerlerden etkilenir; uç değer varsa **medyan** veriyi daha sağlıklı temsil eder.
 

@@ -1,4 +1,5 @@
 import { topicMetadata } from "@/lib/seo";
+import { EsitsizlikCozum } from "@/components/figures/EsitsizlikCozumFig";
 
 export const metadata = topicMetadata("birinci-derece-problemler-9");
 
@@ -115,6 +116,16 @@ $3-2x>7$ eşitsizliğini çözünüz.
 </Cozum>
 
 </Ornek>
+
+Çözümü sayı doğrusunda göstermek, hangi sayıların koşulu sağladığını anlamayı kolaylaştırır. $x<-2$ çözümü, $-2$'nin solundaki tüm sayılardır; $-2$ dahil değildir (boş nokta).
+
+<Figur>
+
+<EsitsizlikCozum />
+
+<Altyazi>Şekil 1 — $x<-2$ eşitsizliğinin çözüm kümesi. Uç nokta $-2$ **boş** (dahil değil, kesin küçüktür) işaretlenir; ok yönü $-2$'den küçük tüm sayıları kapsar.</Altyazi>
+
+</Figur>
 
 ## Çözümlü Örnekler
 
@@ -295,6 +306,84 @@ Bir sınıfın mevcudu, $4$ öğrenci daha gelirse $30$'u geçer. Sınıfta en a
 2. $x>26$, yani en az $27$.
 
 <Cevap>En az $27$ öğrenci.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir babanın yaşı oğlunun yaşının $4$ katıdır. $6$ yıl sonra babanın yaşı oğlunun yaşının $3$ katı olacaktır. Oğul şimdi kaç yaşındadır?
+
+</Soru>
+
+<Ipucu>
+
+Oğul $x$ ise baba $4x$'tir. $6$ yıl sonra her ikisine de $6$ ekle, sonra koşulu kur.
+
+</Ipucu>
+
+<Cozum>
+
+1. Oğul $=x$, baba $=4x$.
+2. $6$ yıl sonra: $4x+6=3(x+6)$.
+3. $4x+6=3x+18\Rightarrow x=12$.
+
+<Cevap>Oğul $12$ yaşındadır.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir işçi çalıştığı her gün $200$ TL kazanmakta, gelmediği her gün için ise $100$ TL kesinti yapılmaktadır. $25$ günlük dönemde işçinin eline $3500$ TL geçtiyse kaç gün çalışmıştır?
+
+</Soru>
+
+<Ipucu>
+
+Çalıştığı gün $x$ ise gelmediği gün $(25-x)$'tir. Net kazancı $x$ cinsinden yaz: çalışılan günler $+200$, gelinmeyen günler $-100$.
+
+</Ipucu>
+
+<Cozum>
+
+1. Çalıştığı gün $=x$, gelmediği gün $=(25-x)$.
+2. Net kazanç: $200x-100(25-x)=3500$.
+3. Dağıt: $200x-2500+100x=3500\Rightarrow 300x=6000\Rightarrow x=20$.
+
+<Cevap>$20$ gün çalışmıştır.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Ardışık üç tam sayının toplamı $72$'dir. Bu sayıların en büyüğü kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+Ortadaki sayıya $x$ dersen sayılar $x-1,\ x,\ x+1$ olur; toplamları sade çıkar.
+
+</Ipucu>
+
+<Cozum>
+
+1. Sayılar $x-1,\ x,\ x+1$.
+2. Toplam: $(x-1)+x+(x+1)=3x=72\Rightarrow x=24$.
+3. En büyüğü $x+1=25$.
+
+<Cevap>En büyük sayı $25$'tir.</Cevap>
 
 </Cozum>
 

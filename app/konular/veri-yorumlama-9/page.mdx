@@ -1,5 +1,6 @@
 import { topicMetadata } from "@/lib/seo";
 import { DaireGrafik } from "@/components/figures/IstatistikFig";
+import { KesikEksen } from "@/components/figures/VeriYorumFig";
 
 export const metadata = topicMetadata("veri-yorumlama-9");
 
@@ -77,6 +78,14 @@ Aynı veri, sunuma göre farklı izlenim bırakabilir. Sık karşılaşılan tuz
 - **Kesik eksen:** sütun grafiğinde dikey eksen $0$'dan başlamazsa küçük farklar büyük görünür.
 - **Eksik bütün:** daire grafiğinde dilimlerin yüzdeleri toplamı $100$ değilse veri eksiktir.
 - **Oran/sayı karışıklığı:** "$\%50$ arttı" ile "$50$ kişi arttı" aynı şey değildir; toplamı bilmeden yorum yapılamaz.
+
+<Figur>
+
+<KesikEksen />
+
+<Altyazi>Şekil 2 — Aynı veri ($A=24°$, $B=22°$) iki türlü çiziliyor. Solda dikey eksen $20$'den başladığı için A'nın sütunu B'nin iki katı görünür; sağda eksen $0$'dan başlayınca sütunlar neredeyse eşittir. Gerçek fark yalnız $2°$'dir — kesik eksen küçük farkı abartır.</Altyazi>
+
+</Figur>
 
 <Ornek>
 
@@ -159,7 +168,7 @@ Bir daire grafiğinde "Evet" dilimi $216°$'dir. Ankete katılanların yüzde ka
 
 <Soru>
 
-İki şehrin sıcaklık grafiğinde dikey eksen $20°$'den başlıyor ve A şehrinin sütunu B'nin iki katı görünüyor. Gerçek sıcaklıklar A $=24°$, B $=22°$ ise sütunlar yanıltıcı mı?
+Şekil 2'deki gibi iki şehrin sıcaklık grafiğinde dikey eksen $20°$'den başlıyor ve A şehrinin sütunu B'nin iki katı görünüyor. Gerçek sıcaklıklar A $=24°$, B $=22°$ ise sütunlar yanıltıcı mı?
 
 </Soru>
 
@@ -265,6 +274,82 @@ Bir seçeneğin yüzdesi $\%45$ ise daire grafiğindeki dilim açısı kaç dere
 2. Yüzde büyük görünse de sayı küçük; bağlam verilmezse abartılı izlenim doğurur.
 
 <Cevap>Teknik olarak doğru ama bağlamsız; sayı verilmediğinde yanıltıcı olabilir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir daire grafiğinde "Spor" diliminin açısı $90°$'dir. Bu dilimi $45$ kişi seçtiyse ankete toplam kaç kişi katılmıştır?
+
+</Soru>
+
+<Ipucu>
+
+$90°$'nin tüm daireye ($360°$) oranı, $45$ kişinin toplam kişiye oranına eşittir.
+
+</Ipucu>
+
+<Cozum>
+
+1. $\dfrac{90}{360}=\dfrac{1}{4}$; yani $45$ kişi toplamın $\dfrac{1}{4}$'üdür.
+2. Toplam $=45\cdot 4=180$ kişi.
+
+<Cevap>$180$ kişi.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir ürünün fiyatı önce $\%20$ artıyor, sonra yeni fiyat üzerinden $\%20$ azalıyor. Fiyat başlangıçtaki değerine eşit mi olur?
+
+</Soru>
+
+<Ipucu>
+
+Başlangıç fiyatına $100$ TL de; artışı ve azalışı sırayla uygula. Yüzdeler farklı tabanlar üzerinden hesaplanır.
+
+</Ipucu>
+
+<Cozum>
+
+1. Başlangıç $100$ TL. $\%20$ artış: $100\cdot 1{,}2=120$ TL.
+2. Yeni fiyat üzerinden $\%20$ azalış: $120\cdot 0{,}8=96$ TL.
+3. Sonuç $96<100$; çünkü azalış daha büyük bir taban ($120$) üzerinden hesaplandı.
+
+<Cevap>Hayır; fiyat $96$ TL'ye, yani başlangıçtan $\%4$ daha aşağı iner. "Eşit artış-azalış eski değeri verir" düşüncesi yanıltıcıdır.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir markette $5$ kasiyer saatte sırasıyla $30,\ 32,\ 28,\ 30,\ x$ müşteri karşılıyor. Bu verinin hem ortalaması hem modu $30$ ise $x$ kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+Önce ortalama koşulunu kur; bulduğun $x$ değerinin modu da $30$ yapıp yapmadığını kontrol et.
+
+</Ipucu>
+
+<Cozum>
+
+1. Ortalama koşulu: $\dfrac{30+32+28+30+x}{5}=30\Rightarrow 120+x=150\Rightarrow x=30$.
+2. Kontrol — mod: değerler $30,32,28,30,30$; $30$ üç kez tekrar ediyor, mod $30$. İki koşul da sağlanır.
+
+<Cevap>$x=30$.</Cevap>
 
 </Cozum>
 
