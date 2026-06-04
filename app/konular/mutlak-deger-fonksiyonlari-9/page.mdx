@@ -1,0 +1,306 @@
+import { topicMetadata } from "@/lib/seo";
+import { TemelV, OtelenmisV } from "@/components/figures/MutlakDegerFig";
+
+export const metadata = topicMetadata("mutlak-deger-fonksiyonlari-9");
+
+<Konu slug="mutlak-deger-fonksiyonlari-9" />
+
+<p className="lead">Bir sayının **mutlak değeri**, o sayının sayı doğrusunda sıfıra olan uzaklığıdır — bu yüzden hiçbir zaman negatif olmaz. Bu derste mutlak değer kavramını, **$f(x)=|x|$ fonksiyonunun V biçimli grafiğini**, grafiğin **öteleme** ile nasıl kaydığını ($|x-a|+b$) ve temel **mutlak değerli denklemleri** öğreneceğiz. Mutlak değer fonksiyonu, doğrusal fonksiyonun "kırılmış" hâlidir ve uzaklık içeren her problemde karşına çıkar. Bol örnek ve "Sıra Sende" alıştırmalarıyla pekiştireceğiz.</p>
+
+## 1. Mutlak Değer Kavramı
+
+Bir $x$ gerçek sayısının mutlak değeri:
+
+$$|x|=\begin{cases} x, & x\ge 0 \\ -x, & x<0 \end{cases}$$
+
+Yani sayı pozitif ya da sıfırsa kendisi, negatifse işaret değiştirilmiş hâli alınır. Sonuç her zaman $\ge 0$'dır: $|5|=5$, $|-5|=5$, $|0|=0$.
+
+<Ornek>
+
+<Soru>
+
+$|{-7}|+|3|-|{-2}|$ işleminin sonucunu bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Her mutlak değeri ayrı al: $|-7|=7$, $|3|=3$, $|-2|=2$.
+2. İşlemi yap: $7+3-2=8$.
+
+<Cevap>$8$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 2. $f(x)=|x|$ Fonksiyonunun Grafiği
+
+$f(x)=|x|$ fonksiyonu, $x\ge 0$ için $y=x$, $x<0$ için $y=-x$ doğrularından oluşur. İki doğru orijinde birleşip yukarı açılan bir **"V"** oluşturur.
+
+<Figur>
+
+<TemelV />
+
+<Altyazi>Şekil 1 — $f(x)=|x|$ grafiği. Tepe (kırılma) noktası orijindedir; sağ kol $y=x$, sol kol $y=-x$ doğrusudur. Fonksiyonun değeri hiç negatif olmaz, bu yüzden grafik $x$ ekseninin altına inmez.</Altyazi>
+
+</Figur>
+
+Bu fonksiyonun temel özellikleri: **en küçük değeri $0$**'dır (tepe noktasında), grafiği $y$ eksenine göre **simetriktir** ($|{-x}|=|x|$) ve değer kümesi $[0,\infty)$'dur.
+
+## 3. Öteleme: $f(x)=|x-a|+b$
+
+Temel V grafiği, içerideki ve dışarıdaki sabitlerle **kaydırılır**:
+
+- $|x-a|$ → grafik **yatayda** $a$ birim kayar (sağa, çünkü tepe $x=a$'da).
+- $+b$ → grafik **dikeyde** $b$ birim kayar.
+
+Sonuçta **tepe noktası** $(a,\ b)$ olur. (Çıkarma/toplama yön: $|x-a|$ sağa $a$, $|x+a|$ sola $a$; $+b$ yukarı, $-b$ aşağı.)
+
+<Figur>
+
+<OtelenmisV />
+
+<Altyazi>Şekil 2 — $f(x)=|x-2|-1$ grafiği. Temel V; sağa $2$, aşağı $1$ ötelenmiştir; tepe noktası $(2,-1)$'dir.</Altyazi>
+
+</Figur>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=|x+3|-4$ fonksiyonunun tepe noktasını bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+İçi sıfır yapan $x$ değeri tepe noktasının apsisidir: $x+3=0$. Dışarıdaki sabit ordinatı verir.
+
+</Ipucu>
+
+<Cozum>
+
+1. İçi sıfır yap: $x+3=0\Rightarrow x=-3$ (yatay kayma sola $3$).
+2. Dış sabit: $-4$ (dikey kayma aşağı $4$).
+3. Tepe noktası: $(-3,\ -4)$.
+
+<Cevap>Tepe noktası $(-3,\ -4)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 4. Mutlak Değerli Denklemler
+
+$|x|=c$ denkleminde $c$'nin işaretine göre:
+
+- $c>0$ ise **iki çözüm**: $x=c$ veya $x=-c$.
+- $c=0$ ise **tek çözüm**: $x=0$.
+- $c<0$ ise **çözüm yok** (mutlak değer negatif olamaz).
+
+Genel olarak $|A|=c$ denkleminde $A=c$ veya $A=-c$ yazılır.
+
+<Ornek>
+
+<Soru>
+
+$|2x-1|=5$ denklemini çözünüz.
+
+</Soru>
+
+<Cozum>
+
+1. İki duruma ayır: $2x-1=5$ veya $2x-1=-5$.
+2. Birincisi: $2x=6\Rightarrow x=3$.
+3. İkincisi: $2x=-4\Rightarrow x=-2$.
+
+<Cevap>$x=3$ veya $x=-2$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Çözümlü Örnekler
+
+<Ornek>
+
+<Soru>
+
+$|{-4}|\cdot|2| - |{-3}|^2$ işleminin sonucunu bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Mutlak değerleri al: $|-4|=4$, $|2|=2$, $|-3|=3$.
+2. İşlemi yap: $4\cdot 2-3^2=8-9=-1$.
+
+<Cevap>$-1$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=|x-5|+2$ fonksiyonunun en küçük değeri kaçtır ve hangi $x$'te alınır?
+
+</Soru>
+
+<Cozum>
+
+1. $|x-5|$ en küçük değeri $0$'dır; bu da $x=5$'te olur.
+2. O noktada $f(5)=0+2=2$.
+
+<Cevap>En küçük değer $2$, $x=5$'te.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$|3x+6|=0$ denkleminin çözümünü bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Mutlak değer ancak içi $0$ olduğunda $0$'dır: $3x+6=0$.
+2. $3x=-6\Rightarrow x=-2$.
+
+<Cevap>$x=-2$ (tek çözüm).</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$|x-1|=-3$ denkleminin çözümü var mıdır?
+
+</Soru>
+
+<Cozum>
+
+1. Mutlak değer her zaman $\ge 0$'dır; bir negatif sayıya eşit olamaz.
+
+<Cevap>Çözüm yoktur.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Alıştırmalar — Sıra Sende
+
+> Önce kendin çözmeyi dene; sonra çözümü açıp karşılaştır.
+
+<Ornek>
+
+<Soru>
+
+$|{-9}|-|4|+|{-1}|$ işleminin sonucunu bul.
+
+</Soru>
+
+<Cozum>
+
+1. $9-4+1=6$.
+
+<Cevap>$6$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=|x+2|+3$ fonksiyonunun tepe noktasını yaz.
+
+</Soru>
+
+<Cozum>
+
+1. $x+2=0\Rightarrow x=-2$; dış sabit $+3$.
+
+<Cevap>$(-2,\ 3)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$|x|=7$ denkleminin çözümlerini bul.
+
+</Soru>
+
+<Cozum>
+
+1. $x=7$ veya $x=-7$.
+
+<Cevap>$x=\pm 7$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$|x-4|=3$ denklemini çöz.
+
+</Soru>
+
+<Cozum>
+
+1. $x-4=3\Rightarrow x=7$.
+2. $x-4=-3\Rightarrow x=1$.
+
+<Cevap>$x=7$ veya $x=1$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=|2x-8|$ fonksiyonu en küçük değerini hangi $x$'te alır?
+
+</Soru>
+
+<Cozum>
+
+1. İçi sıfır yap: $2x-8=0\Rightarrow x=4$.
+2. O noktada $f(4)=0$.
+
+<Cevap>$x=4$ (en küçük değer $0$).</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Mutlak değeri negatif çıkarmak.** $|x|$ her zaman $\ge 0$'dır; $|-5|=5$, $-5$ değil.
+- **$|A|=c$'de bir çözümü unutmak.** $c>0$ iken **iki** durum vardır: $A=c$ ve $A=-c$.
+- **Öteleme yönünü ters almak.** $|x-a|$ tepe noktasını $x=a$'ya (sağa) taşır, sola değil; içerideki çıkarma sağa kaydırır.
+- **$-x$'i "negatif" sanmak.** $x<0$ iken $-x$ aslında **pozitiftir**; tanımdaki $-x$ işareti düzeltmek içindir.
+
+> **Not:** Bir mutlak değer fonksiyonunda tepe (kırılma) noktasını bulmak için **içini sıfır yap**: $|x-a|+b$ için $x=a$, değer $b$. Grafik bu noktadan yukarı açılan bir V'dir; $b$, fonksiyonun en küçük değeridir.
+
+<KonuNav slug="mutlak-deger-fonksiyonlari-9" />

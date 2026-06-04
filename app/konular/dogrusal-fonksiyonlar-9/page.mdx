@@ -1,0 +1,324 @@
+import { topicMetadata } from "@/lib/seo";
+import { DogruGrafik } from "@/components/figures/FonksiyonFig";
+
+export const metadata = topicMetadata("dogrusal-fonksiyonlar-9");
+
+<Konu slug="dogrusal-fonksiyonlar-9" />
+
+<p className="lead">*Nicelikler ve Değişimler* temasına bir niceliğin başka bir niceliğe **sabit hızla** bağlı olduğu durumla başlıyoruz: **doğrusal fonksiyon**. Bu derste $f(x)=ax+b$ biçimini, **eğim** $a$ ile **$y$ kesişimi** $b$'nin grafiği nasıl belirlediğini, fonksiyonun **artan mı azalan mı** olduğunu ve eksen kesişimlerini öğreneceğiz. Doğrusal fonksiyonlar; hız-zaman, ücret-miktar gibi günlük değişimlerin modelidir ve bir sonraki derslerin (mutlak değer fonksiyonu, problemler) temelidir. Bol örnek ve "Sıra Sende" alıştırmalarıyla pekiştireceğiz.</p>
+
+## 1. Doğrusal Fonksiyon Nedir?
+
+$a\neq 0$ ve $b$ gerçek sayılar olmak üzere
+
+$$f(x)=ax+b$$
+
+biçimindeki fonksiyona **doğrusal fonksiyon** denir. Grafiği bir **doğru**dur. Burada:
+
+- $a$ → **eğim** (doğrunun ne kadar dik olduğu ve yönü),
+- $b$ → **$y$ kesişimi** (doğrunun $y$ eksenini kestiği nokta: $(0,b)$).
+
+<Figur>
+
+<DogruGrafik />
+
+<Altyazi>Şekil 1 — $f(x)=2x+1$ doğrusal fonksiyonu. Eğim $a=2$ (pozitif → artan), $y$ kesişimi $b=1$ olduğundan grafik $y$ eksenini $(0,1)$ noktasında keser.</Altyazi>
+
+</Figur>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=3x-5$ fonksiyonunda eğim ve $y$ kesişimini belirtiniz, $f(2)$ değerini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $f(x)=ax+b$ ile karşılaştır: $a=3$ (eğim), $b=-5$ ($y$ kesişimi $(0,-5)$).
+2. $f(2)$ için $x=2$ koy: $f(2)=3\cdot 2-5=6-5=1$.
+
+<Cevap>Eğim $3$, $y$ kesişimi $(0,-5)$, $f(2)=1$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 2. Eğim ve İşareti
+
+Eğim, $x$ bir birim arttığında $y$'nin ne kadar değiştiğini verir. İki noktadan eğim:
+
+$$a=\dfrac{y_2-y_1}{x_2-x_1}$$
+
+İşareti, fonksiyonun **gidişini** belirler:
+
+- $a>0$ → fonksiyon **artandır** (grafik soldan sağa yükselir).
+- $a<0$ → fonksiyon **azalandır** (grafik soldan sağa alçalır).
+- $a=0$ → $f(x)=b$ **sabit fonksiyon** (yatay doğru; doğrusal sayılmaz).
+
+<Ornek>
+
+<Soru>
+
+$A(1,\ 4)$ ve $B(3,\ 10)$ noktalarından geçen doğrunun eğimini bulunuz ve fonksiyonun artan mı azalan mı olduğunu söyleyiniz.
+
+</Soru>
+
+<Ipucu>
+
+Eğim formülünde $y$ farkını $x$ farkına böl; hangi noktayı önce yazdığın sonucu değiştirmez, yeter ki pay ve paydada **aynı sırayı** kullan.
+
+</Ipucu>
+
+<Cozum>
+
+1. Formülü uygula: $a=\dfrac{10-4}{3-1}=\dfrac{6}{2}=3$.
+2. $a=3>0$ olduğundan fonksiyon **artandır**.
+
+<Cevap>Eğim $3$, fonksiyon artandır.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 3. Eksen Kesişimleri
+
+Grafiğin eksenleri kestiği noktalar fonksiyonu hızlı çizmeye yarar:
+
+- **$y$ eksenini** kestiği nokta: $x=0$ koy → $(0,b)$.
+- **$x$ eksenini** kestiği nokta (kök): $f(x)=0$ çöz → $\left(-\dfrac{b}{a},\ 0\right)$.
+
+<Ornek>
+
+<Soru>
+
+$f(x)=2x-6$ fonksiyonunun eksenleri kestiği noktaları bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $y$ kesişimi: $x=0$ → $f(0)=-6$, nokta $(0,-6)$.
+2. $x$ kesişimi: $2x-6=0\Rightarrow x=3$, nokta $(3,0)$.
+
+<Cevap>$(0,-6)$ ve $(3,0)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 4. Fonksiyonu Belirleme
+
+İki bilgi (örneğin iki nokta ya da bir nokta + eğim) verilince fonksiyon tek biçimde bulunur: önce eğim $a$, sonra bir noktayı yerine koyarak $b$.
+
+<Ornek>
+
+<Soru>
+
+Eğimi $-2$ olan ve $(1,\ 3)$ noktasından geçen doğrusal fonksiyonu bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $a=-2$ olduğundan $f(x)=-2x+b$.
+2. $(1,3)$ noktasını yerine koy: $3=-2\cdot 1+b\Rightarrow 3=-2+b\Rightarrow b=5$.
+3. Fonksiyon: $f(x)=-2x+5$.
+
+<Cevap>$f(x)=-2x+5$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Çözümlü Örnekler
+
+<Ornek>
+
+<Soru>
+
+$f(x)=-\dfrac{1}{2}x+4$ fonksiyonu artan mı azalan mıdır? $f(6)$ kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. Eğim $a=-\dfrac{1}{2}<0$ → **azalan**.
+2. $f(6)=-\dfrac{1}{2}\cdot 6+4=-3+4=1$.
+
+<Cevap>Azalan; $f(6)=1$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$A(-2,\ 1)$ ve $B(2,\ 9)$ noktalarından geçen doğrusal fonksiyonu bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Eğim: $a=\dfrac{9-1}{2-(-2)}=\dfrac{8}{4}=2$.
+2. $f(x)=2x+b$; $A(-2,1)$'i koy: $1=2\cdot(-2)+b\Rightarrow 1=-4+b\Rightarrow b=5$.
+3. Fonksiyon: $f(x)=2x+5$.
+
+<Cevap>$f(x)=2x+5$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=ax+b$ fonksiyonu için $f(0)=3$ ve $f(2)=11$ ise $a$ ve $b$'yi bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+$f(0)$ doğrudan $b$'yi verir; sonra $f(2)$ ile $a$'yı çek.
+
+</Ipucu>
+
+<Cozum>
+
+1. $f(0)=a\cdot 0+b=b=3$, yani $b=3$.
+2. $f(2)=2a+b=11\Rightarrow 2a+3=11\Rightarrow 2a=8\Rightarrow a=4$.
+
+<Cevap>$a=4$, $b=3$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=3x-12$ fonksiyonunun grafiği ile eksenler arasında kalan üçgenin alanını bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Eksen kesişimleri: $y$ → $(0,-12)$; $x$ → $3x-12=0\Rightarrow x=4$, $(4,0)$.
+2. Dik kenarlar eksenlerdeki uzunluklar: $|{-12}|=12$ ve $4$.
+3. Alan: $\dfrac{1}{2}\cdot 4\cdot 12=24$.
+
+<Cevap>Alan $24$ birimkaredir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Alıştırmalar — Sıra Sende
+
+> Önce kendin çözmeyi dene; sonra çözümü açıp karşılaştır.
+
+<Ornek>
+
+<Soru>
+
+$f(x)=5x+2$ fonksiyonunun eğimini ve $y$ kesişimini yaz.
+
+</Soru>
+
+<Cozum>
+
+1. $a=5$ (eğim), $b=2$ → $y$ kesişimi $(0,2)$.
+
+<Cevap>Eğim $5$, $y$ kesişimi $(0,2)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$P(0,\ -1)$ ve $Q(4,\ 7)$ noktalarından geçen doğrunun eğimini bul.
+
+</Soru>
+
+<Cozum>
+
+1. $a=\dfrac{7-(-1)}{4-0}=\dfrac{8}{4}=2$.
+
+<Cevap>Eğim $2$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=-3x+9$ fonksiyonunun $x$ eksenini kestiği noktayı bul.
+
+</Soru>
+
+<Cozum>
+
+1. $f(x)=0$: $-3x+9=0\Rightarrow x=3$.
+
+<Cevap>$(3,0)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Eğimi $4$ olan ve $(2,\ 3)$ noktasından geçen doğrusal fonksiyonu yaz.
+
+</Soru>
+
+<Cozum>
+
+1. $f(x)=4x+b$; $(2,3)$: $3=8+b\Rightarrow b=-5$.
+
+<Cevap>$f(x)=4x-5$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=ax+1$ fonksiyonu $(3,\ 10)$ noktasından geçiyorsa $a$ kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. $(3,10)$'u koy: $10=3a+1\Rightarrow 3a=9\Rightarrow a=3$.
+
+<Cevap>$a=3$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Eğim formülünde sırayı karıştırmak.** Pay $y_2-y_1$ ile payda $x_2-x_1$ **aynı noktayı** başlangıç almalı; biri ters olursa işaret hatalı çıkar.
+- **$b$'yi eğim sanmak.** $f(x)=ax+b$'de eğim $a$, $y$ kesişimi $b$'dir.
+- **$x$ kesişimini $y=0$ yerine $x=0$ ile aramak.** $x$ eksenini keserken $y=f(x)=0$ alınır; $x=0$ ise $y$ kesişimini verir.
+- **Eğimin işaretini gidişle bağdaştırmamak.** $a>0$ artan, $a<0$ azalandır; bunu grafikte yükseliş/alçalış olarak gör.
+
+> **Not:** Bir doğrusal fonksiyonu hızlıca çizmek için iki noktası yeter: $y$ kesişimi $(0,b)$ ile $x$ kesişimi $\left(-\tfrac{b}{a},0\right)$. Bu iki noktayı işaretleyip birleştir.
+
+<KonuNav slug="dogrusal-fonksiyonlar-9" />

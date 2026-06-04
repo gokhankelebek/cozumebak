@@ -175,9 +175,9 @@ export const TOPICS: Topic[] = [
   { slug: "gercek-sayilar", title: "Gerçek Sayılarda İşlemler ve Aralıklar", track: "9", unit: "sayilar-9", summary: "Gerçek sayılarda işlem özellikleri, aralıklar ve aralıklarla işlemler.", minutes: 7, difficulty: "Orta", questionCount: 20, status: "published", keywords: ["aralık", "gerçek sayı"] },
 
   // ── 9. Sınıf · Nicelikler ve Değişimler ──
-  { slug: "dogrusal-fonksiyonlar-9", title: "Doğrusal Fonksiyonlar", track: "9", unit: "nicelikler-degisimler-9", summary: "Doğrusal fonksiyon, eğim ve grafiğinin nitel özellikleri.", minutes: 7, difficulty: "Orta", questionCount: 18, status: "soon", keywords: ["eğim", "doğrusal"] },
-  { slug: "mutlak-deger-fonksiyonlari-9", title: "Mutlak Değer Fonksiyonları", track: "9", unit: "nicelikler-degisimler-9", summary: "Mutlak değer fonksiyonu, grafiği ve temel özellikleri.", minutes: 7, difficulty: "Orta", questionCount: 18, status: "soon", keywords: ["mutlak değer"] },
-  { slug: "birinci-derece-problemler-9", title: "Birinci Dereceden Denklem ve Eşitsizlik Problemleri", track: "9", unit: "nicelikler-degisimler-9", summary: "Doğrusal fonksiyonlarla ifade edilen denklem ve eşitsizlik problemleri.", minutes: 8, difficulty: "Orta", questionCount: 22, status: "soon" },
+  { slug: "dogrusal-fonksiyonlar-9", title: "Doğrusal Fonksiyonlar", track: "9", unit: "nicelikler-degisimler-9", summary: "Doğrusal fonksiyon, eğim ve grafiğinin nitel özellikleri.", minutes: 7, difficulty: "Orta", questionCount: 18, status: "published", keywords: ["eğim", "doğrusal"] },
+  { slug: "mutlak-deger-fonksiyonlari-9", title: "Mutlak Değer Fonksiyonları", track: "9", unit: "nicelikler-degisimler-9", summary: "Mutlak değer fonksiyonu, grafiği ve temel özellikleri.", minutes: 7, difficulty: "Orta", questionCount: 18, status: "published", keywords: ["mutlak değer"] },
+  { slug: "birinci-derece-problemler-9", title: "Birinci Dereceden Denklem ve Eşitsizlik Problemleri", track: "9", unit: "nicelikler-degisimler-9", summary: "Doğrusal fonksiyonlarla ifade edilen denklem ve eşitsizlik problemleri.", minutes: 8, difficulty: "Orta", questionCount: 22, status: "published" },
 
   // ── 9. Sınıf · Algoritma ve Bilişim ──
   { slug: "algoritmik-dusunme-9", title: "Algoritmik Düşünme ve Problem Çözme", track: "9", unit: "algoritma-bilisim-9", summary: "Problemleri algoritmik yaklaşımla adım adım çözme.", minutes: 6, difficulty: "Kolay", questionCount: 14, status: "soon", keywords: ["algoritma", "akış"] },
