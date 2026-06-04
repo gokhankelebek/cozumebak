@@ -1,0 +1,290 @@
+import { topicMetadata } from "@/lib/seo";
+import { IcAcilar } from "@/components/figures/UcgenFig";
+
+export const metadata = topicMetadata("ucgende-kenar-aci-bagintilari");
+
+<Konu slug="ucgende-kenar-aci-bagintilari" />
+
+<p className="lead">Bir üçgende **açılarla kenarlar** birbirine bağlıdır: büyük açının karşısında uzun kenar bulunur. Bu derste **kenar-açı sıralaması** ilişkisini ve bir üçgenin var olabilmesi için kenarlarının sağlaması gereken **üçgen eşitsizliğini** ($|b-c|<a<b+c$) öğreneceğiz. Bu iki kural, "bu üçgen çizilebilir mi?", "üçüncü kenar kaç olabilir?" ve "açıları/kenarları sırala" tipindeki soruların anahtarıdır. Bol örnek ve "Sıra Sende" alıştırmalarıyla pekiştireceğiz.</p>
+
+## 1. Kenar-Açı İlişkisi
+
+Bir üçgende **büyük açının karşısındaki kenar daha uzun**, küçük açının karşısındaki kenar daha kısadır. Açıların sıralaması ile karşı kenarların sıralaması **aynıdır**:
+
+$$\widehat{A}>\widehat{B}>\widehat{C} \iff a>b>c$$
+
+Burada $a$ kenarı $\widehat{A}$ açısının (yani $A$ köşesinin) **karşısındaki** kenardır.
+
+<Figur>
+
+<IcAcilar />
+
+<Altyazi>Şekil 1 — Açılar $A,\ B,\ C$. Her kenar, karşısındaki açıyla eşleşir: en büyük açının karşısındaki kenar en uzun, en küçük açının karşısındaki kenar en kısadır.</Altyazi>
+
+</Figur>
+
+<Ornek>
+
+<Soru>
+
+Bir üçgende $\widehat{A}=80°$, $\widehat{B}=60°$, $\widehat{C}=40°$ ise $a,\ b,\ c$ kenarlarını büyükten küçüğe sıralayınız.
+
+</Soru>
+
+<Cozum>
+
+1. Açı sıralaması: $\widehat{A}>\widehat{B}>\widehat{C}$ ($80°>60°>40°$).
+2. Kenarlar aynı sırayı izler: $a>b>c$.
+
+<Cevap>$a>b>c$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 2. Üçgen Eşitsizliği
+
+Üç doğru parçasının üçgen oluşturabilmesi için, **bir kenar her zaman diğer ikisinin toplamından küçük, farkının mutlak değerinden büyük** olmalıdır:
+
+$$|b-c|<a<b+c$$
+
+Pratikte: en uzun kenar, diğer iki kenarın **toplamından küçük** olmalıdır. Değilse üçgen oluşmaz.
+
+<Ornek>
+
+<Soru>
+
+$5,\ 8,\ 12$ uzunluklarındaki çubuklarla bir üçgen oluşturulabilir mi?
+
+</Soru>
+
+<Ipucu>
+
+En uzun kenarı, diğer iki kenarın toplamıyla karşılaştır. Toplam, en uzun kenardan büyük olmalı.
+
+</Ipucu>
+
+<Cozum>
+
+1. En uzun kenar $12$; diğer ikisinin toplamı $5+8=13$.
+2. $12<13$ olduğundan üçgen eşitsizliği sağlanır.
+
+<Cevap>Evet, üçgen oluşturulabilir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 3. Üçüncü Kenarın Alabileceği Değerler
+
+İki kenarı $b$ ve $c$ verilen bir üçgende üçüncü kenar $a$, şu aralıkta olmalıdır:
+
+$$|b-c|<a<b+c$$
+
+<Ornek>
+
+<Soru>
+
+Bir üçgenin iki kenarı $7$ ve $4$'tür. Üçüncü kenar bir tam sayı ise alabileceği en küçük ve en büyük değeri bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Aralık: $|7-4|<a<7+4$, yani $3<a<11$.
+2. Tam sayı $a$: $4,\ 5,\ \dots,\ 10$ (uçlar dâhil değil).
+3. En küçük $4$, en büyük $10$.
+
+<Cevap>En küçük $4$, en büyük $10$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Çözümlü Örnekler
+
+<Ornek>
+
+<Soru>
+
+Bir üçgende $a=10$, $b=7$, $c=5$ ise açıları büyükten küçüğe sıralayınız.
+
+</Soru>
+
+<Cozum>
+
+1. Kenar sıralaması: $a>b>c$ ($10>7>5$).
+2. Açılar karşı kenarlarla aynı sırada: $\widehat{A}>\widehat{B}>\widehat{C}$.
+
+<Cevap>$\widehat{A}>\widehat{B}>\widehat{C}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Kenarları $3,\ 4,\ 9$ olan bir üçgen çizilebilir mi?
+
+</Soru>
+
+<Cozum>
+
+1. En uzun kenar $9$; diğer ikisinin toplamı $3+4=7$.
+2. $9>7$ olduğundan üçgen eşitsizliği **sağlanmaz**.
+
+<Cevap>Hayır, çizilemez.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+İki kenarı $6$ ve $6$ olan ikizkenar üçgende üçüncü kenar bir tam sayıdır. Kaç farklı değer alabilir?
+
+</Soru>
+
+<Cozum>
+
+1. Aralık: $|6-6|<a<6+6$, yani $0<a<12$.
+2. Tam sayı değerler: $1,\ 2,\ \dots,\ 11$.
+3. Bunların sayısı $11$'dir.
+
+<Cevap>$11$ farklı değer.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir üçgende $\widehat{B}$ en büyük açıysa, hangi kenar en uzundur?
+
+</Soru>
+
+<Cozum>
+
+1. En büyük açının karşısındaki kenar en uzundur.
+2. $\widehat{B}$'nin karşısındaki kenar $b$'dir.
+
+<Cevap>$b$ kenarı en uzundur.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Alıştırmalar — Sıra Sende
+
+> Önce kendin çözmeyi dene; sonra çözümü açıp karşılaştır.
+
+<Ornek>
+
+<Soru>
+
+Kenarları $2,\ 5,\ 6$ olan bir üçgen çizilebilir mi?
+
+</Soru>
+
+<Cozum>
+
+1. En uzun kenar $6$; diğerlerinin toplamı $2+5=7>6$.
+
+<Cevap>Evet, çizilebilir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir üçgenin iki kenarı $9$ ve $5$'tir. Üçüncü kenar tam sayı ise kaç farklı değer alabilir?
+
+</Soru>
+
+<Cozum>
+
+1. Aralık: $|9-5|<a<9+5\Rightarrow 4<a<14$.
+2. Tam sayılar: $5,\ 6,\dots,13$ → $9$ değer.
+
+<Cevap>$9$ farklı değer.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\widehat{A}=50°$, $\widehat{B}=70°$, $\widehat{C}=60°$ olan üçgende en uzun kenar hangisidir?
+
+</Soru>
+
+<Cozum>
+
+1. En büyük açı $\widehat{B}=70°$.
+2. Karşısındaki kenar $b$ en uzundur.
+
+<Cevap>$b$ kenarı.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir üçgende $a=8$, $b=8$, $c=3$ ise en küçük açı hangi kenarın karşısındadır?
+
+</Soru>
+
+<Cozum>
+
+1. En kısa kenar $c=3$.
+2. En kısa kenarın karşısındaki açı en küçüktür: $\widehat{C}$.
+
+<Cevap>$\widehat{C}$ (kenar $c$'nin karşısı).</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+İki kenarı $10$ ve $4$ olan üçgende üçüncü kenar $x$ tam sayıdır. $x$'in alabileceği en büyük değer nedir?
+
+</Soru>
+
+<Cozum>
+
+1. Aralık: $|10-4|<x<10+4\Rightarrow 6<x<14$.
+2. En büyük tam sayı $13$.
+
+<Cevap>$13$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Açı-kenar eşleşmesini ters kurmak.** Büyük açının karşısında **uzun** kenar bulunur; küçük açıyla uzun kenarı eşleştirme.
+- **Üçgen eşitsizliğinde uç değerleri dâhil etmek.** $|b-c|<a<b+c$ eşitsizlikleri **kesindir**; $a$, $|b-c|$ ya da $b+c$'ye **eşit olamaz** (eşitlikte üçgen düzleşir).
+- **Yalnız bir koşulu kontrol etmek.** Üçgen eşitsizliği için en güvenlisi: **en uzun kenar < diğer ikisinin toplamı** olduğunu doğrulamak yeterlidir.
+- **Kenar aralığını yanlış saymak.** $3<a<11$ aralığında tam sayılar $4$'ten $10$'a kadardır (uçlar hariç); say verirken dikkat et.
+
+> **Not:** İki temel kural: **(1)** açı sıralaması $=$ karşı kenar sıralaması; **(2)** üçüncü kenar daima $|b-c|$ ile $b+c$ **arasındadır**. Sıralama sorusunda önce büyük açıyı/uzun kenarı bul.
+
+<KonuNav slug="ucgende-kenar-aci-bagintilari" />

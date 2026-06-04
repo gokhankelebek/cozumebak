@@ -1,0 +1,330 @@
+import { topicMetadata } from "@/lib/seo";
+import { IcAcilar, DisAci, Ikizkenar } from "@/components/figures/UcgenFig";
+
+export const metadata = topicMetadata("ucgende-acilar");
+
+<Konu slug="ucgende-acilar" />
+
+<p className="lead">*Geometrik Şekiller* temasına en temel çokgen olan **üçgenle** başlıyoruz. Bu derste bir üçgenin **iç açılarının toplamının** neden hep $180°$ olduğunu, **dış açı** ile iç açılar arasındaki bağıntıyı, **dış açılar toplamını** ve **ikizkenar/eşkenar** üçgenlerin açı özelliklerini öğreneceğiz. Açı bağıntıları, geometri sorularının çoğunda ilk kullandığın araçtır. Bol şekil, örnek ve "Sıra Sende" alıştırmalarıyla pekiştireceğiz.</p>
+
+## 1. İç Açılar Toplamı
+
+Bir üçgenin üç iç açısının ölçüleri toplamı her zaman $180°$'dir:
+
+$$\widehat{A}+\widehat{B}+\widehat{C}=180°$$
+
+<Figur>
+
+<IcAcilar />
+
+<Altyazi>Şekil 1 — İç açıları $A,\ B,\ C$ olan bir üçgen. Üçgen ne olursa olsun $A+B+C=180°$'dir.</Altyazi>
+
+</Figur>
+
+<Ornek>
+
+<Soru>
+
+Bir üçgenin iç açılarından ikisi $50°$ ve $70°$'dir. Üçüncü açıyı bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. İç açılar toplamı $180°$: $50°+70°+x=180°$.
+2. $120°+x=180°\Rightarrow x=60°$.
+
+<Cevap>Üçüncü açı $60°$'dir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 2. Dış Açı Bağıntısı
+
+Bir kenarı uzatıldığında oluşan açıya **dış açı** denir. Bir köşedeki dış açı, kendisine **komşu olmayan** iki iç açının toplamına eşittir:
+
+$$\widehat{d}=\widehat{A}+\widehat{C}$$
+
+Ayrıca bir köşedeki iç açı ile dış açı **bütünlerdir** (toplamları $180°$).
+
+<Figur>
+
+<DisAci />
+
+<Altyazi>Şekil 2 — $B$ köşesindeki kenar uzatılmış. Dış açı $d$, komşu olmayan $A$ ve $C$ iç açılarının toplamına eşittir: $d=A+C$.</Altyazi>
+
+</Figur>
+
+<Ornek>
+
+<Soru>
+
+Bir üçgende $A=65°$ ve $C=45°$ ise $B$ köşesindeki dış açının ölçüsünü bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Dış açı, kendisine komşu olmayan iki iç açının toplamıdır. $B$'nin dış açısı $A$ ve $C$'ye komşu değildir.
+
+</Ipucu>
+
+<Cozum>
+
+1. Dış açı $=A+C$ (komşu olmayan iki iç açı).
+2. $d=65°+45°=110°$.
+
+<Cevap>Dış açı $110°$'dir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 3. Dış Açılar Toplamı
+
+Bir üçgenin her köşesinden birer dış açı alınırsa, bu üç dış açının toplamı her zaman $360°$'dir. (Bu, tüm çokgenler için geçerli bir kuraldır.)
+
+<Ornek>
+
+<Soru>
+
+Bir üçgenin iki dış açısı $120°$ ve $130°$'dir. Üçüncü dış açıyı bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Dış açılar toplamı $360°$: $120°+130°+x=360°$.
+2. $250°+x=360°\Rightarrow x=110°$.
+
+<Cevap>Üçüncü dış açı $110°$'dir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 4. İkizkenar ve Eşkenar Üçgen
+
+- **İkizkenar üçgen:** iki kenarı eşit olan üçgendir. Eşit kenarların **karşısındaki taban açıları eşittir**.
+- **Eşkenar üçgen:** üç kenarı da eşit olan üçgendir. Her iç açısı $\dfrac{180°}{3}=60°$'dir.
+
+<Figur>
+
+<Ikizkenar />
+
+<Altyazi>Şekil 3 — İkizkenar üçgen. Eşit kenarlar tik işaretlidir; bu kenarların karşısındaki taban açıları $\widehat{B}=\widehat{C}$ eşittir.</Altyazi>
+
+</Figur>
+
+<Ornek>
+
+<Soru>
+
+Tepe açısı $40°$ olan ikizkenar üçgende taban açılarının ölçüsünü bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Taban açıları eşit; her birine $x$ diyelim.
+2. İç açılar toplamı: $40°+x+x=180°$.
+3. $2x=140°\Rightarrow x=70°$.
+
+<Cevap>Her taban açısı $70°$'dir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Çözümlü Örnekler
+
+<Ornek>
+
+<Soru>
+
+Bir üçgenin iç açıları $2x,\ 3x,\ 4x$ ölçülerindedir. $x$ kaç derecedir?
+
+</Soru>
+
+<Cozum>
+
+1. Toplam $180°$: $2x+3x+4x=180°$.
+2. $9x=180°\Rightarrow x=20°$.
+
+<Cevap>$x=20°$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir dik üçgenin dik açısı dışındaki iki açısından biri $35°$'dir. Diğeri kaç derecedir?
+
+</Soru>
+
+<Ipucu>
+
+Dik üçgende bir açı $90°$'dir; kalan iki açının toplamı $90°$ olmalıdır.
+
+</Ipucu>
+
+<Cozum>
+
+1. Dik açı $90°$; kalan iki açı toplamı $180°-90°=90°$.
+2. $90°-35°=55°$.
+
+<Cevap>Diğer açı $55°$'dir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir üçgende dış açılardan biri $150°$ ise bu dış açıya komşu olan iç açı kaç derecedir?
+
+</Soru>
+
+<Cozum>
+
+1. İç açı ile dış açı bütündür (toplamları $180°$).
+2. $180°-150°=30°$.
+
+<Cevap>Komşu iç açı $30°$'dir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Eşkenar üçgenin bir dış açısı kaç derecedir?
+
+</Soru>
+
+<Cozum>
+
+1. Eşkenar üçgende her iç açı $60°$'dir.
+2. Dış açı, iç açının bütünleyenidir: $180°-60°=120°$.
+
+<Cevap>$120°$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Alıştırmalar — Sıra Sende
+
+> Önce kendin çözmeyi dene; sonra çözümü açıp karşılaştır.
+
+<Ornek>
+
+<Soru>
+
+Bir üçgenin iki iç açısı $90°$ ve $35°$'dir. Üçüncü açıyı bul.
+
+</Soru>
+
+<Cozum>
+
+1. $90°+35°+x=180°\Rightarrow x=55°$.
+
+<Cevap>$55°$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+İç açıları $x,\ x+10°,\ x+20°$ olan üçgende en büyük açıyı bul.
+
+</Soru>
+
+<Cozum>
+
+1. $x+(x+10)+(x+20)=180\Rightarrow 3x+30=180\Rightarrow x=50°$.
+2. En büyük açı $x+20°=70°$.
+
+<Cevap>$70°$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir üçgende $A=80°$, $B=40°$ ise $C$ köşesindeki dış açı kaç derecedir?
+
+</Soru>
+
+<Cozum>
+
+1. Dış açı, komşu olmayan iki iç açının toplamı: $A+B=80°+40°=120°$.
+
+<Cevap>$120°$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Taban açısı $50°$ olan ikizkenar üçgenin tepe açısı kaç derecedir?
+
+</Soru>
+
+<Cozum>
+
+1. İki taban açısı eşit ($50°$ ve $50°$).
+2. Tepe açısı: $180°-50°-50°=80°$.
+
+<Cevap>$80°$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir üçgenin dış açıları $2x,\ 3x,\ 5x$ ise $x$ kaç derecedir?
+
+</Soru>
+
+<Cozum>
+
+1. Dış açılar toplamı $360°$: $2x+3x+5x=360°$.
+2. $10x=360°\Rightarrow x=36°$.
+
+<Cevap>$x=36°$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **İç açılar toplamını $360°$ sanmak.** Üçgende iç açılar toplamı $180°$'dir; $360°$ dört kenarlıların (dörtgen) iç açı toplamıdır.
+- **Dış açıyı yanlış iç açılarla toplamak.** Dış açı, kendisine **komşu olmayan** iki iç açının toplamıdır; komşu iç açı ile **bütündür**.
+- **İkizkenarda yanlış açıları eşitlemek.** Eşit olan, **eşit kenarların karşısındaki** taban açılarıdır; tepe açısı genelde farklıdır.
+- **Eşkenarı ikizkenarla karıştırmak.** Eşkenarda her açı $60°$; ikizkenarda yalnız iki taban açısı eşittir.
+
+> **Not:** Açı sorularında üç araç çoğu zaman yeter: iç açılar toplamı $180°$, dış açı $=$ komşu olmayan iki iç açı, iç açı $+$ dış açı $=180°$. Önce hangi açıların verildiğini işaretle, sonra uygun bağıntıyı seç.
+
+<KonuNav slug="ucgende-acilar" />

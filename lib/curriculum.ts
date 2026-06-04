@@ -184,8 +184,8 @@ export const TOPICS: Topic[] = [
   { slug: "mantik-onermeler-9", title: "Mantık: Önermeler ve Niceleyiciler", track: "9", unit: "algoritma-bilisim-9", summary: "Önermeler, bağlaçlar ve niceleyicilerin algoritmik yapılardaki kullanımı.", minutes: 7, difficulty: "Orta", questionCount: 18, status: "published", keywords: ["önerme", "mantık", "niceleyici"] },
 
   // ── 9. Sınıf · Geometrik Şekiller ──
-  { slug: "ucgende-acilar", title: "Üçgende Açılar", track: "9", unit: "geometrik-sekiller-9", summary: "İç açı, dış açı ve açı bağıntıları.", minutes: 5, difficulty: "Kolay", questionCount: 14, status: "soon" },
-  { slug: "ucgende-kenar-aci-bagintilari", title: "Üçgende Kenar-Açı Bağıntıları", track: "9", unit: "geometrik-sekiller-9", summary: "Kenar uzunlukları ile açılar arasındaki ilişki.", minutes: 6, difficulty: "Orta", questionCount: 14, status: "soon" },
+  { slug: "ucgende-acilar", title: "Üçgende Açılar", track: "9", unit: "geometrik-sekiller-9", summary: "İç açı, dış açı ve açı bağıntıları.", minutes: 5, difficulty: "Kolay", questionCount: 14, status: "published" },
+  { slug: "ucgende-kenar-aci-bagintilari", title: "Üçgende Kenar-Açı Bağıntıları", track: "9", unit: "geometrik-sekiller-9", summary: "Kenar uzunlukları ile açılar arasındaki ilişki.", minutes: 6, difficulty: "Orta", questionCount: 14, status: "published" },
 
   // ── 9. Sınıf · Eşlik ve Benzerlik ──
   { slug: "geometrik-donusumler-9", title: "Geometrik Dönüşümler", track: "9", unit: "eslik-benzerlik-9", summary: "Öteleme, yansıma ve dönme dönüşümleri.", minutes: 7, difficulty: "Orta", questionCount: 16, status: "soon", keywords: ["öteleme", "yansıma", "dönme"] },
