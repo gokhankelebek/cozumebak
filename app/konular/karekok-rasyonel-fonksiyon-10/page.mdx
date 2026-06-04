@@ -1,0 +1,306 @@
+import { topicMetadata } from "@/lib/seo";
+import { KarekokGrafik, Hiperbol } from "@/components/figures/RasyonelFig";
+
+export const metadata = topicMetadata("karekok-rasyonel-fonksiyon-10");
+
+<Konu slug="karekok-rasyonel-fonksiyon-10" />
+
+<p className="lead">Doğrusal ve karesel fonksiyonların yanına iki yeni aile ekliyoruz: **karekök fonksiyonu** $f(x)=\sqrt{x}$ ve **rasyonel fonksiyon** $f(x)=\dfrac{1}{x}$ gibi. Bu derste bu fonksiyonların **tanım kümesini** (hangi $x$ değerlerinin geçerli olduğunu), grafiklerinin biçimini ve rasyonel fonksiyonlardaki **asimptot** fikrini öğreneceğiz. Asıl beceri: bir fonksiyonun nerede **tanımlı** olduğunu belirlemek. Bol örnek ve "Sıra Sende" alıştırmalarıyla pekiştireceğiz.</p>
+
+## 1. Karekök Fonksiyonu
+
+$f(x)=\sqrt{x}$ fonksiyonunda kök içi **negatif olamaz**; bu yüzden tanım kümesi $x\ge 0$'dır. Grafik orijinden başlar ve gittikçe yatıklaşarak artar; değer kümesi $[0,\infty)$'dur.
+
+<Figur>
+
+<KarekokGrafik />
+
+<Altyazi>Şekil 1 — $f(x)=\sqrt{x}$ grafiği. Yalnız $x\ge 0$ için tanımlıdır; orijinden başlar, artar ama giderek yavaşlar.</Altyazi>
+
+</Figur>
+
+Genel olarak $\sqrt{A}$ ifadesinin tanımlı olması için $A\ge 0$ koşulu çözülür.
+
+<Ornek>
+
+<Soru>
+
+$f(x)=\sqrt{x-3}$ fonksiyonunun tanım kümesini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Kök içi sıfırdan küçük olamaz: kök içini $\ge 0$ yapan eşitsizliği çöz.
+
+</Ipucu>
+
+<Cozum>
+
+1. Kök içi $\ge 0$: $x-3\ge 0$.
+2. $x\ge 3$.
+
+<Cevap>Tanım kümesi $[3,\ \infty)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 2. Rasyonel Fonksiyon
+
+Pay ve payda birer polinom olan $f(x)=\dfrac{P(x)}{Q(x)}$ fonksiyonuna **rasyonel fonksiyon** denir. Burada **payda sıfır olamaz**; tanım kümesi, $Q(x)=0$ yapan değerler **dışlanarak** bulunur.
+
+<Figur>
+
+<Hiperbol />
+
+<Altyazi>Şekil 2 — $f(x)=\dfrac{1}{x}$ grafiği (hiperbol). $x=0$'da tanımsızdır; eksenler birer **asimptottur** — grafik onlara yaklaşır ama dokunmaz.</Altyazi>
+
+</Figur>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=\dfrac{2x+1}{x-5}$ fonksiyonunun tanım kümesini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Payda sıfır olamaz: $x-5\neq 0\Rightarrow x\neq 5$.
+
+<Cevap>Tanım kümesi $\mathbb{R}\setminus\{5\}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 3. Asimptot Fikri
+
+$f(x)=\dfrac{1}{x}$ gibi fonksiyonlarda grafik, paydanın sıfır olduğu yere yaklaştıkça **düşey asimptota** ($x=0$) sonsuza gider; $x$ büyüdükçe **yatay asimptota** ($y=0$) yaklaşır. Asimptot, grafiğin "dokunmadan yaklaştığı" doğrudur.
+
+<Ornek>
+
+<Soru>
+
+$f(x)=\dfrac{1}{x-2}$ fonksiyonunun düşey asimptotu nedir?
+
+</Soru>
+
+<Cozum>
+
+1. Payda sıfır: $x-2=0\Rightarrow x=2$.
+2. Bu değerde fonksiyon tanımsızdır; düşey asimptot $x=2$ doğrusudur.
+
+<Cevap>Düşey asimptot $x=2$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 4. Birleşik Koşullar
+
+Bir ifade hem kök hem payda içeriyorsa **her iki koşul** birden sağlanmalıdır: kök içi $\ge 0$ **ve** payda $\neq 0$.
+
+<Ornek>
+
+<Soru>
+
+$f(x)=\dfrac{\sqrt{x+1}}{x-4}$ fonksiyonunun tanım kümesini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Kök içi: $x+1\ge 0\Rightarrow x\ge -1$.
+2. Payda: $x-4\neq 0\Rightarrow x\neq 4$.
+3. İkisini birleştir: $x\ge -1$ ve $x\neq 4$.
+
+<Cevap>$[-1,\ 4)\cup(4,\ \infty)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Çözümlü Örnekler
+
+<Ornek>
+
+<Soru>
+
+$f(x)=\sqrt{5-x}$ fonksiyonunun tanım kümesini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $5-x\ge 0\Rightarrow x\le 5$.
+
+<Cevap>$(-\infty,\ 5]$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=\dfrac{x}{x^2-9}$ fonksiyonu hangi değerlerde tanımsızdır?
+
+</Soru>
+
+<Cozum>
+
+1. Payda sıfır: $x^2-9=0\Rightarrow x=\pm 3$.
+
+<Cevap>$x=3$ ve $x=-3$'te tanımsızdır.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(9)$ değerini $f(x)=\sqrt{x}+\dfrac{6}{x}$ için bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $\sqrt{9}=3$, $\dfrac{6}{9}=\dfrac{2}{3}$.
+2. $f(9)=3+\dfrac{2}{3}=\dfrac{11}{3}$.
+
+<Cevap>$\dfrac{11}{3}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=\dfrac{1}{x+3}$ fonksiyonunun düşey ve yatay asimptotlarını yazınız.
+
+</Soru>
+
+<Cozum>
+
+1. Düşey: payda $0$ → $x=-3$.
+2. Yatay: $x$ büyüdükçe değer $0$'a yaklaşır → $y=0$.
+
+<Cevap>Düşey $x=-3$, yatay $y=0$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Alıştırmalar — Sıra Sende
+
+> Önce kendin çözmeyi dene; sonra çözümü açıp karşılaştır.
+
+<Ornek>
+
+<Soru>
+
+$f(x)=\sqrt{2x-8}$ fonksiyonunun tanım kümesini bul.
+
+</Soru>
+
+<Cozum>
+
+1. $2x-8\ge 0\Rightarrow x\ge 4$.
+
+<Cevap>$[4,\ \infty)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=\dfrac{3}{x-7}$ fonksiyonu nerede tanımsızdır?
+
+</Soru>
+
+<Cozum>
+
+1. $x-7=0\Rightarrow x=7$.
+
+<Cevap>$x=7$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=\dfrac{1}{x}$ fonksiyonunun yatay asimptotu nedir?
+
+</Soru>
+
+<Cozum>
+
+1. $x$ büyüdükçe $\dfrac{1}{x}\to 0$.
+
+<Cevap>$y=0$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=\dfrac{\sqrt{x}}{x-1}$ fonksiyonunun tanım kümesini bul.
+
+</Soru>
+
+<Cozum>
+
+1. Kök içi: $x\ge 0$. Payda: $x\neq 1$.
+2. Birleştir: $[0,1)\cup(1,\infty)$.
+
+<Cevap>$[0,\ 1)\cup(1,\ \infty)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=\sqrt{x-2}$ için $f(6)$ kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. $f(6)=\sqrt{6-2}=\sqrt{4}=2$.
+
+<Cevap>$2$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Kök içini negatif bırakmak.** $\sqrt{A}$ için daima $A\ge 0$ koşulunu çöz.
+- **Paydanın sıfır olabileceğini unutmak.** Rasyonel fonksiyonda payda $\neq 0$; bu değer tanım kümesinden **çıkarılır**.
+- **Birleşik koşullarda yalnız birini almak.** Hem kök hem payda varsa **iki** koşulu da sağla (kesişimlerini al).
+- **Asimptotu grafiğin değdiği doğru sanmak.** Grafik asimptota **yaklaşır ama dokunmaz**.
+
+> **Not:** Tanım kümesi sorularında refleksin iki kontrol olsun: **kök içi $\ge 0$** ve **payda $\neq 0$**. Her iki koşulu yazıp ortak çözümü aralık olarak ver.
+
+<KonuNav slug="karekok-rasyonel-fonksiyon-10" />

@@ -1,0 +1,304 @@
+import { topicMetadata } from "@/lib/seo";
+
+export const metadata = topicMetadata("ikinci-derece-denklem-esitsizlik-10");
+
+<Konu slug="ikinci-derece-denklem-esitsizlik-10" />
+
+<p className="lead">Karesel fonksiyonların sıfırları ve işareti, **ikinci dereceden denklem ve eşitsizlikleri** çözmemizi sağlar. Bu derste $ax^2+bx+c=0$ denklemini **çarpanlara ayırarak** ve **diskriminant–kök formülüyle** çözmeyi, kök sayısını $\Delta$ ile belirlemeyi, **kök–katsayı** ilişkilerini ve ikinci dereceden **eşitsizliklerin işaret incelemesini** öğreneceğiz. Bol örnek ve "Sıra Sende" alıştırmalarıyla pekiştireceğiz.</p>
+
+## 1. Çarpanlara Ayırarak Çözüm
+
+Bir çarpım $0$ ise çarpanlardan en az biri $0$'dır. Denklem kolay çarpanlanıyorsa en hızlı yol budur.
+
+<Ornek>
+
+<Soru>
+
+$x^2-5x+6=0$ denklemini çözünüz.
+
+</Soru>
+
+<Cozum>
+
+1. Çarpanlara ayır: çarpımı $6$, toplamı $-5$ olan iki sayı $-2$ ve $-3$.
+2. $(x-2)(x-3)=0$.
+3. $x=2$ veya $x=3$.
+
+<Cevap>$x\in\{2,\ 3\}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 2. Diskriminant ve Kök Formülü
+
+Her ikinci derece denklemi **kök formülü** ile çözülür:
+
+$$\Delta=b^2-4ac \qquad x=\dfrac{-b\pm\sqrt{\Delta}}{2a}$$
+
+Kök sayısı $\Delta$'nın işaretine bağlıdır:
+
+- $\Delta>0$ → **iki** farklı gerçek kök.
+- $\Delta=0$ → **bir** (çift) gerçek kök.
+- $\Delta<0$ → gerçek kök **yok**.
+
+<Ornek>
+
+<Soru>
+
+$2x^2-4x-1=0$ denkleminin köklerini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Çarpanlara kolay ayrılmıyorsa doğrudan kök formülünü kullan. Önce $\Delta=b^2-4ac$'yi hesapla.
+
+</Ipucu>
+
+<Cozum>
+
+1. $a=2,\ b=-4,\ c=-1$: $\Delta=(-4)^2-4\cdot2\cdot(-1)=16+8=24$.
+2. $x=\dfrac{4\pm\sqrt{24}}{4}=\dfrac{4\pm 2\sqrt{6}}{4}=\dfrac{2\pm\sqrt6}{2}$.
+
+<Cevap>$x=\dfrac{2\pm\sqrt6}{2}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 3. Kök – Katsayı İlişkileri
+
+$ax^2+bx+c=0$ denkleminin kökleri $x_1,\ x_2$ ise:
+
+$$x_1+x_2=-\dfrac{b}{a} \qquad x_1\cdot x_2=\dfrac{c}{a}$$
+
+Bu ilişkiler, kökleri bulmadan kökler hakkındaki ifadeleri hesaplamaya yarar.
+
+<Ornek>
+
+<Soru>
+
+$x^2-7x+10=0$ denkleminin köklerinin toplamını ve çarpımını bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $a=1,\ b=-7,\ c=10$.
+2. Toplam $=-\dfrac{b}{a}=7$; çarpım $=\dfrac{c}{a}=10$.
+
+<Cevap>Toplam $7$, çarpım $10$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 4. İkinci Dereceden Eşitsizlikler
+
+$ax^2+bx+c$ ifadesinin işareti parabolün grafiğinden okunur. Kural ("**ortada ters, dışta aynı**"): kökler $x_1<x_2$ ise, ifade **kökler arasında** baş katsayının **tersi**, **dışında** baş katsayıyla **aynı** işaretlidir.
+
+<Ornek>
+
+<Soru>
+
+$x^2-x-6>0$ eşitsizliğinin çözüm kümesini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Kökler: $(x-3)(x+2)=0\Rightarrow x=-2,\ x=3$.
+2. $a=1>0$; ifade kökler **dışında** pozitiftir.
+3. Pozitif istendiği için çözüm: $x<-2$ veya $x>3$.
+
+<Cevap>$x\in(-\infty,-2)\cup(3,\infty)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Çözümlü Örnekler
+
+<Ornek>
+
+<Soru>
+
+$x^2+2x-15=0$ denklemini çözünüz.
+
+</Soru>
+
+<Cozum>
+
+1. Çarpımı $-15$, toplamı $2$ olan sayılar: $5$ ve $-3$.
+2. $(x+5)(x-3)=0\Rightarrow x=-5$ veya $x=3$.
+
+<Cevap>$x\in\{-5,\ 3\}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$x^2-6x+9=0$ denkleminin kaç kökü vardır?
+
+</Soru>
+
+<Cozum>
+
+1. $\Delta=(-6)^2-4\cdot1\cdot9=36-36=0$.
+2. $\Delta=0$ → bir (çift) kök: $x=3$.
+
+<Cevap>Bir çift kök ($x=3$).</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$x^2-kx+12=0$ denkleminin köklerinden biri $3$ ise diğer kök ve $k$ nedir?
+
+</Soru>
+
+<Cozum>
+
+1. Çarpım $=\dfrac{c}{a}=12$; bir kök $3$ ise diğeri $\dfrac{12}{3}=4$.
+2. Toplam $=k$; $3+4=7\Rightarrow k=7$.
+
+<Cevap>Diğer kök $4$, $k=7$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$x^2-4\le 0$ eşitsizliğinin çözüm kümesini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Kökler: $x^2-4=0\Rightarrow x=\pm 2$.
+2. $a=1>0$; ifade kökler **arasında** negatiftir (ortada ters).
+3. $\le 0$ istendiğinden uçlar dâhil: $-2\le x\le 2$.
+
+<Cevap>$x\in[-2,\ 2]$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Alıştırmalar — Sıra Sende
+
+> Önce kendin çözmeyi dene; sonra çözümü açıp karşılaştır.
+
+<Ornek>
+
+<Soru>
+
+$x^2-9x+20=0$ denkleminin köklerini bul.
+
+</Soru>
+
+<Cozum>
+
+1. $(x-4)(x-5)=0\Rightarrow x=4,\ 5$.
+
+<Cevap>$4$ ve $5$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$x^2+2x+5=0$ denkleminin kaç gerçek kökü vardır?
+
+</Soru>
+
+<Cozum>
+
+1. $\Delta=4-20=-16<0$ → gerçek kök yok.
+
+<Cevap>Gerçek kök yok.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$x^2-5x+k=0$ denkleminin kökler çarpımı $6$ ise $k$ kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. Çarpım $=\dfrac{c}{a}=k=6$.
+
+<Cevap>$k=6$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$x^2-x-12<0$ eşitsizliğinin çözüm kümesini bul.
+
+</Soru>
+
+<Cozum>
+
+1. Kökler: $(x-4)(x+3)=0\Rightarrow x=-3,\ 4$.
+2. $a>0$, negatif istendiği için kökler arası: $-3<x<4$.
+
+<Cevap>$x\in(-3,\ 4)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$3x^2-12=0$ denklemini çöz.
+
+</Soru>
+
+<Cozum>
+
+1. $3x^2=12\Rightarrow x^2=4\Rightarrow x=\pm 2$.
+
+<Cevap>$x=\pm 2$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Diskriminantta işaret hatası.** $\Delta=b^2-4ac$; $c$ negatifse $-4ac$ pozitife döner — dikkatli ol.
+- **Kök–katsayı oranlarını ters yazmak.** Toplam $-\dfrac{b}{a}$, çarpım $\dfrac{c}{a}$; toplamdaki eksiyi unutma.
+- **Eşitsizlikte işaret bölgesini ezbere almak.** "Ortada ters, dışta aynı" kuralını baş katsayının işaretine göre uygula; $a<0$ ise bölgeler yer değiştirir.
+- **Uç noktaları yanlış dâhil etmek.** $<,>$ kökleri **dışlar**; $\le,\ge$ kökleri **içerir**.
+
+> **Not:** Çarpanlara kolay ayrılan denklemde çarpanlamayı dene; ayrılmıyorsa kök formülüne geç. Kök sayısını her zaman önce $\Delta$ ile kontrol et.
+
+<KonuNav slug="ikinci-derece-denklem-esitsizlik-10" />

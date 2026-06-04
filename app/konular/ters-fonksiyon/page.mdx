@@ -1,0 +1,301 @@
+import { topicMetadata } from "@/lib/seo";
+
+export const metadata = topicMetadata("ters-fonksiyon");
+
+<Konu slug="ters-fonksiyon" />
+
+<p className="lead">Bir fonksiyon $x$'ten $y$'ye gider; **ters fonksiyon** ise $y$'den $x$'e geri döner. Bu derste bir fonksiyonun tersinin **ne zaman** var olduğunu (bire bir ve örten olma), tersin **nasıl bulunduğunu** ($x$ ile $y$'yi değiştirip $y$'yi yalnız bırakma) ve grafiklerinin $y=x$ doğrusuna göre **simetrik** olduğunu öğreneceğiz. Ters fonksiyon, doğrusal/karesel/karekök gibi referans fonksiyonların birbirini nasıl "geri aldığını" gösterir. Bol örnek ve "Sıra Sende" alıştırmalarıyla pekiştireceğiz.</p>
+
+## 1. Ters Fonksiyon Ne Zaman Vardır?
+
+Bir $f$ fonksiyonunun tersi $f^{-1}$'in olması için $f$ **bire bir** (farklı girdiler farklı çıktılar verir) ve **örten** olmalıdır. Bu durumda:
+
+$$f(a)=b \iff f^{-1}(b)=a$$
+
+Yani $f$ bir noktayı $a\to b$ taşıyorsa, $f^{-1}$ aynı noktayı $b\to a$ geri taşır.
+
+<Ornek>
+
+<Soru>
+
+$f(3)=10$ olduğu biliniyor. $f^{-1}(10)$ kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. $f(3)=10$ ise tanım gereği $f^{-1}(10)=3$.
+
+<Cevap>$f^{-1}(10)=3$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 2. Tersi Bulma Yöntemi
+
+Bir formülün tersini bulmak için:
+
+1. $f(x)$ yerine $y$ yaz.
+2. $x$ ile $y$'yi **yer değiştir**.
+3. $y$'yi yalnız bırak → bu $f^{-1}(x)$'tir.
+
+<Ornek>
+
+<Soru>
+
+$f(x)=2x+6$ fonksiyonunun tersini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+$y=2x+6$ yaz, $x$ ile $y$'yi değiştir, sonra yeni $y$'yi çek.
+
+</Ipucu>
+
+<Cozum>
+
+1. $y=2x+6$.
+2. Değiştir: $x=2y+6$.
+3. Çek: $2y=x-6\Rightarrow y=\dfrac{x-6}{2}$.
+
+<Cevap>$f^{-1}(x)=\dfrac{x-6}{2}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 3. Grafikte Simetri
+
+$f$ ve $f^{-1}$'in grafikleri $y=x$ doğrusuna göre **simetriktir**. Bu yüzden $f$ üzerindeki $(a,b)$ noktası, $f^{-1}$ üzerinde $(b,a)$ olur. Örneğin $f(x)=x^2$ ($x\ge 0$) ile $f^{-1}(x)=\sqrt{x}$ birbirinin yansımasıdır.
+
+<Ornek>
+
+<Soru>
+
+$f$ fonksiyonunun grafiği $(2,\ 7)$ noktasından geçiyorsa, $f^{-1}$'in grafiği hangi noktadan geçer?
+
+</Soru>
+
+<Cozum>
+
+1. $(a,b)\to(b,a)$ simetrisi: $(2,7)\to(7,2)$.
+
+<Cevap>$(7,\ 2)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 4. Bileşke ile Doğrulama
+
+$f^{-1}$ doğruysa, $f$ ile bileşkesi **birim fonksiyonu** verir:
+
+$$f\big(f^{-1}(x)\big)=x \qquad f^{-1}\big(f(x)\big)=x$$
+
+<Ornek>
+
+<Soru>
+
+$f(x)=2x+6$ ve $f^{-1}(x)=\dfrac{x-6}{2}$ için $f\big(f^{-1}(x)\big)$ ifadesini sadeleştirip doğrulayınız.
+
+</Soru>
+
+<Cozum>
+
+1. $f^{-1}(x)=\dfrac{x-6}{2}$'yi $f$'e koy: $f\!\left(\dfrac{x-6}{2}\right)=2\cdot\dfrac{x-6}{2}+6$.
+2. $=(x-6)+6=x$.
+
+<Cevap>$x$ çıktı; ters doğrudur.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Çözümlü Örnekler
+
+<Ornek>
+
+<Soru>
+
+$f(x)=3x-9$ fonksiyonunun tersini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $y=3x-9$ → değiştir: $x=3y-9$.
+2. $3y=x+9\Rightarrow y=\dfrac{x+9}{3}$.
+
+<Cevap>$f^{-1}(x)=\dfrac{x+9}{3}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=\dfrac{x+4}{2}$ ise $f^{-1}(5)$ kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+$f^{-1}(5)$ demek "hangi $x$ için $f(x)=5$" demektir; $f(x)=5$ denklemini çöz.
+
+</Ipucu>
+
+<Cozum>
+
+1. $f(x)=5$: $\dfrac{x+4}{2}=5\Rightarrow x+4=10\Rightarrow x=6$.
+
+<Cevap>$f^{-1}(5)=6$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=x^2$ ($x\ge 0$) fonksiyonunun tersi nedir?
+
+</Soru>
+
+<Cozum>
+
+1. $y=x^2$, $x\ge 0$ → değiştir: $x=y^2$.
+2. $y\ge 0$ olduğundan $y=\sqrt{x}$.
+
+<Cevap>$f^{-1}(x)=\sqrt{x}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=5x-2$ fonksiyonunun grafiği $(1,\ 3)$'ten geçiyor. $f^{-1}$ hangi noktadan geçer?
+
+</Soru>
+
+<Cozum>
+
+1. $(a,b)\to(b,a)$: $(1,3)\to(3,1)$.
+
+<Cevap>$(3,\ 1)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Alıştırmalar — Sıra Sende
+
+> Önce kendin çözmeyi dene; sonra çözümü açıp karşılaştır.
+
+<Ornek>
+
+<Soru>
+
+$f(x)=x+8$ fonksiyonunun tersini bul.
+
+</Soru>
+
+<Cozum>
+
+1. $y=x+8$ → $x=y+8$ → $y=x-8$.
+
+<Cevap>$f^{-1}(x)=x-8$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(4)=11$ ise $f^{-1}(11)$ kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. Tanım gereği $f^{-1}(11)=4$.
+
+<Cevap>$4$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=2x-1$ ise $f^{-1}(7)$ kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. $2x-1=7\Rightarrow x=4$.
+
+<Cevap>$4$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=\dfrac{x}{3}+2$ fonksiyonunun tersini bul.
+
+</Soru>
+
+<Cozum>
+
+1. $y=\dfrac{x}{3}+2$ → $x=\dfrac{y}{3}+2$ → $\dfrac{y}{3}=x-2\Rightarrow y=3(x-2)$.
+
+<Cevap>$f^{-1}(x)=3x-6$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f$ grafiği $(0,\ 5)$'ten geçiyorsa $f^{-1}$ hangi noktadan geçer?
+
+</Soru>
+
+<Cozum>
+
+1. $(0,5)\to(5,0)$.
+
+<Cevap>$(5,\ 0)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Tersi "$\dfrac{1}{f(x)}$" sanmak.** Ters fonksiyon işlemi geri alır; çarpmaya göre ters (resiprok) **değildir**.
+- **$x$ ile $y$'yi değiştirmeyi atlamak.** Ters bulmanın kalbi bu adımdır; sadece $y$'yi çekmek yetmez.
+- **Tanım aralığını göz ardı etmek.** $f(x)=x^2$ ancak $x\ge 0$ kısıtıyla tersinir; aksi hâlde bire bir değildir.
+- **$f^{-1}(a)$'yı $f(a)$ ile karıştırmak.** $f^{-1}(a)$, "$f(x)=a$ yapan $x$"tir.
+
+> **Not:** $f^{-1}(a)$ istendiğinde en hızlı yol çoğu zaman formülü bulmak değil, doğrudan **$f(x)=a$ denklemini çözmektir**. Sonucu $f(f^{-1}(x))=x$ ile doğrula.
+
+<KonuNav slug="ters-fonksiyon" />

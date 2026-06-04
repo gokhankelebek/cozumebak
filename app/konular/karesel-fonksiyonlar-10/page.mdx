@@ -1,0 +1,308 @@
+import { topicMetadata } from "@/lib/seo";
+import { Parabol } from "@/components/figures/ParabolFig";
+
+export const metadata = topicMetadata("karesel-fonksiyonlar-10");
+
+<Konu slug="karesel-fonksiyonlar-10" />
+
+<p className="lead">*Nicelikler ve Değişimler* temasının en geniş konusu, grafiği **parabol** olan **ikinci dereceden (karesel) fonksiyonlardır**. Bu derste $f(x)=ax^2+bx+c$ fonksiyonunun grafiğini; **kollarının yönünü**, **tepe noktasını**, **eksen kesişimlerini** ve **simetri eksenini** bulmayı öğreneceğiz. Parabol; atış hareketinden alan optimizasyonuna kadar pek çok değişimin modelidir. Bol örnek ve "Sıra Sende" alıştırmalarıyla pekiştireceğiz.</p>
+
+## 1. Karesel Fonksiyon ve Kolların Yönü
+
+$a\neq 0$ olmak üzere $f(x)=ax^2+bx+c$ fonksiyonuna **karesel (ikinci dereceden) fonksiyon** denir. Grafiği bir **parabol**dür.
+
+- $a>0$ → kollar **yukarı** açılır (parabolün en küçük değeri vardır).
+- $a<0$ → kollar **aşağı** açılır (en büyük değeri vardır).
+
+<Ornek>
+
+<Soru>
+
+$f(x)=-2x^2+3x-1$ parabolünün kolları hangi yöne açılır?
+
+</Soru>
+
+<Cozum>
+
+1. Baş katsayı $a=-2<0$.
+2. $a<0$ olduğundan kollar **aşağı** açılır.
+
+<Cevap>Aşağı açılır (en büyük değeri vardır).</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 2. Tepe Noktası ve Simetri Ekseni
+
+Tepe noktasının apsisi (simetri ekseni) ve ordinatı:
+
+$$r=-\dfrac{b}{2a} \qquad k=f(r)$$
+
+Tepe noktası $T(r,\ k)$'dir; **simetri ekseni** $x=r$ düşey doğrusudur.
+
+<Figur>
+
+<Parabol />
+
+<Altyazi>Şekil 1 — $f(x)=x^2-4x+3$ parabolü. $a=1>0$ (kollar yukarı), tepe noktası $T(2,-1)$, kökler $x=1$ ve $x=3$, $y$ kesişimi $(0,3)$, simetri ekseni $x=2$.</Altyazi>
+
+</Figur>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=x^2-6x+5$ parabolünün tepe noktasını bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Önce $r=-\dfrac{b}{2a}$ ile apsisi bul, sonra $r$'yi fonksiyonda yerine koyarak ordinatı hesapla.
+
+</Ipucu>
+
+<Cozum>
+
+1. $a=1,\ b=-6$: $r=-\dfrac{-6}{2\cdot 1}=3$.
+2. $k=f(3)=3^2-6\cdot 3+5=9-18+5=-4$.
+
+<Cevap>Tepe noktası $T(3,\ -4)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 3. Eksen Kesişimleri
+
+- **$y$ ekseni:** $x=0$ → $(0,\ c)$.
+- **$x$ ekseni (kökler):** $f(x)=0$ denklemini çöz. Kök sayısı **diskriminant** $\Delta=b^2-4ac$'ye bağlıdır: $\Delta>0$ iki kök, $\Delta=0$ bir (çift) kök, $\Delta<0$ kök yok (parabol $x$ eksenini kesmez).
+
+<Ornek>
+
+<Soru>
+
+$f(x)=x^2-4x+3$ parabolünün eksenleri kestiği noktaları bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $y$ kesişimi: $c=3$ → $(0,3)$.
+2. Kökler: $x^2-4x+3=0\Rightarrow (x-1)(x-3)=0\Rightarrow x=1,\ x=3$.
+
+<Cevap>$(0,3)$, $(1,0)$ ve $(3,0)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 4. En Büyük / En Küçük Değer
+
+Tepe noktasının ordinatı $k$, fonksiyonun uç değeridir:
+
+- $a>0$ → $k$ **en küçük** değer.
+- $a<0$ → $k$ **en büyük** değer.
+
+<Ornek>
+
+<Soru>
+
+$f(x)=-x^2+4x+1$ fonksiyonunun en büyük değeri kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. $a=-1<0$, en büyük değer tepededir. $r=-\dfrac{4}{2(-1)}=2$.
+2. $k=f(2)=-4+8+1=5$.
+
+<Cevap>En büyük değer $5$ (x=2'de).</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Çözümlü Örnekler
+
+<Ornek>
+
+<Soru>
+
+$f(x)=2x^2-8x+6$ parabolünün tepe noktasını ve simetri eksenini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $a=2,\ b=-8$: $r=-\dfrac{-8}{2\cdot 2}=2$.
+2. $k=f(2)=2\cdot4-16+6=8-16+6=-2$.
+
+<Cevap>$T(2,-2)$, simetri ekseni $x=2$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=x^2-2x-8$ parabolünün köklerini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $x^2-2x-8=0\Rightarrow (x-4)(x+2)=0$.
+2. $x=4$ veya $x=-2$.
+
+<Cevap>Kökler $4$ ve $-2$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=x^2+bx+9$ parabolünün tepe noktası $x=3$ doğrusu üzerindeyse $b$ kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. Simetri ekseni $r=-\dfrac{b}{2a}=3$, $a=1$.
+2. $-\dfrac{b}{2}=3\Rightarrow b=-6$.
+
+<Cevap>$b=-6$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir taş $h(t)=-5t^2+20t$ (metre) yüksekliğiyle atılıyor. Ulaştığı en yüksek nokta kaç metredir?
+
+</Soru>
+
+<Cozum>
+
+1. $a=-5<0$; en yüksek nokta tepededir. $r=-\dfrac{20}{2(-5)}=2$ s.
+2. $h(2)=-5\cdot4+40=-20+40=20$.
+
+<Cevap>$20$ m.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Alıştırmalar — Sıra Sende
+
+> Önce kendin çözmeyi dene; sonra çözümü açıp karşılaştır.
+
+<Ornek>
+
+<Soru>
+
+$f(x)=3x^2-1$ parabolünün kolları hangi yöne açılır?
+
+</Soru>
+
+<Cozum>
+
+1. $a=3>0$ → yukarı.
+
+<Cevap>Yukarı.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=x^2-10x+21$ parabolünün tepe noktasının apsisini bul.
+
+</Soru>
+
+<Cozum>
+
+1. $r=-\dfrac{-10}{2}=5$.
+
+<Cevap>$x=5$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=x^2-9$ parabolünün $x$ eksenini kestiği noktaları bul.
+
+</Soru>
+
+<Cozum>
+
+1. $x^2-9=0\Rightarrow x=\pm 3$.
+
+<Cevap>$(-3,0)$ ve $(3,0)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=-x^2+6x$ fonksiyonunun en büyük değeri kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. $r=-\dfrac{6}{2(-1)}=3$; $f(3)=-9+18=9$.
+
+<Cevap>$9$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=2x^2+4x+5$ parabolünün $y$ eksenini kestiği nokta nedir?
+
+</Soru>
+
+<Cozum>
+
+1. $x=0$ → $f(0)=5$.
+
+<Cevap>$(0,5)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Tepe apsisinde işareti unutmak.** $r=-\dfrac{b}{2a}$; baştaki eksiyi atlama.
+- **Kolların yönünü $c$ ile belirlemek.** Yönü **baş katsayı $a$** belirler, sabit terim $c$ değil.
+- **Kök yokken grafiği yanlış yorumlamak.** $\Delta<0$ ise parabol $x$ eksenini **kesmez**; bu, fonksiyonun hep aynı işaretli olması demektir.
+- **En büyük/küçük değeri apsisle karıştırmak.** Uç değer tepe noktasının **ordinatı** $k$'dir; $x=r$ onun alındığı yerdir.
+
+> **Not:** Bir parabolü çözmenin omurgası tepe noktasıdır: $r=-\dfrac{b}{2a}$, $k=f(r)$. Yön ($a$'nın işareti) + tepe + eksen kesişimleri ile grafiğin tamamı çıkar.
+
+<KonuNav slug="karesel-fonksiyonlar-10" />
