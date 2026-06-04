@@ -1,0 +1,270 @@
+import { topicMetadata } from "@/lib/seo";
+import { Agac } from "@/components/figures/OlasilikAgaci";
+
+export const metadata = topicMetadata("bayes-teoremi-10");
+
+<Konu slug="bayes-teoremi-10" />
+
+<p className="lead">*Veriden Olasılığa* temasını, koşullu olasılığı **tersine çeviren** **Bayes teoremiyle** tamamlıyoruz. Çoğu zaman $P(B\mid A)$'yı biliriz ama asıl merak ettiğimiz $P(A\mid B)$'dir ("test pozitif çıktıysa, kişi gerçekten hasta mı?"). Bu derste **toplam olasılık** kuralını ve Bayes formülünü ağaç şemasıyla öğreneceğiz. Bol örnek ve "Sıra Sende" alıştırmalarıyla pekiştireceğiz.</p>
+
+## 1. Toplam Olasılık Kuralı
+
+Bir $B$ olayı, birbirini dışlayan $A$ ve $A'$ durumları üzerinden gerçekleşebiliyorsa, $B$'nin toplam olasılığı tüm yolların toplamıdır:
+
+$$P(B)=P(A)\cdot P(B\mid A)+P(A')\cdot P(B\mid A')$$
+
+<Figur>
+
+<Agac />
+
+<Altyazi>Şekil 1 — $B$'ye iki yoldan ulaşılır: $A$ üzerinden ($P(A)\cdot P(B\mid A)$) ve $A'$ üzerinden ($P(A')\cdot P(B\mid A')$). Toplam olasılık bu iki yolun toplamıdır.</Altyazi>
+
+</Figur>
+
+<Ornek>
+
+<Soru>
+
+Bir fabrikada ürünlerin $\%60$'ı A makinesinde, $\%40$'ı B makinesinde üretiliyor. A'nın hata oranı $\%5$, B'nin $\%10$'dur. Rastgele seçilen bir ürünün hatalı olma olasılığını bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Hatalıya iki yoldan ulaşılır (A'dan ve B'den). Her yolun olasılığını çarpıp topla.
+
+</Ipucu>
+
+<Cozum>
+
+1. A yolu: $0{,}60\cdot 0{,}05=0{,}03$.
+2. B yolu: $0{,}40\cdot 0{,}10=0{,}04$.
+3. Toplam: $0{,}03+0{,}04=0{,}07$.
+
+<Cevap>$P(\text{hatalı})=0{,}07$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 2. Bayes Teoremi
+
+Bir koşulu **tersine çevirmek** istediğimizde — $P(A\mid B)$'yi $P(B\mid A)$'dan bulmak — Bayes teoremini kullanırız:
+
+$$P(A\mid B)=\dfrac{P(A)\cdot P(B\mid A)}{P(B)}$$
+
+Payda, toplam olasılık kuralıyla bulunur. Sezgi: "$B$ gerçekleşti; bunun $A$ yolundan gelme **payı** nedir?"
+
+<Ornek>
+
+<Soru>
+
+Yukarıdaki fabrikada seçilen ürün **hatalı** çıktı. Bu ürünün **A makinesinden** gelmiş olma olasılığı kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. İstenen $P(A\mid \text{hatalı})=\dfrac{P(A)\cdot P(\text{hatalı}\mid A)}{P(\text{hatalı})}$.
+2. Pay: $0{,}60\cdot 0{,}05=0{,}03$. Payda (toplam): $0{,}07$.
+3. $\dfrac{0{,}03}{0{,}07}=\dfrac{3}{7}\approx 0{,}43$.
+
+<Cevap>$\dfrac{3}{7}$ (yaklaşık $\%43$).</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 3. Pratik Yöntem: Pay / Toplam
+
+Bayes sorularını ağaçla çözmenin kısa yolu: **istenen yolun olasılığı** (pay), bölü **o sonuca götüren tüm yolların toplamı** (payda).
+
+<Ornek>
+
+<Soru>
+
+Bir hastalık nüfusun $\%1$'inde var. Test, hastaya $\%90$ pozitif, sağlama $\%5$ yanlış pozitif veriyor. Testi **pozitif** çıkan birinin gerçekten hasta olma olasılığı nedir?
+
+</Soru>
+
+<Cozum>
+
+1. Hasta–pozitif yolu: $0{,}01\cdot 0{,}90=0{,}009$.
+2. Sağlam–pozitif yolu: $0{,}99\cdot 0{,}05=0{,}0495$.
+3. Toplam pozitif: $0{,}009+0{,}0495=0{,}0585$.
+4. $P(\text{hasta}\mid +)=\dfrac{0{,}009}{0{,}0585}\approx 0{,}154$.
+
+<Cevap>Yaklaşık $\%15{,}4$ (sezgiden çok düşük!).</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Çözümlü Örnekler
+
+<Ornek>
+
+<Soru>
+
+İki torbadan birincide $2$ kırmızı $3$ mavi, ikincide $4$ kırmızı $1$ mavi top var. Bir torba eşit olasılıkla seçilip bir top çekiliyor. Çekilen topun kırmızı olma olasılığı nedir?
+
+</Soru>
+
+<Cozum>
+
+1. 1. torba yolu: $\dfrac12\cdot\dfrac{2}{5}=\dfrac{2}{10}=\dfrac15$.
+2. 2. torba yolu: $\dfrac12\cdot\dfrac{4}{5}=\dfrac{4}{10}=\dfrac25$.
+3. Toplam: $\dfrac15+\dfrac25=\dfrac35$.
+
+<Cevap>$\dfrac{3}{5}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Yukarıdaki soruda çekilen top **kırmızı** ise **1. torbadan** gelmiş olma olasılığı nedir?
+
+</Soru>
+
+<Cozum>
+
+1. Pay (1. torba–kırmızı): $\dfrac15$.
+2. Payda (toplam kırmızı): $\dfrac35$.
+3. $\dfrac{1/5}{3/5}=\dfrac13$.
+
+<Cevap>$\dfrac{1}{3}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$P(A)=0{,}3$, $P(B\mid A)=0{,}8$, $P(B\mid A')=0{,}2$ ise $P(B)$ kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. $P(B)=0{,}3\cdot0{,}8+0{,}7\cdot0{,}2=0{,}24+0{,}14=0{,}38$.
+
+<Cevap>$0{,}38$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir e-postanın spam olma olasılığı $\%40$. Spamların $\%70$'i, normal postaların $\%10$'u "bedava" kelimesini içeriyor. "Bedava" içeren bir postanın spam olma olasılığı nedir?
+
+</Soru>
+
+<Cozum>
+
+1. Spam–bedava: $0{,}40\cdot0{,}70=0{,}28$.
+2. Normal–bedava: $0{,}60\cdot0{,}10=0{,}06$.
+3. Toplam: $0{,}34$; $P(\text{spam}\mid \text{bedava})=\dfrac{0{,}28}{0{,}34}\approx 0{,}82$.
+
+<Cevap>Yaklaşık $\%82$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Alıştırmalar — Sıra Sende
+
+> Önce kendin çözmeyi dene; sonra çözümü açıp karşılaştır.
+
+<Ornek>
+
+<Soru>
+
+$P(A)=0{,}5$, $P(B\mid A)=0{,}6$, $P(B\mid A')=0{,}2$ ise $P(B)$ nedir?
+
+</Soru>
+
+<Cozum>
+
+1. $0{,}5\cdot0{,}6+0{,}5\cdot0{,}2=0{,}3+0{,}1=0{,}4$.
+
+<Cevap>$0{,}4$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Yukarıdaki veriyle $P(A\mid B)$ kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. Pay: $0{,}5\cdot0{,}6=0{,}3$; payda $0{,}4$.
+2. $\dfrac{0{,}3}{0{,}4}=0{,}75$.
+
+<Cevap>$0{,}75$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+İki torba: 1.'de $1$ kırmızı $1$ mavi, 2.'de $3$ kırmızı $1$ mavi. Eşit olasılıkla torba seçilip top çekiliyor. Kırmızı çekme olasılığı nedir?
+
+</Soru>
+
+<Cozum>
+
+1. $\dfrac12\cdot\dfrac12+\dfrac12\cdot\dfrac34=\dfrac14+\dfrac38=\dfrac{5}{8}$.
+
+<Cevap>$\dfrac{5}{8}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir üretimde A hattı $\%70$ (hata $\%2$), B hattı $\%30$ (hata $\%6$) üretiyor. Hatalı bir ürünün B'den gelme olasılığı nedir?
+
+</Soru>
+
+<Cozum>
+
+1. A–hata: $0{,}7\cdot0{,}02=0{,}014$; B–hata: $0{,}3\cdot0{,}06=0{,}018$.
+2. Toplam $0{,}032$; $\dfrac{0{,}018}{0{,}032}=0{,}5625$.
+
+<Cevap>Yaklaşık $\%56$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **$P(A\mid B)$ ile $P(B\mid A)$'yı eşitlemek.** Bayes'in tüm amacı bunların **farklı** olduğunu ve birinden diğerine geçmeyi göstermektir.
+- **Paydada toplam olasılığı unutmak.** Payda, o sonuca götüren **tüm** yolların toplamıdır, yalnız bir yol değil.
+- **Önsel (prior) olasılığı göz ardı etmek.** Nadir bir durumda (örneğin $\%1$ hastalık) test pozitif olsa bile gerçek olasılık düşük kalabilir.
+- **Yolları çarpmak yerine toplamak (ya da tersi).** Bir yol boyunca **çarp**, farklı yolları **topla**.
+
+> **Not:** Bayes sorusunun pratik reçetesi: **istenen yol / o sonuca giden tüm yolların toplamı**. Ağacı çiz, dalları çarp, payı ve paydayı oku. Nadir olaylarda sonucun sezgiye aykırı çıkabileceğini unutma.
+
+<KonuNav slug="bayes-teoremi-10" />

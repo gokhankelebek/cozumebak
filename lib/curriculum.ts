@@ -233,9 +233,9 @@ export const TOPICS: Topic[] = [
   { slug: "veri-surec-10", title: "Veri Toplama, Yorumlama ve Değerlendirme", track: "10", unit: "istatistik-10", summary: "İstatistiksel araştırma sürecinde veri toplama, bulgulara ulaşma ve değerlendirme.", minutes: 6, difficulty: "Orta", questionCount: 12, status: "published" },
 
   // ── 10. Sınıf · Veriden Olasılığa ──
-  { slug: "kosullu-olasilik", title: "Koşullu Olasılık", track: "10", unit: "veriden-olasiliga-10", summary: "Bir olayın gerçekleştiği bilindiğinde diğer olayın olasılığı.", minutes: 8, difficulty: "Zor", questionCount: 18, status: "soon", keywords: ["koşullu olasılık"] },
-  { slug: "bagimli-bagimsiz-olaylar-10", title: "Bağımlı ve Bağımsız Olaylar", track: "10", unit: "veriden-olasiliga-10", summary: "Bağımlı ve bağımsız olaylarda çarpma kuralı.", minutes: 7, difficulty: "Orta", questionCount: 16, status: "soon", keywords: ["bağımsız olay", "bağımlı olay"] },
-  { slug: "bayes-teoremi-10", title: "Bayes Teoremi", track: "10", unit: "veriden-olasiliga-10", summary: "Koşullu olasılıkları tersine çeviren Bayes teoremi ve uygulamaları.", minutes: 8, difficulty: "Zor", questionCount: 14, status: "soon", keywords: ["bayes"] },
+  { slug: "kosullu-olasilik", title: "Koşullu Olasılık", track: "10", unit: "veriden-olasiliga-10", summary: "Bir olayın gerçekleştiği bilindiğinde diğer olayın olasılığı.", minutes: 8, difficulty: "Zor", questionCount: 18, status: "published", keywords: ["koşullu olasılık"] },
+  { slug: "bagimli-bagimsiz-olaylar-10", title: "Bağımlı ve Bağımsız Olaylar", track: "10", unit: "veriden-olasiliga-10", summary: "Bağımlı ve bağımsız olaylarda çarpma kuralı.", minutes: 7, difficulty: "Orta", questionCount: 16, status: "published", keywords: ["bağımsız olay", "bağımlı olay"] },
+  { slug: "bayes-teoremi-10", title: "Bayes Teoremi", track: "10", unit: "veriden-olasiliga-10", summary: "Koşullu olasılıkları tersine çeviren Bayes teoremi ve uygulamaları.", minutes: 8, difficulty: "Zor", questionCount: 14, status: "published", keywords: ["bayes"] },
 
   // ── 11. Sınıf · Trigonometri ──
   { slug: "yonlu-acilar", title: "Yönlü Açılar ve Birim Çember", track: "11", unit: "trigonometri-11", summary: "Radyan-derece dönüşümü ve birim çember.", minutes: 7, difficulty: "Orta", questionCount: 16, status: "soon", keywords: ["radyan", "birim çember"] },

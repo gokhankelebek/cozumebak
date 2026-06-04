@@ -1,0 +1,275 @@
+import { topicMetadata } from "@/lib/seo";
+
+export const metadata = topicMetadata("bagimli-bagimsiz-olaylar-10");
+
+<Konu slug="bagimli-bagimsiz-olaylar-10" />
+
+<p className="lead">Bazı olaylar birbirini etkiler, bazıları etkilemez. Bu derste **bağımsız** olayları (birinin sonucu diğerini değiştirmez) ve **bağımlı** olayları (biri diğerini etkiler) ayırt etmeyi, her iki durumda **çarpma kuralını** ve "**en az bir**" tipi soruları **tümleyenle** çözmeyi öğreneceğiz. Bu ayrım; geri koymalı/koymasız çekiliş ve ardışık deney sorularının anahtarıdır. Bol örnek ve "Sıra Sende" alıştırmalarıyla pekiştireceğiz.</p>
+
+## 1. Bağımsız Olaylar
+
+İki olay **bağımsızsa** birinin gerçekleşmesi diğerinin olasılığını **değiştirmez**. Bu durumda kesişim olasılığı çarpımla bulunur:
+
+$$P(A\cap B)=P(A)\cdot P(B)$$
+
+Bağımsızlığın denkliği: $P(A\mid B)=P(A)$ (koşul olasılığı değiştirmiyor).
+
+<Ornek>
+
+<Soru>
+
+Bir madenî para ile bir zar birlikte atılıyor. Para **tura**, zar **6** gelme olasılığı kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. Para ve zar birbirini etkilemez → bağımsız.
+2. $P(\text{tura})=\dfrac12$, $P(6)=\dfrac16$.
+3. Çarp: $\dfrac12\cdot\dfrac16=\dfrac{1}{12}$.
+
+<Cevap>$\dfrac{1}{12}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 2. Bağımlı Olaylar
+
+İki olay **bağımlıysa**, birinin sonucu diğerinin olasılığını değiştirir (örneğin **geri koymadan** çekiş). Çarpma kuralı **koşullu** olasılıkla yazılır:
+
+$$P(A\cap B)=P(A)\cdot P(B\mid A)$$
+
+<Ornek>
+
+<Soru>
+
+$5$ kırmızı, $3$ siyah toptan **geri koymadan** iki top çekiliyor. İkisinin de kırmızı olma olasılığını bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Geri koymadan çekildiğinden olaylar bağımlıdır: ikinci olasılıkta toplam ve kırmızı sayısı **birer azalır**.
+
+</Ipucu>
+
+<Cozum>
+
+1. İlk kırmızı: $\dfrac{5}{8}$.
+2. İkinci kırmızı (kalan $7$ top, $4$ kırmızı): $\dfrac{4}{7}$.
+3. Çarp: $\dfrac{5}{8}\cdot\dfrac{4}{7}=\dfrac{20}{56}=\dfrac{5}{14}$.
+
+<Cevap>$\dfrac{5}{14}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 3. "En Az Bir" — Tümleyenle Çözüm
+
+"En az bir" olayının olasılığını doğrudan saymak zordur; **tümleyeni** ("hiçbiri") kullanmak çok daha kolaydır:
+
+$$P(\text{en az bir})=1-P(\text{hiçbiri})$$
+
+<Ornek>
+
+<Soru>
+
+Bir madenî para $3$ kez atılıyor. **En az bir tura** gelme olasılığını bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Tümleyen: hiç tura gelmemesi (üçü de yazı).
+2. $P(\text{hiç tura yok})=\left(\dfrac12\right)^3=\dfrac18$.
+3. $P(\text{en az bir})=1-\dfrac18=\dfrac78$.
+
+<Cevap>$\dfrac{7}{8}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Çözümlü Örnekler
+
+<Ornek>
+
+<Soru>
+
+İki zar atılıyor. İkisinin de $6$ gelme olasılığı kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. Zarlar bağımsız: $\dfrac16\cdot\dfrac16=\dfrac{1}{36}$.
+
+<Cevap>$\dfrac{1}{36}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$P(A)=0{,}6$, $P(B)=0{,}5$ ve olaylar bağımsız ise $P(A\cap B)$ kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. Bağımsız → $P(A\cap B)=0{,}6\cdot 0{,}5=0{,}3$.
+
+<Cevap>$0{,}3$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$6$ mavi, $4$ yeşil toptan geri koymadan iki top çekiliyor. İkisinin de yeşil olma olasılığı nedir?
+
+</Soru>
+
+<Cozum>
+
+1. İlk yeşil: $\dfrac{4}{10}=\dfrac25$.
+2. İkinci yeşil (kalan $9$, $3$ yeşil): $\dfrac{3}{9}=\dfrac13$.
+3. $\dfrac25\cdot\dfrac13=\dfrac{2}{15}$.
+
+<Cevap>$\dfrac{2}{15}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir zar $2$ kez atılıyor. En az bir $6$ gelme olasılığı nedir?
+
+</Soru>
+
+<Cozum>
+
+1. Tümleyen: hiç $6$ gelmemesi: $\left(\dfrac56\right)^2=\dfrac{25}{36}$.
+2. $1-\dfrac{25}{36}=\dfrac{11}{36}$.
+
+<Cevap>$\dfrac{11}{36}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Alıştırmalar — Sıra Sende
+
+> Önce kendin çözmeyi dene; sonra çözümü açıp karşılaştır.
+
+<Ornek>
+
+<Soru>
+
+Bir para iki kez atılıyor. İkisinin de yazı gelme olasılığı nedir?
+
+</Soru>
+
+<Cozum>
+
+1. Bağımsız: $\dfrac12\cdot\dfrac12=\dfrac14$.
+
+<Cevap>$\dfrac{1}{4}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$3$ kırmızı, $2$ mavi toptan geri koymadan iki mavi çekme olasılığı nedir?
+
+</Soru>
+
+<Cozum>
+
+1. $\dfrac25\cdot\dfrac14=\dfrac{2}{20}=\dfrac{1}{10}$.
+
+<Cevap>$\dfrac{1}{10}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$P(A)=0{,}4$, $P(B)=0{,}5$ bağımsız. $P(A\cap B)$ nedir?
+
+</Soru>
+
+<Cozum>
+
+1. $0{,}4\cdot0{,}5=0{,}2$.
+
+<Cevap>$0{,}2$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir para $4$ kez atılıyor. En az bir tura olasılığı nedir?
+
+</Soru>
+
+<Cozum>
+
+1. $1-\left(\dfrac12\right)^4=1-\dfrac1{16}=\dfrac{15}{16}$.
+
+<Cevap>$\dfrac{15}{16}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$4$ kırmızı, $6$ sarı toptan geri koymadan ilk kırmızı, ikinci sarı çekme olasılığı nedir?
+
+</Soru>
+
+<Cozum>
+
+1. $\dfrac{4}{10}\cdot\dfrac{6}{9}=\dfrac25\cdot\dfrac23=\dfrac{4}{15}$.
+
+<Cevap>$\dfrac{4}{15}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Bağımlı olayda olasılığı sabit tutmak.** Geri koymadan çekişte ikinci olasılığın **paydası ve payı azalır**.
+- **Bağımsızlık varsayımını yanlış yapmak.** "Geri koyarak" → bağımsız; "geri koymadan" → bağımlı.
+- **"En az bir"i doğrudan saymaya çalışmak.** $1-P(\text{hiçbiri})$ neredeyse her zaman daha kolaydır.
+- **Bağımsız olayların kesişimini toplamak.** Kesişim (ve) **çarpılır**; toplama "veya" durumlarında olur.
+
+> **Not:** İlk soru: olaylar bağımsız mı? "Geri koyarak / ayrı deneyler" → bağımsız (çarp). "Geri koymadan" → bağımlı (koşullu çarp). "En az bir" görürsen **tümleyene** geç.
+
+<KonuNav slug="bagimli-bagimsiz-olaylar-10" />
