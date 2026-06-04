@@ -370,6 +370,81 @@ $\displaystyle\int_{0}^{1} x\,(x^{2}+1)^{3}\,dx$ belirli integralini hesaplayın
 
 </Ornek>
 
+## Sınav Tarzı Sorular
+
+> Aşağıdaki sorular, ÖSYM'nin AYT'de sorduğu **çok kavramlı, dolaylı (5 şıklı)** soru tarzına örnek olarak **özgün biçimde** hazırlanmıştır.
+
+<Ornek>
+
+<Soru>
+
+$f'(x)=6x^{2}\,(x^{3}+2)^{2}$ ve $f(0)=5$ olduğuna göre $f(-1)$ kaçtır?
+
+A) $-\dfrac{2}{3}$ · B) $0$ · C) $\dfrac{1}{3}$ · D) $\dfrac{2}{3}$ · E) $\dfrac{16}{3}$
+
+</Soru>
+
+<Cozum>
+
+1. $f(x)=\displaystyle\int 6x^{2}\,(x^{3}+2)^{2}\,dx$. Değişken seç: $u=x^{3}+2 \Rightarrow du=3x^{2}\,dx$, yani $6x^{2}\,dx=2\,du$.
+2. $u$ cinsinden yaz: $\displaystyle\int 2u^{2}\,du=\dfrac{2u^{3}}{3}+c$.
+3. Geri koy: $f(x)=\dfrac{2(x^{3}+2)^{3}}{3}+c$.
+4. Başlangıç koşulu: $f(0)=\dfrac{2\cdot 2^{3}}{3}+c=\dfrac{16}{3}+c=5 \Rightarrow c=-\dfrac{1}{3}$.
+5. $x=-1$ için $x^{3}+2=1$: $f(-1)=\dfrac{2\cdot 1^{3}}{3}-\dfrac{1}{3}=\dfrac{2}{3}-\dfrac{1}{3}=\dfrac{1}{3}$.
+
+<Cevap>C) $\dfrac{1}{3}$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$a>0$ olmak üzere $\displaystyle\int_{0}^{a}\dfrac{2x}{x^{2}+1}\,dx=\ln 5$ olduğuna göre $a$ kaçtır?
+
+A) $1$ · B) $\sqrt{3}$ · C) $2$ · D) $\sqrt{5}$ · E) $3$
+
+</Soru>
+
+<Cozum>
+
+1. Değişken seç: $u=x^{2}+1 \Rightarrow du=2x\,dx$. Sınırlar: $x=0 \Rightarrow u=1$, $x=a \Rightarrow u=a^{2}+1$.
+2. $u$ cinsinden yaz: $\displaystyle\int_{1}^{a^{2}+1}\dfrac{1}{u}\,du=\ln u\Big|_{1}^{a^{2}+1}=\ln(a^{2}+1)-\ln 1$.
+3. $\ln 1=0$ olduğundan integral $\ln(a^{2}+1)$ değerine eşittir.
+4. Koşul: $\ln(a^{2}+1)=\ln 5 \Rightarrow a^{2}+1=5 \Rightarrow a^{2}=4$.
+5. $a>0$ olduğundan $a=2$.
+
+<Cevap>C) $2$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\displaystyle\int_{0}^{\pi/2}\big(\sin^{4}x+\sin^{2}x\big)\cos x\,dx$ integralinin değeri kaçtır?
+
+A) $\dfrac{8}{15}$ · B) $\dfrac{1}{2}$ · C) $\dfrac{3}{5}$ · D) $\dfrac{2}{3}$ · E) $\dfrac{4}{5}$
+
+</Soru>
+
+<Cozum>
+
+1. Değişken seç: $u=\sin x \Rightarrow du=\cos x\,dx$. Sınırlar: $x=0 \Rightarrow u=0$, $x=\dfrac{\pi}{2} \Rightarrow u=1$.
+2. $u$ cinsinden yaz: $\displaystyle\int_{0}^{1}\big(u^{4}+u^{2}\big)\,du$.
+3. İntegre et: $\dfrac{u^{5}}{5}+\dfrac{u^{3}}{3}\Big|_{0}^{1}$.
+4. Sınırları yerleştir: $\dfrac{1}{5}+\dfrac{1}{3}-0=\dfrac{3}{15}+\dfrac{5}{15}=\dfrac{8}{15}$.
+
+<Cevap>A) $\dfrac{8}{15}$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
 ## Sık Yapılan Hatalar
 
 - **$du$ çarpanını gözden kaçırmak:** Düz yerine koyma ancak integrandda $g'(x)$ (en azından sabit kat farkıyla) varsa çalışır. Örneğin $\displaystyle\int (x^{2}+1)^{3}\,dx$ integralinde $2x$ çarpanı **yoktur**; burada $u=x^{2}+1$ koymak işe yaramaz, çünkü $x\,dx$'i $du$ ile temsil edemeyiz.

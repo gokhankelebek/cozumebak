@@ -316,6 +316,86 @@ $y=x^{2}-2x$ parabolü ile $x$-ekseni arasında kalan alanı bulunuz.
 
 </Ornek>
 
+## Sınav Tarzı Sorular
+
+> Aşağıdaki sorular, ÖSYM'nin AYT'de sorduğu **çok kavramlı, dolaylı (5 şıklı)** soru tarzına örnek olarak **özgün biçimde** hazırlanmıştır.
+
+<Ornek>
+
+<Soru>
+
+$k>0$ olmak üzere, $y=kx$ doğrusu ile $y=x^{2}$ parabolü arasında kalan bölgenin alanı $\dfrac{9}{2}$ birimkaredir.
+
+Buna göre $k$ kaçtır?
+
+A) $2$ · B) $\dfrac{5}{2}$ · C) $3$ · D) $\dfrac{7}{2}$ · E) $4$
+
+</Soru>
+
+<Cozum>
+
+1. Kesişimler: $x^{2}=kx\Rightarrow x(x-k)=0\Rightarrow x=0,\ x=k$. Sınırlar $0$ ile $k$.
+2. Üst-alt: $0<x<k$ üzerinde doğru üstte ($kx\ge x^{2}$). Alan: $\displaystyle A=\int_{0}^{k}\big(kx-x^{2}\big)\,dx$.
+3. İntegrali al: $\displaystyle A=\Big[\dfrac{kx^{2}}{2}-\dfrac{x^{3}}{3}\Big]_{0}^{k}=\dfrac{k^{3}}{2}-\dfrac{k^{3}}{3}=\dfrac{k^{3}}{6}$.
+4. Eşitliği kur: $\dfrac{k^{3}}{6}=\dfrac{9}{2}\Rightarrow k^{3}=27\Rightarrow k=3$.
+
+<Cevap>C) $3$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$y=x^{2}-3x$ parabolü ile $y=x$ doğrusu arasında kalan bölgenin alanı $A$ birimkaredir.
+
+Buna göre $A$ kaçtır?
+
+A) $\dfrac{16}{3}$ · B) $\dfrac{20}{3}$ · C) $\dfrac{28}{3}$ · D) $\dfrac{32}{3}$ · E) $\dfrac{40}{3}$
+
+</Soru>
+
+<Cozum>
+
+1. Kesişimler: $x^{2}-3x=x\Rightarrow x^{2}-4x=0\Rightarrow x(x-4)=0\Rightarrow x=0,\ x=4$. Sınırlar $0$ ile $4$.
+2. Üst-alt: $x=2$ için doğru $y=2$, parabol $y=4-6=-2$; doğru üstte.
+3. "Üst eksi alt" yaz: $\displaystyle A=\int_{0}^{4}\big(x-(x^{2}-3x)\big)\,dx=\int_{0}^{4}\big(4x-x^{2}\big)\,dx$.
+4. İntegrali al: $\displaystyle A=\Big[2x^{2}-\dfrac{x^{3}}{3}\Big]_{0}^{4}=32-\dfrac{64}{3}=\dfrac{96-64}{3}=\dfrac{32}{3}$.
+
+<Cevap>D) $\dfrac{32}{3}$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$y=x^{3}-4x$ eğrisi ile $x$-ekseni arasında, $x=-2$ ile $x=2$ arasında kalan bölgenin alanı $A$ birimkaredir.
+
+Buna göre $A$ kaçtır?
+
+A) $0$ · B) $4$ · C) $6$ · D) $8$ · E) $16$
+
+</Soru>
+
+<Cozum>
+
+1. Kökler: $x^{3}-4x=0\Rightarrow x(x^{2}-4)=0\Rightarrow x=-2,\ 0,\ 2$. Eğri $x=0$'da ekseni kesiyor; bölgeyi ayır.
+2. **Net integral tuzağı:** $y=x^{3}-4x$ tek fonksiyondur; $\displaystyle\int_{-2}^{2}\big(x^{3}-4x\big)\,dx=0$ çıkar, ama bu alan değildir.
+3. Tek fonksiyon olduğundan iki parçanın alanları eşittir; simetriyle $\displaystyle A=2\Big|\int_{0}^{2}\big(x^{3}-4x\big)\,dx\Big|$.
+4. İntegrali al: $\displaystyle\int_{0}^{2}\big(x^{3}-4x\big)\,dx=\Big[\dfrac{x^{4}}{4}-2x^{2}\Big]_{0}^{2}=4-8=-4$, mutlak değeri $4$.
+5. Alan: $A=2\cdot 4=8$.
+
+<Cevap>D) $8$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
 ## Sık Yapılan Hatalar
 
 - **Eksen altı bölgede negatif integrali alan sanmak.** $f(x)\le 0$ ise integral negatif çıkar; alan onun mutlak değeridir. Eğri ekseni kesiyorsa kökten ayırıp her parçanın mutlak değerini topla — aksi hâlde bölgeler birbirini götürür (Örnek 3'teki gibi net integral $0$ olabilir).

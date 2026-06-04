@@ -279,6 +279,91 @@ Bir ürünün $x$ adet üretildiğinde toplam maliyeti $M(x)=x^{2}-40x+900$ TL'd
 
 </Ornek>
 
+## Sınav Tarzı Sorular
+
+> Aşağıdaki sorular, ÖSYM'nin AYT'de sorduğu **çok kavramlı, dolaylı (5 şıklı)** soru tarzına örnek olarak **özgün biçimde** hazırlanmıştır.
+
+<Ornek>
+
+<Soru>
+
+Bir peyzaj firması, bir kenarı $x$, komşu kenarı $y$ metre olan dikdörtgen biçimli bir bahçeyi çevirecektir. Bahçenin alanı $600\,\text{m}^{2}$ olacaktır. Uzunluğu $x$ olan iki karşılıklı kenar metresi $4$ TL'ye, uzunluğu $y$ olan iki karşılıklı kenar ise metresi $6$ TL'ye çitle çevrilecektir. Firma, toplam çit maliyetini en küçük yapacak boyutları seçmektedir.
+
+Buna göre en küçük toplam çit maliyeti kaç TL'dir?
+
+A) $360$ · B) $420$ · C) $480$ · D) $560$ · E) $720$
+
+</Soru>
+
+<Cozum>
+
+1. **Kısıt:** Alan $x\,y=600 \Rightarrow y=\dfrac{600}{x}$.
+2. **Maliyet:** $x$ kenarı iki adet ($2\cdot 4x$), $y$ kenarı iki adet ($2\cdot 6y$):
+
+$$C(x)=8x+12y=8x+12\cdot\frac{600}{x}=8x+\frac{7200}{x},\quad x>0.$$
+
+3. **Türev sıfır:** $C'(x)=8-\dfrac{7200}{x^{2}}=0 \Rightarrow x^{2}=900 \Rightarrow x=30$.
+4. **Doğrula:** $C''(x)=\dfrac{14400}{x^{3}}>0$ olduğundan $x=30$ bir **minimumdur**. Bu durumda $y=\dfrac{600}{30}=20$.
+5. **Maliyet:** $C(30)=8\cdot 30+\dfrac{7200}{30}=240+240=480$ TL.
+
+<Cevap>C) $480$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir ambalaj atölyesinde, kenarları $9\,\text{cm}$ ve $24\,\text{cm}$ olan dikdörtgen bir mukavvanın dört köşesinden $x\times x$ boyutunda birer kare kesilip kenarlar yukarı katlanarak üstü açık bir kutu yapılıyor. Atölye, kutunun hacmini en büyük yapan $x$ değerini seçmektedir.
+
+Buna göre yapılan kutunun en büyük hacmi kaç $\text{cm}^{3}$'tür?
+
+A) $200$ · B) $216$ · C) $240$ · D) $250$ · E) $288$
+
+</Soru>
+
+<Cozum>
+
+1. **Boyutlar:** Katlamadan sonra yükseklik $x$, taban kenarları $9-2x$ ve $24-2x$ olur; taban pozitif olmalı: $0<x<4{,}5$.
+2. **Hacim:** $V(x)=x(9-2x)(24-2x)=4x^{3}-66x^{2}+216x$.
+3. **Türev sıfır:** $V'(x)=12x^{2}-132x+216=12(x^{2}-11x+18)=12(x-2)(x-9)=0 \Rightarrow x=2$ veya $x=9$.
+4. **Eleme:** $x=9$ tanım aralığı dışındadır ($9>4{,}5$); geçerli aday $x=2$.
+5. **Doğrula:** $V'$ işareti $x=2$'de $+$'dan $-$'ye döner, dolayısıyla maksimumdur. $V(2)=2\cdot(9-4)\cdot(24-4)=2\cdot 5\cdot 20=200$.
+
+<Cevap>A) $200$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir apart otelin $100$ odası vardır. Aylık kira $4000$ TL olduğunda bütün odalar doludur. İşletme, kirayı her $200$ TL artırdığında ortalama olarak $1$ oda boş kalmaktadır. İşletme, aylık toplam kira gelirini en büyük yapacak kirayı belirlemek istemektedir.
+
+Buna göre elde edilebilecek en büyük aylık toplam kira geliri kaç TL'dir?
+
+A) $600\,000$ · B) $660\,000$ · C) $700\,000$ · D) $720\,000$ · E) $750\,000$
+
+</Soru>
+
+<Cozum>
+
+1. **Değişken:** Kira $200$ TL'lik $x$ artış yapılsın. Kira $4000+200x$, dolu oda sayısı $100-x$ olur ($0\le x\le 100$).
+2. **Gelir:** $G(x)=(4000+200x)(100-x)$.
+3. **Düzenleme:** $G(x)=400000+16000x-200x^{2}$.
+4. **Türev sıfır:** $G'(x)=16000-400x=0 \Rightarrow x=40$.
+5. **Doğrula:** $G''(x)=-400<0$ olduğundan $x=40$ bir **maksimumdur**. Kira $4000+200\cdot 40=12000$ TL, dolu oda $100-40=60$. Gelir $G(40)=12000\cdot 60=720000$ TL.
+
+<Cevap>D) $720\,000$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
 ## Sık Yapılan Hatalar
 
 - **Kısıtı kullanmadan iki değişkenle kalmak:** Türev tek değişkene göre alınır. Kısıt denklemini ($2x+2y=40$, $\pi r^{2}h=V$ gibi) mutlaka kullanıp ikinci değişkeni yok et.

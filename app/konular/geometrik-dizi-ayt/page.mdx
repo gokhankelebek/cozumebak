@@ -308,6 +308,92 @@ Bir geometrik dizinin ilk terimi $a_1=3$, ortak çarpanı $r=2$'dir. İlk $n$ te
 
 </Ornek>
 
+## Sınav Tarzı Sorular
+
+> Aşağıdaki sorular, ÖSYM'nin AYT'de sorduğu **çok kavramlı, dolaylı (5 şıklı)** soru tarzına örnek olarak **özgün biçimde** hazırlanmıştır.
+
+<Ornek>
+
+<Soru>
+
+Bir geometrik dizide $a_3=20$ ve $a_6=160$ veriliyor.
+
+Buna göre $a_1+a_7$ toplamı kaçtır?
+
+A) $245$ · B) $290$ · C) $325$ · D) $360$ · E) $405$
+
+</Soru>
+
+<Cozum>
+
+1. İki terimi bağla: $a_6=a_3\cdot r^{6-3}=a_3\cdot r^{3}$, yani $160=20\cdot r^{3}$, buradan $r^{3}=8$ ve $r=2$.
+
+2. İlk terimi bul: $a_3=a_1\cdot r^{2}=a_1\cdot 4=20$, dolayısıyla $a_1=5$.
+
+3. Yedinci terimi hesapla: $a_7=a_1\cdot r^{6}=5\cdot 2^{6}=5\cdot 64=320$.
+
+4. Topla: $a_1+a_7=5+320=325$.
+
+<Cevap>C) $325$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Pozitif $a,\,b,\,c$ sayıları bu sırayla bir geometrik dizi oluşturuyor. Ortadaki terim $b=6$ ve $a+c=13$'tür.
+
+Buna göre $a^{2}+c^{2}$ değeri kaçtır?
+
+A) $85$ · B) $97$ · C) $109$ · D) $121$ · E) $133$
+
+</Soru>
+
+<Cozum>
+
+1. Geometrik orta koşulunu yaz: $b^{2}=a\cdot c$, yani $a\cdot c=6^{2}=36$.
+
+2. Karelerin toplamını çarpanlardan kur: $a^{2}+c^{2}=(a+c)^{2}-2\,a\,c$.
+
+3. Değerleri yerine koy: $a^{2}+c^{2}=13^{2}-2\cdot 36=169-72=97$.
+
+<Cevap>B) $97$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+İlk terimi $a_1=4$ olan bir geometrik dizinin ilk üç teriminin toplamı $S_3=28$'dir. Dizinin ortak çarpanı pozitiftir.
+
+Buna göre $a_5-a_2$ farkı kaçtır?
+
+A) $48$ · B) $52$ · C) $56$ · D) $60$ · E) $64$
+
+</Soru>
+
+<Cozum>
+
+1. Toplamı aç: $S_3=a_1\,(1+r+r^{2})=4\,(1+r+r^{2})=28$, buradan $1+r+r^{2}=7$.
+
+2. Denklemi çöz: $r^{2}+r-6=0\Rightarrow(r+3)(r-2)=0$; pozitif kök $r=2$.
+
+3. Terimleri yaz: $a_5=4\cdot 2^{4}=64$ ve $a_2=4\cdot 2^{1}=8$.
+
+4. Farkı al: $a_5-a_2=64-8=56$.
+
+<Cevap>C) $56$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
 ## Sık Yapılan Hatalar
 
 - **Genel terimde üssü $r^{n}$ yazmak.** Doğrusu $a_n=a_1\cdot r^{\,n-1}$'dir; ilk terime ulaşmak için hiç çarpma yapılmadığından üs $n-1$ olmalıdır. Örneğin $a_1=2,\ r=3$ için $a_5=2\cdot 3^{4}=162$'dir, $2\cdot 3^{5}=486$ değil.

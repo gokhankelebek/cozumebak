@@ -327,6 +327,89 @@ $f(x)=\begin{cases}x+a,& x\le 0\\ \dfrac{\sin 2x}{x},& x>0\end{cases}$ fonksiyon
 
 </Ornek>
 
+## Sınav Tarzı Sorular
+
+> Aşağıdaki sorular, ÖSYM'nin AYT'de sorduğu **çok kavramlı, dolaylı (5 şıklı)** soru tarzına örnek olarak **özgün biçimde** hazırlanmıştır.
+
+<Ornek>
+
+<Soru>
+
+$f(x)=\begin{cases}\dfrac{x^{2}-ax+b}{x-3},& x\ne 3\\[2mm] c,& x=3\end{cases}$ fonksiyonu $x=3$ noktasında süreklidir. Ayrıca $x\ne 3$ için pay, $(x-3)$ ile tam bölünmekte ve bölümün diğer çarpanı $(x-2)$ olmaktadır.
+
+Buna göre $a+b+c$ kaçtır?
+
+A) $8$ · B) $10$ · C) $11$ · D) $12$ · E) $14$
+
+</Soru>
+
+<Cozum>
+
+1. Pay tam bölünüp bölümün diğer çarpanı $(x-2)$ olduğundan: $x^{2}-ax+b=(x-3)(x-2)=x^{2}-5x+6$.
+2. Katsayıları eşitle: $a=5$ ve $b=6$.
+3. $x\ne 3$ için $f(x)=\dfrac{(x-3)(x-2)}{x-3}=x-2$.
+4. Süreklilik için $c=\lim\limits_{x\to 3}f(x)=\lim\limits_{x\to 3}(x-2)=1$.
+5. Sonuç: $a+b+c=5+6+1=12$.
+
+<Cevap>D) $12$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=\begin{cases}2x+a,& x<1\\ x^{2}+b,& 1\le x\le 2\\ bx-3,& x>2\end{cases}$ fonksiyonu tüm reel sayılarda süreklidir.
+
+Buna göre $a\cdot b$ çarpımı kaçtır?
+
+A) $35$ · B) $40$ · C) $42$ · D) $48$ · E) $56$
+
+</Soru>
+
+<Cozum>
+
+1. Her parça kendi aralığında polinom olduğundan, yalnız $x=1$ ve $x=2$ birleşme noktalarını sınarız.
+2. **$x=2$ noktası:** Soldan $\lim\limits_{x\to 2^{-}}f(x)=2^{2}+b=4+b$, sağdan $\lim\limits_{x\to 2^{+}}f(x)=b\cdot 2-3=2b-3$.
+3. Eşitle: $4+b=2b-3\Rightarrow b=7$.
+4. **$x=1$ noktası:** Soldan $\lim\limits_{x\to 1^{-}}f(x)=2\cdot 1+a=2+a$, sağdan $\lim\limits_{x\to 1^{+}}f(x)=1^{2}+b=1+b$.
+5. Eşitle: $2+a=1+b=1+7=8\Rightarrow a=6$.
+6. Sonuç: $a\cdot b=6\cdot 7=42$.
+
+<Cevap>C) $42$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=\begin{cases}\dfrac{\sqrt{x+4}-2}{x},& x\ne 0\\[2mm] a,& x=0\end{cases}$ fonksiyonu $x=0$ noktasında süreklidir.
+
+Buna göre $8a$ kaçtır?
+
+A) $1$ · B) $2$ · C) $3$ · D) $4$ · E) $6$
+
+</Soru>
+
+<Cozum>
+
+1. $x\ne 0$ için ifadeyi eşleniğiyle genişlet: $\dfrac{\sqrt{x+4}-2}{x}\cdot\dfrac{\sqrt{x+4}+2}{\sqrt{x+4}+2}=\dfrac{(x+4)-4}{x\left(\sqrt{x+4}+2\right)}$.
+2. Sadeleştir: $\dfrac{x}{x\left(\sqrt{x+4}+2\right)}=\dfrac{1}{\sqrt{x+4}+2}$.
+3. Limiti al: $\lim\limits_{x\to 0}f(x)=\dfrac{1}{\sqrt{4}+2}=\dfrac{1}{4}$.
+4. Süreklilik için $a=\lim\limits_{x\to 0}f(x)=\dfrac{1}{4}$.
+5. Sonuç: $8a=8\cdot\dfrac{1}{4}=2$.
+
+<Cevap>B) $2$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
 ## Sık Yapılan Hatalar
 
 - **Sadece limitin varlığını kontrol edip $\lim\limits_{x\to a}f(x)=f(a)$ koşulunu atlamak.** Limit var diye fonksiyon sürekli olmaz; limitin $f(a)$'ya **eşit** olması da şarttır.

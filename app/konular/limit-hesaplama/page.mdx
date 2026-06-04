@@ -400,6 +400,108 @@ Payı $1-\cos^{2}x=\sin^{2}x$ yapmak için $1+\cos x$ ile genişlet.
 
 </Ornek>
 
+## Sınav Tarzı Sorular
+
+> Aşağıdaki sorular, ÖSYM'nin AYT'de sorduğu **çok kavramlı, dolaylı (5 şıklı)** soru tarzına örnek olarak **özgün biçimde** hazırlanmıştır.
+
+<Ornek>
+
+<Soru>
+
+$a=\lim\limits_{x\to 3}\dfrac{\sqrt{x+1}-2}{x^{2}-5x+6}$ ve $b=\lim\limits_{x\to 0}\dfrac{\sin 6x}{2x}$ olarak veriliyor.
+
+Buna göre $a\cdot b$ çarpımı kaçtır?
+
+A) $\dfrac{1}{4}$ · B) $\dfrac{1}{2}$ · C) $\dfrac{3}{4}$ · D) $1$ · E) $\dfrac{3}{2}$
+
+</Soru>
+
+<Cozum>
+
+1. $a$ için yerine koy: pay $\sqrt{4}-2=0$, payda $9-15+6=0$. Belirsizlik $\dfrac{0}{0}$.
+
+2. Payı eşlenikle genişlet: $\big(\sqrt{x+1}-2\big)\big(\sqrt{x+1}+2\big)=(x+1)-4=x-3$.
+
+3. Paydayı çarpanlara ayır: $x^{2}-5x+6=(x-2)(x-3)$.
+
+4. İfade: $\dfrac{x-3}{(x-2)(x-3)\big(\sqrt{x+1}+2\big)}=\dfrac{1}{(x-2)\big(\sqrt{x+1}+2\big)}$.
+
+5. Yerine koy: $a=\dfrac{1}{(3-2)\big(\sqrt{4}+2\big)}=\dfrac{1}{1\cdot 4}=\dfrac{1}{4}$.
+
+6. $b$ için argümanı eşle: $\dfrac{\sin 6x}{2x}=\dfrac{6}{2}\cdot\dfrac{\sin 6x}{6x}\to 3\cdot 1=3$, yani $b=3$.
+
+7. Çarpım: $a\cdot b=\dfrac{1}{4}\cdot 3=\dfrac{3}{4}$.
+
+<Cevap>C) $\dfrac{3}{4}$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\lim\limits_{x\to 0}\dfrac{1-\cos 4x}{x\cdot\sin 3x}$ limiti veriliyor.
+
+Buna göre bu limitin değeri kaçtır?
+
+A) $\dfrac{4}{3}$ · B) $2$ · C) $\dfrac{8}{3}$ · D) $3$ · E) $\dfrac{16}{3}$
+
+</Soru>
+
+<Cozum>
+
+1. Yerine koy: pay $1-\cos 0=0$, payda $0$. Belirsizlik $\dfrac{0}{0}$.
+
+2. Payı $1+\cos 4x$ ile genişlet: $\big(1-\cos 4x\big)\big(1+\cos 4x\big)=1-\cos^{2}4x=\sin^{2}4x$.
+
+3. İfade: $\dfrac{\sin^{2}4x}{x\cdot\sin 3x\cdot\big(1+\cos 4x\big)}$.
+
+4. Her çarpanı argümanına eşle:
+
+$$\frac{\sin^{2}4x}{x^{2}}=\Big(\frac{\sin 4x}{x}\Big)^{2}\to 16,\qquad \frac{\sin 3x}{x}\to 3$$
+
+5. Limiti düzenle: $\dfrac{\big(\frac{\sin 4x}{x}\big)^{2}}{\big(\frac{\sin 3x}{x}\big)\cdot\big(1+\cos 4x\big)}\to\dfrac{16}{3\cdot(1+1)}=\dfrac{16}{6}=\dfrac{8}{3}$.
+
+<Cevap>C) $\dfrac{8}{3}$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$a$ ve $b$ gerçek sayılar olmak üzere $\lim\limits_{x\to 2}\dfrac{x^{2}+ax+b}{x-2}$ limiti **sonlu** bir değere eşit ve bu değer $5$'tir.
+
+Buna göre $a-b$ farkı kaçtır?
+
+A) $-7$ · B) $-5$ · C) $1$ · D) $5$ · E) $7$
+
+</Soru>
+
+<Cozum>
+
+1. Payda $x\to 2$ iken $0$'a gider. Limitin sonlu olması için pay da $x=2$'de $0$ olmalı; yani $\dfrac{0}{0}$ belirsizliği gerekir.
+
+2. Pay $(x-2)$ çarpanını içerir; payı $x^{2}+ax+b=(x-2)(x-c)$ biçiminde yaz.
+
+3. Sadeleştir: $\dfrac{(x-2)(x-c)}{x-2}=x-c$.
+
+4. Yerine koy: $\lim\limits_{x\to 2}(x-c)=2-c=5\Rightarrow c=-3$.
+
+5. Payı aç: $(x-2)(x+3)=x^{2}+x-6$, yani $a=1$ ve $b=-6$.
+
+6. Fark: $a-b=1-(-6)=7$.
+
+<Cevap>E) $7$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
 ## Sık Yapılan Hatalar
 
 - **$\frac{0}{0}$'ı $0$ ya da "tanımsız/limit yok" sanmak.** $\frac{0}{0}$ bir **belirsizliktir**; çarpanlara ayırma veya eşlenikle çözülür, sonuç çoğu zaman sonlu bir sayıdır.

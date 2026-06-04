@@ -337,6 +337,85 @@ Türev almadan önce logaritma özellikleriyle ifadeyi aç: $\ln(ab)=\ln a+\ln b
 
 </Ornek>
 
+## Sınav Tarzı Sorular
+
+> Aşağıdaki sorular, ÖSYM'nin AYT'de sorduğu **çok kavramlı, dolaylı (5 şıklı)** soru tarzına örnek olarak **özgün biçimde** hazırlanmıştır.
+
+<Ornek>
+
+<Soru>
+
+$f(x)=e^{2x}\sin(3x)$ fonksiyonu veriliyor.
+
+Buna göre $f'(0)$ değeri kaçtır?
+
+A) $0$ · B) $1$ · C) $2$ · D) $3$ · E) $5$
+
+</Soru>
+
+<Cozum>
+
+1. Çarpım kuralı: $f'(x)=\big(e^{2x}\big)'\sin(3x)+e^{2x}\big(\sin(3x)\big)'$.
+2. İç türevlerle: $\big(e^{2x}\big)'=2e^{2x}$ ve $\big(\sin(3x)\big)'=3\cos(3x)$.
+3. Birleştir: $f'(x)=2e^{2x}\sin(3x)+3e^{2x}\cos(3x)$.
+4. $x=0$ koy: $\sin 0=0$, $\cos 0=1$, $e^{0}=1$ olduğundan $f'(0)=2\cdot1\cdot0+3\cdot1\cdot1=3$.
+
+<Cevap>D) $3$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=\dfrac{e^{x}}{1+\ln x}$ fonksiyonu $x>0$ için tanımlıdır.
+
+Buna göre $f'(1)$ değeri kaçtır?
+
+A) $0$ · B) $e$ · C) $1$ · D) $2e$ · E) $-e$
+
+</Soru>
+
+<Cozum>
+
+1. Bölüm kuralı: $f'(x)=\dfrac{\big(e^{x}\big)'(1+\ln x)-e^{x}\big(1+\ln x\big)'}{(1+\ln x)^{2}}$.
+2. Türevler: $\big(e^{x}\big)'=e^{x}$ ve $\big(1+\ln x\big)'=\dfrac{1}{x}$.
+3. Yerine koy: $f'(x)=\dfrac{e^{x}(1+\ln x)-e^{x}\cdot\dfrac{1}{x}}{(1+\ln x)^{2}}$.
+4. $x=1$ için $\ln 1=0$ ve $\dfrac{1}{x}=1$: pay $=e(1+0)-e\cdot1=0$, payda $=(1+0)^{2}=1$, böylece $f'(1)=0$.
+
+<Cevap>A) $0$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=2^{x}\cos x$ fonksiyonu veriliyor.
+
+Buna göre $f'(0)$ değeri kaçtır?
+
+A) $1$ · B) $2\ln 2$ · C) $0$ · D) $\ln 2$ · E) $2$
+
+</Soru>
+
+<Cozum>
+
+1. Çarpım kuralı: $f'(x)=\big(2^{x}\big)'\cos x+2^{x}\big(\cos x\big)'$.
+2. Türevler: $\big(2^{x}\big)'=2^{x}\ln 2$ ve $\big(\cos x\big)'=-\sin x$.
+3. Birleştir: $f'(x)=2^{x}\ln 2\cos x-2^{x}\sin x$.
+4. $x=0$ koy: $2^{0}=1$, $\cos 0=1$, $\sin 0=0$ olduğundan $f'(0)=1\cdot\ln 2\cdot1-1\cdot0=\ln 2$.
+
+<Cevap>D) $\ln 2$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
 ## Sık Yapılan Hatalar
 
 - **$\big(\ln u\big)'$'i $\dfrac{1}{u}$ sanmak:** doğrusu $\dfrac{u'}{u}$'dur; iç türev $u'$ ile çarpılmalıdır. Örneğin $\big(\ln(x^{2}+1)\big)'=\dfrac{2x}{x^{2}+1}$, $\dfrac{1}{x^{2}+1}$ değil.
