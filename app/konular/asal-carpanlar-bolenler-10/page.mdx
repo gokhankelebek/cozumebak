@@ -1,0 +1,285 @@
+import { topicMetadata } from "@/lib/seo";
+
+export const metadata = topicMetadata("asal-carpanlar-bolenler-10");
+
+<Konu slug="asal-carpanlar-bolenler-10" />
+
+<p className="lead">*Sayılar* temasına bir sayının yapı taşları olan **asal çarpanlarıyla** başlıyoruz. Bu derste bir doğal sayıyı **asal çarpanlarına ayırmayı**, bu ayrışımdan **pozitif bölen sayısını** ve bölenlerin toplamını bulmayı öğreneceğiz. Asal çarpanlara ayırma; EBOB-EKOK, sadeleştirme ve bölünebilme konularının da temelidir — bu temanın geri kalanında sürekli kullanacaksın. Bol örnek ve "Sıra Sende" alıştırmalarıyla pekiştireceğiz.</p>
+
+## 1. Asal Sayı ve Asal Çarpan
+
+**Asal sayı**, $1$ ve kendisinden başka pozitif böleni olmayan, $1$'den büyük doğal sayıdır: $2,\ 3,\ 5,\ 7,\ 11,\dots$ ($1$ asal değildir; $2$ tek çift asaldır.)
+
+Her doğal sayı, asal sayıların çarpımı olarak **tek biçimde** yazılabilir (asal çarpanlara ayırma):
+
+$$N=p_1^{a_1}\cdot p_2^{a_2}\cdots p_k^{a_k}$$
+
+<Ornek>
+
+<Soru>
+
+$360$ sayısını asal çarpanlarına ayırınız.
+
+</Soru>
+
+<Cozum>
+
+1. Küçük asallarla sırayla böl: $360=2\cdot 180=2\cdot 2\cdot 90=2\cdot2\cdot2\cdot 45$.
+2. $45=3\cdot 15=3\cdot3\cdot 5$.
+3. Topla: $360=2^3\cdot 3^2\cdot 5$.
+
+<Cevap>$360=2^3\cdot 3^2\cdot 5$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 2. Pozitif Bölen Sayısı
+
+$N=p_1^{a_1}\cdot p_2^{a_2}\cdots p_k^{a_k}$ ise $N$'nin **pozitif bölen sayısı**, üslerin birer fazlasının çarpımıdır:
+
+$$\text{bölen sayısı}=(a_1+1)(a_2+1)\cdots(a_k+1)$$
+
+<Ornek>
+
+<Soru>
+
+$360=2^3\cdot 3^2\cdot 5$ sayısının kaç pozitif böleni vardır?
+
+</Soru>
+
+<Ipucu>
+
+Her asal çarpanın üssünü $1$ artırıp çarp. Üsler $3,\ 2,\ 1$ ise $(3+1)(2+1)(1+1)$ hesapla.
+
+</Ipucu>
+
+<Cozum>
+
+1. Üsler: $3,\ 2,\ 1$.
+2. Bölen sayısı: $(3+1)(2+1)(1+1)=4\cdot 3\cdot 2=24$.
+
+<Cevap>$24$ pozitif bölen.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 3. Bölenlerin Toplamı ve Çift/Tek Bölenler
+
+Bölenlerin toplamı, her asal için $(1+p+p^2+\dots+p^{a})$ çarpanlarının çarpımıdır. Pratikte sık sorulan iki ölçü:
+
+- **Tek bölen sayısı:** $2$'nin üssünü **yok say**, kalan üslerle bölen sayısı formülünü uygula.
+- **Çift bölen sayısı:** toplam bölen sayısından tek bölen sayısını çıkar.
+
+<Ornek>
+
+<Soru>
+
+$72=2^3\cdot 3^2$ sayısının kaç tek, kaç çift böleni vardır?
+
+</Soru>
+
+<Cozum>
+
+1. Toplam bölen: $(3+1)(2+1)=12$.
+2. Tek bölenler: $2$'yi yok say, yalnız $3^2$ kalır: $(2+1)=3$ tek bölen.
+3. Çift bölenler: $12-3=9$.
+
+<Cevap>$3$ tek, $9$ çift bölen.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Çözümlü Örnekler
+
+<Ornek>
+
+<Soru>
+
+$540$ sayısını asal çarpanlarına ayırıp pozitif bölen sayısını bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Ayır: $540=2^2\cdot 3^3\cdot 5$.
+2. Bölen sayısı: $(2+1)(3+1)(1+1)=3\cdot 4\cdot 2=24$.
+
+<Cevap>$540=2^2\cdot 3^3\cdot 5$, $24$ bölen.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$2^a\cdot 3^2$ sayısının $15$ pozitif böleni varsa $a$ kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. Bölen sayısı: $(a+1)(2+1)=15$.
+2. $(a+1)\cdot 3=15\Rightarrow a+1=5\Rightarrow a=4$.
+
+<Cevap>$a=4$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$200$ sayısının kaç böleni asaldır?
+
+</Soru>
+
+<Cozum>
+
+1. $200=2^3\cdot 5^2$.
+2. Asal bölenler yalnız asal çarpanlardır: $2$ ve $5$.
+
+<Cevap>$2$ tane ($2$ ve $5$).</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$2^3\cdot 5^2$ sayısının $5$ ile tam bölünen (yani $5$'in katı olan) kaç pozitif böleni vardır?
+
+</Soru>
+
+<Ipucu>
+
+$5$'in katı bölenlerde $5$ en az birinci kuvvetten bulunur. $5^1$'i sabit ayır, kalan kısmın bölen sayısını say.
+
+</Ipucu>
+
+<Cozum>
+
+1. $5$'in katı bölen $=5\cdot(2^x\cdot 5^y)$ biçiminde; $x\in\{0,1,2,3\}$, $y\in\{0,1\}$.
+2. Sayısı: $4\cdot 2=8$.
+
+<Cevap>$8$ bölen.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Alıştırmalar — Sıra Sende
+
+> Önce kendin çözmeyi dene; sonra çözümü açıp karşılaştır.
+
+<Ornek>
+
+<Soru>
+
+$84$ sayısını asal çarpanlarına ayır.
+
+</Soru>
+
+<Cozum>
+
+1. $84=2^2\cdot 21=2^2\cdot 3\cdot 7$.
+
+<Cevap>$84=2^2\cdot 3\cdot 7$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$2^4\cdot 3\cdot 5^2$ sayısının kaç pozitif böleni vardır?
+
+</Soru>
+
+<Cozum>
+
+1. $(4+1)(1+1)(2+1)=5\cdot 2\cdot 3=30$.
+
+<Cevap>$30$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$96$ sayısının kaç çift böleni vardır?
+
+</Soru>
+
+<Cozum>
+
+1. $96=2^5\cdot 3$; toplam bölen $(5+1)(1+1)=12$.
+2. Tek bölen (2'yi yok say): $(1+1)=2$.
+3. Çift bölen: $12-2=10$.
+
+<Cevap>$10$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir sayı $2^a\cdot 7$ biçiminde ve $8$ pozitif böleni varsa $a$ kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. $(a+1)(1+1)=8\Rightarrow (a+1)\cdot 2=8\Rightarrow a+1=4\Rightarrow a=3$.
+
+<Cevap>$a=3$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$45$ sayısının pozitif bölenlerinin toplamını bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $45=3^2\cdot 5$. Bölenler: $1,3,5,9,15,45$.
+2. Toplam: $1+3+5+9+15+45=78$.
+
+<Cevap>$78$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **$1$'i asal saymak.** $1$ asal değildir; en küçük asal $2$'dir.
+- **Bölen sayısında üsleri çarpmak.** Bölen sayısı üslerin çarpımı değil, **birer fazlasının** çarpımıdır: $(a+1)(b+1)\dots$
+- **Asal bölen ile bölen sayısını karıştırmak.** $200=2^3\cdot 5^2$'nin $12$ böleni ama yalnız $2$ asal böleni vardır.
+- **Tek bölende $2$'yi tamamen atmamak.** Tek bölen sayısı için $2$'nin üssünü **sıfır** kabul et (yok say), sonra kalan üslerle hesapla.
+
+> **Not:** Hemen her bölen sorusu önce **asal çarpanlara ayırmakla** başlar. Ayrışımı yazdıktan sonra bölen sayısı $(a+1)(b+1)\dots$ formülü kapıyı açar.
+
+<KonuNav slug="asal-carpanlar-bolenler-10" />

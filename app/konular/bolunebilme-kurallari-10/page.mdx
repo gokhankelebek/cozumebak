@@ -1,0 +1,306 @@
+import { topicMetadata } from "@/lib/seo";
+
+export const metadata = topicMetadata("bolunebilme-kurallari-10");
+
+<Konu slug="bolunebilme-kurallari-10" />
+
+<p className="lead">Bir sayının başka bir sayıya **bölme yapmadan** tam bölünüp bölünmediğini anlamanın kısa yolları vardır. Bu derste $2,\ 3,\ 4,\ 5,\ 8,\ 9,\ 10,\ 11$ ile **bölünebilme kurallarını**, bir sayının **bölümünden kalanı** bulmayı ve bu kuralları içeren problemleri öğreneceğiz. Bölünebilme; asal çarpanlara ayırma ve EBOB-EKOK ile birlikte sayılar temasının pratik araç kutusudur. Bol örnek ve "Sıra Sende" alıştırmalarıyla pekiştireceğiz.</p>
+
+## 1. Temel Bölünebilme Kuralları
+
+| Bölen | Kural |
+|:---:|---|
+| $2$ | Birler basamağı çift ($0,2,4,6,8$). |
+| $5$ | Birler basamağı $0$ ya da $5$. |
+| $10$ | Birler basamağı $0$. |
+| $4$ | Son **iki** basamağın oluşturduğu sayı $4$'e bölünür. |
+| $8$ | Son **üç** basamağın oluşturduğu sayı $8$'e bölünür. |
+| $3$ | Rakamlar toplamı $3$'e bölünür. |
+| $9$ | Rakamlar toplamı $9$'a bölünür. |
+
+<Ornek>
+
+<Soru>
+
+$4\,572$ sayısı $3$ ve $4$ ile bölünür mü?
+
+</Soru>
+
+<Cozum>
+
+1. $3$ için rakamlar toplamı: $4+5+7+2=18$; $18$, $3$'e bölünür → **evet**.
+2. $4$ için son iki basamak: $72$; $72=4\cdot 18$ → **evet**.
+
+<Cevap>Hem $3$ hem $4$ ile bölünür.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 2. 11 ile Bölünebilme
+
+Sağdan başlayarak rakamlara sırayla $+,\ -,\ +,\ -\dots$ işaret verilir; bu **alternatif toplam** $0$ ya da $11$'in katıysa sayı $11$'e bölünür.
+
+<Ornek>
+
+<Soru>
+
+$8\,294$ sayısı $11$ ile bölünür mü?
+
+</Soru>
+
+<Ipucu>
+
+Birler basamağından başlayıp dönüşümlü olarak topla-çıkar; sonuç $0$ veya $\pm 11, \pm 22,\dots$ ise bölünür.
+
+</Ipucu>
+
+<Cozum>
+
+1. Sağdan: $4-9+2-8=-11$.
+2. $-11$, $11$'in katıdır.
+
+<Cevap>Evet, $11$ ile bölünür.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 3. Bileşik Bölenler
+
+Aralarında **asal** olan bölenlerin kuralları birlikte uygulanır:
+
+- $6=2\cdot 3$ → hem $2$ hem $3$ ile bölünüyorsa $6$ ile bölünür.
+- $12=3\cdot 4$ → hem $3$ hem $4$ ile bölünmeli.
+- $15=3\cdot 5$, $18=2\cdot 9$ benzer şekilde.
+
+<Ornek>
+
+<Soru>
+
+$2\,3\square$ üç basamaklı sayısının $6$ ile bölünebilmesi için $\square$ yerine gelebilecek rakamları bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $6=2\cdot 3$; sayı hem çift hem $3$'e bölünmeli.
+2. **Çift** olması için $\square\in\{0,2,4,6,8\}$.
+3. **$3$'e bölünme:** $2+3+\square=5+\square$ değeri $3$'ün katı olmalı → $\square\in\{1,4,7\}$.
+4. İki koşulun ortak çözümü: $\square=4$.
+
+<Cevap>$\square=4$ (sayı $234$).</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 4. Kalan Bulma
+
+Bir sayının bir bölene göre kalanı, çoğu zaman kuralın "artığı"yla bulunur. Örneğin $9$'a göre kalan, **rakamlar toplamının** $9$'a göre kalanına eşittir.
+
+<Ornek>
+
+<Soru>
+
+$5\,738$ sayısının $9$ ile bölümünden kalanı bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Rakamlar toplamı: $5+7+3+8=23$.
+2. $23$'ün $9$'a bölümünden kalan: $23=2\cdot 9+5$ → kalan $5$.
+
+<Cevap>Kalan $5$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Çözümlü Örnekler
+
+<Ornek>
+
+<Soru>
+
+$1\,2\square 4$ sayısının $4$ ile bölünebilmesi için $\square$ kaç farklı değer alabilir?
+
+</Soru>
+
+<Cozum>
+
+1. $4$ kuralı: son iki basamak $\square 4$ sayısı $4$'e bölünmeli.
+2. $\square 4$ değerleri: $04,14,24,\dots,94$. $4$'e bölünenler: $04,24,44,64,84$ → $\square\in\{0,2,4,6,8\}$.
+
+<Cevap>$5$ farklı değer.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$3\,A\,1$ üç basamaklı sayısı $9$ ile tam bölünüyorsa $A$ kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. Rakamlar toplamı $3+A+1=4+A$, $9$'un katı olmalı.
+2. $4+A=9\Rightarrow A=5$ (tek geçerli rakam).
+
+<Cevap>$A=5$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$7\,425$ sayısı $5$, $9$ ve $11$'den hangileriyle bölünür?
+
+</Soru>
+
+<Cozum>
+
+1. $5$: birler $5$ → **evet**.
+2. $9$: $7+4+2+5=18$, $9$'a bölünür → **evet**.
+3. $11$: $5-2+4-7=0$ → **evet**.
+
+<Cevap>Üçüyle de bölünür.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$2\,468$ sayısının $3$ ile bölümünden kalanı bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Rakamlar toplamı: $2+4+6+8=20$.
+2. $20$'nin $3$'e bölümünden kalan: $20=6\cdot3+2$ → kalan $2$.
+
+<Cevap>Kalan $2$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Alıştırmalar — Sıra Sende
+
+> Önce kendin çözmeyi dene; sonra çözümü açıp karşılaştır.
+
+<Ornek>
+
+<Soru>
+
+$5\,130$ sayısı $9$ ile bölünür mü?
+
+</Soru>
+
+<Cozum>
+
+1. $5+1+3+0=9$; $9$'a bölünür.
+
+<Cevap>Evet.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$3\,21\square$ sayısının $5$ ile bölünebilmesi için $\square$ ne olmalı?
+
+</Soru>
+
+<Cozum>
+
+1. $5$ kuralı: birler $0$ ya da $5$.
+
+<Cevap>$\square\in\{0,\ 5\}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$4\,B\,6$ sayısı $3$ ile bölünüyorsa $B$ kaç farklı değer alabilir?
+
+</Soru>
+
+<Cozum>
+
+1. $4+B+6=10+B$, $3$'ün katı olmalı.
+2. $B\in\{2,5,8\}$ (toplam $12,15,18$).
+
+<Cevap>$3$ farklı değer.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$9\,361$ sayısı $11$ ile bölünür mü?
+
+</Soru>
+
+<Cozum>
+
+1. Sağdan: $1-6+3-9=-11$ → $11$'in katı.
+
+<Cevap>Evet.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$8\,1\square$ sayısının hem $2$ hem $3$ ile (yani $6$ ile) bölünmesi için $\square$ kaç olabilir?
+
+</Soru>
+
+<Cozum>
+
+1. Çift: $\square\in\{0,2,4,6,8\}$.
+2. $3$: $8+1+\square=9+\square$, $3$'ün katı → $\square\in\{0,3,6,9\}$.
+3. Ortak: $\square\in\{0,6\}$.
+
+<Cevap>$\square\in\{0,\ 6\}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **$4$ ve $8$'i rakam toplamıyla denemek.** $4$ son **iki**, $8$ son **üç** basamağa bakar; rakam toplamı $3$ ve $9$ içindir.
+- **$6,\ 12,\ 15$ için tek kural aramak.** Bunlar bileşiktir; çarpanlarının (aralarında asal) **tüm** kurallarını birlikte sağlamak gerekir.
+- **$11$'de işaretleri yanlış başlatmak.** Alternatif toplama **birler basamağından** başla; sonuç $0$ veya $11$'in katı olmalı.
+- **Kalanı bölme yapmadan yanlış okumak.** $9$'a göre kalan, rakamlar toplamının kalanıdır; rakam toplamının kendisi değil.
+
+> **Not:** $6,8,12$ gibi bileşik bölenlerde sayıyı **aralarında asal çarpanlarına** böl ($6=2\cdot3$) ve her çarpanın kuralını ayrı ayrı uygula. İki koşulun **ortak** çözümü cevaptır.
+
+<KonuNav slug="bolunebilme-kurallari-10" />

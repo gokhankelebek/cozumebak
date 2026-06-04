@@ -1,0 +1,297 @@
+import { topicMetadata } from "@/lib/seo";
+
+export const metadata = topicMetadata("ebob-ekok-10");
+
+<Konu slug="ebob-ekok-10" />
+
+<p className="lead">İki veya daha çok sayının ortak bölenlerinin en büyüğü **EBOB**, ortak katlarının en küçüğü **EKOK**'tur. Bu derste asal çarpanlara ayırma yöntemiyle EBOB ve EKOK'u bulmayı, aralarındaki **çarpım ilişkisini** ($\text{EBOB}\cdot\text{EKOK}=a\cdot b$) ve bunların geçtiği günlük **problemleri** (aynı anda çalma, en büyük parça, tur atma) çözmeyi öğreneceğiz. Bol örnek ve "Sıra Sende" alıştırmalarıyla pekiştireceğiz.</p>
+
+## 1. EBOB (En Büyük Ortak Bölen)
+
+EBOB, sayıların **ortak asal çarpanlarının en küçük üslüleri** çarpılarak bulunur. ("Ortak olanı, en az üssüyle al.")
+
+<Ornek>
+
+<Soru>
+
+$\text{EBOB}(48,\ 72)$ değerini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Ayır: $48=2^4\cdot 3$, $\;72=2^3\cdot 3^2$.
+2. Ortak çarpanlar $2$ ve $3$; en küçük üsler $2^3$ ve $3^1$.
+3. $\text{EBOB}=2^3\cdot 3=24$.
+
+<Cevap>$\text{EBOB}(48,72)=24$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 2. EKOK (En Küçük Ortak Kat)
+
+EKOK, sayılarda görülen **tüm asal çarpanların en büyük üslüleri** çarpılarak bulunur. ("Görünen her asalı, en çok üssüyle al.")
+
+<Ornek>
+
+<Soru>
+
+$\text{EKOK}(48,\ 72)$ değerini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $48=2^4\cdot 3$, $\;72=2^3\cdot 3^2$.
+2. Tüm asallar $2$ ve $3$; en büyük üsler $2^4$ ve $3^2$.
+3. $\text{EKOK}=2^4\cdot 3^2=16\cdot 9=144$.
+
+<Cevap>$\text{EKOK}(48,72)=144$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 3. EBOB · EKOK İlişkisi
+
+İki sayı için EBOB ile EKOK'un çarpımı, sayıların çarpımına eşittir:
+
+$$\text{EBOB}(a,b)\cdot\text{EKOK}(a,b)=a\cdot b$$
+
+<Ornek>
+
+<Soru>
+
+$a$ ve $b$ sayıları için $\text{EBOB}=6$, $\text{EKOK}=72$ ve $a=24$ ise $b$ kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+$\text{EBOB}\cdot\text{EKOK}=a\cdot b$ bağıntısını kullan; bilinmeyen $b$'yi yalnız bırak.
+
+</Ipucu>
+
+<Cozum>
+
+1. $\text{EBOB}\cdot\text{EKOK}=a\cdot b\Rightarrow 6\cdot 72=24\cdot b$.
+2. $432=24b\Rightarrow b=18$.
+
+<Cevap>$b=18$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 4. Problemler
+
+- **EKOK problemi (aynı anda olma):** "her $a$ dakikada bir ... ve her $b$ dakikada bir ..." → ilk kez birlikte $\text{EKOK}(a,b)$ sonra olur.
+- **EBOB problemi (en büyük eşit parça):** "şu boyutları eşit ve en büyük parçalara böl" → parça boyu $\text{EBOB}$'tur.
+
+<Ornek>
+
+<Soru>
+
+Biri $12$, diğeri $18$ dakikada bir çalan iki zil saat $09{:}00$'da birlikte çaldı. İlk kez tekrar birlikte saat kaçta çalar?
+
+</Soru>
+
+<Cozum>
+
+1. Birlikte çalma aralığı $\text{EKOK}(12,18)$.
+2. $12=2^2\cdot 3$, $18=2\cdot 3^2$; $\text{EKOK}=2^2\cdot 3^2=36$ dakika.
+3. $09{:}00+36$ dk $=09{:}36$.
+
+<Cevap>Saat $09{:}36$'da.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Çözümlü Örnekler
+
+<Ornek>
+
+<Soru>
+
+$\text{EBOB}(36,\ 90)$ ve $\text{EKOK}(36,\ 90)$ değerlerini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $36=2^2\cdot 3^2$, $\;90=2\cdot 3^2\cdot 5$.
+2. EBOB (ortak, en küçük üs): $2\cdot 3^2=18$.
+3. EKOK (hepsi, en büyük üs): $2^2\cdot 3^2\cdot 5=180$.
+
+<Cevap>EBOB $=18$, EKOK $=180$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Boyutları $24$ cm ve $36$ cm olan iki ipi, hiç artmayacak ve en uzun olacak şekilde eşit parçalara böleceğiz. Her parça kaç cm olmalıdır?
+
+</Soru>
+
+<Cozum>
+
+1. "Eşit ve en uzun parça" → $\text{EBOB}(24,36)$.
+2. $24=2^3\cdot 3$, $36=2^2\cdot 3^2$; EBOB $=2^2\cdot 3=12$.
+
+<Cevap>Her parça $12$ cm.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+İki sayının çarpımı $600$, EBOB'u $10$ ise EKOK'u kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. $\text{EBOB}\cdot\text{EKOK}=a\cdot b\Rightarrow 10\cdot\text{EKOK}=600$.
+2. $\text{EKOK}=60$.
+
+<Cevap>$60$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir miktar şeker $4$'erli, $6$'şarlı ve $9$'arlı paketlere tam bölünüyor. Bu miktarın olabilecek en küçük değeri kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. "Hepsine tam bölünen en küçük sayı" → $\text{EKOK}(4,6,9)$.
+2. $4=2^2$, $6=2\cdot 3$, $9=3^2$; EKOK $=2^2\cdot 3^2=36$.
+
+<Cevap>$36$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Alıştırmalar — Sıra Sende
+
+> Önce kendin çözmeyi dene; sonra çözümü açıp karşılaştır.
+
+<Ornek>
+
+<Soru>
+
+$\text{EBOB}(20,\ 30)$ kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. $20=2^2\cdot 5$, $30=2\cdot 3\cdot 5$; ortak $2\cdot 5=10$.
+
+<Cevap>$10$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\text{EKOK}(8,\ 12)$ kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. $8=2^3$, $12=2^2\cdot 3$; EKOK $=2^3\cdot 3=24$.
+
+<Cevap>$24$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+İki sayının EBOB'u $5$, EKOK'u $60$ ve biri $20$ ise diğeri kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. $5\cdot 60=20\cdot b\Rightarrow 300=20b\Rightarrow b=15$.
+
+<Cevap>$15$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$15$ ve $20$ dakikada bir kalkan iki otobüs $08{:}00$'da birlikte kalktı. Bir sonraki ortak kalkış saat kaçtadır?
+
+</Soru>
+
+<Cozum>
+
+1. $\text{EKOK}(15,20)$: $15=3\cdot5$, $20=2^2\cdot5$; EKOK $=2^2\cdot3\cdot5=60$ dk.
+2. $08{:}00+60$ dk $=09{:}00$.
+
+<Cevap>$09{:}00$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$48$, $60$ ve $72$ boyutlu üç çubuğu eşit ve en uzun parçalara bölersek her parça kaç birim olur?
+
+</Soru>
+
+<Cozum>
+
+1. $\text{EBOB}(48,60,72)$: $48=2^4\cdot3$, $60=2^2\cdot3\cdot5$, $72=2^3\cdot3^2$.
+2. Ortak en küçük üsler: $2^2\cdot 3=12$.
+
+<Cevap>$12$ birim.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **EBOB ile EKOK kuralını karıştırmak.** EBOB: **ortak** çarpanlar, **en küçük** üs. EKOK: **tüm** çarpanlar, **en büyük** üs.
+- **EBOB·EKOK ilişkisini ikiden çok sayıya uygulamak.** $\text{EBOB}\cdot\text{EKOK}=a\cdot b$ yalnız **iki** sayı için geçerlidir.
+- **Problemde yanlış aracı seçmek.** "Aynı anda/tekrar" → EKOK; "eşit en büyük parça/grup" → EBOB.
+- **Ortak olmayan çarpanı EBOB'a katmak.** Bir asal yalnız bir sayıda varsa EBOB'a girmez (EKOK'a girer).
+
+> **Not:** Problemi okurken anahtar kelimeyi yakala: **"en büyük/eşit böl" → EBOB**, **"en küçük/aynı anda" → EKOK**. İkisi de önce asal çarpanlara ayırmakla başlar.
+
+<KonuNav slug="ebob-ekok-10" />

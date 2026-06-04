@@ -202,9 +202,9 @@ export const TOPICS: Topic[] = [
   { slug: "olasilik-akil-yurutme-9", title: "Olasılıkta Tümevarımsal Akıl Yürütme", track: "9", unit: "veriden-olasiliga-9", summary: "Olayların olasılığı üzerine tümevarımsal çıkarım yapma.", minutes: 6, difficulty: "Orta", questionCount: 12, status: "published" },
 
   // ── 10. Sınıf · Sayılar ──
-  { slug: "asal-carpanlar-bolenler-10", title: "Asal Çarpanlar ve Bölenler", track: "10", unit: "sayilar-10", summary: "Asal çarpanlara ayırma ve pozitif bölen sayısı.", minutes: 7, difficulty: "Orta", questionCount: 18, status: "soon", keywords: ["asal çarpan", "bölen sayısı"] },
-  { slug: "ebob-ekok-10", title: "EBOB ve EKOK", track: "10", unit: "sayilar-10", summary: "En büyük ortak bölen, en küçük ortak kat ve problemleri.", minutes: 7, difficulty: "Orta", questionCount: 20, status: "soon", keywords: ["ebob", "ekok", "obeb", "okek"] },
-  { slug: "bolunebilme-kurallari-10", title: "Bölünebilme Kuralları", track: "10", unit: "sayilar-10", summary: "2, 3, 4, 5, 8, 9, 11 ile bölünebilme ve kalan bulma.", minutes: 7, difficulty: "Orta", questionCount: 20, status: "soon", keywords: ["bölünebilme", "kalan"] },
+  { slug: "asal-carpanlar-bolenler-10", title: "Asal Çarpanlar ve Bölenler", track: "10", unit: "sayilar-10", summary: "Asal çarpanlara ayırma ve pozitif bölen sayısı.", minutes: 7, difficulty: "Orta", questionCount: 18, status: "published", keywords: ["asal çarpan", "bölen sayısı"] },
+  { slug: "ebob-ekok-10", title: "EBOB ve EKOK", track: "10", unit: "sayilar-10", summary: "En büyük ortak bölen, en küçük ortak kat ve problemleri.", minutes: 7, difficulty: "Orta", questionCount: 20, status: "published", keywords: ["ebob", "ekok", "obeb", "okek"] },
+  { slug: "bolunebilme-kurallari-10", title: "Bölünebilme Kuralları", track: "10", unit: "sayilar-10", summary: "2, 3, 4, 5, 8, 9, 11 ile bölünebilme ve kalan bulma.", minutes: 7, difficulty: "Orta", questionCount: 20, status: "published", keywords: ["bölünebilme", "kalan"] },
 
   // ── 10. Sınıf · Nicelikler ve Değişimler ──
   { slug: "karesel-fonksiyonlar-10", title: "İkinci Dereceden Fonksiyonlar ve Parabol", track: "10", unit: "nicelikler-degisimler-10", summary: "Karesel fonksiyonun grafiği, tepe noktası ve eksen kesişimleri.", minutes: 8, difficulty: "Orta", questionCount: 20, status: "soon", keywords: ["parabol", "tepe noktası"] },
