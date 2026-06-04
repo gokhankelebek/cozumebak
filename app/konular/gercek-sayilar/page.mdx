@@ -1,4 +1,5 @@
 import { topicMetadata } from "@/lib/seo";
+import { YariAcikAralik, AralikKesisim } from "@/components/figures/AralikFig";
 
 export const metadata = topicMetadata("gercek-sayilar");
 
@@ -76,6 +77,14 @@ Sayı doğrusu üzerinde iki uç arasındaki tüm gerçek sayıların kümesine 
 
 Sayı doğrusunda **dolu nokta** (●) uç dâhil, **boş nokta** (○) uç hariç anlamına gelir.
 
+<Figur>
+
+<YariAcikAralik />
+
+<Altyazi>Şekil 1 — $[-2,\ 5)$ yarı açık aralığı. Sol uç $-2$ **dolu** nokta (dâhil, $\le$), sağ uç $5$ **boş** nokta (hariç, $<$). Aradaki tüm gerçek sayılar aralığa aittir.</Altyazi>
+
+</Figur>
+
 <Ornek>
 
 <Soru>
@@ -127,6 +136,14 @@ $A=[1,\ 6]$ ve $B=(4,\ 9]$ için $A\cap B$ ve $A\cup B$ kümelerini bulunuz.
 </Cozum>
 
 </Ornek>
+
+<Figur>
+
+<AralikKesisim />
+
+<Altyazi>Şekil 2 — $A=[1,6]$ ve $B=(4,9]$ aynı sayı doğrusuna çizilir. **Örtüşen** bölge kesişimdir: $A\cap B=(4,\ 6]$. $4$ noktası $B$'de hariç olduğundan kesişimde de hariçtir (boş nokta).</Altyazi>
+
+</Figur>
 
 ## Çözümlü Örnekler
 
@@ -303,6 +320,110 @@ $A=(1,\ 4)$ ve $B=[4,\ 7]$ için $A\cap B$ kümesini bul.
 2. Ortak hiçbir sayı yoktur.
 
 <Cevap>$A\cap B=\varnothing$ (ayrık aralıklar).</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$2+3\cdot\left[8-(4-6)^2\right]:2$ işleminin sonucunu bul.
+
+</Soru>
+
+<Ipucu>
+
+İçten dışa: önce iç parantez, sonra üs, sonra köşeli parantez. En sonda çarpma/bölme soldan sağa, ardından toplama.
+
+</Ipucu>
+
+<Cozum>
+
+1. İç parantez: $4-6=-2$.
+2. Üs: $(-2)^2=4$.
+3. Köşeli parantez: $8-4=4$.
+4. Çarpma ve bölme (soldan sağa): $3\cdot 4=12$, sonra $12:2=6$.
+5. Toplama: $2+6=8$.
+
+<Cevap>$8$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$A=(-3,\ 5]$ ve $B=[0,\ 8)$ için $A\cap B$ ve $A\cup B$ aralıklarını bul.
+
+</Soru>
+
+<Ipucu>
+
+İki aralığı aynı sayı doğrusuna çiz. Kesişim örtüşen kısım, birleşim kaplanan tüm kısımdır. Her uçta o noktanın dâhil mi hariç mi olduğuna ayrı ayrı bak.
+
+</Ipucu>
+
+<Cozum>
+
+1. **Kesişim:** ortak bölge $0$ ile $5$ arası. $0$, $B$'de dâhil; $5$, $A$'da dâhil. → $[0,\ 5]$.
+2. **Birleşim:** en soldan ($-3$, hariç) en sağa ($8$, hariç) kesintisiz. → $(-3,\ 8)$.
+
+<Cevap>$A\cap B=[0,\ 5]$, $\;A\cup B=(-3,\ 8)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$-5\le x<4$ aralığındaki **tam sayıların** toplamını bul.
+
+</Soru>
+
+<Ipucu>
+
+Önce uçların dâhil/hariç durumuna göre tam sayıları listele; karşılıklı negatif-pozitif çiftler sadeleşir, hesabı kolaylaştırır.
+
+</Ipucu>
+
+<Cozum>
+
+1. Koşulu sağlayan tam sayılar: $-5,-4,-3,-2,-1,0,1,2,3$ ($-5$ dâhil, $4$ hariç).
+2. $-3$ ile $3$, $-2$ ile $2$, $-1$ ile $1$ ve $0$ sadeleşir; geriye $-5+(-4)=-9$ kalır.
+
+<Cevap>$-9$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$A=[1,\ 6)$, $\;B=(3,\ 9]$ ve $C=[2,\ 4]$ için $A\cap B\cap C$ aralığını bul.
+
+</Soru>
+
+<Ipucu>
+
+Üçünü de aynı sayı doğrusuna çiz; kesişim, **her üç** aralıkta birden bulunan sayılardır. Her uçta en kısıtlayıcı koşul geçerlidir.
+
+</Ipucu>
+
+<Cozum>
+
+1. Sol uç: alt sınırlar $1,\ 3,\ 2$; en büyüğü olan $3$ belirleyicidir. $3$, $B$'de **hariç** olduğundan açık: $(3,\dots$
+2. Sağ uç: üst sınırlar $6,\ 9,\ 4$; en küçüğü olan $4$ belirleyicidir. $4$, $C$'de **dâhil** olduğundan kapalı: $\dots,4]$.
+3. Sonuç: $(3,\ 4]$ (bu aralık aynı anda üç koşulu da sağlar).
+
+<Cevap>$A\cap B\cap C=(3,\ 4]$.</Cevap>
 
 </Cozum>
 

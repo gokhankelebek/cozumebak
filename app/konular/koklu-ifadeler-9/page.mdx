@@ -1,4 +1,5 @@
 import { topicMetadata } from "@/lib/seo";
+import { KokSayiDogrusu } from "@/components/figures/KokSayiDogrusuFig";
 
 export const metadata = topicMetadata("koklu-ifadeler-9");
 
@@ -15,6 +16,16 @@ $$\sqrt{a}=b \iff b^2=a \quad (a\ge 0,\ b\ge 0)$$
 Buna **karekök** denir. Genel olarak $\sqrt[n]{a}$, $n.$ kuvveti $a$ olan sayıdır ($n$. dereceden kök). Köklü ifade üslü biçimde de yazılır: $\sqrt{a}=a^{\frac{1}{2}}$, $\sqrt[n]{a}=a^{\frac{1}{n}}$.
 
 Önemli: $\sqrt{a^2}=|a|$'dır. Örneğin $\sqrt{(-5)^2}=\sqrt{25}=5=|-5|$.
+
+$\sqrt{2}$ gibi tam kare olmayan kökler tam sayı değildir ama yine de sayı doğrusu üzerinde gerçek bir noktaya karşılık gelir. Dik kenarları $1$ ve $1$ olan bir dik üçgenin hipotenüsü, Pisagor'dan $\sqrt{1^2+1^2}=\sqrt{2}$ uzunluğundadır; bu uzunluğu eksene yatırınca $\sqrt{2}\approx 1{,}41$ noktasını işaretleriz.
+
+<Figur>
+
+<KokSayiDogrusu />
+
+<Altyazi>Şekil 1 — $\sqrt{2}$'nin sayı doğrusu üzerinde inşası. Dik kenarları $1$ olan dik üçgenin hipotenüsü $\sqrt{2}$'dir; bu uzunluk eksene yatırılınca $\sqrt{2}\approx 1{,}41$ noktası bulunur. Demek ki köklü sayılar da birer gerçek sayıdır.</Altyazi>
+
+</Figur>
 
 <Ornek>
 
@@ -327,6 +338,109 @@ $\sqrt{(-9)^2}+\sqrt{16}$ işleminin sonucunu bul.
 3. Topla: $9+4=13$.
 
 <Cevap>$13$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\sqrt{50}+\sqrt{18}-\sqrt{8}$ işlemini yap.
+
+</Soru>
+
+<Ipucu>
+
+Üç köklüyü de $a\sqrt{2}$ biçimine getir; kök içleri eşitlenince katsayıları topla-çıkar.
+
+</Ipucu>
+
+<Cozum>
+
+1. Sadeleştir: $\sqrt{50}=5\sqrt{2}$, $\;\sqrt{18}=3\sqrt{2}$, $\;\sqrt{8}=2\sqrt{2}$.
+2. Katsayıları işle: $(5+3-2)\sqrt{2}=6\sqrt{2}$.
+
+<Cevap>$6\sqrt{2}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\left(2\sqrt{3}\right)^{2}+\sqrt{48}$ işleminin sonucunu bul.
+
+</Soru>
+
+<Ipucu>
+
+Bir çarpımın karesinde her çarpanın karesini al: $(2\sqrt3)^2=2^2\cdot(\sqrt3)^2$.
+
+</Ipucu>
+
+<Cozum>
+
+1. Kare: $\left(2\sqrt{3}\right)^{2}=2^{2}\cdot(\sqrt{3})^{2}=4\cdot 3=12$.
+2. Sadeleştir: $\sqrt{48}=\sqrt{16\cdot 3}=4\sqrt{3}$.
+3. Topla: $12+4\sqrt{3}$ (köklü ve tam sayı terim ayrı kalır).
+
+<Cevap>$12+4\sqrt{3}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\dfrac{6}{\sqrt{5}+\sqrt{2}}$ ifadesinin paydasını rasyonel yap.
+
+</Soru>
+
+<Ipucu>
+
+Paydanın eşleniği $\sqrt{5}-\sqrt{2}$'dir; pay ve paydayı bununla çarp. Payda $(\sqrt5)^2-(\sqrt2)^2$ olur.
+
+</Ipucu>
+
+<Cozum>
+
+1. Eşlenikle çarp: $\dfrac{6}{\sqrt{5}+\sqrt{2}}\cdot\dfrac{\sqrt{5}-\sqrt{2}}{\sqrt{5}-\sqrt{2}}=\dfrac{6(\sqrt{5}-\sqrt{2})}{(\sqrt{5})^2-(\sqrt{2})^2}$.
+2. Payda: $5-2=3$.
+3. Sadeleştir: $\dfrac{6(\sqrt{5}-\sqrt{2})}{3}=2(\sqrt{5}-\sqrt{2})$.
+
+<Cevap>$2\sqrt{5}-2\sqrt{2}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\sqrt{6}=a$ ise $\sqrt{24}+\sqrt{54}$ ifadesini $a$ cinsinden yaz.
+
+</Soru>
+
+<Ipucu>
+
+Her iki kökü de kök içi $6$ olacak şekilde sadeleştir; sonra $\sqrt6=a$ yaz.
+
+</Ipucu>
+
+<Cozum>
+
+1. $\sqrt{24}=\sqrt{4\cdot 6}=2\sqrt{6}$, $\;\sqrt{54}=\sqrt{9\cdot 6}=3\sqrt{6}$.
+2. Topla: $2\sqrt{6}+3\sqrt{6}=5\sqrt{6}$.
+3. $\sqrt{6}=a$ yerine koy: $5a$.
+
+<Cevap>$5a$.</Cevap>
 
 </Cozum>
 

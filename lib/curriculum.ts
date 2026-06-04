@@ -170,10 +170,10 @@ export const UNITS: Unit[] = [
 
 export const TOPICS: Topic[] = [
   // ── 9. Sınıf · Sayılar ──
-  { slug: "uslu-ifadeler-9", title: "Üslü İfadeler ve Özellikleri", track: "9", unit: "sayilar-9", summary: "Üslü ifade kavramı, üs özellikleri ve işlemler.", minutes: 7, difficulty: "Kolay", questionCount: 24, status: "published", keywords: ["üs", "kuvvet"] },
-  { slug: "koklu-ifadeler-9", title: "Köklü İfadeler ve Özellikleri", track: "9", unit: "sayilar-9", summary: "Kök kavramı, köklü ifadelerde işlemler ve paydayı rasyonel yapma.", minutes: 7, difficulty: "Orta", questionCount: 22, status: "published", keywords: ["kök", "radikal"] },
-  { slug: "kumelerde-temel-kavramlar", title: "Kümeler ve Sayı Kümeleri", track: "9", unit: "sayilar-9", summary: "Küme kavramı ve sayı kümeleri (ℕ, ℤ, ℚ, ℝ) arasındaki ilişkiler.", minutes: 6, difficulty: "Kolay", questionCount: 16, status: "published", keywords: ["küme", "sayı kümeleri"] },
-  { slug: "gercek-sayilar", title: "Gerçek Sayılarda İşlemler ve Aralıklar", track: "9", unit: "sayilar-9", summary: "Gerçek sayılarda işlem özellikleri, aralıklar ve aralıklarla işlemler.", minutes: 7, difficulty: "Orta", questionCount: 20, status: "published", keywords: ["aralık", "gerçek sayı"] },
+  { slug: "uslu-ifadeler-9", title: "Üslü İfadeler ve Özellikleri", track: "9", unit: "sayilar-9", summary: "Üslü ifade kavramı, üs özellikleri ve işlemler.", minutes: 7, difficulty: "Kolay", questionCount: 18, status: "published", keywords: ["üs", "kuvvet"] },
+  { slug: "koklu-ifadeler-9", title: "Köklü İfadeler ve Özellikleri", track: "9", unit: "sayilar-9", summary: "Kök kavramı, köklü ifadelerde işlemler ve paydayı rasyonel yapma.", minutes: 7, difficulty: "Orta", questionCount: 18, status: "published", keywords: ["kök", "radikal"] },
+  { slug: "kumelerde-temel-kavramlar", title: "Kümeler ve Sayı Kümeleri", track: "9", unit: "sayilar-9", summary: "Küme kavramı ve sayı kümeleri (ℕ, ℤ, ℚ, ℝ) arasındaki ilişkiler.", minutes: 6, difficulty: "Kolay", questionCount: 15, status: "published", keywords: ["küme", "sayı kümeleri"] },
+  { slug: "gercek-sayilar", title: "Gerçek Sayılarda İşlemler ve Aralıklar", track: "9", unit: "sayilar-9", summary: "Gerçek sayılarda işlem özellikleri, aralıklar ve aralıklarla işlemler.", minutes: 7, difficulty: "Orta", questionCount: 17, status: "published", keywords: ["aralık", "gerçek sayı"] },
 
   // ── 9. Sınıf · Nicelikler ve Değişimler ──
   { slug: "dogrusal-fonksiyonlar-9", title: "Doğrusal Fonksiyonlar", track: "9", unit: "nicelikler-degisimler-9", summary: "Doğrusal fonksiyon, eğim ve grafiğinin nitel özellikleri.", minutes: 7, difficulty: "Orta", questionCount: 18, status: "published", keywords: ["eğim", "doğrusal"] },

@@ -1,4 +1,5 @@
 import { topicMetadata } from "@/lib/seo";
+import { SayiKumeleri } from "@/components/figures/SayiKumeleriFig";
 
 export const metadata = topicMetadata("kumelerde-temel-kavramlar");
 
@@ -69,6 +70,14 @@ Bu kümeler arasında şu **kapsama** zinciri vardır:
 $$\mathbb{N}\subset\mathbb{Z}\subset\mathbb{Q}\subset\mathbb{R}$$
 
 İrrasyonel sayılar kümesi ise $\mathbb{R}$'nin içinde, $\mathbb{Q}$ ile **ayrık** olan kısımdır: bir gerçek sayı ya rasyoneldir ya da irrasyoneldir.
+
+<Figur>
+
+<SayiKumeleri />
+
+<Altyazi>Şekil 1 — Sayı kümeleri iç içedir: $\mathbb{N}\subset\mathbb{Z}\subset\mathbb{Q}\subset\mathbb{R}$. En içte doğal sayılar, sonra sırayla tam ve rasyonel sayılar gelir. İrrasyonel sayılar ($\sqrt{2},\ \pi,\ e$) ise $\mathbb{R}$'nin içinde ama $\mathbb{Q}$'nun **dışında** kalan bölgedir.</Altyazi>
+
+</Figur>
 
 <Ornek>
 
@@ -236,6 +245,122 @@ Bir gerçek sayı hem rasyonel hem irrasyonel olabilir mi? Açıkla.
 2. Her gerçek sayı bu iki gruptan **tam olarak birine** girer.
 
 <Cevap>Hayır; bir sayı ya rasyoneldir ya irrasyonel, ikisi birden olamaz.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$C=\{x\,:\,x^2<10,\ x\in\mathbb{N}\}$ kümesini liste yöntemiyle yaz ve eleman sayısını bul.
+
+</Soru>
+
+<Cozum>
+
+1. Koşul: karesi $10$'dan küçük olan doğal sayılar.
+2. $0^2=0,\ 1^2=1,\ 2^2=4,\ 3^2=9$ hepsi $<10$; $4^2=16$ değil.
+3. Bunlar: $0,\ 1,\ 2,\ 3$.
+
+<Cevap>$C=\{0,\ 1,\ 2,\ 3\}$, $s(C)=4$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$A=\{1,\ 2\}$ kümesinin tüm alt kümelerini yazıp sayısını alt küme formülüyle doğrula.
+
+</Soru>
+
+<Cozum>
+
+1. Alt kümeler: $\varnothing,\ \{1\},\ \{2\},\ \{1,2\}$.
+2. Formülle: $n=2$ olduğundan $2^2=4$. Listeyle aynı.
+
+<Cevap>$\varnothing,\ \{1\},\ \{2\},\ \{1,2\}$ — toplam $4$ alt küme.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$0{,}\overline{6}$ (yani $0{,}666\ldots$) sayısının hangi kesre eşit olduğunu, $x=0{,}\overline{6}$ kurup bularak göster; rasyonel olduğunu doğrula.
+
+</Soru>
+
+<Ipucu>
+
+$x=0{,}\overline{6}$ de. Devir tek basamak olduğundan $10x$ ile $x$'i taraf tarafa çıkar; ondalık kuyruk silinir.
+
+</Ipucu>
+
+<Cozum>
+
+1. $x=0{,}666\ldots$ olsun. O hâlde $10x=6{,}666\ldots$
+2. Çıkar: $10x-x=6{,}666\ldots-0{,}666\ldots$, yani $9x=6$.
+3. $x=\dfrac{6}{9}=\dfrac{2}{3}$. Kesir olarak yazıldığından rasyoneldir.
+
+<Cevap>$0{,}\overline{6}=\dfrac{2}{3}\in\mathbb{Q}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$n$ elemanlı bir kümenin alt küme sayısı $32$ ise $n$ kaçtır? Bu kümenin kaç tane **öz alt kümesi** (kendisi hariç alt kümesi) vardır?
+
+</Soru>
+
+<Ipucu>
+
+Alt küme sayısı $2^n$. Öz alt küme, kümenin kendisi dışındaki tüm alt kümelerdir; sayısı $2^n-1$'dir.
+
+</Ipucu>
+
+<Cozum>
+
+1. $2^n=32=2^5$ olduğundan $n=5$.
+2. Öz alt küme sayısı: kümenin kendisini çıkar → $2^5-1=31$.
+
+<Cevap>$n=5$; öz alt küme sayısı $31$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$a=\dfrac{\sqrt{12}}{\sqrt{3}}$ ve $b=\sqrt{2}\cdot\sqrt{8}$ sayıları veriliyor. $a$ ve $b$'nin hangi sayı kümelerine ait olduğunu (en dar küme) belirle.
+
+</Soru>
+
+<Ipucu>
+
+Kökleri tek kök altında topla ($\sqrt{p}\cdot\sqrt{q}=\sqrt{pq}$, $\frac{\sqrt p}{\sqrt q}=\sqrt{\frac pq}$); sonuç tam kareyse sayı bir tam sayıdır.
+
+</Ipucu>
+
+<Cozum>
+
+1. $a=\sqrt{\dfrac{12}{3}}=\sqrt{4}=2$ → doğal sayı: $a\in\mathbb{N}$.
+2. $b=\sqrt{2\cdot 8}=\sqrt{16}=4$ → doğal sayı: $b\in\mathbb{N}$.
+3. İkisi de tam kareye indiğinden irrasyonel **değildir**.
+
+<Cevap>$a=2\in\mathbb{N}$, $\;b=4\in\mathbb{N}$ (her ikisi de rasyonel).</Cevap>
 
 </Cozum>
 
