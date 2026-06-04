@@ -1,0 +1,301 @@
+import { topicMetadata } from "@/lib/seo";
+import { Pisagor, Ucgen304560, Ucgen454590 } from "@/components/figures/DikUcgenFig";
+
+export const metadata = topicMetadata("dik-ucgen-trigonometri-10");
+
+<Konu slug="dik-ucgen-trigonometri-10" />
+
+<p className="lead">*Geometrik Şekiller* temasının kalbi **trigonometridir**: bir dik üçgende açılarla kenarlar arasındaki orana dayanır. Bu derste **sinüs, kosinüs ve tanjant** oranlarını, $30°\text{-}45°\text{-}60°$ **özel açılarının** değerlerini ve temel **trigonometrik özdeşlikleri** ($\sin^2\theta+\cos^2\theta=1$) öğreneceğiz. Trigonometri; yükseklik, uzaklık ve eğim hesaplarının dilidir. Bol şekil, örnek ve "Sıra Sende" alıştırmalarıyla pekiştireceğiz.</p>
+
+## 1. Temel Trigonometrik Oranlar
+
+Dar açısı $\theta$ olan bir dik üçgende, $\theta$'ya **komşu** ve **karşı** kenarlar ile **hipotenüs** arasındaki oranlar:
+
+$$\sin\theta=\dfrac{\text{karşı dik kenar}}{\text{hipotenüs}} \quad \cos\theta=\dfrac{\text{komşu dik kenar}}{\text{hipotenüs}} \quad \tan\theta=\dfrac{\text{karşı}}{\text{komşu}}$$
+
+<Figur>
+
+<Pisagor />
+
+<Altyazi>Şekil 1 — Dik kenarları $a,\ b$, hipotenüsü $c$ olan dik üçgen. Alttaki açıya göre $\sin=\dfrac{\text{karşı}}{c}$, $\cos=\dfrac{\text{komşu}}{c}$, $\tan=\dfrac{\text{karşı}}{\text{komşu}}$.</Altyazi>
+
+</Figur>
+
+<Ornek>
+
+<Soru>
+
+Dik kenarları $3$ ve $4$, hipotenüsü $5$ olan dik üçgende, $3$ biriminin karşısındaki açı $\theta$ için $\sin\theta$ ve $\cos\theta$'yı bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $\theta$'nın karşısı $3$, komşusu $4$, hipotenüs $5$.
+2. $\sin\theta=\dfrac{3}{5}$, $\cos\theta=\dfrac{4}{5}$.
+
+<Cevap>$\sin\theta=\dfrac{3}{5}$, $\cos\theta=\dfrac{4}{5}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 2. Özel Açılar: 30°, 45°, 60°
+
+İki özel dik üçgen, bu açıların değerlerini verir.
+
+<Figur>
+
+<Ucgen304560 />
+
+<Altyazi>Şekil 2 — $30\text{-}60\text{-}90$ üçgeni; kenar oranları $x:x\sqrt3:2x$.</Altyazi>
+
+</Figur>
+
+<Figur>
+
+<Ucgen454590 />
+
+<Altyazi>Şekil 3 — $45\text{-}45\text{-}90$ üçgeni; kenar oranları $x:x:x\sqrt2$.</Altyazi>
+
+</Figur>
+
+| $\theta$ | $\sin\theta$ | $\cos\theta$ | $\tan\theta$ |
+|:---:|:---:|:---:|:---:|
+| $30°$ | $\dfrac{1}{2}$ | $\dfrac{\sqrt3}{2}$ | $\dfrac{\sqrt3}{3}$ |
+| $45°$ | $\dfrac{\sqrt2}{2}$ | $\dfrac{\sqrt2}{2}$ | $1$ |
+| $60°$ | $\dfrac{\sqrt3}{2}$ | $\dfrac{1}{2}$ | $\sqrt3$ |
+
+<Ornek>
+
+<Soru>
+
+$\sin 30°+\cos 60°$ değerini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $\sin 30°=\dfrac{1}{2}$, $\cos 60°=\dfrac{1}{2}$.
+2. Topla: $\dfrac{1}{2}+\dfrac{1}{2}=1$.
+
+<Cevap>$1$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 3. Temel Özdeşlikler
+
+Her $\theta$ açısı için şu bağıntılar geçerlidir:
+
+$$\sin^2\theta+\cos^2\theta=1 \qquad \tan\theta=\dfrac{\sin\theta}{\cos\theta}$$
+
+Bunlar, bir oran biliniyorken diğerini bulmaya yarar.
+
+<Ornek>
+
+<Soru>
+
+Bir dar açı için $\sin\theta=\dfrac{3}{5}$ ise $\cos\theta$ kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+$\sin^2\theta+\cos^2\theta=1$ özdeşliğinde $\cos^2\theta$'yı yalnız bırak; dar açıda kosinüs pozitiftir.
+
+</Ipucu>
+
+<Cozum>
+
+1. $\cos^2\theta=1-\sin^2\theta=1-\dfrac{9}{25}=\dfrac{16}{25}$.
+2. Dar açı olduğundan $\cos\theta=\dfrac{4}{5}$.
+
+<Cevap>$\cos\theta=\dfrac{4}{5}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Çözümlü Örnekler
+
+<Ornek>
+
+<Soru>
+
+$\tan 45°+\sin 90°\cdot 0$ yerine, $\cos 0°$ değerini bulunuz. ($\cos 0°=1$ bilgisini kullan.)
+
+</Soru>
+
+<Cozum>
+
+1. $\cos 0°=1$ (komşu kenar = hipotenüs sınır durumu).
+
+<Cevap>$1$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir dik üçgende bir dar açı $30°$ ve hipotenüs $10$ ise $30°$'nin karşısındaki kenar kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. $\sin 30°=\dfrac{\text{karşı}}{10}=\dfrac{1}{2}$.
+2. Karşı kenar $=10\cdot\dfrac{1}{2}=5$.
+
+<Cevap>$5$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\dfrac{\sin 60°}{\cos 60°}$ ifadesini hesaplayınız.
+
+</Soru>
+
+<Cozum>
+
+1. Bu $\tan 60°$'dir.
+2. $\tan 60°=\sqrt3$.
+
+<Cevap>$\sqrt3$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\cos\theta=\dfrac{12}{13}$ (dar açı) ise $\sin\theta$ kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. $\sin^2\theta=1-\dfrac{144}{169}=\dfrac{25}{169}$.
+2. $\sin\theta=\dfrac{5}{13}$.
+
+<Cevap>$\dfrac{5}{13}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Alıştırmalar — Sıra Sende
+
+> Önce kendin çözmeyi dene; sonra çözümü açıp karşılaştır.
+
+<Ornek>
+
+<Soru>
+
+Dik kenarları $6$ ve $8$, hipotenüsü $10$ olan üçgende $6$'nın karşısındaki açının sinüsü kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. $\sin=\dfrac{6}{10}=\dfrac{3}{5}$.
+
+<Cevap>$\dfrac{3}{5}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\cos 30°\cdot \tan 30°$ ifadesini hesapla.
+
+</Soru>
+
+<Cozum>
+
+1. $\dfrac{\sqrt3}{2}\cdot\dfrac{\sqrt3}{3}=\dfrac{3}{6}=\dfrac{1}{2}$.
+
+<Cevap>$\dfrac{1}{2}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\sin 45°\cdot\cos 45°$ kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. $\dfrac{\sqrt2}{2}\cdot\dfrac{\sqrt2}{2}=\dfrac{2}{4}=\dfrac{1}{2}$.
+
+<Cevap>$\dfrac{1}{2}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir dar açıda $\sin\theta=\dfrac{8}{17}$ ise $\cos\theta$ kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. $\cos^2\theta=1-\dfrac{64}{289}=\dfrac{225}{289}\Rightarrow \cos\theta=\dfrac{15}{17}$.
+
+<Cevap>$\dfrac{15}{17}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$30°$'lik açıya sahip bir dik üçgende $30°$'nin karşısı $7$ ise hipotenüs kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. $\sin 30°=\dfrac{7}{c}=\dfrac{1}{2}\Rightarrow c=14$.
+
+<Cevap>$14$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Karşı/komşu kenarı karıştırmak.** $\sin$ **karşı**/hipotenüs, $\cos$ **komşu**/hipotenüstür; açıya göre belirle.
+- **Özel açı değerlerini ters yazmak.** $\sin 30°=\dfrac12$, $\cos 30°=\dfrac{\sqrt3}{2}$; $30°$ ile $60°$ değerleri sin–cos olarak yer değiştirir.
+- **$\sin^2\theta$'yı $\sin\theta^2$ sanmak.** $\sin^2\theta=(\sin\theta)^2$ demektir.
+- **Özdeşlikte işaret seçimini atlamak.** $\cos\theta=\pm\sqrt{1-\sin^2\theta}$; **dar açıda** kosinüs pozitif alınır.
+
+> **Not:** $3\text{-}4\text{-}5$ ve özel açı üçgenleri ($30\text{-}60\text{-}90$, $45\text{-}45\text{-}90$) trigonometrinin "hazır kartlarıdır" — değerleri ezbere bil. Bir oran verilince diğerini $\sin^2+\cos^2=1$ ile çek.
+
+<KonuNav slug="dik-ucgen-trigonometri-10" />

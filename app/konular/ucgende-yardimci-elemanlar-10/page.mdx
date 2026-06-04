@@ -1,0 +1,287 @@
+import { topicMetadata } from "@/lib/seo";
+import { Kenarortay, Aciortay } from "@/components/figures/YardimciElemanlarFig";
+
+export const metadata = topicMetadata("ucgende-yardimci-elemanlar-10");
+
+<Konu slug="ucgende-yardimci-elemanlar-10" />
+
+<p className="lead">Bir üçgenin köşelerinden çizilen özel doğrular — **kenarortay, açıortay, yükseklik** ve **kenar orta dikme** — üçgenin gizli özelliklerini açığa çıkarır. Bu derste bu dört yardımcı elemanın tanımını, kesişim noktalarını (ağırlık merkezi, iç teğet merkezi vb.) ve **açıortayın kenarları orantılı bölmesi** gibi temel bağıntıları öğreneceğiz. Bol şekil, örnek ve "Sıra Sende" alıştırmalarıyla pekiştireceğiz.</p>
+
+## 1. Kenarortay
+
+Bir köşeyi, karşı kenarın **orta noktasına** birleştiren doğru parçasına **kenarortay** denir. Bir üçgenin üç kenarortayı tek bir noktada — **ağırlık merkezinde** ($G$) — kesişir. Ağırlık merkezi her kenarortayı köşeden itibaren $2:1$ oranında böler.
+
+<Figur>
+
+<Kenarortay />
+
+<Altyazi>Şekil 1 — $A$ köşesinden $BC$'nin orta noktası $D$'ye çizilen kenarortay. $|BD|=|DC|$'dir.</Altyazi>
+
+</Figur>
+
+<Ornek>
+
+<Soru>
+
+Bir üçgende $A$ köşesinden çizilen kenarortay $BC$ kenarını $D$'de kesiyor. $|BC|=14$ ise $|BD|$ kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. Kenarortay karşı kenarın orta noktasına gider: $|BD|=|DC|$.
+2. $|BD|=\dfrac{|BC|}{2}=\dfrac{14}{2}=7$.
+
+<Cevap>$|BD|=7$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 2. Açıortay
+
+Bir köşenin açısını **iki eş açıya** bölen doğruya **açıortay** denir. Üç iç açıortay, **iç teğet çemberin merkezinde** kesişir. İç açıortay, karşı kenarı **komşu kenarlarla orantılı** böler:
+
+$$\dfrac{|BD|}{|DC|}=\dfrac{|AB|}{|AC|}$$
+
+<Figur>
+
+<Aciortay />
+
+<Altyazi>Şekil 2 — $A$ açısını iki eş açıya ($\alpha=\alpha$) bölen açıortay, $BC$'yi $E$'de keser.</Altyazi>
+
+</Figur>
+
+<Ornek>
+
+<Soru>
+
+$ABC$ üçgeninde $A$'nın açıortayı $BC$'yi $D$'de kesiyor. $|AB|=6$, $|AC|=9$ ve $|BD|=4$ ise $|DC|$ kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+Açıortay bağıntısı $\dfrac{|BD|}{|DC|}=\dfrac{|AB|}{|AC|}$'yi kur; bilinmeyeni içler-dışlar ile çek.
+
+</Ipucu>
+
+<Cozum>
+
+1. $\dfrac{|BD|}{|DC|}=\dfrac{|AB|}{|AC|}\Rightarrow \dfrac{4}{|DC|}=\dfrac{6}{9}$.
+2. $6\cdot|DC|=36\Rightarrow |DC|=6$.
+
+<Cevap>$|DC|=6$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 3. Yükseklik
+
+Bir köşeden karşı kenara (ya da uzantısına) indirilen **dik** doğru parçasına **yükseklik** denir. Üç yükseklik **diklik merkezinde** kesişir. Yükseklik, üçgenin alanını hesaplamada kullanılır (sonraki ders).
+
+<Ornek>
+
+<Soru>
+
+Tabanı $12$, bu tabana ait yüksekliği $5$ olan üçgenin alanı kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. Alan $=\dfrac{\text{taban}\cdot\text{yükseklik}}{2}=\dfrac{12\cdot 5}{2}=30$.
+
+<Cevap>$30$ birimkare.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 4. Kenar Orta Dikme
+
+Bir kenarın **orta noktasından** o kenara **dik** çizilen doğruya **kenar orta dikme** denir. Üç kenar orta dikme, **çevrel çemberin merkezinde** kesişir; bu nokta üçgenin tüm köşelerine eşit uzaklıktadır.
+
+<Ornek>
+
+<Soru>
+
+Kenar orta dikmelerin kesim noktası, üçgenin köşelerine göre nasıl bir özellik taşır?
+
+</Soru>
+
+<Cozum>
+
+1. Kesim noktası çevrel çemberin merkezidir.
+2. Bu merkez, üç köşeye de **eşit uzaklıktadır** (yarıçap kadar).
+
+<Cevap>Üç köşeye eşit uzaklıktadır (çevrel çember merkezi).</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Çözümlü Örnekler
+
+<Ornek>
+
+<Soru>
+
+Bir üçgende kenarortayların kesim noktası $G$ (ağırlık merkezi), $A$ köşesinden çizilen kenarortayı $2:1$ böler. Kenarortay uzunluğu $15$ ise $|AG|$ kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. $G$, kenarortayı köşeden $2:1$ böler: $|AG|$ büyük parça.
+2. $|AG|=\dfrac{2}{3}\cdot 15=10$.
+
+<Cevap>$|AG|=10$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$A$'nın açıortayı $BC$'yi $D$'de kesiyor. $|AB|=8$, $|AC|=12$, $|BC|=15$ ise $|BD|$ kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. $\dfrac{|BD|}{|DC|}=\dfrac{8}{12}=\dfrac{2}{3}$; parçalar $2k$ ve $3k$.
+2. $2k+3k=15\Rightarrow 5k=15\Rightarrow k=3$.
+3. $|BD|=2k=6$.
+
+<Cevap>$|BD|=6$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+İkizkenar bir üçgende tepe köşesinden tabana inen kenarortay, aynı zamanda yükseklik midir?
+
+</Soru>
+
+<Cozum>
+
+1. İkizkenar üçgende tepeden tabana inen doğru hem kenarortay hem yükseklik hem açıortaydır (simetri ekseni).
+
+<Cevap>Evet; bu doğru aynı anda kenarortay, yükseklik ve açıortaydır.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Alıştırmalar — Sıra Sende
+
+> Önce kendin çözmeyi dene; sonra çözümü açıp karşılaştır.
+
+<Ornek>
+
+<Soru>
+
+$|BC|=20$ olan üçgende $A$'dan çizilen kenarortayın ayağı $D$ için $|DC|$ kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. $|DC|=\dfrac{20}{2}=10$.
+
+<Cevap>$10$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Açıortay bağıntısında $\dfrac{|BD|}{|DC|}=\dfrac{|AB|}{|AC|}$. $|AB|=10$, $|AC|=15$, $|DC|=9$ ise $|BD|$ kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. $\dfrac{|BD|}{9}=\dfrac{10}{15}=\dfrac{2}{3}\Rightarrow |BD|=6$.
+
+<Cevap>$6$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Üç yüksekliğin kesim noktasına ne ad verilir?
+
+</Soru>
+
+<Cozum>
+
+1. Diklik merkezi.
+
+<Cevap>Diklik merkezi.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Ağırlık merkezi bir kenarortayı $2:1$ bölüyor. Kenarortay $18$ ise köşeye yakın parça kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. Büyük parça $\dfrac{2}{3}\cdot 18=12$.
+
+<Cevap>$12$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Çevrel çemberin merkezi hangi yardımcı elemanların kesişiminde bulunur?
+
+</Soru>
+
+<Cozum>
+
+1. Kenar orta dikmelerin kesişiminde.
+
+<Cevap>Kenar orta dikmeler.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Yardımcı elemanların merkezlerini karıştırmak.** Kenarortay → ağırlık merkezi; açıortay → iç teğet merkezi; yükseklik → diklik merkezi; kenar orta dikme → çevrel çember merkezi.
+- **Açıortay oranını ters kurmak.** $\dfrac{|BD|}{|DC|}=\dfrac{|AB|}{|AC|}$; $B$ tarafındaki parçayı $B$'ye komşu kenarla eşle.
+- **Kenarortayı yükseklik sanmak.** Genelde farklıdırlar; yalnız **ikizkenarın tepe** köşesinde (ve eşkenarda) çakışırlar.
+- **Ağırlık merkezi oranını $1:1$ almak.** Oran $2:1$'dir (köşeye yakın parça büyüktür).
+
+> **Not:** Dört yardımcı elemanı tek cümleyle hatırla: **kenarortay** orta noktaya, **açıortay** açıyı ikiye, **yükseklik** dik olarak, **kenar orta dikme** orta noktadan dik olarak gider. Her birinin kesişim merkezi ayrıdır.
+
+<KonuNav slug="ucgende-yardimci-elemanlar-10" />

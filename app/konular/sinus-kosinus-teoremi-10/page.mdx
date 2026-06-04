@@ -1,0 +1,289 @@
+import { topicMetadata } from "@/lib/seo";
+import { IcAcilar } from "@/components/figures/UcgenFig";
+
+export const metadata = topicMetadata("sinus-kosinus-teoremi-10");
+
+<Konu slug="sinus-kosinus-teoremi-10" />
+
+<p className="lead">Trigonometri yalnız dik üçgenle sınırlı değildir: **herhangi bir üçgende** kenarlarla açılar arasında **sinüs** ve **kosinüs teoremleri** kurar. Bu derste bir üçgende eksik kenarı ya da açıyı bulmak için **sinüs teoremini** ($\frac{a}{\sin A}=\frac{b}{\sin B}=\frac{c}{\sin C}$) ve **kosinüs teoremini** ($a^2=b^2+c^2-2bc\cos A$) ne zaman kullanacağını öğreneceğiz. Bu iki teorem, geometri ve gerçek hayat (üçgenleme, navigasyon) problemlerinin anahtarıdır. Bol örnek ve "Sıra Sende" alıştırmalarıyla pekiştireceğiz.</p>
+
+## 1. Kenar – Açı Adlandırması
+
+Bir üçgende her kenar, **karşısındaki açıyla** aynı harfle adlandırılır: $a$ kenarı $\widehat{A}$ açısının karşısındadır.
+
+<Figur>
+
+<IcAcilar />
+
+<Altyazi>Şekil 1 — Açıları $A,\ B,\ C$ olan üçgen. $a=|BC|$ kenarı $\widehat{A}$'nın, $b=|AC|$ kenarı $\widehat{B}$'nin, $c=|AB|$ kenarı $\widehat{C}$'nin karşısındadır.</Altyazi>
+
+</Figur>
+
+## 2. Sinüs Teoremi
+
+Bir üçgende her kenarın, karşısındaki açının sinüsüne oranı **sabittir**:
+
+$$\dfrac{a}{\sin A}=\dfrac{b}{\sin B}=\dfrac{c}{\sin C}$$
+
+**Ne zaman?** Bir kenar–karşı açı çifti biliniyorsa ve başka bir açı ya da kenar aranıyorsa.
+
+<Ornek>
+
+<Soru>
+
+Bir üçgende $\widehat{A}=30°$, $a=5$ ve $\widehat{B}=90°$ ise $b$ kenarını bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+$\dfrac{a}{\sin A}=\dfrac{b}{\sin B}$ orantısını kur; $\sin 30°=\dfrac12$, $\sin 90°=1$.
+
+</Ipucu>
+
+<Cozum>
+
+1. $\dfrac{5}{\sin 30°}=\dfrac{b}{\sin 90°}\Rightarrow \dfrac{5}{1/2}=\dfrac{b}{1}$.
+2. $10=b$.
+
+<Cevap>$b=10$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 3. Kosinüs Teoremi
+
+İki kenar ve aralarındaki açı biliniyorsa, üçüncü kenar **kosinüs teoremiyle** bulunur:
+
+$$a^2=b^2+c^2-2bc\cos A$$
+
+**Ne zaman?** İki kenar + aralarındaki açı verildiğinde (üçüncü kenarı bulmak için) ya da üç kenar verildiğinde (bir açıyı bulmak için). $A=90°$ ise $\cos 90°=0$ olur ve teorem **Pisagor'a** indirgenir.
+
+<Ornek>
+
+<Soru>
+
+Bir üçgende $b=4$, $c=3$ ve aralarındaki açı $\widehat{A}=60°$ ise $a$ kenarını bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $a^2=b^2+c^2-2bc\cos A=16+9-2\cdot 4\cdot 3\cdot\cos 60°$.
+2. $\cos 60°=\dfrac12$: $a^2=25-24\cdot\dfrac12=25-12=13$.
+3. $a=\sqrt{13}$.
+
+<Cevap>$a=\sqrt{13}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 4. Hangi Teorem?
+
+- **Kenar–karşı açı** çiftin varsa → **sinüs** teoremi.
+- **İki kenar + aralarındaki açı** ya da **üç kenar** varsa → **kosinüs** teoremi.
+
+<Ornek>
+
+<Soru>
+
+Üç kenarı $a=7$, $b=5$, $c=3$ olan üçgende $\widehat{A}$ açısının kosinüsünü bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Kosinüs teoremini $\cos A$ için düzenle: $a^2=b^2+c^2-2bc\cos A$.
+2. $49=25+9-2\cdot 5\cdot 3\cos A\Rightarrow 49=34-30\cos A$.
+3. $30\cos A=34-49=-15\Rightarrow \cos A=-\dfrac{1}{2}$.
+
+<Cevap>$\cos A=-\dfrac12$ (yani $\widehat{A}=120°$).</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Çözümlü Örnekler
+
+<Ornek>
+
+<Soru>
+
+Bir üçgende $\widehat{A}=45°$, $a=\sqrt2$, $\widehat{C}=90°$ ise $c$ kenarını bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $\dfrac{a}{\sin A}=\dfrac{c}{\sin C}\Rightarrow \dfrac{\sqrt2}{\sin 45°}=\dfrac{c}{\sin 90°}$.
+2. $\sin 45°=\dfrac{\sqrt2}{2}$: $\dfrac{\sqrt2}{\sqrt2/2}=2=\dfrac{c}{1}$.
+
+<Cevap>$c=2$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+İki kenarı $5$ ve $8$, aralarındaki açısı $60°$ olan üçgenin üçüncü kenarını bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $a^2=5^2+8^2-2\cdot5\cdot8\cos 60°=25+64-80\cdot\dfrac12$.
+2. $=89-40=49\Rightarrow a=7$.
+
+<Cevap>$7$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Üç kenarı $3$, $4$, $5$ olan üçgende $5$ kenarının karşısındaki açının kosinüsünü bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $5^2=3^2+4^2-2\cdot3\cdot4\cos A\Rightarrow 25=25-24\cos A$.
+2. $24\cos A=0\Rightarrow \cos A=0$ → açı $90°$.
+
+<Cevap>$\cos A=0$ (dik açı).</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir üçgende $\widehat{B}=30°$, $b=6$ ve $\widehat{A}=45°$ ise $a$ kenarını bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $\dfrac{a}{\sin 45°}=\dfrac{6}{\sin 30°}\Rightarrow \dfrac{a}{\sqrt2/2}=\dfrac{6}{1/2}=12$.
+2. $a=12\cdot\dfrac{\sqrt2}{2}=6\sqrt2$.
+
+<Cevap>$a=6\sqrt2$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Alıştırmalar — Sıra Sende
+
+> Önce kendin çözmeyi dene; sonra çözümü açıp karşılaştır.
+
+<Ornek>
+
+<Soru>
+
+İki kenarı $6$ ve $10$, aralarındaki açısı $60°$ olan üçgenin üçüncü kenarını bul.
+
+</Soru>
+
+<Cozum>
+
+1. $a^2=36+100-2\cdot6\cdot10\cdot\dfrac12=136-60=76\Rightarrow a=2\sqrt{19}$.
+
+<Cevap>$2\sqrt{19}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\widehat{A}=30°$, $a=4$, $\widehat{B}=90°$ ise $b$ kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. $\dfrac{4}{1/2}=\dfrac{b}{1}\Rightarrow b=8$.
+
+<Cevap>$8$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Üç kenarı $2$, $2$, $2$ olan üçgende bir açının kosinüsü kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. $4=4+4-2\cdot2\cdot2\cos A\Rightarrow 4=8-8\cos A\Rightarrow \cos A=\dfrac12$ (eşkenar → $60°$).
+
+<Cevap>$\dfrac12$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\widehat{A}=90°$, $b=6$, $c=8$ ise kosinüs teoremiyle $a$ kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. $a^2=36+64-2\cdot6\cdot8\cos 90°=100-0=100\Rightarrow a=10$.
+
+<Cevap>$10$ (Pisagor ile aynı).</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\dfrac{a}{\sin A}=10$ ve $\sin B=\dfrac12$ ise $b$ kenarı kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. Sinüs teoremi: $\dfrac{b}{\sin B}=10\Rightarrow b=10\cdot\dfrac12=5$.
+
+<Cevap>$5$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Yanlış teoremi seçmek.** Kenar–karşı açı çifti → **sinüs**; iki kenar+aralarındaki açı veya üç kenar → **kosinüs**.
+- **Kosinüs teoreminde işaret hatası.** Formül $a^2=b^2+c^2-2bc\cos A$; eksi işaretini ve $\cos A$ negatifse işaret dönüşünü gözden kaçırma.
+- **Kenarı yanlış açıyla eşlemek.** $a$ daima $\widehat{A}$'nın **karşısındaki** kenardır.
+- **$a^2$'den $a$'ya geçerken kökü atlamak.** Sonuçta $a=\sqrt{\dots}$ almayı unutma.
+
+> **Not:** Karar kuralı net: **bir kenar ve karşı açısı** varsa sinüs teoremi; **iki kenar + aralarındaki açı** ya da **üç kenar** varsa kosinüs teoremi. $A=90°$'de kosinüs teoremi Pisagor olur.
+
+<KonuNav slug="sinus-kosinus-teoremi-10" />

@@ -1,0 +1,296 @@
+import { topicMetadata } from "@/lib/seo";
+import { AlanTabanYukseklik } from "@/components/figures/BenzerlikFig";
+
+export const metadata = topicMetadata("ucgende-alan-10");
+
+<Konu slug="ucgende-alan-10" />
+
+<p className="lead">Bir üçgenin alanını bulmanın **birden çok yolu** vardır; hangisini kullanacağın elindeki bilgiye bağlıdır. Bu derste klasik **taban–yükseklik** formülünü, **iki kenar ve aralarındaki açıyla** alan ($\frac12 ab\sin C$) bulmayı ve **özel üçgenlerde** (eşkenar, dik) alan formüllerini öğreneceğiz. Alan; trigonometri ve analitik geometriyle de bağ kurar. Bol şekil, örnek ve "Sıra Sende" alıştırmalarıyla pekiştireceğiz.</p>
+
+## 1. Taban – Yükseklik Formülü
+
+En temel formül, bir taban ve o tabana ait yükseklikle:
+
+$$\text{Alan}=\dfrac{\text{taban}\cdot\text{yükseklik}}{2}$$
+
+<Figur>
+
+<AlanTabanYukseklik />
+
+<Altyazi>Şekil 1 — Tabana, tepeden inen yükseklik (kesik çizgi). Alan $=\dfrac{\text{taban}\cdot\text{yükseklik}}{2}$'dir.</Altyazi>
+
+</Figur>
+
+<Ornek>
+
+<Soru>
+
+Tabanı $10$, yüksekliği $6$ olan üçgenin alanını bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Alan $=\dfrac{10\cdot 6}{2}=30$.
+
+<Cevap>$30$ birimkare.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 2. İki Kenar ve Aralarındaki Açı
+
+İki kenar ($a,\ b$) ve aralarındaki açı ($C$) biliniyorsa:
+
+$$\text{Alan}=\dfrac{1}{2}\,a\,b\,\sin C$$
+
+<Ornek>
+
+<Soru>
+
+İki kenarı $8$ ve $6$, aralarındaki açısı $30°$ olan üçgenin alanını bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+$\dfrac12 ab\sin C$ formülünü kullan; $\sin 30°=\dfrac12$.
+
+</Ipucu>
+
+<Cozum>
+
+1. Alan $=\dfrac{1}{2}\cdot 8\cdot 6\cdot\sin 30°$.
+2. $=\dfrac{1}{2}\cdot 48\cdot\dfrac{1}{2}=12$.
+
+<Cevap>$12$ birimkare.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 3. Dik ve Eşkenar Üçgende Alan
+
+- **Dik üçgen:** dik kenarlar taban ve yüksekliktir → $\text{Alan}=\dfrac{\text{dik kenar}_1\cdot\text{dik kenar}_2}{2}$.
+- **Eşkenar üçgen** (kenarı $a$): $\text{Alan}=\dfrac{a^2\sqrt3}{4}$.
+
+<Ornek>
+
+<Soru>
+
+Bir kenarı $4$ olan eşkenar üçgenin alanını bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $\text{Alan}=\dfrac{a^2\sqrt3}{4}=\dfrac{4^2\sqrt3}{4}=\dfrac{16\sqrt3}{4}=4\sqrt3$.
+
+<Cevap>$4\sqrt3$ birimkare.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 4. Alan ile Bilinmeyen Bulma
+
+Alan formülü, bir kenar ya da yükseklik bilinmiyorsa **denklem kurarak** onu bulmaya da yarar.
+
+<Ornek>
+
+<Soru>
+
+Alanı $24$ olan bir üçgenin tabanı $8$ ise bu tabana ait yükseklik kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. $\dfrac{8\cdot h}{2}=24\Rightarrow 4h=24$.
+2. $h=6$.
+
+<Cevap>$h=6$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Çözümlü Örnekler
+
+<Ornek>
+
+<Soru>
+
+Dik kenarları $5$ ve $12$ olan dik üçgenin alanını bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Alan $=\dfrac{5\cdot 12}{2}=30$.
+
+<Cevap>$30$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+İki kenarı $10$ ve $10$, aralarındaki açısı $90°$ olan üçgenin alanını bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $\text{Alan}=\dfrac12\cdot 10\cdot 10\cdot\sin 90°=\dfrac12\cdot 100\cdot 1=50$.
+
+<Cevap>$50$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir kenarı $6$ olan eşkenar üçgenin alanı kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. $\dfrac{6^2\sqrt3}{4}=\dfrac{36\sqrt3}{4}=9\sqrt3$.
+
+<Cevap>$9\sqrt3$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Alanı $40$ olan üçgenin yüksekliği $10$ ise bu yüksekliğe ait taban kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. $\dfrac{t\cdot 10}{2}=40\Rightarrow 5t=40\Rightarrow t=8$.
+
+<Cevap>$8$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Alıştırmalar — Sıra Sende
+
+> Önce kendin çözmeyi dene; sonra çözümü açıp karşılaştır.
+
+<Ornek>
+
+<Soru>
+
+Tabanı $14$, yüksekliği $9$ olan üçgenin alanı kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. $\dfrac{14\cdot 9}{2}=63$.
+
+<Cevap>$63$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+İki kenarı $12$ ve $5$, aralarındaki açısı $30°$ olan üçgenin alanı kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. $\dfrac12\cdot 12\cdot 5\cdot\dfrac12=15$.
+
+<Cevap>$15$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir kenarı $10$ olan eşkenar üçgenin alanı kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. $\dfrac{10^2\sqrt3}{4}=25\sqrt3$.
+
+<Cevap>$25\sqrt3$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Dik kenarları $9$ ve $6$ olan dik üçgenin alanı kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. $\dfrac{9\cdot 6}{2}=27$.
+
+<Cevap>$27$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Alanı $36$ olan üçgenin tabanı $12$ ise yüksekliği kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. $\dfrac{12h}{2}=36\Rightarrow 6h=36\Rightarrow h=6$.
+
+<Cevap>$6$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **İkiye bölmeyi unutmak.** Üçgen alanı dikdörtgenin **yarısıdır**: $\dfrac{\text{taban}\cdot\text{yükseklik}}{2}$.
+- **Yüksekliği yanlış tabana eşlemek.** Yükseklik, **seçtiğin tabana ait** olmalı; tabanı değiştirirsen yüksekliği de değiştir.
+- **$\frac12 ab\sin C$'de yanlış açıyı kullanmak.** $C$, $a$ ve $b$ kenarlarının **arasındaki** açı olmalı.
+- **Eşkenar formülünde kareyi unutmak.** Formül $\dfrac{a^2\sqrt3}{4}$'tür; $a$ değil $a^2$.
+
+> **Not:** Elindeki bilgiye göre formül seç: **taban+yükseklik** → $\dfrac{t\cdot h}{2}$; **iki kenar + aralarındaki açı** → $\dfrac12 ab\sin C$; **eşkenar** → $\dfrac{a^2\sqrt3}{4}$.
+
+<KonuNav slug="ucgende-alan-10" />
