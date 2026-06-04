@@ -1,0 +1,393 @@
+import { topicMetadata } from "@/lib/seo";
+import { Birlesim, Kesisim, Fark } from "@/components/figures/KumelerFig";
+
+export const metadata = topicMetadata("kumelerde-islemler");
+
+<Konu slug="kumelerde-islemler" />
+
+<p className="lead">İki küme üzerinde tanımlanan dört temel işlem vardır: **birleşim**, **kesişim**, **fark** ve **tümleme**. Bu konuda her işlemin tanımını Venn şemasıyla görecek, eleman sayısı bağıntısını ($s(A\cup B)$ formülü) ve işlemlerin temel özelliklerini öğreneceğiz. Bu işlemler, bir sonraki ders olan **küme problemleri**nin de temelidir.</p>
+
+## 1. Birleşim ($A\cup B$)
+
+İki kümenin birleşimi, **en az birinde** bulunan elemanların kümesidir:
+
+$$A\cup B=\{x\,:\,x\in A\ \text{veya}\ x\in B\}$$
+
+Venn şemasında her iki dairenin **tamamı** taranır.
+
+<Figur>
+
+<Birlesim />
+
+<Altyazi>Şekil 1 — $A\cup B$: her iki dairenin de kapladığı tüm bölge. Ortak bölge bir kez sayılır.</Altyazi>
+
+</Figur>
+
+<Ornek>
+
+<Soru>
+
+$A=\{1,\ 2,\ 3\}$ ve $B=\{3,\ 4,\ 5\}$ için $A\cup B$ kümesini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. İki kümenin tüm elemanlarını birleştir: $1,\ 2,\ 3,\ 4,\ 5$.
+2. Ortak eleman $3$'ü **bir kez** yaz.
+
+<Cevap>$A\cup B=\{1,\ 2,\ 3,\ 4,\ 5\}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 2. Kesişim ($A\cap B$)
+
+İki kümenin kesişimi, **her ikisinde de** bulunan ortak elemanların kümesidir:
+
+$$A\cap B=\{x\,:\,x\in A\ \text{ve}\ x\in B\}$$
+
+Venn şemasında yalnız **ortak** bölge taranır. Hiç ortak elemanı olmayan kümelere **ayrık kümeler** denir; bu durumda $A\cap B=\varnothing$'dir.
+
+<Figur>
+
+<Kesisim />
+
+<Altyazi>Şekil 2 — $A\cap B$: yalnızca iki dairenin örtüştüğü ortak bölge.</Altyazi>
+
+</Figur>
+
+<Ornek>
+
+<Soru>
+
+$A=\{1,\ 2,\ 3\}$ ve $B=\{3,\ 4,\ 5\}$ için $A\cap B$ kümesini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. İki kümede de bulunan elemanları ara.
+2. Yalnız $3$ her iki kümede de yer alıyor.
+
+<Cevap>$A\cap B=\{3\}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 3. Fark ($A\setminus B$)
+
+$A\setminus B$ farkı, $A$'da olup $B$'de **olmayan** elemanların kümesidir:
+
+$$A\setminus B=\{x\,:\,x\in A\ \text{ve}\ x\notin B\}$$
+
+Venn şemasında $A$'nın $B$ ile örtüşmeyen kısmı taranır. Dikkat: genelde $A\setminus B\neq B\setminus A$'dır.
+
+<Figur>
+
+<Fark />
+
+<Altyazi>Şekil 3 — $A\setminus B$: $A$ dairesinin, $B$ ile ortak olmayan bölümü.</Altyazi>
+
+</Figur>
+
+<Ornek>
+
+<Soru>
+
+$A=\{1,\ 2,\ 3\}$ ve $B=\{3,\ 4,\ 5\}$ için $A\setminus B$ ve $B\setminus A$ kümelerini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $A\setminus B$: $A$'da olup $B$'de olmayanlar → $1,\ 2$ (ortak $3$ atılır).
+2. $B\setminus A$: $B$'de olup $A$'da olmayanlar → $4,\ 5$.
+
+<Cevap>$A\setminus B=\{1,\ 2\}$, $B\setminus A=\{4,\ 5\}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 4. Tümleme ($A'$)
+
+Evrensel küme $E$'ye göre $A$ kümesinin **tümleyeni** $A'$, $E$'de olup $A$'da olmayan elemanların kümesidir:
+
+$$A'=E\setminus A=\{x\,:\,x\in E\ \text{ve}\ x\notin A\}$$
+
+Tümlemenin temel özellikleri: $A\cup A'=E$, $A\cap A'=\varnothing$ ve $(A')'=A$'dır.
+
+<Ornek>
+
+<Soru>
+
+$E=\{1,\ 2,\ 3,\ 4,\ 5,\ 6\}$ ve $A=\{2,\ 4,\ 6\}$ için $A'$ kümesini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $E$'de olup $A$'da olmayan elemanları seç.
+2. Bunlar $1,\ 3,\ 5$'tir.
+
+<Cevap>$A'=\{1,\ 3,\ 5\}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 5. Eleman Sayısı Bağıntısı
+
+İki kümenin birleşimindeki eleman sayısı, ortak elemanların **iki kez sayılmasını** önlemek için şu formülle bulunur:
+
+$$s(A\cup B)=s(A)+s(B)-s(A\cap B)$$
+
+Bu bağıntı, küme problemlerinin tamamında kullanacağın temel araçtır.
+
+<Ornek>
+
+<Soru>
+
+$s(A)=12$, $s(B)=9$ ve $s(A\cap B)=4$ ise $s(A\cup B)$ kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+Önce $A$ ve $B$'nin eleman sayılarını topla, sonra ortak bölgeyi bir kez **geri çıkar**.
+
+</Ipucu>
+
+<Cozum>
+
+1. Formülü yaz: $s(A\cup B)=s(A)+s(B)-s(A\cap B)$.
+2. Değerleri yerleştir: $12+9-4=17$.
+
+<Cevap>$s(A\cup B)=17$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Çözümlü Sorular
+
+<Ornek>
+
+<Soru>
+
+$A=\{a,\ b,\ c,\ d\}$ ve $B=\{c,\ d,\ e\}$ için $A\cup B$ ve $A\cap B$ kümelerini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Birleşim — tüm elemanlar: $\{a,\ b,\ c,\ d,\ e\}$.
+2. Kesişim — ortak elemanlar: $\{c,\ d\}$.
+
+<Cevap>$A\cup B=\{a,\ b,\ c,\ d,\ e\}$, $A\cap B=\{c,\ d\}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$s(A)=20$, $s(B)=15$ ve $s(A\cup B)=28$ ise $s(A\cap B)$ kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. Bağıntıyı yaz: $s(A\cup B)=s(A)+s(B)-s(A\cap B)$.
+2. Değerleri yerleştir: $28=20+15-s(A\cap B)$, yani $28=35-s(A\cap B)$.
+3. Buradan $s(A\cap B)=35-28=7$.
+
+<Cevap>$s(A\cap B)=7$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$E=\{1,\ 2,\ 3,\ 4,\ 5,\ 6,\ 7,\ 8\}$, $A=\{1,\ 2,\ 3,\ 4\}$ ve $B=\{3,\ 4,\ 5,\ 6\}$ ise $(A\cup B)'$ kümesini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Önce $A\cup B$'yi bul, sonra evrensel kümeden bu elemanları çıkar.
+
+</Ipucu>
+
+<Cozum>
+
+1. $A\cup B=\{1,\ 2,\ 3,\ 4,\ 5,\ 6\}$.
+2. Tümleyen: $E$'de olup bu kümede olmayanlar → $7,\ 8$.
+
+<Cevap>$(A\cup B)'=\{7,\ 8\}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$A\subseteq B$ olduğunda $A\cup B$ ve $A\cap B$ neye eşittir?
+
+</Soru>
+
+<Cozum>
+
+1. $A\subseteq B$ ise $A$'nın her elemanı $B$'de vardır.
+2. Birleşim daha geniş kümeyi verir: $A\cup B=B$.
+3. Kesişim ortak kısmı verir; $A$ tamamen $B$'nin içinde olduğundan $A\cap B=A$.
+
+<Cevap>$A\cup B=B$ ve $A\cap B=A$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir sınıftaki $30$ öğrenciden $18$'i futbol, $14$'ü basketbol oynuyor. İki sporu da oynayan $6$ öğrenci varsa en az birini oynayan kaç öğrenci vardır?
+
+</Soru>
+
+<Cozum>
+
+1. $s(A\cup B)=s(A)+s(B)-s(A\cap B)$ bağıntısını kullan.
+2. $s(A\cup B)=18+14-6=26$.
+
+<Cevap>En az bir spor oynayan $26$ öğrenci vardır.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$A=\{1,\ 2,\ 3,\ 4,\ 5\}$ ve $B=\{2,\ 4\}$ ise $A\setminus B$ kümesinin eleman sayısı kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. $A$'da olup $B$'de olmayan elemanlar: $1,\ 3,\ 5$.
+2. Eleman sayısı $3$'tür.
+
+<Cevap>$s(A\setminus B)=3$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$s(A)=25$, $s(B)=18$ ve $A\cap B=\varnothing$ ise $s(A\cup B)$ kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. Kümeler ayrık olduğundan ortak eleman yok: $s(A\cap B)=0$.
+2. $s(A\cup B)=25+18-0=43$.
+
+<Cevap>$s(A\cup B)=43$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sınav Tarzı Sorular
+
+> Aşağıdaki sorular, ÖSYM'nin matematik sınavlarında sorduğu **çok kavramlı, dolaylı (5 şıklı)** soru tarzına örnek olarak **özgün biçimde** hazırlanmıştır.
+
+<Ornek>
+
+<Soru>
+
+$A=\{1,\ 2,\ 3,\ 4\}$ ve $B=\{3,\ 4,\ 5\}$ ise $A\cap B$ kümesinin eleman sayısı kaçtır?
+
+A) $1$ · B) $2$ · C) $3$ · D) $4$ · E) $5$
+
+</Soru>
+
+<Cozum>
+
+1. Ortak elemanlar: $3$ ve $4$.
+2. Eleman sayısı $2$'dir.
+
+<Cevap>B) $2$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$s(A)=10$, $s(B)=8$, $s(A\cap B)=3$ ise $s(A\cup B)$ kaçtır?
+
+A) $11$ · B) $13$ · C) $15$ · D) $18$ · E) $21$
+
+</Soru>
+
+<Cozum>
+
+1. $s(A\cup B)=10+8-3=15$.
+
+<Cevap>C) $15$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$E=\{1,\ 2,\ 3,\ 4,\ 5\}$ ve $A=\{1,\ 3\}$ ise $A'$ kümesinin eleman sayısı kaçtır?
+
+A) $1$ · B) $2$ · C) $3$ · D) $4$ · E) $5$
+
+</Soru>
+
+<Cozum>
+
+1. $A'=E\setminus A=\{2,\ 4,\ 5\}$.
+2. Eleman sayısı $3$'tür.
+
+<Cevap>C) $3$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Birleşimde ortak elemanı iki kez yazmak.** $A\cup B$'de ortak elemanlar yalnız **bir kez** yer alır.
+- **$A\setminus B$ ile $B\setminus A$'yı eşit sanmak.** Fark işlemi değişmeli değildir; hangi kümeden başladığına dikkat et.
+- **$s(A\cup B)$ formülünde ortak bölgeyi çıkarmayı unutmak.** $s(A)+s(B)$ ortak elemanları iki kez sayar; $s(A\cap B)$'yi bir kez geri çıkarmalısın.
+- **Tümleyeni evrensel küme olmadan bulmaya çalışmak.** $A'$ daima belirli bir $E$'ye göre tanımlıdır.
+
+> **Sınav ipucu:** En sık kullanılan araç $s(A\cup B)=s(A)+s(B)-s(A\cap B)$'dir. "En az biri" → birleşim, "her ikisi de" → kesişim, "yalnız A" → fark olarak okunur.
+
+<KonuNav slug="kumelerde-islemler" />

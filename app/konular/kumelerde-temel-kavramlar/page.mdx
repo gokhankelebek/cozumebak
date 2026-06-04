@@ -1,0 +1,373 @@
+import { topicMetadata } from "@/lib/seo";
+
+export const metadata = topicMetadata("kumelerde-temel-kavramlar");
+
+<Konu slug="kumelerde-temel-kavramlar" />
+
+<p className="lead">**Küme**, iyi tanımlanmış nesnelerin oluşturduğu bir topluluktur. Bu konuda bir kümeyi **gösterme yollarını**, bir nesnenin kümeye **ait olup olmadığını**, kümenin **eleman sayısını**, **alt küme** ve **özalt küme** kavramlarını ve **evrensel küme** ile **boş küme**yi öğreneceğiz. Kümeler, 9. sınıf matematiğinin temelidir; ileride olasılık ve fonksiyon konularının da dilini oluşturur.</p>
+
+## 1. Küme ve Eleman
+
+Bir kümeyi oluşturan her nesneye o kümenin **elemanı** denir. Kümeler genellikle büyük harfle ($A,\ B,\ C$), elemanlar küçük harfle gösterilir. Bir $x$ nesnesi $A$ kümesinin elemanıysa $x\in A$, değilse $x\notin A$ yazılır.
+
+Bir küme **iyi tanımlı** olmalıdır: bir nesnenin kümeye ait olup olmadığı kesin olarak belli olmalıdır. "Sınıftaki uzun boylu öğrenciler" bir küme **belirtmez** (uzunluk görecelidir); ama "boyu $170$ cm'den uzun öğrenciler" bir kümedir.
+
+<Ornek>
+
+<Soru>
+
+$A=\{1,\ 3,\ 5,\ 7\}$ kümesi için $3\in A$ ve $4\in A$ ifadelerinin doğru olup olmadığını belirtiniz.
+
+</Soru>
+
+<Cozum>
+
+1. $3$ değeri $A$ kümesinin elemanları arasında yer alır, dolayısıyla $3\in A$ **doğrudur**.
+2. $4$ değeri $A$ kümesinde yoktur, dolayısıyla $4\in A$ **yanlıştır**; doğrusu $4\notin A$'dır.
+
+<Cevap>$3\in A$ doğru, $4\notin A$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 2. Kümeyi Gösterme Yolları
+
+Bir küme üç farklı biçimde gösterilebilir:
+
+- **Liste (saymakla) yöntemi:** elemanlar süslü parantez içinde virgülle yazılır: $A=\{a,\ e,\ \text{ı},\ i,\ o,\ \text{ö},\ u,\ \text{ü}\}$.
+- **Ortak özellik yöntemi:** $A=\{x\,:\,x\text{ bir sesli harftir}\}$ ("öyle $x$'ler ki..." diye okunur).
+- **Venn şeması:** elemanlar kapalı bir eğri içine nokta olarak yerleştirilir.
+
+Bir kümede aynı eleman **bir kez** yazılır ve elemanların **sırası önemli değildir**: $\{1,\ 2,\ 2,\ 3\}=\{1,\ 2,\ 3\}=\{3,\ 1,\ 2\}$.
+
+<Ornek>
+
+<Soru>
+
+$A=\{x\,:\,x,\ 10'\text{dan küçük asal sayı}\}$ kümesini liste yöntemiyle yazınız.
+
+</Soru>
+
+<Cozum>
+
+1. $10$'dan küçük asal sayıları belirle: $2,\ 3,\ 5,\ 7$.
+2. Bunları süslü parantez içinde listele.
+
+<Cevap>$A=\{2,\ 3,\ 5,\ 7\}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 3. Eleman Sayısı
+
+Bir $A$ kümesinin eleman sayısı $s(A)$ ile gösterilir. Örneğin $A=\{a,\ b,\ c\}$ için $s(A)=3$'tür.
+
+Hiç elemanı olmayan kümeye **boş küme** denir ve $\varnothing$ ya da $\{\,\}$ ile gösterilir; $s(\varnothing)=0$'dır. Dikkat: $\{0\}$ ve $\{\varnothing\}$ boş küme **değildir** — her ikisinin de bir elemanı vardır.
+
+<Ornek>
+
+<Soru>
+
+$A=\{ \{1,2\},\ 3,\ \varnothing \}$ kümesinin eleman sayısı kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+Süslü parantez içindeki her bağımsız nesneyi **tek bir eleman** olarak say; $\{1,2\}$ bütün hâliyle bir elemandır.
+
+</Ipucu>
+
+<Cozum>
+
+1. Elemanları tek tek ayır: $\{1,2\}$ bir eleman, $3$ bir eleman, $\varnothing$ bir eleman.
+2. Toplam üç bağımsız eleman vardır.
+
+<Cevap>$s(A)=3$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 4. Alt Küme ve Özalt Küme
+
+$A$ kümesinin her elemanı $B$ kümesinde de bulunuyorsa, $A$ kümesi $B$'nin **alt kümesidir** ve $A\subseteq B$ yazılır.
+
+- **Boş küme her kümenin alt kümesidir:** $\varnothing\subseteq A$.
+- **Her küme kendisinin alt kümesidir:** $A\subseteq A$.
+- $A\subseteq B$ ve $A\neq B$ ise $A$, $B$'nin **özalt kümesidir** ($A\subset B$).
+
+$n$ elemanlı bir kümenin **alt küme sayısı** $2^n$, **özalt küme sayısı** $2^n-1$'dir.
+
+<Ornek>
+
+<Soru>
+
+$A=\{a,\ b,\ c\}$ kümesinin kaç alt kümesi, kaç özalt kümesi vardır?
+
+</Soru>
+
+<Cozum>
+
+1. Eleman sayısı $n=3$.
+2. Alt küme sayısı: $2^n=2^3=8$.
+3. Özalt küme sayısı: $2^n-1=8-1=7$ (kümenin kendisi hariç).
+
+<Cevap>$8$ alt küme, $7$ özalt küme.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 5. Evrensel Küme ve Eşit Kümeler
+
+Üzerinde çalışılan tüm elemanları içeren kümeye **evrensel küme** denir ve genellikle $E$ ya da $U$ ile gösterilir. Bir konudaki bütün kümeler evrensel kümenin alt kümesidir.
+
+Aynı elemanlara sahip iki küme **eşittir**: $A=B \iff (A\subseteq B$ ve $B\subseteq A)$. Eleman sayıları eşit ama elemanları farklı olan kümelere ise **denk kümeler** denir.
+
+<Ornek>
+
+<Soru>
+
+$A=\{1,\ 2,\ 3\}$ ve $B=\{x\,:\,x,\ 4'\text{ten küçük sayma sayısı}\}$ kümeleri eşit midir?
+
+</Soru>
+
+<Cozum>
+
+1. $B$'yi listele: $4$'ten küçük sayma sayıları $1,\ 2,\ 3$'tür, yani $B=\{1,\ 2,\ 3\}$.
+2. $A$ ve $B$ tam olarak aynı elemanlara sahip.
+
+<Cevap>Evet, $A=B$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Çözümlü Sorular
+
+<Ornek>
+
+<Soru>
+
+$A=\{x\,:\,2<x\le 7,\ x\in\mathbb{Z}\}$ kümesini liste yöntemiyle yazıp eleman sayısını bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Koşul $2<x\le 7$, yani $x$ değeri $2$'den büyük, $7$'ye eşit veya küçük tam sayı.
+2. Bu tam sayılar: $3,\ 4,\ 5,\ 6,\ 7$.
+3. Eleman sayısı $5$'tir.
+
+<Cevap>$A=\{3,\ 4,\ 5,\ 6,\ 7\}$, $s(A)=5$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$5$ elemanlı bir kümenin alt küme sayısı ile özalt küme sayısının toplamı kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. Alt küme sayısı: $2^5=32$.
+2. Özalt küme sayısı: $2^5-1=31$.
+3. Toplam: $32+31=63$.
+
+<Cevap>$63$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir kümenin alt küme sayısı $64$ ise bu kümenin eleman sayısı kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. Alt küme sayısı $2^n=64$.
+2. $64=2^6$ olduğundan $n=6$.
+
+<Cevap>Eleman sayısı $6$'dır.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$A=\{1,\ 2\}$ kümesinin bütün alt kümelerini yazınız.
+
+</Soru>
+
+<Cozum>
+
+1. Boş küme her zaman alt kümedir: $\varnothing$.
+2. Tek elemanlı alt kümeler: $\{1\},\ \{2\}$.
+3. Kümenin kendisi: $\{1,\ 2\}$.
+4. Toplam $2^2=4$ alt küme vardır.
+
+<Cevap>$\varnothing,\ \{1\},\ \{2\},\ \{1,\ 2\}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\{a\}\subseteq A\subseteq \{a,\ b,\ c\}$ koşulunu sağlayan kaç farklı $A$ kümesi yazılabilir?
+
+</Soru>
+
+<Ipucu>
+
+$a$ elemanı her durumda $A$'da olmak zorunda; $b$ ve $c$ ise olabilir ya da olmayabilir. Serbest karar verilen eleman sayısına dikkat et.
+
+</Ipucu>
+
+<Cozum>
+
+1. $a$ elemanı zorunlu olarak $A$'da bulunur.
+2. Geriye $b$ ve $c$ kalır; her biri $A$'da olabilir veya olmayabilir ($2$ seçenek).
+3. Toplam küme sayısı: $2\cdot 2=2^2=4$.
+
+<Cevap>$4$ farklı küme.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$A=\{ \varnothing,\ 1,\ \{1\},\ \{1,2\} \}$ kümesi için aşağıdakilerden hangileri doğrudur?
+$1\in A$, $\{1\}\in A$, $\{1\}\subseteq A$, $2\in A$.
+
+</Soru>
+
+<Cozum>
+
+1. $1$ bir eleman olarak listede var: $1\in A$ **doğru**.
+2. $\{1\}$ de bir eleman olarak listede var: $\{1\}\in A$ **doğru**.
+3. $\{1\}\subseteq A$ için $1$ elemanının $A$'da olması yeterli; $1\in A$ olduğundan **doğru**.
+4. $2$ tek başına $A$'nın elemanı değildir (yalnız $\{1,2\}$ içinde geçer): $2\notin A$, yani **yanlış**.
+
+<Cevap>$1\in A$, $\{1\}\in A$, $\{1\}\subseteq A$ doğru; $2\in A$ yanlış.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir $A$ kümesinin özalt küme sayısı $15$ ise $A$'nın eleman sayısı kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. Özalt küme sayısı $2^n-1=15$.
+2. Buradan $2^n=16=2^4$, yani $n=4$.
+
+<Cevap>Eleman sayısı $4$'tür.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sınav Tarzı Sorular
+
+> Aşağıdaki sorular, ÖSYM'nin matematik sınavlarında sorduğu **çok kavramlı, dolaylı (5 şıklı)** soru tarzına örnek olarak **özgün biçimde** hazırlanmıştır.
+
+<Ornek>
+
+<Soru>
+
+$A=\{x\,:\,1\le x<6,\ x\in\mathbb{Z}\}$ kümesinin eleman sayısı kaçtır?
+
+A) $3$ · B) $4$ · C) $5$ · D) $6$ · E) $7$
+
+</Soru>
+
+<Cozum>
+
+1. Koşulu sağlayan tam sayılar: $1,\ 2,\ 3,\ 4,\ 5$.
+2. Eleman sayısı $5$'tir.
+
+<Cevap>C) $5$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$4$ elemanlı bir kümenin alt küme sayısı kaçtır?
+
+A) $4$ · B) $8$ · C) $12$ · D) $16$ · E) $32$
+
+</Soru>
+
+<Cozum>
+
+1. Alt küme sayısı $2^n$ formülünden $2^4=16$.
+
+<Cevap>D) $16$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Aşağıdakilerden hangisi her zaman doğrudur?
+
+A) $\varnothing\in A$ · B) $A\subset A$ · C) $\varnothing\subseteq A$ · D) $A\in A$ · E) $s(\varnothing)=1$
+
+</Soru>
+
+<Cozum>
+
+1. Boş küme her kümenin **alt kümesidir**: $\varnothing\subseteq A$ daima doğrudur.
+2. $A\subset A$ yanlıştır (özalt küme kendini içermez); $\varnothing\in A$ ve $A\in A$ genelde yanlıştır; $s(\varnothing)=0$'dır.
+
+<Cevap>C) $\varnothing\subseteq A$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **$\in$ ile $\subseteq$'i karıştırmak.** $\in$ "eleman olma"yı, $\subseteq$ "alt küme olma"yı belirtir. $\{1\}\subseteq A$ ile $\{1\}\in A$ farklı ifadelerdir.
+- **$\varnothing$ ile $\{\varnothing\}$ veya $\{0\}$'ı eşit sanmak.** $\varnothing$ boştur ($s=0$); $\{\varnothing\}$ ve $\{0\}$ birer elemanlıdır ($s=1$).
+- **Özalt küme sayısını yanlış hesaplamak.** Özalt küme sayısı $2^n$ değil $2^n-1$'dir (kümenin kendisi hariç).
+- **Tekrarlı elemanı iki kez saymak.** $\{2,\ 2,\ 5\}$ kümesinin eleman sayısı $3$ değil $2$'dir.
+
+> **Sınav ipucu:** $n$ elemanlı küme → alt küme $2^n$, özalt küme $2^n-1$. Tam sayı aralığı sorularında uç noktaların "$<$" mı "$\le$" mi olduğuna dikkat et.
+
+<KonuNav slug="kumelerde-temel-kavramlar" />

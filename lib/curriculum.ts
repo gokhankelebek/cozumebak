@@ -167,9 +167,9 @@ export const UNITS: Unit[] = [
 
 export const TOPICS: Topic[] = [
   // ── 9. Sınıf · Kümeler ──
-  { slug: "kumelerde-temel-kavramlar", title: "Kümelerde Temel Kavramlar", track: "9", unit: "kumeler-9", summary: "Küme, eleman, alt küme ve evrensel küme kavramları.", minutes: 5, difficulty: "Kolay", questionCount: 12, status: "soon" },
-  { slug: "kumelerde-islemler", title: "Kümelerde İşlemler", track: "9", unit: "kumeler-9", summary: "Birleşim, kesişim, fark ve tümleyen işlemleri.", minutes: 6, difficulty: "Kolay", questionCount: 16, status: "soon" },
-  { slug: "kume-problemleri", title: "Küme Problemleri", track: "9", unit: "kumeler-9", summary: "Venn şemasıyla iki ve üç kümeli problem çözümleri.", minutes: 7, difficulty: "Orta", questionCount: 18, status: "soon" },
+  { slug: "kumelerde-temel-kavramlar", title: "Kümelerde Temel Kavramlar", track: "9", unit: "kumeler-9", summary: "Küme, eleman, alt küme ve evrensel küme kavramları.", minutes: 5, difficulty: "Kolay", questionCount: 12, status: "published" },
+  { slug: "kumelerde-islemler", title: "Kümelerde İşlemler", track: "9", unit: "kumeler-9", summary: "Birleşim, kesişim, fark ve tümleyen işlemleri.", minutes: 6, difficulty: "Kolay", questionCount: 16, status: "published" },
+  { slug: "kume-problemleri", title: "Küme Problemleri", track: "9", unit: "kumeler-9", summary: "Venn şemasıyla iki ve üç kümeli problem çözümleri.", minutes: 7, difficulty: "Orta", questionCount: 18, status: "published" },
 
   // ── 9. Sınıf · Denklem ve Eşitsizlikler ──
   { slug: "gercek-sayilar", title: "Gerçek Sayılar", track: "9", unit: "denklem-esitsizlik-9", summary: "Sayı kümeleri ve gerçek sayılar üzerinde işlemler.", minutes: 5, difficulty: "Kolay", questionCount: 14, status: "soon" },
