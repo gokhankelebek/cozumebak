@@ -1,0 +1,282 @@
+import { topicMetadata } from "@/lib/seo";
+import { DaireGrafik } from "@/components/figures/IstatistikFig";
+
+export const metadata = topicMetadata("veri-yorumlama-9");
+
+<Konu slug="veri-yorumlama-9" />
+
+<p className="lead">Veriyi hesaplamak kadar onu **doğru yorumlamak** da istatistiğin parçasıdır. Bu derste hazır bir veri dağılımını **eleştirel** gözle okumayı: grafik türünü doğru anlamayı (özellikle **daire grafiği**), bir özetin (ortalama/medyan) veriyi ne kadar temsil ettiğini sorgulamayı ve **yanıltıcı** sunumları fark etmeyi öğreneceğiz. Amaç, bir grafiğe bakıp "bu bana gerçekten ne söylüyor?" sorusunu sorabilmek. Bol örnek ve "Sıra Sende" alıştırmalarıyla pekiştireceğiz.</p>
+
+## 1. Daire Grafiğini Okuma
+
+Daire grafiğinde bütün, $360°$ (ya da $\%100$) olarak alınır. Her seçeneğin payı bir **dilim** ile gösterilir:
+
+$$\text{Dilim açısı}=\dfrac{\text{parça}}{\text{toplam}}\cdot 360° \qquad \text{Yüzde}=\dfrac{\text{parça}}{\text{toplam}}\cdot 100$$
+
+<Figur>
+
+<DaireGrafik />
+
+<Altyazi>Şekil 1 — $40$ kişinin seçimlerini gösteren daire grafiği. A seçeneğini $10$ kişi seçtiyse dilim açısı $\dfrac{10}{40}\cdot 360°=90°$, yüzdesi $\%25$'tir.</Altyazi>
+
+</Figur>
+
+<Ornek>
+
+<Soru>
+
+$200$ kişilik bir ankette bir seçeneğin dilim açısı $54°$'dir. Bu seçeneği kaç kişi işaretlemiştir?
+
+</Soru>
+
+<Cozum>
+
+1. Oranı açıdan bul: $\dfrac{54°}{360°}=\dfrac{3}{20}$.
+2. Kişi sayısı: $\dfrac{3}{20}\cdot 200=30$.
+
+<Cevap>$30$ kişi.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 2. Özet Veriyi Temsil Ediyor mu?
+
+Tek bir ortalama, veriyi her zaman iyi temsil etmez. **Uç değerler** ortalamayı çeker; bu durumda medyan daha sağlıklıdır.
+
+<Ornek>
+
+<Soru>
+
+Bir ofiste $4$ çalışan aylık $20$ bin, patron ise $200$ bin TL kazanıyor. "Ortalama maaş" çalışanları doğru yansıtır mı?
+
+</Soru>
+
+<Ipucu>
+
+Ortalamayı hesapla, sonra çalışanların çoğunun gerçekte ne kazandığıyla karşılaştır.
+
+</Ipucu>
+
+<Cozum>
+
+1. Ortalama: $\dfrac{4\cdot 20+200}{5}=\dfrac{280}{5}=56$ bin TL.
+2. Oysa $5$ kişinin maaşları sıralı: $20,20,20,20,200$; **medyan $20$ bin**.
+3. Patronun maaşı (uç değer) ortalamayı yukarı çekmiş; çalışanların hiçbiri $56$ bin almıyor.
+
+<Cevap>Hayır; uç değer yüzünden ortalama yanıltıcıdır, medyan ($20$ bin) daha temsil edicidir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 3. Yanıltıcı Sunumlar
+
+Aynı veri, sunuma göre farklı izlenim bırakabilir. Sık karşılaşılan tuzaklar:
+
+- **Kesik eksen:** sütun grafiğinde dikey eksen $0$'dan başlamazsa küçük farklar büyük görünür.
+- **Eksik bütün:** daire grafiğinde dilimlerin yüzdeleri toplamı $100$ değilse veri eksiktir.
+- **Oran/sayı karışıklığı:** "$\%50$ arttı" ile "$50$ kişi arttı" aynı şey değildir; toplamı bilmeden yorum yapılamaz.
+
+<Ornek>
+
+<Soru>
+
+Bir daire grafiğinde dilimler $\%30$, $\%25$ ve $\%20$ olarak veriliyor. Bu grafik bir bütünü tam gösteriyor mu?
+
+</Soru>
+
+<Cozum>
+
+1. Yüzdeleri topla: $30+25+20=75$.
+2. Toplam $\%100$ değil; $\%25$'lik kısım eksik (gösterilmemiş).
+
+<Cevap>Hayır; yüzdeler $100$'e tamamlanmıyor, veri eksik sunulmuş.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Çözümlü Örnekler
+
+<Ornek>
+
+<Soru>
+
+$120$ kişilik ankette bir seçeneğin yüzdesi $\%35$'tir. Bu seçeneğin dilim açısı kaç derecedir?
+
+</Soru>
+
+<Cozum>
+
+1. Açı $=\dfrac{35}{100}\cdot 360°=126°$.
+
+<Cevap>$126°$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir veri kümesi: $2,\ 3,\ 3,\ 4,\ 38$. Ortalama mı medyan mı veriyi daha iyi temsil eder?
+
+</Soru>
+
+<Cozum>
+
+1. Ortalama: $\dfrac{2+3+3+4+38}{5}=\dfrac{50}{5}=10$.
+2. Medyan: sıralı listenin ortası $3$.
+3. Verilerin çoğu $2$–$4$ arasında; $38$ bir uç değer. Ortalama ($10$) hiçbir veriye yakın değil.
+
+<Cevap>Medyan ($3$) veriyi daha iyi temsil eder.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir daire grafiğinde "Evet" dilimi $216°$'dir. Ankete katılanların yüzde kaçı "Evet" demiştir?
+
+</Soru>
+
+<Cozum>
+
+1. Yüzde $=\dfrac{216}{360}\cdot 100=60$.
+
+<Cevap>$\%60$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+İki şehrin sıcaklık grafiğinde dikey eksen $20°$'den başlıyor ve A şehrinin sütunu B'nin iki katı görünüyor. Gerçek sıcaklıklar A $=24°$, B $=22°$ ise sütunlar yanıltıcı mı?
+
+</Soru>
+
+<Cozum>
+
+1. Gerçek fark yalnız $2°$ ($24$ ve $22$).
+2. Eksen $0$ yerine $20$'den başladığından A'nın sütunu ($4$ birim) B'nin ($2$ birim) iki katı görünür.
+
+<Cevap>Evet; kesik eksen küçük farkı abartmış, grafik yanıltıcıdır.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Alıştırmalar — Sıra Sende
+
+> Önce kendin çözmeyi dene; sonra çözümü açıp karşılaştır.
+
+<Ornek>
+
+<Soru>
+
+$300$ kişilik ankette dilim açısı $72°$ olan seçeneği kaç kişi seçmiştir?
+
+</Soru>
+
+<Cozum>
+
+1. $\dfrac{72}{360}\cdot 300=\dfrac{1}{5}\cdot 300=60$.
+
+<Cevap>$60$ kişi.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir daire grafiğinde dilimler $\%40$, $\%35$, $\%15$. Eksik yüzde kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. $100-(40+35+15)=100-90=10$.
+
+<Cevap>$\%10$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$1,\ 2,\ 2,\ 3,\ 92$ verisinde ortalama kaçtır ve veriyi iyi temsil eder mi?
+
+</Soru>
+
+<Cozum>
+
+1. Ortalama: $\dfrac{1+2+2+3+92}{5}=\dfrac{100}{5}=20$.
+2. $92$ bir uç değer; çoğu veri $1$–$3$ arası. Ortalama temsil etmiyor (medyan $2$).
+
+<Cevap>Ortalama $20$; uç değer yüzünden temsil etmez, medyan daha iyi.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir seçeneğin yüzdesi $\%45$ ise daire grafiğindeki dilim açısı kaç derecedir?
+
+</Soru>
+
+<Cozum>
+
+1. $\dfrac{45}{100}\cdot 360=162°$.
+
+<Cevap>$162°$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+"Bu yıl üye sayımız $\%100$ arttı" diyen bir kulüp aslında $10$ üyeden $20$ üyeye çıkmış. Bu ifade yanıltıcı mı?
+
+</Soru>
+
+<Cozum>
+
+1. $\%100$ artış doğru ($10\to 20$ iki katı), ama mutlak artış yalnız $10$ kişi.
+2. Yüzde büyük görünse de sayı küçük; bağlam verilmezse abartılı izlenim doğurur.
+
+<Cevap>Teknik olarak doğru ama bağlamsız; sayı verilmediğinde yanıltıcı olabilir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Daire grafiğinde açı ve yüzdeyi karıştırmak.** Tam daire $360°=\%100$; $\dfrac{\text{açı}}{360}=\dfrac{\text{yüzde}}{100}$ orantısını kur.
+- **Ortalamayı her zaman "tipik değer" sanmak.** Uç değer varken ortalama yanıltır; medyanı da kontrol et.
+- **Eksik bütünü fark etmemek.** Daire diliminin yüzdeleri $100$'e tamamlanmıyorsa veri eksik sunulmuştur.
+- **Yüzde ile sayıyı denkleştirmek.** "$\%50$ arttı" ifadesi toplam bilinmeden bir miktar (kişi/adet) anlamına gelmez.
+
+> **Not:** Bir grafiği yorumlarken üç soru sor: **Eksen nerede başlıyor? Bütün tam mı? Özet (ortalama/medyan) veriyi gerçekten temsil ediyor mu?** Eleştirel okuma, doğru hesaplamak kadar önemlidir.
+
+<KonuNav slug="veri-yorumlama-9" />

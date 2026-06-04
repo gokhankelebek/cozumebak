@@ -193,8 +193,8 @@ export const TOPICS: Topic[] = [
   { slug: "tales-oklid-pisagor-9", title: "Tales, Öklid ve Pisagor Teoremleri", track: "9", unit: "eslik-benzerlik-9", summary: "Tales, Öklid ve Pisagor bağıntıları ve problemleri.", minutes: 8, difficulty: "Orta", questionCount: 22, status: "published", keywords: ["tales", "öklid", "pisagor"] },
 
   // ── 9. Sınıf · İstatistiksel Araştırma Süreci ──
-  { slug: "tek-degiskenli-veri-9", title: "Tek Değişkenli Veri Dağılımları", track: "9", unit: "istatistik-9", summary: "Tek nicel değişkenli verilerde merkezî eğilim ve yayılım ölçüleri.", minutes: 7, difficulty: "Orta", questionCount: 16, status: "soon", keywords: ["ortalama", "medyan", "açıklık"] },
-  { slug: "veri-yorumlama-9", title: "Veri Dağılımlarını Eleştirel Yorumlama", track: "9", unit: "istatistik-9", summary: "Hazır veri dağılımlarını eleştirel biçimde okuma ve yorumlama.", minutes: 6, difficulty: "Orta", questionCount: 12, status: "soon" },
+  { slug: "tek-degiskenli-veri-9", title: "Tek Değişkenli Veri Dağılımları", track: "9", unit: "istatistik-9", summary: "Tek nicel değişkenli verilerde merkezî eğilim ve yayılım ölçüleri.", minutes: 7, difficulty: "Orta", questionCount: 16, status: "published", keywords: ["ortalama", "medyan", "açıklık"] },
+  { slug: "veri-yorumlama-9", title: "Veri Dağılımlarını Eleştirel Yorumlama", track: "9", unit: "istatistik-9", summary: "Hazır veri dağılımlarını eleştirel biçimde okuma ve yorumlama.", minutes: 6, difficulty: "Orta", questionCount: 12, status: "published" },
 
   // ── 9. Sınıf · Veriden Olasılığa ──
   { slug: "deneye-dayali-olasilik-9", title: "Deneye Dayalı Olasılık ve Tahmin", track: "9", unit: "veriden-olasiliga-9", summary: "Gözleme dayalı olasılık tahmini ve örnek uzay.", minutes: 6, difficulty: "Kolay", questionCount: 14, status: "soon", keywords: ["olasılık", "örnek uzay"] },

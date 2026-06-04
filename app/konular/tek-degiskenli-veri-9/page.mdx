@@ -1,0 +1,336 @@
+import { topicMetadata } from "@/lib/seo";
+import { SutunGrafik } from "@/components/figures/IstatistikFig";
+
+export const metadata = topicMetadata("tek-degiskenli-veri-9");
+
+<Konu slug="tek-degiskenli-veri-9" />
+
+<p className="lead">*İstatistiksel Araştırma Süreci* teması, bir soruyu veriyle yanıtlamayı öğretir. Bu derste **tek nicel değişkenli** bir veri kümesini özetleyen ölçüleri — **merkezî eğilim** (aritmetik ortalama, ortanca/medyan, tepe değer/mod) ve **yayılım** (açıklık) — hesaplamayı ve bir veriyi **sütun grafiğinden** okumayı öğreneceğiz. Bu ölçüler, "veri genelde nerede toplanıyor ve ne kadar yayılmış?" sorusunun yanıtıdır. Bol örnek ve "Sıra Sende" alıştırmalarıyla pekiştireceğiz.</p>
+
+## 1. Aritmetik Ortalama
+
+Bir veri kümesinin aritmetik ortalaması $\overline{x}$, tüm değerlerin toplamının veri sayısına bölümüdür:
+
+$$\overline{x}=\dfrac{\text{verilerin toplamı}}{\text{veri sayısı}}$$
+
+Ortalama, verinin "ağırlık merkezini" temsil eder; aşırı büyük ya da küçük bir uç değerden etkilenir.
+
+<Ornek>
+
+<Soru>
+
+$5,\ 8,\ 11,\ 16$ verilerinin aritmetik ortalamasını bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Topla: $5+8+11+16=40$.
+2. Veri sayısına böl: $\overline{x}=\dfrac{40}{4}=10$.
+
+<Cevap>$\overline{x}=10$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 2. Ortanca (Medyan)
+
+Medyan, veriler **küçükten büyüğe sıralandığında** tam ortadaki değerdir. Sıralama yapmadan medyan bulunamaz.
+
+- Veri sayısı **tek** ise: ortadaki değer.
+- Veri sayısı **çift** ise: ortadaki **iki** değerin ortalaması.
+
+Medyan, uç değerlerden ortalamadan daha az etkilenir.
+
+<Ornek>
+
+<Soru>
+
+$7,\ 3,\ 9,\ 4,\ 10,\ 6$ verilerinin medyanını bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Önce küçükten büyüğe sırala. Veri sayısı çiftse ortadaki iki değerin ortalamasını al.
+
+</Ipucu>
+
+<Cozum>
+
+1. Sırala: $3,\ 4,\ 6,\ 7,\ 9,\ 10$.
+2. $6$ veri (çift); ortadakiler $3.$ ve $4.$ sıradaki $6$ ve $7$.
+3. Medyan: $\dfrac{6+7}{2}=6{,}5$.
+
+<Cevap>Medyan $=6{,}5$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 3. Tepe Değer (Mod)
+
+Mod, veri kümesinde **en çok tekrar eden** değerdir. Bir kümede birden fazla mod olabilir; hiç tekrar yoksa mod yoktur.
+
+<Ornek>
+
+<Soru>
+
+$4,\ 6,\ 6,\ 9,\ 6,\ 4$ verilerinin modunu bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Tekrarlara bak: $6$ üç kez, $4$ iki kez, $9$ bir kez.
+2. En çok tekrar eden değer $6$'dır.
+
+<Cevap>Mod $=6$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 4. Açıklık (Yayılım)
+
+Açıklık (ranj), verinin **en büyük** ve **en küçük** değeri arasındaki farktır; verinin ne kadar yayıldığını gösterir:
+
+$$\text{Açıklık}=\text{en büyük değer}-\text{en küçük değer}$$
+
+<Ornek>
+
+<Soru>
+
+$14,\ 9,\ 21,\ 6,\ 18$ verilerinin açıklığını bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. En büyük $21$, en küçük $6$.
+2. Açıklık $=21-6=15$.
+
+<Cevap>$15$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 5. Sütun Grafiğinden Veri Okuma
+
+Sütun grafiğinde her kategori bir sütunla, değeri sütunun **yüksekliğiyle** gösterilir. Merkezî eğilim ve açıklık ölçülerini doğrudan yüksekliklerden okuyabilirsin.
+
+<Figur>
+
+<SutunGrafik />
+
+<Altyazi>Şekil 1 — Bir kırtasiyenin günlere göre sattığı kitap sayısı: Pazartesi $4$, Salı $8$, Çarşamba $6$, Perşembe $10$. Ortalama $\dfrac{4+8+6+10}{4}=7$, açıklık $10-4=6$'dır.</Altyazi>
+
+</Figur>
+
+<Ornek>
+
+<Soru>
+
+Yukarıdaki grafikte dört günün satışları $4,\ 8,\ 6,\ 10$'dur. Medyanı bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Sırala: $4,\ 6,\ 8,\ 10$.
+2. Çift veri; ortadakiler $6$ ve $8$: $\dfrac{6+8}{2}=7$.
+
+<Cevap>Medyan $=7$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Çözümlü Örnekler
+
+<Ornek>
+
+<Soru>
+
+$12,\ 15,\ 18,\ 15$ verilerinin ortalama, medyan ve modunu bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Ortalama: $\dfrac{12+15+18+15}{4}=\dfrac{60}{4}=15$.
+2. Sırala: $12,\ 15,\ 15,\ 18$; medyan $\dfrac{15+15}{2}=15$.
+3. Mod: en çok tekrar eden $15$.
+
+<Cevap>Ortalama $15$, medyan $15$, mod $15$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir öğrencinin $4$ sınav ortalaması $80$'dir. Beşinci sınavdan $90$ alırsa yeni ortalaması kaç olur?
+
+</Soru>
+
+<Cozum>
+
+1. İlk dört sınavın toplamı: $4\cdot 80=320$.
+2. Beşinciyi ekle: $320+90=410$.
+3. Yeni ortalama: $\dfrac{410}{5}=82$.
+
+<Cevap>$82$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$3,\ 7,\ x,\ 9,\ 11$ verilerinin ortalaması $8$ ise $x$ kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. Ortalama formülü: $\dfrac{3+7+x+9+11}{5}=8$.
+2. $30+x=40\Rightarrow x=10$.
+
+<Cevap>$x=10$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$10$ kişilik bir grubun yaş açıklığı $24$, en küçük yaş $18$ ise en büyük yaş kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. Açıklık $=$ en büyük $-$ en küçük: $24=x-18$.
+2. $x=42$.
+
+<Cevap>$42$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Alıştırmalar — Sıra Sende
+
+> Önce kendin çözmeyi dene; sonra çözümü açıp karşılaştır.
+
+<Ornek>
+
+<Soru>
+
+$2,\ 4,\ 9,\ 5$ verilerinin ortalamasını bul.
+
+</Soru>
+
+<Cozum>
+
+1. $\dfrac{2+4+9+5}{4}=\dfrac{20}{4}=5$.
+
+<Cevap>$5$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$8,\ 3,\ 5,\ 12,\ 7$ verilerinin medyanını bul.
+
+</Soru>
+
+<Cozum>
+
+1. Sırala: $3,\ 5,\ 7,\ 8,\ 12$.
+2. $5$ veri (tek); ortadaki $7$.
+
+<Cevap>$7$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$5,\ 5,\ 8,\ 8,\ 8,\ 2$ verilerinin modu ve açıklığı nedir?
+
+</Soru>
+
+<Cozum>
+
+1. Mod: en çok tekrar eden $8$ (üç kez).
+2. Açıklık: $8-2=6$.
+
+<Cevap>Mod $8$, açıklık $6$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$6,\ 10,\ x$ verilerinin ortalaması $9$ ise $x$ kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. $\dfrac{6+10+x}{3}=9\Rightarrow 16+x=27\Rightarrow x=11$.
+
+<Cevap>$11$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir sınıfın sınav notları sütun grafiğinde $50,\ 70,\ 90,\ 70$ olarak okunuyor. Notların modunu bul.
+
+</Soru>
+
+<Cozum>
+
+1. En çok tekrar eden değer $70$ (iki kez).
+
+<Cevap>Mod $=70$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Medyanda sıralamayı atlamak.** Önce her zaman küçükten büyüğe **sırala**, sonra ortadakini seç.
+- **Çift veri sayısında medyanı tek değer sanmak.** Ortadaki **iki** değerin ortalamasını al.
+- **Mod ile medyanı karıştırmak.** Mod en çok tekrar eden değer, medyan sıralı listenin ortasıdır.
+- **Açıklığı veri sayısıyla karıştırmak.** Açıklık $=$ en büyük $-$ en küçük; kaç veri olduğuyla ilgili değildir.
+
+> **Not:** Bir veri kümesini özetlerken **önce sırala**. Ortalama uç değerlerden etkilenir; uç değer varsa **medyan** veriyi daha sağlıklı temsil eder.
+
+<KonuNav slug="tek-degiskenli-veri-9" />
