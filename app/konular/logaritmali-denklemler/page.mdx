@@ -1,0 +1,587 @@
+import { topicMetadata } from "@/lib/seo";
+import { UstelLogSimetri } from "@/components/figures/UstelLogFig";
+
+export const metadata = topicMetadata("logaritmali-denklemler");
+
+<Konu slug="logaritmali-denklemler" />
+
+<p className="lead">Bilinmeyenin **logaritmanın içinde** ya da **tabanında** yer aldığı denklem ve eşitsizliklere logaritmalı denklem/eşitsizlik denir. Bu derste bunları tanıma dönüştürerek ($\log_a x=y\iff a^{y}=x$), logaritmanın **birebir** oluşundan yararlanarak ve değişken değiştirerek nasıl çözeceğimizi öğreneceğiz. En kritik adım her zaman aynı: bulduğumuz çözümlerin **tanım koşulunu** (argüman $>0$) sağlayıp sağlamadığını kontrol etmek. Bol örnek ve "Sıra Sende" alıştırmalarıyla ilerleyeceğiz.</p>
+
+## 1. Tanım Koşulu (Her Şeyden Önce)
+
+Logaritmalı bir denklemde işe başlamadan önce **tanım koşulunu** yazarız: logaritmanın içindeki her ifade **kesin pozitif** olmalıdır. Çözümün sonunda bulduğumuz değerleri bu koşula göre **kontrol eder**, koşulu bozan değerleri eleriz (bunlara *yabancı kök* denir).
+
+Hatırlatma — logaritma, üstel fonksiyonun tersidir; grafiği $y=x$ doğrusuna göre üstelin simetriğidir. Bu, çözüm yaparken sürekli kullanacağımız $\log_a x=y\iff a^{y}=x$ bağıntısının kaynağıdır.
+
+<Figur>
+
+<UstelLogSimetri />
+
+<Altyazi>Şekil 1 — $y=\log_2 x$ yalnız $x>0$ için tanımlıdır (grafiği $y$ ekseninin sağında kalır). Logaritmalı denklemde çıkan kökleri bu **argüman $>0$** koşuluna göre eleriz.</Altyazi>
+
+</Figur>
+
+<Ornek>
+
+<Soru>
+
+$\log_2(x-1)$ ifadesinin tanımlı olması için $x$ hangi değerleri alabilir?
+
+</Soru>
+
+<Cozum>
+
+1. Argüman pozitif olmalı: $x-1>0$.
+2. $x>1$.
+
+<Cevap>$x>1$, yani $(1,\ \infty)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 2. Tanıma Dönüştürerek Çözme
+
+Tek bir logaritma içeren denklemi, tanımdan yararlanıp **üstel biçime** çeviririz:
+
+$$\log_a f(x)=k \iff f(x)=a^{k}$$
+
+<Ornek>
+
+<Soru>
+
+$\log_3(x+1)=2$ denklemini çözünüz.
+
+</Soru>
+
+<Cozum>
+
+1. Tanım koşulu: $x+1>0\Rightarrow x>-1$.
+2. Üstel biçime geç: $x+1=3^{2}=9$.
+3. $x=8$. Koşulu sağlar ($8>-1$).
+
+<Cevap>$x=8$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 3. İki Logaritmayı Eşitleme (Birebirlik)
+
+Logaritma fonksiyonu birebirdir; aynı tabanlı iki logaritma eşitse argümanları da eşittir:
+
+$$\log_a f(x)=\log_a g(x)\iff f(x)=g(x)\quad (f(x)>0,\ g(x)>0)$$
+
+Birden çok logaritma terimi varsa önce özelliklerle (toplam→çarpım, fark→bölüm) **tek logaritmaya** indiririz.
+
+<Ornek>
+
+<Soru>
+
+$\log_5(2x-1)=\log_5(x+4)$ denklemini çözünüz.
+
+</Soru>
+
+<Cozum>
+
+1. Tanım koşulu: $2x-1>0$ ve $x+4>0$, yani $x>\dfrac{1}{2}$.
+2. Birebirlik: $2x-1=x+4$.
+3. $x=5$. Koşulu sağlar.
+
+<Cevap>$x=5$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\log_2 x+\log_2(x-2)=3$ denklemini çözünüz.
+
+</Soru>
+
+<Ipucu>
+
+Sol tarafı çarpım kuralıyla tek logaritma yap: $\log_2\big(x(x-2)\big)=3$. Sonra üstel biçime geç. Çıkan kökleri $x>0$ ve $x-2>0$ koşuluna göre kontrol et.
+
+</Ipucu>
+
+<Cozum>
+
+1. Tanım koşulu: $x>0$ **ve** $x-2>0\Rightarrow x>2$.
+2. Çarpım kuralı: $\log_2\big(x(x-2)\big)=3$.
+3. Üstel biçim: $x(x-2)=2^{3}=8\Rightarrow x^{2}-2x-8=0$.
+4. Çarpanla: $(x-4)(x+2)=0\Rightarrow x=4$ veya $x=-2$.
+5. Kontrol: $x=4>2$ uygun; $x=-2$ koşulu bozar, **elenir**.
+
+<Cevap>$x=4$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 4. Değişken Değiştirme
+
+Aynı logaritma ifadesi denklemde birden çok kez (özellikle karesiyle) görünüyorsa $\log_a x=t$ diyerek denklemi **ikinci dereceden** denkleme çeviririz.
+
+<Ornek>
+
+<Soru>
+
+$\left(\log_2 x\right)^{2}-3\log_2 x+2=0$ denklemini çözünüz.
+
+</Soru>
+
+<Ipucu>
+
+$\log_2 x=t$ de; denklem $t^{2}-3t+2=0$ olur. $t$ değerlerini bulduktan sonra $\log_2 x=t$'den $x$'e dön.
+
+</Ipucu>
+
+<Cozum>
+
+1. Tanım koşulu: $x>0$.
+2. $\log_2 x=t$ diyelim: $t^{2}-3t+2=0$.
+3. Çarpanla: $(t-1)(t-2)=0\Rightarrow t=1$ veya $t=2$.
+4. Geri dön: $\log_2 x=1\Rightarrow x=2$; $\;\log_2 x=2\Rightarrow x=4$. İkisi de $x>0$.
+
+<Cevap>$x=2$ veya $x=4$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 5. Logaritmik Eşitsizlikler
+
+Eşitsizlikte **tabanın** $1$'den büyük mü küçük mü olduğuna dikkat ederiz, çünkü taban yön belirler:
+
+- $a>1$ ise logaritma **artandır**: $\log_a f(x)<\log_a g(x)\iff f(x)<g(x)$ (yön korunur).
+- $0<a<1$ ise logaritma **azalandır**: eşitsizliğin **yönü ters döner**.
+
+Her durumda argümanların **pozitif** kalması (tanım koşulu) ayrıca sağlanmalıdır.
+
+<Ornek>
+
+<Soru>
+
+$\log_2(x-1)<3$ eşitsizliğini çözünüz.
+
+</Soru>
+
+<Ipucu>
+
+Taban $2>1$, yön korunur. Önce tanım: $x-1>0$. Sonra $3=\log_2 8$ olduğundan $x-1<8$.
+
+</Ipucu>
+
+<Cozum>
+
+1. Tanım koşulu: $x-1>0\Rightarrow x>1$.
+2. Taban $2>1$ (artan), $3=\log_2 8$: $\log_2(x-1)<\log_2 8\Rightarrow x-1<8$.
+3. $x<9$.
+4. İki koşulu birleştir: $1<x<9$.
+
+<Cevap>$(1,\ 9)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\log_{1/3}(x+2)\ge -1$ eşitsizliğini çözünüz.
+
+</Soru>
+
+<Ipucu>
+
+Taban $\frac{1}{3}<1$ (azalan): yön **ters** döner. $-1=\log_{1/3} 3$ çünkü $\left(\frac{1}{3}\right)^{-1}=3$.
+
+</Ipucu>
+
+<Cozum>
+
+1. Tanım koşulu: $x+2>0\Rightarrow x>-2$.
+2. $-1=\log_{1/3} 3$ yaz: $\log_{1/3}(x+2)\ge\log_{1/3} 3$.
+3. Taban $\frac{1}{3}<1$ (azalan), yön ters döner: $x+2\le 3$.
+4. $x\le 1$.
+5. Birleştir: $-2<x\le 1$.
+
+<Cevap>$(-2,\ 1]$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Çözümlü Örnekler
+
+<Ornek>
+
+<Soru>
+
+$\log(x+3)=1$ denklemini çözünüz. (Taban $10$.)
+
+</Soru>
+
+<Cozum>
+
+1. Tanım koşulu: $x+3>0\Rightarrow x>-3$.
+2. Üstel biçim: $x+3=10^{1}=10$.
+3. $x=7$. Koşulu sağlar.
+
+<Cevap>$x=7$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\log_4(x+5)=\log_4(2x-1)$ denklemini çözünüz.
+
+</Soru>
+
+<Cozum>
+
+1. Tanım koşulu: $x+5>0$ ve $2x-1>0\Rightarrow x>\dfrac{1}{2}$.
+2. Birebirlik: $x+5=2x-1$.
+3. $x=6$. Koşulu sağlar.
+
+<Cevap>$x=6$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\log_3 x+\log_3(x-6)=3$ denklemini çözünüz.
+
+</Soru>
+
+<Ipucu>
+
+Çarpım kuralıyla tek logaritma yap, $3=\log_3 27$ olarak düşün. Çıkan kökleri $x>6$ koşuluyla ele.
+
+</Ipucu>
+
+<Cozum>
+
+1. Tanım koşulu: $x>0$ ve $x-6>0\Rightarrow x>6$.
+2. Çarpım kuralı: $\log_3\big(x(x-6)\big)=3$.
+3. Üstel biçim: $x(x-6)=27\Rightarrow x^{2}-6x-27=0$.
+4. Çarpanla: $(x-9)(x+3)=0\Rightarrow x=9$ veya $x=-3$.
+5. Kontrol: $x=9>6$ uygun; $x=-3$ **elenir**.
+
+<Cevap>$x=9$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\left(\log x\right)^{2}=\log x^{2}+3$ denklemini çözünüz. (Taban $10$.)
+
+</Soru>
+
+<Ipucu>
+
+Sağda $\log x^{2}=2\log x$. $\log x=t$ de; $t^{2}=2t+3$ olur.
+
+</Ipucu>
+
+<Cozum>
+
+1. Tanım koşulu: $x>0$.
+2. $\log x^{2}=2\log x$. $\log x=t$ diyelim: $t^{2}=2t+3\Rightarrow t^{2}-2t-3=0$.
+3. Çarpanla: $(t-3)(t+1)=0\Rightarrow t=3$ veya $t=-1$.
+4. Geri dön: $\log x=3\Rightarrow x=10^{3}=1000$; $\;\log x=-1\Rightarrow x=10^{-1}=\dfrac{1}{10}$. İkisi de $x>0$.
+
+<Cevap>$x=1000$ veya $x=\dfrac{1}{10}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\log_2(x-1)\le 2$ eşitsizliğini çözünüz.
+
+</Soru>
+
+<Cozum>
+
+1. Tanım koşulu: $x-1>0\Rightarrow x>1$.
+2. Taban $2>1$, $2=\log_2 4$: $x-1\le 4\Rightarrow x\le 5$.
+3. Birleştir: $1<x\le 5$.
+
+<Cevap>$(1,\ 5]$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Alıştırmalar — Sıra Sende
+
+> Önce kendin çözmeyi dene; sonra çözümü açıp karşılaştır.
+
+<Ornek>
+
+<Soru>
+
+$\log_2(x+3)=4$ denklemini çöz.
+
+</Soru>
+
+<Cozum>
+
+1. Tanım: $x+3>0\Rightarrow x>-3$.
+2. $x+3=2^{4}=16\Rightarrow x=13$. Uygun.
+
+<Cevap>$x=13$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\log_5(3x+1)=\log_5(x+7)$ denklemini çöz.
+
+</Soru>
+
+<Cozum>
+
+1. Tanım: $3x+1>0$ ve $x+7>0\Rightarrow x>-\dfrac{1}{3}$.
+2. Birebirlik: $3x+1=x+7\Rightarrow 2x=6\Rightarrow x=3$. Uygun.
+
+<Cevap>$x=3$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\log(2x-4)=2$ denklemini çöz. (Taban $10$.)
+
+</Soru>
+
+<Cozum>
+
+1. Tanım: $2x-4>0\Rightarrow x>2$.
+2. $2x-4=10^{2}=100\Rightarrow 2x=104\Rightarrow x=52$. Uygun.
+
+<Cevap>$x=52$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\log_3(x-2)<2$ eşitsizliğini çöz.
+
+</Soru>
+
+<Cozum>
+
+1. Tanım: $x-2>0\Rightarrow x>2$.
+2. Taban $3>1$, $2=\log_3 9$: $x-2<9\Rightarrow x<11$.
+3. Birleştir: $2<x<11$.
+
+<Cevap>$(2,\ 11)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\log_2 x+\log_2(x-4)=5$ denklemini çöz.
+
+</Soru>
+
+<Ipucu>
+
+Çarpım kuralı; $5=\log_2 32$. Kökleri $x>4$ koşuluyla ele.
+
+</Ipucu>
+
+<Cozum>
+
+1. Tanım: $x>0$ ve $x-4>0\Rightarrow x>4$.
+2. $\log_2\big(x(x-4)\big)=5\Rightarrow x(x-4)=2^{5}=32$.
+3. $x^{2}-4x-32=0\Rightarrow (x-8)(x+4)=0\Rightarrow x=8$ veya $x=-4$.
+4. Kontrol: $x=8>4$ uygun; $x=-4$ **elenir**.
+
+<Cevap>$x=8$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\log_6(x+2)+\log_6(x-3)=1$ denklemini çöz.
+
+</Soru>
+
+<Ipucu>
+
+Çarpım kuralı; $1=\log_6 6$. Tanım koşulu $x>3$.
+
+</Ipucu>
+
+<Cozum>
+
+1. Tanım: $x+2>0$ ve $x-3>0\Rightarrow x>3$.
+2. $\log_6\big((x+2)(x-3)\big)=1\Rightarrow (x+2)(x-3)=6$.
+3. $x^{2}-x-6=6\Rightarrow x^{2}-x-12=0\Rightarrow (x-4)(x+3)=0$.
+4. $x=4$ veya $x=-3$. Kontrol: $x=4>3$ uygun; $x=-3$ **elenir**.
+
+<Cevap>$x=4$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\left(\log_3 x\right)^{2}-4\log_3 x+3=0$ denklemini çöz.
+
+</Soru>
+
+<Ipucu>
+
+$\log_3 x=t$ de; $t^{2}-4t+3=0$. Sonra her $t$ için $x$'e dön.
+
+</Ipucu>
+
+<Cozum>
+
+1. Tanım: $x>0$.
+2. $\log_3 x=t$: $t^{2}-4t+3=0\Rightarrow (t-1)(t-3)=0\Rightarrow t=1$ veya $t=3$.
+3. Geri dön: $\log_3 x=1\Rightarrow x=3$; $\;\log_3 x=3\Rightarrow x=27$. İkisi de uygun.
+
+<Cevap>$x=3$ veya $x=27$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\log_{1/2}(2x-1)\ge -2$ eşitsizliğini çöz.
+
+</Soru>
+
+<Ipucu>
+
+Taban $\frac{1}{2}<1$: yön ters döner. $-2=\log_{1/2} 4$ çünkü $\left(\frac{1}{2}\right)^{-2}=4$.
+
+</Ipucu>
+
+<Cozum>
+
+1. Tanım: $2x-1>0\Rightarrow x>\dfrac{1}{2}$.
+2. $-2=\log_{1/2} 4$: $\log_{1/2}(2x-1)\ge\log_{1/2} 4$.
+3. Taban $\frac{1}{2}<1$ (azalan), yön ters: $2x-1\le 4\Rightarrow x\le\dfrac{5}{2}$.
+4. Birleştir: $\dfrac{1}{2}<x\le\dfrac{5}{2}$.
+
+<Cevap>$\left(\dfrac{1}{2},\ \dfrac{5}{2}\right]$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\log_2(x+1)+\log_2(x-1)=\log_2 8$ denklemini çöz.
+
+</Soru>
+
+<Ipucu>
+
+Sol tarafı çarpım kuralıyla birleştir; iki tarafta da $\log_2$ olduğundan argümanları eşitle. Tanım koşulu $x>1$.
+
+</Ipucu>
+
+<Cozum>
+
+1. Tanım: $x+1>0$ ve $x-1>0\Rightarrow x>1$.
+2. Çarpım kuralı: $\log_2\big((x+1)(x-1)\big)=\log_2 8$.
+3. Birebirlik: $(x+1)(x-1)=8\Rightarrow x^{2}-1=8\Rightarrow x^{2}=9$.
+4. $x=3$ veya $x=-3$. Kontrol: $x=3>1$ uygun; $x=-3$ **elenir**.
+
+<Cevap>$x=3$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\log_x 16=2$ denklemini çöz. (Bilinmeyen tabandadır.)
+
+</Soru>
+
+<Ipucu>
+
+Tanım: taban için $x>0$ ve $x\neq 1$. Tanıma dön: $\log_x 16=2\iff x^{2}=16$.
+
+</Ipucu>
+
+<Cozum>
+
+1. Taban koşulu: $x>0$ ve $x\neq 1$.
+2. Tanıma dön: $x^{2}=16\Rightarrow x=4$ veya $x=-4$.
+3. Kontrol: $x=-4$ taban olamaz (negatif), **elenir**; $x=4$ uygun.
+
+<Cevap>$x=4$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Tanım koşulunu hiç yazmamak.** Logaritmalı denklemde çıkan her kök, argümanı $>0$ yapmak zorundadır; sağlamayan kök (yabancı kök) **elenir**.
+- **Azalan tabanda yönü çevirmeyi unutmak.** $0<a<1$ ise eşitsizliğin yönü ters döner; $a>1$ ise korunur.
+- **Toplamı yanlış birleştirmek.** $\log_a f+\log_a g=\log_a(f\cdot g)$'dir; $\log_a(f+g)$ değil.
+- **Bilinmeyen tabanlı denklemde taban koşulunu atlamak.** $\log_x N$ için $x>0$ ve $x\neq 1$ olmalı; negatif ya da $1$ çıkan kök elenir.
+
+> **Not:** Logaritmalı denklem çözmenin değişmez ritmi şudur: (1) önce **tanım koşulunu** yaz, (2) özelliklerle tek logaritmaya indir, (3) tanıma/birebirliğe dön, (4) çıkan kökleri **koşula göre kontrol et**. Dördüncü adımı atlarsan yabancı kökü cevap sanırsın.
+
+<KonuNav slug="logaritmali-denklemler" />

@@ -1,0 +1,496 @@
+import { topicMetadata } from "@/lib/seo";
+import { DiziSayiDogrusu } from "@/components/figures/DiziSayiDogrusuFig";
+
+export const metadata = topicMetadata("dizi-kavrami");
+
+<Konu slug="dizi-kavrami" />
+
+<p className="lead">Bir **dizi**, sayıların belirli bir **sıraya** dizilmiş hâlidir: $2, 5, 8, 11, \dots$ gibi. Aslında bir dizi, tanım kümesi **pozitif tam sayılar** olan özel bir fonksiyondur; her $n$ sırasına bir $a_n$ terimi karşılık gelir. Bu derste dizinin ne olduğunu, **genel terim** ($n.$ terim) kavramını, terimlerden geriye doğru genel terime ulaşmayı ve **artan-azalan, sabit, sonlu-sonsuz** gibi dizi çeşitlerini öğreneceğiz. Diziler; aritmetik ve geometrik dizilerin, dolayısıyla seri ve limit konularının temelidir. Bol örnek ve "Sıra Sende" alıştırmalarıyla ilerleyeceğiz.</p>
+
+## 1. Dizi ve Terim Kavramı
+
+Tanım kümesi $\{1, 2, 3, \dots\}$ (pozitif tam sayılar) olan her fonksiyona **dizi** denir. $n.$ sıradaki değere dizinin $n.$ **terimi** denir ve $a_n$ ile gösterilir; dizinin tamamı da $(a_n)$ biçiminde yazılır.
+
+$$a_1,\ a_2,\ a_3,\ \dots,\ a_n,\ \dots$$
+
+Burada $a_1$ **ilk terim**, $a_2$ ikinci terim, $a_n$ ise **genel terim**dir. Önemli ayrım: $a_n$ genel terimi (bir kural/formül), $a_5$ ise o kuralda $n=5$ konunca çıkan tek bir **sayıdır**.
+
+<Ornek>
+
+<Soru>
+
+$2, 5, 8, 11, \dots$ dizisinde $a_1$, $a_3$ ve dördüncü terimi yazınız.
+
+</Soru>
+
+<Cozum>
+
+1. İlk terim: $a_1=2$.
+2. Üçüncü terim: $a_3=8$.
+3. Dördüncü terim: $a_4=11$.
+
+<Cevap>$a_1=2,\ a_3=8,\ a_4=11$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 2. Genel Terimden Terim Bulma
+
+Çoğu dizi, genel terimi $a_n$ veren bir **formülle** verilir. Bir terimi bulmak için, sıra numarasını $n$ yerine yazıp işlemi yaparız.
+
+<Ornek>
+
+<Soru>
+
+Genel terimi $a_n=3n-1$ olan dizinin ilk üç terimini ve $a_{10}$ terimini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $n=1$: $a_1=3\cdot 1-1=2$.
+2. $n=2$: $a_2=3\cdot 2-1=5$.
+3. $n=3$: $a_3=3\cdot 3-1=8$.
+4. $n=10$: $a_{10}=3\cdot 10-1=29$.
+
+<Cevap>İlk üç terim $2, 5, 8$; $\;a_{10}=29$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+Bir sayının dizinin **kaçıncı terimi** olduğunu bulmak için $a_n$'i o sayıya eşitleyip $n$'i çözeriz. Çıkan $n$ pozitif tam sayı değilse, o sayı dizinin terimi **değildir**.
+
+<Ornek>
+
+<Soru>
+
+$a_n=3n-1$ dizisinde $59$ sayısı kaçıncı terimdir?
+
+</Soru>
+
+<Ipucu>
+
+$a_n=59$ kur; çıkan $n$ pozitif tam sayı olmalı, aksi hâlde $59$ bu dizinin terimi değildir.
+
+</Ipucu>
+
+<Cozum>
+
+1. $a_n=59$: $3n-1=59$.
+2. $3n=60\Rightarrow n=20$.
+3. $n=20$ pozitif tam sayı; demek ki $59$, dizinin $20.$ terimidir.
+
+<Cevap>$20.$ terim.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 3. Terimlerden Genel Terime
+
+Bazı sorularda dizinin ilk birkaç terimi verilir ve genel terim istenir. Terimler arasındaki örüntüyü ($n$ ile değişimi) yakalayıp formülü kurarız.
+
+<Figur>
+
+<DiziSayiDogrusu />
+
+<Altyazi>Şekil 1 — $2, 5, 8, 11, 14$ dizisinin terimleri sayı doğrusunda. Her terim bir öncekinden $3$ fazla; bu sabit adım, terimlerin "eşit aralıklı" durmasını sağlar. Böyle bir dizinin genel terimi $a_n=3n-1$ biçiminde yazılabilir.</Altyazi>
+
+</Figur>
+
+<Ornek>
+
+<Soru>
+
+$5, 8, 11, 14, \dots$ dizisinin genel terimini ($a_n$) bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Terimler $3$'er artıyor; genel terim $3n$ + (sabit) biçimindedir. $n=1$ için $5$ çıkacak şekilde sabiti ayarla.
+
+</Ipucu>
+
+<Cozum>
+
+1. Ardışık terimler $3$'er artıyor, o hâlde $a_n=3n+k$ biçimindedir.
+2. $n=1$ için $5$ olmalı: $3\cdot 1+k=5\Rightarrow k=2$.
+3. Formül: $a_n=3n+2$. Kontrol: $n=2$ için $3\cdot 2+2=8$. ✓
+
+<Cevap>$a_n=3n+2$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 4. Dizi Çeşitleri
+
+Dizileri davranışlarına göre adlandırırız:
+
+- **Artan dizi:** her terim bir öncekinden büyükse ($a_{n+1}>a_n$).
+- **Azalan dizi:** her terim bir öncekinden küçükse ($a_{n+1}<a_n$).
+- **Sabit dizi:** tüm terimleri eşitse ($a_n=c$).
+- **Sonlu / sonsuz dizi:** terim sayısı sınırlıysa sonlu, sonsuza kadar gidiyorsa sonsuz dizidir.
+
+Bir dizinin artan mı azalan mı olduğunu anlamak için $a_{n+1}-a_n$ farkının işaretine bakarız: her $n$ için pozitifse artan, negatifse azalandır.
+
+<Ornek>
+
+<Soru>
+
+$a_n=2n+1$ dizisinin artan mı azalan mı olduğunu belirleyiniz.
+
+</Soru>
+
+<Cozum>
+
+1. Ardışık terim farkını al: $a_{n+1}-a_n=\big(2(n+1)+1\big)-\big(2n+1\big)$.
+2. Sadeleştir: $2n+2+1-2n-1=2>0$.
+3. Fark her $n$ için $2>0$ olduğundan dizi **artandır**.
+
+<Cevap>Artan dizi.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 5. Dizilerde İşlemler
+
+İki dizi $(a_n)$ ve $(b_n)$ terim terime toplanıp çıkarılabilir, bir sayıyla çarpılabilir: $(a_n+b_n)$, $(a_n-b_n)$, $(c\cdot a_n)$ yine birer dizidir. Belirli bir terimde işlem yapmak için her diziden **aynı** sıradaki terimi alırız.
+
+<Ornek>
+
+<Soru>
+
+$a_n=n^2$ ve $b_n=2n$ ise $(a_n+b_n)$ dizisinin $3.$ terimini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Toplam dizinin genel terimi: $a_n+b_n=n^2+2n$.
+2. $n=3$: $3^2+2\cdot 3=9+6=15$.
+
+<Cevap>$15$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Çözümlü Örnekler
+
+<Ornek>
+
+<Soru>
+
+Genel terimi $a_n=\dfrac{n}{n+1}$ olan dizinin ilk üç terimini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $n=1$: $a_1=\dfrac{1}{2}$.
+2. $n=2$: $a_2=\dfrac{2}{3}$.
+3. $n=3$: $a_3=\dfrac{3}{4}$.
+
+<Cevap>$\dfrac{1}{2},\ \dfrac{2}{3},\ \dfrac{3}{4}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$a_n=n^2-4n$ dizisinde $a_5$ ile $a_3$ terimlerinin toplamını bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $a_5=5^2-4\cdot 5=25-20=5$.
+2. $a_3=3^2-4\cdot 3=9-12=-3$.
+3. Topla: $5+(-3)=2$.
+
+<Cevap>$2$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$a_n=\dfrac{n-3}{n}$ dizisinde hangi terim $0$'a eşittir?
+
+</Soru>
+
+<Ipucu>
+
+Bir kesir, yalnız **payı** sıfır olunca sıfırdır. Payı sıfır yapan $n$'yi bul.
+
+</Ipucu>
+
+<Cozum>
+
+1. $a_n=0$: $\dfrac{n-3}{n}=0$.
+2. Kesir sıfırsa pay sıfırdır: $n-3=0\Rightarrow n=3$.
+3. Payda $n=3\neq 0$ olduğundan terim geçerlidir.
+
+<Cevap>$3.$ terim ($a_3=0$).</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$a_n=2n-7$ dizisi hangi terimden itibaren pozitif değer alır?
+
+</Soru>
+
+<Cozum>
+
+1. $a_n>0$ iste: $2n-7>0$.
+2. $2n>7\Rightarrow n>3{,}5$.
+3. $n$ pozitif tam sayı olduğundan en küçük çözüm $n=4$'tür: $a_4=2\cdot 4-7=1>0$. ✓
+
+<Cevap>$4.$ terimden itibaren pozitiftir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Alıştırmalar — Sıra Sende
+
+> Önce kendin çözmeyi dene; sonra çözümü açıp karşılaştır.
+
+<Ornek>
+
+<Soru>
+
+$a_n=4n+1$ dizisinin ilk üç terimini yaz.
+
+</Soru>
+
+<Cozum>
+
+1. $a_1=5,\ a_2=9,\ a_3=13$.
+
+<Cevap>$5, 9, 13$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$a_n=n^2-1$ dizisinde $a_6$ kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. $a_6=6^2-1=36-1=35$.
+
+<Cevap>$35$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$7, 11, 15, 19, \dots$ dizisinin genel terimini bul.
+
+</Soru>
+
+<Cozum>
+
+1. $4$'er artıyor: $a_n=4n+k$.
+2. $n=1$ için $7$: $4+k=7\Rightarrow k=3$.
+3. $a_n=4n+3$.
+
+<Cevap>$a_n=4n+3$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$a_n=5n-2$ dizisinde $48$ sayısı kaçıncı terimdir?
+
+</Soru>
+
+<Cozum>
+
+1. $5n-2=48\Rightarrow 5n=50$.
+2. $n=10$.
+
+<Cevap>$10.$ terim.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$a_n=3-n$ dizisi artan mı azalan mı? Belirle.
+
+</Soru>
+
+<Cozum>
+
+1. Fark: $a_{n+1}-a_n=\big(3-(n+1)\big)-\big(3-n\big)=-1<0$.
+2. Fark negatif olduğundan dizi **azalandır**.
+
+<Cevap>Azalan dizi.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$a_n=n^2$ ve $b_n=3n$ ise $(a_n-b_n)$ dizisinin $4.$ terimini bul.
+
+</Soru>
+
+<Cozum>
+
+1. Genel terim: $a_n-b_n=n^2-3n$.
+2. $n=4$: $16-12=4$.
+
+<Cevap>$4$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$a_n=\dfrac{2n-1}{n+1}$ dizisinde $a_4$ kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. Pay: $2\cdot 4-1=7$.
+2. Payda: $4+1=5$.
+3. $a_4=\dfrac{7}{5}$.
+
+<Cevap>$\dfrac{7}{5}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$a_n=n^2-6n+8$ dizisinin hangi terimleri $0$'a eşittir?
+
+</Soru>
+
+<Ipucu>
+
+$a_n=0$ ikinci dereceden denklemini çöz; ama yalnız **pozitif tam sayı** olan kökler dizinin terim sırası olabilir.
+
+</Ipucu>
+
+<Cozum>
+
+1. $n^2-6n+8=0\Rightarrow (n-2)(n-4)=0$.
+2. Kökler $n=2$ ve $n=4$; ikisi de pozitif tam sayı, geçerli.
+3. Demek ki $a_2=0$ ve $a_4=0$.
+
+<Cevap>$2.$ ve $4.$ terimler sıfırdır.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Genel terimi $a_n=\dfrac{3n+1}{n}$ olan dizi azalan mıdır? Açıkla.
+
+</Soru>
+
+<Ipucu>
+
+Önce $a_n=\dfrac{3n+1}{n}=3+\dfrac{1}{n}$ biçiminde yaz. $n$ büyüdükçe $\dfrac{1}{n}$ küçülür.
+
+</Ipucu>
+
+<Cozum>
+
+1. Genel terimi sadeleştir: $a_n=\dfrac{3n+1}{n}=\dfrac{3n}{n}+\dfrac{1}{n}=3+\dfrac{1}{n}$.
+2. $n$ büyüdükçe $\dfrac{1}{n}$ küçülür; örneğin $a_1=4$, $a_2=3{,}5$, $a_3\approx 3{,}33$.
+3. Her terim bir öncekinden küçük olduğundan dizi **azalandır**.
+
+<Cevap>Evet, azalan dizidir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$a_n=n^2-10n+21$ dizisi hangi terimden itibaren pozitiftir?
+
+</Soru>
+
+<Ipucu>
+
+$a_n>0$ eşitsizliğini çöz; kökler $3$ ve $7$. Parabol yukarı açıldığından dış bölgede pozitiftir, ama $n$ pozitif tam sayı.
+
+</Ipucu>
+
+<Cozum>
+
+1. Çarpanlara ayır: $n^2-10n+21=(n-3)(n-7)$.
+2. $(n-3)(n-7)>0$: kökler $3$ ve $7$, ifade kökler **dışında** pozitiftir, yani $n<3$ veya $n>7$.
+3. Ama dizi $n=1$'den başlayıp artıyor; "bir terimden **itibaren** sürekli pozitif" olması istendiğinden büyük taraf geçerlidir: $n>7$, yani en küçük $n=8$.
+4. Kontrol: $a_8=64-80+21=5>0$, $a_7=49-70+21=0$, $a_6=36-60+21=-3<0$. ✓
+
+<Cevap>$8.$ terimden itibaren pozitiftir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **$a_n$ ile $a_5$'i karıştırmak.** $a_n$ bir **kural/formül**, $a_5$ ise o kuralda $n=5$ konunca çıkan tek bir **sayıdır**.
+- **$n$'yi pozitif tam sayı almamak.** Dizinin tanım kümesi $\{1,2,3,\dots\}$'tir; "kaçıncı terim" sorularında çıkan $n$ pozitif tam sayı değilse o sayı dizinin terimi **değildir**.
+- **Genel terimde sabiti unutmak.** $3$'er artan bir dizide formül yalnız $3n$ değildir; $n=1$ ilk terimi verecek şekilde sabit eklenir ($3n+k$).
+- **Artan/azalanı tek terime bakıp söylemek.** Karar için $a_{n+1}-a_n$ farkının işaretine **her $n$ için** bakılır; birkaç terime bakmak yanıltıcı olabilir.
+
+> **Not:** Bir diziyi "sırası belli sayı listesi" yerine **tanım kümesi pozitif tam sayılar olan bir fonksiyon** olarak düşün. O zaman "terim bul", "kaçıncı terim", "artan mı" gibi sorular aslında birer fonksiyon değeri, denklem ve işaret incelemesi sorusuna dönüşür.
+
+<KonuNav slug="dizi-kavrami" />

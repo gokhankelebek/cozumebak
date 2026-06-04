@@ -1,0 +1,503 @@
+import { topicMetadata } from "@/lib/seo";
+import { IntegralAlan } from "@/components/figures/IntegralAlanFig";
+
+export const metadata = topicMetadata("belirli-integral");
+
+<Konu slug="belirli-integral" />
+
+<p className="lead">Belirsiz integral bir fonksiyon ailesi verirdi; **belirli integral** ise bir **sayı** verir ve bu sayının en güzel anlamı **alandır**: $f(x)\ge 0$ ise $\int_{a}^{b} f(x)\,dx$, eğri ile $x$-ekseni arasında, $x=a$ ile $x=b$ doğruları arasındaki bölgenin alanıdır. Bu derste belirli integralin tanımını, onu kolayca hesaplatan **Analizin Temel Teoremi**'ni (Newton–Leibniz kuralı), temel özelliklerini ve eğri altında kalan alan hesabını öğreneceğiz. Anahtar incelik **işaret meselesidir**: eksenin altındaki bölgeler integrale negatif katkı verir. Bol örnek ve "Sıra Sende" alıştırmalarıyla ilerleyeceğiz.</p>
+
+## 1. Belirli İntegral ve Alan Fikri
+
+$[a,b]$ aralığında sürekli ve $f(x)\ge 0$ olan bir $f$ için, eğri ile $x$-ekseni arasında kalan bölgenin alanını düşünelim. Bu bölgeyi ince dikdörtgen şeritlere böler, alanlarını toplar ve şeritleri sonsuz inceltirsek **belirli integrale** ulaşırız:
+
+$$A=\int_{a}^{b} f(x)\,dx$$
+
+Buradaki $a$ ve $b$ sayılarına **alt** ve **üst sınır** denir. Aşağıdaki şekilde bu alan ve onu yaklaşık veren dikdörtgen şeritler gösterilmiştir.
+
+<Figur>
+
+<IntegralAlan />
+
+<Altyazi>Şekil 1 — $y=f(x)$ eğrisi ile $x$-ekseni arasında, $x=a$ ile $x=b$ arasındaki taranmış alan $A=\int_{a}^{b} f(x)\,dx$'tir. Dikdörtgen şeritlerin toplam alanı, şeritler inceldikçe bu integrale yaklaşır.</Altyazi>
+
+</Figur>
+
+## 2. Analizin Temel Teoremi (Newton–Leibniz Kuralı)
+
+Belirli integrali şerit toplamıyla hesaplamak çok zahmetlidir. Neyse ki onu **ters türev** ile bağlayan güçlü bir kural vardır. $F$, $f$'nin herhangi bir ters türeviyse ($F'=f$):
+
+$$\int_{a}^{b} f(x)\,dx=\Big[F(x)\Big]_{a}^{b}=F(b)-F(a)$$
+
+Yani: integrali bul, üst sınırı yerine koy, alt sınırı yerine koy, **çıkar**. Burada integral sabiti $c$ önemsizdir; çünkü $F(b)+c$ ve $F(a)+c$ çıkarılınca $c$ sadeleşir. Bu yüzden belirli integralde $c$ yazmayız.
+
+<Ornek>
+
+<Soru>
+
+$\displaystyle\int_{1}^{3} 2x\,dx$ değerini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Önce $\int 2x\,dx=x^2$ ters türevini bul; sonra $\big[x^2\big]_1^3=3^2-1^2$ yaz.
+
+</Ipucu>
+
+<Cozum>
+
+1. Ters türev: $\int 2x\,dx=x^{2}$.
+2. Sınırları yerleştir: $\Big[x^{2}\Big]_{1}^{3}=3^{2}-1^{2}=9-1=8$.
+
+<Cevap>$8$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 3. Polinomların Belirli İntegrali
+
+Polinomu terim terim integralleyip Newton–Leibniz kuralını uygularız. Köşeli parantezdeki ters türevi düzgün yazmak, işaret hatalarını önler.
+
+<Ornek>
+
+<Soru>
+
+$\displaystyle\int_{0}^{2}\big(3x^{2}+1\big)\,dx$ değerini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Ters türev: $\int (3x^{2}+1)\,dx=x^{3}+x$.
+2. Sınırları yerleştir: $\Big[x^{3}+x\Big]_{0}^{2}=\big(2^{3}+2\big)-\big(0+0\big)$.
+3. Hesapla: $(8+2)-0=10$.
+
+<Cevap>$10$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 4. Belirli İntegralin Temel Özellikleri
+
+Aşağıdaki özellikler hesabı kolaylaştırır:
+
+$$\int_{a}^{a} f(x)\,dx=0 \qquad\qquad \int_{a}^{b} f(x)\,dx=-\int_{b}^{a} f(x)\,dx$$
+
+$$\int_{a}^{b} f(x)\,dx+\int_{b}^{c} f(x)\,dx=\int_{a}^{c} f(x)\,dx \qquad\qquad \int_{a}^{b} k\,f(x)\,dx=k\int_{a}^{b} f(x)\,dx$$
+
+Sırasıyla: alt ve üst sınır eşitse integral $0$'dır; sınırların yerini değiştirmek işareti değiştirir; aralık iki parçaya bölünebilir; sabit çarpan dışarı alınır.
+
+<Ornek>
+
+<Soru>
+
+$\displaystyle\int_{2}^{5} f(x)\,dx=9$ ise $\displaystyle\int_{5}^{2} 3f(x)\,dx$ değerini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Sabiti dışarı al: $\int_{5}^{2} 3f(x)\,dx=3\int_{5}^{2} f(x)\,dx$.
+2. Sınırları ters çevir, işaret değişir: $\int_{5}^{2} f(x)\,dx=-\int_{2}^{5} f(x)\,dx=-9$.
+3. Çarp: $3\cdot(-9)=-27$.
+
+<Cevap>$-27$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 5. Eğri ile $x$-Ekseni Arasındaki Alan
+
+$[a,b]$ aralığında $f(x)\ge 0$ ise alan doğrudan integraldir: $A=\int_{a}^{b} f(x)\,dx$.
+
+Eğer bölge eksenin **altında** kalıyorsa ($f(x)\le 0$), integral negatif çıkar. Alan pozitif bir büyüklük olduğundan **mutlak değer** alınır:
+
+$$A=\Big|\int_{a}^{b} f(x)\,dx\Big|$$
+
+Eğri aralık içinde ekseni **kesiyorsa**, önce kesim noktasından böl: eksen üstü ve eksen altı parçaların alanlarını ayrı ayrı (mutlak değerle) bulup topla. Aksi hâlde negatif ve pozitif katkılar birbirini götürür ve **yanlış** alan bulursun.
+
+<Ornek>
+
+<Soru>
+
+$f(x)=x^{2}$ eğrisi ile $x$-ekseni arasında, $x=0$ ile $x=3$ arasındaki alanı bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+$[0,3]$ aralığında $x^2\ge 0$, yani eğri eksenin üstünde; alan doğrudan $\int_0^3 x^2\,dx$'tir.
+
+</Ipucu>
+
+<Cozum>
+
+1. Aralıkta $f(x)=x^{2}\ge 0$, bölge eksenin üstünde; alan integralin kendisidir.
+2. Ters türev: $\int x^{2}\,dx=\dfrac{x^{3}}{3}$.
+3. Sınırları yerleştir: $\Big[\dfrac{x^{3}}{3}\Big]_{0}^{3}=\dfrac{27}{3}-0=9$.
+
+<Cevap>Alan $9$ birimkaredir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=x-2$ doğrusu ile $x$-ekseni arasında, $x=0$ ile $x=2$ arasındaki alanı bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+$[0,2]$ aralığında $x-2\le 0$, yani bölge eksenin altında. İntegral negatif çıkar; alan için mutlak değer al.
+
+</Ipucu>
+
+<Cozum>
+
+1. Aralıkta $x-2\le 0$ (örneğin $x=0$ için $-2$); bölge eksenin **altında**.
+2. İntegrali hesapla: $\int_{0}^{2}(x-2)\,dx=\Big[\dfrac{x^{2}}{2}-2x\Big]_{0}^{2}=\big(2-4\big)-0=-2$.
+3. Alan pozitiftir, mutlak değer al: $A=|-2|=2$.
+
+<Cevap>Alan $2$ birimkaredir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Çözümlü Örnekler
+
+<Ornek>
+
+<Soru>
+
+$\displaystyle\int_{1}^{2}\big(4x^{3}\big)\,dx$ değerini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Ters türev: $\int 4x^{3}\,dx=x^{4}$.
+2. Sınırlar: $\Big[x^{4}\Big]_{1}^{2}=2^{4}-1^{4}=16-1=15$.
+
+<Cevap>$15$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\displaystyle\int_{-1}^{1}\big(x^{2}+2\big)\,dx$ değerini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Ters türev: $\dfrac{x^{3}}{3}+2x$.
+2. Üst sınır $x=1$: $\dfrac{1}{3}+2=\dfrac{7}{3}$.
+3. Alt sınır $x=-1$: $\dfrac{-1}{3}-2=-\dfrac{7}{3}$.
+4. Çıkar: $\dfrac{7}{3}-\big(-\dfrac{7}{3}\big)=\dfrac{14}{3}$.
+
+<Cevap>$\dfrac{14}{3}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\displaystyle\int_{1}^{4}\sqrt{x}\,dx$ değerini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+$\sqrt{x}=x^{1/2}$; ters türevi $\dfrac{2}{3}x^{3/2}$. $4^{3/2}=(\sqrt4)^3=8$ olduğunu kullan.
+
+</Ipucu>
+
+<Cozum>
+
+1. Üslü yaz, integralle: $\int x^{1/2}\,dx=\dfrac{2}{3}x^{3/2}$.
+2. Üst sınır $x=4$: $\dfrac{2}{3}\cdot 4^{3/2}=\dfrac{2}{3}\cdot 8=\dfrac{16}{3}$.
+3. Alt sınır $x=1$: $\dfrac{2}{3}\cdot 1=\dfrac{2}{3}$.
+4. Çıkar: $\dfrac{16}{3}-\dfrac{2}{3}=\dfrac{14}{3}$.
+
+<Cevap>$\dfrac{14}{3}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\displaystyle\int_{0}^{1} f(x)\,dx=4$ ve $\displaystyle\int_{1}^{3} f(x)\,dx=5$ ise $\displaystyle\int_{0}^{3} f(x)\,dx$ kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+Aralık birleştirme özelliği: $\int_0^1+\int_1^3=\int_0^3$.
+
+</Ipucu>
+
+<Cozum>
+
+1. Aralıkları birleştir: $\int_{0}^{3} f(x)\,dx=\int_{0}^{1} f(x)\,dx+\int_{1}^{3} f(x)\,dx$.
+2. Topla: $4+5=9$.
+
+<Cevap>$9$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=4-x^{2}$ parabolü ile $x$-ekseni arasında kalan bölgenin alanını bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Önce eğrinin ekseni kestiği yerleri bul ($4-x^2=0$); bunlar sınırlardır. Aralarında $4-x^2\ge 0$ olduğundan bölge eksenin üstündedir.
+
+</Ipucu>
+
+<Cozum>
+
+1. Eksen kesimleri: $4-x^{2}=0\Rightarrow x=\pm 2$. Sınırlar $a=-2$, $b=2$.
+2. $[-2,2]$ aralığında $4-x^{2}\ge 0$; alan doğrudan integraldir.
+3. Ters türev: $\int(4-x^{2})\,dx=4x-\dfrac{x^{3}}{3}$.
+4. Üst sınır $x=2$: $8-\dfrac{8}{3}=\dfrac{16}{3}$. Alt sınır $x=-2$: $-8+\dfrac{8}{3}=-\dfrac{16}{3}$.
+5. Çıkar: $\dfrac{16}{3}-\big(-\dfrac{16}{3}\big)=\dfrac{32}{3}$.
+
+<Cevap>Alan $\dfrac{32}{3}$ birimkaredir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Alıştırmalar — Sıra Sende
+
+> Önce kendin çözmeyi dene; sonra çözümü açıp karşılaştır.
+
+<Ornek>
+
+<Soru>
+
+$\displaystyle\int_{0}^{2} 3x^{2}\,dx$ değerini bul.
+
+</Soru>
+
+<Cozum>
+
+1. Ters türev: $x^{3}$.
+2. $\Big[x^{3}\Big]_{0}^{2}=8-0=8$.
+
+<Cevap>$8$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\displaystyle\int_{1}^{2}\big(2x+3\big)\,dx$ değerini bul.
+
+</Soru>
+
+<Cozum>
+
+1. Ters türev: $x^{2}+3x$.
+2. $\big(4+6\big)-\big(1+3\big)=10-4=6$.
+
+<Cevap>$6$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\displaystyle\int_{3}^{3}\big(x^{4}-7x\big)\,dx$ değerini bul.
+
+</Soru>
+
+<Cozum>
+
+1. Alt ve üst sınır eşit: integral $0$'dır.
+
+<Cevap>$0$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\displaystyle\int_{0}^{1}\big(x^{3}+x\big)\,dx$ değerini bul.
+
+</Soru>
+
+<Cozum>
+
+1. Ters türev: $\dfrac{x^{4}}{4}+\dfrac{x^{2}}{2}$.
+2. $x=1$: $\dfrac{1}{4}+\dfrac{1}{2}=\dfrac{3}{4}$. $x=0$: $0$.
+3. Çıkar: $\dfrac{3}{4}$.
+
+<Cevap>$\dfrac{3}{4}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\displaystyle\int_{2}^{6} f(x)\,dx=12$ ise $\displaystyle\int_{2}^{6} \dfrac{1}{2}f(x)\,dx$ kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. Sabiti dışarı al: $\dfrac{1}{2}\int_{2}^{6} f(x)\,dx=\dfrac{1}{2}\cdot 12$.
+2. Hesapla: $6$.
+
+<Cevap>$6$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=2x$ doğrusu ile $x$-ekseni arasında, $x=0$ ile $x=3$ arasındaki alanı bul.
+
+</Soru>
+
+<Cozum>
+
+1. $[0,3]$ aralığında $2x\ge 0$; alan integraldir.
+2. $\int_{0}^{3} 2x\,dx=\Big[x^{2}\Big]_{0}^{3}=9-0=9$.
+
+<Cevap>Alan $9$ birimkaredir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\displaystyle\int_{1}^{4}\dfrac{1}{x^{2}}\,dx$ değerini bul.
+
+</Soru>
+
+<Ipucu>
+
+$\dfrac{1}{x^2}=x^{-2}$; ters türevi $-x^{-1}=-\dfrac{1}{x}$.
+
+</Ipucu>
+
+<Cozum>
+
+1. Üslü yaz, integralle: $\int x^{-2}\,dx=-x^{-1}=-\dfrac{1}{x}$.
+2. Üst sınır $x=4$: $-\dfrac{1}{4}$. Alt sınır $x=1$: $-1$.
+3. Çıkar: $-\dfrac{1}{4}-(-1)=-\dfrac{1}{4}+1=\dfrac{3}{4}$.
+
+<Cevap>$\dfrac{3}{4}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=x^{2}-1$ eğrisi ile $x$-ekseni arasında, $x=0$ ile $x=2$ arasındaki **alanı** bul. (Dikkat: eğri bu aralıkta ekseni kesiyor.)
+
+</Soru>
+
+<Ipucu>
+
+$x^2-1$, $x=1$'de işaret değiştirir: $[0,1]$ aralığında eksen altında, $[1,2]$ aralığında eksen üstünde. İki parçayı ayrı hesaplayıp mutlak değerlerini topla.
+
+</Ipucu>
+
+<Cozum>
+
+1. İşaret değişimi $x=1$'de ($x^{2}-1=0$). Ters türev: $\dfrac{x^{3}}{3}-x$.
+2. $[0,1]$ (eksen altı): $\int_{0}^{1}(x^{2}-1)\,dx=\big(\dfrac{1}{3}-1\big)-0=-\dfrac{2}{3}$; alan $\big|-\dfrac{2}{3}\big|=\dfrac{2}{3}$.
+3. $[1,2]$ (eksen üstü): $\int_{1}^{2}(x^{2}-1)\,dx=\big(\dfrac{8}{3}-2\big)-\big(\dfrac{1}{3}-1\big)=\dfrac{2}{3}-\big(-\dfrac{2}{3}\big)=\dfrac{4}{3}$.
+4. Topla: $\dfrac{2}{3}+\dfrac{4}{3}=2$.
+
+<Cevap>Alan $2$ birimkaredir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f'(x)=6x$ ve $f(0)=1$ ise $\displaystyle\int_{1}^{2} f'(x)\,dx$ değerini bul; ayrıca bunun $f(2)-f(1)$'e eşit olduğunu göster.
+
+</Soru>
+
+<Ipucu>
+
+Analizin Temel Teoremi'ne göre $\int_1^2 f'(x)\,dx=f(2)-f(1)$. Önce $\int 6x\,dx=3x^2$ ters türevini kullan.
+
+</Ipucu>
+
+<Cozum>
+
+1. $f'(x)=6x$'in ters türevi $3x^{2}$ (bu, $f$'nin türevi olduğundan $f$'nin kendisi olur, sabite kadar).
+2. Belirli integral: $\int_{1}^{2} 6x\,dx=\Big[3x^{2}\Big]_{1}^{2}=12-3=9$.
+3. Doğrulama: $f(x)=3x^{2}+c$; $f(0)=c=1$, yani $f(x)=3x^{2}+1$. O hâlde $f(2)-f(1)=(12+1)-(3+1)=13-4=9$. Aynı sonuç.
+
+<Cevap>$9$; gerçekten $f(2)-f(1)=9$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Eksen altı bölgeyi mutlak değersiz bırakmak.** $f(x)\le 0$ ise integral negatif çıkar; **alan** istendiğinde mutlak değer al.
+- **İşaret değiştiren eğride tek integral almak.** Eğri aralık içinde ekseni kesiyorsa, kesim noktasından böl ve parçaların alanlarını **ayrı ayrı** (mutlak değerle) topla; yoksa katkılar birbirini götürür.
+- **Alt sınırı yerine koyarken işareti kaçırmak.** Newton–Leibniz'de $F(b)-F(a)$; $F(a)$'nın **tümünü** çıkar, özellikle $F(a)$ negatifse "eksi eksi artı" olur.
+- **Belirli integralde $c$ yazmak.** $c$ sadeleşir; köşeli parantezde ters türevi $c$'siz yazmak yeterlidir.
+
+> **Not:** Alan sorusunda refleksin önce **işaret kontrolü** olsun: eğri aralıkta ekseni kesiyor mu? Kesiyorsa böl, kesmiyorsa tek integral; her zaman alanı **pozitif** raporla. Hesabı bitince ters türevin türevini alıp integrandı geri bulduğunu kontrol et.
+
+<KonuNav slug="belirli-integral" />

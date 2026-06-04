@@ -1,0 +1,510 @@
+import { topicMetadata } from "@/lib/seo";
+
+export const metadata = topicMetadata("belirsiz-integral");
+
+<Konu slug="belirsiz-integral" />
+
+<p className="lead">İntegral, **türev almanın ters işlemidir**: türevi bilinen bir fonksiyonu geri bulmaktır. $F'(x)=f(x)$ ise $F$'ye $f$'nin bir **ters türevi** denir ve $\int f(x)\,dx=F(x)+c$ yazılır. Bu derste ters türev kavramını, integral sabiti $c$'nin neden zorunlu olduğunu, kuvvet kuralını ve integralin temel özelliklerini öğreneceğiz. Aldığın her integralin türevini geri alarak kendini denetlemek en güvenilir alışkanlıktır. Bol örnek ve "Sıra Sende" alıştırmalarıyla ilerleyeceğiz.</p>
+
+## 1. Ters Türev ve Belirsiz İntegral
+
+Bir $F$ fonksiyonunun türevi $f$ ise, yani $F'(x)=f(x)$ ise, $F$'ye $f$'nin bir **ters türevi** (ilkel fonksiyonu) denir. Bu işlemi şöyle gösteririz:
+
+$$\int f(x)\,dx=F(x)+c \quad\Longleftrightarrow\quad F'(x)=f(x)$$
+
+Buradaki $f(x)$ ifadesine **integrand**, $dx$ ifadesine de değişkenin $x$ olduğunu belirten **diferansiyel** denir. İntegral almak, kısaca "türevi $f(x)$ olan fonksiyon nedir?" sorusunu yanıtlamaktır.
+
+Örneğin $\big(x^2\big)'=2x$ olduğundan, $2x$'in bir ters türevi $x^2$'dir; yani $\int 2x\,dx=x^2+c$.
+
+<Ornek>
+
+<Soru>
+
+$\int 3x^2\,dx$ integralini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Türevi $3x^2$ olan fonksiyonu ara: $\big(x^3\big)'=3x^2$.
+
+</Ipucu>
+
+<Cozum>
+
+1. Türevi $3x^2$ olan fonksiyon $x^3$'tür çünkü $\big(x^3\big)'=3x^2$.
+2. Ters türev sonsuz çokluktadır; sabit ekle: $x^3+c$.
+
+<Cevap>$\int 3x^2\,dx=x^3+c$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 2. İntegral Sabiti $c$ Neden Daima Yazılır?
+
+Bir **sabitin türevi sıfırdır**. Bu yüzden $F(x)$ bir ters türevse, $F(x)+5$, $F(x)-2$ ve genel olarak $F(x)+c$ de aynı türeve sahiptir. Türevi $f$ olan **sonsuz çoklukta** fonksiyon vardır ve bunlar birbirinden yalnızca bir sabitle ayrılır. Bu sonsuz aileyi tek ifadede toplamak için integral sabiti $c$ her zaman eklenir.
+
+İşte bu "belirsizlik" yüzünden $\int f(x)\,dx$ ifadesine **belirsiz integral** denir: tek bir fonksiyon değil, bir fonksiyon **ailesi** verir.
+
+<Ornek>
+
+<Soru>
+
+$x^2+1$, $x^2+7$ ve $x^2-4$ fonksiyonlarının türevleri nedir? Bu, $\int 2x\,dx$ hakkında ne söyler?
+
+</Soru>
+
+<Cozum>
+
+1. Üçünün de türevi $2x$'tir; çünkü eklenen sabitlerin ($1,\ 7,\ -4$) türevi $0$'dır.
+2. Demek ki türevi $2x$ olan fonksiyon tek değil; hepsi $x^2+c$ biçimindedir.
+
+<Cevap>$\int 2x\,dx=x^2+c$; sabit $c$ bu sonsuz aileyi temsil eder.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 3. Kuvvet (Üs) Kuralı
+
+İntegralin en çok kullanılan kuralı, türevdeki üs kuralının tersidir. $n\neq -1$ olmak üzere:
+
+$$\int x^{n}\,dx=\dfrac{x^{n+1}}{n+1}+c$$
+
+Yani "**üssü bir artır, yeni üsse böl**". Kontrol: $\dfrac{x^{n+1}}{n+1}$'in türevi $\dfrac{(n+1)x^{n}}{n+1}=x^{n}$'dir. Kural $n=-1$ için geçerli değildir (payda $0$ olur); o özel durum bu programın kapsamı dışındadır.
+
+Özel olarak sabit bir $k$ sayısının integrali: $\int k\,dx=kx+c$ (çünkü $(kx)'=k$).
+
+<Ornek>
+
+<Soru>
+
+$\int x^{4}\,dx$ ve $\int \dfrac{1}{x^{2}}\,dx$ integrallerini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+İkincide $\dfrac{1}{x^2}=x^{-2}$ yazıp kuvvet kuralını uygula; $n=-2$ için $n+1=-1$.
+
+</Ipucu>
+
+<Cozum>
+
+1. $\int x^{4}\,dx=\dfrac{x^{5}}{5}+c$.
+2. $\dfrac{1}{x^{2}}=x^{-2}$; kurala göre $\int x^{-2}\,dx=\dfrac{x^{-1}}{-1}+c=-x^{-1}+c=-\dfrac{1}{x}+c$.
+
+<Cevap>$\dfrac{x^{5}}{5}+c$ ve $-\dfrac{1}{x}+c$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 4. Sabitle Çarpma ve Toplam-Fark Kuralı
+
+İntegral, türev gibi **doğrusal** bir işlemdir. Sabit çarpan integralin dışına alınabilir, toplam ve farkın integrali ise terim terim alınır:
+
+$$\int k\cdot f(x)\,dx=k\int f(x)\,dx \qquad\qquad \int \big(f\pm g\big)\,dx=\int f\,dx\pm\int g\,dx$$
+
+Bu iki kural sayesinde her polinomu terim terim integralleyebiliriz. **Not:** Çarpımın ve bölümün integrali için böyle basit bir kural **yoktur**; yalnız toplam-fark terim terim ayrılır.
+
+<Ornek>
+
+<Soru>
+
+$\int \big(6x^{2}-4x+5\big)\,dx$ integralini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Terim terim ayır ve sabitleri dışarı al: $6\int x^{2}\,dx-4\int x\,dx+\int 5\,dx$.
+2. Her terimi integralle: $6\cdot\dfrac{x^{3}}{3}-4\cdot\dfrac{x^{2}}{2}+5x$.
+3. Sadeleştir ve tek sabit ekle: $2x^{3}-2x^{2}+5x+c$.
+
+<Cevap>$2x^{3}-2x^{2}+5x+c$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 5. Köklü ve Üslü İfadelerin İntegrali
+
+Kök ve kesirli üs içeren ifadeleri önce **üslü biçimde** yazıp kuvvet kuralını uygularız: $\sqrt{x}=x^{1/2}$, $\sqrt[3]{x}=x^{1/3}$ gibi.
+
+$$\int \sqrt{x}\,dx=\int x^{1/2}\,dx=\dfrac{x^{3/2}}{3/2}+c=\dfrac{2}{3}x^{3/2}+c$$
+
+Burada $\dfrac{x^{3/2}}{3/2}=x^{3/2}\cdot\dfrac{2}{3}$ olduğuna dikkat et: kesre bölmek, tersiyle çarpmaktır.
+
+<Ornek>
+
+<Soru>
+
+$\int \big(\sqrt{x}+\dfrac{3}{x^{2}}\big)\,dx$ integralini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Her terimi üslü yaz: $\sqrt{x}=x^{1/2}$, $\dfrac{3}{x^2}=3x^{-2}$. Sonra kuvvet kuralını uygula.
+
+</Ipucu>
+
+<Cozum>
+
+1. Üslü yaz: $\int \big(x^{1/2}+3x^{-2}\big)\,dx$.
+2. Birinci terim: $\dfrac{x^{3/2}}{3/2}=\dfrac{2}{3}x^{3/2}$.
+3. İkinci terim: $3\cdot\dfrac{x^{-1}}{-1}=-3x^{-1}=-\dfrac{3}{x}$.
+4. Birleştir: $\dfrac{2}{3}x^{3/2}-\dfrac{3}{x}+c$.
+
+<Cevap>$\dfrac{2}{3}x^{3/2}-\dfrac{3}{x}+c$ (yani $\dfrac{2}{3}x\sqrt{x}-\dfrac{3}{x}+c$).</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 6. Başlangıç Koşuluyla $c$'yi Belirleme
+
+Belirsiz integral bir aile verir; ailedeki **tek bir** fonksiyonu seçmek için fonksiyonun bir noktadaki değeri (başlangıç koşulu) verilir. Önce genel integrali yazar, sonra koşulu yerine koyarak $c$'yi buluruz.
+
+<Ornek>
+
+<Soru>
+
+$f'(x)=2x+1$ ve $f(1)=4$ ise $f(x)$ fonksiyonunu bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Önce $f(x)=\int(2x+1)\,dx$ yazıp genel çözümü bul; sonra $f(1)=4$ koşulunu kullanarak $c$'yi çöz.
+
+</Ipucu>
+
+<Cozum>
+
+1. İntegralle: $f(x)=\int(2x+1)\,dx=x^{2}+x+c$.
+2. Koşulu yerine koy: $f(1)=1^{2}+1+c=2+c$. Bu $4$'e eşit: $2+c=4\Rightarrow c=2$.
+3. Sonuç: $f(x)=x^{2}+x+2$.
+
+<Cevap>$f(x)=x^{2}+x+2$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Çözümlü Örnekler
+
+<Ornek>
+
+<Soru>
+
+$\int \big(4x^{3}-6x\big)\,dx$ integralini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Terim terim integralle: $4\cdot\dfrac{x^{4}}{4}-6\cdot\dfrac{x^{2}}{2}$.
+2. Sadeleştir: $x^{4}-3x^{2}+c$.
+
+<Cevap>$x^{4}-3x^{2}+c$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\int \big(5-x^{3}\big)\,dx$ integralini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Sabitin integrali: $\int 5\,dx=5x$.
+2. Kuvvet kuralı: $\int x^{3}\,dx=\dfrac{x^{4}}{4}$.
+3. Farkı birleştir: $5x-\dfrac{x^{4}}{4}+c$.
+
+<Cevap>$5x-\dfrac{x^{4}}{4}+c$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\int \dfrac{x^{2}+1}{x^{2}}\,dx$ integralini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Çarpımın/bölümün hazır integral kuralı yok; önce kesri terim terim böl: $\dfrac{x^2+1}{x^2}=1+x^{-2}$.
+
+</Ipucu>
+
+<Cozum>
+
+1. Kesri böl: $\dfrac{x^{2}+1}{x^{2}}=\dfrac{x^{2}}{x^{2}}+\dfrac{1}{x^{2}}=1+x^{-2}$.
+2. Terim terim integralle: $\int 1\,dx+\int x^{-2}\,dx=x+\dfrac{x^{-1}}{-1}$.
+3. Sadeleştir: $x-\dfrac{1}{x}+c$.
+
+<Cevap>$x-\dfrac{1}{x}+c$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Türevi $f'(x)=3x^{2}-2$ olan ve grafiği $(0,\ 5)$ noktasından geçen $f$ fonksiyonunu bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. İntegralle: $f(x)=\int(3x^{2}-2)\,dx=x^{3}-2x+c$.
+2. Nokta koşulu $f(0)=5$: $0-0+c=5\Rightarrow c=5$.
+3. Sonuç: $f(x)=x^{3}-2x+5$.
+
+<Cevap>$f(x)=x^{3}-2x+5$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\int \big(2\sqrt{x}\big)\,dx$ integralini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Sabiti dışarı al, kökü üslü yaz: $2\int x^{1/2}\,dx$.
+2. Kuvvet kuralı: $2\cdot\dfrac{x^{3/2}}{3/2}=2\cdot\dfrac{2}{3}x^{3/2}=\dfrac{4}{3}x^{3/2}$.
+
+<Cevap>$\dfrac{4}{3}x^{3/2}+c$ (yani $\dfrac{4}{3}x\sqrt{x}+c$).</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Alıştırmalar — Sıra Sende
+
+> Önce kendin çözmeyi dene; sonra çözümü açıp karşılaştır.
+
+<Ornek>
+
+<Soru>
+
+$\int x^{6}\,dx$ integralini bul.
+
+</Soru>
+
+<Cozum>
+
+1. Kuvvet kuralı: $\dfrac{x^{7}}{7}+c$.
+
+<Cevap>$\dfrac{x^{7}}{7}+c$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\int \big(8x-3\big)\,dx$ integralini bul.
+
+</Soru>
+
+<Cozum>
+
+1. Terim terim: $8\cdot\dfrac{x^{2}}{2}-3x=4x^{2}-3x$.
+
+<Cevap>$4x^{2}-3x+c$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\int \big(x^{2}-4x+7\big)\,dx$ integralini bul.
+
+</Soru>
+
+<Cozum>
+
+1. Terim terim: $\dfrac{x^{3}}{3}-4\cdot\dfrac{x^{2}}{2}+7x=\dfrac{x^{3}}{3}-2x^{2}+7x$.
+
+<Cevap>$\dfrac{x^{3}}{3}-2x^{2}+7x+c$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\int \dfrac{4}{x^{3}}\,dx$ integralini bul.
+
+</Soru>
+
+<Cozum>
+
+1. Üslü yaz: $4\int x^{-3}\,dx$.
+2. Kuvvet kuralı: $4\cdot\dfrac{x^{-2}}{-2}=-2x^{-2}=-\dfrac{2}{x^{2}}$.
+
+<Cevap>$-\dfrac{2}{x^{2}}+c$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\int \sqrt[3]{x}\,dx$ integralini bul.
+
+</Soru>
+
+<Cozum>
+
+1. Üslü yaz: $\int x^{1/3}\,dx$.
+2. Kuvvet kuralı: $\dfrac{x^{4/3}}{4/3}=\dfrac{3}{4}x^{4/3}$.
+
+<Cevap>$\dfrac{3}{4}x^{4/3}+c$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\int \big(x+2\big)^{2}\,dx$ integralini bul.
+
+</Soru>
+
+<Ipucu>
+
+Hazır bir "kare" kuralı yok; önce çarpımı aç: $(x+2)^2=x^2+4x+4$.
+
+</Ipucu>
+
+<Cozum>
+
+1. Aç: $(x+2)^{2}=x^{2}+4x+4$.
+2. Terim terim integralle: $\dfrac{x^{3}}{3}+4\cdot\dfrac{x^{2}}{2}+4x=\dfrac{x^{3}}{3}+2x^{2}+4x$.
+
+<Cevap>$\dfrac{x^{3}}{3}+2x^{2}+4x+c$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f'(x)=4x^{3}$ ve $f(1)=3$ ise $f(2)$ değerini bul.
+
+</Soru>
+
+<Ipucu>
+
+Önce $f(x)=\int 4x^3\,dx$ ile genel çözümü ve $c$'yi bul; sonra $x=2$ koy.
+
+</Ipucu>
+
+<Cozum>
+
+1. İntegralle: $f(x)=\int 4x^{3}\,dx=x^{4}+c$.
+2. Koşul: $f(1)=1+c=3\Rightarrow c=2$, yani $f(x)=x^{4}+2$.
+3. İstenen: $f(2)=2^{4}+2=16+2=18$.
+
+<Cevap>$f(2)=18$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\int \dfrac{x^{3}-x}{x}\,dx$ integralini bul.
+
+</Soru>
+
+<Ipucu>
+
+Bölümün hazır kuralı yok; önce paydayı her terime böl: $\dfrac{x^3-x}{x}=x^2-1$.
+
+</Ipucu>
+
+<Cozum>
+
+1. Sadeleştir: $\dfrac{x^{3}-x}{x}=\dfrac{x^{3}}{x}-\dfrac{x}{x}=x^{2}-1$.
+2. Terim terim integralle: $\dfrac{x^{3}}{3}-x$.
+
+<Cevap>$\dfrac{x^{3}}{3}-x+c$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir cismin hızı $v(t)=6t-4$ (m/s) ve $t=0$ anında konumu $x(0)=2$ m ise, konum fonksiyonu $x(t)$'yi bul. Hız, konumun türevidir: $x'(t)=v(t)$.
+
+</Soru>
+
+<Ipucu>
+
+Konum, hızın integralidir: $x(t)=\int v(t)\,dt$. Sonra $x(0)=2$ ile $c$'yi belirle.
+
+</Ipucu>
+
+<Cozum>
+
+1. İntegralle: $x(t)=\int (6t-4)\,dt=6\cdot\dfrac{t^{2}}{2}-4t+c=3t^{2}-4t+c$.
+2. Başlangıç koşulu $x(0)=2$: $3\cdot 0-4\cdot 0+c=c=2$.
+3. Sonuç: $x(t)=3t^{2}-4t+2$.
+
+<Cevap>$x(t)=3t^{2}-4t+2$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **İntegral sabiti $c$'yi unutmak.** Belirsiz integral bir aile verir; $c$ yazılmazsa cevap eksiktir.
+- **Üssü yanlış yönde değiştirmek.** Kuvvet kuralında üssü **bir artırıp** yeni üsse **bölersin** ($\int x^n=\frac{x^{n+1}}{n+1}$); türevdeki gibi azaltmazsın.
+- **Çarpım/bölüm/kuvvet için "kolay kural" uydurmak.** $\int f\cdot g\neq \big(\int f\big)\big(\int g\big)$; $\int (x+2)^2$ doğrudan alınmaz. Önce aç ya da sadeleştir, sonra terim terim integralle.
+- **Kesirli üste bölmeyi yanlış yapmak.** $\dfrac{x^{3/2}}{3/2}=\dfrac{2}{3}x^{3/2}$'dir; kesre bölmek tersiyle çarpmaktır.
+
+> **Not:** İntegralde tek güvenilir denetim **türevle geri gitmek**tir: bulduğun sonucun türevini al, integrand çıkıyorsa doğrudur. Her adımda "bunun türevi gerçekten $f(x)$ mi?" diye sor.
+
+<KonuNav slug="belirsiz-integral" />

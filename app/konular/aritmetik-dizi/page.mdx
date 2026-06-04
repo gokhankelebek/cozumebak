@@ -1,0 +1,487 @@
+import { topicMetadata } from "@/lib/seo";
+import { DiziSayiDogrusu } from "@/components/figures/DiziSayiDogrusuFig";
+
+export const metadata = topicMetadata("aritmetik-dizi");
+
+<Konu slug="aritmetik-dizi" />
+
+<p className="lead">**Aritmetik dizi**, ardışık terimleri arasındaki **farkın sabit** olduğu özel bir dizidir: $2, 5, 8, 11, \dots$ dizisinde her terim bir öncekinden $3$ fazladır. Bu sabit farka **ortak fark** denir ($d$). Bu derste ortak farkı, **genel terim** formülü $a_n=a_1+(n-1)d$'yi ve **ilk $n$ terim toplamı** $S_n$'i öğreneceğiz. Formüller kısadır; asıl beceri, verilen iki bilgiyi bir **denklem sistemine** dönüştürüp $a_1$ ile $d$'yi bulmaktır. Bol örnek ve "Sıra Sende" alıştırmalarıyla pekiştireceğiz.</p>
+
+## 1. Ortak Fark
+
+Bir dizide her terim ile bir önceki terim arasındaki fark sabitse, bu diziye **aritmetik dizi**; bu sabit farka da **ortak fark** denir ve $d$ ile gösterilir:
+
+$$d=a_{n+1}-a_n$$
+
+$d>0$ ise dizi **artan**, $d<0$ ise **azalandır**. $d=0$ ise tüm terimler eşittir (sabit dizi).
+
+<Figur>
+
+<DiziSayiDogrusu />
+
+<Altyazi>Şekil 1 — $2, 5, 8, 11, 14$ aritmetik dizisi. Ardışık terimler arasındaki fark her zaman $d=3$ olduğundan terimler sayı doğrusunda **eşit aralıklarla** dizilir. Ortak fark, dizinin "adım boyu"dur.</Altyazi>
+
+</Figur>
+
+<Ornek>
+
+<Soru>
+
+$8, 5, 2, -1, \dots$ dizisinin ortak farkını bulunuz ve artan mı azalan mı olduğunu söyleyiniz.
+
+</Soru>
+
+<Cozum>
+
+1. Ortak fark, herhangi iki ardışık terimin farkıdır: $d=5-8=-3$.
+2. Kontrol: $2-5=-3$, $-1-2=-3$. ✓
+3. $d=-3<0$ olduğundan dizi azalandır.
+
+<Cevap>$d=-3$, azalan dizi.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 2. Genel Terim
+
+İlk terim $a_1$ ve ortak fark $d$ bilindiğinde, $n.$ terim doğrudan yazılır:
+
+$$a_n=a_1+(n-1)d$$
+
+Bu formül, $a_1$ üzerine $(n-1)$ kez $d$ eklendiğini ifade eder: ikinci terime gelmek için **bir** kez, üçüncü terim için **iki** kez ekleriz.
+
+<Ornek>
+
+<Soru>
+
+$a_1=3$ ve $d=4$ olan aritmetik dizinin $10.$ terimini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Formülü yaz: $a_n=a_1+(n-1)d$.
+2. Yerine koy: $a_{10}=3+(10-1)\cdot 4=3+9\cdot 4$.
+3. Hesapla: $a_{10}=3+36=39$.
+
+<Cevap>$a_{10}=39$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+Bir terimin **kaçıncı** terim olduğunu bulmak için $a_n$'i o değere eşitleyip $n$'i çözeriz.
+
+<Ornek>
+
+<Soru>
+
+İlk terimi $5$, ortak farkı $3$ olan dizide $92$ kaçıncı terimdir?
+
+</Soru>
+
+<Ipucu>
+
+$a_n=92$ yaz; $a_n=a_1+(n-1)d$ formülünden $n$'i çek. $n$ pozitif tam sayı çıkmalı.
+
+</Ipucu>
+
+<Cozum>
+
+1. $a_n=5+(n-1)\cdot 3=92$.
+2. $(n-1)\cdot 3=87\Rightarrow n-1=29$.
+3. $n=30$ (pozitif tam sayı, geçerli).
+
+<Cevap>$30.$ terim.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 3. İki Bilgiden Diziyi Bulma
+
+İki terim verilirse, formülü iki kez yazarak bir **denklem sistemi** kurarız. Farkı alarak çoğu zaman doğrudan $d$'yi buluruz.
+
+<Ornek>
+
+<Soru>
+
+Bir aritmetik dizide $a_3=7$ ve $a_8=22$ ise $a_1$ ve $d$'yi bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+$a_8-a_3=(8-3)d=5d$. İki terim arasındaki sıra farkı kadar $d$ vardır.
+
+</Ipucu>
+
+<Cozum>
+
+1. İki terim arası $5$ adım: $a_8-a_3=5d\Rightarrow 22-7=5d$.
+2. $15=5d\Rightarrow d=3$.
+3. $a_3=a_1+2d=7$: $a_1+2\cdot 3=7\Rightarrow a_1=1$.
+
+<Cevap>$a_1=1,\ d=3$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 4. İlk $n$ Terim Toplamı
+
+Aritmetik dizinin ilk $n$ teriminin toplamı $S_n$ iki eşdeğer formülle bulunur:
+
+$$S_n=\frac{n\,(a_1+a_n)}{2} \qquad\qquad S_n=\frac{n\big(2a_1+(n-1)d\big)}{2}$$
+
+İlk formül ilk ve son terim biliniyorsa, ikincisi $a_1$ ve $d$ biliniyorsa pratiktir. (Fikir: baş ve son terimi eşleyip $n$ tane "ortalama terim" toplamak.)
+
+<Ornek>
+
+<Soru>
+
+$3, 7, 11, \dots$ aritmetik dizisinin ilk $20$ teriminin toplamını bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $a_1=3,\ d=4,\ n=20$.
+2. İkinci formülü kullan: $S_{20}=\dfrac{20\big(2\cdot 3+(20-1)\cdot 4\big)}{2}$.
+3. Parantez: $2\cdot 3+19\cdot 4=6+76=82$.
+4. $S_{20}=\dfrac{20\cdot 82}{2}=10\cdot 82=820$.
+
+<Cevap>$S_{20}=820$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 5. Aritmetik Orta
+
+$a$, $b$, $c$ ardışık aritmetik terimlerse, ortadaki terim baş ve sonun **ortalamasıdır**:
+
+$$b=\frac{a+c}{2}$$
+
+Çünkü $b-a=c-b$ (ortak fark eşit). Bu, üç terim bir aritmetik dizide ise hemen kurulabilen kullanışlı bir bağıntıdır.
+
+<Ornek>
+
+<Soru>
+
+$x-2,\ 7,\ x+6$ sayıları bu sırayla aritmetik dizi oluşturuyorsa $x$ kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. Ortadaki terim ortalamadır: $7=\dfrac{(x-2)+(x+6)}{2}$.
+2. $14=(x-2)+(x+6)=2x+4$.
+3. $2x=10\Rightarrow x=5$.
+
+<Cevap>$x=5$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Çözümlü Örnekler
+
+<Ornek>
+
+<Soru>
+
+$a_1=-4$ ve $d=5$ olan aritmetik dizinin $15.$ terimini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $a_{15}=a_1+(15-1)d=-4+14\cdot 5$.
+2. $a_{15}=-4+70=66$.
+
+<Cevap>$66$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir aritmetik dizide $a_4=11$ ve $a_9=26$ ise $a_1$'i bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $a_9-a_4=5d=26-11=15\Rightarrow d=3$.
+2. $a_4=a_1+3d=11\Rightarrow a_1+9=11\Rightarrow a_1=2$.
+
+<Cevap>$a_1=2$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$1+4+7+\dots+100$ toplamını hesaplayınız.
+
+</Soru>
+
+<Ipucu>
+
+Bu, $a_1=1$, $d=3$ olan aritmetik dizidir. Önce $100$'ün kaçıncı terim olduğunu ($n$) bul, sonra $S_n=\dfrac{n(a_1+a_n)}{2}$ kullan.
+
+</Ipucu>
+
+<Cozum>
+
+1. $a_1=1,\ d=3$. Son terim $a_n=100$: $1+(n-1)\cdot 3=100\Rightarrow (n-1)\cdot 3=99\Rightarrow n=34$.
+2. İlk-son terim formülü: $S_{34}=\dfrac{34\,(1+100)}{2}=\dfrac{34\cdot 101}{2}$.
+3. $S_{34}=17\cdot 101=1717$.
+
+<Cevap>$1717$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+İlk terimi $40$, ortak farkı $-4$ olan aritmetik dizinin ilk kaç teriminin toplamı en büyüktür?
+
+</Soru>
+
+<Ipucu>
+
+Toplam, terimler pozitif kaldıkça büyür; ilk **negatif** terimden hemen önce toplam en büyüktür. $a_n\ge 0$ olan en büyük $n$'yi bul.
+
+</Ipucu>
+
+<Cozum>
+
+1. Genel terim: $a_n=40+(n-1)(-4)=44-4n$.
+2. $a_n\ge 0$: $44-4n\ge 0\Rightarrow n\le 11$.
+3. $a_{11}=44-44=0$, $a_{12}=-4<0$. Terimler $11.$ye kadar negatif değil; $11.$ terim $0$ olduğundan ilk $10$ ya da ilk $11$ terim aynı en büyük toplamı verir.
+4. Demek ki ilk $11$ terimin toplamı en büyüktür (eklenen $a_{11}=0$ toplamı değiştirmez).
+
+<Cevap>İlk $11$ terim (ya da eşdeğer olarak ilk $10$ terim).</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Alıştırmalar — Sıra Sende
+
+> Önce kendin çözmeyi dene; sonra çözümü açıp karşılaştır.
+
+<Ornek>
+
+<Soru>
+
+$a_1=7$, $d=2$ olan dizinin $12.$ terimini bul.
+
+</Soru>
+
+<Cozum>
+
+1. $a_{12}=7+(12-1)\cdot 2=7+22=29$.
+
+<Cevap>$29$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$2, 9, 16, 23, \dots$ dizisinin ortak farkını ve genel terimini yaz.
+
+</Soru>
+
+<Cozum>
+
+1. $d=9-2=7$, $a_1=2$.
+2. $a_n=2+(n-1)\cdot 7=7n-5$.
+
+<Cevap>$d=7$, $a_n=7n-5$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+İlk terimi $4$, ortak farkı $6$ olan dizide $70$ kaçıncı terimdir?
+
+</Soru>
+
+<Cozum>
+
+1. $4+(n-1)\cdot 6=70\Rightarrow (n-1)\cdot 6=66$.
+2. $n-1=11\Rightarrow n=12$.
+
+<Cevap>$12.$ terim.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$5, 8, 11, \dots$ dizisinin ilk $30$ teriminin toplamını bul.
+
+</Soru>
+
+<Cozum>
+
+1. $a_1=5,\ d=3,\ n=30$.
+2. $S_{30}=\dfrac{30\big(2\cdot 5+29\cdot 3\big)}{2}=15\,(10+87)=15\cdot 97=1455$.
+
+<Cevap>$1455$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$x+1,\ 10,\ 3x-1$ sayıları bu sırayla aritmetik dizi ise $x$ kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. Orta terim ortalama: $10=\dfrac{(x+1)+(3x-1)}{2}$.
+2. $20=4x\Rightarrow x=5$.
+
+<Cevap>$x=5$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir aritmetik dizide $a_5=17$, $a_5$'ten sonra her terim $3$ artıyorsa $a_1$ kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. $d=3$, $a_5=a_1+4d=17$.
+2. $a_1+12=17\Rightarrow a_1=5$.
+
+<Cevap>$a_1=5$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$a_n=3n+2$ aritmetik dizisinin ilk $n$ teriminin toplamı $S_n$ ifadesini $n$ cinsinden yaz.
+
+</Soru>
+
+<Ipucu>
+
+$a_1=5$, son terim $a_n=3n+2$. $S_n=\dfrac{n(a_1+a_n)}{2}$ kullan.
+
+</Ipucu>
+
+<Cozum>
+
+1. $a_1=3\cdot 1+2=5$, $a_n=3n+2$.
+2. $S_n=\dfrac{n(5+3n+2)}{2}=\dfrac{n(3n+7)}{2}$.
+
+<Cevap>$S_n=\dfrac{n(3n+7)}{2}=\dfrac{3n^2+7n}{2}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir aritmetik dizide $a_3+a_7=30$ ve $a_5-a_2=9$ ise $a_1$ ve $d$'yi bul.
+
+</Soru>
+
+<Ipucu>
+
+İkinci koşulda $a_5-a_2=3d$. Önce $d$'yi bul; sonra birinci koşulu $a_1,d$ ile açıp $a_1$'i çek.
+
+</Ipucu>
+
+<Cozum>
+
+1. $a_5-a_2=(5-2)d=3d=9\Rightarrow d=3$.
+2. $a_3+a_7=(a_1+2d)+(a_1+6d)=2a_1+8d=30$.
+3. $d=3$ koy: $2a_1+24=30\Rightarrow 2a_1=6\Rightarrow a_1=3$.
+
+<Cevap>$a_1=3,\ d=3$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$7, 12, 17, \dots$ dizisinin kaç terimi toplandığında toplam ilk kez $1000$'i geçer?
+
+</Soru>
+
+<Ipucu>
+
+$a_1=7$, $d=5$. $S_n=\dfrac{n(2\cdot 7+(n-1)\cdot 5)}{2}>1000$ eşitsizliğini çöz; en küçük tam sayı $n$'i ara.
+
+</Ipucu>
+
+<Cozum>
+
+1. $S_n=\dfrac{n(14+5(n-1))}{2}=\dfrac{n(5n+9)}{2}$.
+2. $\dfrac{n(5n+9)}{2}>1000\Rightarrow 5n^2+9n-2000>0$.
+3. $n=19$: $5\cdot 361+171=1805+171=1976<2000$, yani $S_{19}=988$.
+4. $n=20$: $5\cdot 400+180=2000+180=2180>2000$, $S_{20}=\dfrac{20\cdot 109}{2}=1090>1000$. ✓
+5. İlk kez $20.$ terimde toplam $1000$'i geçer.
+
+<Cevap>$20$ terim.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **$(n-1)$ yerine $n$ kullanmak.** Genel terim $a_n=a_1+(n-1)d$'dir; $a_1$'e $n$ değil $(n-1)$ kez $d$ eklenir. Aksi hâlde tüm terimler bir $d$ kayar.
+- **İki terim arası adım sayısını yanlış almak.** $a_8-a_3=(8-3)d=5d$'dir, $8d$ değil. Sıra numaralarının **farkı** kadar $d$ vardır.
+- **Toplam formülünde $n$'yi karıştırmak.** $S_n=\dfrac{n(a_1+a_n)}{2}$'de $n$, **terim sayısıdır**; son terimin değeri $a_n$ ile karıştırılmamalı.
+- **Aritmetik ortayı toplam sanmak.** Üç ardışık terimde orta terim, uçların **ortalamasıdır** ($b=\frac{a+c}{2}$), toplamı değil.
+
+> **Not:** Aritmetik dizi sorularında neredeyse her şey iki bilinmeyene ($a_1$ ve $d$) iner. Verilen her bilgiyi $a_1+(n-1)d$ kalıbıyla bir denkleme çevir; iki denklem kurabilirsen diziyi tamamen belirlersin. Toplam istenince hangi formülün verilenlere uyduğuna karar ver: ilk-son terim mi, yoksa $a_1$ ve $d$ mi elinde?
+
+<KonuNav slug="aritmetik-dizi" />

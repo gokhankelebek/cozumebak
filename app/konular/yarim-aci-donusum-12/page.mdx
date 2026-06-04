@@ -1,0 +1,515 @@
+import { topicMetadata } from "@/lib/seo";
+import { Ucgen454590, Ucgen304560 } from "@/components/figures/DikUcgenFig";
+
+export const metadata = topicMetadata("yarim-aci-donusum-12");
+
+<Konu slug="yarim-aci-donusum-12" />
+
+<p className="lead">Toplam-fark ve iki kat açı formüllerinin doğal devamı olan üç formül ailesini öğreneceğiz: **yarım açı formülleri** (bir açının yarısının sinüs-kosinüs-tanjantı), **toplam-çarpım** (iki trigonometrik değerin toplamını çarpıma çevirme) ve **çarpım-toplam** (çarpımı toplama çevirme). Bu formüller, doğrudan hesaplanamayan açıları ($\tfrac{\pi}{8}$, $\tfrac{\pi}{12}$ gibi) değerlendirmeye, trigonometrik denklemleri çarpanlara ayırmaya ve integral hesaplarında ifadeleri sadeleştirmeye yarar. Hepsi iki kat açı formüllerinden türer; ezberden çok **nereden geldiğini** kavramaya odaklanacağız. Bol örnek ve "Sıra Sende" alıştırmalarıyla pekiştireceğiz.</p>
+
+## 1. Yarım Açı Formülleri (Sinüs ve Kosinüs)
+
+İki kat açı kosinüs formülünü hatırla: $\cos 2x = 1-2\sin^2 x = 2\cos^2 x-1$. Burada $2x$ yerine $\alpha$, dolayısıyla $x$ yerine $\tfrac{\alpha}{2}$ yazarsak yarım açı formüllerini elde ederiz:
+
+$$\sin^2\frac{\alpha}{2}=\frac{1-\cos\alpha}{2}\qquad\qquad \cos^2\frac{\alpha}{2}=\frac{1+\cos\alpha}{2}$$
+
+Kök alınca işaret, $\tfrac{\alpha}{2}$'nin bulunduğu bölgeye göre belirlenir:
+
+$$\sin\frac{\alpha}{2}=\pm\sqrt{\frac{1-\cos\alpha}{2}}\qquad\qquad \cos\frac{\alpha}{2}=\pm\sqrt{\frac{1+\cos\alpha}{2}}$$
+
+<Ornek>
+
+<Soru>
+
+$\cos 22{,}5^\circ$ değerini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+$22{,}5^\circ$, $45^\circ$'nin yarısıdır. $\cos 45^\circ=\dfrac{\sqrt2}{2}$ bilinen bir değerdir; yarım açı kosinüs formülünü kullan.
+
+</Ipucu>
+
+<Cozum>
+
+1. $22{,}5^\circ=\dfrac{45^\circ}{2}$, yani $\alpha=45^\circ$ ve $\cos 45^\circ=\dfrac{\sqrt2}{2}$.
+2. $22{,}5^\circ$ I. bölgededir, kosinüs pozitiftir:
+$$\cos 22{,}5^\circ=\sqrt{\frac{1+\cos 45^\circ}{2}}=\sqrt{\frac{1+\frac{\sqrt2}{2}}{2}}=\sqrt{\frac{2+\sqrt2}{4}}=\frac{\sqrt{2+\sqrt2}}{2}.$$
+
+<Cevap>$\cos 22{,}5^\circ=\dfrac{\sqrt{2+\sqrt2}}{2}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 2. Yarım Açı Tanjant Formülü
+
+Tanjant için sinüs ve kosinüs yarım açılarını oranlarsak, paydan ve paydayı düzenleyince çok kullanışlı iki biçim çıkar:
+
+$$\tan\frac{\alpha}{2}=\frac{\sin\alpha}{1+\cos\alpha}=\frac{1-\cos\alpha}{\sin\alpha}$$
+
+Bu iki biçim birbirine eşittir (eşleniklerle çarpınca aynı sonuca varır) ve içinde **kök bulunmaz** — bu yüzden işaret derdi yoktur, doğrudan değer verir.
+
+<Ornek>
+
+<Soru>
+
+$\tan\dfrac{\alpha}{2}$ değerini, $\cos\alpha=\dfrac{3}{5}$ ve $\alpha$ I. bölgede iken bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Önce $\sin\alpha$'yı bul (I. bölgede pozitif), sonra $\tan\dfrac{\alpha}{2}=\dfrac{1-\cos\alpha}{\sin\alpha}$ biçimini kullan.
+
+</Ipucu>
+
+<Cozum>
+
+1. I. bölgede $\sin\alpha>0$: $\sin\alpha=\sqrt{1-\cos^2\alpha}=\sqrt{1-\frac{9}{25}}=\frac{4}{5}$.
+2. Formülü uygula:
+$$\tan\frac{\alpha}{2}=\frac{1-\cos\alpha}{\sin\alpha}=\frac{1-\frac{3}{5}}{\frac{4}{5}}=\frac{\frac{2}{5}}{\frac{4}{5}}=\frac{2}{4}=\frac{1}{2}.$$
+
+<Cevap>$\tan\dfrac{\alpha}{2}=\dfrac{1}{2}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 3. Toplam-Çarpım Formülleri
+
+İki sinüs (veya iki kosinüs) değerinin **toplamını çarpıma** çeviren formüller, trigonometrik denklemleri çarpanlara ayırmanın anahtarıdır:
+
+$$\sin A+\sin B=2\sin\frac{A+B}{2}\cos\frac{A-B}{2}$$
+$$\sin A-\sin B=2\cos\frac{A+B}{2}\sin\frac{A-B}{2}$$
+$$\cos A+\cos B=2\cos\frac{A+B}{2}\cos\frac{A-B}{2}$$
+$$\cos A-\cos B=-2\sin\frac{A+B}{2}\sin\frac{A-B}{2}$$
+
+Hatırlama anahtarı: toplananların **yarı toplamı** $\tfrac{A+B}{2}$ ve **yarı farkı** $\tfrac{A-B}{2}$ kullanılır. $\cos A-\cos B$'deki **eksi işaretine** dikkat.
+
+<Ornek>
+
+<Soru>
+
+$\sin 75^\circ+\sin 15^\circ$ değerini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+$\sin A+\sin B$ formülünde $A=75^\circ$, $B=15^\circ$. Yarı toplam $45^\circ$, yarı fark $30^\circ$ olur — her ikisi de bilinen açı.
+
+</Ipucu>
+
+<Cozum>
+
+1. Formülü uygula:
+$$\sin 75^\circ+\sin 15^\circ=2\sin\frac{75^\circ+15^\circ}{2}\cos\frac{75^\circ-15^\circ}{2}=2\sin 45^\circ\cos 30^\circ.$$
+2. Bilinen değerleri yaz: $\sin 45^\circ=\dfrac{\sqrt2}{2}$, $\cos 30^\circ=\dfrac{\sqrt3}{2}$.
+3. Çarp: $2\cdot\dfrac{\sqrt2}{2}\cdot\dfrac{\sqrt3}{2}=\dfrac{\sqrt6}{2}$.
+
+<Cevap>$\sin 75^\circ+\sin 15^\circ=\dfrac{\sqrt6}{2}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 4. Çarpım-Toplam Formülleri
+
+Tersine, iki trigonometrik değerin **çarpımını toplama** çevirmek (özellikle integralde) gerekir. Bu formüller toplam-fark formüllerini toplayıp çıkararak elde edilir:
+
+$$\sin A\cos B=\frac{1}{2}\big[\sin(A+B)+\sin(A-B)\big]$$
+$$\cos A\cos B=\frac{1}{2}\big[\cos(A+B)+\cos(A-B)\big]$$
+$$\sin A\sin B=\frac{1}{2}\big[\cos(A-B)-\cos(A+B)\big]$$
+
+<Ornek>
+
+<Soru>
+
+$2\sin 105^\circ\cos 45^\circ$ ifadesini hesaplayınız.
+
+</Soru>
+
+<Cozum>
+
+1. $\sin A\cos B$ formülünü kullan ($A=105^\circ$, $B=45^\circ$):
+$$2\sin 105^\circ\cos 45^\circ=\sin(105^\circ+45^\circ)+\sin(105^\circ-45^\circ)=\sin 150^\circ+\sin 60^\circ.$$
+2. Değerleri yaz: $\sin 150^\circ=\dfrac{1}{2}$, $\sin 60^\circ=\dfrac{\sqrt3}{2}$.
+3. Topla: $\dfrac{1}{2}+\dfrac{\sqrt3}{2}=\dfrac{1+\sqrt3}{2}$.
+
+<Cevap>$\dfrac{1+\sqrt3}{2}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+İki kat ve yarım açı değerlerini görmek için bilinen üçgenler işe yarar: $45$-$45$-$90$ ve $30$-$60$-$90$ üçgenleri, $\tfrac{\pi}{8}$ ve $\tfrac{\pi}{12}$ gibi yarım açıların türetildiği temel değerleri verir.
+
+<Figur>
+
+<Ucgen454590 />
+
+<Altyazi>Şekil 1 — $45$-$45$-$90$ üçgeni. $\cos 45^\circ=\sin 45^\circ=\dfrac{\sqrt2}{2}$ buradan okunur; $22{,}5^\circ=\dfrac{45^\circ}{2}$ değerleri bu temel değerden yarım açı formülüyle türetilir.</Altyazi>
+
+</Figur>
+
+<Figur>
+
+<Ucgen304560 />
+
+<Altyazi>Şekil 2 — $30$-$60$-$90$ üçgeni. $\sin 30^\circ=\dfrac12$, $\cos 30^\circ=\dfrac{\sqrt3}{2}$ değerleri; toplam-çarpım örneklerinde $30^\circ$ ve $60^\circ$ bu üçgenden gelir.</Altyazi>
+
+</Figur>
+
+## Çözümlü Örnekler
+
+<Ornek>
+
+<Soru>
+
+$\sin 22{,}5^\circ$ değerini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $22{,}5^\circ=\dfrac{45^\circ}{2}$, $\cos 45^\circ=\dfrac{\sqrt2}{2}$; $22{,}5^\circ$ I. bölgede, sinüs pozitif.
+2. Yarım açı sinüs formülü:
+$$\sin 22{,}5^\circ=\sqrt{\frac{1-\cos 45^\circ}{2}}=\sqrt{\frac{1-\frac{\sqrt2}{2}}{2}}=\sqrt{\frac{2-\sqrt2}{4}}=\frac{\sqrt{2-\sqrt2}}{2}.$$
+
+<Cevap>$\sin 22{,}5^\circ=\dfrac{\sqrt{2-\sqrt2}}{2}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\cos 75^\circ-\cos 15^\circ$ değerini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+$\cos A-\cos B$ formülünde **eksi işareti** ve **çift sinüs** vardır: $-2\sin\dfrac{A+B}{2}\sin\dfrac{A-B}{2}$.
+
+</Ipucu>
+
+<Cozum>
+
+1. Formülü uygula ($A=75^\circ$, $B=15^\circ$):
+$$\cos 75^\circ-\cos 15^\circ=-2\sin\frac{75^\circ+15^\circ}{2}\sin\frac{75^\circ-15^\circ}{2}=-2\sin 45^\circ\sin 30^\circ.$$
+2. Değerleri yaz: $\sin 45^\circ=\dfrac{\sqrt2}{2}$, $\sin 30^\circ=\dfrac12$.
+3. Çarp: $-2\cdot\dfrac{\sqrt2}{2}\cdot\dfrac12=-\dfrac{\sqrt2}{2}$.
+
+<Cevap>$\cos 75^\circ-\cos 15^\circ=-\dfrac{\sqrt2}{2}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\dfrac{\sin 40^\circ+\sin 20^\circ}{\cos 40^\circ+\cos 20^\circ}$ ifadesini sadeleştiriniz.
+
+</Soru>
+
+<Ipucu>
+
+Hem payı hem paydayı toplam-çarpıma çevir; ortak $\cos\dfrac{A-B}{2}$ çarpanı sadeleşir, geriye $\dfrac{\sin}{\cos}=\tan$ kalır.
+
+</Ipucu>
+
+<Cozum>
+
+1. Pay: $\sin 40^\circ+\sin 20^\circ=2\sin 30^\circ\cos 10^\circ$.
+2. Payda: $\cos 40^\circ+\cos 20^\circ=2\cos 30^\circ\cos 10^\circ$.
+3. Oran: $\dfrac{2\sin 30^\circ\cos 10^\circ}{2\cos 30^\circ\cos 10^\circ}=\dfrac{\sin 30^\circ}{\cos 30^\circ}=\tan 30^\circ=\dfrac{\sqrt3}{3}$.
+
+<Cevap>$\tan 30^\circ=\dfrac{\sqrt3}{3}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\sin\alpha=\dfrac{5}{13}$ ve $\alpha$ I. bölgede iken $\tan\dfrac{\alpha}{2}$ değerini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. I. bölgede $\cos\alpha>0$: $\cos\alpha=\sqrt{1-\sin^2\alpha}=\sqrt{1-\frac{25}{169}}=\frac{12}{13}$.
+2. $\tan\dfrac{\alpha}{2}=\dfrac{\sin\alpha}{1+\cos\alpha}=\dfrac{\frac{5}{13}}{1+\frac{12}{13}}=\dfrac{\frac{5}{13}}{\frac{25}{13}}=\dfrac{5}{25}=\dfrac{1}{5}$.
+
+<Cevap>$\tan\dfrac{\alpha}{2}=\dfrac{1}{5}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$2\cos 50^\circ\cos 10^\circ$ ifadesini toplam biçiminde yazınız.
+
+</Soru>
+
+<Cozum>
+
+1. $\cos A\cos B$ formülü ($A=50^\circ$, $B=10^\circ$):
+$$2\cos 50^\circ\cos 10^\circ=\cos(50^\circ+10^\circ)+\cos(50^\circ-10^\circ)=\cos 60^\circ+\cos 40^\circ.$$
+2. $\cos 60^\circ=\dfrac12$, dolayısıyla ifade $\dfrac12+\cos 40^\circ$'dir.
+
+<Cevap>$\cos 60^\circ+\cos 40^\circ=\dfrac12+\cos 40^\circ$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Alıştırmalar — Sıra Sende
+
+> Önce kendin çözmeyi dene; sonra çözümü açıp karşılaştır.
+
+<Ornek>
+
+<Soru>
+
+$\sin 50^\circ+\sin 10^\circ$ ifadesini çarpım biçiminde yaz.
+
+</Soru>
+
+<Cozum>
+
+1. $\sin A+\sin B=2\sin\dfrac{A+B}{2}\cos\dfrac{A-B}{2}$ ($A=50^\circ$, $B=10^\circ$).
+2. $=2\sin 30^\circ\cos 20^\circ=2\cdot\dfrac12\cdot\cos 20^\circ=\cos 20^\circ$.
+
+<Cevap>$\cos 20^\circ$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\cos 40^\circ+\cos 80^\circ+\cos 160^\circ$ ifadesinde ilk iki terimi çarpıma çevir.
+
+</Soru>
+
+<Cozum>
+
+1. $\cos 40^\circ+\cos 80^\circ=2\cos\dfrac{40^\circ+80^\circ}{2}\cos\dfrac{80^\circ-40^\circ}{2}=2\cos 60^\circ\cos 20^\circ$.
+2. $\cos 60^\circ=\dfrac12$, yani $=2\cdot\dfrac12\cdot\cos 20^\circ=\cos 20^\circ$.
+
+<Cevap>$\cos 40^\circ+\cos 80^\circ=\cos 20^\circ$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$2\sin 75^\circ\sin 15^\circ$ ifadesini hesapla.
+
+</Soru>
+
+<Cozum>
+
+1. $\sin A\sin B$ formülü: $2\sin 75^\circ\sin 15^\circ=\cos(75^\circ-15^\circ)-\cos(75^\circ+15^\circ)=\cos 60^\circ-\cos 90^\circ$.
+2. $\cos 60^\circ=\dfrac12$, $\cos 90^\circ=0$, yani $\dfrac12-0=\dfrac12$.
+
+<Cevap>$\dfrac12$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\cos\alpha=-\dfrac{7}{25}$ ve $\alpha$ II. bölgede iken $\sin\dfrac{\alpha}{2}$ değerini bul.
+
+</Soru>
+
+<Ipucu>
+
+II. bölgede $90^\circ<\alpha<180^\circ$ olduğundan $45^\circ<\dfrac{\alpha}{2}<90^\circ$, yani $\dfrac{\alpha}{2}$ I. bölgededir: işaret pozitif.
+
+</Ipucu>
+
+<Cozum>
+
+1. $\dfrac{\alpha}{2}$ I. bölgede, $\sin\dfrac{\alpha}{2}>0$.
+2. $\sin\dfrac{\alpha}{2}=\sqrt{\dfrac{1-\cos\alpha}{2}}=\sqrt{\dfrac{1-(-\frac{7}{25})}{2}}=\sqrt{\dfrac{\frac{32}{25}}{2}}=\sqrt{\dfrac{16}{25}}=\dfrac{4}{5}$.
+
+<Cevap>$\sin\dfrac{\alpha}{2}=\dfrac{4}{5}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\sin 80^\circ-\sin 20^\circ$ ifadesini çarpım biçiminde yaz ve değerini bul.
+
+</Soru>
+
+<Cozum>
+
+1. $\sin A-\sin B=2\cos\dfrac{A+B}{2}\sin\dfrac{A-B}{2}$ ($A=80^\circ$, $B=20^\circ$).
+2. $=2\cos 50^\circ\sin 30^\circ=2\cos 50^\circ\cdot\dfrac12=\cos 50^\circ$.
+
+<Cevap>$\cos 50^\circ$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\tan 15^\circ$ değerini yarım açı tanjant formülüyle bul.
+
+</Soru>
+
+<Cozum>
+
+1. $15^\circ=\dfrac{30^\circ}{2}$, $\cos 30^\circ=\dfrac{\sqrt3}{2}$, $\sin 30^\circ=\dfrac12$.
+2. $\tan 15^\circ=\dfrac{1-\cos 30^\circ}{\sin 30^\circ}=\dfrac{1-\frac{\sqrt3}{2}}{\frac12}=\dfrac{\frac{2-\sqrt3}{2}}{\frac12}=2-\sqrt3$.
+
+<Cevap>$\tan 15^\circ=2-\sqrt3$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\dfrac{\sin 3x+\sin x}{\cos 3x+\cos x}$ ifadesini sadeleştir.
+
+</Soru>
+
+<Ipucu>
+
+Pay ve paydayı toplam-çarpıma çevir: $A=3x$, $B=x$. Yarı toplam $2x$, yarı fark $x$. Ortak $\cos x$ çarpanı sadeleşir.
+
+</Ipucu>
+
+<Cozum>
+
+1. Pay: $\sin 3x+\sin x=2\sin 2x\cos x$.
+2. Payda: $\cos 3x+\cos x=2\cos 2x\cos x$.
+3. Oran: $\dfrac{2\sin 2x\cos x}{2\cos 2x\cos x}=\dfrac{\sin 2x}{\cos 2x}=\tan 2x$.
+
+<Cevap>$\tan 2x$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\cos 20^\circ\cos 40^\circ\cos 80^\circ$ çarpımının $\dfrac18$ olduğunu gösteren ilk adımı yaz: $2\cos 40^\circ\cos 20^\circ$ ifadesini topla biçiminde yaz.
+
+</Soru>
+
+<Ipucu>
+
+$\cos A\cos B=\dfrac12[\cos(A+B)+\cos(A-B)]$. Buradan $2\cos 40^\circ\cos 20^\circ=\cos 60^\circ+\cos 20^\circ$ çıkar.
+
+</Ipucu>
+
+<Cozum>
+
+1. $2\cos 40^\circ\cos 20^\circ=\cos(40^\circ+20^\circ)+\cos(40^\circ-20^\circ)=\cos 60^\circ+\cos 20^\circ$.
+2. $\cos 60^\circ=\dfrac12$, yani $2\cos 40^\circ\cos 20^\circ=\dfrac12+\cos 20^\circ$.
+
+<Cevap>$2\cos 40^\circ\cos 20^\circ=\dfrac12+\cos 20^\circ$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\dfrac{\cos 4x-\cos 2x}{\sin 4x+\sin 2x}$ ifadesini sadeleştir.
+
+</Soru>
+
+<Ipucu>
+
+Pay $\cos A-\cos B$ (eksi işaret, çift sinüs), payda $\sin A+\sin B$. Her ikisinde de yarı toplam $3x$, yarı fark $x$ çıkar; ortak çarpanı sadeleştir.
+
+</Ipucu>
+
+<Cozum>
+
+1. Pay: $\cos 4x-\cos 2x=-2\sin\dfrac{4x+2x}{2}\sin\dfrac{4x-2x}{2}=-2\sin 3x\sin x$.
+2. Payda: $\sin 4x+\sin 2x=2\sin\dfrac{4x+2x}{2}\cos\dfrac{4x-2x}{2}=2\sin 3x\cos x$.
+3. Oran: $\dfrac{-2\sin 3x\sin x}{2\sin 3x\cos x}=-\dfrac{\sin x}{\cos x}=-\tan x$.
+
+<Cevap>$-\tan x$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\sin\dfrac{\alpha}{2}=\dfrac{1}{\sqrt5}$ ve $\dfrac{\alpha}{2}$ I. bölgede iken $\cos\alpha$ değerini bul.
+
+</Soru>
+
+<Ipucu>
+
+Yarım açı formülünü ters yönde kullan: $\cos\alpha=1-2\sin^2\dfrac{\alpha}{2}$ (iki kat açı formülü).
+
+</Ipucu>
+
+<Cozum>
+
+1. İki kat açı kosinüs formülü: $\cos\alpha=1-2\sin^2\dfrac{\alpha}{2}$.
+2. $\sin^2\dfrac{\alpha}{2}=\left(\dfrac{1}{\sqrt5}\right)^2=\dfrac15$.
+3. $\cos\alpha=1-2\cdot\dfrac15=1-\dfrac25=\dfrac35$.
+
+<Cevap>$\cos\alpha=\dfrac35$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Yarım açıda işareti unutmak.** $\sin\dfrac{\alpha}{2}$ ve $\cos\dfrac{\alpha}{2}$ kök içerir; başına $\pm$ gelir ve işaret $\dfrac{\alpha}{2}$'nin **bölgesine** göre seçilir, $\alpha$'nın bölgesine göre değil.
+- **$\cos A-\cos B$ formülünde işareti karıştırmak.** Bu tek formülde başta **eksi** vardır ve **iki sinüs** çarpılır: $-2\sin\dfrac{A+B}{2}\sin\dfrac{A-B}{2}$.
+- **Toplam-çarpımda yarı toplam/yarı fark yerine $A,B$'yi yazmak.** Argümanlar daima $\dfrac{A+B}{2}$ ve $\dfrac{A-B}{2}$'dir, $A$ ve $B$ değil.
+- **Çarpım-toplamdaki $\dfrac12$ katsayısını düşürmek.** $\sin A\cos B=\dfrac12[\dots]$; $2\sin A\cos B$ verilmedikçe $\dfrac12$ kalır.
+
+> **Not:** Bu üç formül ailesini ezberlemek yerine **kaynaklarını** hatırla: yarım açı, $\cos 2x$'in iki yazılışından; toplam-çarpım ve çarpım-toplam ise toplam-fark formüllerini toplayıp çıkarmaktan gelir. Bir denklemde **toplam** görünce çarpıma (çarpanlara ayırmak için), **çarpım** görünce toplama (integral/sadeleştirme için) geçmeyi refleks hâline getir.
+
+<KonuNav slug="yarim-aci-donusum-12" />

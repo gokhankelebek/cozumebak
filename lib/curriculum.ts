@@ -264,27 +264,27 @@ export const TOPICS: Topic[] = [
   { slug: "silindir-koni-kure-11", title: "Silindir, Koni ve Küre", track: "11", unit: "katı-cisimler-11", summary: "Silindir, koni ve kürenin yüzey alanı ve hacmi.", minutes: 8, difficulty: "Orta", questionCount: 20, status: "published", keywords: ["silindir", "koni", "küre", "hacim"] },
 
   // ── 12. Sınıf · Üstel ve Logaritmik ──
-  { slug: "ustel-fonksiyon", title: "Üstel Fonksiyon", track: "12", unit: "ustel-logaritma-12", summary: "Üstel fonksiyon, grafiği ve üstel denklemler.", minutes: 7, difficulty: "Orta", questionCount: 16, status: "soon" },
-  { slug: "logaritma-fonksiyonu", title: "Logaritma Fonksiyonu", track: "12", unit: "ustel-logaritma-12", summary: "Logaritma tanımı, özellikleri ve grafiği.", minutes: 8, difficulty: "Orta", questionCount: 20, status: "soon", keywords: ["log", "ln", "logaritma"] },
-  { slug: "logaritmali-denklemler", title: "Logaritmik Denklem ve Eşitsizlikler", track: "12", unit: "ustel-logaritma-12", summary: "Logaritmalı denklem ve eşitsizlik çözümleri.", minutes: 8, difficulty: "Zor", questionCount: 18, status: "soon" },
+  { slug: "ustel-fonksiyon", title: "Üstel Fonksiyon", track: "12", unit: "ustel-logaritma-12", summary: "Üstel fonksiyon, grafiği ve üstel denklemler.", minutes: 7, difficulty: "Orta", questionCount: 21, status: "published" },
+  { slug: "logaritma-fonksiyonu", title: "Logaritma Fonksiyonu", track: "12", unit: "ustel-logaritma-12", summary: "Logaritma tanımı, özellikleri ve grafiği.", minutes: 8, difficulty: "Orta", questionCount: 20, status: "published", keywords: ["log", "ln", "logaritma"] },
+  { slug: "logaritmali-denklemler", title: "Logaritmik Denklem ve Eşitsizlikler", track: "12", unit: "ustel-logaritma-12", summary: "Logaritmalı denklem ve eşitsizlik çözümleri.", minutes: 8, difficulty: "Zor", questionCount: 22, status: "published" },
 
   // ── 12. Sınıf · Diziler ──
-  { slug: "dizi-kavrami", title: "Dizi Kavramı", track: "12", unit: "diziler-12", summary: "Dizi tanımı, genel terim ve dizi çeşitleri.", minutes: 6, difficulty: "Kolay", questionCount: 12, status: "soon" },
-  { slug: "aritmetik-dizi", title: "Aritmetik Dizi", track: "12", unit: "diziler-12", summary: "Ortak fark, genel terim ve toplam formülü.", minutes: 7, difficulty: "Orta", questionCount: 18, status: "soon" },
-  { slug: "geometrik-dizi", title: "Geometrik Dizi", track: "12", unit: "diziler-12", summary: "Ortak çarpan, genel terim ve toplam.", minutes: 7, difficulty: "Orta", questionCount: 18, status: "soon" },
+  { slug: "dizi-kavrami", title: "Dizi Kavramı", track: "12", unit: "diziler-12", summary: "Dizi tanımı, genel terim ve dizi çeşitleri.", minutes: 6, difficulty: "Kolay", questionCount: 20, status: "published" },
+  { slug: "aritmetik-dizi", title: "Aritmetik Dizi", track: "12", unit: "diziler-12", summary: "Ortak fark, genel terim ve toplam formülü.", minutes: 7, difficulty: "Orta", questionCount: 19, status: "published" },
+  { slug: "geometrik-dizi", title: "Geometrik Dizi", track: "12", unit: "diziler-12", summary: "Ortak çarpan, genel terim ve toplam.", minutes: 7, difficulty: "Orta", questionCount: 19, status: "published" },
 
   // ── 12. Sınıf · Trigonometri ──
-  { slug: "yarim-aci-donusum-12", title: "Yarım Açı ve Dönüşüm Formülleri", track: "12", unit: "trigonometri-12", summary: "Yarım açı, toplam-çarpım ve çarpım-toplam dönüşüm formülleri.", minutes: 8, difficulty: "Zor", questionCount: 16, status: "soon", keywords: ["yarım açı", "dönüşüm formülleri"] },
-  { slug: "ters-trigonometrik-12", title: "Ters Trigonometrik Fonksiyonlar", track: "12", unit: "trigonometri-12", summary: "Arcsin, arccos, arctan fonksiyonları ve değerleri.", minutes: 7, difficulty: "Orta", questionCount: 14, status: "soon", keywords: ["arcsin", "arccos", "ters trigonometrik"] },
+  { slug: "yarim-aci-donusum-12", title: "Yarım Açı ve Dönüşüm Formülleri", track: "12", unit: "trigonometri-12", summary: "Yarım açı, toplam-çarpım ve çarpım-toplam dönüşüm formülleri.", minutes: 8, difficulty: "Zor", questionCount: 19, status: "published", keywords: ["yarım açı", "dönüşüm formülleri"] },
+  { slug: "ters-trigonometrik-12", title: "Ters Trigonometrik Fonksiyonlar", track: "12", unit: "trigonometri-12", summary: "Arcsin, arccos, arctan fonksiyonları ve değerleri.", minutes: 7, difficulty: "Orta", questionCount: 17, status: "published", keywords: ["arcsin", "arccos", "ters trigonometrik"] },
 
   // ── 12. Sınıf · Türev ──
-  { slug: "turevin-tanimi-12", title: "Türevin Tanımı ve Anlamı", track: "12", unit: "turev-12", summary: "Limitle türev tanımı, anlık değişim oranı ve teğetin eğimi.", minutes: 8, difficulty: "Orta", questionCount: 16, status: "soon", keywords: ["türev tanımı", "anlık değişim"] },
-  { slug: "turev-alma-kurallari-12", title: "Türev Alma Kuralları", track: "12", unit: "turev-12", summary: "Üs, çarpım, bölüm ve zincir kuralı ile türev alma.", minutes: 8, difficulty: "Orta", questionCount: 20, status: "soon", keywords: ["türev kuralları", "zincir kuralı"] },
-  { slug: "turevde-uygulamalar", title: "Türevin Uygulamaları", track: "12", unit: "turev-12", summary: "Artan-azalan, ekstremum ve optimizasyon problemleri.", minutes: 9, difficulty: "Zor", questionCount: 24, status: "soon", keywords: ["ekstremum", "maksimum", "minimum", "optimizasyon"] },
+  { slug: "turevin-tanimi-12", title: "Türevin Tanımı ve Anlamı", track: "12", unit: "turev-12", summary: "Limitle türev tanımı, anlık değişim oranı ve teğetin eğimi.", minutes: 8, difficulty: "Orta", questionCount: 18, status: "published", keywords: ["türev tanımı", "anlık değişim"] },
+  { slug: "turev-alma-kurallari-12", title: "Türev Alma Kuralları", track: "12", unit: "turev-12", summary: "Üs, çarpım, bölüm ve zincir kuralı ile türev alma.", minutes: 8, difficulty: "Orta", questionCount: 20, status: "published", keywords: ["türev kuralları", "zincir kuralı"] },
+  { slug: "turevde-uygulamalar", title: "Türevin Uygulamaları", track: "12", unit: "turev-12", summary: "Artan-azalan, ekstremum ve optimizasyon problemleri.", minutes: 9, difficulty: "Zor", questionCount: 18, status: "published", keywords: ["ekstremum", "maksimum", "minimum", "optimizasyon"] },
 
   // ── 12. Sınıf · İntegral ──
-  { slug: "belirsiz-integral", title: "Belirsiz İntegral", track: "12", unit: "integral-12", summary: "Ters türev, temel integral kuralları.", minutes: 8, difficulty: "Orta", questionCount: 20, status: "soon" },
-  { slug: "belirli-integral", title: "Belirli İntegral ve Alan", track: "12", unit: "integral-12", summary: "Belirli integral, alan ve hacim hesabı.", minutes: 9, difficulty: "Zor", questionCount: 22, status: "soon" },
+  { slug: "belirsiz-integral", title: "Belirsiz İntegral", track: "12", unit: "integral-12", summary: "Ters türev, temel integral kuralları.", minutes: 8, difficulty: "Orta", questionCount: 20, status: "published" },
+  { slug: "belirli-integral", title: "Belirli İntegral ve Alan", track: "12", unit: "integral-12", summary: "Belirli integral, alan ve hacim hesabı.", minutes: 9, difficulty: "Zor", questionCount: 19, status: "published" },
 
   // ── TYT · Temel Kavramlar ──
   { slug: "temel-kavramlar", title: "Sayı Kümeleri ve Sayı Çeşitleri", track: "tyt", unit: "temel-kavramlar-tyt", summary: "Doğal, tam, rasyonel, irrasyonel ve gerçek sayılar; tek-çift, asal ve aralarında asal sayılar.", minutes: 8, difficulty: "Kolay", questionCount: 22, status: "published", keywords: ["sayı kümeleri", "doğal sayılar", "rasyonel", "asal sayı", "tek çift", "gerçek sayılar"] },

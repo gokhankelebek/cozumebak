@@ -1,0 +1,464 @@
+import { topicMetadata } from "@/lib/seo";
+import { SinusGrafik } from "@/components/figures/TrigonometriFig";
+import { BirimCember } from "@/components/figures/BirimCemberFig";
+
+export const metadata = topicMetadata("ters-trigonometrik-12");
+
+<Konu slug="ters-trigonometrik-12" />
+
+<p className="lead">"$\sin x=\dfrac12$ ise $x$ kaçtır?" sorusunun cevabını veren fonksiyonlar **ters trigonometrik fonksiyonlardır**: $\arcsin$, $\arccos$ ve $\arctan$. Bir fonksiyonun tersinin olabilmesi için **bire bir** olması gerekir; oysa $\sin$, $\cos$, $\tan$ periyodik oldukları için bire bir değildir. Bu yüzden tanım kümelerini uygun bir aralığa **kısıtlarız** ve ancak o zaman tersini tanımlarız. Bu derste bu kısıtlamaları, ters fonksiyonların **tanım ve değer kümelerini**, temel değerlerini ve $\sin(\arccos x)$ gibi bileşke ifadeleri öğreneceğiz. Bol örnek ve "Sıra Sende" alıştırmalarıyla pekiştireceğiz.</p>
+
+## 1. Neden Kısıtlama Gerekir?
+
+$y=\sin x$ grafiğine yatay bir doğru çizersen onu **sonsuz** noktada keser; yani $\sin x=\dfrac12$ denkleminin sonsuz çözümü vardır. Tek bir cevap verebilmek için $\sin$'i, tüm değerlerini bir kez aldığı **artan** bir aralığa kısıtlarız: $\left[-\dfrac{\pi}{2},\dfrac{\pi}{2}\right]$.
+
+<Figur>
+
+<SinusGrafik />
+
+<Altyazi>Şekil 1 — $y=\sin x$ periyodiktir, bir yatay doğru sonsuz kez keser; bire bir değildir. $\arcsin$ tanımlamak için tanım kümesini $\left[-\dfrac{\pi}{2},\dfrac{\pi}{2}\right]$ aralığına kısıtlarız (sinüsün $-1$'den $1$'e bir kez arttığı aralık).</Altyazi>
+
+</Figur>
+
+Kısıtlanmış aralıklarda her fonksiyon bire bir olur ve tersi tanımlanır:
+
+| Fonksiyon | Kısıtlı tanım kümesi | Ters fonksiyon | Değer kümesi |
+|---|---|---|---|
+| $\sin$ | $\left[-\tfrac{\pi}{2},\tfrac{\pi}{2}\right]$ | $\arcsin$ | $\left[-\tfrac{\pi}{2},\tfrac{\pi}{2}\right]$ |
+| $\cos$ | $[0,\pi]$ | $\arccos$ | $[0,\pi]$ |
+| $\tan$ | $\left(-\tfrac{\pi}{2},\tfrac{\pi}{2}\right)$ | $\arctan$ | $\left(-\tfrac{\pi}{2},\tfrac{\pi}{2}\right)$ |
+
+## 2. Arcsin Fonksiyonu
+
+$\arcsin x$ (veya $\sin^{-1}x$), "sinüsü $x$ olan, $\left[-\dfrac{\pi}{2},\dfrac{\pi}{2}\right]$ aralığındaki açı"dır:
+
+$$\arcsin x=\theta \iff \sin\theta=x \quad\text{ve}\quad \theta\in\left[-\frac{\pi}{2},\frac{\pi}{2}\right]$$
+
+Tanım kümesi $[-1,1]$, değer kümesi $\left[-\dfrac{\pi}{2},\dfrac{\pi}{2}\right]$'dir. Cevap daima bu aralıktadır — negatif girdi için cevap **dördüncü** bölge (negatif açı) verir, II. veya III. bölge değil.
+
+<Ornek>
+
+<Soru>
+
+$\arcsin\dfrac12$ ve $\arcsin\left(-\dfrac{\sqrt3}{2}\right)$ değerlerini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Cevabın $\left[-\dfrac{\pi}{2},\dfrac{\pi}{2}\right]$ aralığında olması gerektiğini unutma. Negatif girdide cevap negatif bir açıdır.
+
+</Ipucu>
+
+<Cozum>
+
+1. $\sin\theta=\dfrac12$ ve $\theta\in\left[-\dfrac{\pi}{2},\dfrac{\pi}{2}\right]$: $\theta=\dfrac{\pi}{6}$.
+2. $\sin\theta=-\dfrac{\sqrt3}{2}$ ve $\theta\in\left[-\dfrac{\pi}{2},\dfrac{\pi}{2}\right]$: $\theta=-\dfrac{\pi}{3}$ (IV. bölge, çünkü cevap bu aralıkta olmalı).
+
+<Cevap>$\arcsin\dfrac12=\dfrac{\pi}{6}$, $\quad\arcsin\left(-\dfrac{\sqrt3}{2}\right)=-\dfrac{\pi}{3}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 3. Arccos Fonksiyonu
+
+$\arccos x$, "kosinüsü $x$ olan, $[0,\pi]$ aralığındaki açı"dır:
+
+$$\arccos x=\theta \iff \cos\theta=x \quad\text{ve}\quad \theta\in[0,\pi]$$
+
+Tanım kümesi $[-1,1]$, değer kümesi $[0,\pi]$'dir. Dikkat: negatif girdide cevap **ikinci** bölgededir (örneğin $\arccos\left(-\dfrac12\right)=\dfrac{2\pi}{3}$), çünkü cevap $[0,\pi]$ içinde kalmalıdır.
+
+<Ornek>
+
+<Soru>
+
+$\arccos\left(-\dfrac12\right)$ ve $\arccos 0$ değerlerini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $\cos\theta=-\dfrac12$ ve $\theta\in[0,\pi]$: II. bölgede $\theta=\dfrac{2\pi}{3}$ (çünkü $\cos\dfrac{2\pi}{3}=-\dfrac12$).
+2. $\cos\theta=0$ ve $\theta\in[0,\pi]$: $\theta=\dfrac{\pi}{2}$.
+
+<Cevap>$\arccos\left(-\dfrac12\right)=\dfrac{2\pi}{3}$, $\quad\arccos 0=\dfrac{\pi}{2}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 4. Arctan Fonksiyonu
+
+$\arctan x$, "tanjantı $x$ olan, $\left(-\dfrac{\pi}{2},\dfrac{\pi}{2}\right)$ aralığındaki açı"dır:
+
+$$\arctan x=\theta \iff \tan\theta=x \quad\text{ve}\quad \theta\in\left(-\frac{\pi}{2},\frac{\pi}{2}\right)$$
+
+Tanım kümesi **tüm gerçek sayılardır** ($\mathbb{R}$), çünkü tanjant her değeri alır; değer kümesi $\left(-\dfrac{\pi}{2},\dfrac{\pi}{2}\right)$ (uçlar dahil değil). Birim çember, bu temel değerleri görmenin en kolay yoludur.
+
+<Figur>
+
+<BirimCember />
+
+<Altyazi>Şekil 2 — Birim çemberde bir açı ve uç noktası $P=(\cos\alpha,\sin\alpha)$. Ters trigonometrik fonksiyonlar bu işlemi tersine çevirir: bir koordinat değeri verilir, ona karşılık gelen (uygun aralıktaki) $\alpha$ açısı bulunur.</Altyazi>
+
+</Figur>
+
+<Ornek>
+
+<Soru>
+
+$\arctan 1$ ve $\arctan\left(-\sqrt3\right)$ değerlerini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $\tan\theta=1$ ve $\theta\in\left(-\dfrac{\pi}{2},\dfrac{\pi}{2}\right)$: $\theta=\dfrac{\pi}{4}$.
+2. $\tan\theta=-\sqrt3$ ve $\theta\in\left(-\dfrac{\pi}{2},\dfrac{\pi}{2}\right)$: $\theta=-\dfrac{\pi}{3}$ (çünkü $\tan\left(-\dfrac{\pi}{3}\right)=-\sqrt3$).
+
+<Cevap>$\arctan 1=\dfrac{\pi}{4}$, $\quad\arctan\left(-\sqrt3\right)=-\dfrac{\pi}{3}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 5. Bileşke (İç İçe) İfadeler
+
+$\sin(\arccos x)$ gibi ifadelerde içteki ters fonksiyonun ürettiği açıya bir ad ($\theta$) verip dik üçgen veya $\sin^2\theta+\cos^2\theta=1$ özdeşliğini kullanırız. İşaret, ters fonksiyonun değer kümesinden belirlenir.
+
+İki kullanışlı özdeşlik (tanım kümesi içindeki her $x$ için): $\sin(\arcsin x)=x$ ve $\cos(\arccos x)=x$. Ama dikkat: $\arcsin(\sin x)$ daima $x$ **değildir** — yalnız $x\in\left[-\dfrac{\pi}{2},\dfrac{\pi}{2}\right]$ ise $x$'tir.
+
+<Ornek>
+
+<Soru>
+
+$\cos\left(\arcsin\dfrac35\right)$ değerini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+$\theta=\arcsin\dfrac35$ de; o zaman $\sin\theta=\dfrac35$ ve $\theta\in\left[-\dfrac{\pi}{2},\dfrac{\pi}{2}\right]$, yani $\cos\theta\ge 0$. $\cos\theta=\sqrt{1-\sin^2\theta}$.
+
+</Ipucu>
+
+<Cozum>
+
+1. $\theta=\arcsin\dfrac35$ olsun: $\sin\theta=\dfrac35$, $\theta\in\left[-\dfrac{\pi}{2},\dfrac{\pi}{2}\right]$ olduğundan $\cos\theta\ge 0$.
+2. $\cos\theta=\sqrt{1-\sin^2\theta}=\sqrt{1-\dfrac{9}{25}}=\sqrt{\dfrac{16}{25}}=\dfrac45$.
+
+<Cevap>$\cos\left(\arcsin\dfrac35\right)=\dfrac45$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Çözümlü Örnekler
+
+<Ornek>
+
+<Soru>
+
+$\arcsin\left(-\dfrac12\right)+\arccos\left(-\dfrac12\right)$ toplamını bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $\arcsin\left(-\dfrac12\right)=-\dfrac{\pi}{6}$ (cevap $\left[-\dfrac{\pi}{2},\dfrac{\pi}{2}\right]$ aralığında).
+2. $\arccos\left(-\dfrac12\right)=\dfrac{2\pi}{3}$ (cevap $[0,\pi]$ aralığında).
+3. Topla: $-\dfrac{\pi}{6}+\dfrac{2\pi}{3}=-\dfrac{\pi}{6}+\dfrac{4\pi}{6}=\dfrac{3\pi}{6}=\dfrac{\pi}{2}$.
+
+<Cevap>$\dfrac{\pi}{2}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\tan\left(\arccos\dfrac{4}{5}\right)$ değerini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+$\theta=\arccos\dfrac45$ de; $\cos\theta=\dfrac45$, $\theta\in[0,\pi]$ ve $\dfrac45>0$ olduğundan $\theta$ I. bölgede, $\sin\theta\ge 0$. Önce $\sin\theta$'yı bul.
+
+</Ipucu>
+
+<Cozum>
+
+1. $\theta=\arccos\dfrac45$: $\cos\theta=\dfrac45$. Girdi pozitif olduğundan $\theta\in\left[0,\dfrac{\pi}{2}\right]$, $\sin\theta\ge 0$.
+2. $\sin\theta=\sqrt{1-\cos^2\theta}=\sqrt{1-\dfrac{16}{25}}=\dfrac35$.
+3. $\tan\theta=\dfrac{\sin\theta}{\cos\theta}=\dfrac{3/5}{4/5}=\dfrac34$.
+
+<Cevap>$\tan\left(\arccos\dfrac45\right)=\dfrac34$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\arccos\left(\cos\dfrac{4\pi}{3}\right)$ değerini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Cevap $[0,\pi]$ aralığında olmalı; $\dfrac{4\pi}{3}$ bu aralıkta değil. Önce $\cos\dfrac{4\pi}{3}$'ü bul, sonra $[0,\pi]$ içinde aynı kosinüsü veren açıyı ara.
+
+</Ipucu>
+
+<Cozum>
+
+1. $\cos\dfrac{4\pi}{3}=-\dfrac12$.
+2. $\arccos\left(-\dfrac12\right)$, $[0,\pi]$ aralığında kosinüsü $-\dfrac12$ olan açıdır: $\dfrac{2\pi}{3}$.
+3. (Dikkat: $\dfrac{4\pi}{3}$ değer kümesi dışında olduğundan cevap $\dfrac{4\pi}{3}$ değildir.)
+
+<Cevap>$\dfrac{2\pi}{3}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\sin\left(\arctan\dfrac{5}{12}\right)$ değerini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $\theta=\arctan\dfrac{5}{12}$: $\tan\theta=\dfrac{5}{12}$. Girdi pozitif, $\theta\in\left(0,\dfrac{\pi}{2}\right)$, tüm oranlar pozitif.
+2. Dik üçgen: karşı kenar $5$, komşu kenar $12$, hipotenüs $\sqrt{5^2+12^2}=\sqrt{169}=13$.
+3. $\sin\theta=\dfrac{\text{karşı}}{\text{hipotenüs}}=\dfrac{5}{13}$.
+
+<Cevap>$\sin\left(\arctan\dfrac{5}{12}\right)=\dfrac{5}{13}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Alıştırmalar — Sıra Sende
+
+> Önce kendin çözmeyi dene; sonra çözümü açıp karşılaştır.
+
+<Ornek>
+
+<Soru>
+
+$\arccos 1$ ve $\arcsin 1$ değerlerini bul.
+
+</Soru>
+
+<Cozum>
+
+1. $\cos\theta=1$, $\theta\in[0,\pi]$: $\theta=0$.
+2. $\sin\theta=1$, $\theta\in\left[-\dfrac{\pi}{2},\dfrac{\pi}{2}\right]$: $\theta=\dfrac{\pi}{2}$.
+
+<Cevap>$\arccos 1=0$, $\quad\arcsin 1=\dfrac{\pi}{2}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\arctan 0+\arctan\left(\dfrac{\sqrt3}{3}\right)$ toplamını bul.
+
+</Soru>
+
+<Cozum>
+
+1. $\arctan 0=0$.
+2. $\tan\theta=\dfrac{\sqrt3}{3}=\dfrac{1}{\sqrt3}$, $\theta\in\left(-\dfrac{\pi}{2},\dfrac{\pi}{2}\right)$: $\theta=\dfrac{\pi}{6}$.
+3. Topla: $0+\dfrac{\pi}{6}=\dfrac{\pi}{6}$.
+
+<Cevap>$\dfrac{\pi}{6}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\cos\left(\arccos\dfrac{2}{7}\right)$ değerini bul.
+
+</Soru>
+
+<Cozum>
+
+1. $\dfrac27\in[-1,1]$ olduğundan $\cos(\arccos x)=x$ özdeşliği geçerlidir.
+2. Sonuç doğrudan $\dfrac27$'dir.
+
+<Cevap>$\dfrac27$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\arcsin\dfrac{\sqrt2}{2}+\arccos\dfrac{\sqrt2}{2}$ toplamını bul.
+
+</Soru>
+
+<Cozum>
+
+1. $\arcsin\dfrac{\sqrt2}{2}=\dfrac{\pi}{4}$.
+2. $\arccos\dfrac{\sqrt2}{2}=\dfrac{\pi}{4}$.
+3. Topla: $\dfrac{\pi}{4}+\dfrac{\pi}{4}=\dfrac{\pi}{2}$ (genel kural: $\arcsin x+\arccos x=\dfrac{\pi}{2}$).
+
+<Cevap>$\dfrac{\pi}{2}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\sin\left(\arccos\dfrac{1}{2}\right)$ değerini bul.
+
+</Soru>
+
+<Cozum>
+
+1. $\theta=\arccos\dfrac12=\dfrac{\pi}{3}$.
+2. $\sin\dfrac{\pi}{3}=\dfrac{\sqrt3}{2}$.
+
+<Cevap>$\dfrac{\sqrt3}{2}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\tan\left(\arcsin\dfrac{3}{5}\right)$ değerini bul.
+
+</Soru>
+
+<Ipucu>
+
+$\theta=\arcsin\dfrac35$ de; karşı kenar $3$, hipotenüs $5$ olan dik üçgenden komşu kenarı bul. $\theta$ I. bölgede olduğundan tüm oranlar pozitif.
+
+</Ipucu>
+
+<Cozum>
+
+1. $\theta=\arcsin\dfrac35$: $\sin\theta=\dfrac35$, girdi pozitif → $\theta\in\left[0,\dfrac{\pi}{2}\right]$.
+2. Dik üçgen: karşı $3$, hipotenüs $5$, komşu $\sqrt{5^2-3^2}=4$.
+3. $\tan\theta=\dfrac{3}{4}$.
+
+<Cevap>$\dfrac34$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\arcsin\left(\sin\dfrac{5\pi}{6}\right)$ değerini bul.
+
+</Soru>
+
+<Ipucu>
+
+Cevap $\left[-\dfrac{\pi}{2},\dfrac{\pi}{2}\right]$ aralığında olmalı; $\dfrac{5\pi}{6}$ bu aralıkta değil. Önce $\sin\dfrac{5\pi}{6}$'yı bul, sonra aralık içinde aynı sinüsü veren açıyı ara.
+
+</Ipucu>
+
+<Cozum>
+
+1. $\sin\dfrac{5\pi}{6}=\dfrac12$.
+2. $\arcsin\dfrac12$, $\left[-\dfrac{\pi}{2},\dfrac{\pi}{2}\right]$ aralığında sinüsü $\dfrac12$ olan açıdır: $\dfrac{\pi}{6}$.
+3. Demek ki sonuç $\dfrac{5\pi}{6}$ **değil**, $\dfrac{\pi}{6}$'dır.
+
+<Cevap>$\dfrac{\pi}{6}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\cos\left(\arcsin x\right)$ ifadesini $x\in[-1,1]$ için $x$ cinsinden yaz.
+
+</Soru>
+
+<Ipucu>
+
+$\theta=\arcsin x$ de; $\theta\in\left[-\dfrac{\pi}{2},\dfrac{\pi}{2}\right]$ olduğundan bu aralıkta $\cos\theta\ge 0$ — yani kök pozitif alınır.
+
+</Ipucu>
+
+<Cozum>
+
+1. $\theta=\arcsin x$: $\sin\theta=x$ ve $\theta\in\left[-\dfrac{\pi}{2},\dfrac{\pi}{2}\right]$, bu aralıkta $\cos\theta\ge 0$.
+2. $\cos\theta=\sqrt{1-\sin^2\theta}=\sqrt{1-x^2}$ (pozitif kök).
+
+<Cevap>$\cos(\arcsin x)=\sqrt{1-x^2}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\sin\left(2\arctan\dfrac{1}{3}\right)$ değerini bul.
+
+</Soru>
+
+<Ipucu>
+
+$\theta=\arctan\dfrac13$ de; iki kat açı formülü $\sin 2\theta=2\sin\theta\cos\theta$ gerekir. Önce dik üçgenden $\sin\theta$ ve $\cos\theta$'yı bul.
+
+</Ipucu>
+
+<Cozum>
+
+1. $\theta=\arctan\dfrac13$: $\tan\theta=\dfrac13$, I. bölge. Dik üçgen: karşı $1$, komşu $3$, hipotenüs $\sqrt{1^2+3^2}=\sqrt{10}$.
+2. $\sin\theta=\dfrac{1}{\sqrt{10}}$, $\cos\theta=\dfrac{3}{\sqrt{10}}$.
+3. İki kat açı: $\sin 2\theta=2\sin\theta\cos\theta=2\cdot\dfrac{1}{\sqrt{10}}\cdot\dfrac{3}{\sqrt{10}}=\dfrac{6}{10}=\dfrac35$.
+
+<Cevap>$\dfrac35$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Değer kümesini görmezden gelmek.** $\arcsin$ ve $\arctan$ cevapları $\left[-\dfrac{\pi}{2},\dfrac{\pi}{2}\right]$, $\arccos$ cevapları $[0,\pi]$ içinde olmalıdır. Negatif girdide $\arccos$ **II. bölge** verir, $\arcsin$ ise **negatif (IV. bölge)** açı verir.
+- **$\arcsin(\sin x)=x$ sanmak.** Bu yalnız $x\in\left[-\dfrac{\pi}{2},\dfrac{\pi}{2}\right]$ ise doğrudur; başka aralıklarda önce $\sin x$ hesaplanıp değer kümesindeki açı bulunur.
+- **Tanım kümesini aşmak.** $\arcsin x$ ve $\arccos x$ yalnız $x\in[-1,1]$ için tanımlıdır; $\arcsin 2$ tanımsızdır. ($\arctan$ ise her gerçek sayıda tanımlıdır.)
+- **Bileşkede işareti yanlış almak.** $\cos(\arcsin x)$ gibi ifadelerde kökün işareti, içteki ters fonksiyonun **değer kümesine** bakılarak seçilir; $\arcsin$ ve $\arccos$'un kapsadığı aralıkta kosinüs/sinüs işareti farklı çıkabilir.
+
+> **Not:** Ters trigonometrik bir değer sorulduğunda iki şeyi birlikte düşün: **"hangi açının" trigonometrik değeri bu** ve **"o açı hangi aralıkta olmalı"**. Bileşke ifadelerde içteki açıya $\theta$ adını ver, dik üçgen kur veya $\sin^2\theta+\cos^2\theta=1$ kullan; işareti daima değer kümesinden doğrula.
+
+<KonuNav slug="ters-trigonometrik-12" />

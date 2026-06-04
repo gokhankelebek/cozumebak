@@ -1,0 +1,470 @@
+import { topicMetadata } from "@/lib/seo";
+
+export const metadata = topicMetadata("geometrik-dizi");
+
+<Konu slug="geometrik-dizi" />
+
+<p className="lead">**Geometrik dizi**, ardışık terimleri arasındaki **oranın sabit** olduğu özel bir dizidir: $3, 6, 12, 24, \dots$ dizisinde her terim bir öncekinin $2$ katıdır. Bu sabit orana **ortak çarpan** denir ($r$). Aritmetik dizide terimler eşit miktarda **eklenerek** ilerlerken, geometrik dizide her adımda sabit bir sayıyla **çarpılır**. Bu derste ortak çarpanı, genel terim $a_n=a_1\cdot r^{n-1}$'i, terim toplamı $S_n$'i ve geometrik orta kavramını öğreneceğiz. Bol örnek ve "Sıra Sende" alıştırmalarıyla pekiştireceğiz.</p>
+
+## 1. Ortak Çarpan
+
+Bir dizide her terimin bir öncekine **oranı** sabitse, bu diziye **geometrik dizi**; bu sabit orana **ortak çarpan** denir ve $r$ ile gösterilir:
+
+$$r=\frac{a_{n+1}}{a_n}$$
+
+Geometrik dizide hiçbir terim $0$ olamaz (yoksa oran tanımsız olur). $|r|>1$ ise terimlerin mutlak değeri büyür, $0<|r|<1$ ise küçülür; $r<0$ ise terimlerin işareti sırayla değişir.
+
+<Ornek>
+
+<Soru>
+
+$3, 6, 12, 24, \dots$ dizisinin ortak çarpanını bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Ortak çarpan, ardışık terimlerin oranıdır: $r=\dfrac{6}{3}=2$.
+2. Kontrol: $\dfrac{12}{6}=2$, $\dfrac{24}{12}=2$. ✓
+
+<Cevap>$r=2$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 2. Genel Terim
+
+İlk terim $a_1$ ve ortak çarpan $r$ bilindiğinde, $n.$ terim:
+
+$$a_n=a_1\cdot r^{\,n-1}$$
+
+$a_1$, $(n-1)$ kez $r$ ile çarpılır: ikinci terim için **bir** kez, üçüncü için **iki** kez. (Aritmetik dizideki "$+$" yerine burada "$\times$" var.)
+
+<Ornek>
+
+<Soru>
+
+$a_1=5$ ve $r=2$ olan geometrik dizinin $6.$ terimini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Formül: $a_n=a_1\cdot r^{n-1}$.
+2. Yerine koy: $a_6=5\cdot 2^{6-1}=5\cdot 2^5$.
+3. $2^5=32$, $a_6=5\cdot 32=160$.
+
+<Cevap>$a_6=160$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+İlk terimi $2$, ortak çarpanı $3$ olan dizide $486$ kaçıncı terimdir?
+
+</Soru>
+
+<Ipucu>
+
+$a_n=486$ yaz; $2\cdot 3^{n-1}=486$'dan $3^{n-1}$'i yalnız bırak, sonra $3$'ün kuvveti olarak tanı.
+
+</Ipucu>
+
+<Cozum>
+
+1. $a_n=2\cdot 3^{n-1}=486$.
+2. $3^{n-1}=243$.
+3. $243=3^5$ olduğundan $n-1=5\Rightarrow n=6$.
+
+<Cevap>$6.$ terim.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 3. İki Bilgiden Diziyi Bulma
+
+İki terim verilirse, genel terimleri **oranlayarak** $r$'yi çekeriz; üs farkı, sıra numaralarının farkıdır.
+
+<Ornek>
+
+<Soru>
+
+Bir geometrik dizide $a_2=6$ ve $a_5=48$ ise $a_1$ ve $r$'yi bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+$\dfrac{a_5}{a_2}=r^{5-2}=r^3$. Önce $r$'yi bul, sonra $a_2=a_1 r$ ile $a_1$'i çek.
+
+</Ipucu>
+
+<Cozum>
+
+1. Terimleri oranla: $\dfrac{a_5}{a_2}=r^{3}=\dfrac{48}{6}=8$.
+2. $r^3=8\Rightarrow r=2$.
+3. $a_2=a_1\cdot r=6\Rightarrow a_1\cdot 2=6\Rightarrow a_1=3$.
+
+<Cevap>$a_1=3,\ r=2$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 4. İlk $n$ Terim Toplamı
+
+$r\neq 1$ olan geometrik dizinin ilk $n$ teriminin toplamı:
+
+$$S_n=\frac{a_1\,(r^{\,n}-1)}{r-1}=\frac{a_1\,(1-r^{\,n})}{1-r}$$
+
+İki yazım eşdeğerdir; $r>1$ iken birincisi, $0<r<1$ iken (paydanın pozitif kalması için) ikincisi pratiktir. ($r=1$ ise tüm terimler eşittir ve $S_n=n\cdot a_1$.)
+
+<Ornek>
+
+<Soru>
+
+$2, 6, 18, \dots$ geometrik dizisinin ilk $5$ teriminin toplamını bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $a_1=2,\ r=3,\ n=5$.
+2. Formül: $S_5=\dfrac{a_1(r^{5}-1)}{r-1}=\dfrac{2(3^{5}-1)}{3-1}$.
+3. $3^5=243$, $S_5=\dfrac{2(243-1)}{2}=243-1=242$.
+
+<Cevap>$S_5=242$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 5. Geometrik Orta
+
+$a$, $b$, $c$ ardışık geometrik terimlerse, ortadaki terimin **karesi**, uçların çarpımına eşittir:
+
+$$b^2=a\cdot c$$
+
+Çünkü $\dfrac{b}{a}=\dfrac{c}{b}$ (ortak çarpan eşit). Bu yüzden $b=\pm\sqrt{a\cdot c}$; pozitif terimlerle çalışıyorsak $b=\sqrt{a\cdot c}$ alınır.
+
+<Ornek>
+
+<Soru>
+
+$4,\ x,\ 25$ sayıları bu sırayla pozitif terimli geometrik dizi ise $x$ kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. Geometrik orta: $x^2=4\cdot 25=100$.
+2. $x=\pm 10$; terimler pozitif olduğundan $x=10$.
+
+<Cevap>$x=10$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Çözümlü Örnekler
+
+<Ornek>
+
+<Soru>
+
+$a_1=1$, $r=\dfrac{1}{2}$ olan geometrik dizinin $4.$ terimini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $a_4=a_1\cdot r^{3}=1\cdot\left(\dfrac{1}{2}\right)^{3}$.
+2. $a_4=\dfrac{1}{8}$.
+
+<Cevap>$\dfrac{1}{8}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir geometrik dizide $a_3=12$ ve $a_6=96$ ise $a_1$'i bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $\dfrac{a_6}{a_3}=r^{3}=\dfrac{96}{12}=8\Rightarrow r=2$.
+2. $a_3=a_1\cdot r^{2}=12\Rightarrow a_1\cdot 4=12\Rightarrow a_1=3$.
+
+<Cevap>$a_1=3$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$1+2+4+8+\dots+256$ toplamını hesaplayınız.
+
+</Soru>
+
+<Ipucu>
+
+$a_1=1$, $r=2$ olan geometrik dizidir. Önce $256$'nın kaçıncı terim olduğunu bul ($256=2^8$), sonra toplam formülünü uygula.
+
+</Ipucu>
+
+<Cozum>
+
+1. $a_1=1,\ r=2$. Son terim $a_n=256=2^{8}$. Genel terim $a_n=1\cdot 2^{n-1}=2^{8}\Rightarrow n-1=8\Rightarrow n=9$.
+2. $S_9=\dfrac{a_1(r^{9}-1)}{r-1}=\dfrac{1\cdot(2^{9}-1)}{2-1}=2^{9}-1$.
+3. $2^9=512$, $S_9=512-1=511$.
+
+<Cevap>$511$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir geometrik dizide $a_1=5$ ve $a_4=40$ ise ilk $4$ terimin toplamını bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Önce $\dfrac{a_4}{a_1}=r^3$ ile $r$'yi bul; sonra $S_4=\dfrac{a_1(r^4-1)}{r-1}$.
+
+</Ipucu>
+
+<Cozum>
+
+1. $\dfrac{a_4}{a_1}=r^{3}=\dfrac{40}{5}=8\Rightarrow r=2$.
+2. $S_4=\dfrac{5(2^{4}-1)}{2-1}=5(16-1)=5\cdot 15=75$.
+
+<Cevap>$75$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Alıştırmalar — Sıra Sende
+
+> Önce kendin çözmeyi dene; sonra çözümü açıp karşılaştır.
+
+<Ornek>
+
+<Soru>
+
+$a_1=2$, $r=3$ olan dizinin $5.$ terimini bul.
+
+</Soru>
+
+<Cozum>
+
+1. $a_5=2\cdot 3^{4}=2\cdot 81=162$.
+
+<Cevap>$162$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$48, 24, 12, 6, \dots$ dizisinin ortak çarpanını ve $6.$ terimini bul.
+
+</Soru>
+
+<Cozum>
+
+1. $r=\dfrac{24}{48}=\dfrac{1}{2}$.
+2. $a_6=48\cdot\left(\dfrac{1}{2}\right)^{5}=48\cdot\dfrac{1}{32}=\dfrac{3}{2}$.
+
+<Cevap>$r=\dfrac{1}{2}$, $a_6=\dfrac{3}{2}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+İlk terimi $3$, ortak çarpanı $2$ olan dizide $192$ kaçıncı terimdir?
+
+</Soru>
+
+<Cozum>
+
+1. $3\cdot 2^{n-1}=192\Rightarrow 2^{n-1}=64=2^{6}$.
+2. $n-1=6\Rightarrow n=7$.
+
+<Cevap>$7.$ terim.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$9,\ x,\ 4$ sayıları bu sırayla pozitif terimli geometrik dizi ise $x$ kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. $x^2=9\cdot 4=36$.
+2. $x=6$ (pozitif).
+
+<Cevap>$x=6$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$1, 3, 9, 27, \dots$ dizisinin ilk $6$ teriminin toplamını bul.
+
+</Soru>
+
+<Cozum>
+
+1. $a_1=1,\ r=3,\ n=6$.
+2. $S_6=\dfrac{1\cdot(3^{6}-1)}{3-1}=\dfrac{729-1}{2}=\dfrac{728}{2}=364$.
+
+<Cevap>$364$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir geometrik dizide $a_2=10$ ve $a_4=90$ ise pozitif ortak çarpanı bul.
+
+</Soru>
+
+<Cozum>
+
+1. $\dfrac{a_4}{a_2}=r^{2}=\dfrac{90}{10}=9$.
+2. $r=3$ (pozitif istendi).
+
+<Cevap>$r=3$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$a_1=64$, $r=\dfrac{1}{2}$ olan geometrik dizinin terimleri ilk kez hangi sırada $1$'in altına düşer?
+
+</Soru>
+
+<Ipucu>
+
+$a_n=64\cdot\left(\dfrac{1}{2}\right)^{n-1}<1$ eşitsizliğini kur; $64=2^{6}$ yazıp $2$'nin kuvvetleriyle karşılaştır.
+
+</Ipucu>
+
+<Cozum>
+
+1. $a_n=64\cdot\left(\dfrac{1}{2}\right)^{n-1}=\dfrac{2^{6}}{2^{n-1}}=2^{7-n}$.
+2. $a_n<1=2^{0}$ olması için $7-n<0\Rightarrow n>7$.
+3. En küçük tam sayı $n=8$: $a_8=2^{-1}=\dfrac{1}{2}<1$. Kontrol: $a_7=2^{0}=1$ (henüz altında değil). ✓
+
+<Cevap>$8.$ terimde ilk kez $1$'in altına düşer.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Üç terimli pozitif bir geometrik dizide terimlerin çarpımı $216$ ise ortadaki terim kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+Terimleri $\dfrac{b}{r},\ b,\ b\cdot r$ olarak yaz; çarpımları $b^3$ olur (çünkü $r$'ler sadeleşir).
+
+</Ipucu>
+
+<Cozum>
+
+1. Üç terimi $\dfrac{b}{r},\ b,\ b r$ olarak yaz.
+2. Çarpım: $\dfrac{b}{r}\cdot b\cdot b r=b^{3}=216$.
+3. $b^{3}=216\Rightarrow b=6$.
+
+<Cevap>Ortadaki terim $6$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir geometrik dizide $a_1+a_2=12$ ve $a_3+a_4=48$ ise ortak çarpanı bul.
+
+</Soru>
+
+<Ipucu>
+
+$a_3+a_4=r^2(a_1+a_2)$ olduğuna dikkat et; iki toplamı oranla.
+
+</Ipucu>
+
+<Cozum>
+
+1. $a_3+a_4=a_1 r^{2}+a_2 r^{2}=r^{2}(a_1+a_2)$.
+2. Oranla: $\dfrac{a_3+a_4}{a_1+a_2}=r^{2}=\dfrac{48}{12}=4$.
+3. $r^{2}=4\Rightarrow r=2$ veya $r=-2$.
+
+<Cevap>$r=2$ ya da $r=-2$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Üste $n$ yazmak.** Genel terim $a_n=a_1\cdot r^{n-1}$'dir; üs $n$ değil $(n-1)$. İlk terimde üs $0$ olmalı ($r^0=1$).
+- **Geometrik diziyle aritmetiği karıştırmak.** Aritmetikte ardışık terimlerin **farkı**, geometrikte **oranı** sabittir. Önce hangisi olduğunu sapta.
+- **Toplam formülünde $r=1$'i kontrol etmemek.** $\dfrac{a_1(r^n-1)}{r-1}$ formülü $r=1$ için tanımsızdır; bu durumda $S_n=n\cdot a_1$.
+- **Geometrik ortada işareti unutmak.** $b^2=a\cdot c$'den $b=\pm\sqrt{ac}$; soruda "pozitif terimli" denmedikçe iki kök de düşünülmelidir.
+
+> **Not:** Geometrik dizide her şey **çarpma** üzerinden ilerler: terimler $a_1, a_1 r, a_1 r^2, \dots$ Verilen iki terimi **oranlayarak** $r$'yi yalnız bırakman çoğu sorunun anahtarıdır; üs farkı tam olarak sıra numaralarının farkıdır. Toplam isteniyorsa $r$'nin $1$'den büyük mü küçük mü olduğuna göre formülün uygun biçimini seç.
+
+<KonuNav slug="geometrik-dizi" />

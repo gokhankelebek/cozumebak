@@ -1,0 +1,522 @@
+import { topicMetadata } from "@/lib/seo";
+import { Parabol } from "@/components/figures/ParabolFig";
+
+export const metadata = topicMetadata("turev-alma-kurallari-12");
+
+<Konu slug="turev-alma-kurallari-12" />
+
+<p className="lead">Her türevi limit tanımından almak yorucu olurdu. Neyse ki birkaç **kural** öğrenerek polinom, kesir ve bileşke fonksiyonların türevini saniyeler içinde alabiliriz. Bu derste **üs (kuvvet) kuralını**, **sabitle çarpım**, **toplam-fark**, **çarpım**, **bölüm** ve **zincir kuralını** öğreneceğiz. Bunlar türevin tüm uygulamalarının temelidir; bol örnek ve "Sıra Sende" alıştırmalarıyla pekiştireceğiz.</p>
+
+## 1. Sabit ve Üs (Kuvvet) Kuralı
+
+Sabit bir fonksiyonun türevi sıfırdır; bir kuvvet fonksiyonunun türevinde üs öne iner, kalan üs bir azalır:
+
+$$\big(c\big)'=0 \qquad\qquad \big(x^{n}\big)'=n\,x^{\,n-1}$$
+
+Bu kural her gerçek $n$ için geçerlidir; örneğin $(x)'=1$, $(x^2)'=2x$, $\left(\sqrt{x}\right)'=\left(x^{1/2}\right)'=\dfrac{1}{2}x^{-1/2}=\dfrac{1}{2\sqrt{x}}$.
+
+<Ornek>
+
+<Soru>
+
+$f(x)=x^5$ ve $g(x)=x^{-3}$ fonksiyonlarının türevlerini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $f'(x)=5x^{5-1}=5x^4$.
+2. $g'(x)=-3x^{-3-1}=-3x^{-4}=-\dfrac{3}{x^4}$.
+
+<Cevap>$f'(x)=5x^4$, $\;g'(x)=-\dfrac{3}{x^4}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 2. Sabitle Çarpım, Toplam ve Fark
+
+Bir sabit, türevin önünde sabit kalır; toplam ve farkın türevi, terimlerin türevlerinin toplamı/farkıdır:
+
+$$\big(c\cdot f\big)'=c\cdot f' \qquad\qquad \big(f\pm g\big)'=f'\pm g'$$
+
+Böylece her polinomun türevini terim terim alabiliriz.
+
+<Ornek>
+
+<Soru>
+
+$f(x)=4x^3-2x^2+7x-9$ fonksiyonunun türevini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Terim terim: $(4x^3)'=12x^2$, $(2x^2)'=4x$, $(7x)'=7$, $(9)'=0$.
+2. Birleştir: $f'(x)=12x^2-4x+7$.
+
+<Cevap>$f'(x)=12x^2-4x+7$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 3. Çarpım Kuralı
+
+İki fonksiyonun çarpımının türevi, "birinin türevi çarpı diğeri, artı diğerinin türevi çarpı birincisi" biçimindedir:
+
+$$\big(f\cdot g\big)'=f'\,g+f\,g'$$
+
+Dikkat: $(f\cdot g)'\neq f'\cdot g'$. Çarpımın türevi, türevlerin çarpımı **değildir**.
+
+<Ornek>
+
+<Soru>
+
+$y=(x^2+1)(3x-2)$ fonksiyonunun türevini çarpım kuralıyla bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+$f=x^2+1$, $g=3x-2$ al; $f'=2x$, $g'=3$. Sonra $f'g+fg'$ formülüne yerleştir.
+
+</Ipucu>
+
+<Cozum>
+
+1. $f=x^2+1\Rightarrow f'=2x$; $\;g=3x-2\Rightarrow g'=3$.
+2. Formül: $y'=f'g+fg'=2x(3x-2)+(x^2+1)\cdot 3$.
+3. Aç: $6x^2-4x+3x^2+3=9x^2-4x+3$.
+
+<Cevap>$y'=9x^2-4x+3$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 4. Bölüm Kuralı
+
+İki fonksiyonun bölümünün türevi:
+
+$$\left(\dfrac{f}{g}\right)'=\dfrac{f'\,g-f\,g'}{g^2}$$
+
+Payda kareye gider; paydaki çıkarmanın **sırası önemlidir** ($f'g$ önce gelir).
+
+<Ornek>
+
+<Soru>
+
+$y=\dfrac{2x+1}{x-3}$ fonksiyonunun türevini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+$f=2x+1$, $g=x-3$; $f'=2$, $g'=1$. Pay $f'g-fg'$, payda $g^2=(x-3)^2$ olur.
+
+</Ipucu>
+
+<Cozum>
+
+1. $f=2x+1\Rightarrow f'=2$; $\;g=x-3\Rightarrow g'=1$.
+2. Pay: $f'g-fg'=2(x-3)-(2x+1)\cdot 1=2x-6-2x-1=-7$.
+3. Payda: $g^2=(x-3)^2$.
+4. Sonuç: $y'=\dfrac{-7}{(x-3)^2}$.
+
+<Cevap>$y'=\dfrac{-7}{(x-3)^2}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 5. Zincir Kuralı (Bileşke Fonksiyon)
+
+Bir fonksiyonun içinde başka bir fonksiyon varsa ($y=f\big(g(x)\big)$), **dışın türevi çarpı için türevi** alınır:
+
+$$\Big(f\big(g(x)\big)\Big)'=f'\big(g(x)\big)\cdot g'(x)$$
+
+Örneğin $\big(g(x)^n\big)'=n\,g(x)^{n-1}\cdot g'(x)$. "Önce dış kabuğu türetip içi olduğu gibi bırak, sonra için türeviyle çarp" diye düşün.
+
+<Figur>
+
+<Parabol />
+
+<Altyazi>Şekil 1 — $y=x^2-4x+3$ parabolü. Türevi $y'=2x-4$ olup tepe noktası $T(2,-1)$'de $y'=0$ (yatay teğet). Tepenin solunda $y'<0$ (azalan), sağında $y'>0$ (artan) olması, türevin grafik davranışını nasıl okuduğunu gösterir.</Altyazi>
+
+</Figur>
+
+<Ornek>
+
+<Soru>
+
+$y=(3x+1)^4$ fonksiyonunun türevini zincir kuralıyla bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Dış fonksiyon $u^4$, iç fonksiyon $u=3x+1$. Dışın türevi $4u^3$, için türevi $3$.
+
+</Ipucu>
+
+<Cozum>
+
+1. İç: $u=3x+1$, $u'=3$. Dış: $u^4$, türevi $4u^3$.
+2. Zincir: $y'=4(3x+1)^3\cdot 3=12(3x+1)^3$.
+
+<Cevap>$y'=12(3x+1)^3$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Çözümlü Örnekler
+
+<Ornek>
+
+<Soru>
+
+$f(x)=x^4-5x^2+6$ fonksiyonunun türevini ve $f'(1)$ değerini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Türev: $f'(x)=4x^3-10x$.
+2. $x=1$: $f'(1)=4-10=-6$.
+
+<Cevap>$f'(x)=4x^3-10x$, $\;f'(1)=-6$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=\sqrt{x}+\dfrac{1}{x}$ fonksiyonunun türevini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Üslü yaz: $\sqrt{x}=x^{1/2}$, $\dfrac{1}{x}=x^{-1}$. Sonra her terime üs kuralını uygula.
+
+</Ipucu>
+
+<Cozum>
+
+1. Üslü biçim: $f(x)=x^{1/2}+x^{-1}$.
+2. Türev: $f'(x)=\dfrac{1}{2}x^{-1/2}+(-1)x^{-2}=\dfrac{1}{2\sqrt{x}}-\dfrac{1}{x^2}$.
+
+<Cevap>$f'(x)=\dfrac{1}{2\sqrt{x}}-\dfrac{1}{x^2}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$y=x^2(x^3-1)$ fonksiyonunun türevini çarpım kuralıyla bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $f=x^2\Rightarrow f'=2x$; $\;g=x^3-1\Rightarrow g'=3x^2$.
+2. $y'=f'g+fg'=2x(x^3-1)+x^2\cdot 3x^2$.
+3. Aç: $2x^4-2x+3x^4=5x^4-2x$.
+
+<Cevap>$y'=5x^4-2x$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$y=\dfrac{x^2}{x+1}$ fonksiyonunun türevini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $f=x^2\Rightarrow f'=2x$; $\;g=x+1\Rightarrow g'=1$.
+2. Pay: $f'g-fg'=2x(x+1)-x^2\cdot 1=2x^2+2x-x^2=x^2+2x$.
+3. Sonuç: $y'=\dfrac{x^2+2x}{(x+1)^2}=\dfrac{x(x+2)}{(x+1)^2}$.
+
+<Cevap>$y'=\dfrac{x^2+2x}{(x+1)^2}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$y=\sqrt{x^2+9}$ fonksiyonunun türevini zincir kuralıyla bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Dış fonksiyon $\sqrt{u}$, türevi $\dfrac{1}{2\sqrt{u}}$; iç $u=x^2+9$, türevi $2x$.
+
+</Ipucu>
+
+<Cozum>
+
+1. İç: $u=x^2+9$, $u'=2x$. Dış: $\sqrt{u}$, türevi $\dfrac{1}{2\sqrt{u}}$.
+2. Zincir: $y'=\dfrac{1}{2\sqrt{x^2+9}}\cdot 2x=\dfrac{2x}{2\sqrt{x^2+9}}=\dfrac{x}{\sqrt{x^2+9}}$.
+
+<Cevap>$y'=\dfrac{x}{\sqrt{x^2+9}}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Alıştırmalar — Sıra Sende
+
+> Önce kendin çözmeyi dene; sonra çözümü açıp karşılaştır.
+
+<Ornek>
+
+<Soru>
+
+$f(x)=3x^4-2x^3+x$ fonksiyonunun türevini bul.
+
+</Soru>
+
+<Cozum>
+
+1. Terim terim: $f'(x)=12x^3-6x^2+1$.
+
+<Cevap>$f'(x)=12x^3-6x^2+1$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=x^6$ fonksiyonu için $f'(2)$ kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. $f'(x)=6x^5$.
+2. $f'(2)=6\cdot 2^5=6\cdot 32=192$.
+
+<Cevap>$192$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$y=(x-1)(x+4)$ fonksiyonunun türevini çarpım kuralıyla bul.
+
+</Soru>
+
+<Cozum>
+
+1. $f=x-1\Rightarrow f'=1$; $\;g=x+4\Rightarrow g'=1$.
+2. $y'=1\cdot(x+4)+(x-1)\cdot 1=x+4+x-1=2x+3$.
+
+<Cevap>$y'=2x+3$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$y=\dfrac{1}{x^2+1}$ fonksiyonunun türevini bul.
+
+</Soru>
+
+<Cozum>
+
+1. $f=1\Rightarrow f'=0$; $\;g=x^2+1\Rightarrow g'=2x$.
+2. Pay: $f'g-fg'=0-1\cdot 2x=-2x$.
+3. Sonuç: $y'=\dfrac{-2x}{(x^2+1)^2}$.
+
+<Cevap>$y'=\dfrac{-2x}{(x^2+1)^2}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$y=(2x^2-x)^3$ fonksiyonunun türevini zincir kuralıyla bul.
+
+</Soru>
+
+<Cozum>
+
+1. İç: $u=2x^2-x$, $u'=4x-1$. Dış: $u^3$, türevi $3u^2$.
+2. Zincir: $y'=3(2x^2-x)^2(4x-1)$.
+
+<Cevap>$y'=3(2x^2-x)^2(4x-1)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=\dfrac{2}{x^3}$ fonksiyonunun türevini bul.
+
+</Soru>
+
+<Ipucu>
+
+Üslü yaz: $\dfrac{2}{x^3}=2x^{-3}$; sonra üs kuralını uygula.
+
+</Ipucu>
+
+<Cozum>
+
+1. $f(x)=2x^{-3}$.
+2. $f'(x)=2\cdot(-3)x^{-4}=-6x^{-4}=-\dfrac{6}{x^4}$.
+
+<Cevap>$f'(x)=-\dfrac{6}{x^4}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$y=x^2\sqrt{x}$ fonksiyonunun türevini bul.
+
+</Soru>
+
+<Ipucu>
+
+Çarpım kuralı yerine üsleri birleştir: $x^2\cdot x^{1/2}=x^{5/2}$. Tek üs kuralı yeterli.
+
+</Ipucu>
+
+<Cozum>
+
+1. Üsleri topla: $y=x^2\cdot x^{1/2}=x^{5/2}$.
+2. Türev: $y'=\dfrac{5}{2}x^{3/2}=\dfrac{5}{2}x\sqrt{x}$.
+
+<Cevap>$y'=\dfrac{5}{2}x\sqrt{x}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$y=\dfrac{x-1}{x+1}$ fonksiyonu için $y'(0)$ değerini bul.
+
+</Soru>
+
+<Ipucu>
+
+Önce bölüm kuralıyla $y'(x)$'i bul, sonra $x=0$ yerine koy.
+
+</Ipucu>
+
+<Cozum>
+
+1. $f=x-1\Rightarrow f'=1$; $\;g=x+1\Rightarrow g'=1$.
+2. Pay: $1\cdot(x+1)-(x-1)\cdot 1=x+1-x+1=2$.
+3. $y'(x)=\dfrac{2}{(x+1)^2}$; $\;y'(0)=\dfrac{2}{1^2}=2$.
+
+<Cevap>$y'(0)=2$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$y=x\sqrt{x^2+1}$ fonksiyonunun türevini bul.
+
+</Soru>
+
+<Ipucu>
+
+Hem **çarpım** hem **zincir** kuralı gerekir: $f=x$, $g=\sqrt{x^2+1}$. $g'$'yü zincir kuralıyla al.
+
+</Ipucu>
+
+<Cozum>
+
+1. $f=x\Rightarrow f'=1$; $\;g=\sqrt{x^2+1}$.
+2. Zincirle: $g'=\dfrac{1}{2\sqrt{x^2+1}}\cdot 2x=\dfrac{x}{\sqrt{x^2+1}}$.
+3. Çarpım kuralı: $y'=f'g+fg'=\sqrt{x^2+1}+x\cdot\dfrac{x}{\sqrt{x^2+1}}=\sqrt{x^2+1}+\dfrac{x^2}{\sqrt{x^2+1}}$.
+4. Ortak paydada birleştir: $y'=\dfrac{(x^2+1)+x^2}{\sqrt{x^2+1}}=\dfrac{2x^2+1}{\sqrt{x^2+1}}$.
+
+<Cevap>$y'=\dfrac{2x^2+1}{\sqrt{x^2+1}}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=x^3-3x$ eğrisine $x=2$ noktasında çizilen teğetin denklemini bul.
+
+</Soru>
+
+<Ipucu>
+
+Teğet için iki şey gerekir: değme noktası $\big(2,f(2)\big)$ ve eğim $f'(2)$. Sonra nokta-eğim formülü.
+
+</Ipucu>
+
+<Cozum>
+
+1. Değme noktası: $f(2)=8-6=2$, yani $(2,2)$.
+2. Eğim: $f'(x)=3x^2-3\Rightarrow f'(2)=12-3=9$.
+3. Teğet: $y-2=9(x-2)\Rightarrow y=9x-16$.
+
+<Cevap>$y=9x-16$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Çarpımın türevini, türevlerin çarpımı sanmak.** $(f\cdot g)'\neq f'g'$; doğrusu $f'g+fg'$'dir.
+- **Bölüm kuralında payın sırasını şaşırmak.** Pay $f'g-fg'$ (önce $f'g$); sırayı ters çevirmek işareti bozar.
+- **Zincir kuralında iç türevi unutmak.** $\big(g(x)^n\big)'=n\,g(x)^{n-1}\cdot g'(x)$; sondaki $g'(x)$ çarpanı atlanmamalı.
+- **Negatif/kesirli üste kuralı yanlış uygulamak.** $\big(x^{-3}\big)'=-3x^{-4}$, $\left(x^{1/2}\right)'=\tfrac{1}{2}x^{-1/2}$; üs **bir azalır**, işaret olduğu gibi taşınır.
+
+> **Not:** Türev alırken önce fonksiyonu **en sade biçime** getir: kökleri/kesirleri üslü yaz, mümkünse çarpımı dağıt. Çoğu zaman çarpım/bölüm kuralına gerek kalmadan tek üs kuralı işi bitirir.
+
+<KonuNav slug="turev-alma-kurallari-12" />

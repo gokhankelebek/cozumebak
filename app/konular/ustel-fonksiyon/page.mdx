@@ -1,0 +1,544 @@
+import { topicMetadata } from "@/lib/seo";
+import { UstelGrafik, UstelAzalan } from "@/components/figures/UstelLogFig";
+
+export const metadata = topicMetadata("ustel-fonksiyon");
+
+<Konu slug="ustel-fonksiyon" />
+
+<p className="lead">Bir miktarın her adımda sabit bir **oranla** büyümesi ya da küçülmesi (faiz, bakteri çoğalması, radyoaktif bozunma) **üstel fonksiyon** ile modellenir: $f(x)=a^{x}$. Bu derste üstel fonksiyonun tanımını ve $a>1$ ile $0<a<1$ durumlarındaki **grafiğini**, temel özelliklerini ve **üstel denklemleri** (tabanları eşitleyerek çözme) öğreneceğiz. Üslü ifade kurallarını ($a^m\cdot a^n=a^{m+n}$ vb.) hatırlamak bu konunun anahtarıdır. Bol örnek ve "Sıra Sende" alıştırmalarıyla ilerleyeceğiz.</p>
+
+## 1. Üstel Fonksiyon Nedir?
+
+$a>0$ ve $a\neq 1$ olmak üzere
+
+$$f(x)=a^{x}$$
+
+biçimindeki fonksiyona **üstel fonksiyon** denir. Burada $a$ sayısına **taban** denir.
+
+Neden $a>0$? Çünkü taban negatif olursa (örneğin $(-2)^{1/2}=\sqrt{-2}$) bazı $x$ değerlerinde sonuç gerçek sayı olmaz. Neden $a\neq 1$? Çünkü $1^{x}=1$ her zaman sabittir, yani fonksiyon eğri değil yatay bir doğru olurdu.
+
+Tanım kümesi tüm gerçek sayılardır ($\mathbb{R}$); değer kümesi ise yalnızca **pozitif** sayılardır: $a^{x}>0$ her zaman. Ayrıca $a^{0}=1$ olduğundan her üstel fonksiyonun grafiği $(0,1)$ noktasından geçer.
+
+<Ornek>
+
+<Soru>
+
+$f(x)=3^{x}$ için $f(2)$, $f(0)$ ve $f(-1)$ değerlerini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $f(2)=3^{2}=9$.
+2. $f(0)=3^{0}=1$.
+3. $f(-1)=3^{-1}=\dfrac{1}{3}$.
+
+<Cevap>$9,\ 1,\ \dfrac{1}{3}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 2. Artan Üstel Fonksiyon ($a>1$)
+
+Taban $1$'den büyükse fonksiyon **artandır**: $x$ büyüdükçe $a^{x}$ de büyür. Grafik $(0,1)$ noktasından geçer, sağa doğru hızla yükselir; sola doğru ise $x$ ekseni ($y=0$) bir **yatay asimptottur** — grafik ona yaklaşır ama hiç dokunmaz (çünkü $a^{x}>0$).
+
+<Figur>
+
+<UstelGrafik />
+
+<Altyazi>Şekil 1 — $f(x)=2^{x}$ grafiği ($a=2>1$). $(0,1)$ noktasından geçer, soldan $x$ eksenine yaklaşır (yatay asimptot $y=0$), sağa doğru hızla yükselir. Değer kümesi $(0,\infty)$.</Altyazi>
+
+</Figur>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=2^{x}$ artan mı azalan mıdır? $f(3)$ ile $f(5)$ değerlerini karşılaştırınız.
+
+</Soru>
+
+<Cozum>
+
+1. Taban $2>1$ olduğundan fonksiyon **artandır**.
+2. $f(3)=2^{3}=8$, $\;f(5)=2^{5}=32$.
+3. $3<5$ iken $8<32$; büyük üs büyük değeri verir.
+
+<Cevap>Artandır; $f(3)<f(5)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 3. Azalan Üstel Fonksiyon ($0<a<1$)
+
+Taban $0$ ile $1$ arasındaysa fonksiyon **azalandır**: $x$ büyüdükçe $a^{x}$ küçülür. Yine grafik $(0,1)$ noktasından geçer ve $y=0$ yatay asimptottur; ama bu kez grafik **sağa** doğru $x$ eksenine yaklaşır.
+
+$\left(\frac{1}{2}\right)^{x}=2^{-x}$ olduğundan, azalan üstel grafik artan grafiğin $y$ eksenine göre simetriğidir.
+
+<Figur>
+
+<UstelAzalan />
+
+<Altyazi>Şekil 2 — $f(x)=\left(\frac{1}{2}\right)^{x}$ grafiği ($0<a<1$). $(0,1)$ noktasından geçer, sağa doğru $x$ eksenine yaklaşır. Taban $1$'den küçük olduğundan fonksiyon azalandır.</Altyazi>
+
+</Figur>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=\left(\dfrac{1}{3}\right)^{x}$ fonksiyonu artan mı azalan mıdır? $f(-2)$ değerini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Taban $\frac{1}{3}$, yani $0<a<1$. Ayrıca $\left(\frac{1}{3}\right)^{-2}=3^{2}$ yazabilirsin.
+
+</Ipucu>
+
+<Cozum>
+
+1. Taban $\frac{1}{3}<1$ olduğundan fonksiyon **azalandır**.
+2. $f(-2)=\left(\dfrac{1}{3}\right)^{-2}=3^{2}=9$.
+
+<Cevap>Azalandır; $f(-2)=9$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 4. Üstel Denklemler
+
+Bilinmeyenin **üs** olarak yer aldığı denklemlere **üstel denklem** denir. Temel kural, üstel fonksiyonun **birebir** olmasına dayanır:
+
+$$a^{x}=a^{y}\iff x=y\qquad (a>0,\ a\neq 1)$$
+
+Yani iki tarafı **aynı tabana** getirip üsleri eşitleriz. Bunun için sayıları kuvvet biçiminde yazmak (örneğin $8=2^{3}$, $\frac{1}{9}=3^{-2}$) gerekir.
+
+<Ornek>
+
+<Soru>
+
+$2^{x}=32$ denklemini çözünüz.
+
+</Soru>
+
+<Cozum>
+
+1. Sağ tarafı $2$ tabanında yaz: $32=2^{5}$.
+2. Denklem $2^{x}=2^{5}$ olur; üsleri eşitle: $x=5$.
+
+<Cevap>$x=5$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$3^{x-1}=\dfrac{1}{27}$ denklemini çözünüz.
+
+</Soru>
+
+<Ipucu>
+
+$\dfrac{1}{27}=3^{-3}$. İki tarafı $3$ tabanına getir, sonra üsleri eşitle.
+
+</Ipucu>
+
+<Cozum>
+
+1. Sağ tarafı $3$ tabanında yaz: $\dfrac{1}{27}=3^{-3}$.
+2. Denklem $3^{x-1}=3^{-3}$ olur; üsleri eşitle: $x-1=-3$.
+3. $x=-2$.
+
+<Cevap>$x=-2$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 5. Ortak Çarpan ve Değişken Değiştirme
+
+Bazı üstel denklemlerde aynı taban birden çok terimde görünür. Üs kurallarıyla **ortak çarpan** parantezine alarak ya da $a^{x}=t$ **değişken değiştirmesi** yaparak sadeleştiririz.
+
+Hatırlatma: $a^{x+1}=a^{x}\cdot a$ ve $a^{2x}=\left(a^{x}\right)^{2}$.
+
+<Ornek>
+
+<Soru>
+
+$2^{x+1}+2^{x}=24$ denklemini çözünüz.
+
+</Soru>
+
+<Ipucu>
+
+$2^{x+1}=2\cdot 2^{x}$ yaz; $2^{x}$'i ortak parantezine al.
+
+</Ipucu>
+
+<Cozum>
+
+1. $2^{x+1}=2\cdot 2^{x}$ olduğundan denklem: $2\cdot 2^{x}+2^{x}=24$.
+2. Ortak çarpan: $2^{x}(2+1)=24\Rightarrow 3\cdot 2^{x}=24$.
+3. $2^{x}=8=2^{3}\Rightarrow x=3$.
+
+<Cevap>$x=3$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Çözümlü Örnekler
+
+<Ornek>
+
+<Soru>
+
+$5^{2x-3}=125$ denklemini çözünüz.
+
+</Soru>
+
+<Cozum>
+
+1. $125=5^{3}$ yaz: $5^{2x-3}=5^{3}$.
+2. Üsleri eşitle: $2x-3=3\Rightarrow 2x=6\Rightarrow x=3$.
+
+<Cevap>$x=3$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\left(\dfrac{1}{2}\right)^{x}=8$ denklemini çözünüz.
+
+</Soru>
+
+<Ipucu>
+
+$\dfrac{1}{2}=2^{-1}$ ve $8=2^{3}$. Her şeyi $2$ tabanında yaz.
+
+</Ipucu>
+
+<Cozum>
+
+1. $\left(2^{-1}\right)^{x}=2^{3}\Rightarrow 2^{-x}=2^{3}$.
+2. Üsleri eşitle: $-x=3\Rightarrow x=-3$.
+
+<Cevap>$x=-3$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$4^{x}=8^{x-1}$ denklemini çözünüz.
+
+</Soru>
+
+<Ipucu>
+
+Hem $4$ hem $8$, $2$'nin kuvvetidir: $4=2^{2}$, $8=2^{3}$. İki tarafı da $2$ tabanına çevir.
+
+</Ipucu>
+
+<Cozum>
+
+1. $4=2^{2}$, $8=2^{3}$: $\left(2^{2}\right)^{x}=\left(2^{3}\right)^{x-1}$.
+2. Üsleri çarp: $2^{2x}=2^{3(x-1)}=2^{3x-3}$.
+3. Üsleri eşitle: $2x=3x-3\Rightarrow x=3$.
+
+<Cevap>$x=3$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$3^{2x}-4\cdot 3^{x}+3=0$ denklemini çözünüz.
+
+</Soru>
+
+<Ipucu>
+
+$3^{x}=t$ ($t>0$) de; $3^{2x}=\left(3^{x}\right)^{2}=t^{2}$. Denklem ikinci dereceden olur.
+
+</Ipucu>
+
+<Cozum>
+
+1. $3^{x}=t$ diyelim ($t>0$): $t^{2}-4t+3=0$.
+2. Çarpanla: $(t-1)(t-3)=0\Rightarrow t=1$ veya $t=3$.
+3. Geri dön: $3^{x}=1\Rightarrow x=0$; $\;3^{x}=3\Rightarrow x=1$.
+
+<Cevap>$x=0$ veya $x=1$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$2^{x}=10$ ise $2^{x+3}$ ifadesinin değeri kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. $2^{x+3}=2^{x}\cdot 2^{3}$.
+2. $2^{x}=10$ yerine koy: $10\cdot 8=80$.
+
+<Cevap>$80$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Alıştırmalar — Sıra Sende
+
+> Önce kendin çözmeyi dene; sonra çözümü açıp karşılaştır.
+
+<Ornek>
+
+<Soru>
+
+$f(x)=4^{x}$ için $f\left(\dfrac{1}{2}\right)$ değerini bul.
+
+</Soru>
+
+<Cozum>
+
+1. $4^{1/2}=\sqrt{4}=2$.
+
+<Cevap>$2$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$2^{x}=64$ denklemini çöz.
+
+</Soru>
+
+<Cozum>
+
+1. $64=2^{6}$, demek ki $2^{x}=2^{6}$.
+2. $x=6$.
+
+<Cevap>$x=6$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=\left(\dfrac{2}{3}\right)^{x}$ fonksiyonu artan mı azalan mıdır?
+
+</Soru>
+
+<Cozum>
+
+1. Taban $\dfrac{2}{3}$, yani $0<a<1$.
+2. Bu durumda fonksiyon **azalandır**.
+
+<Cevap>Azalandır.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$3^{x+2}=81$ denklemini çöz.
+
+</Soru>
+
+<Cozum>
+
+1. $81=3^{4}$: $3^{x+2}=3^{4}$.
+2. $x+2=4\Rightarrow x=2$.
+
+<Cevap>$x=2$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\left(\dfrac{1}{5}\right)^{x}=25$ denklemini çöz.
+
+</Soru>
+
+<Cozum>
+
+1. $\dfrac{1}{5}=5^{-1}$, $\;25=5^{2}$: $5^{-x}=5^{2}$.
+2. $-x=2\Rightarrow x=-2$.
+
+<Cevap>$x=-2$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$9^{x}=27$ denklemini çöz.
+
+</Soru>
+
+<Cozum>
+
+1. $9=3^{2}$, $27=3^{3}$: $\left(3^{2}\right)^{x}=3^{3}\Rightarrow 3^{2x}=3^{3}$.
+2. $2x=3\Rightarrow x=\dfrac{3}{2}$.
+
+<Cevap>$x=\dfrac{3}{2}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$2^{x}=5$ ise $2^{2x}+2^{x}$ ifadesinin değeri kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+$2^{2x}=\left(2^{x}\right)^{2}$. Önce $2^{x}=5$'i yerine koy.
+
+</Ipucu>
+
+<Cozum>
+
+1. $2^{2x}=\left(2^{x}\right)^{2}=5^{2}=25$.
+2. $2^{2x}+2^{x}=25+5=30$.
+
+<Cevap>$30$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$2^{x+2}+2^{x}=20$ denklemini çöz.
+
+</Soru>
+
+<Ipucu>
+
+$2^{x+2}=4\cdot 2^{x}$. $2^{x}$'i ortak çarpan al.
+
+</Ipucu>
+
+<Cozum>
+
+1. $2^{x+2}=2^{2}\cdot 2^{x}=4\cdot 2^{x}$.
+2. Ortak çarpan: $2^{x}(4+1)=20\Rightarrow 5\cdot 2^{x}=20$.
+3. $2^{x}=4=2^{2}\Rightarrow x=2$.
+
+<Cevap>$x=2$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$4^{x}-5\cdot 2^{x}+4=0$ denklemini çöz.
+
+</Soru>
+
+<Ipucu>
+
+$4^{x}=\left(2^{x}\right)^{2}$. $2^{x}=t$ ($t>0$) diyerek ikinci dereceden denkleme çevir.
+
+</Ipucu>
+
+<Cozum>
+
+1. $4^{x}=\left(2^{2}\right)^{x}=\left(2^{x}\right)^{2}$. $2^{x}=t$ ($t>0$) diyelim: $t^{2}-5t+4=0$.
+2. Çarpanla: $(t-1)(t-4)=0\Rightarrow t=1$ veya $t=4$.
+3. Geri dön: $2^{x}=1\Rightarrow x=0$; $\;2^{x}=4\Rightarrow x=2$.
+
+<Cevap>$x=0$ veya $x=2$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$3^{x+1}+3^{x-1}=30$ denklemini çöz.
+
+</Soru>
+
+<Ipucu>
+
+$3^{x+1}=3\cdot 3^{x}$ ve $3^{x-1}=\dfrac{3^{x}}{3}$. $3^{x}$'i ortak çarpan al; içteki toplamı tek kesir yap.
+
+</Ipucu>
+
+<Cozum>
+
+1. $3^{x+1}=3\cdot 3^{x}$, $\;3^{x-1}=\dfrac{1}{3}\cdot 3^{x}$.
+2. Ortak çarpan: $3^{x}\left(3+\dfrac{1}{3}\right)=30\Rightarrow 3^{x}\cdot\dfrac{10}{3}=30$.
+3. $3^{x}=30\cdot\dfrac{3}{10}=9=3^{2}\Rightarrow x=2$.
+
+<Cevap>$x=2$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Üstel fonksiyonun negatif değer alabileceğini sanmak.** $a^{x}>0$ her zaman; bu yüzden örneğin $2^{x}=-4$ denkleminin **çözümü yoktur**.
+- **Tabanları eşitlemeden üsleri eşitlemek.** $2^{x}=8$'de doğrudan $x=8$ denmez; önce $8=2^{3}$ yazılır, sonra üsler eşitlenir.
+- **$\left(a^{x}\right)^{2}$ ile $a^{x^{2}}$'yi karıştırmak.** $\left(2^{x}\right)^{2}=2^{2x}$'tir, $2^{x^{2}}$ değil.
+- **Değişken değiştirmede $t>0$ koşulunu unutmak.** $a^{x}=t$ daima pozitiftir; ikinci dereceden denklemden çıkan **negatif** kök elenir.
+
+> **Not:** Üstel denklemlerde refleksin **her şeyi ortak tabana yazmak** olsun: $4,8,16,\dots$ → $2$ tabanı; $9,27,81,\dots$ → $3$ tabanı. Aynı taban birden çok terimdeyse **ortak çarpan**, üssün karesi varsa $a^{x}=t$ **değişken değiştirmesi** işini kurtarır.
+
+<KonuNav slug="ustel-fonksiyon" />

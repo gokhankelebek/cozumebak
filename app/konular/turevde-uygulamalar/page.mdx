@@ -1,0 +1,492 @@
+import { topicMetadata } from "@/lib/seo";
+import TurevGrafik from "@/components/figures/TurevGrafik";
+
+export const metadata = topicMetadata("turevde-uygulamalar");
+
+<Konu slug="turevde-uygulamalar" />
+
+<p className="lead">Türev, fonksiyonun **eğimini** verdiği için bir fonksiyonun nerede **arttığını**, nerede **azaldığını** ve nerede **tepe/çukur** (ekstremum) yaptığını okumamızı sağlar. Bu fikir, "en büyük alan", "en küçük maliyet" gibi **optimizasyon** problemlerinin de anahtarıdır. Bu derste artan-azalan aralıkları, yerel maksimum-minimumu ve optimizasyon kurgusunu öğreneceğiz; bol örnek ve "Sıra Sende" alıştırmalarıyla pekiştireceğiz.</p>
+
+## 1. Artan ve Azalan Aralıklar
+
+Türevin işareti, fonksiyonun gidişini söyler:
+
+$$f'(x)>0 \Rightarrow f \text{ artar} \qquad\qquad f'(x)<0 \Rightarrow f \text{ azalır}$$
+
+Yani $f'(x)$'i bulup işaretini incelersek, hangi aralıkta grafiğin yükseldiğini, hangisinde alçaldığını buluruz.
+
+<Ornek>
+
+<Soru>
+
+$f(x)=x^2-6x+5$ fonksiyonunun artan ve azalan olduğu aralıkları bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+$f'(x)$'i bul, $f'(x)=0$ kökünü işaretle; bu kökün solunda ve sağında türevin işaretine bak.
+
+</Ipucu>
+
+<Cozum>
+
+1. Türev: $f'(x)=2x-6$.
+2. Kök: $2x-6=0\Rightarrow x=3$.
+3. İşaret: $x<3$ için $f'<0$ (azalan), $x>3$ için $f'>0$ (artan).
+
+<Cevap>$(-\infty,3)$ azalan, $(3,\infty)$ artan.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 2. Yerel Ekstremum (Maksimum ve Minimum)
+
+Türevin **işaret değiştirdiği** noktalar tepe veya çukur noktalarıdır. $f'(x)=0$ olan değerlere **kritik nokta** denir:
+
+- $f'$, $+$'dan $-$'ye geçerse → **yerel maksimum** (tepe),
+- $f'$, $-$'den $+$'ya geçerse → **yerel minimum** (çukur).
+
+<Figur>
+
+<TurevGrafik />
+
+<Altyazi>Şekil 1 — Bir fonksiyon ve yerel maksimumundaki **yatay teğet**. Tepe noktasında $f'(x)=0$'dır; türev, tepenin solunda pozitif (artan), sağında negatif (azalan) olur. İşaretin $+\to-$ değişmesi noktayı **yerel maksimum** yapar.</Altyazi>
+
+</Figur>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=x^3-3x$ fonksiyonunun yerel ekstremum noktalarını bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+$f'(x)=0$ kritik noktalarını bul; her kökün etrafında türevin işaret değişimine bak.
+
+</Ipucu>
+
+<Cozum>
+
+1. Türev: $f'(x)=3x^2-3=3(x^2-1)=3(x-1)(x+1)$.
+2. Kritik noktalar: $x=-1$ ve $x=1$.
+3. İşaret: $x<-1$'de $f'>0$, $-1<x<1$'de $f'<0$, $x>1$'de $f'>0$.
+4. $x=-1$'de $+\to-$ → yerel **maksimum**; $f(-1)=-1+3=2$.
+5. $x=1$'de $-\to+$ → yerel **minimum**; $f(1)=1-3=-2$.
+
+<Cevap>$x=-1$'de yerel maks. $2$; $x=1$'de yerel min. $-2$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 3. İkinci Türev Testi
+
+Kritik noktanın türü, **ikinci türevin** işaretiyle de belirlenir. $f'(a)=0$ olan bir $a$ için:
+
+$$f''(a)>0 \Rightarrow \text{yerel minimum} \qquad\qquad f''(a)<0 \Rightarrow \text{yerel maksimum}$$
+
+İkinci türev, grafiğin **içbükey mi dışbükey mi** olduğunu söyler: $f''>0$ ise yukarı bakan kâse (minimum), $f''<0$ ise aşağı bakan kubbe (maksimum).
+
+<Ornek>
+
+<Soru>
+
+$f(x)=x^3-3x$ fonksiyonunun kritik noktalarını ikinci türev testiyle sınıflandırınız.
+
+</Soru>
+
+<Cozum>
+
+1. $f'(x)=3x^2-3$, kritik noktalar $x=\pm 1$.
+2. İkinci türev: $f''(x)=6x$.
+3. $f''(-1)=-6<0$ → $x=-1$ yerel **maksimum**.
+4. $f''(1)=6>0$ → $x=1$ yerel **minimum**.
+
+<Cevap>$x=-1$ maksimum, $x=1$ minimum (işaret testiyle aynı sonuç).</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 4. Optimizasyon Problemleri
+
+Gerçek hayatta "en büyük/en küçük" değeri ararken şu adımları izleriz:
+
+1. Optimize edilecek niceliği (alan, hacim, maliyet…) **tek değişkenli** bir fonksiyon olarak yaz.
+2. **Türevini sıfıra** eşitle, kritik noktayı bul.
+3. İkinci türev veya işaret testiyle maksimum mu minimum mu olduğunu doğrula; istenen değeri hesapla.
+
+<Ornek>
+
+<Soru>
+
+Çevresi $40$ m olan dikdörtgen bir bahçenin alanı en fazla kaç $\text{m}^2$ olabilir?
+
+</Soru>
+
+<Ipucu>
+
+Kenarlar $x$ ve $y$ olsun; $2x+2y=40$ kısıtından $y=20-x$. Alanı $A=x\,y$ tek değişkenle yaz.
+
+</Ipucu>
+
+<Cozum>
+
+1. Çevre kısıtı: $2x+2y=40\Rightarrow y=20-x$.
+2. Alan: $A(x)=x(20-x)=20x-x^2$.
+3. Türev: $A'(x)=20-2x$; $\;A'(x)=0\Rightarrow x=10$.
+4. $A''(x)=-2<0$ → maksimum. $y=20-10=10$.
+5. En büyük alan: $A=10\cdot 10=100\ \text{m}^2$ (kare olunca alan en büyüktür).
+
+<Cevap>$100\ \text{m}^2$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Çözümlü Örnekler
+
+<Ornek>
+
+<Soru>
+
+$f(x)=x^2-8x+1$ fonksiyonunun yerel minimum değerini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $f'(x)=2x-8=0\Rightarrow x=4$.
+2. $f''(x)=2>0$ → yerel minimum.
+3. Değer: $f(4)=16-32+1=-15$.
+
+<Cevap>$x=4$'te yerel minimum $-15$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=x^3-6x^2+9x+1$ fonksiyonunun artan olduğu aralıkları bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+$f'(x)$ ikinci dereceden bir ifade; köklerini bulup parabol işaretiyle ($a>0$, dışta pozitif) artan aralıkları belirle.
+
+</Ipucu>
+
+<Cozum>
+
+1. Türev: $f'(x)=3x^2-12x+9=3(x^2-4x+3)=3(x-1)(x-3)$.
+2. Kökler: $x=1$ ve $x=3$; $a>0$ olduğundan ifade kökler **dışında** pozitiftir.
+3. $f'(x)>0$: $x<1$ veya $x>3$.
+
+<Cevap>$(-\infty,1)$ ve $(3,\infty)$ aralıklarında artan.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=2x^3-3x^2-12x+5$ fonksiyonunun yerel ekstremum noktalarını bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Türev: $f'(x)=6x^2-6x-12=6(x^2-x-2)=6(x-2)(x+1)$.
+2. Kritik noktalar: $x=2$, $x=-1$.
+3. İkinci türev: $f''(x)=12x-6$. $f''(-1)=-18<0$ → maksimum; $f''(2)=18>0$ → minimum.
+4. Değerler: $f(-1)=-2-3+12+5=12$; $\;f(2)=16-12-24+5=-15$.
+
+<Cevap>$x=-1$'de yerel maks. $12$; $x=2$'de yerel min. $-15$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Toplamları $20$ olan iki pozitif sayının çarpımı en fazla kaç olabilir?
+
+</Soru>
+
+<Ipucu>
+
+Sayılar $x$ ve $20-x$; çarpım $P(x)=x(20-x)$. Türevini sıfırla.
+
+</Ipucu>
+
+<Cozum>
+
+1. $P(x)=x(20-x)=20x-x^2$.
+2. $P'(x)=20-2x=0\Rightarrow x=10$.
+3. $P''(x)=-2<0$ → maksimum; diğer sayı $20-10=10$.
+4. En büyük çarpım: $10\cdot 10=100$.
+
+<Cevap>$100$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Hacmi sabit kalemleri bir kenara bırakalım: $f(x)=x^3-12x$ fonksiyonu $[-3,3]$ aralığında en küçük değerini nerede alır?
+
+</Soru>
+
+<Ipucu>
+
+Kapalı aralıkta mutlak ekstremum, ya kritik noktalarda ya da uç noktalarda olur. Her ikisini de hesapla, en küçüğünü seç.
+
+</Ipucu>
+
+<Cozum>
+
+1. Türev: $f'(x)=3x^2-12=3(x^2-4)=3(x-2)(x+2)$; kritik noktalar $x=\pm 2$ (ikisi de aralıkta).
+2. Aday değerler: uçlar $x=-3,\ 3$ ve kritik $x=-2,\ 2$.
+3. $f(-3)=-27+36=9$; $\;f(-2)=-8+24=16$; $\;f(2)=8-24=-16$; $\;f(3)=27-36=-9$.
+4. En küçük: $f(2)=-16$.
+
+<Cevap>$x=2$'de en küçük değer $-16$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Alıştırmalar — Sıra Sende
+
+> Önce kendin çözmeyi dene; sonra çözümü açıp karşılaştır.
+
+<Ornek>
+
+<Soru>
+
+$f(x)=x^2-10x+3$ fonksiyonu hangi aralıkta azalandır?
+
+</Soru>
+
+<Cozum>
+
+1. $f'(x)=2x-10=0\Rightarrow x=5$.
+2. $x<5$ için $f'<0$ → azalan.
+
+<Cevap>$(-\infty,5)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=x^2+4x+7$ fonksiyonunun yerel minimum değeri kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. $f'(x)=2x+4=0\Rightarrow x=-2$.
+2. $f(-2)=4-8+7=3$.
+
+<Cevap>$3$ (en küçük değer, $x=-2$).</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=x^3-3x^2$ fonksiyonunun kritik noktalarının apsislerini bul.
+
+</Soru>
+
+<Cozum>
+
+1. $f'(x)=3x^2-6x=3x(x-2)=0$.
+2. $x=0$ ve $x=2$.
+
+<Cevap>$x=0$ ve $x=2$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=x^3-3x^2$ fonksiyonunda $x=0$ ve $x=2$ kritik noktalarını ikinci türev testiyle sınıflandır.
+
+</Soru>
+
+<Cozum>
+
+1. $f''(x)=6x-6$.
+2. $f''(0)=-6<0$ → $x=0$ yerel **maksimum**.
+3. $f''(2)=6>0$ → $x=2$ yerel **minimum**.
+
+<Cevap>$x=0$ maks., $x=2$ min.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Toplamları $12$ olan iki pozitif sayının kareleri toplamı en az kaç olabilir?
+
+</Soru>
+
+<Ipucu>
+
+Sayılar $x$ ve $12-x$; $S(x)=x^2+(12-x)^2$. Türevini sıfırla.
+
+</Ipucu>
+
+<Cozum>
+
+1. $S(x)=x^2+(12-x)^2=x^2+144-24x+x^2=2x^2-24x+144$.
+2. $S'(x)=4x-24=0\Rightarrow x=6$.
+3. $S''(x)=4>0$ → minimum; diğer sayı $6$.
+4. En küçük değer: $S(6)=2\cdot 36-144+144=72$.
+
+<Cevap>$72$ (iki sayı da $6$ iken).</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=x^3+1$ fonksiyonu artan mıdır? Türev işaretiyle açıkla.
+
+</Soru>
+
+<Cozum>
+
+1. $f'(x)=3x^2$.
+2. $3x^2\ge 0$ her $x$ için; yalnız $x=0$'da sıfır.
+3. Türev hiç negatif olmadığından fonksiyon her yerde artandır.
+
+<Cevap>Evet, $\mathbb{R}$ üzerinde artandır.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=\dfrac{1}{3}x^3-4x$ fonksiyonunun yerel maksimum değerini bul.
+
+</Soru>
+
+<Ipucu>
+
+$f'(x)=x^2-4$; köklerini bul, ikinci türevle hangisinin maksimum olduğunu belirle.
+
+</Ipucu>
+
+<Cozum>
+
+1. $f'(x)=x^2-4=0\Rightarrow x=\pm 2$.
+2. $f''(x)=2x$; $f''(-2)=-4<0$ → $x=-2$ yerel maksimum.
+3. Değer: $f(-2)=\dfrac{1}{3}(-8)-4(-2)=-\dfrac{8}{3}+8=\dfrac{16}{3}$.
+
+<Cevap>$x=-2$'de yerel maksimum $\dfrac{16}{3}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir karton, kenarı $12$ cm olan kare biçimindedir. Dört köşesinden kenarı $x$ cm olan kareler kesilip kenarlar yukarı katlanarak üstü açık bir kutu yapılıyor. Hacmi en büyük yapan $x$ değerini bul.
+
+</Soru>
+
+<Ipucu>
+
+Taban kenarı $12-2x$, yükseklik $x$. Hacim $V(x)=(12-2x)^2\,x$. Türevini sıfırla; $0<x<6$ aralığında geçerli kökü seç.
+
+</Ipucu>
+
+<Cozum>
+
+1. Hacim: $V(x)=(12-2x)^2\,x=(144-48x+4x^2)x=4x^3-48x^2+144x$.
+2. Türev: $V'(x)=12x^2-96x+144=12(x^2-8x+12)=12(x-2)(x-6)$.
+3. Kökler: $x=2$ ve $x=6$. Ama $x=6$ olunca taban $12-12=0$ olur (kutu kalmaz); geçerli kök $x=2$.
+4. İşaret: $0<x<2$'de $V'>0$, $2<x<6$'da $V'<0$ → $x=2$ maksimum.
+
+<Cevap>$x=2$ cm.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Çevresi $24$ cm olan dikdörtgenlerden hangisinin alanı en büyüktür ve bu alan kaç $\text{cm}^2$'dir?
+
+</Soru>
+
+<Ipucu>
+
+$2x+2y=24\Rightarrow y=12-x$; alan $A(x)=x(12-x)$. $0<x<12$ aralığında türevi sıfırla.
+
+</Ipucu>
+
+<Cozum>
+
+1. Kısıt: $y=12-x$; alan $A(x)=x(12-x)=12x-x^2$.
+2. $A'(x)=12-2x=0\Rightarrow x=6$.
+3. $A''(x)=-2<0$ → maksimum; $y=12-6=6$ (kare).
+4. En büyük alan: $A=6\cdot 6=36\ \text{cm}^2$.
+
+<Cevap>Kenarları $6$ cm olan kare; alan $36\ \text{cm}^2$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **$f'(x)=0$ olan her noktayı ekstremum sanmak.** Türev sıfır olsa da **işaret değişmiyorsa** orada ekstremum yoktur (örneğin $f(x)=x^3$, $x=0$).
+- **Artan-azalanı türev işareti yerine fonksiyon işaretiyle karıştırmak.** Gidişi **$f'(x)$'in işareti** belirler, $f(x)$'in işareti değil.
+- **Kapalı aralıkta uç noktaları unutmak.** $[a,b]$ üzerinde en büyük/küçük değer, kritik noktalar **ve** uçlardan ($a$, $b$) birinde olur; hepsini kıyasla.
+- **Optimizasyonda kısıtı kullanmadan iki değişkenle kalmak.** Önce kısıttan bir değişkeni yok edip fonksiyonu **tek değişkenli** yap; ancak o zaman türev alınır.
+
+> **Not:** Uygulama sorularının iskeleti hep aynı: **fonksiyonu kur → türevini sıfırla → kritik noktayı sınıflandır.** Optimizasyonda geometrik kısıtla değişkeni teke indirmeyi ve $x$'in geçerli aralığını kontrol etmeyi unutma.
+
+<KonuNav slug="turevde-uygulamalar" />

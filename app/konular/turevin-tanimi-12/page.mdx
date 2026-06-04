@@ -1,0 +1,462 @@
+import { topicMetadata } from "@/lib/seo";
+import TurevTanimFig from "@/components/figures/TurevTanimFig";
+
+export const metadata = topicMetadata("turevin-tanimi-12");
+
+<Konu slug="turevin-tanimi-12" />
+
+<p className="lead">Türev, bir fonksiyonun **bir noktadaki anlık değişim hızını** ölçer. Önce iki nokta arasındaki **ortalama değişim oranını** (kesenin eğimini) buluruz; sonra ikinci noktayı birinciye yaklaştırıp **limit** alırız. Bu limit, o noktadaki **teğetin eğimi** ve fonksiyonun o noktadaki **türevi**dir. Bu derste türevin limitle tanımını, anlık değişim oranını ve teğet eğimi yorumunu öğreneceğiz; bol örnek ve "Sıra Sende" alıştırmalarıyla pekiştireceğiz.</p>
+
+## 1. Ortalama Değişim Oranı
+
+$y=f(x)$ fonksiyonunda $x$, $a$'dan $b$'ye değişirken **ortalama değişim oranı**, grafiğin $A\big(a,f(a)\big)$ ve $B\big(b,f(b)\big)$ noktalarından geçen **kesenin eğimidir**:
+
+$$\text{Ortalama değişim oranı}=\dfrac{f(b)-f(a)}{b-a}=\dfrac{\Delta y}{\Delta x}$$
+
+Bu, "$x$ bir birim arttığında $y$ ortalama ne kadar değişir" sorusunun yanıtıdır.
+
+<Ornek>
+
+<Soru>
+
+$f(x)=x^2$ fonksiyonunun $x=1$ ile $x=3$ arasındaki ortalama değişim oranını bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Uç değerleri hesapla: $f(1)=1$, $f(3)=9$.
+2. Orana koy: $\dfrac{f(3)-f(1)}{3-1}=\dfrac{9-1}{3-1}=\dfrac{8}{2}=4$.
+
+<Cevap>$4$ (kesenin eğimi).</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 2. Anlık Değişim Oranı ve Türevin Tanımı
+
+İkinci noktayı birinciye **yaklaştırırsak** ($b\to a$), kesen yavaş yavaş **teğete** dönüşür. Kesenin eğiminin bu limitine **anlık değişim oranı** veya $f$ fonksiyonunun $a$ noktasındaki **türevi** denir ve $f'(a)$ ile gösterilir:
+
+$$f'(a)=\lim_{h\to 0}\dfrac{f(a+h)-f(a)}{h}$$
+
+Burada $h=b-a$ ikinci noktanın birinciye uzaklığıdır; $h\to 0$ olunca $B\to A$ olur. Bu limit varsa $f$, $a$ noktasında **türevlenebilir** denir.
+
+<Figur>
+
+<TurevTanimFig />
+
+<Altyazi>Şekil 1 — $f(x)=x^2$ eğrisinde $A(1,1)$ ve $B(3,9)$ noktalarından geçen **kesenin** eğimi $4$'tür. $B$ noktası $A$'ya yaklaştıkça kesen, $A$ noktasındaki **teğete** dönüşür; teğetin eğimi (yani $f'(1)$) $2$'dir.</Altyazi>
+
+</Figur>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=x^2$ fonksiyonunun $x=1$ noktasındaki türevini tanımı kullanarak bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+$f(1+h)=(1+h)^2$ açılımını yaz; payda $h$ ortak çarpanını sadeleştirdikten sonra $h\to 0$ koy.
+
+</Ipucu>
+
+<Cozum>
+
+1. Tanımı yaz: $f'(1)=\lim_{h\to 0}\dfrac{f(1+h)-f(1)}{h}$.
+2. $f(1+h)=(1+h)^2=1+2h+h^2$, $f(1)=1$.
+3. Pay: $(1+2h+h^2)-1=2h+h^2=h(2+h)$.
+4. Sadeleştir: $\dfrac{h(2+h)}{h}=2+h$.
+5. Limit: $\lim_{h\to 0}(2+h)=2$.
+
+<Cevap>$f'(1)=2$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 3. Teğetin Eğimi ve Teğet Denklemi
+
+Bir noktadaki türev, grafiğe o noktada çizilen **teğet doğrusunun eğimidir**. Eğimi $m=f'(a)$ olan ve $\big(a,f(a)\big)$ noktasından geçen teğetin denklemi:
+
+$$y-f(a)=f'(a)\,(x-a)$$
+
+Türev pozitifse fonksiyon o noktada **artıyor**, negatifse **azalıyor**, sıfırsa teğet **yataydır**.
+
+<Ornek>
+
+<Soru>
+
+$f(x)=x^2$ eğrisine $x=1$ noktasında çizilen teğetin denklemini yazınız. ($f'(1)=2$ bulunmuştu.)
+
+</Soru>
+
+<Cozum>
+
+1. Değme noktası: $a=1$, $f(1)=1$, eğim $m=f'(1)=2$.
+2. Teğet denklemi: $y-1=2(x-1)$.
+3. Düzenle: $y=2x-1$.
+
+<Cevap>$y=2x-1$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 4. Türev Fonksiyonu
+
+Her $x$ için türevi hesaplarsak yeni bir fonksiyon elde ederiz; buna **türev fonksiyonu** $f'(x)$ denir:
+
+$$f'(x)=\lim_{h\to 0}\dfrac{f(x+h)-f(x)}{h}$$
+
+Bir kez $f'(x)$'i bulunca, herhangi bir noktadaki türevi yerine koyarak ($f'(a)$) okuruz.
+
+<Ornek>
+
+<Soru>
+
+$f(x)=x^2$ fonksiyonunun türev fonksiyonu $f'(x)$'i tanımdan bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $f(x+h)=(x+h)^2=x^2+2xh+h^2$.
+2. Pay: $(x^2+2xh+h^2)-x^2=2xh+h^2=h(2x+h)$.
+3. Sadeleştir: $\dfrac{h(2x+h)}{h}=2x+h$.
+4. Limit: $\lim_{h\to 0}(2x+h)=2x$.
+
+<Cevap>$f'(x)=2x$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Çözümlü Örnekler
+
+<Ornek>
+
+<Soru>
+
+$f(x)=3x+2$ fonksiyonunun türevini tanımdan bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $f(x+h)=3(x+h)+2=3x+3h+2$.
+2. Pay: $(3x+3h+2)-(3x+2)=3h$.
+3. Sadeleştir: $\dfrac{3h}{h}=3$.
+4. Limit: $\lim_{h\to 0}3=3$.
+
+<Cevap>$f'(x)=3$ (doğrusal fonksiyonun türevi, eğimine eşittir).</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=x^2-4x$ fonksiyonunun $x=3$ ile $x=5$ arasındaki ortalama değişim oranını bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $f(3)=9-12=-3$, $f(5)=25-20=5$.
+2. Oran: $\dfrac{5-(-3)}{5-3}=\dfrac{8}{2}=4$.
+
+<Cevap>$4$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=x^2+1$ fonksiyonunun $x=2$ noktasındaki türevini tanımdan bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+$f(2+h)=(2+h)^2+1$ açılımında sabit terimler sadeleşir; pay $h$'li terimlerden oluşur.
+
+</Ipucu>
+
+<Cozum>
+
+1. $f(2+h)=(2+h)^2+1=4+4h+h^2+1=5+4h+h^2$, $f(2)=5$.
+2. Pay: $(5+4h+h^2)-5=4h+h^2=h(4+h)$.
+3. Sadeleştir: $\dfrac{h(4+h)}{h}=4+h$.
+4. Limit: $\lim_{h\to 0}(4+h)=4$.
+
+<Cevap>$f'(2)=4$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=\dfrac{1}{x}$ fonksiyonunun $x=2$ noktasındaki türevini tanımdan bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Payı tek kesir hâline getir: $\dfrac{1}{2+h}-\dfrac{1}{2}$ ortak paydada birleşir; sonra $h$ ile sadeleşir.
+
+</Ipucu>
+
+<Cozum>
+
+1. Pay: $\dfrac{1}{2+h}-\dfrac{1}{2}=\dfrac{2-(2+h)}{2(2+h)}=\dfrac{-h}{2(2+h)}$.
+2. Tüm ifade: $\dfrac{1}{h}\cdot\dfrac{-h}{2(2+h)}=\dfrac{-1}{2(2+h)}$.
+3. Limit: $\lim_{h\to 0}\dfrac{-1}{2(2+h)}=\dfrac{-1}{2\cdot 2}=-\dfrac{1}{4}$.
+
+<Cevap>$f'(2)=-\dfrac{1}{4}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=x^2$ eğrisine $x=-2$ noktasında çizilen teğetin denklemini yazınız.
+
+</Soru>
+
+<Cozum>
+
+1. Türev fonksiyonu $f'(x)=2x$ olduğundan eğim $m=f'(-2)=-4$.
+2. Değme noktası: $\big(-2,\ f(-2)\big)=(-2,\ 4)$.
+3. Teğet: $y-4=-4\big(x-(-2)\big)=-4(x+2)$.
+4. Düzenle: $y=-4x-4$.
+
+<Cevap>$y=-4x-4$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Alıştırmalar — Sıra Sende
+
+> Önce kendin çözmeyi dene; sonra çözümü açıp karşılaştır.
+
+<Ornek>
+
+<Soru>
+
+$f(x)=x^2$ fonksiyonunun $x=2$ ile $x=4$ arasındaki ortalama değişim oranını bul.
+
+</Soru>
+
+<Cozum>
+
+1. $f(2)=4$, $f(4)=16$.
+2. Oran: $\dfrac{16-4}{4-2}=\dfrac{12}{2}=6$.
+
+<Cevap>$6$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=5x-7$ fonksiyonunun türevini tanımdan bul.
+
+</Soru>
+
+<Cozum>
+
+1. $f(x+h)=5(x+h)-7=5x+5h-7$.
+2. Pay: $5h$, sadeleştir: $\dfrac{5h}{h}=5$.
+3. Limit: $5$.
+
+<Cevap>$f'(x)=5$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=x^2+3$ fonksiyonunun $x=1$ noktasındaki türevini tanımdan bul.
+
+</Soru>
+
+<Cozum>
+
+1. $f(1+h)=(1+h)^2+3=1+2h+h^2+3=4+2h+h^2$, $f(1)=4$.
+2. Pay: $2h+h^2=h(2+h)$, sadeleştir: $2+h$.
+3. Limit: $2$.
+
+<Cevap>$f'(1)=2$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=x^2-2x$ fonksiyonunun türev fonksiyonu $f'(x)$'i tanımdan bul.
+
+</Soru>
+
+<Cozum>
+
+1. $f(x+h)=(x+h)^2-2(x+h)=x^2+2xh+h^2-2x-2h$.
+2. Pay: $f(x+h)-f(x)=2xh+h^2-2h=h(2x+h-2)$.
+3. Sadeleştir: $2x+h-2$, limit: $2x-2$.
+
+<Cevap>$f'(x)=2x-2$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=x^2$ eğrisine $x=3$ noktasında çizilen teğetin eğimini bul.
+
+</Soru>
+
+<Cozum>
+
+1. $f'(x)=2x$ olduğundan eğim $f'(3)=2\cdot 3=6$.
+
+<Cevap>$6$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=4$ (sabit fonksiyon) için $f'(x)$'i tanımdan bul.
+
+</Soru>
+
+<Cozum>
+
+1. $f(x+h)=4$, $f(x)=4$.
+2. Pay: $4-4=0$, oran: $\dfrac{0}{h}=0$.
+3. Limit: $0$.
+
+<Cevap>$f'(x)=0$ (sabit fonksiyonun türevi sıfırdır).</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=x^3$ fonksiyonunun $x=2$ noktasındaki türevini tanımdan bul.
+
+</Soru>
+
+<Ipucu>
+
+$(2+h)^3=8+12h+6h^2+h^3$ açılımını kullan; sabit terim $8$, $f(2)=8$ ile sadeleşir.
+
+</Ipucu>
+
+<Cozum>
+
+1. $f(2+h)=(2+h)^3=8+12h+6h^2+h^3$, $f(2)=8$.
+2. Pay: $12h+6h^2+h^3=h(12+6h+h^2)$.
+3. Sadeleştir: $12+6h+h^2$, limit: $12$.
+
+<Cevap>$f'(2)=12$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=\sqrt{x}$ fonksiyonunun $x=4$ noktasındaki türevini tanımdan bul.
+
+</Soru>
+
+<Ipucu>
+
+Payı eşlenikle ($\sqrt{4+h}+2$) çarp: $\sqrt{4+h}-2$ ifadesi $\dfrac{h}{\sqrt{4+h}+2}$'ye dönüşür.
+
+</Ipucu>
+
+<Cozum>
+
+1. Pay: $\sqrt{4+h}-\sqrt{4}=\sqrt{4+h}-2$.
+2. Eşlenikle çarp: $\dfrac{\sqrt{4+h}-2}{h}\cdot\dfrac{\sqrt{4+h}+2}{\sqrt{4+h}+2}=\dfrac{(4+h)-4}{h\big(\sqrt{4+h}+2\big)}=\dfrac{h}{h\big(\sqrt{4+h}+2\big)}$.
+3. Sadeleştir: $\dfrac{1}{\sqrt{4+h}+2}$.
+4. Limit: $\dfrac{1}{\sqrt{4}+2}=\dfrac{1}{2+2}=\dfrac{1}{4}$.
+
+<Cevap>$f'(4)=\dfrac{1}{4}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=x^2-4x+1$ eğrisine, teğeti yatay olan noktanın apsisini bul.
+
+</Soru>
+
+<Ipucu>
+
+Teğet yatay ise eğim $0$'dır. Türev fonksiyonunu bulup $f'(x)=0$ denklemini çöz.
+
+</Ipucu>
+
+<Cozum>
+
+1. Türev fonksiyonu (tanımdan): $f(x+h)-f(x)=2xh+h^2-4h=h(2x+h-4)$, sadeleştir ve limit al: $f'(x)=2x-4$.
+2. Yatay teğet: $f'(x)=0\Rightarrow 2x-4=0\Rightarrow x=2$.
+
+<Cevap>$x=2$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Ortalama ile anlık değişim oranını karıştırmak.** İki nokta arası **ortalama** (kesen eğimi); tek nokta için **anlık** değişim ($h\to 0$ limiti, teğet eğimi) hesaplanır.
+- **$h$ ile sadeleştirmeden $h=0$ koymak.** Limitte doğrudan $h=0$ yazarsan $\dfrac{0}{0}$ belirsizliği çıkar; önce payda $h$ ortak çarpanını sadeleştir.
+- **$(a+h)^2=a^2+h^2$ sanmak.** Doğrusu $(a+h)^2=a^2+2ah+h^2$'dir; orta terimi unutmak türevi yanlış yapar.
+- **Teğet denkleminde eğimi noktayla karıştırmak.** Teğet $y-f(a)=f'(a)(x-a)$; eğim **türev değeri** $f'(a)$, geçtiği nokta $\big(a,f(a)\big)$'dır.
+
+> **Not:** Türevin özü tek cümlede: **kesenin eğiminin, iki nokta birbirine yaklaşırken aldığı limit.** Tanımdan türev alırken refleksin "pay aç → $h$ parantezine al → sadeleştir → $h\to 0$" olsun.
+
+<KonuNav slug="turevin-tanimi-12" />

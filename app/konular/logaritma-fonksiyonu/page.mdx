@@ -1,0 +1,538 @@
+import { topicMetadata } from "@/lib/seo";
+import { UstelLogSimetri } from "@/components/figures/UstelLogFig";
+
+export const metadata = topicMetadata("logaritma-fonksiyonu");
+
+<Konu slug="logaritma-fonksiyonu" />
+
+<p className="lead">**Logaritma**, üstel almanın **ters işlemidir**: "$2$'yi kaçıncı kuvvete alırsam $8$ olur?" sorusunun cevabı $\log_2 8=3$'tür. Bu derste logaritmanın tanımını, $\log$ (taban $10$) ve $\ln$ (taban $e$) gösterimlerini, **logaritma özelliklerini** (çarpım, bölüm, üs, taban değiştirme) ve logaritma fonksiyonunun **grafiğini** öğreneceğiz. Logaritma, üstel fonksiyonun tersi olduğundan grafiği $y=x$ doğrusuna göre onun simetriğidir. Bol örnek ve "Sıra Sende" alıştırmalarıyla pekiştireceğiz.</p>
+
+## 1. Logaritmanın Tanımı
+
+$a>0$, $a\neq 1$ ve $x>0$ olmak üzere
+
+$$\log_a x = y \iff a^{y}=x$$
+
+biçiminde tanımlanır. Yani $\log_a x$, "$a$ tabanını hangi kuvvete alırsak $x$ elde ederiz?" sorusunun cevabıdır. Bu, üstel ile logaritmanın **ters** işlemler olduğunu gösterir.
+
+Çok önemli bir koşul: logaritmanın içi (argümanı) **kesin pozitif** olmalıdır ($x>0$); çünkü $a^{y}>0$ her zaman, yani hiçbir kuvvet negatif veya sıfır sonuç vermez.
+
+İki özel taban kısaltmayla yazılır:
+
+- **Taban $10$** (onluk logaritma): $\log_{10} x$ yerine kısaca $\log x$.
+- **Taban $e$** (doğal logaritma, $e\approx 2{,}718$): $\log_e x$ yerine $\ln x$.
+
+<Ornek>
+
+<Soru>
+
+$\log_2 8$, $\log_3 81$ ve $\log_5 1$ değerlerini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $\log_2 8$: $2$ üzeri kaç $8$ eder? $2^{3}=8$, demek ki $\log_2 8=3$.
+2. $\log_3 81$: $3^{4}=81$, demek ki $\log_3 81=4$.
+3. $\log_5 1$: $5^{0}=1$, demek ki $\log_5 1=0$.
+
+<Cevap>$3,\ 4,\ 0$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 2. Temel Değerler
+
+Tanımdan doğrudan çıkan iki sonucu ezberlemek işleri hızlandırır:
+
+$$\log_a 1 = 0 \qquad\qquad \log_a a = 1$$
+
+Çünkü $a^{0}=1$ ve $a^{1}=a$. Ayrıca tanımın bir sonucu olarak $\log_a a^{k}=k$ ve $a^{\log_a x}=x$ olur.
+
+<Ornek>
+
+<Soru>
+
+$\log_7 7$, $\log_4 1$ ve $\log_2 2^{5}$ değerlerini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $\log_7 7=1$ (taban ile argüman aynı).
+2. $\log_4 1=0$ (argüman $1$).
+3. $\log_2 2^{5}=5$ (çünkü $\log_a a^{k}=k$).
+
+<Cevap>$1,\ 0,\ 5$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 3. Logaritma Özellikleri
+
+Aynı tabanlı logaritmalarda şu kurallar geçerlidir ($x,y>0$):
+
+$$\log_a (x\cdot y)=\log_a x+\log_a y$$
+$$\log_a \dfrac{x}{y}=\log_a x-\log_a y$$
+$$\log_a x^{n}=n\cdot \log_a x$$
+
+Yani **çarpım** logaritmaların toplamına, **bölüm** farkına dönüşür; **üs** ise katsayı olarak öne çıkar. Bu kurallar üs kurallarının doğrudan yansımasıdır.
+
+<Ornek>
+
+<Soru>
+
+$\log 2 = a$ ise $\log 8$ ve $\log 20$ ifadelerini $a$ cinsinden yazınız. (Taban $10$.)
+
+</Soru>
+
+<Ipucu>
+
+$8=2^{3}$ için üs kuralını; $20=\dfrac{100}{5}$ yerine $20=2\cdot 10$ kullan: $\log 20=\log 2+\log 10$. Unutma: $\log 10=1$.
+
+</Ipucu>
+
+<Cozum>
+
+1. $\log 8=\log 2^{3}=3\log 2=3a$.
+2. $\log 20=\log(2\cdot 10)=\log 2+\log 10=a+1$.
+
+<Cevap>$\log 8=3a$, $\;\log 20=a+1$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 4. Taban Değiştirme
+
+Bir logaritmayı başka bir tabana çevirmek için **taban değiştirme** formülü kullanılır ($c>0$, $c\neq 1$):
+
+$$\log_a x=\dfrac{\log_c x}{\log_c a}$$
+
+Sık kullanılan iki sonuç: $\log_a x=\dfrac{1}{\log_x a}$ ve $\log_{a^{n}} x=\dfrac{1}{n}\log_a x$.
+
+<Ornek>
+
+<Soru>
+
+$\log_4 8$ değerini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Her şeyi $2$ tabanına çevir: $\log_4 8=\dfrac{\log_2 8}{\log_2 4}$.
+
+</Ipucu>
+
+<Cozum>
+
+1. $2$ tabanına geç: $\log_4 8=\dfrac{\log_2 8}{\log_2 4}$.
+2. $\log_2 8=3$, $\;\log_2 4=2$.
+3. $\log_4 8=\dfrac{3}{2}$.
+
+<Cevap>$\dfrac{3}{2}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 5. Logaritma Fonksiyonunun Grafiği
+
+$f(x)=\log_a x$ fonksiyonu, $g(x)=a^{x}$ üstel fonksiyonunun **tersidir**. Bu yüzden grafiği, üstel grafiğin $y=x$ doğrusuna göre **simetriğidir**.
+
+Tanım kümesi $x>0$ (yalnız pozitif sayılar), değer kümesi tüm gerçek sayılardır. Grafik $(1,0)$ noktasından geçer ($\log_a 1=0$) ve $y$ ekseni ($x=0$) bir **düşey asimptottur**. $a>1$ için fonksiyon artan, $0<a<1$ için azalandır.
+
+<Figur>
+
+<UstelLogSimetri />
+
+<Altyazi>Şekil 1 — $y=2^{x}$ (üstel) ile $y=\log_2 x$ (logaritma) eğrileri $y=x$ doğrusuna göre **simetriktir**; biri diğerinin tersidir. Üstelin geçtiği $(0,1)$ noktası, logaritmada $(1,0)$ noktasına dönüşür.</Altyazi>
+
+</Figur>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=\log_2(x-3)$ fonksiyonunun tanım kümesini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Logaritmanın içi (argümanı) kesin pozitif olmalı: $x-3>0$.
+
+</Ipucu>
+
+<Cozum>
+
+1. Argüman pozitif olmalı: $x-3>0$.
+2. $x>3$.
+
+<Cevap>Tanım kümesi $(3,\ \infty)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Çözümlü Örnekler
+
+<Ornek>
+
+<Soru>
+
+$\log_3 \dfrac{1}{9}$ değerini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $\dfrac{1}{9}=3^{-2}$.
+2. $\log_3 3^{-2}=-2$.
+
+<Cevap>$-2$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\log_2 6+\log_2 \dfrac{2}{3}$ ifadesinin değerini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Toplam, çarpımın logaritmasına eşittir: $\log_2 6+\log_2 \frac{2}{3}=\log_2\left(6\cdot\frac{2}{3}\right)$.
+
+</Ipucu>
+
+<Cozum>
+
+1. Çarpım kuralı: $\log_2 6+\log_2 \dfrac{2}{3}=\log_2\left(6\cdot\dfrac{2}{3}\right)$.
+2. İçi sadeleştir: $6\cdot\dfrac{2}{3}=4$.
+3. $\log_2 4=2$.
+
+<Cevap>$2$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\log 5$ ifadesini $\log 2$ cinsinden yazınız. (Taban $10$.)
+
+</Soru>
+
+<Ipucu>
+
+$5=\dfrac{10}{2}$. Bölüm kuralını kullan; $\log 10=1$.
+
+</Ipucu>
+
+<Cozum>
+
+1. $5=\dfrac{10}{2}$ yaz: $\log 5=\log\dfrac{10}{2}=\log 10-\log 2$.
+2. $\log 10=1$: $\log 5=1-\log 2$.
+
+<Cevap>$1-\log 2$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\log_9 27$ değerini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+İkisi de $3$'ün kuvveti: $9=3^{2}$, $27=3^{3}$. Taban değiştirip $3$ tabanına geç.
+
+</Ipucu>
+
+<Cozum>
+
+1. $3$ tabanına geç: $\log_9 27=\dfrac{\log_3 27}{\log_3 9}$.
+2. $\log_3 27=3$, $\;\log_3 9=2$.
+3. $\log_9 27=\dfrac{3}{2}$.
+
+<Cevap>$\dfrac{3}{2}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\log_2 3=a$ ise $\log_2 12$ ifadesini $a$ cinsinden yazınız.
+
+</Soru>
+
+<Ipucu>
+
+$12=4\cdot 3=2^{2}\cdot 3$. Çarpım kuralıyla aç; $\log_2 4=2$.
+
+</Ipucu>
+
+<Cozum>
+
+1. $12=2^{2}\cdot 3$ yaz: $\log_2 12=\log_2 2^{2}+\log_2 3$.
+2. $\log_2 2^{2}=2$, $\;\log_2 3=a$.
+3. $\log_2 12=2+a$.
+
+<Cevap>$a+2$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Alıştırmalar — Sıra Sende
+
+> Önce kendin çözmeyi dene; sonra çözümü açıp karşılaştır.
+
+<Ornek>
+
+<Soru>
+
+$\log_2 16$ değerini bul.
+
+</Soru>
+
+<Cozum>
+
+1. $16=2^{4}$, demek ki $\log_2 16=4$.
+
+<Cevap>$4$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\log_5 \dfrac{1}{25}$ değerini bul.
+
+</Soru>
+
+<Cozum>
+
+1. $\dfrac{1}{25}=5^{-2}$.
+2. $\log_5 5^{-2}=-2$.
+
+<Cevap>$-2$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=\log(2x-6)$ fonksiyonunun tanım kümesini bul. (Taban $10$.)
+
+</Soru>
+
+<Cozum>
+
+1. Argüman pozitif: $2x-6>0\Rightarrow x>3$.
+
+<Cevap>$(3,\ \infty)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\log_6 4+\log_6 9$ ifadesinin değerini bul.
+
+</Soru>
+
+<Cozum>
+
+1. Çarpım kuralı: $\log_6(4\cdot 9)=\log_6 36$.
+2. $36=6^{2}$, demek ki $\log_6 36=2$.
+
+<Cevap>$2$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\log_3 45-\log_3 5$ ifadesinin değerini bul.
+
+</Soru>
+
+<Cozum>
+
+1. Bölüm kuralı: $\log_3\dfrac{45}{5}=\log_3 9$.
+2. $9=3^{2}$, demek ki $\log_3 9=2$.
+
+<Cevap>$2$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\log_8 32$ değerini bul.
+
+</Soru>
+
+<Ipucu>
+
+İkisi de $2$'nin kuvveti: $8=2^{3}$, $32=2^{5}$. $2$ tabanına geç.
+
+</Ipucu>
+
+<Cozum>
+
+1. $2$ tabanına geç: $\log_8 32=\dfrac{\log_2 32}{\log_2 8}=\dfrac{5}{3}$.
+
+<Cevap>$\dfrac{5}{3}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\log 2=a$ ve $\log 3=b$ ise $\log 6$ ve $\log 1{,}5$ ifadelerini $a,b$ cinsinden yaz. (Taban $10$.)
+
+</Soru>
+
+<Ipucu>
+
+$6=2\cdot 3$ ve $1{,}5=\dfrac{3}{2}$. Çarpım ve bölüm kurallarını uygula.
+
+</Ipucu>
+
+<Cozum>
+
+1. $\log 6=\log(2\cdot 3)=\log 2+\log 3=a+b$.
+2. $\log 1{,}5=\log\dfrac{3}{2}=\log 3-\log 2=b-a$.
+
+<Cevap>$\log 6=a+b$, $\;\log 1{,}5=b-a$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\log_2 5=m$ ise $\log_2 40$ ifadesini $m$ cinsinden yaz.
+
+</Soru>
+
+<Ipucu>
+
+$40=8\cdot 5=2^{3}\cdot 5$. Çarpım kuralıyla aç.
+
+</Ipucu>
+
+<Cozum>
+
+1. $40=2^{3}\cdot 5$: $\log_2 40=\log_2 2^{3}+\log_2 5$.
+2. $\log_2 2^{3}=3$, $\;\log_2 5=m$.
+3. $\log_2 40=3+m$.
+
+<Cevap>$m+3$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\dfrac{\log_2 16}{\log_2 8}$ ifadesinin değerini bul ve bunun hangi tek logaritmaya eşit olduğunu söyle.
+
+</Soru>
+
+<Ipucu>
+
+Taban değiştirme formülünü ters yönde oku: $\dfrac{\log_2 16}{\log_2 8}=\log_8 16$.
+
+</Ipucu>
+
+<Cozum>
+
+1. Değerleri yaz: $\log_2 16=4$, $\;\log_2 8=3$.
+2. Oran: $\dfrac{4}{3}$.
+3. Taban değiştirme formülüne göre bu oran $\log_8 16$'ya eşittir.
+
+<Cevap>$\dfrac{4}{3}$; bu $\log_8 16$'ya eşittir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\log_2 3\cdot \log_3 8$ çarpımının değerini bul.
+
+</Soru>
+
+<Ipucu>
+
+Taban değiştirme ile $\log_3 8=\dfrac{\log_2 8}{\log_2 3}$ yaz; $\log_2 3$ sadeleşir.
+
+</Ipucu>
+
+<Cozum>
+
+1. $\log_3 8=\dfrac{\log_2 8}{\log_2 3}$ yaz.
+2. Çarpımda yerine koy: $\log_2 3\cdot\dfrac{\log_2 8}{\log_2 3}=\log_2 8$.
+3. $\log_2 8=3$.
+
+<Cevap>$3$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Argümanın negatif/sıfır olabileceğini sanmak.** $\log_a x$ yalnız $x>0$ için tanımlıdır; tanım kümesi sorularında argümanı $>0$ yapan eşitsizliği çöz.
+- **$\log_a(x+y)$ ile $\log_a x+\log_a y$'yi karıştırmak.** Toplam içeri **dağılmaz**; yalnız **çarpım** logaritmaların toplamına eşittir: $\log_a(xy)=\log_a x+\log_a y$.
+- **$\dfrac{\log x}{\log y}$ ile $\log\dfrac{x}{y}$'yi karıştırmak.** Bölüm kuralı $\log\dfrac{x}{y}=\log x-\log y$'dir; logaritmaların **oranı** ise taban değiştirmedir.
+- **$\log a^{n}$'de üssü argümanın tamamına yapıştırmak.** $\log_a x^{n}=n\log_a x$'tir; ama $\left(\log_a x\right)^{n}$ bambaşka bir ifadedir.
+
+> **Not:** Logaritmayı her zaman "**üssün tersi**" diye oku: $\log_a x=y\iff a^{y}=x$. Hesaplarken argümanı tabanın kuvveti biçiminde yazmaya çalış; özellikleri ($+,-,n\cdot$) ezberden değil, üs kurallarının yansıması olarak düşün.
+
+<KonuNav slug="logaritma-fonksiyonu" />
