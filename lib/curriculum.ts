@@ -111,12 +111,14 @@ export const TRACKS: TrackMeta[] = [
 // ── Units ────────────────────────────────────────────────────────────────────
 
 export const UNITS: Unit[] = [
-  // 9. Sınıf
-  { slug: "kumeler-9", title: "Kümeler", track: "9", order: 1 },
-  { slug: "denklem-esitsizlik-9", title: "Denklem ve Eşitsizlikler", track: "9", order: 2 },
-  { slug: "ucgenler-9", title: "Üçgenler", track: "9", order: 3 },
-  { slug: "fonksiyonlar-9", title: "Fonksiyonlar", track: "9", order: 4 },
-  { slug: "olasilik-9", title: "Olasılık", track: "9", order: 5 },
+  // 9. Sınıf — Türkiye Yüzyılı Maarif Modeli (2024) temaları
+  { slug: "sayilar-9", title: "Sayılar", track: "9", order: 1 },
+  { slug: "nicelikler-degisimler-9", title: "Nicelikler ve Değişimler", track: "9", order: 2 },
+  { slug: "algoritma-bilisim-9", title: "Algoritma ve Bilişim", track: "9", order: 3 },
+  { slug: "geometrik-sekiller-9", title: "Geometrik Şekiller", track: "9", order: 4 },
+  { slug: "eslik-benzerlik-9", title: "Eşlik ve Benzerlik", track: "9", order: 5 },
+  { slug: "istatistik-9", title: "İstatistiksel Araştırma Süreci", track: "9", order: 6 },
+  { slug: "veriden-olasiliga-9", title: "Veriden Olasılığa", track: "9", order: 7 },
   // 10. Sınıf
   { slug: "sayma-olasilik-10", title: "Sayma ve Olasılık", track: "10", order: 1 },
   { slug: "fonksiyonlar-10", title: "Fonksiyonlar", track: "10", order: 2 },
@@ -166,31 +168,37 @@ export const UNITS: Unit[] = [
 // in over time by adding an MDX file and flipping status to "published".
 
 export const TOPICS: Topic[] = [
-  // ── 9. Sınıf · Kümeler ──
-  { slug: "kumelerde-temel-kavramlar", title: "Kümelerde Temel Kavramlar", track: "9", unit: "kumeler-9", summary: "Küme, eleman, alt küme ve evrensel küme kavramları.", minutes: 5, difficulty: "Kolay", questionCount: 12, status: "published" },
-  { slug: "kumelerde-islemler", title: "Kümelerde İşlemler", track: "9", unit: "kumeler-9", summary: "Birleşim, kesişim, fark ve tümleyen işlemleri.", minutes: 6, difficulty: "Kolay", questionCount: 16, status: "published" },
-  { slug: "kume-problemleri", title: "Küme Problemleri", track: "9", unit: "kumeler-9", summary: "Venn şemasıyla iki ve üç kümeli problem çözümleri.", minutes: 7, difficulty: "Orta", questionCount: 18, status: "published" },
+  // ── 9. Sınıf · Sayılar ──
+  { slug: "uslu-ifadeler-9", title: "Üslü İfadeler ve Özellikleri", track: "9", unit: "sayilar-9", summary: "Üslü ifade kavramı, üs özellikleri ve işlemler.", minutes: 7, difficulty: "Kolay", questionCount: 24, status: "soon", keywords: ["üs", "kuvvet"] },
+  { slug: "koklu-ifadeler-9", title: "Köklü İfadeler ve Özellikleri", track: "9", unit: "sayilar-9", summary: "Kök kavramı, köklü ifadelerde işlemler ve paydayı rasyonel yapma.", minutes: 7, difficulty: "Orta", questionCount: 22, status: "soon", keywords: ["kök", "radikal"] },
+  { slug: "kumelerde-temel-kavramlar", title: "Kümeler ve Sayı Kümeleri", track: "9", unit: "sayilar-9", summary: "Küme kavramı ve sayı kümeleri (ℕ, ℤ, ℚ, ℝ) arasındaki ilişkiler.", minutes: 6, difficulty: "Kolay", questionCount: 16, status: "published", keywords: ["küme", "sayı kümeleri"] },
+  { slug: "gercek-sayilar", title: "Gerçek Sayılarda İşlemler ve Aralıklar", track: "9", unit: "sayilar-9", summary: "Gerçek sayılarda işlem özellikleri, aralıklar ve aralıklarla işlemler.", minutes: 7, difficulty: "Orta", questionCount: 20, status: "soon", keywords: ["aralık", "gerçek sayı"] },
 
-  // ── 9. Sınıf · Denklem ve Eşitsizlikler ──
-  { slug: "gercek-sayilar", title: "Gerçek Sayılar", track: "9", unit: "denklem-esitsizlik-9", summary: "Sayı kümeleri ve gerçek sayılar üzerinde işlemler.", minutes: 5, difficulty: "Kolay", questionCount: 14, status: "soon" },
-  { slug: "birinci-derece-denklemler", title: "Birinci Dereceden Denklemler", track: "9", unit: "denklem-esitsizlik-9", summary: "Bir bilinmeyenli birinci dereceden denklem çözümleri.", minutes: 6, difficulty: "Kolay", questionCount: 20, status: "soon" },
-  { slug: "birinci-derece-esitsizlikler", title: "Birinci Dereceden Eşitsizlikler", track: "9", unit: "denklem-esitsizlik-9", summary: "Eşitsizlik çözüm kümeleri ve sayı doğrusunda gösterim.", minutes: 6, difficulty: "Orta", questionCount: 16, status: "soon" },
-  { slug: "mutlak-deger", title: "Mutlak Değer", track: "9", unit: "denklem-esitsizlik-9", summary: "Mutlak değerli denklem ve eşitsizliklerin çözümü.", minutes: 7, difficulty: "Orta", questionCount: 18, status: "soon", keywords: ["mutlak"] },
-  { slug: "oran-oranti", title: "Oran ve Orantı", track: "9", unit: "denklem-esitsizlik-9", summary: "Doğru ve ters orantı, orantı problemleri.", minutes: 6, difficulty: "Kolay", questionCount: 15, status: "soon" },
+  // ── 9. Sınıf · Nicelikler ve Değişimler ──
+  { slug: "dogrusal-fonksiyonlar-9", title: "Doğrusal Fonksiyonlar", track: "9", unit: "nicelikler-degisimler-9", summary: "Doğrusal fonksiyon, eğim ve grafiğinin nitel özellikleri.", minutes: 7, difficulty: "Orta", questionCount: 18, status: "soon", keywords: ["eğim", "doğrusal"] },
+  { slug: "mutlak-deger-fonksiyonlari-9", title: "Mutlak Değer Fonksiyonları", track: "9", unit: "nicelikler-degisimler-9", summary: "Mutlak değer fonksiyonu, grafiği ve temel özellikleri.", minutes: 7, difficulty: "Orta", questionCount: 18, status: "soon", keywords: ["mutlak değer"] },
+  { slug: "birinci-derece-problemler-9", title: "Birinci Dereceden Denklem ve Eşitsizlik Problemleri", track: "9", unit: "nicelikler-degisimler-9", summary: "Doğrusal fonksiyonlarla ifade edilen denklem ve eşitsizlik problemleri.", minutes: 8, difficulty: "Orta", questionCount: 22, status: "soon" },
 
-  // ── 9. Sınıf · Üçgenler ──
-  { slug: "ucgende-acilar", title: "Üçgende Açılar", track: "9", unit: "ucgenler-9", summary: "İç açı, dış açı ve açı bağıntıları.", minutes: 5, difficulty: "Kolay", questionCount: 14, status: "soon" },
-  { slug: "ucgende-kenar-aci-bagintilari", title: "Üçgende Kenar-Açı Bağıntıları", track: "9", unit: "ucgenler-9", summary: "Kenar uzunlukları ile açılar arasındaki ilişki.", minutes: 6, difficulty: "Orta", questionCount: 12, status: "soon" },
-  { slug: "dik-ucgen-trigonometri", title: "Dik Üçgende Trigonometri", track: "9", unit: "ucgenler-9", summary: "Pisagor, Öklid bağıntıları ve temel trigonometrik oranlar.", minutes: 8, difficulty: "Orta", questionCount: 22, status: "soon", keywords: ["pisagor", "öklid", "sinüs", "kosinüs"] },
-  { slug: "ucgenin-alani", title: "Üçgenin Alanı", track: "9", unit: "ucgenler-9", summary: "Alan formülleri ve özel üçgenlerde alan.", minutes: 6, difficulty: "Orta", questionCount: 16, status: "soon" },
+  // ── 9. Sınıf · Algoritma ve Bilişim ──
+  { slug: "algoritmik-dusunme-9", title: "Algoritmik Düşünme ve Problem Çözme", track: "9", unit: "algoritma-bilisim-9", summary: "Problemleri algoritmik yaklaşımla adım adım çözme.", minutes: 6, difficulty: "Kolay", questionCount: 14, status: "soon", keywords: ["algoritma", "akış"] },
+  { slug: "mantik-onermeler-9", title: "Mantık: Önermeler ve Niceleyiciler", track: "9", unit: "algoritma-bilisim-9", summary: "Önermeler, bağlaçlar ve niceleyicilerin algoritmik yapılardaki kullanımı.", minutes: 7, difficulty: "Orta", questionCount: 18, status: "soon", keywords: ["önerme", "mantık", "niceleyici"] },
 
-  // ── 9. Sınıf · Fonksiyonlar ──
-  { slug: "fonksiyon-kavrami", title: "Fonksiyon Kavramı", track: "9", unit: "fonksiyonlar-9", summary: "Fonksiyon tanımı, tanım ve görüntü kümesi.", minutes: 6, difficulty: "Kolay", questionCount: 14, status: "soon" },
-  { slug: "fonksiyon-cesitleri", title: "Fonksiyon Çeşitleri", track: "9", unit: "fonksiyonlar-9", summary: "Bire bir, örten, içine ve birim fonksiyonlar.", minutes: 7, difficulty: "Orta", questionCount: 16, status: "soon" },
-  { slug: "fonksiyon-grafikleri", title: "Fonksiyonların Grafikleri", track: "9", unit: "fonksiyonlar-9", summary: "Grafik okuma ve temel fonksiyon grafikleri.", minutes: 7, difficulty: "Orta", questionCount: 15, status: "soon" },
+  // ── 9. Sınıf · Geometrik Şekiller ──
+  { slug: "ucgende-acilar", title: "Üçgende Açılar", track: "9", unit: "geometrik-sekiller-9", summary: "İç açı, dış açı ve açı bağıntıları.", minutes: 5, difficulty: "Kolay", questionCount: 14, status: "soon" },
+  { slug: "ucgende-kenar-aci-bagintilari", title: "Üçgende Kenar-Açı Bağıntıları", track: "9", unit: "geometrik-sekiller-9", summary: "Kenar uzunlukları ile açılar arasındaki ilişki.", minutes: 6, difficulty: "Orta", questionCount: 14, status: "soon" },
 
-  // ── 9. Sınıf · Olasılık ──
-  { slug: "basit-olaylarin-olasiligi", title: "Basit Olayların Olasılığı", track: "9", unit: "olasilik-9", summary: "Örnek uzay, olay ve olasılık hesabı.", minutes: 6, difficulty: "Kolay", questionCount: 14, status: "soon" },
+  // ── 9. Sınıf · Eşlik ve Benzerlik ──
+  { slug: "geometrik-donusumler-9", title: "Geometrik Dönüşümler", track: "9", unit: "eslik-benzerlik-9", summary: "Öteleme, yansıma ve dönme dönüşümleri.", minutes: 7, difficulty: "Orta", questionCount: 16, status: "soon", keywords: ["öteleme", "yansıma", "dönme"] },
+  { slug: "ucgende-eslik-benzerlik-9", title: "Üçgenlerde Eşlik ve Benzerlik", track: "9", unit: "eslik-benzerlik-9", summary: "Eşlik ve benzerlik koşulları, benzer üçgen oluşturma.", minutes: 8, difficulty: "Orta", questionCount: 20, status: "soon", keywords: ["eşlik", "benzerlik"] },
+  { slug: "tales-oklid-pisagor-9", title: "Tales, Öklid ve Pisagor Teoremleri", track: "9", unit: "eslik-benzerlik-9", summary: "Tales, Öklid ve Pisagor bağıntıları ve problemleri.", minutes: 8, difficulty: "Orta", questionCount: 22, status: "soon", keywords: ["tales", "öklid", "pisagor"] },
+
+  // ── 9. Sınıf · İstatistiksel Araştırma Süreci ──
+  { slug: "tek-degiskenli-veri-9", title: "Tek Değişkenli Veri Dağılımları", track: "9", unit: "istatistik-9", summary: "Tek nicel değişkenli verilerde merkezî eğilim ve yayılım ölçüleri.", minutes: 7, difficulty: "Orta", questionCount: 16, status: "soon", keywords: ["ortalama", "medyan", "açıklık"] },
+  { slug: "veri-yorumlama-9", title: "Veri Dağılımlarını Eleştirel Yorumlama", track: "9", unit: "istatistik-9", summary: "Hazır veri dağılımlarını eleştirel biçimde okuma ve yorumlama.", minutes: 6, difficulty: "Orta", questionCount: 12, status: "soon" },
+
+  // ── 9. Sınıf · Veriden Olasılığa ──
+  { slug: "deneye-dayali-olasilik-9", title: "Deneye Dayalı Olasılık ve Tahmin", track: "9", unit: "veriden-olasiliga-9", summary: "Gözleme dayalı olasılık tahmini ve örnek uzay.", minutes: 6, difficulty: "Kolay", questionCount: 14, status: "soon", keywords: ["olasılık", "örnek uzay"] },
+  { slug: "olasilik-akil-yurutme-9", title: "Olasılıkta Tümevarımsal Akıl Yürütme", track: "9", unit: "veriden-olasiliga-9", summary: "Olayların olasılığı üzerine tümevarımsal çıkarım yapma.", minutes: 6, difficulty: "Orta", questionCount: 12, status: "soon" },
 
   // ── 10. Sınıf · Sayma ve Olasılık ──
   { slug: "siralama-secme", title: "Sıralama ve Seçme (Permütasyon-Kombinasyon)", track: "10", unit: "sayma-olasilik-10", summary: "Permütasyon, kombinasyon ve sayma yöntemleri.", minutes: 8, difficulty: "Orta", questionCount: 24, status: "soon", keywords: ["permütasyon", "kombinasyon", "faktöriyel"] },
