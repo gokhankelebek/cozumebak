@@ -229,8 +229,8 @@ export const TOPICS: Topic[] = [
   { slug: "koordinatta-dogru-10", title: "Koordinat Düzleminde Doğru: Eğim ve Denklem", track: "10", unit: "analitik-inceleme-10", summary: "Eğim, doğru denklemi ve iki doğrunun durumu.", minutes: 8, difficulty: "Orta", questionCount: 20, status: "published", keywords: ["eğim", "doğru denklemi"] },
 
   // ── 10. Sınıf · İstatistiksel Araştırma Süreci ──
-  { slug: "iki-kategorik-degisken-10", title: "İki Kategorik Değişken Arasında İlişki", track: "10", unit: "istatistik-10", summary: "İki yönlü (çapraz) tablo ile kategorik değişkenler arasındaki ilişki.", minutes: 7, difficulty: "Orta", questionCount: 14, status: "soon", keywords: ["çapraz tablo", "kategorik değişken"] },
-  { slug: "veri-surec-10", title: "Veri Toplama, Yorumlama ve Değerlendirme", track: "10", unit: "istatistik-10", summary: "İstatistiksel araştırma sürecinde veri toplama, bulgulara ulaşma ve değerlendirme.", minutes: 6, difficulty: "Orta", questionCount: 12, status: "soon" },
+  { slug: "iki-kategorik-degisken-10", title: "İki Kategorik Değişken Arasında İlişki", track: "10", unit: "istatistik-10", summary: "İki yönlü (çapraz) tablo ile kategorik değişkenler arasındaki ilişki.", minutes: 7, difficulty: "Orta", questionCount: 14, status: "published", keywords: ["çapraz tablo", "kategorik değişken"] },
+  { slug: "veri-surec-10", title: "Veri Toplama, Yorumlama ve Değerlendirme", track: "10", unit: "istatistik-10", summary: "İstatistiksel araştırma sürecinde veri toplama, bulgulara ulaşma ve değerlendirme.", minutes: 6, difficulty: "Orta", questionCount: 12, status: "published" },
 
   // ── 10. Sınıf · Veriden Olasılığa ──
   { slug: "kosullu-olasilik", title: "Koşullu Olasılık", track: "10", unit: "veriden-olasiliga-10", summary: "Bir olayın gerçekleştiği bilindiğinde diğer olayın olasılığı.", minutes: 8, difficulty: "Zor", questionCount: 18, status: "soon", keywords: ["koşullu olasılık"] },

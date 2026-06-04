@@ -1,0 +1,261 @@
+import { topicMetadata } from "@/lib/seo";
+
+export const metadata = topicMetadata("iki-kategorik-degisken-10");
+
+<Konu slug="iki-kategorik-degisken-10" />
+
+<p className="lead">*İstatistiksel Araştırma Süreci* teması, iki özelliğin **birlikte** nasıl değiştiğini incelemeyi öğretir. Bu derste iki **kategorik değişkeni** (örneğin cinsiyet ve spor tercihi) bir **iki yönlü (çapraz) tabloda** düzenlemeyi, satır/sütun toplamlarını okumayı, **yüzde** hesaplamayı ve iki değişken arasında bir **ilişki olup olmadığını** yorumlamayı öğreneceğiz. Bol örnek ve "Sıra Sende" alıştırmalarıyla pekiştireceğiz.</p>
+
+## 1. İki Yönlü (Çapraz) Tablo
+
+İki kategorik değişken, satır biri, sütun diğeri olacak şekilde bir tabloda gösterilir. Her hücre, iki kategorinin **kesişimindeki** birey sayısını verir. Kenardaki toplamlara **marjinal toplam** denir.
+
+Örnek: $100$ öğrencide cinsiyet ve sevilen spor.
+
+| | Futbol | Basketbol | Toplam |
+|---|:---:|:---:|:---:|
+| **Kız** | $20$ | $30$ | $50$ |
+| **Erkek** | $35$ | $15$ | $50$ |
+| **Toplam** | $55$ | $45$ | $100$ |
+
+<Ornek>
+
+<Soru>
+
+Yukarıdaki tabloya göre basketbolu seven kaç öğrenci vardır?
+
+</Soru>
+
+<Cozum>
+
+1. Basketbol sütununun toplamına bak: $30+15=45$.
+
+<Cevap>$45$ öğrenci.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 2. Satır ve Sütun Yüzdeleri
+
+Bir hücrenin oranı, hangi **bütüne** göre baktığına bağlıdır:
+
+- **Satır yüzdesi:** hücre / satır toplamı (o grup içindeki dağılım).
+- **Sütun yüzdesi:** hücre / sütun toplamı.
+- **Genel yüzde:** hücre / toplam.
+
+<Ornek>
+
+<Soru>
+
+Kızların yüzde kaçı futbol sever? (Tablodaki değerleri kullan.)
+
+</Soru>
+
+<Ipucu>
+
+"Kızların yüzdesi" → bütün **kız satırıdır**. Futbolcu kız sayısını kız toplamına böl.
+
+</Ipucu>
+
+<Cozum>
+
+1. Futbolcu kız $20$, kız toplamı $50$.
+2. $\dfrac{20}{50}\cdot 100=40$.
+
+<Cevap>Kızların $\%40$'ı futbol sever.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 3. İlişki Var mı?
+
+İki değişken arasında ilişki olup olmadığını anlamak için **grupların yüzdelerini karşılaştırırız**. Yüzdeler belirgin biçimde farklıysa bir ilişki vardır; benzerse ilişki zayıftır.
+
+<Ornek>
+
+<Soru>
+
+Tabloya göre cinsiyet ile futbol sevme arasında ilişki var mıdır?
+
+</Soru>
+
+<Cozum>
+
+1. Kızlarda futbol oranı: $\dfrac{20}{50}=\%40$.
+2. Erkeklerde futbol oranı: $\dfrac{35}{50}=\%70$.
+3. Oranlar belirgin farklı ($\%40$ vs $\%70$) → cinsiyetle futbol tercihi arasında ilişki var.
+
+<Cevap>Evet; erkeklerde futbol oranı kızlardan belirgin yüksek, ilişki vardır.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Çözümlü Örnekler
+
+<Ornek>
+
+<Soru>
+
+Tabloya göre futbol sevenlerin yüzde kaçı erkektir?
+
+</Soru>
+
+<Cozum>
+
+1. Bütün, futbol **sütunu** ($55$). Erkek futbolcu $35$.
+2. $\dfrac{35}{55}\cdot 100\approx \%64$.
+
+<Cevap>Yaklaşık $\%64$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Tüm öğrencilerin yüzde kaçı basketbol seven kızdır?
+
+</Soru>
+
+<Cozum>
+
+1. Bütün, genel toplam $100$. Basketbolcu kız $30$.
+2. $\dfrac{30}{100}=\%30$.
+
+<Cevap>$\%30$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir tabloda satır toplamları $40$ ve $60$, bir hücre (1. satır, 1. sütun) $10$ ise bu hücrenin satır yüzdesi kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. Satır toplamı $40$, hücre $10$.
+2. $\dfrac{10}{40}\cdot 100=\%25$.
+
+<Cevap>$\%25$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$200$ kişilik bir ankette $A$ ürününü kadınların $\%30$'u, erkeklerin $\%30$'u tercih etmiştir. Cinsiyetle tercih arasında ilişki var mıdır?
+
+</Soru>
+
+<Cozum>
+
+1. İki grubun tercih oranları **aynı** ($\%30=\%30$).
+2. Gruplar arası fark yok → ilişki yoktur (tercih cinsiyetten bağımsız görünür).
+
+<Cevap>Hayır; oranlar eşit olduğundan ilişki yoktur.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Alıştırmalar — Sıra Sende
+
+> Önce kendin çözmeyi dene; sonra çözümü açıp karşılaştır. (Baştaki tabloyu kullan.)
+
+<Ornek>
+
+<Soru>
+
+Tabloya göre erkeklerin yüzde kaçı basketbol sever?
+
+</Soru>
+
+<Cozum>
+
+1. Basketbolcu erkek $15$, erkek toplamı $50$.
+2. $\dfrac{15}{50}=\%30$.
+
+<Cevap>$\%30$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Basketbol sevenlerin yüzde kaçı kızdır?
+
+</Soru>
+
+<Cozum>
+
+1. Basketbol sütunu $45$, kız $30$.
+2. $\dfrac{30}{45}\cdot100\approx\%67$.
+
+<Cevap>Yaklaşık $\%67$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Tüm öğrencilerin yüzde kaçı futbol seven erkektir?
+
+</Soru>
+
+<Cozum>
+
+1. $\dfrac{35}{100}=\%35$.
+
+<Cevap>$\%35$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir çapraz tabloda bir sütunun toplamı $80$, o sütundaki bir hücre $20$ ise sütun yüzdesi kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. $\dfrac{20}{80}=\%25$.
+
+<Cevap>$\%25$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Yanlış bütüne bölmek.** "Kızların yüzdesi" satır toplamına, "futbolcuların yüzdesi" sütun toplamına bölünür; soruyu dikkatle oku.
+- **Marjinal toplamı hücreyle karıştırmak.** Kenardaki toplamlar gruplar, içerdeki hücreler **kesişimlerdir**.
+- **İlişkiyi tek hücreden okumak.** İlişki için grupların **yüzdelerini karşılaştır**, ham sayıyı değil.
+- **Eşit yüzdeyi ilişki sanmak.** Gruplarda oranlar **benzerse** ilişki yoktur.
+
+> **Not:** İki kategorik değişken arasında ilişki var mı? sorusunda yöntem hep aynı: **grupların yüzdelerini hesapla ve karşılaştır.** Belirgin fark = ilişki; benzer oran = ilişki yok.
+
+<KonuNav slug="iki-kategorik-degisken-10" />
