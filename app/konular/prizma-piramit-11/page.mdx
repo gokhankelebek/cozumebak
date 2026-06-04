@@ -1,0 +1,492 @@
+import { topicMetadata } from "@/lib/seo";
+import { Prizma } from "@/components/figures/KatiCisimFig";
+import { Piramit } from "@/components/figures/KatiCisim2Fig";
+
+export const metadata = topicMetadata("prizma-piramit-11");
+
+<Konu slug="prizma-piramit-11" />
+
+<p className="lead">Uzay geometrinin temel cisimleri **prizma** ve **piramittir**. Prizma, iki paralel ve eş taban arasındaki dikdörtgen yan yüzeylerden oluşur; piramit ise bir tabanla tek bir tepe noktasını birleştiren üçgen yan yüzeylere sahiptir. Bu derste **dik prizma** ve **dik piramidin** yüzey alanı ile hacim formüllerini öğreneceğiz. Anahtar fikir hep aynıdır: hacim için "taban alanı × yükseklik" mantığı, yüzey alanı için ise "tüm yüzeyleri açıp toplama" mantığı. Bol şekil, örnek ve "Sıra Sende" alıştırmalarıyla pekiştireceğiz.</p>
+
+## 1. Dik Prizmanın Hacmi
+
+Bir **dik prizmada** yan ayrıtlar tabana diktir. Hacim, taban alanı ile yüksekliğin çarpımıdır:
+
+$$V=A_{\text{taban}}\cdot h$$
+
+Burada $A_{\text{taban}}$ tabanın alanı, $h$ ise yüksekliktir (iki taban arasındaki dik uzaklık). Taban hangi çokgense onun alan formülü kullanılır: dikdörtgen, üçgen, altıgen…
+
+<Figur>
+
+<Prizma />
+
+<Altyazi>Şekil 1 — Kenarları $a,\ b,\ c$ olan dikdörtgenler prizması. Tabanı $a\cdot b$ dikdörtgeni, yüksekliği $c$; hacmi $V=a\cdot b\cdot c$.</Altyazi>
+
+</Figur>
+
+<Ornek>
+
+<Soru>
+
+Ayrıtları $5\,\text{cm}$, $4\,\text{cm}$ ve $3\,\text{cm}$ olan dikdörtgenler prizmasının hacmini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Taban alanı: $A_{\text{taban}}=5\cdot 4=20\ \text{cm}^2$.
+2. Yükseklik $h=3$ olduğundan $V=20\cdot 3=60\ \text{cm}^3$.
+
+<Cevap>$60\ \text{cm}^3$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 2. Dik Prizmanın Yüzey Alanı
+
+Bir dik prizmanın yüzey alanı, **iki taban** ile **yan yüzeylerin** alanlarının toplamıdır:
+
+$$A=2\cdot A_{\text{taban}}+A_{\text{yan}}$$
+
+Yan yüzey alanı, **taban çevresi ile yüksekliğin** çarpımıdır (prizmayı açıp düz bir dikdörtgen gibi düşün):
+
+$$A_{\text{yan}}=\text{Çevre}_{\text{taban}}\cdot h$$
+
+<Ornek>
+
+<Soru>
+
+Tabanı $6\,\text{cm}$ ve $4\,\text{cm}$ kenarlı dikdörtgen, yüksekliği $10\,\text{cm}$ olan dik prizmanın yüzey alanını bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Taban alanı: $A_{\text{taban}}=6\cdot 4=24\ \text{cm}^2$.
+2. Taban çevresi: $2(6+4)=20\ \text{cm}$. Yan alan: $20\cdot 10=200\ \text{cm}^2$.
+3. Yüzey alanı: $A=2\cdot 24+200=48+200=248\ \text{cm}^2$.
+
+<Cevap>$248\ \text{cm}^2$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 3. Küp: Özel Bir Prizma
+
+**Küp**, tüm ayrıtları eşit ($a$) olan dik prizmadır. Altı yüzü de $a\times a$ karedir:
+
+$$V=a^3 \qquad\qquad A=6a^2$$
+
+<Ornek>
+
+<Soru>
+
+Bir ayrıtı $5\,\text{cm}$ olan küpün hacmini ve yüzey alanını bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Hacim: $V=a^3=5^3=125\ \text{cm}^3$.
+2. Yüzey alanı: $A=6a^2=6\cdot 25=150\ \text{cm}^2$.
+
+<Cevap>$V=125\ \text{cm}^3$, $A=150\ \text{cm}^2$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 4. Dik Piramidin Hacmi
+
+Bir **piramit**, taban çokgeninin köşelerini tek bir **tepe** noktasıyla birleştirir. Aynı tabana ve yüksekliğe sahip prizmanın hacminin **üçte biri** kadardır:
+
+$$V=\dfrac{1}{3}\cdot A_{\text{taban}}\cdot h$$
+
+Burada $h$, tepe noktasının taban düzlemine olan dik uzaklığıdır (**cisim yüksekliği**).
+
+<Figur>
+
+<Piramit />
+
+<Altyazi>Şekil 2 — Kare tabanlı dik piramit; taban kenarı $a$, cisim yüksekliği $h$ (tepeden taban merkezine inen dik). Hacmi $V=\dfrac13 a^2 h$.</Altyazi>
+
+</Figur>
+
+<Ornek>
+
+<Soru>
+
+Taban kenarı $6\,\text{cm}$ olan kare tabanlı bir piramidin yüksekliği $10\,\text{cm}$ ise hacmini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Taban alanı: $A_{\text{taban}}=6^2=36\ \text{cm}^2$.
+2. Hacim: $V=\dfrac{1}{3}\cdot 36\cdot 10=\dfrac{360}{3}=120\ \text{cm}^3$.
+
+<Cevap>$120\ \text{cm}^3$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 5. Dik Piramidin Yüzey Alanı
+
+Düzgün bir dik piramitte yüzey alanı, tabanla **yan üçgenlerin** alanlarının toplamıdır:
+
+$$A=A_{\text{taban}}+A_{\text{yan}}$$
+
+Düzgün bir piramitte tüm yan üçgenler eştir ve her birinin yüksekliğine **yanal yükseklik** ($\ell$) denir. Kare tabanlı (kenarı $a$) bir piramitte:
+
+$$A_{\text{yan}}=4\cdot\dfrac{a\cdot \ell}{2}=2a\ell$$
+
+Yanal yükseklik $\ell$, cisim yüksekliği $h$ ile taban yarı-kenarı $\dfrac{a}{2}$'den Pisagor'la bulunur: $\ell=\sqrt{h^2+\left(\dfrac{a}{2}\right)^2}$.
+
+<Ornek>
+
+<Soru>
+
+Taban kenarı $6\,\text{cm}$, yüksekliği $4\,\text{cm}$ olan kare tabanlı düzgün piramidin yüzey alanını bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Önce yanal yükseklik $\ell=\sqrt{h^2+\left(\dfrac{a}{2}\right)^2}$'i bul; sonra $A=a^2+2a\ell$ uygula.
+
+</Ipucu>
+
+<Cozum>
+
+1. Yarı-kenar: $\dfrac{a}{2}=3$. Yanal yükseklik: $\ell=\sqrt{4^2+3^2}=\sqrt{16+9}=\sqrt{25}=5\ \text{cm}$.
+2. Taban alanı: $a^2=36\ \text{cm}^2$. Yan alan: $2a\ell=2\cdot 6\cdot 5=60\ \text{cm}^2$.
+3. Yüzey alanı: $A=36+60=96\ \text{cm}^2$.
+
+<Cevap>$96\ \text{cm}^2$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Çözümlü Örnekler
+
+<Ornek>
+
+<Soru>
+
+Tabanı dik kenarları $3\,\text{cm}$ ve $4\,\text{cm}$ olan dik üçgen, yüksekliği $10\,\text{cm}$ olan dik üçgen prizmanın hacmini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Taban (dik üçgen) alanı: $A_{\text{taban}}=\dfrac{3\cdot 4}{2}=6\ \text{cm}^2$.
+2. Hacim: $V=A_{\text{taban}}\cdot h=6\cdot 10=60\ \text{cm}^3$.
+
+<Cevap>$60\ \text{cm}^3$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Hacmi $343\,\text{cm}^3$ olan bir küpün bir ayrıtı kaç cm'dir?
+
+</Soru>
+
+<Cozum>
+
+1. $V=a^3=343\Rightarrow a=\sqrt[3]{343}=7$ çünkü $7^3=343$.
+
+<Cevap>$7\ \text{cm}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Taban kenarı $9\,\text{cm}$ olan kare tabanlı bir piramidin hacmi $135\,\text{cm}^3$ ise yüksekliği kaç cm'dir?
+
+</Soru>
+
+<Ipucu>
+
+$V=\dfrac13 A_{\text{taban}}h$ formülünde $h$'yi yalnız bırak: $h=\dfrac{3V}{A_{\text{taban}}}$.
+
+</Ipucu>
+
+<Cozum>
+
+1. Taban alanı: $A_{\text{taban}}=9^2=81\ \text{cm}^2$.
+2. $135=\dfrac{1}{3}\cdot 81\cdot h=27h\Rightarrow h=\dfrac{135}{27}=5\ \text{cm}$.
+
+<Cevap>$5\ \text{cm}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir küpün yüzey alanı $96\,\text{cm}^2$ ise hacmi kaç $\text{cm}^3$'tür?
+
+</Soru>
+
+<Cozum>
+
+1. $A=6a^2=96\Rightarrow a^2=16\Rightarrow a=4\ \text{cm}$.
+2. Hacim: $V=a^3=4^3=64\ \text{cm}^3$.
+
+<Cevap>$64\ \text{cm}^3$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Aynı tabana ($A_{\text{taban}}=18\,\text{cm}^2$) ve aynı yüksekliğe ($h=6\,\text{cm}$) sahip bir prizma ile bir piramidin hacimleri arasındaki farkı bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Piramit hacmi, aynı taban ve yükseklikteki prizmanın tam üçte biridir; fark da kalan üçte ikidir.
+
+</Ipucu>
+
+<Cozum>
+
+1. Prizma: $V_1=18\cdot 6=108\ \text{cm}^3$.
+2. Piramit: $V_2=\dfrac{1}{3}\cdot 108=36\ \text{cm}^3$.
+3. Fark: $108-36=72\ \text{cm}^3$.
+
+<Cevap>$72\ \text{cm}^3$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Alıştırmalar — Sıra Sende
+
+> Önce kendin çözmeyi dene; sonra çözümü açıp karşılaştır.
+
+<Ornek>
+
+<Soru>
+
+Ayrıtları $8\,\text{cm}$, $5\,\text{cm}$ ve $2\,\text{cm}$ olan dikdörtgenler prizmasının hacmini bul.
+
+</Soru>
+
+<Cozum>
+
+1. $V=8\cdot 5\cdot 2=80\ \text{cm}^3$.
+
+<Cevap>$80\ \text{cm}^3$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir ayrıtı $3\,\text{cm}$ olan küpün hacmi ile yüzey alanını bul.
+
+</Soru>
+
+<Cozum>
+
+1. Hacim: $V=3^3=27\ \text{cm}^3$.
+2. Yüzey alanı: $A=6\cdot 3^2=54\ \text{cm}^2$.
+
+<Cevap>$V=27\ \text{cm}^3$, $A=54\ \text{cm}^2$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Taban kenarı $5\,\text{cm}$ olan kare tabanlı piramidin yüksekliği $9\,\text{cm}$ ise hacmini bul.
+
+</Soru>
+
+<Cozum>
+
+1. Taban alanı: $5^2=25\ \text{cm}^2$.
+2. $V=\dfrac{1}{3}\cdot 25\cdot 9=\dfrac{225}{3}=75\ \text{cm}^3$.
+
+<Cevap>$75\ \text{cm}^3$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Tabanı $7\,\text{cm}$ ve $3\,\text{cm}$ kenarlı dikdörtgen, yüksekliği $5\,\text{cm}$ olan dik prizmanın yan yüzey alanını bul.
+
+</Soru>
+
+<Cozum>
+
+1. Taban çevresi: $2(7+3)=20\ \text{cm}$.
+2. Yan alan: $A_{\text{yan}}=20\cdot 5=100\ \text{cm}^2$.
+
+<Cevap>$100\ \text{cm}^2$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Hacmi $1000\,\text{cm}^3$ olan bir küpün yüzey alanını bul.
+
+</Soru>
+
+<Cozum>
+
+1. $a^3=1000\Rightarrow a=10\ \text{cm}$.
+2. $A=6\cdot 10^2=600\ \text{cm}^2$.
+
+<Cevap>$600\ \text{cm}^2$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Tabanı kenarı $6\,\text{cm}$ olan eşkenar üçgen, yüksekliği $10\,\text{cm}$ olan dik üçgen prizmanın hacmini bul. (Eşkenar üçgenin alanı $\dfrac{a^2\sqrt3}{4}$'tür.)
+
+</Soru>
+
+<Ipucu>
+
+Önce eşkenar üçgen tabanın alanını $\dfrac{a^2\sqrt3}{4}$ ile bul, sonra $V=A_{\text{taban}}\cdot h$ uygula.
+
+</Ipucu>
+
+<Cozum>
+
+1. Taban alanı: $A_{\text{taban}}=\dfrac{6^2\sqrt3}{4}=\dfrac{36\sqrt3}{4}=9\sqrt3\ \text{cm}^2$.
+2. Hacim: $V=9\sqrt3\cdot 10=90\sqrt3\ \text{cm}^3$.
+
+<Cevap>$90\sqrt3\ \text{cm}^3$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Taban kenarı $8\,\text{cm}$, yüksekliği $3\,\text{cm}$ olan kare tabanlı düzgün piramidin tüm yüzey alanını bul.
+
+</Soru>
+
+<Ipucu>
+
+Önce yanal yükseklik $\ell=\sqrt{h^2+\left(\dfrac a2\right)^2}$'i bul; sonra $A=a^2+2a\ell$.
+
+</Ipucu>
+
+<Cozum>
+
+1. Yarı-kenar: $\dfrac{8}{2}=4$. Yanal yükseklik: $\ell=\sqrt{3^2+4^2}=\sqrt{9+16}=\sqrt{25}=5\ \text{cm}$.
+2. Taban alanı: $8^2=64\ \text{cm}^2$. Yan alan: $2a\ell=2\cdot 8\cdot 5=80\ \text{cm}^2$.
+3. Yüzey alanı: $A=64+80=144\ \text{cm}^2$.
+
+<Cevap>$144\ \text{cm}^2$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir dikdörtgenler prizmasının tabanı kare ($a\times a$), yüksekliği taban kenarının $3$ katıdır. Hacmi $192\,\text{cm}^3$ ise taban kenarı kaç cm'dir?
+
+</Soru>
+
+<Ipucu>
+
+Yükseklik $3a$ ise hacim $V=a\cdot a\cdot 3a=3a^3$ olur; bunu $192$'ye eşitle.
+
+</Ipucu>
+
+<Cozum>
+
+1. Taban alanı $a^2$, yükseklik $3a$: $V=a^2\cdot 3a=3a^3$.
+2. $3a^3=192\Rightarrow a^3=64\Rightarrow a=4\ \text{cm}$.
+
+<Cevap>$4\ \text{cm}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Taban kenarı $10\,\text{cm}$ olan kare tabanlı düzgün bir piramidin yanal yüksekliği $13\,\text{cm}$'dir. Bu piramidin hacmini bul.
+
+</Soru>
+
+<Ipucu>
+
+Cisim yüksekliği $h$, yanal yükseklik $\ell$ ve yarı-kenar $\dfrac a2$ bir dik üçgen oluşturur: $h=\sqrt{\ell^2-\left(\dfrac a2\right)^2}$.
+
+</Ipucu>
+
+<Cozum>
+
+1. Yarı-kenar: $\dfrac{10}{2}=5$. Cisim yüksekliği: $h=\sqrt{13^2-5^2}=\sqrt{169-25}=\sqrt{144}=12\ \text{cm}$.
+2. Taban alanı: $10^2=100\ \text{cm}^2$.
+3. Hacim: $V=\dfrac{1}{3}\cdot 100\cdot 12=\dfrac{1200}{3}=400\ \text{cm}^3$.
+
+<Cevap>$400\ \text{cm}^3$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Piramitte $\dfrac13$ çarpanını unutmak.** Piramit hacmi $\dfrac13 A_{\text{taban}}h$'dir; aynı taban-yükseklikteki prizmanın yalnız üçte biridir.
+- **Yanal yükseklik ile cisim yüksekliğini karıştırmak.** Hacimde **cisim yüksekliği** $h$ kullanılır; yan yüzey alanında ise yan üçgenin yüksekliği olan **yanal yükseklik** $\ell$ kullanılır. Bunlar $\ell=\sqrt{h^2+\left(\dfrac a2\right)^2}$ ile bağlıdır.
+- **Yüzey alanında tabanları eksik saymak.** Prizmada **iki** taban vardır ($2A_{\text{taban}}$); piramitte **tek** taban.
+- **Birim hatası.** Hacim $\text{cm}^3$, alan $\text{cm}^2$ ile ölçülür; cevabı yazarken birimi kontrol et.
+
+> **Not:** Hacimde refleksin "taban alanı × yükseklik" olsun; piramitse sonu $\dfrac13$ ile çarp. Yüzey alanında ise cismi zihninde **aç**: prizma için iki taban + (çevre × yükseklik), piramit için taban + yan üçgenler.
+
+<KonuNav slug="prizma-piramit-11" />

@@ -1,0 +1,458 @@
+import { topicMetadata } from "@/lib/seo";
+import { Parabol } from "@/components/figures/ParabolFig";
+
+export const metadata = topicMetadata("ikinci-derece-denklem-sistemleri-11");
+
+<Konu slug="ikinci-derece-denklem-sistemleri-11" />
+
+<p className="lead">Bir **denklem sistemi**, aynı anda sağlanması gereken birden çok denklemin bir araya gelmesidir. Bu derste **ikinci dereceden iki bilinmeyenli** denklem sistemlerini çözeceğiz: bir doğru ile bir parabolün ($y=ax^2+bx+c$ ile $y=mx+n$) ya da iki eğrinin ortak noktalarını arayacağız. Ana yöntemimiz **yerine koyma** (yok etme) olacak: bir bilinmeyeni diğeri cinsinden yazıp tek bilinmeyenli **ikinci dereceden bir denkleme** indirgeyeceğiz. Çözüm sayısının ($0$, $1$ ya da $2$) ne anlama geldiğini **diskriminant** ($\Delta$) ile geometrik olarak yorumlayacağız. Bol örnek ve "Sıra Sende" alıştırmalarıyla pekiştireceğiz.</p>
+
+## 1. Doğrusal–İkinci Derece Sistemi: Yerine Koyma
+
+En sık karşılaşılan sistem, **bir doğrusal** denklem ile **bir ikinci dereceden** denklemden oluşur:
+
+$$\begin{cases} y = x^2 + bx + c \\ y = mx + n \end{cases}$$
+
+Her iki denklemde de $y$ yalnız olduğundan, ifadeleri **eşitleriz**. Bu, tek bilinmeyenli ikinci dereceden bir denklem verir; köklerini bulup karşılık gelen $y$ değerlerini hesaplarız. Geometrik olarak çözümler, **doğru ile eğrinin kesişim noktalarıdır**.
+
+<Ornek>
+
+<Soru>
+
+$\begin{cases} y = x^2 \\ y = x + 2 \end{cases}$ sistemini çözünüz.
+
+</Soru>
+
+<Cozum>
+
+1. İki ifadeyi eşitle: $x^2 = x + 2$.
+2. Bir tarafa topla: $x^2 - x - 2 = 0$.
+3. Çarpanlara ayır: $(x-2)(x+1)=0 \Rightarrow x=2$ veya $x=-1$.
+4. $y$ değerleri ($y=x+2$): $x=2$ için $y=4$; $x=-1$ için $y=1$.
+
+<Cevap>$(2,\,4)$ ve $(-1,\,1)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 2. Çözüm Sayısı ve Diskriminant
+
+Yerine koyma sonunda $ax^2+bx+c=0$ biçiminde bir denklem elde ederiz. **Kök sayısı**, doğru ile eğrinin **kesişim sayısını** verir ve $\Delta=b^2-4ac$ ile belirlenir:
+
+$$\Delta>0 \Rightarrow \text{2 kesişim} \qquad \Delta=0 \Rightarrow \text{1 kesişim (teğet)} \qquad \Delta<0 \Rightarrow \text{kesişim yok}$$
+
+$\Delta=0$ durumunda doğru, eğriye **teğettir** (bir ortak nokta). $\Delta<0$ ise sistem reel çözümsüzdür.
+
+<Figur>
+
+<Parabol />
+
+<Altyazi>Şekil 1 — $y=x^2-4x+3$ parabolü; kökleri $x=1$ ve $x=3$, tepe noktası $T(2,-1)$. Bir doğru bu eğriyi $\Delta$'ya göre iki noktada keser, teğet geçer ya da hiç kesmez.</Altyazi>
+
+</Figur>
+
+<Ornek>
+
+<Soru>
+
+$\begin{cases} y = x^2 + 1 \\ y = 2x \end{cases}$ sisteminin kaç çözümü vardır?
+
+</Soru>
+
+<Ipucu>
+
+İfadeleri eşitleyip $ax^2+bx+c=0$ biçimine getir, sonra $\Delta=b^2-4ac$ işaretine bak.
+
+</Ipucu>
+
+<Cozum>
+
+1. Eşitle: $x^2+1=2x \Rightarrow x^2-2x+1=0$.
+2. $\Delta=(-2)^2-4\cdot1\cdot1=4-4=0$.
+3. $\Delta=0$ olduğundan **tek** çözüm vardır (doğru parabole teğet).
+4. Tek kök: $x=\dfrac{2}{2}=1$, $y=2\cdot1=2$.
+
+<Cevap>Bir çözüm: $(1,\,2)$ (teğet).</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 3. İki Bilinmeyen, Tek Denklem: $x$'i Çekme
+
+Sistemin doğrusal denklemi $y$ yerine **$x$** ile verilmiş olabilir ($x=\dots$) ya da $x+y$, $x-y$ gibi bir bağıntı içerebilir. O zaman doğrusal denklemden **bir bilinmeyeni** çekip ikinci dereceden denklemde yerine koyarız.
+
+<Ornek>
+
+<Soru>
+
+$\begin{cases} x + y = 5 \\ x^2 + y^2 = 13 \end{cases}$ sistemini çözünüz.
+
+</Soru>
+
+<Cozum>
+
+1. Doğrusal denklemden $y$'yi çek: $y = 5 - x$.
+2. İkinci denklemde yerine koy: $x^2 + (5-x)^2 = 13$.
+3. Aç: $x^2 + 25 - 10x + x^2 = 13 \Rightarrow 2x^2 - 10x + 12 = 0$.
+4. $2$'ye böl: $x^2 - 5x + 6 = 0 \Rightarrow (x-2)(x-3)=0$.
+5. $x=2 \Rightarrow y=3$; $\;x=3 \Rightarrow y=2$.
+
+<Cevap>$(2,\,3)$ ve $(3,\,2)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 4. Çarpım ve Toplam Verilen Sistemler
+
+$\begin{cases} x+y=S \\ xy=P \end{cases}$ biçimindeki sistemlerde $x$ ve $y$, kökleri toplamı $S$, çarpımı $P$ olan
+
+$$t^2 - S\,t + P = 0$$
+
+denkleminin kökleridir (Vieta bağıntıları). Bu, simetrik sistemleri hızla çözmenin pratik yoludur.
+
+<Ornek>
+
+<Soru>
+
+$\begin{cases} x+y=7 \\ xy=12 \end{cases}$ sistemini çözünüz.
+
+</Soru>
+
+<Ipucu>
+
+$x$ ve $y$, $t^2 - (x+y)t + xy = 0$ denkleminin kökleridir.
+
+</Ipucu>
+
+<Cozum>
+
+1. Yardımcı denklemi kur: $t^2 - 7t + 12 = 0$.
+2. Çarpanlara ayır: $(t-3)(t-4)=0 \Rightarrow t=3$ veya $t=4$.
+3. Kökler $3$ ve $4$ olduğundan $\{x,y\}=\{3,4\}$.
+
+<Cevap>$(3,\,4)$ ve $(4,\,3)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Çözümlü Örnekler
+
+<Ornek>
+
+<Soru>
+
+$\begin{cases} y = x^2 - 3x \\ y = x - 3 \end{cases}$ sistemini çözünüz.
+
+</Soru>
+
+<Cozum>
+
+1. Eşitle: $x^2 - 3x = x - 3$.
+2. Düzenle: $x^2 - 4x + 3 = 0 \Rightarrow (x-1)(x-3)=0$.
+3. $x=1$ veya $x=3$.
+4. $y=x-3$: $x=1 \Rightarrow y=-2$; $\;x=3 \Rightarrow y=0$.
+
+<Cevap>$(1,\,-2)$ ve $(3,\,0)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$y = x^2 - 2x + 4$ parabolü ile $y = k$ doğrusunun **teğet** olması için $k$ kaç olmalıdır?
+
+</Soru>
+
+<Ipucu>
+
+Eşitleyince oluşan ikinci dereceden denklemde $\Delta=0$ olmalı; ya da tepe noktasının $y$ değerini bul.
+
+</Ipucu>
+
+<Cozum>
+
+1. Eşitle: $x^2 - 2x + 4 = k \Rightarrow x^2 - 2x + (4-k) = 0$.
+2. Teğet için $\Delta=0$: $(-2)^2 - 4(4-k) = 0$.
+3. $4 - 16 + 4k = 0 \Rightarrow 4k = 12 \Rightarrow k = 3$.
+4. Kontrol: tepe noktası $x=1$'de $y=1-2+4=3$ — yatay doğru tam tepeye teğet.
+
+<Cevap>$k=3$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\begin{cases} x - y = 1 \\ xy = 6 \end{cases}$ sistemini çözünüz.
+
+</Soru>
+
+<Cozum>
+
+1. Doğrusal denklemden $x$'i çek: $x = y + 1$.
+2. Yerine koy: $(y+1)\,y = 6 \Rightarrow y^2 + y - 6 = 0$.
+3. Çarpanlara ayır: $(y+3)(y-2)=0 \Rightarrow y=-3$ veya $y=2$.
+4. $x=y+1$: $y=-3 \Rightarrow x=-2$; $\;y=2 \Rightarrow x=3$.
+
+<Cevap>$(-2,\,-3)$ ve $(3,\,2)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\begin{cases} y = x^2 \\ y = 2x + m \end{cases}$ sisteminin **gerçek çözümü olmaması** için $m$ hangi değerleri alır?
+
+</Soru>
+
+<Ipucu>
+
+Eşitleyip $\Delta<0$ koşulunu yaz; $m$'yi içeren bir eşitsizlik çöz.
+
+</Ipucu>
+
+<Cozum>
+
+1. Eşitle: $x^2 = 2x + m \Rightarrow x^2 - 2x - m = 0$.
+2. Çözümsüzlük için $\Delta<0$: $(-2)^2 - 4(1)(-m) < 0$.
+3. $4 + 4m < 0 \Rightarrow 4m < -4 \Rightarrow m < -1$.
+
+<Cevap>$m < -1$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Alıştırmalar — Sıra Sende
+
+> Önce kendin çözmeyi dene; sonra çözümü açıp karşılaştır.
+
+<Ornek>
+
+<Soru>
+
+$\begin{cases} y = x^2 \\ y = 3x - 2 \end{cases}$ sistemini çöz.
+
+</Soru>
+
+<Cozum>
+
+1. Eşitle: $x^2 = 3x - 2 \Rightarrow x^2 - 3x + 2 = 0$.
+2. $(x-1)(x-2)=0 \Rightarrow x=1$ veya $x=2$.
+3. $y=3x-2$: $x=1 \Rightarrow y=1$; $\;x=2 \Rightarrow y=4$.
+
+<Cevap>$(1,\,1)$ ve $(2,\,4)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\begin{cases} x + y = 6 \\ xy = 8 \end{cases}$ sistemini çöz.
+
+</Soru>
+
+<Cozum>
+
+1. Yardımcı denklem: $t^2 - 6t + 8 = 0$.
+2. $(t-2)(t-4)=0 \Rightarrow t=2$ veya $t=4$.
+
+<Cevap>$(2,\,4)$ ve $(4,\,2)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\begin{cases} y = x^2 - 1 \\ y = x + 1 \end{cases}$ sistemini çöz.
+
+</Soru>
+
+<Cozum>
+
+1. Eşitle: $x^2 - 1 = x + 1 \Rightarrow x^2 - x - 2 = 0$.
+2. $(x-2)(x+1)=0 \Rightarrow x=2$ veya $x=-1$.
+3. $y=x+1$: $x=2 \Rightarrow y=3$; $\;x=-1 \Rightarrow y=0$.
+
+<Cevap>$(2,\,3)$ ve $(-1,\,0)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\begin{cases} x - y = 2 \\ x^2 - y^2 = 16 \end{cases}$ sistemini çöz.
+
+</Soru>
+
+<Ipucu>
+
+$x^2 - y^2 = (x-y)(x+y)$ özdeşliğini kullan; $x-y$ zaten verilmiş.
+
+</Ipucu>
+
+<Cozum>
+
+1. Çarpanlara ayır: $x^2 - y^2 = (x-y)(x+y) = 16$.
+2. $x-y=2$ olduğundan $2\,(x+y)=16 \Rightarrow x+y=8$.
+3. Artık sistem $\begin{cases} x-y=2 \\ x+y=8 \end{cases}$. Topla: $2x=10 \Rightarrow x=5$, $y=3$.
+
+<Cevap>$(5,\,3)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$y = x^2 + 2x + 5$ parabolü ile $y = 2x + k$ doğrusunun teğet olması için $k$ kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. Eşitle: $x^2 + 2x + 5 = 2x + k \Rightarrow x^2 + (5-k) = 0$.
+2. Teğet için $\Delta=0$. Burada $b=0$, $c=5-k$: $\Delta = 0 - 4(5-k) = 0$.
+3. $-20 + 4k = 0 \Rightarrow k = 5$.
+
+<Cevap>$k=5$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\begin{cases} x + y = 4 \\ x^2 + y^2 = 10 \end{cases}$ sistemini çöz.
+
+</Soru>
+
+<Cozum>
+
+1. $y = 4 - x$ yerine koy: $x^2 + (4-x)^2 = 10$.
+2. Aç: $x^2 + 16 - 8x + x^2 = 10 \Rightarrow 2x^2 - 8x + 6 = 0$.
+3. $2$'ye böl: $x^2 - 4x + 3 = 0 \Rightarrow (x-1)(x-3)=0$.
+4. $x=1 \Rightarrow y=3$; $\;x=3 \Rightarrow y=1$.
+
+<Cevap>$(1,\,3)$ ve $(3,\,1)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\begin{cases} y = x^2 - 4x + 3 \\ y = -x + 3 \end{cases}$ sisteminin çözümlerini bul; doğru parabolü hangi noktalarda keser?
+
+</Soru>
+
+<Ipucu>
+
+İfadeleri eşitle; ortaya çıkan ikinci dereceden denklemin kökleri kesişim apsisleridir.
+
+</Ipucu>
+
+<Cozum>
+
+1. Eşitle: $x^2 - 4x + 3 = -x + 3 \Rightarrow x^2 - 3x = 0$.
+2. Ortak çarpan: $x(x-3)=0 \Rightarrow x=0$ veya $x=3$.
+3. $y=-x+3$: $x=0 \Rightarrow y=3$; $\;x=3 \Rightarrow y=0$.
+
+<Cevap>$(0,\,3)$ ve $(3,\,0)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\begin{cases} x + y = 5 \\ \dfrac{1}{x} + \dfrac{1}{y} = \dfrac{5}{6} \end{cases}$ sistemini çöz.
+
+</Soru>
+
+<Ipucu>
+
+$\dfrac{1}{x}+\dfrac{1}{y}=\dfrac{x+y}{xy}$ özdeşliğiyle $xy$'yi bul; sonra toplam–çarpım yöntemini uygula.
+
+</Ipucu>
+
+<Cozum>
+
+1. Paydaları birleştir: $\dfrac{1}{x}+\dfrac{1}{y}=\dfrac{x+y}{xy}=\dfrac{5}{xy}$.
+2. Bu $\dfrac{5}{6}$'ya eşit: $\dfrac{5}{xy}=\dfrac{5}{6} \Rightarrow xy=6$.
+3. Toplam $5$, çarpım $6$: $t^2 - 5t + 6 = 0 \Rightarrow (t-2)(t-3)=0$.
+4. Kökler $2$ ve $3$.
+
+<Cevap>$(2,\,3)$ ve $(3,\,2)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\begin{cases} y = x^2 \\ y = 2x + m \end{cases}$ sisteminin çözüm kümesinde köklerin **çarpımı** $-3$ ise $m$ kaçtır? Bu $m$ için çözümleri bulun.
+
+</Soru>
+
+<Ipucu>
+
+Eşitleyince $x^2 - 2x - m = 0$ olur; köklerin çarpımı $\dfrac{c}{a}=-m$'dir.
+
+</Ipucu>
+
+<Cozum>
+
+1. Eşitle: $x^2 = 2x + m \Rightarrow x^2 - 2x - m = 0$.
+2. Köklerin çarpımı $\dfrac{c}{a}=\dfrac{-m}{1}=-m$. Bu $-3$'e eşit: $-m=-3 \Rightarrow m=3$.
+3. Denklem: $x^2 - 2x - 3 = 0 \Rightarrow (x-3)(x+1)=0 \Rightarrow x=3$ veya $x=-1$.
+4. $y=x^2$: $x=3 \Rightarrow y=9$; $\;x=-1 \Rightarrow y=1$.
+
+<Cevap>$m=3$; çözümler $(3,\,9)$ ve $(-1,\,1)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **$y$ değerlerini bulmayı unutmak.** Sistemin çözümü bir sayı değil, bir **$(x,y)$ ikilisidir**; $x$'leri bulduktan sonra mutlaka karşılık gelen $y$'leri hesapla.
+- **$y$'yi yanlış denklemde yerine koymak.** $x$ değerini, hesabı **kolay** olan denklemde (genelde doğrusal olanda) yerine koy; iki denklemde de aynı $y$ çıkmalı.
+- **$\Delta$ ile çözüm sayısını karıştırmak.** $\Delta>0$ iki, $\Delta=0$ bir (teğet), $\Delta<0$ sıfır gerçek çözüm demektir; "teğet" tek noktada kesişmedir.
+- **Toplam–çarpım denkleminde işaret hatası.** $t^2 - S\,t + P = 0$'da toplamın katsayısı **eksi** $S$, sabit terim **artı** $P$'dir.
+
+> **Not:** İkinci dereceden bir sistemde refleksin **yerine koyma** olsun: doğrusal denklemden bir bilinmeyeni çek, tek bilinmeyenli ikinci derece denklemi kur, köklerini bul ve geri yerleştir. $x+y$ ile $xy$ verilmişse $t^2 - S t + P = 0$ kısayolu işini hızlandırır.
+
+<KonuNav slug="ikinci-derece-denklem-sistemleri-11" />

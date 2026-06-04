@@ -1,0 +1,528 @@
+import { topicMetadata } from "@/lib/seo";
+import { MerkezCevreAci, Teget } from "@/components/figures/CemberFig";
+
+export const metadata = topicMetadata("cemberde-acilar");
+
+<Konu slug="cemberde-acilar" />
+
+<p className="lead">Çemberde açılar, **köşesinin nerede olduğuna** ve hangi **yayı gördüğüne** bağlı olarak farklı kurallarla ölçülür. Bu derste **merkez açı**, **çevre açı**, aynı yayı gören açılar arasındaki ilişki, **teğet-kiriş açısı** ve **iç açı / dış açı** kurallarını öğreneceğiz. Tüm bu kuralların ortak dili **yay**tır: bir açının ölçüsü, gördüğü yay(lar)ın ölçüsünden okunur. Bol şekil, örnek ve "Sıra Sende" alıştırmasıyla pekiştireceğiz.</p>
+
+## 1. Yay ve Merkez Açı
+
+Köşesi çemberin **merkezinde** olan açıya **merkez açı** denir. Bir merkez açının ölçüsü, gördüğü **yayın ölçüsüne eşittir**:
+
+$$\widehat{AOB}=\overset{\frown}{AB}$$
+
+Tüm çember $360°$'lik bir yaydır; bu yüzden merkez açıların toplamı da $360°$'tir. Bir yayın ölçüsü ile o yayı gören merkez açının ölçüsü aynı sayıdır — bu yüzden çoğu zaman ikisini ayırt etmeden kullanırız.
+
+<Ornek>
+
+<Soru>
+
+Bir çemberde $\overset{\frown}{AB}=110°$ ise bu yayı gören merkez açının ölçüsü ile $\overset{\frown}{AB}$'nin tümleyen yayı (geri kalan büyük yay) kaç derecedir?
+
+</Soru>
+
+<Cozum>
+
+1. Merkez açı, gördüğü yaya eşittir: $\widehat{AOB}=\overset{\frown}{AB}=110°$.
+2. Çemberin tamamı $360°$ olduğundan büyük yay $=360°-110°=250°$.
+
+<Cevap>Merkez açı $110°$; büyük yay $250°$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 2. Çevre Açı
+
+Köşesi **çember üzerinde** olan ve kenarları çemberin iki kirişi olan açıya **çevre açı** denir. Bir çevre açının ölçüsü, gördüğü yayın **yarısıdır**:
+
+$$\text{çevre açı}=\dfrac{1}{2}\,\overset{\frown}{(\text{gördüğü yay})}$$
+
+Aynı yayı gören **merkez açı**, **çevre açının iki katıdır**. Şekildeki gibi $A$ ve $B$'yi içeren küçük yayı hem merkezden ($O$) hem de çember üzerindeki $C$ noktasından görelim: $\widehat{AOB}=2\alpha$ iken $\widehat{ACB}=\alpha$ olur.
+
+<Figur>
+
+<MerkezCevreAci />
+
+<Altyazi>Şekil 1 — Aynı $\overset{\frown}{AB}$ yayını gören merkez açı (kırmızı, $2\alpha$) ve çevre açı (lacivert, $\alpha$). Merkez açı, çevre açının iki katıdır.</Altyazi>
+
+</Figur>
+
+<Ornek>
+
+<Soru>
+
+Bir çemberde $C$ köşeli çevre açı $\widehat{ACB}=35°$ ise aynı $\overset{\frown}{AB}$ yayını gören merkez açı $\widehat{AOB}$ kaç derecedir?
+
+</Soru>
+
+<Ipucu>
+
+Aynı yayı gören merkez açı, çevre açının **iki katıdır**.
+
+</Ipucu>
+
+<Cozum>
+
+1. Çevre açı gördüğü yayın yarısıdır: $\overset{\frown}{AB}=2\cdot 35°=70°$.
+2. Merkez açı yaya eşittir: $\widehat{AOB}=70°$.
+
+<Cevap>$70°$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+İki önemli sonuç:
+
+- **Çapı gören çevre açı $90°$'dir.** Çap, $180°$'lik bir yayı kapatır; çevre açı onun yarısı, yani $90°$ olur (Thales).
+- **Aynı yayı gören çevre açılar eşittir.** Hepsi aynı yayın yarısı olduğundan.
+
+<Ornek>
+
+<Soru>
+
+Bir çemberde $[AB]$ çaptır ve $C$ çember üzerinde bir noktadır. $\widehat{ABC}=28°$ ise $\widehat{BAC}$ kaç derecedir?
+
+</Soru>
+
+<Cozum>
+
+1. $[AB]$ çap olduğundan, $C$'deki çevre açı çapı görür: $\widehat{ACB}=90°$.
+2. Üçgenin iç açıları toplamı $180°$: $\widehat{BAC}=180°-90°-28°=62°$.
+
+<Cevap>$62°$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 3. Teğet-Kiriş Açısı
+
+Bir **teğet** ile değme noktasından çizilen bir **kiriş** arasında oluşan açıya **teğet-kiriş açısı** denir. Bu açının ölçüsü de, içinde kalan (kirişin kapattığı) **yayın yarısıdır**:
+
+$$\text{teğet-kiriş açısı}=\dfrac{1}{2}\,\overset{\frown}{(\text{kirişin kapattığı yay})}$$
+
+Yani teğet-kiriş açısı, aynı yayı gören bir çevre açı gibi davranır. Ayrıca teğet, değme noktasındaki **yarıçapa diktir** — bu, teğetle ilgili soruların temel taşıdır.
+
+<Figur>
+
+<Teget />
+
+<Altyazi>Şekil 2 — Çembere $T$ noktasında teğet. Teğet, değme noktasındaki $[OT]$ yarıçapına **diktir** ($90°$).</Altyazi>
+
+</Figur>
+
+<Ornek>
+
+<Soru>
+
+Bir çemberde $T$ değme noktasındaki teğet ile $[TA]$ kirişi arasındaki teğet-kiriş açısı $40°$'dir. $[TA]$ kirişinin kapattığı (açının içinde kalan) yay kaç derecedir?
+
+</Soru>
+
+<Cozum>
+
+1. Teğet-kiriş açısı, kapattığı yayın yarısıdır: $40°=\dfrac{1}{2}\,\overset{\frown}{TA}$.
+2. Buradan $\overset{\frown}{TA}=2\cdot 40°=80°$.
+
+<Cevap>$80°$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 4. Çapı Gören Açı ve Dik Üçgen
+
+Önceki sonucu ayrı bir başlık altında vurgulayalım: bir çemberde **çapı gören çevre açı her zaman $90°$'dir**. Bu yüzden bir kirişin uç noktaları ve çember üzerindeki üçüncü bir nokta, çoğu zaman bir **dik üçgen** oluşturur ve Pisagor bağıntısı devreye girer.
+
+<Ornek>
+
+<Soru>
+
+$[AB]$ çaplı bir çemberde $|AB|=10$ ve çember üzerindeki $C$ için $|AC|=6$ ise $|BC|$ kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+$[AB]$ çap olduğundan $\widehat{ACB}=90°$; $ABC$ bir dik üçgendir, hipotenüs $[AB]$'dir.
+
+</Ipucu>
+
+<Cozum>
+
+1. Çapı gören açı: $\widehat{ACB}=90°$, yani $ABC$ dik üçgen.
+2. Pisagor: $|AB|^2=|AC|^2+|BC|^2 \Rightarrow 10^2=6^2+|BC|^2$.
+3. $|BC|^2=100-36=64 \Rightarrow |BC|=8$.
+
+<Cevap>$8$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 5. İç Açı ve Dış Açı (İki Kiriş)
+
+Çemberin **içinde** iki kirişin kesişmesiyle oluşan açı, **karşılıklı iki yayın ortalamasıdır**:
+
+$$\text{iç açı}=\dfrac{\overset{\frown}{x}+\overset{\frown}{y}}{2}$$
+
+Çemberin **dışında** iki kesenin/teğetin oluşturduğu açı ise **iki yayın farkının yarısıdır**:
+
+$$\text{dış açı}=\dfrac{\overset{\frown}{x}-\overset{\frown}{y}}{2}\quad (\overset{\frown}{x}>\overset{\frown}{y})$$
+
+<Ornek>
+
+<Soru>
+
+Bir çemberin içinde kesişen iki kirişin oluşturduğu açının gördüğü karşılıklı yaylar $70°$ ve $50°$'dir. Bu iç açı kaç derecedir?
+
+</Soru>
+
+<Cozum>
+
+1. İç açı, karşılıklı yayların ortalamasıdır: $\dfrac{70°+50°}{2}$.
+2. $=\dfrac{120°}{2}=60°$.
+
+<Cevap>$60°$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Çözümlü Örnekler
+
+<Ornek>
+
+<Soru>
+
+Bir çemberde $\overset{\frown}{AB}=140°$ ise $\overset{\frown}{AB}$ yayını **çember üzerindeki** bir $C$ noktasından gören çevre açı $\widehat{ACB}$ kaç derecedir?
+
+</Soru>
+
+<Cozum>
+
+1. Çevre açı, gördüğü yayın yarısıdır: $\widehat{ACB}=\dfrac{140°}{2}$.
+2. $=70°$.
+
+<Cevap>$70°$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir çemberde aynı $\overset{\frown}{AB}$ yayını gören iki çevre açıdan biri $\widehat{ACB}$, diğeri $\widehat{ADB}$'dir. $\widehat{ACB}=3x-10$ ve $\widehat{ADB}=x+30$ ise $x$ kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+Aynı yayı gören çevre açılar **eşittir**.
+
+</Ipucu>
+
+<Cozum>
+
+1. Aynı yayı gören çevre açılar eşit: $3x-10=x+30$.
+2. $2x=40 \Rightarrow x=20$.
+
+<Cevap>$x=20$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir çembere $T$ noktasından çizilen teğet ile $[TB]$ kirişi arasındaki teğet-kiriş açısı $65°$'dir. Aynı $\overset{\frown}{TB}$ yayını gören çevre açı kaç derecedir?
+
+</Soru>
+
+<Cozum>
+
+1. Teğet-kiriş açısı kapattığı yayın yarısıdır: $\overset{\frown}{TB}=2\cdot 65°=130°$.
+2. Aynı yayı gören çevre açı da yayın yarısıdır: $\dfrac{130°}{2}=65°$.
+
+<Cevap>$65°$ (teğet-kiriş açısı ile aynı yayı gören çevre açı eşittir).</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir çemberin dışındaki $P$ noktasından çizilen iki kesen, çemberde $80°$ ve $20°$'lik iki yay belirliyor. $P$'deki açı kaç derecedir?
+
+</Soru>
+
+<Ipucu>
+
+Dış açı, gördüğü iki yayın **farkının yarısıdır**.
+
+</Ipucu>
+
+<Cozum>
+
+1. Dış açı, yayların farkının yarısıdır: $\dfrac{80°-20°}{2}$.
+2. $=\dfrac{60°}{2}=30°$.
+
+<Cevap>$30°$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$[AB]$ çaplı bir çemberde $C$ çember üzerindedir ve $\overset{\frown}{AC}=110°$'dir. $\widehat{ABC}$ kaç derecedir?
+
+</Soru>
+
+<Ipucu>
+
+$\widehat{ABC}$ bir çevre açıdır ve $\overset{\frown}{AC}$ yayını görür.
+
+</Ipucu>
+
+<Cozum>
+
+1. $\widehat{ABC}$, $\overset{\frown}{AC}$ yayını gören çevre açıdır: $\widehat{ABC}=\dfrac{110°}{2}=55°$.
+
+<Cevap>$55°$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Alıştırmalar — Sıra Sende
+
+> Önce kendin çözmeyi dene; sonra çözümü açıp karşılaştır.
+
+<Ornek>
+
+<Soru>
+
+Bir çemberde $\overset{\frown}{AB}=86°$ ise bu yayı gören merkez açı kaç derecedir?
+
+</Soru>
+
+<Cozum>
+
+1. Merkez açı, gördüğü yaya eşittir: $86°$.
+
+<Cevap>$86°$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir çemberde $\overset{\frown}{MN}=124°$ ise bu yayı gören çevre açı kaç derecedir?
+
+</Soru>
+
+<Cozum>
+
+1. Çevre açı, gördüğü yayın yarısıdır: $\dfrac{124°}{2}=62°$.
+
+<Cevap>$62°$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir çemberde $C$ köşeli çevre açı $\widehat{ACB}=48°$ ise aynı yayı gören merkez açı $\widehat{AOB}$ kaç derecedir?
+
+</Soru>
+
+<Cozum>
+
+1. Merkez açı, çevre açının iki katıdır: $2\cdot 48°=96°$.
+
+<Cevap>$96°$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$[AB]$ çaplı bir çemberde $C$ çember üzerindedir. $\widehat{CAB}=37°$ ise $\widehat{ABC}$ kaç derecedir?
+
+</Soru>
+
+<Cozum>
+
+1. Çapı gören açı: $\widehat{ACB}=90°$.
+2. Üçgende: $\widehat{ABC}=180°-90°-37°=53°$.
+
+<Cevap>$53°$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir çembere $T$ noktasından çizilen teğet ile $[TK]$ kirişi arasındaki teğet-kiriş açısı $54°$'dir. $[TK]$ kirişinin kapattığı yay kaç derecedir?
+
+</Soru>
+
+<Cozum>
+
+1. Teğet-kiriş açısı, kapattığı yayın yarısıdır: $\overset{\frown}{TK}=2\cdot 54°=108°$.
+
+<Cevap>$108°$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir çemberin içinde kesişen iki kirişin oluşturduğu açının gördüğü karşılıklı yaylar $94°$ ve $36°$'dir. İç açı kaç derecedir?
+
+</Soru>
+
+<Cozum>
+
+1. İç açı, karşılıklı yayların ortalamasıdır: $\dfrac{94°+36°}{2}=\dfrac{130°}{2}=65°$.
+
+<Cevap>$65°$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir çemberin dışındaki $P$ noktasından çizilen iki kesen $130°$ ve $50°$'lik iki yay belirliyor. $\widehat{P}$ kaç derecedir?
+
+</Soru>
+
+<Cozum>
+
+1. Dış açı, yayların farkının yarısıdır: $\dfrac{130°-50°}{2}=\dfrac{80°}{2}=40°$.
+
+<Cevap>$40°$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir çemberde aynı $\overset{\frown}{AB}$ yayını gören bir çevre açı ile aynı yayı gören teğet-kiriş açısının toplamı $96°$'dir. Bu yayı gören merkez açı kaç derecedir?
+
+</Soru>
+
+<Ipucu>
+
+Aynı yayı gören çevre açı ile teğet-kiriş açısı **eşittir** (her ikisi de yayın yarısı). Merkez açı ise yaya eşittir.
+
+</Ipucu>
+
+<Cozum>
+
+1. İkisi eşit olduğundan her biri $\dfrac{96°}{2}=48°$.
+2. Her biri yayın yarısı: $\overset{\frown}{AB}=2\cdot 48°=96°$.
+3. Merkez açı yaya eşittir: $96°$.
+
+<Cevap>$96°$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$[AB]$ çaplı bir çemberde $C$ çember üzerindedir. $|AC|=5$, $|BC|=12$ ise çemberin **yarıçapı** kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+Çapı gören açı $90°$'dir; önce hipotenüs $[AB]$'yi (çapı) Pisagor ile bul, sonra yarıçap çapın yarısıdır.
+
+</Ipucu>
+
+<Cozum>
+
+1. $\widehat{ACB}=90°$ (çapı gören açı), $ABC$ dik üçgendir.
+2. Pisagor: $|AB|^2=5^2+12^2=25+144=169 \Rightarrow |AB|=13$.
+3. $[AB]$ çap olduğundan yarıçap $r=\dfrac{13}{2}=6{,}5$.
+
+<Cevap>$r=6{,}5$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir çemberde $\overset{\frown}{AB}=2x+10$ ve $\overset{\frown}{AB}$ yayını gören çevre açı $\widehat{ACB}=x-5$ ise $x$ kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+Çevre açı, gördüğü yayın **yarısıdır**: $\widehat{ACB}=\dfrac{\overset{\frown}{AB}}{2}$.
+
+</Ipucu>
+
+<Cozum>
+
+1. Çevre açı yayın yarısıdır: $x-5=\dfrac{2x+10}{2}$.
+2. Sağ tarafı sadeleştir: $x-5=x+5$.
+3. Bu eşitlik hiçbir $x$ için sağlanmaz ($-5=5$ çelişkisi). Demek ki verilen ifadeler tutarsızdır.
+
+<Cevap>Çözüm yoktur — verilen ölçüler $\widehat{ACB}=\dfrac{\overset{\frown}{AB}}{2}$ koşulunu sağlayamaz.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Merkez açı ile çevre açıyı eşitlemek.** Aynı yayı gören merkez açı, çevre açının **iki katıdır**; çevre açı yayın yarısı, merkez açı yayın tamamıdır.
+- **Çevre açıyı yayın tamamı sanmak.** Çevre açı her zaman gördüğü yayın **yarısıdır** ($\dfrac{1}{2}\,\overset{\frown}{AB}$).
+- **Teğetin yarıçapa dik olduğunu unutmak.** Değme noktasında teğet ile yarıçap arasındaki açı **her zaman $90°$'dir**.
+- **İç açı ile dış açı formülünü karıştırmak.** İçte yayların **toplamının** yarısı, dışta yayların **farkının** yarısı alınır.
+
+> **Not:** Çemberde açıların ortak anahtarı **yay**tır. Bir açı görünce önce "köşesi nerede?" diye sor: merkezde → yaya eşit, çember üzerinde → yayın yarısı, içeride → yayların ortalaması, dışarıda → yayların farkının yarısı. Çapı gören açı ise her zaman $90°$.
+
+<KonuNav slug="cemberde-acilar" />

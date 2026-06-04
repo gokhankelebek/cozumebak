@@ -1,0 +1,530 @@
+import { topicMetadata } from "@/lib/seo";
+import { BirimCember } from "@/components/figures/BirimCemberFig";
+import { SinusGrafik, KosinusGrafik, BolgeIsaret } from "@/components/figures/TrigonometriFig";
+
+export const metadata = topicMetadata("trigonometrik-fonksiyonlar");
+
+<Konu slug="trigonometrik-fonksiyonlar" />
+
+<p className="lead">Dik üçgende tanımladığımız sinüs, kosinüs ve tanjantı **birim çember** sayesinde her açıya genişletiyoruz: artık $0°$–$90°$ ile sınırlı değiliz. Bu derste birim çember üzerinde **trigonometrik fonksiyonların tanımını**, bölgelere göre **işaretlerini**, $\sin x$ ve $\cos x$ **fonksiyonlarının grafiklerini**, **periyot** kavramını ve temel **özdeşlikleri** öğreneceğiz. Bu fonksiyonlar; dalga, salınım ve dönme hareketinin matematiksel dilidir.</p>
+
+## 1. Birim Çemberle Tanım
+
+Standart konumdaki $x$ açısının terminal kenarı, birim çemberi $P(\cos x,\ \sin x)$ noktasında keser. Yani:
+
+$$\cos x = P\text{ noktasının apsisi}, \qquad \sin x = P\text{ noktasının ordinatı}$$
+
+$$\tan x=\dfrac{\sin x}{\cos x}\quad (\cos x\neq 0)$$
+
+<Figur>
+
+<BirimCember />
+
+<Altyazi>Şekil 1 — Birim çemberde $\alpha$ açısının terminal kenarı çemberi $P$ noktasında keser. $P$'nin apsisi $\cos\alpha$, ordinatı $\sin\alpha$'dır.</Altyazi>
+
+</Figur>
+
+Birim çember $-1\le\cos x\le 1$ ve $-1\le\sin x\le 1$ olduğunu hemen gösterir: bir noktanın koordinatları yarıçapı ($1$) geçemez.
+
+<Ornek>
+
+<Soru>
+
+$\sin 90°$ ve $\cos 180°$ değerlerini birim çemberden bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $90°$'nin terminal kenarı $(0,1)$ noktasından geçer; ordinat $\sin 90°=1$.
+2. $180°$'nin terminal kenarı $(-1,0)$ noktasından geçer; apsis $\cos 180°=-1$.
+
+<Cevap>$\sin 90°=1$, $\cos 180°=-1$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 2. Bölgelere Göre İşaret
+
+İşaret, $P$ noktasının koordinatlarının işaretinden gelir. I. bölgede her şey pozitiftir; sonra sırayla sin, tan, cos pozitif kalır (**"hepsi–sin–tan–cos"**).
+
+<Figur>
+
+<BolgeIsaret />
+
+<Altyazi>Şekil 2 — Birim çemberde işaretler. I: hepsi $+$; II: yalnız $\sin$; III: yalnız $\tan$; IV: yalnız $\cos$ pozitiftir.</Altyazi>
+
+</Figur>
+
+<Ornek>
+
+<Soru>
+
+$200°$ açısı için $\sin 200°$ ve $\cos 200°$'nin işaretleri nedir?
+
+</Soru>
+
+<Cozum>
+
+1. $200°$ III. bölgededir.
+2. III. bölgede yalnız tanjant pozitiftir; sin ve cos negatiftir.
+
+<Cevap>Her ikisi de negatif.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 3. Özel Açıların Değerleri
+
+Birim çember, özel açıların değerlerini bölge bilgisiyle birlikte verir. Temel tablo:
+
+| $x$ | $0°$ | $30°$ | $45°$ | $60°$ | $90°$ |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| $\sin x$ | $0$ | $\dfrac{1}{2}$ | $\dfrac{\sqrt2}{2}$ | $\dfrac{\sqrt3}{2}$ | $1$ |
+| $\cos x$ | $1$ | $\dfrac{\sqrt3}{2}$ | $\dfrac{\sqrt2}{2}$ | $\dfrac{1}{2}$ | $0$ |
+| $\tan x$ | $0$ | $\dfrac{\sqrt3}{3}$ | $1$ | $\sqrt3$ | tanımsız |
+
+Diğer bölgelerdeki değerleri, **ilgili dar açı** (referans açı) ve **bölge işareti** ile buluruz.
+
+<Ornek>
+
+<Soru>
+
+$\cos 120°$ değerini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+$120°$ II. bölgededir; referans açısı $180°-120°=60°$'dir. II. bölgede kosinüs negatiftir.
+
+</Ipucu>
+
+<Cozum>
+
+1. Referans açı: $180°-120°=60°$, $\cos 60°=\dfrac12$.
+2. $120°$ II. bölgede, kosinüs negatif: $\cos 120°=-\dfrac12$.
+
+<Cevap>$-\dfrac12$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 4. Grafikler ve Periyot
+
+Açıyı sürekli artırınca $P$ noktası çember üzerinde döner; ordinat ve apsis salınır. Bu salınımı bir grafikte gösteririz. Hem $\sin x$ hem $\cos x$ **periyodu $2\pi$** olan fonksiyonlardır: her $2\pi$'de bir aynı değerler tekrarlanır.
+
+<Figur>
+
+<SinusGrafik />
+
+<Altyazi>Şekil 3 — $y=\sin x$ grafiği. $x=0$'da $0$'dan başlar, $x=\dfrac{\pi}{2}$'de en büyük değeri $1$'e, $x=\dfrac{3\pi}{2}$'de en küçük değeri $-1$'e ulaşır. Değer aralığı $[-1,1]$, periyodu $2\pi$.</Altyazi>
+
+</Figur>
+
+<Figur>
+
+<KosinusGrafik />
+
+<Altyazi>Şekil 4 — $y=\cos x$ grafiği. $x=0$'da en büyük değeri $1$'den başlar; aynı dalga, sinüse göre $\dfrac{\pi}{2}$ "kaymıştır". Değer aralığı $[-1,1]$, periyodu $2\pi$.</Altyazi>
+
+</Figur>
+
+Genel olarak $y=\sin(bx)$ ve $y=\cos(bx)$ fonksiyonlarının periyodu $\dfrac{2\pi}{|b|}$'dir. $\tan x$ fonksiyonunun periyodu ise $\pi$'dir.
+
+<Ornek>
+
+<Soru>
+
+$y=\sin 2x$ fonksiyonunun periyodu kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. $y=\sin(bx)$ için periyot $\dfrac{2\pi}{|b|}$.
+2. $b=2$: periyot $\dfrac{2\pi}{2}=\pi$.
+
+<Cevap>$\pi$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 5. Temel Özdeşlik
+
+$P(\cos x,\sin x)$ birim çember üzerinde olduğundan, koordinatları çemberin denklemini sağlar ($x^2+y^2=1$):
+
+$$\sin^2 x+\cos^2 x=1$$
+
+Bu, bir oran biliniyorken diğerini (işaretiyle birlikte) bulmaya yarar.
+
+<Ornek>
+
+<Soru>
+
+II. bölgede bir açı için $\sin x=\dfrac{3}{5}$ ise $\cos x$ kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+Önce $\cos^2 x=1-\sin^2 x$; sonra **bölge işaretine** karar ver. II. bölgede kosinüs negatiftir.
+
+</Ipucu>
+
+<Cozum>
+
+1. $\cos^2 x=1-\dfrac{9}{25}=\dfrac{16}{25}$, yani $\cos x=\pm\dfrac{4}{5}$.
+2. II. bölgede kosinüs negatif: $\cos x=-\dfrac{4}{5}$.
+
+<Cevap>$-\dfrac{4}{5}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Çözümlü Örnekler
+
+<Ornek>
+
+<Soru>
+
+$\sin 150°$ değerini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $150°$ II. bölgede; referans açı $180°-150°=30°$.
+2. II. bölgede sinüs pozitif: $\sin 150°=\sin 30°=\dfrac12$.
+
+<Cevap>$\dfrac12$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\cos 270°+\sin 270°$ değerini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $270°$'nin terminal kenarı $(0,-1)$ noktasından geçer.
+2. $\cos 270°=0$ (apsis), $\sin 270°=-1$ (ordinat).
+3. Topla: $0+(-1)=-1$.
+
+<Cevap>$-1$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\tan 135°$ değerini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+$\tan x=\dfrac{\sin x}{\cos x}$. $135°$ II. bölgede; referans açı $45°$. II. bölgede tanjant negatiftir.
+
+</Ipucu>
+
+<Cozum>
+
+1. Referans açı $180°-135°=45°$, $\tan 45°=1$.
+2. II. bölgede tanjant negatif: $\tan 135°=-1$.
+
+<Cevap>$-1$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$y=3\sin x$ fonksiyonunun en büyük ve en küçük değerini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+$\sin x$ değer aralığı $[-1,1]$'dir; $3$ ile çarpınca aralık nasıl değişir?
+
+</Ipucu>
+
+<Cozum>
+
+1. $-1\le \sin x\le 1$.
+2. $3$ ile çarp: $-3\le 3\sin x\le 3$.
+3. En büyük değer $3$, en küçük değer $-3$.
+
+<Cevap>En büyük $3$, en küçük $-3$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\sin x=\dfrac{12}{13}$ ve $x$ I. bölgede ise $\tan x$ kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. $\cos^2 x=1-\dfrac{144}{169}=\dfrac{25}{169}$; I. bölgede $\cos x=\dfrac{5}{13}$.
+2. $\tan x=\dfrac{\sin x}{\cos x}=\dfrac{12/13}{5/13}=\dfrac{12}{5}$.
+
+<Cevap>$\dfrac{12}{5}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Alıştırmalar — Sıra Sende
+
+> Önce kendin çözmeyi dene; sonra çözümü açıp karşılaştır.
+
+<Ornek>
+
+<Soru>
+
+$\sin 0°+\cos 0°$ değerini bul.
+
+</Soru>
+
+<Cozum>
+
+1. $\sin 0°=0$, $\cos 0°=1$.
+2. Topla: $0+1=1$.
+
+<Cevap>$1$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\cos 90°\cdot\sin 90°$ değerini bul.
+
+</Soru>
+
+<Cozum>
+
+1. $\cos 90°=0$, $\sin 90°=1$.
+2. Çarp: $0\cdot 1=0$.
+
+<Cevap>$0$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\sin 210°$ değerini bul.
+
+</Soru>
+
+<Cozum>
+
+1. $210°$ III. bölgede; referans açı $210°-180°=30°$.
+2. III. bölgede sinüs negatif: $\sin 210°=-\sin 30°=-\dfrac12$.
+
+<Cevap>$-\dfrac12$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$y=\cos 3x$ fonksiyonunun periyodu kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. Periyot $\dfrac{2\pi}{|b|}=\dfrac{2\pi}{3}$.
+
+<Cevap>$\dfrac{2\pi}{3}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+IV. bölgede $\cos x=\dfrac{4}{5}$ ise $\sin x$ kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. $\sin^2 x=1-\dfrac{16}{25}=\dfrac{9}{25}$, $\sin x=\pm\dfrac35$.
+2. IV. bölgede sinüs negatif: $\sin x=-\dfrac35$.
+
+<Cevap>$-\dfrac35$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\cos 300°$ değerini bul.
+
+</Soru>
+
+<Cozum>
+
+1. $300°$ IV. bölgede; referans açı $360°-300°=60°$.
+2. IV. bölgede kosinüs pozitif: $\cos 300°=\cos 60°=\dfrac12$.
+
+<Cevap>$\dfrac12$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\dfrac{\sin^2 40°+\cos^2 40°}{\cos 0°}$ ifadesinin değerini bul.
+
+</Soru>
+
+<Ipucu>
+
+Pay her açı için $\sin^2 x+\cos^2 x=1$'e eşittir; $\cos 0°=1$.
+
+</Ipucu>
+
+<Cozum>
+
+1. Pay: $\sin^2 40°+\cos^2 40°=1$.
+2. Payda: $\cos 0°=1$.
+3. Bölüm: $\dfrac{1}{1}=1$.
+
+<Cevap>$1$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$y=2\cos x-1$ fonksiyonunun en büyük ve en küçük değerini bul.
+
+</Soru>
+
+<Ipucu>
+
+$\cos x\in[-1,1]$; önce $2\cos x$ aralığını, sonra $-1$ kaydırmasını uygula.
+
+</Ipucu>
+
+<Cozum>
+
+1. $-1\le\cos x\le 1\Rightarrow -2\le 2\cos x\le 2$.
+2. Her tarafa $-1$ ekle: $-3\le 2\cos x-1\le 1$.
+3. En büyük $1$, en küçük $-3$.
+
+<Cevap>En büyük $1$, en küçük $-3$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+III. bölgede bir $x$ açısı için $\tan x=\dfrac34$ ise $\sin x$ kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+$\tan x=\dfrac{\sin x}{\cos x}=\dfrac34$ olduğundan $\sin x=3k$, $\cos x=4k$ kur; $\sin^2 x+\cos^2 x=1$ ile $k$'yı bul, sonra bölge işaretini uygula.
+
+</Ipucu>
+
+<Cozum>
+
+1. $\sin x=3k$, $\cos x=4k$ alalım; $\sin^2 x+\cos^2 x=9k^2+16k^2=25k^2=1\Rightarrow k=\pm\dfrac15$.
+2. III. bölgede sinüs **negatiftir**, dolayısıyla $\sin x=3k<0\Rightarrow k=-\dfrac15$.
+3. $\sin x=3\cdot\left(-\dfrac15\right)=-\dfrac35$.
+
+<Cevap>$-\dfrac35$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=\sin x$ fonksiyonu için $f(x)=f(x+2\pi)$ olduğunu kullanarak $\sin\dfrac{13\pi}{6}$ değerini bul.
+
+</Soru>
+
+<Ipucu>
+
+$2\pi$ periyodunu at: $\dfrac{13\pi}{6}-2\pi=\dfrac{13\pi}{6}-\dfrac{12\pi}{6}$.
+
+</Ipucu>
+
+<Cozum>
+
+1. $\dfrac{13\pi}{6}-\dfrac{12\pi}{6}=\dfrac{\pi}{6}$ (esas ölçü, I. bölge).
+2. $\sin\dfrac{13\pi}{6}=\sin\dfrac{\pi}{6}=\dfrac12$.
+
+<Cevap>$\dfrac12$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Sinüs ile kosinüsü koordinatta karıştırmak.** $P(\cos x,\sin x)$'te **apsis kosinüs**, **ordinat sinüstür**; sırayı ters yazma.
+- **Bölge işaretini unutmak.** $\sin^2 x+\cos^2 x=1$'den çekilen kök $\pm$'lidir; açının bölgesine bakıp doğru işareti seç.
+- **Periyot formülünü yanlış kurmak.** $y=\sin(bx)$ periyodu $\dfrac{2\pi}{|b|}$'dir; $b$ ile **çarpmak** değil, $2\pi$'yi $|b|$'ye **bölmek** gerekir.
+- **$1$'i aşan değer bulmak.** $\sin x$ ve $\cos x$ asla $[-1,1]$ dışına çıkamaz; sonucun bu aralıkta olduğunu kontrol et.
+
+> **Not:** Birim çember, trigonometrinin "haritasıdır": her özel açı değeri ve her işaret kararı oradan okunur. Bilmediğin bir açıyı önce **referans açı + bölge işareti** ikilisine indir; grafikler ise bu değerlerin zaman içinde nasıl salındığını gösterir.
+
+<KonuNav slug="trigonometrik-fonksiyonlar" />

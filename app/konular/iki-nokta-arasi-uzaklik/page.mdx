@@ -1,0 +1,560 @@
+import { topicMetadata } from "@/lib/seo";
+import { IkiNokta, Egim } from "@/components/figures/AnalitikFig";
+
+export const metadata = topicMetadata("iki-nokta-arasi-uzaklik");
+
+<Konu slug="iki-nokta-arasi-uzaklik" />
+
+<p className="lead">Analitik geometri, **şekilleri sayılarla** inceler: her noktaya bir $(x,y)$ koordinat çifti karşılık gelir. Bu derste koordinat düzleminde **iki nokta arası uzaklığı**, bir doğru parçasının **orta noktasını**, bir doğrunun **eğimini** ve **denklemini** öğreneceğiz. Tüm bunların temelinde tek bir fikir vardır: Pisagor teoremi koordinatlara taşınınca uzaklık formülüne dönüşür. Bol şekil, örnek ve "Sıra Sende" alıştırmalarıyla pekiştireceğiz.</p>
+
+## 1. İki Nokta Arası Uzaklık
+
+Koordinat düzleminde $A(x_1,y_1)$ ve $B(x_2,y_2)$ noktaları arasındaki uzaklık, yatay fark $|x_2-x_1|$ ile dikey fark $|y_2-y_1|$'in oluşturduğu dik üçgenin hipotenüsüdür. Pisagor'dan:
+
+$$|AB|=\sqrt{(x_2-x_1)^2+(y_2-y_1)^2}$$
+
+Farkların karesi alındığı için hangi noktayı önce yazdığın sonucu değiştirmez.
+
+<Figur>
+
+<IkiNokta />
+
+<Altyazi>Şekil 1 — $A(1,2)$ ve $B(4,6)$ noktaları. Yatay fark $4-1=3$, dikey fark $6-2=4$; uzaklık bu farkların oluşturduğu dik üçgenin hipotenüsü, yani $\sqrt{3^2+4^2}=5$'tir.</Altyazi>
+
+</Figur>
+
+<Ornek>
+
+<Soru>
+
+$A(1,2)$ ve $B(4,6)$ noktaları arasındaki uzaklığı bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Farkları al: $x_2-x_1=4-1=3$, $\;y_2-y_1=6-2=4$.
+2. Formülde yerine koy: $|AB|=\sqrt{3^2+4^2}=\sqrt{9+16}=\sqrt{25}$.
+3. $\sqrt{25}=5$.
+
+<Cevap>$|AB|=5$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$A(-2,3)$ ve $B(4,-5)$ noktaları arasındaki uzaklığı bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Negatif koordinatlarda farkı dikkatli al: $4-(-2)=6$ ve $-5-3=-8$. Karesini alınca işaret kaybolur.
+
+</Ipucu>
+
+<Cozum>
+
+1. Farklar: $x_2-x_1=4-(-2)=6$, $\;y_2-y_1=-5-3=-8$.
+2. $|AB|=\sqrt{6^2+(-8)^2}=\sqrt{36+64}=\sqrt{100}$.
+3. $\sqrt{100}=10$.
+
+<Cevap>$|AB|=10$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 2. Orta Nokta
+
+$A(x_1,y_1)$ ile $B(x_2,y_2)$ noktalarını birleştiren doğru parçasının **orta noktası** $M$, koordinatların ortalamasıdır:
+
+$$M=\left(\dfrac{x_1+x_2}{2},\ \dfrac{y_1+y_2}{2}\right)$$
+
+Orta nokta, parçayı iki eşit uzunlukta parçaya böler: $|AM|=|MB|$.
+
+<Ornek>
+
+<Soru>
+
+$A(-1,4)$ ve $B(5,2)$ noktalarını birleştiren parçanın orta noktasını bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $x$ koordinatı: $\dfrac{-1+5}{2}=\dfrac{4}{2}=2$.
+2. $y$ koordinatı: $\dfrac{4+2}{2}=\dfrac{6}{2}=3$.
+
+<Cevap>$M(2,3)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir doğru parçasının bir ucu $A(2,-3)$ ve orta noktası $M(5,1)$'dir. Diğer uç $B$'yi bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Orta nokta formülünü tersten kullan: $\dfrac{x_1+x_2}{2}=5$ olduğundan $x_2=2\cdot 5-x_1$. Aynısını $y$ için yap.
+
+</Ipucu>
+
+<Cozum>
+
+1. $x$ için: $\dfrac{2+x_2}{2}=5\Rightarrow 2+x_2=10\Rightarrow x_2=8$.
+2. $y$ için: $\dfrac{-3+y_2}{2}=1\Rightarrow -3+y_2=2\Rightarrow y_2=5$.
+
+<Cevap>$B(8,5)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 3. Bir Doğrunun Eğimi
+
+Bir doğrunun **eğimi** $m$, üzerindeki iki nokta arasında dikey değişimin yatay değişime oranıdır:
+
+$$m=\dfrac{y_2-y_1}{x_2-x_1}=\dfrac{\Delta y}{\Delta x}\quad (x_1\ne x_2)$$
+
+Eğim, doğrunun "ne kadar dik" olduğunu söyler: pozitifse doğru sağa doğru yükselir, negatifse alçalır. **Yatay** doğrunun eğimi $0$, **dikey** doğrunun eğimi tanımsızdır.
+
+<Figur>
+
+<Egim />
+
+<Altyazi>Şekil 2 — $A(1,2)$ ve $B(4,8)$ noktalarından geçen doğru. Yatay artış $\Delta x=3$, dikey artış $\Delta y=6$; eğim $m=\dfrac{6}{3}=2$. Yani $x$ bir birim artarken $y$ iki birim artar.</Altyazi>
+
+</Figur>
+
+<Ornek>
+
+<Soru>
+
+$A(1,2)$ ve $B(4,8)$ noktalarından geçen doğrunun eğimini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Farklar: $\Delta y=8-2=6$, $\;\Delta x=4-1=3$.
+2. Eğim: $m=\dfrac{6}{3}=2$.
+
+<Cevap>$m=2$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$A(-3,5)$ ve $B(2,-5)$ noktalarından geçen doğrunun eğimini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $\Delta y=-5-5=-10$, $\;\Delta x=2-(-3)=5$.
+2. $m=\dfrac{-10}{5}=-2$ (eğim negatif: doğru alçalan).
+
+<Cevap>$m=-2$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 4. Doğru Denklemi
+
+Bir doğrunun denklemini, eğimi ve üzerindeki bir noktayı kullanarak yazabiliriz. Eğimi $m$ olan ve $(x_0,y_0)$ noktasından geçen doğru:
+
+$$y-y_0=m(x-x_0)$$
+
+Bu denklemi düzenleyince **eğim-kesişim** biçimi elde edilir:
+
+$$y=mx+n$$
+
+Burada $m$ eğim, $n$ ise doğrunun $y$ eksenini kestiği noktanın ordinatıdır (yani $x=0$ için $y=n$).
+
+<Ornek>
+
+<Soru>
+
+Eğimi $3$ olan ve $(2,1)$ noktasından geçen doğrunun denklemini $y=mx+n$ biçiminde yazınız.
+
+</Soru>
+
+<Cozum>
+
+1. Nokta-eğim biçimi: $y-1=3(x-2)$.
+2. Dağıt: $y-1=3x-6$.
+3. Yalnız bırak: $y=3x-5$.
+
+<Cevap>$y=3x-5$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$A(1,3)$ ve $B(3,7)$ noktalarından geçen doğrunun denklemini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Önce iki noktadan eğimi bul; sonra noktalardan birini nokta-eğim biçiminde kullan.
+
+</Ipucu>
+
+<Cozum>
+
+1. Eğim: $m=\dfrac{7-3}{3-1}=\dfrac{4}{2}=2$.
+2. $A(1,3)$ ile nokta-eğim: $y-3=2(x-1)$.
+3. Düzenle: $y-3=2x-2\Rightarrow y=2x+1$.
+
+<Cevap>$y=2x+1$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Çözümlü Örnekler
+
+<Ornek>
+
+<Soru>
+
+$A(0,0)$ orijini ile $B(-6,8)$ noktası arasındaki uzaklığı bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Farklar: $\Delta x=-6-0=-6$, $\;\Delta y=8-0=8$.
+2. $|AB|=\sqrt{(-6)^2+8^2}=\sqrt{36+64}=\sqrt{100}=10$.
+
+<Cevap>$|AB|=10$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$y=2x-4$ doğrusunun eğimini ve $y$ eksenini kestiği noktayı yazınız.
+
+</Soru>
+
+<Cozum>
+
+1. Denklem $y=mx+n$ biçiminde: $m=2$, $n=-4$.
+2. Eğim $2$; $y$ eksenini kestiği nokta $x=0$ için $y=-4$, yani $(0,-4)$.
+
+<Cevap>Eğim $2$, kesişim noktası $(0,-4)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$A(2,k)$ ve $B(6,1)$ noktaları arasındaki uzaklık $5$ ise $k$'nin pozitif değerini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Uzaklık formülünü kur, iki tarafın karesini al: $(6-2)^2+(1-k)^2=5^2$.
+
+</Ipucu>
+
+<Cozum>
+
+1. Formül: $\sqrt{(6-2)^2+(1-k)^2}=5$.
+2. Karesini al: $16+(1-k)^2=25\Rightarrow (1-k)^2=9$.
+3. Kök al: $1-k=\pm 3$, yani $k=-2$ veya $k=4$.
+4. Pozitif değer istendi: $k=4$.
+
+<Cevap>$k=4$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$A(-2,1)$ ile $B(4,9)$ noktalarını birleştiren parçanın orta noktasından geçen ve eğimi $\dfrac{1}{2}$ olan doğrunun denklemini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Önce orta noktayı bul; sonra verilen eğimle nokta-eğim biçimini yaz.
+
+</Ipucu>
+
+<Cozum>
+
+1. Orta nokta: $M=\left(\dfrac{-2+4}{2},\dfrac{1+9}{2}\right)=(1,5)$.
+2. Nokta-eğim: $y-5=\dfrac{1}{2}(x-1)$.
+3. Düzenle: $y-5=\dfrac{1}{2}x-\dfrac{1}{2}\Rightarrow y=\dfrac{1}{2}x+\dfrac{9}{2}$.
+
+<Cevap>$y=\dfrac{1}{2}x+\dfrac{9}{2}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Alıştırmalar — Sıra Sende
+
+> Önce kendin çözmeyi dene; sonra çözümü açıp karşılaştır.
+
+<Ornek>
+
+<Soru>
+
+$A(2,1)$ ve $B(5,5)$ noktaları arasındaki uzaklığı bul.
+
+</Soru>
+
+<Cozum>
+
+1. $\Delta x=3$, $\Delta y=4$.
+2. $|AB|=\sqrt{3^2+4^2}=\sqrt{25}=5$.
+
+<Cevap>$5$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$A(-3,-1)$ ve $B(1,2)$ noktaları arasındaki uzaklığı bul.
+
+</Soru>
+
+<Cozum>
+
+1. $\Delta x=1-(-3)=4$, $\Delta y=2-(-1)=3$.
+2. $|AB|=\sqrt{4^2+3^2}=\sqrt{25}=5$.
+
+<Cevap>$5$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$A(-4,2)$ ve $B(6,-4)$ noktalarını birleştiren parçanın orta noktasını bul.
+
+</Soru>
+
+<Cozum>
+
+1. $x$: $\dfrac{-4+6}{2}=1$.
+2. $y$: $\dfrac{2+(-4)}{2}=-1$.
+
+<Cevap>$M(1,-1)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$A(0,4)$ ve $B(8,0)$ noktalarından geçen doğrunun eğimini bul.
+
+</Soru>
+
+<Cozum>
+
+1. $\Delta y=0-4=-4$, $\Delta x=8-0=8$.
+2. $m=\dfrac{-4}{8}=-\dfrac{1}{2}$.
+
+<Cevap>$-\dfrac{1}{2}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Eğimi $-2$ olan ve $(1,4)$ noktasından geçen doğrunun denklemini $y=mx+n$ biçiminde yaz.
+
+</Soru>
+
+<Cozum>
+
+1. Nokta-eğim: $y-4=-2(x-1)$.
+2. Düzenle: $y-4=-2x+2\Rightarrow y=-2x+6$.
+
+<Cevap>$y=-2x+6$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$A(-1,2)$ ve $B(3,10)$ noktalarından geçen doğrunun denklemini bul.
+
+</Soru>
+
+<Cozum>
+
+1. Eğim: $m=\dfrac{10-2}{3-(-1)}=\dfrac{8}{4}=2$.
+2. $A(-1,2)$ ile: $y-2=2(x+1)\Rightarrow y=2x+4$.
+
+<Cevap>$y=2x+4$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$A(1,k)$ ve $B(4,2)$ noktalarından geçen doğrunun eğimi $-1$ ise $k$ kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+Eğim formülünü kur: $\dfrac{2-k}{4-1}=-1$.
+
+</Ipucu>
+
+<Cozum>
+
+1. Eğim formülü: $\dfrac{2-k}{4-1}=-1$.
+2. $\dfrac{2-k}{3}=-1\Rightarrow 2-k=-3$.
+3. $-k=-5\Rightarrow k=5$.
+
+<Cevap>$k=5$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$A(1,2)$, $B(5,4)$ ve $C(3,k)$ noktaları aynı doğru üzerinde (doğrusal) ise $k$ kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+Üç nokta doğrusalsa $AB$ ile $AC$ doğrularının eğimleri eşittir; eğimleri eşitle.
+
+</Ipucu>
+
+<Cozum>
+
+1. $AB$ eğimi: $\dfrac{4-2}{5-1}=\dfrac{2}{4}=\dfrac{1}{2}$.
+2. $AC$ eğimi: $\dfrac{k-2}{3-1}=\dfrac{k-2}{2}$.
+3. Eşitle: $\dfrac{k-2}{2}=\dfrac{1}{2}\Rightarrow k-2=1\Rightarrow k=3$.
+
+<Cevap>$k=3$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$A(-2,3)$ ve $B(4,3)$ ve $C(4,-5)$ köşeli üçgenin çevre uzunluğunu bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Üç kenarın uzunluğunu ayrı ayrı uzaklık formülüyle bul; iki kenar eksenlere paralel olduğundan kısayoldan da hesaplanabilir.
+
+</Ipucu>
+
+<Cozum>
+
+1. $|AB|=\sqrt{(4-(-2))^2+(3-3)^2}=\sqrt{36}=6$ (yatay kenar).
+2. $|BC|=\sqrt{(4-4)^2+(-5-3)^2}=\sqrt{64}=8$ (dikey kenar).
+3. $|AC|=\sqrt{(4-(-2))^2+(-5-3)^2}=\sqrt{36+64}=\sqrt{100}=10$.
+4. Çevre: $6+8+10=24$.
+
+<Cevap>$24$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$A(1,1)$ ve $B(7,3)$ noktaları bir karenin köşegeninin uçlarıdır. Köşegenin orta noktasını ve uzunluğunu bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Köşegenin orta noktası karenin merkezidir; uzunluk için yine uzaklık formülünü kullan.
+
+</Ipucu>
+
+<Cozum>
+
+1. Orta nokta (merkez): $M=\left(\dfrac{1+7}{2},\dfrac{1+3}{2}\right)=(4,2)$.
+2. Köşegen uzunluğu: $|AB|=\sqrt{(7-1)^2+(3-1)^2}=\sqrt{36+4}=\sqrt{40}=2\sqrt{10}$.
+
+<Cevap>Merkez $M(4,2)$, köşegen $2\sqrt{10}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Uzaklık formülünde farkları toplamak.** Doğrusu farkların **karelerini** toplamaktır: $\sqrt{(\Delta x)^2+(\Delta y)^2}$, $\;\Delta x+\Delta y$ değil.
+- **Orta nokta yerine fark almak.** Orta nokta koordinatların **ortalamasıdır** (toplamın yarısı); çıkarma değildir.
+- **Eğimde pay-paydayı ters yazmak.** Eğim $\dfrac{\Delta y}{\Delta x}$'tir, $\dfrac{\Delta x}{\Delta y}$ değil. İki noktada $y$ farkı üste, $x$ farkı alta gelir.
+- **Negatif koordinatta işaret hatası.** $x_2-x_1=4-(-2)$ gibi farklarda çift negatifi unutma: $4-(-2)=6$.
+
+> **Not:** Bu üç formülün de kalbi Pisagor ve oran fikridir. Bir problemde "uzaklık" geçiyorsa farkların karesini, "orta nokta" geçiyorsa ortalamayı, "eğim" geçiyorsa $\dfrac{\Delta y}{\Delta x}$'i refleks olarak yaz. Doğru denklemi için ya nokta-eğimden ($y-y_0=m(x-x_0)$) başla ya da eğim-kesişim ($y=mx+n$) biçimini doldur.
+
+<KonuNav slug="iki-nokta-arasi-uzaklik" />

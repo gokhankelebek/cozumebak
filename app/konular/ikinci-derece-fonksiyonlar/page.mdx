@@ -1,0 +1,472 @@
+import { topicMetadata } from "@/lib/seo";
+import { Parabol } from "@/components/figures/ParabolFig";
+
+export const metadata = topicMetadata("ikinci-derece-fonksiyonlar");
+
+<Konu slug="ikinci-derece-fonksiyonlar" />
+
+<p className="lead">$f(x)=ax^2+bx+c$ biçimindeki **ikinci dereceden (kuadratik) fonksiyonların** grafiği bir **paraboldür**. Bu derste parabolün **kollarının yönünü**, **tepe noktasını**, **simetri eksenini**, **eksenleri kestiği noktaları** ve **tepe (köşe) biçimini** öğreneceğiz; ayrıca parabolün $y=x^2$ grafiğinden **dönüşümlerle** nasıl elde edildiğini göreceğiz. Parabol; atış hareketinden köprü kemerlerine, maksimum kâr–minimum maliyet hesaplarından uydu antenlerine kadar her yerde karşımıza çıkar. Bol şekil, örnek ve "Sıra Sende" alıştırmalarıyla pekiştireceğiz.</p>
+
+## 1. Parabolün Genel Biçimi ve Kolların Yönü
+
+$a\neq 0$ olmak üzere $f(x)=ax^2+bx+c$ fonksiyonunun grafiği bir paraboldür. **Baş katsayı $a$**, kolların yönünü belirler:
+
+$$a>0 \Rightarrow \text{kollar yukarı (en küçük değer var)} \qquad a<0 \Rightarrow \text{kollar aşağı (en büyük değer var)}$$
+
+$c$ sayısı, $x=0$ için $f(0)=c$ olduğundan parabolün **$y$ eksenini kestiği noktanın** ordinatıdır.
+
+<Ornek>
+
+<Soru>
+
+$f(x)=-2x^2+3x-5$ parabolünün kolları hangi yöndedir ve $y$ eksenini hangi noktada keser?
+
+</Soru>
+
+<Cozum>
+
+1. Baş katsayı $a=-2<0$ olduğundan kollar **aşağı** doğrudur (fonksiyonun en büyük değeri vardır).
+2. $f(0)=-5$ olduğundan $y$ eksenini $(0,-5)$ noktasında keser.
+
+<Cevap>Kollar aşağı; $y$ eksenini $(0,-5)$ noktasında keser.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 2. Tepe Noktası ve Simetri Ekseni
+
+Parabolün en alt (veya en üst) noktası **tepe noktasıdır** $T(r,k)$. Apsisi şu formülle bulunur:
+
+$$r=-\dfrac{b}{2a} \qquad k=f(r)$$
+
+Parabol, $x=r$ dikey doğrusuna göre **simetriktir**; bu doğruya **simetri ekseni** denir. $a>0$ ise $k$ fonksiyonun **en küçük**, $a<0$ ise **en büyük** değeridir.
+
+<Figur>
+
+<Parabol />
+
+<Altyazi>Şekil 1 — $f(x)=x^2-4x+3$ parabolü. Baş katsayı $a=1>0$ olduğundan kollar yukarı; tepe noktası $T(2,-1)$, simetri ekseni $x=2$, kökleri $x=1$ ve $x=3$, $y$ eksenini $(0,3)$'te keser.</Altyazi>
+
+</Figur>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=x^2-4x+3$ parabolünün tepe noktasını ve simetri eksenini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $a=1$, $b=-4$. Apsis: $r=-\dfrac{b}{2a}=-\dfrac{-4}{2\cdot 1}=2$.
+2. Ordinat: $k=f(2)=2^2-4\cdot 2+3=4-8+3=-1$.
+3. Simetri ekseni $x=r$, yani $x=2$.
+
+<Cevap>Tepe noktası $T(2,-1)$, simetri ekseni $x=2$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 3. Eksenleri Kesen Noktalar (Kökler)
+
+Parabolün $x$ eksenini kestiği noktaların apsisleri, $f(x)=0$ denkleminin kökleridir. **Diskriminant** $\Delta=b^2-4ac$ kesişim sayısını söyler:
+
+$$\Delta>0 \Rightarrow \text{2 farklı kök} \qquad \Delta=0 \Rightarrow \text{1 kök (tepe } x \text{ eksenine değer)} \qquad \Delta<0 \Rightarrow \text{kesmez}$$
+
+Kökler varsa çarpanlara ayırarak veya formülle bulunur.
+
+<Ornek>
+
+<Soru>
+
+$f(x)=x^2-4x+3$ parabolü $x$ eksenini hangi noktalarda keser?
+
+</Soru>
+
+<Ipucu>
+
+$x^2-4x+3=0$ denklemini çarpanlara ayır: hangi iki sayının toplamı $-4$, çarpımı $3$?
+
+</Ipucu>
+
+<Cozum>
+
+1. $x^2-4x+3=0 \Rightarrow (x-1)(x-3)=0$.
+2. Kökler $x=1$ ve $x=3$.
+
+<Cevap>$(1,0)$ ve $(3,0)$ noktalarında keser.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 4. Tepe (Köşe) Biçimi
+
+Bir parabol, tepe noktası $T(r,k)$ cinsinden şöyle yazılabilir:
+
+$$f(x)=a(x-r)^2+k$$
+
+Bu **tepe biçimi**, hem tepe noktasını doğrudan okumaya hem de grafiği çizmeye çok elverişlidir. Genel biçimden tepe biçimine geçmek için **tam kareye tamamlama** yapılır.
+
+<Ornek>
+
+<Soru>
+
+$f(x)=x^2-6x+11$ fonksiyonunu tepe biçiminde yazınız ve tepe noktasını söyleyiniz.
+
+</Soru>
+
+<Ipucu>
+
+$x^2-6x$ ifadesini tam kareye tamamla: $x^2-6x=(x-3)^2-9$.
+
+</Ipucu>
+
+<Cozum>
+
+1. Tam kareye tamamla: $x^2-6x+11=(x^2-6x+9)-9+11=(x-3)^2+2$.
+2. Bu $a(x-r)^2+k$ biçiminde; $r=3$, $k=2$.
+
+<Cevap>$f(x)=(x-3)^2+2$, tepe noktası $T(3,2)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 5. Parabol Çizimi ve $y=x^2$'den Dönüşüm
+
+$f(x)=a(x-r)^2+k$ parabolü, temel parabol $y=x^2$'nin şu dönüşümleriyle elde edilir: yatayda $r$ kadar, dikeyde $k$ kadar **öteleme**; $a$ ile **dikey gerilme/sıkışma** ve $a<0$ ise $x$ eksenine göre **yansıma**. Parabol çizerken şu beş bilgi yeter: kolların yönü, tepe noktası, simetri ekseni, $y$ kesişimi ve (varsa) kökler.
+
+<Ornek>
+
+<Soru>
+
+$f(x)=2(x-1)^2-8$ parabolünün tepe noktasını, kollarının yönünü ve köklerini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Tepe biçiminde $a=2$, $r=1$, $k=-8$: tepe noktası $T(1,-8)$, kollar $a>0$ olduğundan yukarı.
+2. Kökler için $f(x)=0$: $2(x-1)^2-8=0 \Rightarrow (x-1)^2=4 \Rightarrow x-1=\pm 2$.
+3. $x=3$ veya $x=-1$.
+
+<Cevap>$T(1,-8)$, kollar yukarı; kökler $x=-1$ ve $x=3$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Çözümlü Örnekler
+
+<Ornek>
+
+<Soru>
+
+$f(x)=-x^2+4x-1$ fonksiyonunun en büyük değeri kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+$a<0$ olduğundan en büyük değer tepe noktasının ordinatıdır; önce $r=-\dfrac{b}{2a}$.
+
+</Ipucu>
+
+<Cozum>
+
+1. $a=-1$, $b=4$. Apsis: $r=-\dfrac{4}{2\cdot(-1)}=2$.
+2. En büyük değer: $f(2)=-2^2+4\cdot 2-1=-4+8-1=3$.
+
+<Cevap>En büyük değer $3$'tür.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Tepe noktası $T(2,-3)$ olan ve $(0,5)$ noktasından geçen parabolün denklemini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Tepe biçiminden başla: $f(x)=a(x-2)^2-3$. $a$'yı $(0,5)$ noktasını yerine koyarak bul.
+
+</Ipucu>
+
+<Cozum>
+
+1. Tepe biçimi: $f(x)=a(x-2)^2-3$.
+2. $(0,5)$ noktası: $5=a(0-2)^2-3=4a-3 \Rightarrow 4a=8 \Rightarrow a=2$.
+3. Denklem: $f(x)=2(x-2)^2-3$.
+
+<Cevap>$f(x)=2(x-2)^2-3$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=x^2+2x-3$ parabolünün tepe noktasını, köklerini ve $y$ kesişimini bularak grafiğini betimleyiniz.
+
+</Soru>
+
+<Cozum>
+
+1. Tepe: $r=-\dfrac{2}{2\cdot 1}=-1$, $k=f(-1)=1-2-3=-4 \Rightarrow T(-1,-4)$.
+2. Kökler: $x^2+2x-3=(x+3)(x-1)=0 \Rightarrow x=-3,\ x=1$.
+3. $y$ kesişimi: $f(0)=-3 \Rightarrow (0,-3)$.
+4. $a=1>0$: kollar yukarı, simetri ekseni $x=-1$.
+
+<Cevap>$T(-1,-4)$; kökler $-3$ ve $1$; $(0,-3)$; kollar yukarı, eksen $x=-1$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$x$ eksenini $-2$ ve $4$ noktalarında kesen ve $a=1$ olan parabolün denklemini genel biçimde yazınız.
+
+</Soru>
+
+<Ipucu>
+
+Kökleri $x_1,x_2$ olan parabol $a(x-x_1)(x-x_2)$ çarpan biçimindedir.
+
+</Ipucu>
+
+<Cozum>
+
+1. Çarpan biçimi: $f(x)=1\cdot(x-(-2))(x-4)=(x+2)(x-4)$.
+2. Aç: $f(x)=x^2-4x+2x-8=x^2-2x-8$.
+
+<Cevap>$f(x)=x^2-2x-8$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Alıştırmalar — Sıra Sende
+
+> Önce kendin çözmeyi dene; sonra çözümü açıp karşılaştır.
+
+<Ornek>
+
+<Soru>
+
+$f(x)=3x^2-12x+5$ parabolünün simetri ekseninin denklemini yaz.
+
+</Soru>
+
+<Cozum>
+
+1. $r=-\dfrac{-12}{2\cdot 3}=\dfrac{12}{6}=2$.
+2. Simetri ekseni $x=2$.
+
+<Cevap>$x=2$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=-x^2+6x$ fonksiyonunun en büyük değeri kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. $r=-\dfrac{6}{2\cdot(-1)}=3$.
+2. $f(3)=-9+18=9$.
+
+<Cevap>$9$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=x^2-9$ parabolü $x$ eksenini hangi noktalarda keser?
+
+</Soru>
+
+<Cozum>
+
+1. $x^2-9=0 \Rightarrow x^2=9 \Rightarrow x=\pm 3$.
+2. Kesişimler $(-3,0)$ ve $(3,0)$.
+
+<Cevap>$(-3,0)$ ve $(3,0)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=(x+1)^2-4$ parabolünün tepe noktasını ve köklerini bul.
+
+</Soru>
+
+<Cozum>
+
+1. Tepe biçimi: $r=-1$, $k=-4 \Rightarrow T(-1,-4)$.
+2. Kökler: $(x+1)^2=4 \Rightarrow x+1=\pm 2 \Rightarrow x=1$ veya $x=-3$.
+
+<Cevap>$T(-1,-4)$; kökler $-3$ ve $1$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=x^2-2x+5$ parabolü $x$ eksenini keser mi? Diskriminantla açıkla.
+
+</Soru>
+
+<Cozum>
+
+1. $\Delta=b^2-4ac=(-2)^2-4\cdot 1\cdot 5=4-20=-16$.
+2. $\Delta<0$ olduğundan parabol $x$ eksenini **kesmez**.
+
+<Cevap>Kesmez ($\Delta=-16<0$).</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=x^2-8x+13$ fonksiyonunu tepe biçiminde yaz ve en küçük değerini bul.
+
+</Soru>
+
+<Ipucu>
+
+$x^2-8x$ ifadesini tam kareye tamamla: $(x-4)^2-16$.
+
+</Ipucu>
+
+<Cozum>
+
+1. $x^2-8x+13=(x-4)^2-16+13=(x-4)^2-3$.
+2. $a=1>0$: en küçük değer tepe ordinatı $k=-3$ (tepe $T(4,-3)$).
+
+<Cevap>$f(x)=(x-4)^2-3$; en küçük değer $-3$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Tepe noktası $T(-2,1)$ olan ve $(0,5)$ noktasından geçen parabolün denklemini tepe biçiminde yaz.
+
+</Soru>
+
+<Ipucu>
+
+$f(x)=a(x+2)^2+1$ ile başla; $(0,5)$ ile $a$'yı çek.
+
+</Ipucu>
+
+<Cozum>
+
+1. Tepe biçimi: $f(x)=a(x+2)^2+1$.
+2. $(0,5)$: $5=a(2)^2+1=4a+1 \Rightarrow 4a=4 \Rightarrow a=1$.
+3. Denklem: $f(x)=(x+2)^2+1$.
+
+<Cevap>$f(x)=(x+2)^2+1$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Kökleri $1$ ve $5$ olan, tepe noktasının ordinatı $-8$ olan parabolün denklemini bul.
+
+</Soru>
+
+<Ipucu>
+
+Kökler simetriktir; tepe apsisi $r=\dfrac{1+5}{2}=3$. $f(x)=a(x-1)(x-5)$ yaz, $f(3)=-8$ ile $a$'yı bul.
+
+</Ipucu>
+
+<Cozum>
+
+1. Tepe apsisi köklerin ortasıdır: $r=\dfrac{1+5}{2}=3$.
+2. Çarpan biçimi: $f(x)=a(x-1)(x-5)$. Tepe ordinatı: $f(3)=a(3-1)(3-5)=a\cdot 2\cdot(-2)=-4a$.
+3. $-4a=-8 \Rightarrow a=2$. Denklem: $f(x)=2(x-1)(x-5)=2x^2-12x+10$.
+
+<Cevap>$f(x)=2x^2-12x+10$ (yani $2(x-3)^2-8$).</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir cismin $t$ saniyedeki yüksekliği $h(t)=-5t^2+20t$ metredir. Cisim en yüksek hangi anda ve kaç metrede olur?
+
+</Soru>
+
+<Ipucu>
+
+$h(t)$ aşağı açılan bir paraboldür; en yüksek nokta tepe noktasıdır. $t=-\dfrac{b}{2a}$.
+
+</Ipucu>
+
+<Cozum>
+
+1. $a=-5$, $b=20$. En yüksek an: $t=-\dfrac{20}{2\cdot(-5)}=2$ saniye.
+2. Yükseklik: $h(2)=-5\cdot 4+20\cdot 2=-20+40=20$ metre.
+
+<Cevap>$t=2$ saniyede, $20$ metre yükseklikte.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Simetri ekseninde işaret hatası.** $r=-\dfrac{b}{2a}$'dır; başındaki **eksi** unutulmamalı.
+- **Tepe ordinatını yanlış bulmak.** $k$, $r$'yi fonksiyonda yerine koyarak ($k=f(r)$) bulunur; sadece $-\dfrac{b}{2a}$ değildir.
+- **Tam kareye tamamlarken sabiti unutmak.** $x^2-6x=(x-3)^2-9$; eklenen $9$, dengelemek için tekrar **çıkarılmalıdır**.
+- **Kolların yönünü $c$'ye bakarak söylemek.** Yönü belirleyen $a$'dır; $c$ yalnızca $y$ kesişimini verir.
+
+> **Not:** Bir parabolü hızlı çizmek için sırayla şunları bul: (1) $a$'nın işareti → kolların yönü, (2) $r=-\dfrac{b}{2a}$ → simetri ekseni, (3) $k=f(r)$ → tepe, (4) $f(0)=c$ → $y$ kesişimi, (5) $\Delta$'ya göre kökler. Tepe biçimi $a(x-r)^2+k$ ise tepe zaten hazırdır.
+
+<KonuNav slug="ikinci-derece-fonksiyonlar" />

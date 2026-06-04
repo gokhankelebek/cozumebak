@@ -1,0 +1,491 @@
+import { topicMetadata } from "@/lib/seo";
+import { IsaretTablosu } from "@/components/figures/IkinciDereceEsitsizlikFig";
+import { Parabol } from "@/components/figures/ParabolFig";
+
+export const metadata = topicMetadata("ikinci-derece-esitsizlikler-11");
+
+<Konu slug="ikinci-derece-esitsizlikler-11" />
+
+<p className="lead">**İkinci dereceden bir eşitsizlik** ($ax^2+bx+c>0$ gibi), bir parabolün hangi $x$ değerlerinde **eksenin üstünde ya da altında** olduğunu sorar. Bu derste eşitsizliği **işaret tablosu** (işaret incelemesi) ile çözmeyi, **diskriminanta** göre değişen durumları ($\Delta>0,\ \Delta=0,\ \Delta<0$) ve birden çok eşitsizliğin ortak çözümünü arayan **eşitsizlik sistemlerini** öğreneceğiz. Temel araç şudur: ifadeyi çarpanlarına ayır, köklerini bul ve **"baş katsayı ile aynı işaret dışta, ters işaret içeride"** kuralını uygula. Bol örnek ve "Sıra Sende" alıştırmalarıyla pekiştireceğiz.</p>
+
+## 1. Köklerin Bulunması ve Çarpanlara Ayırma
+
+$ax^2+bx+c$ ifadesinin işaretini incelemek için önce **köklerini** ($ax^2+bx+c=0$ denkleminin çözümlerini) buluruz. Çarpanlara ayrılırsa kökler doğrudan okunur:
+
+$$ax^2+bx+c = a(x-x_1)(x-x_2)$$
+
+Burada $x_1,\,x_2$ köklerdir. Bir parabolün eksenleri kestiği yerler de bu köklerdir.
+
+<Figur>
+
+<Parabol />
+
+<Altyazi>Şekil 1 — $y=x^2-4x+3=(x-1)(x-3)$. Kökler $x=1$ ve $x=3$; eğri kökler arasında ekseninin **altında** ($y<0$), kökler dışında **üstündedir** ($y>0$). İşte eşitsizlik çözümünün geometrik anlamı budur.</Altyazi>
+
+</Figur>
+
+<Ornek>
+
+<Soru>
+
+$x^2 - x - 6$ ifadesini çarpanlarına ayırıp köklerini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Çarpımları $-6$, toplamları $-1$ olan iki sayı: $-3$ ve $2$.
+2. Çarpanlara ayır: $x^2 - x - 6 = (x-3)(x+2)$.
+3. Kökler: $x=3$ ve $x=-2$.
+
+<Cevap>$(x-3)(x+2)$; kökler $-2$ ve $3$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 2. İşaret Tablosu (İşaret İncelemesi)
+
+Kökler sayı doğrusunu bölgelere ayırır. **Baş katsayı $a>0$ ise**, ifade kökler **dışında $a$ ile aynı işaretli** (pozitif), kökler **arasında ters işaretli** (negatif) olur. Kısaca: **"ortada ters, dışta aynı"**. ($a<0$ ise tüm işaretler terslenir.)
+
+<Figur>
+
+<IsaretTablosu />
+
+<Altyazi>Şekil 2 — $f(x)=x^2-x-6=(x+2)(x-3)$ için işaret tablosu; $a=1>0$. Kökler $-2$ ve $3$. İfade kökler dışında **pozitif**, kökler arasında **negatiftir**.</Altyazi>
+
+</Figur>
+
+<Ornek>
+
+<Soru>
+
+$x^2 - x - 6 > 0$ eşitsizliğinin çözüm kümesini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Çarpanlara ayır: $(x+2)(x-3)>0$; kökler $-2$ ve $3$.
+2. $a=1>0$ olduğundan ifade kökler **dışında** pozitiftir.
+3. Çözüm kümesi: $x<-2$ veya $x>3$.
+
+<Cevap>$x \in (-\infty,\,-2) \cup (3,\,+\infty)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$x^2 - x - 6 \le 0$ eşitsizliğinin çözüm kümesini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+İfade **arasında** negatiftir. $\le$ olduğundan kökler de çözüme **dahildir** (kapalı aralık).
+
+</Ipucu>
+
+<Cozum>
+
+1. Kökler $-2$ ve $3$; ifade kökler arasında negatiftir.
+2. $\le 0$ istendiği için bu bölgeyi **ve** kökleri alırız.
+3. Çözüm: $-2 \le x \le 3$.
+
+<Cevap>$x \in [-2,\,3]$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 3. Diskriminanta Göre Özel Durumlar
+
+Çarpanlara kolayca ayrılmazsa kökleri bulmak için $\Delta=b^2-4ac$'ye bakarız. $a>0$ alındığında:
+
+$$\Delta>0:\ \text{iki kök} \qquad \Delta=0:\ \text{çift kök} \qquad \Delta<0:\ \text{reel kök yok}$$
+
+- $\Delta=0$: ifade $a(x-x_0)^2$ olur; **kök dışında** $a$ ile aynı işaretli, kökte sıfırdır.
+- $\Delta<0$: parabol ekseni hiç kesmez; ifade **her $x$ için** $a$ ile aynı işaretlidir (hep pozitif ya da hep negatif).
+
+<Ornek>
+
+<Soru>
+
+$x^2 + 4 > 0$ eşitsizliğinin çözüm kümesi nedir?
+
+</Soru>
+
+<Cozum>
+
+1. $\Delta = 0^2 - 4\cdot1\cdot4 = -16 < 0$; reel kök yok.
+2. $a=1>0$ olduğundan ifade **her zaman** pozitiftir.
+3. Eşitsizlik her $x$ için sağlanır.
+
+<Cevap>$x \in \mathbb{R}$ (tüm gerçek sayılar).</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$x^2 - 6x + 9 \ge 0$ eşitsizliğini çözünüz.
+
+</Soru>
+
+<Ipucu>
+
+$x^2-6x+9=(x-3)^2$ tam karedir; bir kare daima negatif olamaz.
+
+</Ipucu>
+
+<Cozum>
+
+1. Tam kare: $x^2 - 6x + 9 = (x-3)^2$.
+2. Bir kare her zaman $\ge 0$'dır.
+3. Bu yüzden eşitsizlik **her $x$ için** sağlanır (eşitlik yalnız $x=3$'te).
+
+<Cevap>$x \in \mathbb{R}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 4. Eşitsizlik Sistemleri
+
+Bir **eşitsizlik sistemi**, aynı anda sağlanması gereken birden çok eşitsizliktir. Her birini ayrı ayrı çözer, sonra çözüm kümelerinin **kesişimini** (ortak kısmını) alırız. Sayı doğrusunda her iki çözümü işaretleyip örtüşen bölgeyi okumak en güvenli yoldur.
+
+<Ornek>
+
+<Soru>
+
+$\begin{cases} x^2 - 4 < 0 \\ x - 1 > 0 \end{cases}$ sistemini çözünüz.
+
+</Soru>
+
+<Cozum>
+
+1. Birinci eşitsizlik: $(x-2)(x+2)<0 \Rightarrow -2 < x < 2$.
+2. İkinci eşitsizlik: $x > 1$.
+3. Kesişim (her ikisinin ortak bölgesi): $1 < x < 2$.
+
+<Cevap>$x \in (1,\,2)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Çözümlü Örnekler
+
+<Ornek>
+
+<Soru>
+
+$x^2 - 5x + 6 < 0$ eşitsizliğini çözünüz.
+
+</Soru>
+
+<Cozum>
+
+1. Çarpanlara ayır: $(x-2)(x-3)<0$; kökler $2$ ve $3$.
+2. $a>0$ olduğundan ifade kökler **arasında** negatiftir.
+3. Çözüm: $2 < x < 3$.
+
+<Cevap>$x \in (2,\,3)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$-x^2 + 2x + 3 \ge 0$ eşitsizliğini çözünüz.
+
+</Soru>
+
+<Ipucu>
+
+Baş katsayı negatif. İstersen tüm ifadeyi $-1$ ile çarp ve **eşitsizlik yönünü çevir**, ya da $a<0$ kuralını doğrudan uygula.
+
+</Ipucu>
+
+<Cozum>
+
+1. Tüm ifadeyi $-1$ ile çarp, yönü çevir: $x^2 - 2x - 3 \le 0$.
+2. Çarpanlara ayır: $(x-3)(x+1)\le 0$; kökler $-1$ ve $3$.
+3. $a>0$; ifade kökler arasında negatiftir, $\le 0$ kökleri de alır.
+4. Çözüm: $-1 \le x \le 3$.
+
+<Cevap>$x \in [-1,\,3]$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\dfrac{x-1}{x+2} \ge 0$ eşitsizliğini çözünüz.
+
+</Soru>
+
+<Ipucu>
+
+Pay ve paydanın köklerini ($1$ ve $-2$) işaret tablosuna koy. Payda **sıfır olamaz**, bu yüzden $x=-2$ çözüme dahil değildir.
+
+</Ipucu>
+
+<Cozum>
+
+1. Kökler: pay $x=1$, payda $x=-2$. Sayı doğrusunda sırala: $-2,\ 1$.
+2. İşaret tablosu ($x<-2$, $-2<x<1$, $x>1$ bölgeleri): bölüm sırasıyla $+,\ -,\ +$ olur.
+3. $\ge 0$ için pozitif bölgeleri al: $x<-2$ veya $x\ge 1$.
+4. $x=1$ payı sıfırlar (oran $0$, dahil); $x=-2$ paydayı sıfırlar (tanımsız, **hariç**).
+
+<Cevap>$x \in (-\infty,\,-2) \cup [1,\,+\infty)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$x^2 - 2x + 5 < 0$ eşitsizliğinin çözüm kümesi nedir?
+
+</Soru>
+
+<Cozum>
+
+1. $\Delta = (-2)^2 - 4\cdot1\cdot5 = 4 - 20 = -16 < 0$; reel kök yok.
+2. $a=1>0$ olduğundan ifade her $x$ için **pozitiftir**.
+3. "$<0$" hiçbir zaman sağlanmaz.
+
+<Cevap>Çözüm yok: $\varnothing$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Alıştırmalar — Sıra Sende
+
+> Önce kendin çözmeyi dene; sonra çözümü açıp karşılaştır.
+
+<Ornek>
+
+<Soru>
+
+$x^2 - 9 < 0$ eşitsizliğini çöz.
+
+</Soru>
+
+<Cozum>
+
+1. $(x-3)(x+3)<0$; kökler $-3$ ve $3$.
+2. Kökler arasında negatif: $-3 < x < 3$.
+
+<Cevap>$x \in (-3,\,3)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$x^2 - 4x \ge 0$ eşitsizliğini çöz.
+
+</Soru>
+
+<Cozum>
+
+1. Ortak çarpan: $x(x-4)\ge 0$; kökler $0$ ve $4$.
+2. $a>0$; kökler dışında pozitif. $\ge$ kökleri de alır.
+3. Çözüm: $x \le 0$ veya $x \ge 4$.
+
+<Cevap>$x \in (-\infty,\,0] \cup [4,\,+\infty)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$x^2 + 2x + 1 > 0$ eşitsizliğini çöz.
+
+</Soru>
+
+<Cozum>
+
+1. Tam kare: $(x+1)^2 > 0$.
+2. Kare yalnız $x=-1$'de sıfır, diğer her yerde pozitif.
+3. Çözüm: $x \ne -1$ olan tüm gerçek sayılar.
+
+<Cevap>$x \in \mathbb{R} \setminus \{-1\}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$2x^2 - 7x + 3 \le 0$ eşitsizliğini çöz.
+
+</Soru>
+
+<Cozum>
+
+1. Çarpanlara ayır: $2x^2 - 7x + 3 = (2x-1)(x-3)$; kökler $\dfrac{1}{2}$ ve $3$.
+2. $a=2>0$; kökler arasında negatif. $\le$ kökleri de alır.
+3. Çözüm: $\dfrac{1}{2} \le x \le 3$.
+
+<Cevap>$x \in \left[\dfrac{1}{2},\,3\right]$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\begin{cases} x^2 - x - 6 \le 0 \\ x > 0 \end{cases}$ sistemini çöz.
+
+</Soru>
+
+<Cozum>
+
+1. Birinci: $(x-3)(x+2)\le 0 \Rightarrow -2 \le x \le 3$.
+2. İkinci: $x > 0$.
+3. Kesişim: $0 < x \le 3$.
+
+<Cevap>$x \in (0,\,3]$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$x^2 - 3x + 5 > 0$ eşitsizliğinin çözüm kümesini bul.
+
+</Soru>
+
+<Cozum>
+
+1. $\Delta = (-3)^2 - 4\cdot1\cdot5 = 9 - 20 = -11 < 0$; reel kök yok.
+2. $a>0$ olduğundan ifade her zaman pozitif.
+3. Eşitsizlik her $x$ için sağlanır.
+
+<Cevap>$x \in \mathbb{R}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\dfrac{x^2 - 4}{x - 1} \le 0$ eşitsizliğini çöz.
+
+</Soru>
+
+<Ipucu>
+
+Payı çarpanlara ayır: $x^2-4=(x-2)(x+2)$. Üç kökü ($-2,\ 1,\ 2$) işaret tablosuna koy; $x=1$ paydayı sıfırlar, **hariç**.
+
+</Ipucu>
+
+<Cozum>
+
+1. Kökler: pay $x=-2$ ve $x=2$, payda $x=1$. Sırala: $-2,\ 1,\ 2$.
+2. İşaret tablosu, dört bölge ($x<-2$, $-2<x<1$, $1<x<2$, $x>2$): bölümün işaretleri sırasıyla $-,\ +,\ -,\ +$.
+3. $\le 0$ için negatif bölgeleri al: $x \le -2$ ve $1 < x \le 2$.
+4. $x=-2,\ x=2$ payı sıfırlar (dahil); $x=1$ tanımsız (hariç).
+
+<Cevap>$x \in (-\infty,\,-2] \cup (1,\,2]$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Her $x$ gerçek sayısı için $x^2 - 2x + m > 0$ olması için $m$ hangi değerleri almalıdır?
+
+</Soru>
+
+<Ipucu>
+
+Bir parabolün **her $x$ için** pozitif olması, $a>0$ **ve** $\Delta<0$ demektir.
+
+</Ipucu>
+
+<Cozum>
+
+1. Baş katsayı $a=1>0$, bu koşul zaten sağlanıyor.
+2. İfadenin hiç kökü olmaması (eksenin tamamen üstünde) için $\Delta<0$.
+3. $\Delta = (-2)^2 - 4\cdot1\cdot m = 4 - 4m < 0 \Rightarrow 4 < 4m \Rightarrow m > 1$.
+
+<Cevap>$m > 1$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\begin{cases} x^2 - 5x + 4 < 0 \\ x^2 - 9 > 0 \end{cases}$ sistemini çöz.
+
+</Soru>
+
+<Ipucu>
+
+İki eşitsizliği ayrı ayrı çöz, sonra çözüm aralıklarının **kesişimini** al.
+
+</Ipucu>
+
+<Cozum>
+
+1. Birinci: $(x-1)(x-4)<0 \Rightarrow 1 < x < 4$.
+2. İkinci: $(x-3)(x+3)>0 \Rightarrow x<-3$ veya $x>3$.
+3. Kesişim: $(1,4)$ ile $\big((-\infty,-3)\cup(3,\infty)\big)$ ortak bölgesi $3 < x < 4$.
+
+<Cevap>$x \in (3,\,4)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Baş katsayı negatifken kuralı düz uygulamak.** $a<0$ ise işaretler terslenir; ya tüm ifadeyi $-1$ ile çarpıp **eşitsizliği çevir**, ya da "dışta $a$ ile aynı işaret" kuralını $a<0$ için uygula.
+- **Köklerin dahil olup olmadığını karıştırmak.** $<,\,>$ kökleri **almaz** (açık aralık); $\le,\,\ge$ kökleri **alır** (kapalı aralık).
+- **Rasyonel eşitsizlikte paydayı kökleri gibi saymak.** Paydanın kökü ifadeyi **tanımsız** yapar; bu nokta $\le,\ \ge$ olsa bile çözüme **dahil edilmez**.
+- **$\Delta<0$ durumunu yanlış yorumlamak.** Reel kök yoksa ifade işaret değiştirmez: $a>0$ ise hep pozitif, $a<0$ ise hep negatiftir; "$<0$" ya hiç sağlanmaz ya da her zaman sağlanır.
+
+> **Not:** İkinci dereceden eşitsizlikte adımların: ifadeyi bir tarafta topla, çarpanlara ayır (gerekirse $\Delta$ ile kökleri bul), kökleri sayı doğrusuna diz, **"ortada ters, dışta aynı"** ile işaret tablosunu doldur ve eşitsizliğin yönüne uyan bölgeleri oku. Sistemlerde her birini çözüp **kesişimi** al.
+
+<KonuNav slug="ikinci-derece-esitsizlikler-11" />

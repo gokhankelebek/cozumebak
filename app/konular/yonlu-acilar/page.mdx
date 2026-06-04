@@ -1,0 +1,503 @@
+import { topicMetadata } from "@/lib/seo";
+import { BirimCember } from "@/components/figures/BirimCemberFig";
+import { RadyanTanim } from "@/components/figures/TrigonometriFig";
+
+export const metadata = topicMetadata("yonlu-acilar");
+
+<Konu slug="yonlu-acilar" />
+
+<p className="lead">Trigonometride açıyı artık yalnızca $0°$ ile $90°$ arasında düşünmüyoruz: bir açıyı bir başlangıç kenarından döndürülen bir ışın olarak ele alıp **yön** (pozitif/negatif) ve istediğimiz kadar büyük ölçü veriyoruz. Bu derste **yönlü açıyı**, açının ikinci ölçü birimi olan **radyanı**, **derece–radyan dönüşümünü**, **birim çemberi** ve bir açıya karşılık gelen **esas ölçüyü** öğreneceğiz. Bunlar, bir sonraki derslerdeki trigonometrik fonksiyonların temelidir.</p>
+
+## 1. Yönlü Açı ve Standart Konum
+
+Bir açıyı, bir **başlangıç kenarından** döndürülen bir **bitiş (terminal) kenarı** olarak düşünürüz. Dönme **saat yönünün tersineyse açı pozitif**, saat yönündeyse **negatiftir**.
+
+Bir açı **standart konumda** çizilir: köşesi orijinde, başlangıç kenarı pozitif $x$ ekseni üzerindedir. Açı $360°$'den büyük de olabilir; bu, terminal kenarının tam turlar atması demektir.
+
+<Ornek>
+
+<Soru>
+
+$+120°$ ve $-90°$ açılarının terminal kenarları hangi bölgededir veya hangi eksendedir?
+
+</Soru>
+
+<Cozum>
+
+1. $+120°$: pozitif yönde (saat tersi) $120°$ dönülür; $90°$ ile $180°$ arasında olduğundan terminal kenar **II. bölgededir**.
+2. $-90°$: negatif yönde (saat yönünde) $90°$ dönülür; terminal kenar **negatif $y$ ekseni** üzerindedir.
+
+<Cevap>$+120°$ II. bölgede, $-90°$ negatif $y$ ekseni üzerinde.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 2. Radyan ve Birim Çember
+
+Açının ikinci birimi **radyandır**. Bir çemberde, **yarıçap uzunluğunda bir yayı gören merkez açı** $1$ radyandır.
+
+<Figur>
+
+<RadyanTanim />
+
+<Altyazi>Şekil 1 — Yarıçapı $r$ olan çemberde, uzunluğu $r$ olan bir yay, merkezde $1$ radyanlık açı görür. $1\ \text{rad}\approx 57{,}3°$.</Altyazi>
+
+</Figur>
+
+Tam çemberin çevresi $2\pi r$ olduğundan, bir tam tur $2\pi$ radyandır. Yani:
+
+$$360°=2\pi\ \text{rad} \quad\Longrightarrow\quad 180°=\pi\ \text{rad}$$
+
+**Birim çember**, merkezi orijinde ve yarıçapı $1$ olan çemberdir. Standart konumdaki bir açının terminal kenarı, birim çemberi $P$ noktasında keser; bu nokta ileride sinüs ve kosinüsü tanımlayacaktır.
+
+<Figur>
+
+<BirimCember />
+
+<Altyazi>Şekil 2 — Birim çember: merkez $O$ orijinde, yarıçap $1$. $\alpha$ açısının terminal kenarı çemberi $P$ noktasında keser. Bölgeler I–IV ile gösterilir.</Altyazi>
+
+</Figur>
+
+<Ornek>
+
+<Soru>
+
+Birim çemberde $\pi$ radyanlık açının terminal kenarı hangi noktadan geçer?
+
+</Soru>
+
+<Cozum>
+
+1. $\pi\ \text{rad}=180°$; terminal kenar negatif $x$ ekseni üzerindedir.
+2. Birim çemberi $(-1,0)$ noktasında keser.
+
+<Cevap>$(-1,0)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 3. Derece–Radyan Dönüşümü
+
+$180°=\pi\ \text{rad}$ eşitliğini bir dönüşüm çarpanı gibi kullanırız:
+
+$$\text{derece}\to\text{radyan}:\ \times\dfrac{\pi}{180} \qquad\qquad \text{radyan}\to\text{derece}:\ \times\dfrac{180}{\pi}$$
+
+<Ornek>
+
+<Soru>
+
+$60°$ kaç radyandır? $\dfrac{3\pi}{4}$ radyan kaç derecedir?
+
+</Soru>
+
+<Cozum>
+
+1. $60°=60\cdot\dfrac{\pi}{180}=\dfrac{\pi}{3}\ \text{rad}$.
+2. $\dfrac{3\pi}{4}=\dfrac{3\pi}{4}\cdot\dfrac{180}{\pi}=\dfrac{3\cdot 180}{4}=135°$.
+
+<Cevap>$60°=\dfrac{\pi}{3}\ \text{rad}$ ve $\dfrac{3\pi}{4}\ \text{rad}=135°$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+Sık kullanılan dönüşümleri ezbere bilmek işini hızlandırır:
+
+| Derece | $30°$ | $45°$ | $60°$ | $90°$ | $180°$ | $270°$ | $360°$ |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| Radyan | $\dfrac{\pi}{6}$ | $\dfrac{\pi}{4}$ | $\dfrac{\pi}{3}$ | $\dfrac{\pi}{2}$ | $\pi$ | $\dfrac{3\pi}{2}$ | $2\pi$ |
+
+<Ornek>
+
+<Soru>
+
+$\dfrac{5\pi}{6}$ radyanı dereceye çeviriniz.
+
+</Soru>
+
+<Ipucu>
+
+$\pi$ yerine $180°$ koy: $\dfrac{5\pi}{6}=\dfrac{5\cdot 180°}{6}$.
+
+</Ipucu>
+
+<Cozum>
+
+1. $\dfrac{5\pi}{6}\cdot\dfrac{180}{\pi}=\dfrac{5\cdot 180}{6}=\dfrac{900}{6}=150°$.
+
+<Cevap>$150°$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 4. Esas Ölçü
+
+$360°$ (ya da $2\pi$) eklemek veya çıkarmak terminal kenarı değiştirmez; bu açılar **birbirine eştir**. Bir açının $[0°,360°)$ aralığındaki (radyanda $[0,2\pi)$) eşine **esas ölçü** denir.
+
+Esas ölçüyü bulmak için açıdan tam turları ($360°$ veya $2\pi$) atarız; negatifse pozitif olana ulaşana kadar tam tur ekleriz.
+
+<Ornek>
+
+<Soru>
+
+$780°$ açısının esas ölçüsü kaç derecedir?
+
+</Soru>
+
+<Cozum>
+
+1. $780°$'den tam turları at: $780-360=420$, $420-360=60$.
+2. $60°$, $[0°,360°)$ aralığındadır.
+
+<Cevap>$60°$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$-\dfrac{\pi}{3}$ açısının $[0,2\pi)$ aralığındaki esas ölçüsü nedir?
+
+</Soru>
+
+<Ipucu>
+
+Negatif açıya, pozitif olana ulaşana kadar $2\pi$ ekle.
+
+</Ipucu>
+
+<Cozum>
+
+1. $-\dfrac{\pi}{3}+2\pi=-\dfrac{\pi}{3}+\dfrac{6\pi}{3}=\dfrac{5\pi}{3}$.
+2. $\dfrac{5\pi}{3}$, $[0,2\pi)$ aralığındadır.
+
+<Cevap>$\dfrac{5\pi}{3}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Çözümlü Örnekler
+
+<Ornek>
+
+<Soru>
+
+$1110°$ açısının esas ölçüsünü bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $1110°$'den tam turları atmak için $1110\div 360$: $360\cdot 3=1080$.
+2. $1110-1080=30$.
+3. $30°$, $[0°,360°)$ aralığındadır.
+
+<Cevap>$30°$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$225°$ kaç radyandır?
+
+</Soru>
+
+<Cozum>
+
+1. $225°=225\cdot\dfrac{\pi}{180}=\dfrac{225\pi}{180}$.
+2. Sadeleştir ($45$ ile): $\dfrac{225}{180}=\dfrac{5}{4}$.
+3. Sonuç $\dfrac{5\pi}{4}\ \text{rad}$.
+
+<Cevap>$\dfrac{5\pi}{4}\ \text{rad}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Terminal kenarı III. bölgede olan bir açı için aşağıdakilerden biri olabilir mi: $200°$, $-200°$, $400°$?
+
+</Soru>
+
+<Ipucu>
+
+Önce her açının esas ölçüsünü bul; hangi bölge $180°$–$270°$ arasıdır?
+
+</Ipucu>
+
+<Cozum>
+
+1. III. bölge $180°$ ile $270°$ arasıdır.
+2. $200°$: zaten bu aralıkta → **III. bölge**.
+3. $-200°$: esas ölçü $-200+360=160°$ → II. bölge.
+4. $400°$: esas ölçü $400-360=40°$ → I. bölge.
+
+<Cevap>Yalnız $200°$ III. bölgededir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir saatin yelkovanı $20$ dakikada kaç derecelik açı tarar? Bu açı kaç radyandır?
+
+</Soru>
+
+<Ipucu>
+
+Yelkovan $60$ dakikada tam tur ($360°$) atar.
+
+</Ipucu>
+
+<Cozum>
+
+1. $60$ dakika $360°$ ise $20$ dakika $\dfrac{360}{60}\cdot 20=120°$ tarar.
+2. Radyan: $120\cdot\dfrac{\pi}{180}=\dfrac{2\pi}{3}\ \text{rad}$.
+
+<Cevap>$120°=\dfrac{2\pi}{3}\ \text{rad}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Alıştırmalar — Sıra Sende
+
+> Önce kendin çözmeyi dene; sonra çözümü açıp karşılaştır.
+
+<Ornek>
+
+<Soru>
+
+$90°$ kaç radyandır?
+
+</Soru>
+
+<Cozum>
+
+1. $90\cdot\dfrac{\pi}{180}=\dfrac{\pi}{2}\ \text{rad}$.
+
+<Cevap>$\dfrac{\pi}{2}\ \text{rad}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\dfrac{7\pi}{6}$ radyan kaç derecedir?
+
+</Soru>
+
+<Cozum>
+
+1. $\dfrac{7\pi}{6}\cdot\dfrac{180}{\pi}=\dfrac{7\cdot 180}{6}=7\cdot 30=210°$.
+
+<Cevap>$210°$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$300°$'lik açının terminal kenarı hangi bölgededir?
+
+</Soru>
+
+<Cozum>
+
+1. $300°$, $270°$ ile $360°$ arasındadır → IV. bölge.
+
+<Cevap>IV. bölge.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$420°$ açısının esas ölçüsünü bul.
+
+</Soru>
+
+<Cozum>
+
+1. $420-360=60°$.
+
+<Cevap>$60°$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$135°$ kaç radyandır?
+
+</Soru>
+
+<Cozum>
+
+1. $135\cdot\dfrac{\pi}{180}=\dfrac{135\pi}{180}=\dfrac{3\pi}{4}\ \text{rad}$.
+
+<Cevap>$\dfrac{3\pi}{4}\ \text{rad}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$-45°$ açısının $[0°,360°)$ aralığındaki esas ölçüsünü bul.
+
+</Soru>
+
+<Cozum>
+
+1. $-45+360=315°$.
+
+<Cevap>$315°$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\dfrac{17\pi}{4}$ radyanlık açının $[0,2\pi)$ aralığındaki esas ölçüsünü bul.
+
+</Soru>
+
+<Ipucu>
+
+$2\pi=\dfrac{8\pi}{4}$ olarak yaz; $\dfrac{17\pi}{4}$'ten tam turları ($\dfrac{8\pi}{4}$) at.
+
+</Ipucu>
+
+<Cozum>
+
+1. $2\pi=\dfrac{8\pi}{4}$. İki tam tur $=\dfrac{16\pi}{4}$.
+2. $\dfrac{17\pi}{4}-\dfrac{16\pi}{4}=\dfrac{\pi}{4}$.
+3. $\dfrac{\pi}{4}$, $[0,2\pi)$ aralığındadır.
+
+<Cevap>$\dfrac{\pi}{4}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Terminal kenarı II. bölgede olan ve esas ölçüsü $\dfrac{3\pi}{4}$ olan açıya eş olan bir negatif açı yazınız.
+
+</Soru>
+
+<Ipucu>
+
+Eş açı elde etmek için $2\pi$ çıkar: $\dfrac{3\pi}{4}-2\pi$.
+
+</Ipucu>
+
+<Cozum>
+
+1. $\dfrac{3\pi}{4}-2\pi=\dfrac{3\pi}{4}-\dfrac{8\pi}{4}=-\dfrac{5\pi}{4}$.
+2. $-\dfrac{5\pi}{4}$ negatiftir ve $\dfrac{3\pi}{4}$ ile aynı terminal kenara sahiptir.
+
+<Cevap>$-\dfrac{5\pi}{4}$ (uygun bir örnek).</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Yarıçapı $6$ cm olan bir çemberde, merkez açısı $\dfrac{\pi}{3}$ radyan olan yayın uzunluğu kaç cm'dir?
+
+</Soru>
+
+<Ipucu>
+
+Yay uzunluğu $\ell=r\cdot\theta$'dır; burada $\theta$ **radyan** cinsinden olmalıdır.
+
+</Ipucu>
+
+<Cozum>
+
+1. Yay uzunluğu formülü: $\ell=r\cdot\theta=6\cdot\dfrac{\pi}{3}$.
+2. $\ell=2\pi$ cm.
+
+<Cevap>$2\pi$ cm.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\dfrac{25\pi}{6}$ radyanlık açının terminal kenarı hangi bölgededir?
+
+</Soru>
+
+<Ipucu>
+
+Önce esas ölçüyü bul: $2\pi=\dfrac{12\pi}{6}$ olarak tam turları at.
+
+</Ipucu>
+
+<Cozum>
+
+1. $2\pi=\dfrac{12\pi}{6}$. İki tam tur $=\dfrac{24\pi}{6}$.
+2. $\dfrac{25\pi}{6}-\dfrac{24\pi}{6}=\dfrac{\pi}{6}$ (esas ölçü).
+3. $\dfrac{\pi}{6}=30°$, $0°$ ile $90°$ arasıdır → I. bölge.
+
+<Cevap>I. bölge.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Dönüşüm çarpanını ters çevirmek.** Dereceyi radyana çevirirken $\times\dfrac{\pi}{180}$, radyanı dereceye çevirirken $\times\dfrac{180}{\pi}$ kullanılır; birimler sadeleşip doğru sonuç vermeli.
+- **Esas ölçüde turu eksik atmak.** $1110°$ gibi büyük açılarda tek bir $360°$ atmak yetmez; $[0°,360°)$ aralığına düşene kadar tekrar at.
+- **Negatif açının esas ölçüsünü negatif bırakmak.** Esas ölçü her zaman $[0°,360°)$ içindedir; negatif açıya $360°$ **ekle**.
+- **Yay uzunluğunda dereceyle çalışmak.** $\ell=r\theta$ formülünde $\theta$ mutlaka radyan olmalıdır; derece verilmişse önce radyana çevir.
+
+> **Not:** $180°=\pi$ eşitliğini bir "köprü" gibi düşün: hangi yöne gidersen git, $\pi$ ile $180°$ yer değiştirir. Büyük ya da negatif açılarda ilk işin **esas ölçüyü** bulmak olsun; bölge ve işaret kararları hep esas ölçüye göre verilir.
+
+<KonuNav slug="yonlu-acilar" />

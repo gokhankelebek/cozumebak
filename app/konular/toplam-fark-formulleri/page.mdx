@@ -1,0 +1,497 @@
+import { topicMetadata } from "@/lib/seo";
+
+export const metadata = topicMetadata("toplam-fark-formulleri");
+
+<Konu slug="toplam-fark-formulleri" />
+
+<p className="lead">İki açının toplamının ya da farkının sinüs ve kosinüsü, açıların kendi değerleriyle yazılabilir. Bu derste **toplam-fark formüllerini** ($\sin(a\pm b)$, $\cos(a\pm b)$, $\tan(a\pm b)$), bunların özel bir hali olan **iki kat açı formüllerini** ($\sin 2a$, $\cos 2a$, $\tan 2a$) öğreneceğiz ve bunlarla bilinmeyen açıların değerlerini ($\sin 75°$ gibi) hesaplayacağız. Bu formüller, trigonometrik denklemlerin ve özdeşliklerin de anahtarıdır.</p>
+
+## 1. Toplam-Fark Formülleri
+
+İki açının toplam ve farkı için temel formüller:
+
+$$\sin(a+b)=\sin a\cos b+\cos a\sin b$$
+$$\sin(a-b)=\sin a\cos b-\cos a\sin b$$
+$$\cos(a+b)=\cos a\cos b-\sin a\sin b$$
+$$\cos(a-b)=\cos a\cos b+\sin a\sin b$$
+
+Dikkat: kosinüste işaret **terstir** (toplamda eksi, farkta artı); sinüste ise aynıdır.
+
+<Ornek>
+
+<Soru>
+
+$\cos(a-b)$ formülünü kullanarak $\cos 30°$ değerini, $a=90°$, $b=60°$ alarak doğrulayınız.
+
+</Soru>
+
+<Cozum>
+
+1. $\cos(90°-60°)=\cos 90°\cos 60°+\sin 90°\sin 60°$.
+2. $=0\cdot\dfrac12+1\cdot\dfrac{\sqrt3}{2}=\dfrac{\sqrt3}{2}$.
+3. Gerçekten $\cos 30°=\dfrac{\sqrt3}{2}$.
+
+<Cevap>$\dfrac{\sqrt3}{2}$, doğrulanır.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 2. Bilinmeyen Açı Değerleri
+
+Bir açıyı, değerlerini bildiğimiz iki açının toplam/farkı olarak yazarsak değerini buluruz. Örneğin $75°=45°+30°$, $15°=45°-30°$.
+
+<Ornek>
+
+<Soru>
+
+$\sin 75°$ değerini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+$75°=45°+30°$ yaz ve $\sin(a+b)$ formülünü uygula.
+
+</Ipucu>
+
+<Cozum>
+
+1. $\sin 75°=\sin(45°+30°)=\sin 45°\cos 30°+\cos 45°\sin 30°$.
+2. $=\dfrac{\sqrt2}{2}\cdot\dfrac{\sqrt3}{2}+\dfrac{\sqrt2}{2}\cdot\dfrac12=\dfrac{\sqrt6}{4}+\dfrac{\sqrt2}{4}$.
+3. $=\dfrac{\sqrt6+\sqrt2}{4}$.
+
+<Cevap>$\dfrac{\sqrt6+\sqrt2}{4}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 3. Tanjant Toplam-Fark Formülü
+
+Tanjant için formüller:
+
+$$\tan(a+b)=\dfrac{\tan a+\tan b}{1-\tan a\tan b} \qquad \tan(a-b)=\dfrac{\tan a-\tan b}{1+\tan a\tan b}$$
+
+<Ornek>
+
+<Soru>
+
+$\tan 75°$ değerini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+$75°=45°+30°$; $\tan 45°=1$, $\tan 30°=\dfrac{\sqrt3}{3}$.
+
+</Ipucu>
+
+<Cozum>
+
+1. $\tan 75°=\dfrac{\tan 45°+\tan 30°}{1-\tan 45°\tan 30°}=\dfrac{1+\frac{\sqrt3}{3}}{1-\frac{\sqrt3}{3}}$.
+2. Pay ve paydayı $3$ ile çarp: $\dfrac{3+\sqrt3}{3-\sqrt3}$.
+3. Paydayı rasyonel yap (eşlenik $3+\sqrt3$): $\dfrac{(3+\sqrt3)^2}{(3-\sqrt3)(3+\sqrt3)}=\dfrac{9+6\sqrt3+3}{9-3}=\dfrac{12+6\sqrt3}{6}=2+\sqrt3$.
+
+<Cevap>$2+\sqrt3$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 4. İki Kat Açı Formülleri
+
+Toplam formülünde $b=a$ alırsak **iki kat açı** formüllerini elde ederiz:
+
+$$\sin 2a=2\sin a\cos a$$
+$$\cos 2a=\cos^2 a-\sin^2 a=2\cos^2 a-1=1-2\sin^2 a$$
+$$\tan 2a=\dfrac{2\tan a}{1-\tan^2 a}$$
+
+$\cos 2a$'nın üç biçimi de aynı değeri verir; soruya göre en uygununu seçeriz.
+
+<Ornek>
+
+<Soru>
+
+$\sin a=\dfrac35$ ve $a$ I. bölgede ise $\sin 2a$ kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. $\cos a=\sqrt{1-\frac{9}{25}}=\dfrac45$ (I. bölge, pozitif).
+2. $\sin 2a=2\sin a\cos a=2\cdot\dfrac35\cdot\dfrac45=\dfrac{24}{25}$.
+
+<Cevap>$\dfrac{24}{25}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\cos a=\dfrac13$ ise $\cos 2a$ kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+Yalnız $\cos a$ verildiği için $\cos 2a=2\cos^2 a-1$ biçimini seç.
+
+</Ipucu>
+
+<Cozum>
+
+1. $\cos 2a=2\cos^2 a-1=2\cdot\dfrac19-1=\dfrac29-1=-\dfrac79$.
+
+<Cevap>$-\dfrac79$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Çözümlü Örnekler
+
+<Ornek>
+
+<Soru>
+
+$\cos 15°$ değerini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $15°=45°-30°$; $\cos(a-b)=\cos a\cos b+\sin a\sin b$.
+2. $\cos 15°=\cos 45°\cos 30°+\sin 45°\sin 30°=\dfrac{\sqrt2}{2}\cdot\dfrac{\sqrt3}{2}+\dfrac{\sqrt2}{2}\cdot\dfrac12$.
+3. $=\dfrac{\sqrt6}{4}+\dfrac{\sqrt2}{4}=\dfrac{\sqrt6+\sqrt2}{4}$.
+
+<Cevap>$\dfrac{\sqrt6+\sqrt2}{4}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\sin 40°\cos 20°+\cos 40°\sin 20°$ ifadesinin değerini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Bu ifade tam olarak $\sin(a+b)$ açılımıdır; $a=40°$, $b=20°$.
+
+</Ipucu>
+
+<Cozum>
+
+1. Kalıp $\sin(a+b)=\sin a\cos b+\cos a\sin b$ ile aynı.
+2. $=\sin(40°+20°)=\sin 60°=\dfrac{\sqrt3}{2}$.
+
+<Cevap>$\dfrac{\sqrt3}{2}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\cos 50°\cos 10°-\sin 50°\sin 10°$ ifadesinin değerini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Kalıp $\cos(a+b)=\cos a\cos b-\sin a\sin b$ ile aynı.
+2. $=\cos(50°+10°)=\cos 60°=\dfrac12$.
+
+<Cevap>$\dfrac12$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\sin a=\dfrac45$ ve $a$ II. bölgede ise $\cos 2a$ kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+Yalnız $\sin a$ ile çalışmak için $\cos 2a=1-2\sin^2 a$ biçimini seç; II. bölge bilgisi bu formülde gerekmez.
+
+</Ipucu>
+
+<Cozum>
+
+1. $\cos 2a=1-2\sin^2 a=1-2\cdot\dfrac{16}{25}=1-\dfrac{32}{25}=-\dfrac{7}{25}$.
+
+<Cevap>$-\dfrac{7}{25}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$2\sin 15°\cos 15°$ ifadesinin değerini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+$2\sin a\cos a=\sin 2a$ formülünü tersten kullan.
+
+</Ipucu>
+
+<Cozum>
+
+1. $2\sin 15°\cos 15°=\sin(2\cdot 15°)=\sin 30°$.
+2. $\sin 30°=\dfrac12$.
+
+<Cevap>$\dfrac12$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Alıştırmalar — Sıra Sende
+
+> Önce kendin çözmeyi dene; sonra çözümü açıp karşılaştır.
+
+<Ornek>
+
+<Soru>
+
+$\sin 25°\cos 5°+\cos 25°\sin 5°$ değerini bul.
+
+</Soru>
+
+<Cozum>
+
+1. $=\sin(25°+5°)=\sin 30°=\dfrac12$.
+
+<Cevap>$\dfrac12$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\cos 70°\cos 10°+\sin 70°\sin 10°$ değerini bul.
+
+</Soru>
+
+<Cozum>
+
+1. Kalıp $\cos(a-b)$: $=\cos(70°-10°)=\cos 60°=\dfrac12$.
+
+<Cevap>$\dfrac12$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\sin a=\dfrac{5}{13}$ ve $a$ I. bölgede ise $\sin 2a$ kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. $\cos a=\dfrac{12}{13}$ (I. bölge).
+2. $\sin 2a=2\cdot\dfrac{5}{13}\cdot\dfrac{12}{13}=\dfrac{120}{169}$.
+
+<Cevap>$\dfrac{120}{169}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\dfrac{2\tan 22{,}5°}{1-\tan^2 22{,}5°}$ ifadesinin değerini bul.
+
+</Soru>
+
+<Cozum>
+
+1. Kalıp $\tan 2a$: $a=22{,}5°$.
+2. $=\tan(2\cdot 22{,}5°)=\tan 45°=1$.
+
+<Cevap>$1$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\cos^2 15°-\sin^2 15°$ ifadesinin değerini bul.
+
+</Soru>
+
+<Cozum>
+
+1. Kalıp $\cos 2a=\cos^2 a-\sin^2 a$: $a=15°$.
+2. $=\cos 30°=\dfrac{\sqrt3}{2}$.
+
+<Cevap>$\dfrac{\sqrt3}{2}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\sin 105°$ değerini bul.
+
+</Soru>
+
+<Cozum>
+
+1. $105°=60°+45°$; $\sin(a+b)=\sin a\cos b+\cos a\sin b$.
+2. $=\sin 60°\cos 45°+\cos 60°\sin 45°=\dfrac{\sqrt3}{2}\cdot\dfrac{\sqrt2}{2}+\dfrac12\cdot\dfrac{\sqrt2}{2}$.
+3. $=\dfrac{\sqrt6}{4}+\dfrac{\sqrt2}{4}=\dfrac{\sqrt6+\sqrt2}{4}$.
+
+<Cevap>$\dfrac{\sqrt6+\sqrt2}{4}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\cos a=\dfrac{3}{5}$ ve $a$ IV. bölgede ise $\sin 2a$ kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+$\sin 2a=2\sin a\cos a$ için önce $\sin a$'yı bul; IV. bölgede sinüs **negatiftir**.
+
+</Ipucu>
+
+<Cozum>
+
+1. $\sin^2 a=1-\dfrac{9}{25}=\dfrac{16}{25}$; IV. bölgede $\sin a=-\dfrac45$.
+2. $\sin 2a=2\cdot\left(-\dfrac45\right)\cdot\dfrac35=-\dfrac{24}{25}$.
+
+<Cevap>$-\dfrac{24}{25}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\tan a=2$ ise $\tan 2a$ kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+$\tan 2a=\dfrac{2\tan a}{1-\tan^2 a}$ formülüne $\tan a=2$ koy.
+
+</Ipucu>
+
+<Cozum>
+
+1. $\tan 2a=\dfrac{2\cdot 2}{1-2^2}=\dfrac{4}{1-4}=\dfrac{4}{-3}=-\dfrac43$.
+
+<Cevap>$-\dfrac43$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\sin a=\dfrac35$, $a$ I. bölgede ve $\cos b=\dfrac{5}{13}$, $b$ I. bölgede ise $\cos(a+b)$ kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+$\cos(a+b)=\cos a\cos b-\sin a\sin b$. Önce $\cos a$ ve $\sin b$'yi özdeşlikle bul (her ikisi de I. bölge, pozitif).
+
+</Ipucu>
+
+<Cozum>
+
+1. $\cos a=\dfrac45$ (I. bölge); $\sin b=\sqrt{1-\frac{25}{169}}=\dfrac{12}{13}$ (I. bölge).
+2. $\cos(a+b)=\cos a\cos b-\sin a\sin b=\dfrac45\cdot\dfrac{5}{13}-\dfrac35\cdot\dfrac{12}{13}$.
+3. $=\dfrac{20}{65}-\dfrac{36}{65}=-\dfrac{16}{65}$.
+
+<Cevap>$-\dfrac{16}{65}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$8\sin 15°\cos 15°\cos 30°$ ifadesinin değerini bul.
+
+</Soru>
+
+<Ipucu>
+
+Önce $2\sin 15°\cos 15°=\sin 30°$ topla; sonra kalan çarpanları işle. $\sin 30°\cos 30°$ için tekrar iki kat açı kullan.
+
+</Ipucu>
+
+<Cozum>
+
+1. $8\sin 15°\cos 15°\cos 30°=4\cdot(2\sin 15°\cos 15°)\cdot\cos 30°=4\sin 30°\cos 30°$.
+2. $4\sin 30°\cos 30°=2\cdot(2\sin 30°\cos 30°)=2\sin 60°$.
+3. $2\sin 60°=2\cdot\dfrac{\sqrt3}{2}=\sqrt3$.
+
+<Cevap>$\sqrt3$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Kosinüs formülünde işareti karıştırmak.** $\cos(a+b)$'de ortada **eksi**, $\cos(a-b)$'de **artı** vardır — sinüsün tam tersi.
+- **$\sin(a+b)=\sin a+\sin b$ sanmak.** Sinüs ve kosinüs toplama üzerine **dağılmaz**; mutlaka formülü kullan.
+- **$\cos 2a$ biçimini gereksiz zorlaştırmak.** Elde yalnız $\sin a$ varsa $1-2\sin^2 a$, yalnız $\cos a$ varsa $2\cos^2 a-1$ biçimini seç; gereksiz hesap yapma.
+- **İki kat açıda bölge işaretini atlamak.** $\sin 2a$ için $\cos a$'yı özdeşlikten çekerken açının bölgesine göre işaret seç.
+
+> **Not:** $75°$, $15°$, $105°$ gibi açıları gördüğünde refleksin onları $45°\pm 30°$ ya da $60°\pm 45°$ olarak yazmak olsun. $2\sin a\cos a$, $\cos^2 a-\sin^2 a$, $\dfrac{2\tan a}{1-\tan^2 a}$ kalıplarını gördüğünde ise hemen **iki kat açıyı** tanı — bu kalıpları tersten okumak çoğu soruyu tek satıra indirir.
+
+<KonuNav slug="toplam-fark-formulleri" />

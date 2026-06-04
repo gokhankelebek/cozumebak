@@ -1,0 +1,483 @@
+import { topicMetadata } from "@/lib/seo";
+import { DikeyOteleme, YansimaXEkseni } from "@/components/figures/DonusumGrafikFig";
+import { TemelV, OtelenmisV } from "@/components/figures/MutlakDegerFig";
+
+export const metadata = topicMetadata("fonksiyonlarin-donusumleri");
+
+<Konu slug="fonksiyonlarin-donusumleri" />
+
+<p className="lead">Bir fonksiyonun grafiğine yapılan küçük cebirsel değişiklikler, grafiği düzlemde **kaydırır, çevirir veya gerer**. Bu derste $y=f(x)$ temel grafiğinden yola çıkarak **dikey ve yatay ötelemeleri** ($f(x)+k$, $f(x-h)$), **eksenlere göre yansımaları** ($-f(x)$, $f(-x)$) ve **dikey gerilme/sıkışmayı** ($af(x)$) öğreneceğiz. Bu dönüşümleri bilmek, $y=x^2$ gibi tek bir "ana grafikten" yola çıkıp onun tüm akrabalarını tek bir denkleme bakarak çizebilmeni sağlar. Bol şekil, örnek ve "Sıra Sende" alıştırmalarıyla pekiştireceğiz.</p>
+
+## 1. Dikey Öteleme: $f(x)+k$
+
+Fonksiyona bir **$k$ sabiti eklemek**, grafiğin her noktasını dikeyde kaydırır:
+
+$$y=f(x)+k \;\Rightarrow\; \text{grafik } k>0 \text{ ise } k \text{ birim YUKARI, } k<0 \text{ ise AŞAĞI öteler.}$$
+
+Burada şekil değişmez; yalnızca yukarı–aşağı kayar. Tepe/önemli noktaların yalnızca ordinatları $k$ kadar değişir.
+
+<Figur>
+
+<DikeyOteleme />
+
+<Altyazi>Şekil 1 — $y=x^2$ grafiği (lacivert) ile $y=x^2+2$ grafiği (turuncu). Sabit eklemek grafiği $2$ birim yukarı öteler; tepe $(0,0)$'dan $(0,2)$'ye taşınır, şekil aynı kalır.</Altyazi>
+
+</Figur>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=x^2$ grafiği $3$ birim aşağı ötelenirse yeni fonksiyon nedir ve tepe noktası nereye gider?
+
+</Soru>
+
+<Cozum>
+
+1. Aşağı öteleme için sabit **çıkarılır**: $y=f(x)-3=x^2-3$.
+2. Tepe $(0,0)$, ordinatı $3$ azalarak $(0,-3)$ olur.
+
+<Cevap>$y=x^2-3$; tepe $(0,-3)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 2. Yatay Öteleme: $f(x-h)$
+
+$x$ yerine $x-h$ yazmak grafiği **yatayda** kaydırır. Dikkat: işaret terstir.
+
+$$y=f(x-h) \;\Rightarrow\; \text{grafik } h>0 \text{ ise } h \text{ birim SAĞA, } h<0 \text{ ise SOLA öteler.}$$
+
+Yani $f(x-2)$ grafiği $2$ birim **sağa**, $f(x+2)=f(x-(-2))$ grafiği $2$ birim **sola** gider.
+
+<Figur>
+
+<TemelV />
+
+<Altyazi>Şekil 2 — Temel grafik $y=|x|$; tepe noktası orijin $(0,0)$.</Altyazi>
+
+</Figur>
+
+<Figur>
+
+<OtelenmisV />
+
+<Altyazi>Şekil 3 — $y=|x-2|-1$ grafiği. $x\to x-2$ grafiği $2$ birim sağa, $-1$ ise $1$ birim aşağı öteler; tepe $(2,-1)$'e taşınır.</Altyazi>
+
+</Figur>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=|x|$ olsun. $y=|x+3|$ grafiği temel grafiğe göre nasıl ötelenmiştir?
+
+</Soru>
+
+<Ipucu>
+
+$|x+3|=|x-(-3)|$ olduğundan $h=-3$; işaret terstir.
+
+</Ipucu>
+
+<Cozum>
+
+1. $|x+3|=f(x-(-3))$, yani $h=-3$.
+2. $h<0$ olduğundan grafik $3$ birim **sola** ötelenir; tepe $(0,0)$'dan $(-3,0)$'a gider.
+
+<Cevap>$3$ birim sola öteleme; tepe $(-3,0)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 3. Birleşik Öteleme: $f(x-h)+k$
+
+Yatay ve dikey ötelemeyi birlikte uygularız: $y=f(x-h)+k$ grafiği, temel grafiği $h$ birim yatayda (sağ/sol), $k$ birim dikeyde (yukarı/aşağı) öteler. Önemli bir noktanın yeni yeri $(x_0+h,\;y_0+k)$ olur.
+
+<Ornek>
+
+<Soru>
+
+$f(x)=x^2$ grafiği $2$ birim sağa ve $1$ birim yukarı ötelenirse yeni fonksiyonu yaz ve tepe noktasını söyle.
+
+</Soru>
+
+<Cozum>
+
+1. Sağa öteleme: $x\to x-2$. Yukarı öteleme: $+1$. Yeni fonksiyon: $y=(x-2)^2+1$.
+2. Tepe $(0,0)\to(0+2,\;0+1)=(2,1)$.
+
+<Cevap>$y=(x-2)^2+1$; tepe $(2,1)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 4. Yansımalar: $-f(x)$ ve $f(-x)$
+
+İşaret değişiklikleri grafiği bir eksene göre **simetriğine** çevirir:
+
+$$y=-f(x) \;\Rightarrow\; x \text{ eksenine göre yansıma} \qquad\qquad y=f(-x) \;\Rightarrow\; y \text{ eksenine göre yansıma}$$
+
+$-f(x)$'te tüm ordinatların işareti değişir (yukarı–aşağı çevrilir). $f(-x)$'te tüm apsislerin işareti değişir (sağ–sol çevrilir).
+
+<Figur>
+
+<YansimaXEkseni />
+
+<Altyazi>Şekil 4 — $y=x^2$ (lacivert, kollar yukarı) ve onun $x$ eksenine göre yansıması $y=-x^2$ (turuncu, kollar aşağı). $-f(x)$ grafiği yukarı–aşağı çevirir.</Altyazi>
+
+</Figur>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=x^2-2x$ olsun. $y=f(-x)$ fonksiyonunu açık biçimde yazınız.
+
+</Soru>
+
+<Ipucu>
+
+$f(-x)$ için fonksiyondaki her $x$'in yerine $-x$ yaz.
+
+</Ipucu>
+
+<Cozum>
+
+1. $f(-x)=(-x)^2-2(-x)=x^2+2x$.
+
+<Cevap>$y=x^2+2x$ ( $y$ eksenine göre yansıma).</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 5. Dikey Gerilme ve Sıkışma: $a\,f(x)$
+
+Fonksiyonu bir $a$ sayısıyla çarpmak grafiği dikeyde **gerer veya sıkıştırır**:
+
+$$|a|>1 \Rightarrow \text{dikeyde gerilme (incelir, dikleşir)} \qquad 0<|a|<1 \Rightarrow \text{sıkışma (yayvanlaşır)}$$
+
+$a<0$ ise ayrıca $x$ eksenine göre yansıma da olur. $x$ eksenini kesen noktalar ($f(x)=0$ olanlar) yerinde kalır; diğer ordinatlar $a$ katına çıkar.
+
+<Ornek>
+
+<Soru>
+
+$f(x)=x^2$ grafiği dikeyde $3$ katına gerilirse yeni fonksiyon nedir? $x=2$ için değeri ne olur?
+
+</Soru>
+
+<Cozum>
+
+1. Dikey gerilme için $a=3$ ile çarp: $y=3x^2$.
+2. $x=2$: $y=3\cdot 2^2=12$ (temel grafikte $4$ iken $3$ katı olur).
+
+<Cevap>$y=3x^2$; $x=2$ için $12$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Çözümlü Örnekler
+
+<Ornek>
+
+<Soru>
+
+$y=(x+1)^2-4$ grafiği, $y=x^2$ temel grafiğinden hangi dönüşümlerle elde edilir?
+
+</Soru>
+
+<Cozum>
+
+1. $(x+1)^2=(x-(-1))^2$: $h=-1$, yani $1$ birim **sola** öteleme.
+2. $-4$: $4$ birim **aşağı** öteleme.
+3. Tepe $(0,0)\to(-1,-4)$.
+
+<Cevap>$1$ birim sola, $4$ birim aşağı öteleme; tepe $(-1,-4)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=\sqrt{x}$ olsun. $g(x)=\sqrt{x-3}+2$ grafiği, $f$ grafiğinden hangi ötelemelerle elde edilir ve başlangıç noktası nereye gider?
+
+</Soru>
+
+<Ipucu>
+
+$\sqrt{x}$ grafiği $(0,0)$'dan başlar. $x\to x-3$ sağa, $+2$ yukarı öteler.
+
+</Ipucu>
+
+<Cozum>
+
+1. $x\to x-3$: $3$ birim **sağa** öteleme.
+2. $+2$: $2$ birim **yukarı** öteleme.
+3. Başlangıç noktası $(0,0)\to(3,2)$.
+
+<Cevap>$3$ birim sağa, $2$ birim yukarı; başlangıç $(3,2)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=2x-1$ olsun. $y=-f(x)$ ve $y=f(-x)$ fonksiyonlarını ayrı ayrı yazınız.
+
+</Soru>
+
+<Cozum>
+
+1. $-f(x)=-(2x-1)=-2x+1$ ( $x$ eksenine göre yansıma).
+2. $f(-x)=2(-x)-1=-2x-1$ ( $y$ eksenine göre yansıma).
+
+<Cevap>$-f(x)=-2x+1$, $\;f(-x)=-2x-1$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$y=x^2$ grafiği önce $x$ eksenine göre yansıtılıp sonra $5$ birim yukarı ötelenirse oluşan fonksiyon nedir? Tepe noktası nedir?
+
+</Soru>
+
+<Ipucu>
+
+Yansıma $-f(x)$, sonra $+5$. Sıraya dikkat: önce yansıt, sonra ötele.
+
+</Ipucu>
+
+<Cozum>
+
+1. $x$ eksenine yansıma: $y=-x^2$.
+2. $5$ birim yukarı: $y=-x^2+5$.
+3. Tepe $(0,0)\to(0,5)$; kollar aşağı.
+
+<Cevap>$y=-x^2+5$; tepe $(0,5)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Alıştırmalar — Sıra Sende
+
+> Önce kendin çözmeyi dene; sonra çözümü açıp karşılaştır.
+
+<Ornek>
+
+<Soru>
+
+$f(x)=x^2$ grafiği $4$ birim yukarı ötelenirse yeni fonksiyon nedir?
+
+</Soru>
+
+<Cozum>
+
+1. Yukarı öteleme: $+4$. Yeni fonksiyon $y=x^2+4$.
+
+<Cevap>$y=x^2+4$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=|x|$ grafiği $5$ birim sağa ötelenirse fonksiyon nasıl yazılır?
+
+</Soru>
+
+<Cozum>
+
+1. Sağa öteleme: $x\to x-5$. Yeni fonksiyon $y=|x-5|$.
+
+<Cevap>$y=|x-5|$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$y=(x-3)^2+2$ parabolünün tepe noktası nedir?
+
+</Soru>
+
+<Cozum>
+
+1. $h=3$ (sağa), $k=2$ (yukarı). Tepe $(3,2)$.
+
+<Cevap>$(3,2)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=x^3$ olsun. $y=f(-x)$ fonksiyonunu açık yaz.
+
+</Soru>
+
+<Cozum>
+
+1. $f(-x)=(-x)^3=-x^3$.
+
+<Cevap>$y=-x^3$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=\sqrt{x}$ grafiği $2$ birim sola ötelenirse fonksiyon nasıl yazılır?
+
+</Soru>
+
+<Cozum>
+
+1. Sola öteleme: $x\to x+2$. Yeni fonksiyon $y=\sqrt{x+2}$.
+
+<Cevap>$y=\sqrt{x+2}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$y=|x+2|-3$ grafiği, $y=|x|$ temel grafiğinden hangi ötelemelerle elde edilir ve tepesi nereye gider?
+
+</Soru>
+
+<Ipucu>
+
+$|x+2|=|x-(-2)|$: $h=-2$ (sola), $k=-3$ (aşağı).
+
+</Ipucu>
+
+<Cozum>
+
+1. $x\to x+2$: $2$ birim **sola**.
+2. $-3$: $3$ birim **aşağı**.
+3. Tepe $(0,0)\to(-2,-3)$.
+
+<Cevap>$2$ birim sola, $3$ birim aşağı; tepe $(-2,-3)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=x^2$ grafiği önce $y$ eksenine göre yansıtılıyor, sonra $3$ birim sağa öteleniyor. Oluşan fonksiyon nedir?
+
+</Soru>
+
+<Ipucu>
+
+$y=x^2$ için $f(-x)=x^2$ (çift fonksiyon, değişmez); sonra $x\to x-3$.
+
+</Ipucu>
+
+<Cozum>
+
+1. $y$ eksenine yansıma: $f(-x)=(-x)^2=x^2$ (parabol $y$ eksenine göre zaten simetrik, değişmez).
+2. $3$ birim sağa: $x\to x-3 \Rightarrow y=(x-3)^2$.
+
+<Cevap>$y=(x-3)^2$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=x^2+4x+1$ olsun. $y=f(x)-5$ fonksiyonunu tepe biçiminde yaz ve tepe noktasını bul.
+
+</Soru>
+
+<Ipucu>
+
+Önce $f(x)$'i tam kareye tamamla: $x^2+4x+1=(x+2)^2-3$. Sonra $-5$ uygula.
+
+</Ipucu>
+
+<Cozum>
+
+1. Tam kareye tamamla: $x^2+4x+1=(x+2)^2-4+1=(x+2)^2-3$.
+2. $-5$ dikey öteleme: $y=(x+2)^2-3-5=(x+2)^2-8$.
+3. Tepe $(-2,-8)$.
+
+<Cevap>$y=(x+2)^2-8$; tepe $(-2,-8)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir $f$ fonksiyonunun grafiği $A(2,5)$ noktasından geçiyor. $g(x)=f(x-1)+3$ grafiği hangi noktadan geçer?
+
+</Soru>
+
+<Ipucu>
+
+$f(x-1)+3$ grafiği, $f$'i $1$ birim sağa ve $3$ birim yukarı öteler; $A$ noktası da aynı şekilde taşınır.
+
+</Ipucu>
+
+<Cozum>
+
+1. $g(x)=f(x-1)+3$: $1$ birim sağa, $3$ birim yukarı öteleme.
+2. $A(2,5)$ noktası $(2+1,\;5+3)=(3,8)$ noktasına taşınır.
+
+<Cevap>$(3,8)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Yatay öteleme yönünü ters almak.** $f(x-h)$ grafiği $h>0$ için **sağa** gider; $f(x+2)$ sağa değil, **sola** ötelemedir.
+- **$-f(x)$ ile $f(-x)$'i karıştırmak.** $-f(x)$ → **$x$** eksenine yansıma (yukarı–aşağı); $f(-x)$ → **$y$** eksenine yansıma (sağ–sol).
+- **Dikey ötelemeyi yataya, yatayı dikeye yazmak.** Fonksiyonun **dışına** eklenen sabit ($+k$) dikeyi; **içine** ($x-h$) yatayı etkiler.
+- **Birleşik dönüşümde sırayı gözardı etmek.** "Önce yansıt sonra ötele" ile "önce ötele sonra yansıt" farklı sonuç verebilir; adımları sırayla uygula.
+
+> **Not:** Tek bir ana grafiği ($y=x^2$, $y=|x|$, $y=\sqrt{x}$, $y=\dfrac{1}{x}$) ezbere bil; gerisi dört kuralla çıkar: $+k$ dikey öteleme, $x-h$ yatay öteleme, $-f(x)$ / $f(-x)$ yansıma, $a\,f(x)$ gerilme. Dönüşümleri önemli bir noktanın (tepe, başlangıç) nasıl taşındığına bakarak doğrula.
+
+<KonuNav slug="fonksiyonlarin-donusumleri" />

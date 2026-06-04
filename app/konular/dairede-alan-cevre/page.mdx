@@ -1,0 +1,520 @@
+import { topicMetadata } from "@/lib/seo";
+import { DaireDilimi } from "@/components/figures/CemberFig";
+
+export const metadata = topicMetadata("dairede-alan-cevre");
+
+<Konu slug="dairede-alan-cevre" />
+
+<p className="lead">Bir dairenin **çevresi** ve **alanı**, yarıçap $r$ ile $\pi$ sayısından hesaplanır. Bu derste tam dairenin çevre ve alan formüllerini, bir **daire diliminin (sektör)** alanını ve **yay uzunluğunu**, ayrıca bir **daire kesmesinin (segment)** alanını öğreneceğiz. Hepsinin temelinde tek bir fikir var: dilime düşen pay, **merkez açının $360°$'ye oranıdır**. Bol şekil, örnek ve "Sıra Sende" alıştırmasıyla pekiştireceğiz.</p>
+
+## 1. Dairenin Çevresi ve Alanı
+
+Yarıçapı $r$ olan bir dairede:
+
+$$\text{Çevre}=2\pi r \qquad\qquad \text{Alan}=\pi r^2$$
+
+Çap $d=2r$ olduğundan çevre $\pi d$ olarak da yazılır. Problemlerde aksi belirtilmedikçe $\pi$ sembolik bırakılır; bazı sorularda $\pi\approx 3$ alınması istenir.
+
+<Ornek>
+
+<Soru>
+
+Yarıçapı $7$ cm olan bir dairenin çevresini ve alanını $\pi$ cinsinden bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Çevre: $2\pi r=2\pi\cdot 7=14\pi$ cm.
+2. Alan: $\pi r^2=\pi\cdot 7^2=49\pi$ cm².
+
+<Cevap>Çevre $14\pi$ cm, alan $49\pi$ cm².</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir dairenin alanı $36\pi$ cm² ise yarıçapı kaç cm'dir?
+
+</Soru>
+
+<Ipucu>
+
+$\pi r^2=36\pi$ denkleminde her iki tarafı $\pi$'ye böl, sonra karekök al.
+
+</Ipucu>
+
+<Cozum>
+
+1. $\pi r^2=36\pi \Rightarrow r^2=36$.
+2. $r=6$ cm (yarıçap pozitiftir).
+
+<Cevap>$6$ cm.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 2. Yay Uzunluğu
+
+Bir yay, çemberin bir parçasıdır. Merkez açısı $\alpha$ derece olan yayın uzunluğu, tüm çevrenin ($2\pi r$) o açının $360°$'ye oranı kadarıdır:
+
+$$\ell=\dfrac{\alpha}{360°}\cdot 2\pi r$$
+
+Yani $\alpha=360°$ alırsak $\ell=2\pi r$ (tüm çevre) çıkar; bu, formülün mantığını gösterir.
+
+<Ornek>
+
+<Soru>
+
+Yarıçapı $6$ cm olan bir çemberde merkez açısı $60°$ olan yayın uzunluğunu bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Formülü uygula: $\ell=\dfrac{60°}{360°}\cdot 2\pi\cdot 6$.
+2. Oranı sadeleştir: $\dfrac{60}{360}=\dfrac{1}{6}$, yani $\ell=\dfrac{1}{6}\cdot 12\pi=2\pi$ cm.
+
+<Cevap>$2\pi$ cm.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 3. Daire Dilimi (Sektör) Alanı
+
+Bir **daire dilimi**, iki yarıçap ve aralarındaki yay ile sınırlanan "pasta dilimi" bölgesidir. Merkez açısı $\alpha$ olan dilimin alanı, tüm daire alanının ($\pi r^2$) açıya düşen oranıdır:
+
+$$A_{\text{dilim}}=\dfrac{\alpha}{360°}\cdot \pi r^2$$
+
+<Figur>
+
+<DaireDilimi />
+
+<Altyazi>Şekil 1 — Merkez açısı $\alpha$ olan taranmış daire dilimi (sektör). Alanı, tüm dairenin $\dfrac{\alpha}{360°}$ katıdır.</Altyazi>
+
+</Figur>
+
+<Ornek>
+
+<Soru>
+
+Yarıçapı $6$ cm olan bir dairede merkez açısı $90°$ olan dilimin alanını bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+$90°$, tam dairenin dörtte biridir: $\dfrac{90}{360}=\dfrac14$.
+
+</Ipucu>
+
+<Cozum>
+
+1. Tüm daire alanı: $\pi\cdot 6^2=36\pi$ cm².
+2. Dilim oranı: $\dfrac{90°}{360°}=\dfrac14$.
+3. Dilim alanı: $\dfrac14\cdot 36\pi=9\pi$ cm².
+
+<Cevap>$9\pi$ cm².</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+Yay uzunluğu biliniyorsa dilim alanını şöyle de yazabiliriz: $A_{\text{dilim}}=\dfrac{\ell\cdot r}{2}$. (İkisi de aynı $\dfrac{\alpha}{360°}$ oranından gelir.)
+
+## 4. Daire Kesmesi (Segment) Alanı
+
+Bir **daire kesmesi**, bir **kiriş** ile o kirişin kapattığı **yay** arasında kalan bölgedir. Alanı, dilim alanından, yarıçapların oluşturduğu **üçgenin alanını** çıkararak bulunur:
+
+$$A_{\text{kesme}}=A_{\text{dilim}}-A_{\text{üçgen}}$$
+
+Burada üçgen, merkez ile kirişin uç noktalarının oluşturduğu ikizkenar üçgendir; tepe açısı $\alpha$, iki kenarı $r$ olduğundan alanı $\dfrac12 r^2\sin\alpha$'dır.
+
+<Ornek>
+
+<Soru>
+
+Yarıçapı $4$ cm olan bir dairede merkez açısı $90°$ olan kirişin ayırdığı **küçük** daire kesmesinin alanını bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Önce $90°$'lik dilimin alanını bul; sonra dik kenarları $r=4$ olan dik üçgenin alanını çıkar.
+
+</Ipucu>
+
+<Cozum>
+
+1. Dilim alanı: $\dfrac{90°}{360°}\cdot \pi\cdot 4^2=\dfrac14\cdot 16\pi=4\pi$ cm².
+2. Üçgen alanı ($\alpha=90°$ olduğundan dik üçgen, dik kenarları $r=4$): $\dfrac12\cdot 4\cdot 4=8$ cm².
+3. Kesme alanı: $4\pi-8$ cm².
+
+<Cevap>$(4\pi-8)$ cm².</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Çözümlü Örnekler
+
+<Ornek>
+
+<Soru>
+
+Çevresi $20\pi$ cm olan bir dairenin alanını bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Önce çevreden yarıçapı çek: $2\pi r=20\pi$.
+
+</Ipucu>
+
+<Cozum>
+
+1. Çevreden yarıçap: $2\pi r=20\pi \Rightarrow r=10$ cm.
+2. Alan: $\pi r^2=\pi\cdot 10^2=100\pi$ cm².
+
+<Cevap>$100\pi$ cm².</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Yarıçapı $9$ cm olan bir dairede merkez açısı $120°$ olan dilimin alanını bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Tüm alan: $\pi\cdot 9^2=81\pi$ cm².
+2. Oran: $\dfrac{120°}{360°}=\dfrac13$.
+3. Dilim: $\dfrac13\cdot 81\pi=27\pi$ cm².
+
+<Cevap>$27\pi$ cm².</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Yarıçapı $10$ cm olan bir çemberde uzunluğu $4\pi$ cm olan bir yayın merkez açısı kaç derecedir?
+
+</Soru>
+
+<Ipucu>
+
+$\ell=\dfrac{\alpha}{360°}\cdot 2\pi r$ formülünde $\alpha$'yı yalnız bırak.
+
+</Ipucu>
+
+<Cozum>
+
+1. Formül: $4\pi=\dfrac{\alpha}{360°}\cdot 2\pi\cdot 10=\dfrac{\alpha}{360°}\cdot 20\pi$.
+2. $\pi$'leri sadeleştir: $4=\dfrac{20\alpha}{360}=\dfrac{\alpha}{18}$.
+3. $\alpha=4\cdot 18=72°$.
+
+<Cevap>$72°$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir daire diliminin merkez açısı $45°$ ve alanı $2\pi$ cm² ise dairenin yarıçapı kaç cm'dir?
+
+</Soru>
+
+<Ipucu>
+
+$\dfrac{45}{360}=\dfrac18$; $\dfrac18\pi r^2=2\pi$ denkleminden $r$'yi çek.
+
+</Ipucu>
+
+<Cozum>
+
+1. Dilim alanı: $\dfrac{45°}{360°}\cdot \pi r^2=\dfrac18\pi r^2$.
+2. Eşitle: $\dfrac18\pi r^2=2\pi \Rightarrow r^2=16$.
+3. $r=4$ cm.
+
+<Cevap>$4$ cm.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Yarıçapı $6$ cm olan bir dairede merkez açısı $60°$ olan **kesmenin** (segment) alanını bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+$60°$'lik dilimden, kenarları $r=6$ ve aralarındaki açı $60°$ olan üçgeni çıkar; bu üçgen **eşkenardır**, alanı $\dfrac{\sqrt3}{4}\cdot 6^2$.
+
+</Ipucu>
+
+<Cozum>
+
+1. Dilim alanı: $\dfrac{60°}{360°}\cdot \pi\cdot 6^2=\dfrac16\cdot 36\pi=6\pi$ cm².
+2. Üçgen: iki kenarı $6$ ve aralarındaki açı $60°$ olan üçgen eşkenardır; alanı $\dfrac{\sqrt3}{4}\cdot 6^2=9\sqrt3$ cm².
+3. Kesme: $6\pi-9\sqrt3$ cm².
+
+<Cevap>$(6\pi-9\sqrt3)$ cm².</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Alıştırmalar — Sıra Sende
+
+> Önce kendin çözmeyi dene; sonra çözümü açıp karşılaştır.
+
+<Ornek>
+
+<Soru>
+
+Yarıçapı $5$ cm olan bir dairenin çevresini ve alanını $\pi$ cinsinden bul.
+
+</Soru>
+
+<Cozum>
+
+1. Çevre: $2\pi\cdot 5=10\pi$ cm.
+2. Alan: $\pi\cdot 5^2=25\pi$ cm².
+
+<Cevap>Çevre $10\pi$ cm, alan $25\pi$ cm².</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Çevresi $16\pi$ cm olan bir dairenin yarıçapı kaç cm'dir?
+
+</Soru>
+
+<Cozum>
+
+1. $2\pi r=16\pi \Rightarrow r=8$ cm.
+
+<Cevap>$8$ cm.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Yarıçapı $12$ cm olan bir çemberde merkez açısı $30°$ olan yayın uzunluğu kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. $\ell=\dfrac{30°}{360°}\cdot 2\pi\cdot 12=\dfrac{1}{12}\cdot 24\pi=2\pi$ cm.
+
+<Cevap>$2\pi$ cm.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Yarıçapı $8$ cm olan bir dairede merkez açısı $45°$ olan dilimin alanı kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. Tüm alan: $\pi\cdot 8^2=64\pi$ cm².
+2. Oran: $\dfrac{45°}{360°}=\dfrac18$.
+3. Dilim: $\dfrac18\cdot 64\pi=8\pi$ cm².
+
+<Cevap>$8\pi$ cm².</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir daire diliminin merkez açısı $72°$ ve yarıçapı $5$ cm ise alanı kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. Oran: $\dfrac{72°}{360°}=\dfrac15$.
+2. Tüm alan: $\pi\cdot 5^2=25\pi$ cm².
+3. Dilim: $\dfrac15\cdot 25\pi=5\pi$ cm².
+
+<Cevap>$5\pi$ cm².</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Yarıçapı $9$ cm olan bir çemberde uzunluğu $3\pi$ cm olan yayın merkez açısı kaç derecedir?
+
+</Soru>
+
+<Cozum>
+
+1. $3\pi=\dfrac{\alpha}{360°}\cdot 2\pi\cdot 9=\dfrac{\alpha}{360°}\cdot 18\pi$.
+2. $3=\dfrac{18\alpha}{360}=\dfrac{\alpha}{20}\Rightarrow \alpha=60°$.
+
+<Cevap>$60°$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir daire diliminin alanı $12\pi$ cm² ve yarıçapı $6$ cm ise merkez açısı kaç derecedir?
+
+</Soru>
+
+<Ipucu>
+
+$A=\dfrac{\alpha}{360°}\cdot \pi r^2$ formülünde $\alpha$'yı yalnız bırak.
+
+</Ipucu>
+
+<Cozum>
+
+1. Tüm alan: $\pi\cdot 6^2=36\pi$ cm².
+2. $12\pi=\dfrac{\alpha}{360°}\cdot 36\pi \Rightarrow \dfrac{12}{36}=\dfrac{\alpha}{360}\Rightarrow \dfrac13=\dfrac{\alpha}{360}$.
+3. $\alpha=120°$.
+
+<Cevap>$120°$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Yarıçapı $10$ cm olan bir dairede merkez açısı $90°$ olan kirişin ayırdığı **küçük** kesmenin alanı kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+$90°$'lik dilim alanından, dik kenarları $r=10$ olan dik üçgenin alanını çıkar.
+
+</Ipucu>
+
+<Cozum>
+
+1. Dilim: $\dfrac{90°}{360°}\cdot \pi\cdot 10^2=\dfrac14\cdot 100\pi=25\pi$ cm².
+2. Üçgen ($90°$ açı, dik kenarlar $r=10$): $\dfrac12\cdot 10\cdot 10=50$ cm².
+3. Kesme: $25\pi-50$ cm².
+
+<Cevap>$(25\pi-50)$ cm².</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir daire diliminin yay uzunluğu $6\pi$ cm ve yarıçapı $9$ cm ise dilimin alanı kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+Dilim alanı yay uzunluğu ile $A=\dfrac{\ell\cdot r}{2}$ biçiminde de yazılır.
+
+</Ipucu>
+
+<Cozum>
+
+1. Formülü kullan: $A=\dfrac{\ell\cdot r}{2}=\dfrac{6\pi\cdot 9}{2}$.
+2. $=\dfrac{54\pi}{2}=27\pi$ cm².
+
+<Cevap>$27\pi$ cm².</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir tarla, yarıçapı $20$ m olan çeyrek daire ($90°$) biçimindedir. Tarlanın çevresini $\pi$ cinsinden bulunuz (iki yarıçap + yay).
+
+</Soru>
+
+<Ipucu>
+
+Çeyrek dairenin çevresi, **iki yarıçap** ($r+r$) ile $90°$'lik **yay uzunluğunun** toplamıdır.
+
+</Ipucu>
+
+<Cozum>
+
+1. İki yarıçap: $20+20=40$ m.
+2. Yay uzunluğu: $\dfrac{90°}{360°}\cdot 2\pi\cdot 20=\dfrac14\cdot 40\pi=10\pi$ m.
+3. Toplam çevre: $40+10\pi$ m.
+
+<Cevap>$(40+10\pi)$ m.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Çevre ile alan formülünü karıştırmak.** Çevre $2\pi r$ (uzunluk, $r$'nin 1. kuvveti), alan $\pi r^2$ (yüzey, $r$'nin 2. kuvveti).
+- **Oranı $360°$ yerine $180°$'ye bölmek.** Hem yay uzunluğunda hem dilim alanında pay $\dfrac{\alpha}{360°}$'dir; tam tur $360°$'dir.
+- **Kesme alanında üçgeni çıkarmayı unutmak.** Daire **kesmesi** = dilim $-$ üçgen; dilimin kendisiyle karıştırma.
+- **Çeyrek/yarım daire çevresinde yarıçapları eklemeyi atlamak.** Bir dilimin çevresi, yay uzunluğuna **iki yarıçapı** da eklemeyi gerektirir.
+
+> **Not:** Daire dilimi ve yayda her şey tek bir orana dayanır: $\dfrac{\alpha}{360°}$. Yay uzunluğu bu oranın $2\pi r$ ile, dilim alanı ise $\pi r^2$ ile çarpımıdır. Kesme alanı için dilimden üçgeni çıkarmayı unutma.
+
+<KonuNav slug="dairede-alan-cevre" />

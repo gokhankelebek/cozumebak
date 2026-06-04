@@ -238,22 +238,30 @@ export const TOPICS: Topic[] = [
   { slug: "bayes-teoremi-10", title: "Bayes Teoremi", track: "10", unit: "veriden-olasiliga-10", summary: "Koşullu olasılıkları tersine çeviren Bayes teoremi ve uygulamaları.", minutes: 8, difficulty: "Zor", questionCount: 14, status: "published", keywords: ["bayes"] },
 
   // ── 11. Sınıf · Trigonometri ──
-  { slug: "yonlu-acilar", title: "Yönlü Açılar ve Birim Çember", track: "11", unit: "trigonometri-11", summary: "Radyan-derece dönüşümü ve birim çember.", minutes: 7, difficulty: "Orta", questionCount: 16, status: "soon", keywords: ["radyan", "birim çember"] },
-  { slug: "trigonometrik-fonksiyonlar", title: "Trigonometrik Fonksiyonlar", track: "11", unit: "trigonometri-11", summary: "Sinüs, kosinüs, tanjant fonksiyonları ve grafikleri.", minutes: 9, difficulty: "Orta", questionCount: 24, status: "soon" },
-  { slug: "toplam-fark-formulleri", title: "Toplam-Fark ve İki Kat Açı Formülleri", track: "11", unit: "trigonometri-11", summary: "Trigonometrik toplam, fark ve yarım açı formülleri.", minutes: 9, difficulty: "Zor", questionCount: 20, status: "soon" },
-  { slug: "trigonometrik-denklemler", title: "Trigonometrik Denklemler", track: "11", unit: "trigonometri-11", summary: "Temel trigonometrik denklemlerin çözüm kümeleri.", minutes: 8, difficulty: "Zor", questionCount: 18, status: "soon" },
+  { slug: "yonlu-acilar", title: "Yönlü Açılar ve Birim Çember", track: "11", unit: "trigonometri-11", summary: "Radyan-derece dönüşümü ve birim çember.", minutes: 7, difficulty: "Orta", questionCount: 20, status: "published", keywords: ["radyan", "birim çember"] },
+  { slug: "trigonometrik-fonksiyonlar", title: "Trigonometrik Fonksiyonlar", track: "11", unit: "trigonometri-11", summary: "Sinüs, kosinüs, tanjant fonksiyonları ve grafikleri.", minutes: 9, difficulty: "Orta", questionCount: 20, status: "published" },
+  { slug: "toplam-fark-formulleri", title: "Toplam-Fark ve İki Kat Açı Formülleri", track: "11", unit: "trigonometri-11", summary: "Trigonometrik toplam, fark ve yarım açı formülleri.", minutes: 9, difficulty: "Zor", questionCount: 20, status: "published" },
+  { slug: "trigonometrik-denklemler", title: "Trigonometrik Denklemler", track: "11", unit: "trigonometri-11", summary: "Temel trigonometrik denklemlerin çözüm kümeleri.", minutes: 8, difficulty: "Zor", questionCount: 17, status: "published" },
 
   // ── 11. Sınıf · Analitik Geometri ──
-  { slug: "iki-nokta-arasi-uzaklik", title: "İki Nokta Arası Uzaklık ve Doğru", track: "11", unit: "analitik-11", summary: "Uzaklık formülü, orta nokta ve doğru denklemleri.", minutes: 7, difficulty: "Orta", questionCount: 16, status: "soon" },
-  { slug: "cemberin-analitik-incelenmesi", title: "Çemberin Analitik İncelenmesi", track: "11", unit: "analitik-11", summary: "Çember denklemi, merkez ve yarıçap.", minutes: 8, difficulty: "Orta", questionCount: 18, status: "soon" },
+  { slug: "iki-nokta-arasi-uzaklik", title: "İki Nokta Arası Uzaklık ve Doğru", track: "11", unit: "analitik-11", summary: "Uzaklık formülü, orta nokta ve doğru denklemleri.", minutes: 7, difficulty: "Orta", questionCount: 22, status: "published" },
+  { slug: "cemberin-analitik-incelenmesi", title: "Çemberin Analitik İncelenmesi", track: "11", unit: "analitik-11", summary: "Çember denklemi, merkez ve yarıçap.", minutes: 8, difficulty: "Orta", questionCount: 20, status: "published" },
 
   // ── 11. Sınıf · Fonksiyonlarda İşlemler ──
-  { slug: "ikinci-derece-fonksiyonlar", title: "İkinci Dereceden Fonksiyonlar ve Grafikler", track: "11", unit: "fonksiyonlarda-islemler-11", summary: "Parabol grafikleri ve dönüşümler.", minutes: 8, difficulty: "Orta", questionCount: 18, status: "soon" },
-  { slug: "fonksiyonlarin-donusumleri", title: "Fonksiyonların Dönüşümleri", track: "11", unit: "fonksiyonlarda-islemler-11", summary: "Öteleme, yansıma ve grafik dönüşümleri.", minutes: 7, difficulty: "Orta", questionCount: 14, status: "soon" },
+  { slug: "ikinci-derece-fonksiyonlar", title: "İkinci Dereceden Fonksiyonlar ve Grafikler", track: "11", unit: "fonksiyonlarda-islemler-11", summary: "Parabol grafikleri ve dönüşümler.", minutes: 8, difficulty: "Orta", questionCount: 18, status: "published" },
+  { slug: "fonksiyonlarin-donusumleri", title: "Fonksiyonların Dönüşümleri", track: "11", unit: "fonksiyonlarda-islemler-11", summary: "Öteleme, yansıma ve grafik dönüşümleri.", minutes: 7, difficulty: "Orta", questionCount: 18, status: "published" },
+
+  // ── 11. Sınıf · Denklem ve Eşitsizlik Sistemleri ──
+  { slug: "ikinci-derece-denklem-sistemleri-11", title: "İkinci Dereceden Denklem Sistemleri", track: "11", unit: "denklem-esitsizlik-11", summary: "İkinci dereceden iki bilinmeyenli denklem sistemlerinin çözümü.", minutes: 8, difficulty: "Zor", questionCount: 17, status: "published", keywords: ["denklem sistemi"] },
+  { slug: "ikinci-derece-esitsizlikler-11", title: "İkinci Dereceden Eşitsizlikler ve Sistemler", track: "11", unit: "denklem-esitsizlik-11", summary: "İkinci dereceden eşitsizlikler ve eşitsizlik sistemlerinin çözümü.", minutes: 8, difficulty: "Zor", questionCount: 19, status: "published", keywords: ["eşitsizlik sistemi", "işaret tablosu"] },
 
   // ── 11. Sınıf · Çember ve Daire ──
-  { slug: "cemberde-acilar", title: "Çemberde Açılar", track: "11", unit: "cember-daire-11", summary: "Merkez, çevre ve teğet-kiriş açıları.", minutes: 8, difficulty: "Orta", questionCount: 20, status: "soon" },
-  { slug: "dairede-alan-cevre", title: "Dairede Alan ve Çevre", track: "11", unit: "cember-daire-11", summary: "Daire dilimi, daire kesmesi alan ve yay uzunluğu.", minutes: 6, difficulty: "Orta", questionCount: 14, status: "soon" },
+  { slug: "cemberde-acilar", title: "Çemberde Açılar", track: "11", unit: "cember-daire-11", summary: "Merkez, çevre ve teğet-kiriş açıları.", minutes: 8, difficulty: "Orta", questionCount: 21, status: "published" },
+  { slug: "dairede-alan-cevre", title: "Dairede Alan ve Çevre", track: "11", unit: "cember-daire-11", summary: "Daire dilimi, daire kesmesi alan ve yay uzunluğu.", minutes: 6, difficulty: "Orta", questionCount: 20, status: "published" },
+
+  // ── 11. Sınıf · Uzay Geometri (Katı Cisimler) ──
+  { slug: "prizma-piramit-11", title: "Dik Prizma ve Piramit", track: "11", unit: "katı-cisimler-11", summary: "Dik prizma ve piramidin yüzey alanı ve hacmi.", minutes: 8, difficulty: "Orta", questionCount: 19, status: "published", keywords: ["prizma", "piramit", "hacim"] },
+  { slug: "silindir-koni-kure-11", title: "Silindir, Koni ve Küre", track: "11", unit: "katı-cisimler-11", summary: "Silindir, koni ve kürenin yüzey alanı ve hacmi.", minutes: 8, difficulty: "Orta", questionCount: 20, status: "published", keywords: ["silindir", "koni", "küre", "hacim"] },
 
   // ── 12. Sınıf · Üstel ve Logaritmik ──
   { slug: "ustel-fonksiyon", title: "Üstel Fonksiyon", track: "12", unit: "ustel-logaritma-12", summary: "Üstel fonksiyon, grafiği ve üstel denklemler.", minutes: 7, difficulty: "Orta", questionCount: 16, status: "soon" },
@@ -265,7 +273,13 @@ export const TOPICS: Topic[] = [
   { slug: "aritmetik-dizi", title: "Aritmetik Dizi", track: "12", unit: "diziler-12", summary: "Ortak fark, genel terim ve toplam formülü.", minutes: 7, difficulty: "Orta", questionCount: 18, status: "soon" },
   { slug: "geometrik-dizi", title: "Geometrik Dizi", track: "12", unit: "diziler-12", summary: "Ortak çarpan, genel terim ve toplam.", minutes: 7, difficulty: "Orta", questionCount: 18, status: "soon" },
 
+  // ── 12. Sınıf · Trigonometri ──
+  { slug: "yarim-aci-donusum-12", title: "Yarım Açı ve Dönüşüm Formülleri", track: "12", unit: "trigonometri-12", summary: "Yarım açı, toplam-çarpım ve çarpım-toplam dönüşüm formülleri.", minutes: 8, difficulty: "Zor", questionCount: 16, status: "soon", keywords: ["yarım açı", "dönüşüm formülleri"] },
+  { slug: "ters-trigonometrik-12", title: "Ters Trigonometrik Fonksiyonlar", track: "12", unit: "trigonometri-12", summary: "Arcsin, arccos, arctan fonksiyonları ve değerleri.", minutes: 7, difficulty: "Orta", questionCount: 14, status: "soon", keywords: ["arcsin", "arccos", "ters trigonometrik"] },
+
   // ── 12. Sınıf · Türev ──
+  { slug: "turevin-tanimi-12", title: "Türevin Tanımı ve Anlamı", track: "12", unit: "turev-12", summary: "Limitle türev tanımı, anlık değişim oranı ve teğetin eğimi.", minutes: 8, difficulty: "Orta", questionCount: 16, status: "soon", keywords: ["türev tanımı", "anlık değişim"] },
+  { slug: "turev-alma-kurallari-12", title: "Türev Alma Kuralları", track: "12", unit: "turev-12", summary: "Üs, çarpım, bölüm ve zincir kuralı ile türev alma.", minutes: 8, difficulty: "Orta", questionCount: 20, status: "soon", keywords: ["türev kuralları", "zincir kuralı"] },
   { slug: "turevde-uygulamalar", title: "Türevin Uygulamaları", track: "12", unit: "turev-12", summary: "Artan-azalan, ekstremum ve optimizasyon problemleri.", minutes: 9, difficulty: "Zor", questionCount: 24, status: "soon", keywords: ["ekstremum", "maksimum", "minimum", "optimizasyon"] },
 
   // ── 12. Sınıf · İntegral ──

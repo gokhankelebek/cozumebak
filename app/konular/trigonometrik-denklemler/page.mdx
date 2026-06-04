@@ -1,0 +1,423 @@
+import { topicMetadata } from "@/lib/seo";
+import { BirimCember } from "@/components/figures/BirimCemberFig";
+
+export const metadata = topicMetadata("trigonometrik-denklemler");
+
+<Konu slug="trigonometrik-denklemler" />
+
+<p className="lead">Bir trigonometrik denklem, bilinmeyeni bir açının trigonometrik oranının içinde olan denklemdir: $\sin x=\dfrac12$ gibi. Trigonometrik fonksiyonlar periyodik olduğundan bu denklemlerin **sonsuz çözümü** vardır; bu derste **temel trigonometrik denklemlerin** ($\sin x=a$, $\cos x=a$, $\tan x=a$) **genel çözümünü** ve verilen bir aralıktaki **çözüm kümesini** bulmayı öğreneceğiz. Birim çember, hangi açıların aynı değeri verdiğini görmemizi sağlayacak.</p>
+
+## 1. $\sin x = a$ Denklemi
+
+$\sin x=a$ ($-1\le a\le 1$) denkleminin birim çemberde **ordinatı $a$ olan** iki noktası vardır (genelde). Bir özel çözüm $\alpha$ ise, çözümler şöyledir:
+
+$$x=\alpha+2k\pi \quad\text{ve}\quad x=(\pi-\alpha)+2k\pi,\qquad k\in\mathbb{Z}$$
+
+$\pi-\alpha$ ifadesi, aynı ordinatlı ikinci noktayı (II. bölge eşi) verir.
+
+<Figur>
+
+<BirimCember />
+
+<Altyazi>Şekil 1 — $\sin x=a$ denkleminde, birim çemberde ordinatı $a$ olan iki nokta çözüm verir: biri $\alpha$ açısı, diğeri $\pi-\alpha$ açısıdır.</Altyazi>
+
+</Figur>
+
+<Ornek>
+
+<Soru>
+
+$\sin x=\dfrac12$ denkleminin genel çözümünü yazınız.
+
+</Soru>
+
+<Cozum>
+
+1. Bir özel çözüm: $\sin\dfrac{\pi}{6}=\dfrac12$, yani $\alpha=\dfrac{\pi}{6}$.
+2. Genel çözüm: $x=\dfrac{\pi}{6}+2k\pi$ veya $x=\pi-\dfrac{\pi}{6}+2k\pi=\dfrac{5\pi}{6}+2k\pi$, $k\in\mathbb{Z}$.
+
+<Cevap>$x=\dfrac{\pi}{6}+2k\pi$ veya $x=\dfrac{5\pi}{6}+2k\pi$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 2. $\cos x = a$ Denklemi
+
+$\cos x=a$ denkleminin çözümleri, birim çemberde **apsisi $a$ olan** noktalardır; bunlar $x$ ekseni etrafında simetriktir ($\alpha$ ve $-\alpha$):
+
+$$x=\pm\alpha+2k\pi,\qquad k\in\mathbb{Z}$$
+
+<Ornek>
+
+<Soru>
+
+$\cos x=\dfrac{\sqrt3}{2}$ denkleminin genel çözümünü yazınız.
+
+</Soru>
+
+<Cozum>
+
+1. Bir özel çözüm: $\cos\dfrac{\pi}{6}=\dfrac{\sqrt3}{2}$, yani $\alpha=\dfrac{\pi}{6}$.
+2. Genel çözüm: $x=\pm\dfrac{\pi}{6}+2k\pi$, $k\in\mathbb{Z}$.
+
+<Cevap>$x=\pm\dfrac{\pi}{6}+2k\pi$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 3. $\tan x = a$ Denklemi
+
+Tanjant fonksiyonunun periyodu $\pi$ olduğundan, bir özel çözüm $\alpha$ ise çözümler $\pi$ aralıklarla tekrarlanır:
+
+$$x=\alpha+k\pi,\qquad k\in\mathbb{Z}$$
+
+<Ornek>
+
+<Soru>
+
+$\tan x=1$ denkleminin genel çözümünü yazınız.
+
+</Soru>
+
+<Cozum>
+
+1. Bir özel çözüm: $\tan\dfrac{\pi}{4}=1$, yani $\alpha=\dfrac{\pi}{4}$.
+2. Periyot $\pi$: $x=\dfrac{\pi}{4}+k\pi$, $k\in\mathbb{Z}$.
+
+<Cevap>$x=\dfrac{\pi}{4}+k\pi$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 4. Belirli Aralıkta Çözüm Kümesi
+
+Çoğu soruda genel çözüm değil, $[0,2\pi)$ gibi belirli bir aralıktaki çözümler istenir. Genel çözümden $k$'ya tam sayı değerleri verip aralığa düşenleri seçeriz.
+
+<Ornek>
+
+<Soru>
+
+$\cos x=-\dfrac12$ denkleminin $[0,2\pi)$ aralığındaki çözüm kümesini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+$\cos$ negatif → II. ve III. bölge. Referans açı $\dfrac{\pi}{3}$'tür ($\cos\dfrac{\pi}{3}=\dfrac12$).
+
+</Ipucu>
+
+<Cozum>
+
+1. Referans açı $\dfrac{\pi}{3}$; kosinüs II ve III. bölgede negatiftir.
+2. II. bölge: $x=\pi-\dfrac{\pi}{3}=\dfrac{2\pi}{3}$.
+3. III. bölge: $x=\pi+\dfrac{\pi}{3}=\dfrac{4\pi}{3}$.
+
+<Cevap>$\left\{\dfrac{2\pi}{3},\ \dfrac{4\pi}{3}\right\}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Çözümlü Örnekler
+
+<Ornek>
+
+<Soru>
+
+$2\sin x-1=0$ denkleminin $[0,2\pi)$ aralığındaki çözüm kümesini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Denklemi sadeleştir: $\sin x=\dfrac12$.
+2. Sinüs pozitif → I ve II. bölge; referans açı $\dfrac{\pi}{6}$.
+3. I. bölge: $x=\dfrac{\pi}{6}$; II. bölge: $x=\pi-\dfrac{\pi}{6}=\dfrac{5\pi}{6}$.
+
+<Cevap>$\left\{\dfrac{\pi}{6},\ \dfrac{5\pi}{6}\right\}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\sqrt3\tan x-1=0$ denkleminin $[0,\pi)$ aralığındaki çözümünü bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $\tan x=\dfrac{1}{\sqrt3}=\dfrac{\sqrt3}{3}$.
+2. Bu değeri $\tan\dfrac{\pi}{6}$ verir, yani $x=\dfrac{\pi}{6}$.
+3. $[0,\pi)$ aralığında periyot $\pi$ olduğundan tek çözüm bu.
+
+<Cevap>$x=\dfrac{\pi}{6}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\cos x=1$ denkleminin $[0,2\pi)$ aralığındaki çözümünü bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Birim çemberde apsisi $1$ olan tek nokta hangisidir?
+
+</Ipucu>
+
+<Cozum>
+
+1. Apsisi $1$ olan nokta $(1,0)$'dır; bu $x=0$ açısına karşılık gelir.
+2. $[0,2\pi)$ aralığında tek çözüm $x=0$.
+
+<Cevap>$x=0$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$2\cos^2 x-1=0$ denkleminin $[0,2\pi)$ aralığındaki çözüm kümesini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+$\cos^2 x$'i yalnız bırak: $\cos^2 x=\dfrac12\Rightarrow \cos x=\pm\dfrac{\sqrt2}{2}$. Dört bölgenin tamamına bak.
+
+</Ipucu>
+
+<Cozum>
+
+1. $\cos^2 x=\dfrac12\Rightarrow \cos x=\pm\dfrac{\sqrt2}{2}$; referans açı $\dfrac{\pi}{4}$.
+2. $\cos x=\dfrac{\sqrt2}{2}$: $x=\dfrac{\pi}{4}$ (I), $x=\dfrac{7\pi}{4}$ (IV).
+3. $\cos x=-\dfrac{\sqrt2}{2}$: $x=\dfrac{3\pi}{4}$ (II), $x=\dfrac{5\pi}{4}$ (III).
+
+<Cevap>$\left\{\dfrac{\pi}{4},\ \dfrac{3\pi}{4},\ \dfrac{5\pi}{4},\ \dfrac{7\pi}{4}\right\}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Alıştırmalar — Sıra Sende
+
+> Önce kendin çözmeyi dene; sonra çözümü açıp karşılaştır.
+
+<Ornek>
+
+<Soru>
+
+$\sin x=0$ denkleminin $[0,2\pi)$ aralığındaki çözüm kümesini bul.
+
+</Soru>
+
+<Cozum>
+
+1. Ordinatı $0$ olan noktalar: $(1,0)$ ve $(-1,0)$.
+2. Açılar: $x=0$ ve $x=\pi$.
+
+<Cevap>$\{0,\ \pi\}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\cos x=0$ denkleminin $[0,2\pi)$ aralığındaki çözüm kümesini bul.
+
+</Soru>
+
+<Cozum>
+
+1. Apsisi $0$ olan noktalar: $(0,1)$ ve $(0,-1)$.
+2. Açılar: $x=\dfrac{\pi}{2}$ ve $x=\dfrac{3\pi}{2}$.
+
+<Cevap>$\left\{\dfrac{\pi}{2},\ \dfrac{3\pi}{2}\right\}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\tan x=\sqrt3$ denkleminin $[0,2\pi)$ aralığındaki çözüm kümesini bul.
+
+</Soru>
+
+<Cozum>
+
+1. $\tan\dfrac{\pi}{3}=\sqrt3$, yani referans açı $\dfrac{\pi}{3}$.
+2. Tanjant I ve III. bölgede pozitiftir: $x=\dfrac{\pi}{3}$ ve $x=\pi+\dfrac{\pi}{3}=\dfrac{4\pi}{3}$.
+
+<Cevap>$\left\{\dfrac{\pi}{3},\ \dfrac{4\pi}{3}\right\}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\sin x=\dfrac{\sqrt3}{2}$ denkleminin $[0,2\pi)$ aralığındaki çözüm kümesini bul.
+
+</Soru>
+
+<Cozum>
+
+1. Referans açı $\dfrac{\pi}{3}$; sinüs I ve II. bölgede pozitif.
+2. $x=\dfrac{\pi}{3}$ ve $x=\pi-\dfrac{\pi}{3}=\dfrac{2\pi}{3}$.
+
+<Cevap>$\left\{\dfrac{\pi}{3},\ \dfrac{2\pi}{3}\right\}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$2\cos x+\sqrt3=0$ denkleminin $[0,2\pi)$ aralığındaki çözüm kümesini bul.
+
+</Soru>
+
+<Cozum>
+
+1. $\cos x=-\dfrac{\sqrt3}{2}$; referans açı $\dfrac{\pi}{6}$, kosinüs II ve III. bölgede negatif.
+2. $x=\pi-\dfrac{\pi}{6}=\dfrac{5\pi}{6}$ ve $x=\pi+\dfrac{\pi}{6}=\dfrac{7\pi}{6}$.
+
+<Cevap>$\left\{\dfrac{5\pi}{6},\ \dfrac{7\pi}{6}\right\}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\tan x=-1$ denkleminin $[0,2\pi)$ aralığındaki çözüm kümesini bul.
+
+</Soru>
+
+<Cozum>
+
+1. Referans açı $\dfrac{\pi}{4}$; tanjant II ve IV. bölgede negatif.
+2. $x=\pi-\dfrac{\pi}{4}=\dfrac{3\pi}{4}$ ve $x=2\pi-\dfrac{\pi}{4}=\dfrac{7\pi}{4}$.
+
+<Cevap>$\left\{\dfrac{3\pi}{4},\ \dfrac{7\pi}{4}\right\}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\sin 2x=\dfrac{\sqrt2}{2}$ denkleminin $[0,2\pi)$ aralığındaki çözüm kümesini bul.
+
+</Soru>
+
+<Ipucu>
+
+$u=2x$ koy; $x\in[0,2\pi)$ iken $u\in[0,4\pi)$ olur. $\sin u=\dfrac{\sqrt2}{2}$'yi bu genişletilmiş aralıkta çöz, sonra $x=\dfrac{u}{2}$ al.
+
+</Ipucu>
+
+<Cozum>
+
+1. $u=2x$, $u\in[0,4\pi)$. $\sin u=\dfrac{\sqrt2}{2}$, referans açı $\dfrac{\pi}{4}$.
+2. $[0,2\pi)$ içinde: $u=\dfrac{\pi}{4},\ \dfrac{3\pi}{4}$. Bir tam tur ekle: $u=\dfrac{9\pi}{4},\ \dfrac{11\pi}{4}$.
+3. $x=\dfrac{u}{2}$: $x=\dfrac{\pi}{8},\ \dfrac{3\pi}{8},\ \dfrac{9\pi}{8},\ \dfrac{11\pi}{8}$.
+
+<Cevap>$\left\{\dfrac{\pi}{8},\ \dfrac{3\pi}{8},\ \dfrac{9\pi}{8},\ \dfrac{11\pi}{8}\right\}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$2\sin^2 x-3\sin x+1=0$ denkleminin $[0,2\pi)$ aralığındaki çözüm kümesini bul.
+
+</Soru>
+
+<Ipucu>
+
+$t=\sin x$ koy; ikinci dereceden $2t^2-3t+1=0$ denklemini çöz. Her $t$ kökü için $\sin x=t$'yi geri çöz ve $-1\le t\le 1$ koşulunu kontrol et.
+
+</Ipucu>
+
+<Cozum>
+
+1. $t=\sin x$: $2t^2-3t+1=0\Rightarrow (2t-1)(t-1)=0\Rightarrow t=\dfrac12$ veya $t=1$.
+2. $\sin x=1$: $x=\dfrac{\pi}{2}$.
+3. $\sin x=\dfrac12$: $x=\dfrac{\pi}{6}$ ve $x=\dfrac{5\pi}{6}$.
+
+<Cevap>$\left\{\dfrac{\pi}{6},\ \dfrac{\pi}{2},\ \dfrac{5\pi}{6}\right\}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\cos 2x=\sin x$ denkleminin $[0,2\pi)$ aralığındaki çözüm kümesini bul.
+
+</Soru>
+
+<Ipucu>
+
+$\cos 2x=1-2\sin^2 x$ özdeşliğiyle her şeyi $\sin x$ cinsine çevir; $t=\sin x$ ile ikinci dereceden denklem elde et.
+
+</Ipucu>
+
+<Cozum>
+
+1. $\cos 2x=1-2\sin^2 x$ koy: $1-2\sin^2 x=\sin x$.
+2. Düzenle: $2\sin^2 x+\sin x-1=0$. $t=\sin x$: $2t^2+t-1=0\Rightarrow (2t-1)(t+1)=0\Rightarrow t=\dfrac12$ veya $t=-1$.
+3. $\sin x=\dfrac12$: $x=\dfrac{\pi}{6},\ \dfrac{5\pi}{6}$. $\sin x=-1$: $x=\dfrac{3\pi}{2}$.
+
+<Cevap>$\left\{\dfrac{\pi}{6},\ \dfrac{5\pi}{6},\ \dfrac{3\pi}{2}\right\}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Tek çözümle yetinmek.** $\sin x=a$ ve $\cos x=a$ denklemlerinin bir periyotta genelde **iki** çözümü vardır; ikinci bölgeyi unutma.
+- **Genel çözümde periyodu karıştırmak.** $\sin$ ve $\cos$ için $2k\pi$, $\tan$ için $k\pi$ eklenir; tanjantın periyodu $\pi$'dir.
+- **Aralık dönüşümünü atlamak.** $\sin 2x=a$ türü denklemlerde $u=2x$ koyunca aralık da $[0,4\pi)$'ye genişler; bu aralıktaki tüm çözümleri al, sonra ikiye böl.
+- **Değer aralığını aşan kökü kabul etmek.** $\sin x=t$ ya da $\cos x=t$'de $t$ ancak $[-1,1]$ içindeyse çözüm verir; ikinci derece denklemden çıkan $|t|>1$ kökünü ele.
+
+> **Not:** Her trigonometrik denklemde önce **birim çemberde hangi bölgeler** o değeri veriyor diye düşün; işaret sana bölgeleri, referans açı da o bölgelerdeki tam açıları söyler. Karmaşık denklemleri $t=\sin x$ gibi bir değişken değiştirmeyle **cebirsel** bir denkleme indir, sonra geri çöz.
+
+<KonuNav slug="trigonometrik-denklemler" />
