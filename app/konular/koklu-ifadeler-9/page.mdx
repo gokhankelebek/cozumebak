@@ -1,0 +1,344 @@
+import { topicMetadata } from "@/lib/seo";
+
+export const metadata = topicMetadata("koklu-ifadeler-9");
+
+<Konu slug="koklu-ifadeler-9" />
+
+<p className="lead">Köklü ifade, üs almanın **ters işlemidir**: $5^2=25$ olduğundan $\sqrt{25}=5$. Bu derste kök kavramını, **köklü ifadelerde çarpma-bölme**yi, **kök içine/dışına sayı taşıma**yı, benzer köklü ifadeleri **toplama-çıkarma**yı ve **paydayı rasyonel yapma**yı öğreneceğiz. Köklü ifadeler üslü ifadelerin doğal devamıdır ($\sqrt{a}=a^{1/2}$) ve Pisagor, analitik geometri gibi pek çok konuda karşına çıkar. Bol örnek ve "Sıra Sende" alıştırmalarıyla ilerleyeceğiz.</p>
+
+## 1. Kök Kavramı
+
+Negatif olmayan bir $a$ sayısı için $\sqrt{a}$, karesi $a$ olan **negatif olmayan** sayıdır:
+
+$$\sqrt{a}=b \iff b^2=a \quad (a\ge 0,\ b\ge 0)$$
+
+Buna **karekök** denir. Genel olarak $\sqrt[n]{a}$, $n.$ kuvveti $a$ olan sayıdır ($n$. dereceden kök). Köklü ifade üslü biçimde de yazılır: $\sqrt{a}=a^{\frac{1}{2}}$, $\sqrt[n]{a}=a^{\frac{1}{n}}$.
+
+Önemli: $\sqrt{a^2}=|a|$'dır. Örneğin $\sqrt{(-5)^2}=\sqrt{25}=5=|-5|$.
+
+<Ornek>
+
+<Soru>
+
+$\sqrt{49}$, $\sqrt[3]{8}$ ve $\sqrt{(-7)^2}$ değerlerini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $\sqrt{49}=7$ çünkü $7^2=49$.
+2. $\sqrt[3]{8}=2$ çünkü $2^3=8$.
+3. $\sqrt{(-7)^2}=\sqrt{49}=7$ (sonuç negatif olamaz; $|-7|=7$).
+
+<Cevap>$7,\ 2,\ 7$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 2. Çarpma ve Bölme
+
+Aynı dereceden kökler tek bir kök altında çarpılıp bölünebilir:
+
+$$\sqrt{a}\cdot\sqrt{b}=\sqrt{a\cdot b} \qquad\qquad \dfrac{\sqrt{a}}{\sqrt{b}}=\sqrt{\dfrac{a}{b}}\quad (b>0)$$
+
+<Ornek>
+
+<Soru>
+
+$\sqrt{3}\cdot\sqrt{12}$ ve $\dfrac{\sqrt{50}}{\sqrt{2}}$ ifadelerini hesaplayınız.
+
+</Soru>
+
+<Cozum>
+
+1. Çarpımı tek kök altında topla: $\sqrt{3}\cdot\sqrt{12}=\sqrt{36}=6$.
+2. Bölümü tek kök altında yaz: $\dfrac{\sqrt{50}}{\sqrt{2}}=\sqrt{\dfrac{50}{2}}=\sqrt{25}=5$.
+
+<Cevap>$6$ ve $5$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 3. Kök İçine ve Dışına Sayı Taşıma
+
+Kök içindeki bir çarpanın **tam kare** kısmı dışarı çıkarılabilir:
+
+$$\sqrt{a^2\cdot b}=a\sqrt{b}\quad (a\ge 0)$$
+
+Tersine, dışarıdaki bir sayı kareyle çarpılarak içeri alınır: $a\sqrt{b}=\sqrt{a^2 b}$.
+
+<Ornek>
+
+<Soru>
+
+$\sqrt{72}$ ifadesini en sade köklü biçimde yazınız.
+
+</Soru>
+
+<Ipucu>
+
+$72$'yi bir **tam kare** ile başka bir sayının çarpımı olarak ayır: $72=36\cdot 2$.
+
+</Ipucu>
+
+<Cozum>
+
+1. Tam kare çarpan bul: $72=36\cdot 2$.
+2. Kareyi dışarı çıkar: $\sqrt{72}=\sqrt{36}\cdot\sqrt{2}=6\sqrt{2}$.
+
+<Cevap>$6\sqrt{2}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 4. Toplama ve Çıkarma
+
+Köklü ifadeler ancak **kök içleri aynıysa** (benzer köklüyse) toplanıp çıkarılır; katsayılar toplanır, kök aynı kalır:
+
+$$m\sqrt{c}\pm n\sqrt{c}=(m\pm n)\sqrt{c}$$
+
+Kök içleri farklıysa önce sadeleştirip benzer hale getirmeyi dene.
+
+<Ornek>
+
+<Soru>
+
+$\sqrt{8}+3\sqrt{2}$ işlemini yapınız.
+
+</Soru>
+
+<Cozum>
+
+1. Önce $\sqrt{8}$'i sadeleştir: $\sqrt{8}=\sqrt{4\cdot 2}=2\sqrt{2}$.
+2. Artık kök içleri aynı: $2\sqrt{2}+3\sqrt{2}=(2+3)\sqrt{2}=5\sqrt{2}$.
+
+<Cevap>$5\sqrt{2}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 5. Paydayı Rasyonel Yapma
+
+Paydadaki kökten kurtulmak için pay ve paydayı uygun bir ifadeyle çarparız:
+
+$$\dfrac{1}{\sqrt{a}}=\dfrac{\sqrt{a}}{a} \qquad\qquad \dfrac{1}{\sqrt{a}+\sqrt{b}}=\dfrac{\sqrt{a}-\sqrt{b}}{a-b}$$
+
+İkinci durumda paydanın **eşleniği** ($\sqrt{a}-\sqrt{b}$) ile çarpılır.
+
+<Ornek>
+
+<Soru>
+
+$\dfrac{6}{\sqrt{3}}$ ifadesinin paydasını rasyonel yapınız.
+
+</Soru>
+
+<Cozum>
+
+1. Pay ve paydayı $\sqrt{3}$ ile çarp: $\dfrac{6}{\sqrt{3}}\cdot\dfrac{\sqrt{3}}{\sqrt{3}}=\dfrac{6\sqrt{3}}{3}$.
+2. Sadeleştir: $\dfrac{6\sqrt{3}}{3}=2\sqrt{3}$.
+
+<Cevap>$2\sqrt{3}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Çözümlü Örnekler
+
+<Ornek>
+
+<Soru>
+
+$\sqrt{45}-\sqrt{20}$ işlemini yapınız.
+
+</Soru>
+
+<Cozum>
+
+1. Her köklüyü sadeleştir: $\sqrt{45}=\sqrt{9\cdot 5}=3\sqrt{5}$, $\;\sqrt{20}=\sqrt{4\cdot 5}=2\sqrt{5}$.
+2. Benzer köklüleri çıkar: $3\sqrt{5}-2\sqrt{5}=\sqrt{5}$.
+
+<Cevap>$\sqrt{5}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\sqrt{2}\cdot\sqrt{6}\cdot\sqrt{3}$ ifadesini hesaplayınız.
+
+</Soru>
+
+<Cozum>
+
+1. Tek kök altında çarp: $\sqrt{2\cdot 6\cdot 3}=\sqrt{36}$.
+2. $\sqrt{36}=6$.
+
+<Cevap>$6$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\dfrac{1}{\sqrt{5}-2}$ ifadesinin paydasını rasyonel yapınız.
+
+</Soru>
+
+<Ipucu>
+
+Paydanın eşleniği $\sqrt{5}+2$'dir. Pay ve paydayı bununla çarp; payda $(\sqrt5)^2-2^2$ olur.
+
+</Ipucu>
+
+<Cozum>
+
+1. Eşlenikle çarp: $\dfrac{1}{\sqrt{5}-2}\cdot\dfrac{\sqrt{5}+2}{\sqrt{5}+2}=\dfrac{\sqrt{5}+2}{(\sqrt{5})^2-2^2}$.
+2. Paydayı hesapla: $(\sqrt{5})^2-2^2=5-4=1$.
+3. Sonuç: $\dfrac{\sqrt{5}+2}{1}=\sqrt{5}+2$.
+
+<Cevap>$\sqrt{5}+2$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\sqrt{3}=a$ ise $\sqrt{27}$ ifadesini $a$ cinsinden yazınız.
+
+</Soru>
+
+<Cozum>
+
+1. $\sqrt{27}$'yi sadeleştir: $\sqrt{27}=\sqrt{9\cdot 3}=3\sqrt{3}$.
+2. $\sqrt{3}=a$ yerine koy: $3\sqrt{3}=3a$.
+
+<Cevap>$3a$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Alıştırmalar — Sıra Sende
+
+> Önce kendin çözmeyi dene; sonra çözümü açıp karşılaştır.
+
+<Ornek>
+
+<Soru>
+
+$\sqrt{200}$ ifadesini en sade köklü biçimde yaz.
+
+</Soru>
+
+<Cozum>
+
+1. Tam kare çarpan: $200=100\cdot 2$.
+2. $\sqrt{200}=10\sqrt{2}$.
+
+<Cevap>$10\sqrt{2}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$2\sqrt{3}+\sqrt{12}-\sqrt{27}$ işlemini yap.
+
+</Soru>
+
+<Cozum>
+
+1. Sadeleştir: $\sqrt{12}=2\sqrt{3}$, $\;\sqrt{27}=3\sqrt{3}$.
+2. Topla-çıkar: $2\sqrt{3}+2\sqrt{3}-3\sqrt{3}=(2+2-3)\sqrt{3}=\sqrt{3}$.
+
+<Cevap>$\sqrt{3}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\dfrac{\sqrt{18}}{\sqrt{2}}$ ifadesini hesapla.
+
+</Soru>
+
+<Cozum>
+
+1. Tek kök altında yaz: $\sqrt{\dfrac{18}{2}}=\sqrt{9}=3$.
+
+<Cevap>$3$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\dfrac{10}{\sqrt{5}}$ ifadesinin paydasını rasyonel yap.
+
+</Soru>
+
+<Cozum>
+
+1. $\sqrt{5}$ ile çarp: $\dfrac{10\sqrt{5}}{5}$.
+2. Sadeleştir: $2\sqrt{5}$.
+
+<Cevap>$2\sqrt{5}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\sqrt{(-9)^2}+\sqrt{16}$ işleminin sonucunu bul.
+
+</Soru>
+
+<Cozum>
+
+1. $\sqrt{(-9)^2}=|-9|=9$.
+2. $\sqrt{16}=4$.
+3. Topla: $9+4=13$.
+
+<Cevap>$13$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **$\sqrt{a+b}=\sqrt{a}+\sqrt{b}$ sanmak.** Bu **yanlıştır**; kök, toplama üzerine dağılmaz. Örneğin $\sqrt{9+16}=\sqrt{25}=5$, ama $\sqrt{9}+\sqrt{16}=3+4=7$.
+- **Kök içleri farklı olanı toplamak.** $2\sqrt{3}+\sqrt{2}$ sadeleşmez; yalnız **benzer köklüler** toplanır.
+- **$\sqrt{a^2}=a$ demek.** Doğrusu $\sqrt{a^2}=|a|$'dır; sonuç negatif olamaz.
+- **Sadeleştirmeden işlem yapmak.** Toplama/çıkarmada önce her köklüyü $a\sqrt{b}$ biçimine getir; benzerlik çoğu zaman ancak o zaman görünür.
+
+> **Not:** Köklü ifadelerde ilk refleksin **sadeleştirme** olsun: kök içini tam kare çarpanlarına ayır. Payda köklüyse **eşlenikle** çarparak rasyonel yap; iki terimli paydalarda eşlenik, ortadaki işaretin tersidir.
+
+<KonuNav slug="koklu-ifadeler-9" />

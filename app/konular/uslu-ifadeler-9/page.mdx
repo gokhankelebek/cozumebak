@@ -1,0 +1,343 @@
+import { topicMetadata } from "@/lib/seo";
+
+export const metadata = topicMetadata("uslu-ifadeler-9");
+
+<Konu slug="uslu-ifadeler-9" />
+
+<p className="lead">Aynı sayıyı tekrar tekrar çarpmak yerine **üslü ifade** yazarız: $2\cdot 2\cdot 2\cdot 2 = 2^4$. Bu derste üs kavramını, **üslü ifadelerin özelliklerini** (çarpma, bölme, kuvvetin kuvveti), **negatif ve sıfır üssü** ile **negatif tabanlı** ifadelerin işaretini öğreneceğiz. Üslü ifadeler, *Sayılar* temasının geri kalanında (köklü ifadeler, bilimsel gösterim) ve ileride üstel fonksiyonlarda sürekli karşına çıkar. Her kuralı bol örnek ve "Sıra Sende" alıştırmalarıyla pekiştireceğiz.</p>
+
+## 1. Üs Kavramı
+
+$a$ bir gerçek sayı, $n$ bir pozitif tam sayı olmak üzere $a^n$, $a$ sayısının kendisiyle $n$ kez çarpımıdır:
+
+$$a^n=\underbrace{a\cdot a\cdots a}_{n\ \text{tane}}$$
+
+Burada $a$ ya **taban**, $n$ ise **üs (kuvvet)** denir. Özel olarak:
+
+- $a^1=a$
+- $a^0=1$ (yalnız $a\neq 0$ için; $0^0$ tanımsızdır)
+
+<Ornek>
+
+<Soru>
+
+$3^4$ ifadesinin değerini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Tabanı $4$ kez çarp: $3\cdot 3\cdot 3\cdot 3$.
+2. Adım adım: $3\cdot 3=9$, $\;9\cdot 3=27$, $\;27\cdot 3=81$.
+
+<Cevap>$3^4=81$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 2. Çarpma ve Bölme Kuralı
+
+**Tabanlar aynıysa**, çarpmada üsler toplanır, bölmede çıkarılır:
+
+$$a^m\cdot a^n=a^{m+n} \qquad\qquad \dfrac{a^m}{a^n}=a^{m-n}\quad (a\neq 0)$$
+
+<Ornek>
+
+<Soru>
+
+$2^5\cdot 2^3$ ve $\dfrac{7^6}{7^2}$ ifadelerini tek bir üslü ifade olarak yazınız.
+
+</Soru>
+
+<Cozum>
+
+1. Çarpmada üsleri topla: $2^5\cdot 2^3=2^{5+3}=2^{8}$.
+2. Bölmede üsleri çıkar: $\dfrac{7^6}{7^2}=7^{6-2}=7^{4}$.
+
+<Cevap>$2^8$ ve $7^4$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 3. Kuvvetin Kuvveti ve Çarpımın Kuvveti
+
+$$(a^m)^n=a^{m\cdot n} \qquad (a\cdot b)^n=a^n\cdot b^n \qquad \left(\dfrac{a}{b}\right)^n=\dfrac{a^n}{b^n}$$
+
+Dikkat: $(a^m)^n$ ile $a^{m^n}$ **farklıdır**. İlkinde üsler çarpılır, ikincisi üst üste üstür.
+
+<Ornek>
+
+<Soru>
+
+$(x^3)^4$ ve $(2y)^3$ ifadelerini sadeleştiriniz.
+
+</Soru>
+
+<Cozum>
+
+1. Kuvvetin kuvvetinde üsleri çarp: $(x^3)^4=x^{3\cdot 4}=x^{12}$.
+2. Çarpımın kuvvetinde her çarpanı üs al: $(2y)^3=2^3\cdot y^3=8y^3$.
+
+<Cevap>$x^{12}$ ve $8y^3$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 4. Negatif Üs
+
+Negatif üs, sayının **çarpmaya göre tersini** (resiprokunu) gösterir:
+
+$$a^{-n}=\dfrac{1}{a^n}\quad (a\neq 0) \qquad\qquad \left(\dfrac{a}{b}\right)^{-n}=\left(\dfrac{b}{a}\right)^{n}$$
+
+<Ornek>
+
+<Soru>
+
+$2^{-3}$ ve $\left(\dfrac{3}{5}\right)^{-2}$ ifadelerini hesaplayınız.
+
+</Soru>
+
+<Ipucu>
+
+Negatif üs gördüğünde önce ifadeyi ters çevir, üssü pozitife döndür; sonra hesapla.
+
+</Ipucu>
+
+<Cozum>
+
+1. $2^{-3}=\dfrac{1}{2^3}=\dfrac{1}{8}$.
+2. Kesirde tabanı ters çevir, üssü pozitif yap: $\left(\dfrac{3}{5}\right)^{-2}=\left(\dfrac{5}{3}\right)^{2}=\dfrac{25}{9}$.
+
+<Cevap>$\dfrac{1}{8}$ ve $\dfrac{25}{9}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 5. Negatif Tabanın İşareti
+
+Taban negatifse, sonucun işaretini **üssün tek/çift olması** belirler:
+
+- Üs **çift** ise sonuç **pozitif**: $(-2)^4=16$.
+- Üs **tek** ise sonuç **negatif**: $(-2)^3=-8$.
+
+Ayrıca $(-a)^n$ ile $-a^n$ farklıdır: $-2^4=-(2^4)=-16$ ama $(-2)^4=16$. Parantez, tabanın eksiyi de kapsayıp kapsamadığını belirler.
+
+<Ornek>
+
+<Soru>
+
+$(-3)^2$, $\;-3^2$ ve $(-1)^{99}$ ifadelerini hesaplayınız.
+
+</Soru>
+
+<Cozum>
+
+1. $(-3)^2$: taban $-3$, üs çift → pozitif: $9$.
+2. $-3^2$: yalnız $3$ üslü, sonuç eksilenir: $-(3^2)=-9$.
+3. $(-1)^{99}$: üs tek → negatif: $-1$.
+
+<Cevap>$9,\ -9,\ -1$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Çözümlü Örnekler
+
+<Ornek>
+
+<Soru>
+
+$\dfrac{3^4\cdot 3^2}{3^5}$ ifadesini sadeleştiriniz.
+
+</Soru>
+
+<Cozum>
+
+1. Paydaki çarpımda üsleri topla: $3^4\cdot 3^2=3^{6}$.
+2. Bölmede üsleri çıkar: $\dfrac{3^6}{3^5}=3^{6-5}=3^1=3$.
+
+<Cevap>$3$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$2^{-2}+3^{0}+\left(\dfrac{1}{2}\right)^{-1}$ işleminin sonucunu bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $2^{-2}=\dfrac{1}{4}$.
+2. $3^0=1$.
+3. $\left(\dfrac{1}{2}\right)^{-1}=\dfrac{2}{1}=2$.
+4. Topla: $\dfrac{1}{4}+1+2=\dfrac{1}{4}+3=\dfrac{13}{4}$.
+
+<Cevap>$\dfrac{13}{4}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\dfrac{2^{10}}{4^3}$ ifadesini $2$ tabanında tek üslü ifade olarak yazınız.
+
+</Soru>
+
+<Ipucu>
+
+Paydadaki $4$'ü $2$ tabanına çevir: $4=2^2$. Böylece taban birleşir.
+
+</Ipucu>
+
+<Cozum>
+
+1. $4^3=(2^2)^3=2^{6}$.
+2. İfade: $\dfrac{2^{10}}{2^6}=2^{10-6}=2^{4}$.
+
+<Cevap>$2^4\ (=16)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$a^3=5$ ise $a^9$ kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. $a^9=(a^3)^3$ olarak yaz.
+2. Yerine koy: $(a^3)^3=5^3=125$.
+
+<Cevap>$a^9=125$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Alıştırmalar — Sıra Sende
+
+> Önce kendin çözmeyi dene; sonra çözümü açıp karşılaştır.
+
+<Ornek>
+
+<Soru>
+
+$5^3\cdot 5^{-1}$ ifadesini sadeleştir.
+
+</Soru>
+
+<Cozum>
+
+1. Üsleri topla: $5^{3+(-1)}=5^{2}=25$.
+
+<Cevap>$25$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$(-2)^5$ ve $(-2)^6$ değerlerini bul.
+
+</Soru>
+
+<Cozum>
+
+1. $(-2)^5$: üs tek → negatif: $-32$.
+2. $(-2)^6$: üs çift → pozitif: $64$.
+
+<Cevap>$-32$ ve $64$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\left(\dfrac{2}{3}\right)^{-3}$ ifadesini hesapla.
+
+</Soru>
+
+<Cozum>
+
+1. Tabanı ters çevir, üssü pozitif yap: $\left(\dfrac{3}{2}\right)^{3}$.
+2. $=\dfrac{27}{8}$.
+
+<Cevap>$\dfrac{27}{8}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\dfrac{9^2\cdot 3}{27}$ ifadesini $3$ tabanında tek üslü ifade olarak yaz.
+
+</Soru>
+
+<Cozum>
+
+1. Her şeyi $3$ tabanına çevir: $9=3^2$, $27=3^3$.
+2. Pay: $9^2\cdot 3=(3^2)^2\cdot 3^1=3^4\cdot 3^1=3^5$.
+3. Bölme: $\dfrac{3^5}{3^3}=3^{2}$.
+
+<Cevap>$3^2\ (=9)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$2^x=8$ ise $x$ kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. $8$'i $2$ tabanında yaz: $8=2^3$.
+2. Tabanlar eşit olduğundan üsler eşittir: $x=3$.
+
+<Cevap>$x=3$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **$a^m\cdot a^n$'i $a^{m\cdot n}$ sanmak.** Tabanlar aynıyken çarpmada üsler **toplanır**, çarpılmaz: $a^m\cdot a^n=a^{m+n}$.
+- **$-a^n$ ile $(-a)^n$'i karıştırmak.** Parantez yoksa eksi üsse dâhil değildir: $-2^4=-16$, ama $(-2)^4=16$.
+- **$a^0=0$ demek.** Sıfırdan farklı her sayının sıfırıncı kuvveti $1$'dir: $a^0=1$.
+- **Negatif üssü "sonuç negatif" sanmak.** Negatif üs işareti değiştirmez, ifadeyi tersine çevirir: $2^{-3}=\dfrac{1}{8}>0$.
+
+> **Not:** Farklı tabanlı bir ifadeyi sadeleştirmeden önce her şeyi **ortak tabana** çevir ($4=2^2$, $9=3^2$, $8=2^3$, $27=3^3$). Taban birleşince üs kuralları doğrudan uygulanır.
+
+<KonuNav slug="uslu-ifadeler-9" />
