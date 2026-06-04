@@ -1,0 +1,296 @@
+import { topicMetadata } from "@/lib/seo";
+import { Thales } from "@/components/figures/BenzerlikFig";
+import { Pisagor } from "@/components/figures/DikUcgenFig";
+
+export const metadata = topicMetadata("tales-oklid-pisagor-9");
+
+<Konu slug="tales-oklid-pisagor-9" />
+
+<p className="lead">Benzerliğin en güçlü üç sonucu **Tales**, **Öklid** ve **Pisagor** teoremleridir. Bu derste paralel doğruların kenarları orantılı böldüğünü (**Tales**), dik üçgende yüksekliğin kurduğu bağıntıları (**Öklid**) ve dik kenarlarla hipotenüs arasındaki ünlü ilişkiyi (**Pisagor**) öğreneceğiz. Bu üç teorem, geometri ve analitik geometride uzunluk hesabının belkemiğidir. Bol şekil, örnek ve "Sıra Sende" alıştırmalarıyla pekiştireceğiz.</p>
+
+## 1. Tales Teoremi
+
+Bir üçgende bir kenara **paralel** çizilen doğru, diğer iki kenarı **orantılı parçalara** böler. Daha genel olarak, paralel doğru demeti, kestiği doğrularda orantılı parçalar oluşturur:
+
+$$\dfrac{|AD|}{|DB|}=\dfrac{|AE|}{|EC|}$$
+
+<Figur>
+
+<Thales />
+
+<Altyazi>Şekil 1 — $ABC$ üçgeninde $BC$ kenarına paralel $DE$ doğrusu. Kenarları orantılı böler: $\dfrac{|AD|}{|DB|}=\dfrac{|AE|}{|EC|}$.</Altyazi>
+
+</Figur>
+
+<Ornek>
+
+<Soru>
+
+Bir üçgende tabana paralel bir doğru çiziliyor. $|AD|=4$, $|DB|=6$ ve $|AE|=6$ ise $|EC|$ kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. Tales orantısı: $\dfrac{|AD|}{|DB|}=\dfrac{|AE|}{|EC|}$, yani $\dfrac{4}{6}=\dfrac{6}{|EC|}$.
+2. İçler-dışlar: $4\cdot|EC|=36\Rightarrow |EC|=9$.
+
+<Cevap>$|EC|=9$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 2. Öklid Bağıntıları
+
+Dik üçgende, dik açıdan hipotenüse indirilen **yükseklik** $h$ üçgeni iki küçük üçgene böler. Hipotenüsün ayrılan parçaları $p$ ve $k$ olmak üzere:
+
+$$h^2=p\cdot k \qquad\qquad a^2=p\cdot c \quad\text{(bir dik kenarın karesi)}$$
+
+Burada $c$ hipotenüs, $p$ ise o dik kenarın hipotenüs üzerindeki **izdüşümüdür**. Bu bağıntılar üçgenin benzerliğinden gelir.
+
+<Ornek>
+
+<Soru>
+
+Bir dik üçgende, dik açıdan inen yüksekliğin hipotenüsü ayırdığı parçalar $4$ ve $9$'dur. Yüksekliğin uzunluğunu bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Öklid'in yükseklik bağıntısı: yükseklik$^2$ $=$ iki parçanın çarpımı.
+
+</Ipucu>
+
+<Cozum>
+
+1. $h^2=p\cdot k=4\cdot 9=36$.
+2. $h=\sqrt{36}=6$.
+
+<Cevap>$h=6$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 3. Pisagor Teoremi
+
+Dik üçgende, dik kenarların kareleri toplamı hipotenüsün karesine eşittir:
+
+$$a^2+b^2=c^2$$
+
+Burada $c$ en uzun kenar olan **hipotenüs** (dik açının karşısı), $a$ ve $b$ ise dik kenarlardır.
+
+<Figur>
+
+<Pisagor />
+
+<Altyazi>Şekil 2 — Dik kenarları $a$ ve $b$, hipotenüsü $c$ olan dik üçgen. $a^2+b^2=c^2$'dir.</Altyazi>
+
+</Figur>
+
+Sık geçen tam sayı üçlüleri (**Pisagor üçlüleri**): $(3,4,5)$, $(5,12,13)$, $(8,15,17)$ ve bunların katları.
+
+<Ornek>
+
+<Soru>
+
+Dik kenarları $6$ ve $8$ olan dik üçgenin hipotenüsünü bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Pisagor: $c^2=6^2+8^2=36+64=100$.
+2. $c=\sqrt{100}=10$.
+
+<Cevap>$c=10$ (bu bir $3\text{-}4\text{-}5$ üçlüsünün $2$ katıdır).</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Çözümlü Örnekler
+
+<Ornek>
+
+<Soru>
+
+Tales'e göre $\dfrac{|AD|}{|DB|}=\dfrac{2}{3}$ ve $|AE|=8$ ise $|EC|$ kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. $\dfrac{|AD|}{|DB|}=\dfrac{|AE|}{|EC|}\Rightarrow \dfrac{2}{3}=\dfrac{8}{|EC|}$.
+2. $2\cdot|EC|=24\Rightarrow |EC|=12$.
+
+<Cevap>$12$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir dik üçgende hipotenüse inen yükseklik $12$, hipotenüsün bir parçası $9$'dur. Diğer parça kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. Öklid: $h^2=p\cdot k\Rightarrow 12^2=9\cdot k$.
+2. $144=9k\Rightarrow k=16$.
+
+<Cevap>$16$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Hipotenüsü $13$, bir dik kenarı $5$ olan dik üçgenin diğer dik kenarını bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Pisagor: $5^2+b^2=13^2\Rightarrow 25+b^2=169$.
+2. $b^2=144\Rightarrow b=12$.
+
+<Cevap>$b=12$ ($5\text{-}12\text{-}13$ üçlüsü).</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Kenar uzunlukları $9,\ 12,\ 15$ olan üçgen dik üçgen midir?
+
+</Soru>
+
+<Cozum>
+
+1. En uzun kenar $15$; Pisagor'u dene: $9^2+12^2=81+144=225$.
+2. $15^2=225$; eşitlik sağlanıyor.
+
+<Cevap>Evet, dik üçgendir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Alıştırmalar — Sıra Sende
+
+> Önce kendin çözmeyi dene; sonra çözümü açıp karşılaştır.
+
+<Ornek>
+
+<Soru>
+
+Tales orantısında $\dfrac{|AD|}{|DB|}=\dfrac{3}{5}$ ve $|EC|=20$ ise $|AE|$ kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. $\dfrac{3}{5}=\dfrac{|AE|}{20}\Rightarrow 5\cdot|AE|=60\Rightarrow |AE|=12$.
+
+<Cevap>$12$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Hipotenüse inen yüksekliğin ayırdığı parçalar $2$ ve $8$ ise yükseklik kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. $h^2=2\cdot 8=16\Rightarrow h=4$.
+
+<Cevap>$4$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Dik kenarları $9$ ve $12$ olan dik üçgenin hipotenüsü kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. $c^2=9^2+12^2=81+144=225\Rightarrow c=15$.
+
+<Cevap>$15$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Hipotenüsü $17$, bir dik kenarı $8$ olan dik üçgenin diğer dik kenarı kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. $8^2+b^2=17^2\Rightarrow 64+b^2=289\Rightarrow b^2=225\Rightarrow b=15$.
+
+<Cevap>$15$ ($8\text{-}15\text{-}17$ üçlüsü).</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir merdiven duvara dayanıyor; ayağı duvardan $3$ m, üst ucu yerden $4$ m yüksekte. Merdivenin boyu kaç metredir?
+
+</Soru>
+
+<Cozum>
+
+1. Duvar–yer–merdiven bir dik üçgendir: $c^2=3^2+4^2=9+16=25$.
+2. $c=5$.
+
+<Cevap>$5$ m.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Tales için paralelliği kontrol etmemek.** Orantı yalnız kesen doğru bir kenara **paralelse** geçerlidir.
+- **Pisagor'da hipotenüsü yanlış seçmek.** $c$ daima **en uzun kenar** ve dik açının karşısıdır; dik kenarlardan birini hipotenüs sanma.
+- **Öklid'de yükseklik ile dik kenar bağıntısını karıştırmak.** Yükseklik için $h^2=p\cdot k$; dik kenar için $a^2=p\cdot c$ (izdüşüm $\times$ hipotenüs).
+- **Pisagor üçlülerini ezberden yanlış kullanmak.** $(3,4,5),(5,12,13),(8,15,17)$ ve **katları** geçerlidir; örneğin $6,8,10$ gibi.
+
+> **Not:** Üç teoremin de kaynağı **benzerliktir**. Bir dik üçgen sorusunda önce Pisagor üçlülerini hatırla ($3\text{-}4\text{-}5$, $5\text{-}12\text{-}13$); çoğu soru bunların katıdır ve işini çok hızlandırır.
+
+<KonuNav slug="tales-oklid-pisagor-9" />

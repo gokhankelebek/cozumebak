@@ -1,0 +1,310 @@
+import { topicMetadata } from "@/lib/seo";
+import { BenzerUcgenler } from "@/components/figures/BenzerlikFig";
+
+export const metadata = topicMetadata("ucgende-eslik-benzerlik-9");
+
+<Konu slug="ucgende-eslik-benzerlik-9" />
+
+<p className="lead">İki üçgen ya birebir aynıdır (**eş**) ya da biri diğerinin büyütülmüş/küçültülmüş hâlidir (**benzer**). Bu derste eşlik ve benzerliğin koşullarını (K.A.K, A.K.A, A.A gibi), benzer üçgenlerde **karşılıklı kenarların orantılı** olduğunu ve **benzerlik oranını** öğreneceğiz. Benzerlik, doğrudan ölçülemeyen uzunlukları (gölge boyu, harita ölçeği) bulmanın anahtarıdır. Bol şekil, örnek ve "Sıra Sende" alıştırmalarıyla pekiştireceğiz.</p>
+
+## 1. Eşlik
+
+İki üçgen, **karşılıklı kenarları ve açıları birebir eşitse eştir** ($\cong$). Eşliği kanıtlamak için tüm altı ölçüye gerek yoktur; şu koşullardan biri yeter:
+
+- **K.K.K** — üç kenar karşılıklı eşit.
+- **K.A.K** — iki kenar ve aralarındaki açı eşit.
+- **A.K.A** — iki açı ve aralarındaki kenar eşit.
+
+Eş üçgenlerin benzerlik oranı $1$'dir (aynı boyut).
+
+<Ornek>
+
+<Soru>
+
+$ABC$ ve $DEF$ üçgenlerinde $|AB|=|DE|$, $\widehat{A}=\widehat{D}$ ve $|AC|=|DF|$ veriliyor. Bu üçgenler eş midir? Hangi kurala göre?
+
+</Soru>
+
+<Cozum>
+
+1. İki kenar ($AB=DE$, $AC=DF$) ve **aralarındaki** açı ($\widehat{A}=\widehat{D}$) eşit.
+2. Bu, K.A.K eşlik kuralıdır.
+
+<Cevap>Evet, K.A.K kuralına göre eştir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 2. Benzerlik
+
+İki üçgen, **karşılıklı açıları eşit** ve **karşılıklı kenarları orantılı** ise benzerdir ($\sim$). Benzerliği göstermek için en pratik koşul:
+
+- **A.A** — iki açısı karşılıklı eşit olan üçgenler benzerdir (üçüncü açı zaten eşit olur).
+
+<Figur>
+
+<BenzerUcgenler />
+
+<Altyazi>Şekil 1 — Karşılıklı açıları eşit iki benzer üçgen. Karşılıklı kenarlar aynı oranda büyür; bu ortak orana **benzerlik oranı** ($k$) denir.</Altyazi>
+
+</Figur>
+
+Benzer üçgenlerde karşılıklı kenarların oranı sabittir:
+
+$$\dfrac{a_1}{a_2}=\dfrac{b_1}{b_2}=\dfrac{c_1}{c_2}=k$$
+
+<Ornek>
+
+<Soru>
+
+$ABC\sim DEF$ ve benzerlik oranı $k=\dfrac{|AB|}{|DE|}=\dfrac{3}{1}$'dir. $|DE|=5$ ise $|AB|$ kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. Oran: $\dfrac{|AB|}{|DE|}=3$.
+2. $|AB|=3\cdot|DE|=3\cdot 5=15$.
+
+<Cevap>$|AB|=15$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 3. Benzerlik Oranı ve Kenarlar
+
+Benzer üçgenlerde bir kenar verildiğinde, karşılığı orantıyla bulunur. Karşılıklı kenarları doğru eşlemek için **eşit açıların karşısındaki** kenarları eşle.
+
+<Ornek>
+
+<Soru>
+
+İki benzer üçgende küçük üçgenin kenarları $3,\ 4,\ 5$; büyük üçgenin en kısa kenarı $9$'dur. Büyük üçgenin diğer kenarlarını bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Önce benzerlik oranını bul: en kısa kenarları oranla. Sonra her kenarı bu oranla çarp.
+
+</Ipucu>
+
+<Cozum>
+
+1. Benzerlik oranı: $k=\dfrac{9}{3}=3$.
+2. Diğer kenarlar: $4\cdot 3=12$ ve $5\cdot 3=15$.
+
+<Cevap>$12$ ve $15$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 4. Gerçek Hayatta Benzerlik
+
+Aynı anda, aynı yerde duran cisimler güneşle aynı açıyı oluşturduğundan **cisim–gölge** üçgenleri benzerdir. Bu, doğrudan ölçemeyeceğin yükseklikleri bulmaya yarar.
+
+<Ornek>
+
+<Soru>
+
+Boyu $1{,}5$ m olan bir kişinin gölgesi $2$ m iken, aynı anda bir ağacın gölgesi $10$ m'dir. Ağacın boyu kaç metredir?
+
+</Soru>
+
+<Cozum>
+
+1. Kişi ve ağaç için "boy / gölge" oranları eşittir: $\dfrac{1{,}5}{2}=\dfrac{h}{10}$.
+2. İçler-dışlar çarpımı: $2h=15\Rightarrow h=7{,}5$.
+
+<Cevap>Ağacın boyu $7{,}5$ m'dir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Çözümlü Örnekler
+
+<Ornek>
+
+<Soru>
+
+$ABC\sim KLM$, benzerlik oranı $k=2$'dir. $|KL|=6$ ise $|AB|$ kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. $\dfrac{|AB|}{|KL|}=k=2$.
+2. $|AB|=2\cdot 6=12$.
+
+<Cevap>$12$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+İki üçgende $\widehat{A}=\widehat{D}=50°$ ve $\widehat{B}=\widehat{E}=60°$ veriliyor. Bu üçgenler benzer midir?
+
+</Soru>
+
+<Cozum>
+
+1. İki çift karşılıklı açı eşit (A.A).
+2. A.A koşulu sağlandığından üçgenler benzerdir.
+
+<Cevap>Evet, A.A kuralına göre benzerdir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Benzer iki üçgenin benzerlik oranı $\dfrac{2}{3}$'tür. Küçük üçgenin bir kenarı $8$ ise büyük üçgendeki karşılığı kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. Oran $\dfrac{\text{küçük}}{\text{büyük}}=\dfrac{2}{3}$: $\dfrac{8}{x}=\dfrac{2}{3}$.
+2. İçler-dışlar: $2x=24\Rightarrow x=12$.
+
+<Cevap>$12$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir cetvel $30$ cm boyunda olup $12$ cm gölge bırakıyor. Aynı anda bir direğin gölgesi $4$ m ise direğin boyu kaç metredir?
+
+</Soru>
+
+<Cozum>
+
+1. Oran eşit: $\dfrac{0{,}30}{0{,}12}=\dfrac{h}{4}$ (metre).
+2. $\dfrac{30}{12}=2{,}5$, yani $h=2{,}5\cdot 4=10$.
+
+<Cevap>$10$ m.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Alıştırmalar — Sıra Sende
+
+> Önce kendin çözmeyi dene; sonra çözümü açıp karşılaştır.
+
+<Ornek>
+
+<Soru>
+
+$ABC\sim DEF$, $k=4$. $|DE|=3$ ise $|AB|$ kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. $|AB|=4\cdot 3=12$.
+
+<Cevap>$12$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+İki üçgende $\widehat{A}=\widehat{D}$ ve $\widehat{C}=\widehat{F}$ ise üçgenler benzer midir?
+
+</Soru>
+
+<Cozum>
+
+1. İki açı karşılıklı eşit (A.A) → benzer.
+
+<Cevap>Evet, A.A'dan benzerdir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Küçük üçgenin kenarları $6,\ 8,\ 10$; büyük üçgenin benzerlik oranı $k=2{,}5$'tir. Büyük üçgenin en uzun kenarını bul.
+
+</Soru>
+
+<Cozum>
+
+1. En uzun kenar $10$; $10\cdot 2{,}5=25$.
+
+<Cevap>$25$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Boyu $1{,}8$ m olan biri $1{,}2$ m gölge bırakırken bir binanın gölgesi $20$ m'dir. Binanın boyu kaç metredir?
+
+</Soru>
+
+<Cozum>
+
+1. $\dfrac{1{,}8}{1{,}2}=\dfrac{h}{20}$; $\dfrac{1{,}8}{1{,}2}=1{,}5$.
+2. $h=1{,}5\cdot 20=30$.
+
+<Cevap>$30$ m.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+İki eş üçgenin benzerlik oranı kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. Eş üçgenler aynı boyuttadır; karşılıklı kenar oranı $1$'dir.
+
+<Cevap>$1$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Eşlik ile benzerliği karıştırmak.** Eşlik birebir aynıdır ($k=1$); benzerlik aynı şekil ama farklı boyuttur ($k\neq 1$ olabilir).
+- **Karşılıklı kenarları yanlış eşlemek.** Orantıda **eşit açıların karşısındaki** kenarları eşle; sırayı karıştırma.
+- **Benzerlik oranını ters kurmak.** $\dfrac{\text{büyük}}{\text{küçük}}$ ile $\dfrac{\text{küçük}}{\text{büyük}}$ farklıdır; hangi üçgeni paya yazdığına dikkat et.
+- **Gölge probleminde birimleri karıştırmak.** Oran kurarken tüm uzunlukları **aynı birime** çevir (hepsi cm ya da hepsi m).
+
+> **Not:** Üçgenlerin benzer olduğunu göstermenin en hızlı yolu **A.A**'dır: iki açı karşılıklı eşitse üçgenler benzerdir. Sonra kenarları orantıyla çöz.
+
+<KonuNav slug="ucgende-eslik-benzerlik-9" />

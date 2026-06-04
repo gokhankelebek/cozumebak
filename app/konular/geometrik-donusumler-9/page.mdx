@@ -1,0 +1,301 @@
+import { topicMetadata } from "@/lib/seo";
+
+export const metadata = topicMetadata("geometrik-donusumler-9");
+
+<Konu slug="geometrik-donusumler-9" />
+
+<p className="lead">*Eşlik ve Benzerlik* temasına, şekilleri **kurallı biçimde hareket ettiren** dönüşümlerle başlıyoruz. Bu derste koordinat düzleminde **öteleme** (kaydırma), **yansıma** (simetri) ve **dönme** dönüşümlerini; bir noktanın bu dönüşümler altında nereye gittiğini öğreneceğiz. Öteleme ve yansıma şeklin boyutunu **değiştirmez** — bu yüzden dönüşüm sonucu şekil orijinaliyle **eştir**. Bu fikir, sonraki derslerdeki eşlik ve benzerliğin temelidir. Bol örnek ve "Sıra Sende" alıştırmalarıyla pekiştireceğiz.</p>
+
+## 1. Öteleme (Kaydırma)
+
+Öteleme, bir şekli **yön ve büyüklüğü belli** biçimde kaydırır; şekil döndürülmez, boyutu değişmez. Bir $(x,y)$ noktası, yatayda $a$ ve dikeyde $b$ birim ötelendiğinde:
+
+$$(x,\ y)\ \longrightarrow\ (x+a,\ y+b)$$
+
+<Ornek>
+
+<Soru>
+
+$A(2,\ 3)$ noktası sağa $4$, yukarı $2$ birim ötelenirse görüntüsü ne olur?
+
+</Soru>
+
+<Cozum>
+
+1. Sağa $4$: $x$'e $+4$; yukarı $2$: $y$'ye $+2$.
+2. $(2+4,\ 3+2)=(6,\ 5)$.
+
+<Cevap>$A'(6,\ 5)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 2. Yansıma (Simetri)
+
+Yansıma, bir şeklin bir **doğruya göre** ayna görüntüsünü alır. Koordinat düzleminde en sık kullanılan eksenler:
+
+- **$x$ eksenine göre:** $(x,\ y)\to(x,\ -y)$ (işaret $y$'de değişir)
+- **$y$ eksenine göre:** $(x,\ y)\to(-x,\ y)$ (işaret $x$'te değişir)
+- **Orijine göre:** $(x,\ y)\to(-x,\ -y)$ (ikisi de değişir)
+
+<Ornek>
+
+<Soru>
+
+$B(-3,\ 5)$ noktasının $x$ eksenine göre yansımasını bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+$x$ eksenine göre yansımada $x$ aynı kalır, yalnız $y$'nin işareti değişir.
+
+</Ipucu>
+
+<Cozum>
+
+1. Kural: $(x,\ y)\to(x,\ -y)$.
+2. $B(-3,\ 5)\to(-3,\ -5)$.
+
+<Cevap>$B'(-3,\ -5)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 3. Dönme
+
+Dönme, bir şekli bir **merkez** etrafında belli bir **açı** kadar çevirir. Orijin etrafındaki sık kullanılan dönmeler:
+
+- **$90°$ (saat yönünün tersi):** $(x,\ y)\to(-y,\ x)$
+- **$180°$:** $(x,\ y)\to(-x,\ -y)$
+- **$270°$ (saat yönünün tersi):** $(x,\ y)\to(y,\ -x)$
+
+$180°$ dönme ile orijine göre yansımanın sonucu aynıdır.
+
+<Ornek>
+
+<Soru>
+
+$C(4,\ 1)$ noktasını orijin etrafında $180°$ döndürünüz.
+
+</Soru>
+
+<Cozum>
+
+1. Kural: $(x,\ y)\to(-x,\ -y)$.
+2. $C(4,\ 1)\to(-4,\ -1)$.
+
+<Cevap>$C'(-4,\ -1)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 4. Dönüşüm ve Eşlik
+
+Öteleme, yansıma ve dönme **uzunlukları ve açıları korur**; şeklin yalnız konumu/yönü değişir, boyutu değişmez. Bu dönüşümlerle elde edilen şekil, orijinaliyle **eştir** (birebir aynıdır). Boyutu değiştiren (büyütme/küçültme) dönüşümler ise **benzerlik** doğurur; onları sonraki derste göreceğiz.
+
+<Ornek>
+
+<Soru>
+
+Bir üçgen önce sağa $5$ birim ötelenip sonra $x$ eksenine göre yansıtılıyor. Bu üçgen orijinaliyle eş midir?
+
+</Soru>
+
+<Cozum>
+
+1. Öteleme uzunlukları korur; yansıma da uzunlukları korur.
+2. İki dönüşüm de boyutu değiştirmediğinden sonuç şekil orijinaliyle aynı boyuttadır.
+
+<Cevap>Evet, eştir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Çözümlü Örnekler
+
+<Ornek>
+
+<Soru>
+
+$P(1,\ -2)$ noktası sola $3$, aşağı $4$ birim ötelenirse görüntüsü nedir?
+
+</Soru>
+
+<Cozum>
+
+1. Sola $3$: $x-3$; aşağı $4$: $y-4$.
+2. $(1-3,\ -2-4)=(-2,\ -6)$.
+
+<Cevap>$P'(-2,\ -6)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$D(6,\ -2)$ noktasının $y$ eksenine göre yansımasını bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Kural: $(x,\ y)\to(-x,\ y)$.
+2. $D(6,\ -2)\to(-6,\ -2)$.
+
+<Cevap>$D'(-6,\ -2)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$E(2,\ 5)$ noktasını orijin etrafında $90°$ (saat yönünün tersine) döndürünüz.
+
+</Soru>
+
+<Cozum>
+
+1. Kural: $(x,\ y)\to(-y,\ x)$.
+2. $E(2,\ 5)\to(-5,\ 2)$.
+
+<Cevap>$E'(-5,\ 2)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$A(3,\ 4)$ noktası önce $x$ eksenine, sonra $y$ eksenine göre yansıtılıyor. Son görüntü nedir? Bu, hangi tek dönüşüme denktir?
+
+</Soru>
+
+<Cozum>
+
+1. $x$ eksenine göre: $(3,\ 4)\to(3,\ -4)$.
+2. $y$ eksenine göre: $(3,\ -4)\to(-3,\ -4)$.
+3. Sonuç $(-3,\ -4)$; bu, orijine göre yansıma (yani $180°$ dönme) ile aynıdır.
+
+<Cevap>$(-3,\ -4)$; orijine göre yansımaya denktir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Alıştırmalar — Sıra Sende
+
+> Önce kendin çözmeyi dene; sonra çözümü açıp karşılaştır.
+
+<Ornek>
+
+<Soru>
+
+$A(0,\ 0)$ noktası sağa $7$, yukarı $3$ ötelenirse nereye gider?
+
+</Soru>
+
+<Cozum>
+
+1. $(0+7,\ 0+3)=(7,\ 3)$.
+
+<Cevap>$(7,\ 3)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$B(5,\ -1)$ noktasının $x$ eksenine göre yansıması nedir?
+
+</Soru>
+
+<Cozum>
+
+1. $(x,\ -y)$: $(5,\ 1)$.
+
+<Cevap>$(5,\ 1)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$C(-2,\ 6)$ noktasının orijine göre yansıması nedir?
+
+</Soru>
+
+<Cozum>
+
+1. $(-x,\ -y)$: $(2,\ -6)$.
+
+<Cevap>$(2,\ -6)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$D(1,\ 3)$ noktasını orijin etrafında $90°$ (saat yönü tersi) döndür.
+
+</Soru>
+
+<Cozum>
+
+1. $(x,\ y)\to(-y,\ x)$: $(-3,\ 1)$.
+
+<Cevap>$(-3,\ 1)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir şekil $180°$ döndürülüyor. Şeklin boyutu değişir mi, orijinaliyle eş midir?
+
+</Soru>
+
+<Cozum>
+
+1. Dönme uzunlukları ve açıları korur; boyut değişmez.
+
+<Cevap>Boyut değişmez; şekil eştir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Yansımada yanlış değişkenin işaretini değiştirmek.** $x$ eksenine göre $y$'nin, $y$ eksenine göre $x$'in işareti değişir.
+- **Öteleme yönünü ters almak.** Sol/aşağı **çıkarma**, sağ/yukarı **toplamadır**.
+- **Dönmeyi yansıma sanmak.** $90°$ dönmede koordinatlar **yer değiştirir** ($(x,y)\to(-y,x)$); yansımada yalnız işaret değişir.
+- **Dönüşümün boyutu değiştirdiğini sanmak.** Öteleme, yansıma ve dönme boyutu **korur**; sonuç şekil daima orijinaliyle eştir.
+
+> **Not:** Bu üç dönüşüm de **eşlik** üretir (boyut korunur). Bir sonraki derste boyutu oranlı biçimde değiştiren **benzerliği** göreceğiz. Koordinat kurallarını ezberlemek yerine bir-iki noktayla deneyerek doğrula.
+
+<KonuNav slug="geometrik-donusumler-9" />

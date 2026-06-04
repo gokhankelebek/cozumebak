@@ -188,9 +188,9 @@ export const TOPICS: Topic[] = [
   { slug: "ucgende-kenar-aci-bagintilari", title: "Üçgende Kenar-Açı Bağıntıları", track: "9", unit: "geometrik-sekiller-9", summary: "Kenar uzunlukları ile açılar arasındaki ilişki.", minutes: 6, difficulty: "Orta", questionCount: 14, status: "published" },
 
   // ── 9. Sınıf · Eşlik ve Benzerlik ──
-  { slug: "geometrik-donusumler-9", title: "Geometrik Dönüşümler", track: "9", unit: "eslik-benzerlik-9", summary: "Öteleme, yansıma ve dönme dönüşümleri.", minutes: 7, difficulty: "Orta", questionCount: 16, status: "soon", keywords: ["öteleme", "yansıma", "dönme"] },
-  { slug: "ucgende-eslik-benzerlik-9", title: "Üçgenlerde Eşlik ve Benzerlik", track: "9", unit: "eslik-benzerlik-9", summary: "Eşlik ve benzerlik koşulları, benzer üçgen oluşturma.", minutes: 8, difficulty: "Orta", questionCount: 20, status: "soon", keywords: ["eşlik", "benzerlik"] },
-  { slug: "tales-oklid-pisagor-9", title: "Tales, Öklid ve Pisagor Teoremleri", track: "9", unit: "eslik-benzerlik-9", summary: "Tales, Öklid ve Pisagor bağıntıları ve problemleri.", minutes: 8, difficulty: "Orta", questionCount: 22, status: "soon", keywords: ["tales", "öklid", "pisagor"] },
+  { slug: "geometrik-donusumler-9", title: "Geometrik Dönüşümler", track: "9", unit: "eslik-benzerlik-9", summary: "Öteleme, yansıma ve dönme dönüşümleri.", minutes: 7, difficulty: "Orta", questionCount: 16, status: "published", keywords: ["öteleme", "yansıma", "dönme"] },
+  { slug: "ucgende-eslik-benzerlik-9", title: "Üçgenlerde Eşlik ve Benzerlik", track: "9", unit: "eslik-benzerlik-9", summary: "Eşlik ve benzerlik koşulları, benzer üçgen oluşturma.", minutes: 8, difficulty: "Orta", questionCount: 20, status: "published", keywords: ["eşlik", "benzerlik"] },
+  { slug: "tales-oklid-pisagor-9", title: "Tales, Öklid ve Pisagor Teoremleri", track: "9", unit: "eslik-benzerlik-9", summary: "Tales, Öklid ve Pisagor bağıntıları ve problemleri.", minutes: 8, difficulty: "Orta", questionCount: 22, status: "published", keywords: ["tales", "öklid", "pisagor"] },
 
   // ── 9. Sınıf · İstatistiksel Araştırma Süreci ──
   { slug: "tek-degiskenli-veri-9", title: "Tek Değişkenli Veri Dağılımları", track: "9", unit: "istatistik-9", summary: "Tek nicel değişkenli verilerde merkezî eğilim ve yayılım ölçüleri.", minutes: 7, difficulty: "Orta", questionCount: 16, status: "soon", keywords: ["ortalama", "medyan", "açıklık"] },
