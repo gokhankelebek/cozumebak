@@ -1,0 +1,260 @@
+import { topicMetadata } from "@/lib/seo";
+import { IkiNokta } from "@/components/figures/AnalitikFig";
+
+export const metadata = topicMetadata("iki-nokta-uzaklik-10");
+
+<Konu slug="iki-nokta-uzaklik-10" />
+
+<p className="lead">*Analitik İnceleme* teması, geometriyi **koordinatlarla** (sayılarla) buluşturur. Bu derste koordinat düzleminde bir **noktayı** okumayı, iki nokta arasındaki **uzaklığı** Pisagor'dan türeyen formülle bulmayı ve bunun geometrik problemlerde kullanımını öğreneceğiz. İki nokta arası uzaklık; orta nokta, çevre ve çember konularının da temelidir. Bol şekil, örnek ve "Sıra Sende" alıştırmalarıyla pekiştireceğiz.</p>
+
+## 1. Koordinat Düzleminde Nokta
+
+Düzlemdeki her nokta bir **sıralı ikili** $(x,\ y)$ ile gösterilir: $x$ yatay (apsis), $y$ dikey (ordinat) konumdur. Orijin $O(0,0)$'dır.
+
+<Figur>
+
+<IkiNokta />
+
+<Altyazi>Şekil 1 — $A(1,2)$ ve $B(4,6)$ noktaları ve aralarındaki doğru parçası. Yatay fark $4-1=3$, dikey fark $6-2=4$'tür.</Altyazi>
+
+</Figur>
+
+## 2. İki Nokta Arası Uzaklık
+
+$A(x_1,y_1)$ ve $B(x_2,y_2)$ noktaları arasındaki uzaklık, yatay ve dikey farkların oluşturduğu dik üçgenin hipotenüsüdür (Pisagor):
+
+$$|AB|=\sqrt{(x_2-x_1)^2+(y_2-y_1)^2}$$
+
+<Ornek>
+
+<Soru>
+
+$A(1,2)$ ve $B(4,6)$ noktaları arasındaki uzaklığı bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Yatay farkın ve dikey farkın karelerini topla, sonra karekök al. Farkların işareti karede yok olur.
+
+</Ipucu>
+
+<Cozum>
+
+1. $x$ farkı: $4-1=3$; $y$ farkı: $6-2=4$.
+2. $|AB|=\sqrt{3^2+4^2}=\sqrt{9+16}=\sqrt{25}=5$.
+
+<Cevap>$|AB|=5$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 3. Eksenler Üzerindeki Özel Durumlar
+
+- **Aynı yatay doğruda** ($y$ eşit) iki noktanın uzaklığı $|x_2-x_1|$'dir.
+- **Aynı düşey doğruda** ($x$ eşit) iki noktanın uzaklığı $|y_2-y_1|$'dir.
+- Bir noktanın **orijine uzaklığı**: $\sqrt{x^2+y^2}$.
+
+<Ornek>
+
+<Soru>
+
+$P(-2,\ 5)$ noktasının orijine uzaklığını bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $|OP|=\sqrt{(-2)^2+5^2}=\sqrt{4+25}=\sqrt{29}$.
+
+<Cevap>$\sqrt{29}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Çözümlü Örnekler
+
+<Ornek>
+
+<Soru>
+
+$A(-1,\ 2)$ ve $B(3,\ -1)$ arasındaki uzaklığı bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $x$ farkı: $3-(-1)=4$; $y$ farkı: $-1-2=-3$.
+2. $|AB|=\sqrt{4^2+(-3)^2}=\sqrt{16+9}=\sqrt{25}=5$.
+
+<Cevap>$5$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$A(2,\ 7)$ ve $B(2,\ -3)$ arasındaki uzaklığı bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $x$ değerleri eşit (aynı düşey doğru) → uzaklık $|y_2-y_1|$.
+2. $|7-(-3)|=10$.
+
+<Cevap>$10$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$A(0,0)$, $B(6,0)$, $C(6,8)$ üçgeninin çevresini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $|AB|=6$ (yatay), $|BC|=8$ (düşey).
+2. $|AC|=\sqrt{6^2+8^2}=10$.
+3. Çevre: $6+8+10=24$.
+
+<Cevap>$24$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$A(1,\ k)$ ile $B(4,\ 1)$ arasındaki uzaklık $5$ ise $k$'nın pozitif değerini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $\sqrt{(4-1)^2+(1-k)^2}=5\Rightarrow 9+(1-k)^2=25$.
+2. $(1-k)^2=16\Rightarrow 1-k=\pm4$.
+3. $k=-3$ veya $k=5$; pozitif olan $5$.
+
+<Cevap>$k=5$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Alıştırmalar — Sıra Sende
+
+> Önce kendin çözmeyi dene; sonra çözümü açıp karşılaştır.
+
+<Ornek>
+
+<Soru>
+
+$A(0,0)$ ile $B(5,12)$ arasındaki uzaklık kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. $\sqrt{5^2+12^2}=\sqrt{169}=13$.
+
+<Cevap>$13$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$A(-3,\ 4)$ ile $B(1,\ 4)$ arasındaki uzaklık kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. $y$ eşit → $|1-(-3)|=4$.
+
+<Cevap>$4$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$P(3,\ -4)$ noktasının orijine uzaklığı kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. $\sqrt{3^2+(-4)^2}=\sqrt{25}=5$.
+
+<Cevap>$5$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$A(2,\ 1)$ ile $B(2,\ 9)$ arasındaki uzaklık kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. $x$ eşit → $|9-1|=8$.
+
+<Cevap>$8$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$A(1,\ 1)$ ile $B(4,\ 5)$ arasındaki uzaklık kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. $\sqrt{3^2+4^2}=5$.
+
+<Cevap>$5$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Farkları toplamadan önce karelemeyi unutmak.** Uzaklık $\sqrt{(\Delta x)^2+(\Delta y)^2}$; farkları doğrudan toplamak yanlıştır.
+- **İşaret hatası.** Fark negatif çıkabilir ama karesi pozitiftir; yine de farkı doğru hesapla.
+- **Eksen üzerindeki kısa yolu kaçırmak.** $x$ ya da $y$ eşitse tek farkın mutlak değeri yeter; formüle gerek yok.
+- **Karekökü almayı unutmak.** $(\Delta x)^2+(\Delta y)^2$ uzaklığın **karesidir**; sonuçta kök al.
+
+> **Not:** Uzaklık formülü aslında **Pisagor teoremidir**: yatay ve dikey farklar dik kenarlar, uzaklık hipotenüstür. $3\text{-}4\text{-}5$, $5\text{-}12\text{-}13$ üçlüleri burada da işini hızlandırır.
+
+<KonuNav slug="iki-nokta-uzaklik-10" />

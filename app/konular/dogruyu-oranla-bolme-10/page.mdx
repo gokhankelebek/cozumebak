@@ -1,0 +1,269 @@
+import { topicMetadata } from "@/lib/seo";
+
+export const metadata = topicMetadata("dogruyu-oranla-bolme-10");
+
+<Konu slug="dogruyu-oranla-bolme-10" />
+
+<p className="lead">Bir doğru parçasının orta noktasını ya da onu belli bir oranda bölen noktayı, uçların koordinatlarından **doğrudan** bulabiliriz. Bu derste **orta nokta** formülünü, bir parçayı verilen oranda **içten bölen** noktanın koordinatlarını ve bunların problemlerde kullanımını öğreneceğiz. Bu araçlar; ağırlık merkezi, paralelkenar köşesi gibi pek çok analitik soruda işine yarar. Bol örnek ve "Sıra Sende" alıştırmalarıyla pekiştireceğiz.</p>
+
+## 1. Orta Nokta
+
+$A(x_1,y_1)$ ve $B(x_2,y_2)$ uçlu doğru parçasının **orta noktası**, koordinatların ortalamasıdır:
+
+$$M=\left(\dfrac{x_1+x_2}{2},\ \dfrac{y_1+y_2}{2}\right)$$
+
+<Ornek>
+
+<Soru>
+
+$A(2,\ 3)$ ve $B(8,\ 7)$ noktalarının orta noktasını bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $x$: $\dfrac{2+8}{2}=5$; $y$: $\dfrac{3+7}{2}=5$.
+
+<Cevap>$M(5,\ 5)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 2. Uç Noktayı Geri Bulma
+
+Orta nokta ve bir uç biliniyorsa, diğer uç orta noktanın "iki katından" bulunur: $x_2=2x_M-x_1$, $\;y_2=2y_M-y_1$.
+
+<Ornek>
+
+<Soru>
+
+$A(1,\ 4)$ ucu ve orta nokta $M(3,\ 2)$ biliniyor. Diğer uç $B$'yi bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Orta nokta uçların ortalaması olduğundan, $B=2M-A$ ilişkisini koordinat koordinat uygula.
+
+</Ipucu>
+
+<Cozum>
+
+1. $x_B=2\cdot 3-1=5$.
+2. $y_B=2\cdot 2-4=0$.
+
+<Cevap>$B(5,\ 0)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 3. Belli Oranda İçten Bölme
+
+$A$'dan $B$'ye doğru parçayı $k:l$ oranında **içten** bölen $P$ noktası:
+
+$$P=\left(\dfrac{l\,x_1+k\,x_2}{k+l},\ \dfrac{l\,y_1+k\,y_2}{k+l}\right)$$
+
+(Orta nokta, bu formülün $k:l=1:1$ özel hâlidir.)
+
+<Ornek>
+
+<Soru>
+
+$A(2,\ 1)$ ile $B(8,\ 7)$ arasını, $A$'dan itibaren $1:2$ oranında bölen noktayı bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $k=1,\ l=2$, $k+l=3$.
+2. $x_P=\dfrac{2\cdot 2+1\cdot 8}{3}=\dfrac{4+8}{3}=4$.
+3. $y_P=\dfrac{2\cdot 1+1\cdot 7}{3}=\dfrac{2+7}{3}=3$.
+
+<Cevap>$P(4,\ 3)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Çözümlü Örnekler
+
+<Ornek>
+
+<Soru>
+
+$A(-2,\ 5)$ ile $B(6,\ -1)$ orta noktasını bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $x$: $\dfrac{-2+6}{2}=2$; $y$: $\dfrac{5+(-1)}{2}=2$.
+
+<Cevap>$M(2,\ 2)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$ABCD$ paralelkenarında köşegenler orta noktada kesişir. $A(1,1)$, $C(7,5)$ ise köşegenlerin kesim noktasını bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Kesim noktası $AC$ köşegeninin orta noktasıdır.
+2. $\left(\dfrac{1+7}{2},\dfrac{1+5}{2}\right)=(4,\ 3)$.
+
+<Cevap>$(4,\ 3)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Orta noktası $M(0,\ 0)$ olan bir parçanın bir ucu $A(-3,\ 4)$ ise diğer uç nedir?
+
+</Soru>
+
+<Cozum>
+
+1. $B=2M-A=(0-(-3),\ 0-4)=(3,\ -4)$.
+
+<Cevap>$B(3,\ -4)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$A(0,\ 0)$ ile $B(9,\ 6)$ arasını $A$'dan itibaren $2:1$ oranında bölen noktayı bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $k=2,\ l=1$, $k+l=3$.
+2. $x=\dfrac{1\cdot 0+2\cdot 9}{3}=6$, $\;y=\dfrac{1\cdot 0+2\cdot 6}{3}=4$.
+
+<Cevap>$(6,\ 4)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Alıştırmalar — Sıra Sende
+
+> Önce kendin çözmeyi dene; sonra çözümü açıp karşılaştır.
+
+<Ornek>
+
+<Soru>
+
+$A(4,\ 2)$ ile $B(10,\ 8)$ orta noktası nedir?
+
+</Soru>
+
+<Cozum>
+
+1. $\left(\dfrac{4+10}{2},\dfrac{2+8}{2}\right)=(7,\ 5)$.
+
+<Cevap>$(7,\ 5)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Orta noktası $(2,\ 3)$ olan parçanın bir ucu $(0,\ 1)$ ise diğer uç nedir?
+
+</Soru>
+
+<Cozum>
+
+1. $B=(2\cdot2-0,\ 2\cdot3-1)=(4,\ 5)$.
+
+<Cevap>$(4,\ 5)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$A(1,\ 2)$ ile $B(7,\ 2)$ orta noktası nedir?
+
+</Soru>
+
+<Cozum>
+
+1. $\left(\dfrac{1+7}{2},\ 2\right)=(4,\ 2)$.
+
+<Cevap>$(4,\ 2)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$A(0,0)$ ile $B(6,9)$ arasını $A$'dan $1:2$ bölen nokta nedir?
+
+</Soru>
+
+<Cozum>
+
+1. $x=\dfrac{2\cdot0+1\cdot6}{3}=2$, $y=\dfrac{2\cdot0+1\cdot9}{3}=3$.
+
+<Cevap>$(2,\ 3)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$A(-4,\ 0)$ ile $B(4,\ 8)$ orta noktası nedir?
+
+</Soru>
+
+<Cozum>
+
+1. $\left(0,\ 4\right)$.
+
+<Cevap>$(0,\ 4)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Orta noktada toplamayı ikiye bölmeyi unutmak.** $M=\left(\dfrac{x_1+x_2}{2},\dfrac{y_1+y_2}{2}\right)$; yalnız toplamak yanlıştır.
+- **Uç bulurken yanlış işaret.** $B=2M-A$; çıkarmayı koordinat koordinat yap.
+- **Oranlı bölmede ağırlıkları ters koymak.** $k:l$ oranında $A$'ya yakın uca $l$, $B$'ye yakın uca $k$ ağırlığı düşer (çapraz).
+- **İçten/dıştan bölmeyi karıştırmak.** Bu derste **içten** bölme; nokta parçanın **üzerindedir**.
+
+> **Not:** Orta nokta, oranlı bölmenin $1:1$ hâlidir. Paralelkenar/köşegen sorularında "köşegenler birbirini ortalar" bilgisi orta nokta formülüyle hızla çözülür.
+
+<KonuNav slug="dogruyu-oranla-bolme-10" />
