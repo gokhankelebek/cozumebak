@@ -119,13 +119,14 @@ export const UNITS: Unit[] = [
   { slug: "eslik-benzerlik-9", title: "Eşlik ve Benzerlik", track: "9", order: 5 },
   { slug: "istatistik-9", title: "İstatistiksel Araştırma Süreci", track: "9", order: 6 },
   { slug: "veriden-olasiliga-9", title: "Veriden Olasılığa", track: "9", order: 7 },
-  // 10. Sınıf
-  { slug: "sayma-olasilik-10", title: "Sayma ve Olasılık", track: "10", order: 1 },
-  { slug: "fonksiyonlar-10", title: "Fonksiyonlar", track: "10", order: 2 },
-  { slug: "polinomlar-10", title: "Polinomlar", track: "10", order: 3 },
-  { slug: "ikinci-derece-10", title: "İkinci Dereceden Denklemler", track: "10", order: 4 },
-  { slug: "dortgenler-10", title: "Dörtgenler ve Çokgenler", track: "10", order: 5 },
-  { slug: "analitik-10", title: "Doğrunun Analitik İncelenmesi", track: "10", order: 6 },
+  // 10. Sınıf — Türkiye Yüzyılı Maarif Modeli (2024) temaları
+  { slug: "sayilar-10", title: "Sayılar", track: "10", order: 1 },
+  { slug: "nicelikler-degisimler-10", title: "Nicelikler ve Değişimler", track: "10", order: 2 },
+  { slug: "sayma-algoritma-10", title: "Sayma, Algoritma ve Bilişim", track: "10", order: 3 },
+  { slug: "geometrik-sekiller-10", title: "Geometrik Şekiller", track: "10", order: 4 },
+  { slug: "analitik-inceleme-10", title: "Analitik İnceleme", track: "10", order: 5 },
+  { slug: "istatistik-10", title: "İstatistiksel Araştırma Süreci", track: "10", order: 6 },
+  { slug: "veriden-olasiliga-10", title: "Veriden Olasılığa", track: "10", order: 7 },
   // 11. Sınıf
   { slug: "trigonometri-11", title: "Trigonometri", track: "11", order: 1 },
   { slug: "analitik-11", title: "Analitik Geometri", track: "11", order: 2 },
@@ -200,31 +201,41 @@ export const TOPICS: Topic[] = [
   { slug: "deneye-dayali-olasilik-9", title: "Deneye Dayalı Olasılık ve Tahmin", track: "9", unit: "veriden-olasiliga-9", summary: "Gözleme dayalı olasılık tahmini ve örnek uzay.", minutes: 6, difficulty: "Kolay", questionCount: 14, status: "published", keywords: ["olasılık", "örnek uzay"] },
   { slug: "olasilik-akil-yurutme-9", title: "Olasılıkta Tümevarımsal Akıl Yürütme", track: "9", unit: "veriden-olasiliga-9", summary: "Olayların olasılığı üzerine tümevarımsal çıkarım yapma.", minutes: 6, difficulty: "Orta", questionCount: 12, status: "published" },
 
-  // ── 10. Sınıf · Sayma ve Olasılık ──
-  { slug: "siralama-secme", title: "Sıralama ve Seçme (Permütasyon-Kombinasyon)", track: "10", unit: "sayma-olasilik-10", summary: "Permütasyon, kombinasyon ve sayma yöntemleri.", minutes: 8, difficulty: "Orta", questionCount: 24, status: "soon", keywords: ["permütasyon", "kombinasyon", "faktöriyel"] },
-  { slug: "binom-acilimi", title: "Binom Açılımı", track: "10", unit: "sayma-olasilik-10", summary: "Binom teoremi ve genel terim.", minutes: 7, difficulty: "Orta", questionCount: 14, status: "soon" },
-  { slug: "kosullu-olasilik", title: "Koşullu Olasılık", track: "10", unit: "sayma-olasilik-10", summary: "Bağımlı-bağımsız olaylar ve koşullu olasılık.", minutes: 7, difficulty: "Zor", questionCount: 16, status: "soon" },
+  // ── 10. Sınıf · Sayılar ──
+  { slug: "asal-carpanlar-bolenler-10", title: "Asal Çarpanlar ve Bölenler", track: "10", unit: "sayilar-10", summary: "Asal çarpanlara ayırma ve pozitif bölen sayısı.", minutes: 7, difficulty: "Orta", questionCount: 18, status: "soon", keywords: ["asal çarpan", "bölen sayısı"] },
+  { slug: "ebob-ekok-10", title: "EBOB ve EKOK", track: "10", unit: "sayilar-10", summary: "En büyük ortak bölen, en küçük ortak kat ve problemleri.", minutes: 7, difficulty: "Orta", questionCount: 20, status: "soon", keywords: ["ebob", "ekok", "obeb", "okek"] },
+  { slug: "bolunebilme-kurallari-10", title: "Bölünebilme Kuralları", track: "10", unit: "sayilar-10", summary: "2, 3, 4, 5, 8, 9, 11 ile bölünebilme ve kalan bulma.", minutes: 7, difficulty: "Orta", questionCount: 20, status: "soon", keywords: ["bölünebilme", "kalan"] },
 
-  // ── 10. Sınıf · Fonksiyonlar ──
-  { slug: "fonksiyonlarda-islemler-10", title: "Fonksiyonlarda İşlemler", track: "10", unit: "fonksiyonlar-10", summary: "Toplama, çıkarma, çarpma ve bölme işlemleri.", minutes: 6, difficulty: "Orta", questionCount: 14, status: "soon" },
-  { slug: "bileske-fonksiyon", title: "Bileşke Fonksiyon", track: "10", unit: "fonksiyonlar-10", summary: "İki fonksiyonun bileşkesi ve özellikleri.", minutes: 7, difficulty: "Orta", questionCount: 18, status: "soon" },
-  { slug: "ters-fonksiyon", title: "Ters Fonksiyon", track: "10", unit: "fonksiyonlar-10", summary: "Bir fonksiyonun tersi ve grafik simetrisi.", minutes: 7, difficulty: "Orta", questionCount: 16, status: "soon" },
+  // ── 10. Sınıf · Nicelikler ve Değişimler ──
+  { slug: "karesel-fonksiyonlar-10", title: "İkinci Dereceden Fonksiyonlar ve Parabol", track: "10", unit: "nicelikler-degisimler-10", summary: "Karesel fonksiyonun grafiği, tepe noktası ve eksen kesişimleri.", minutes: 8, difficulty: "Orta", questionCount: 20, status: "soon", keywords: ["parabol", "tepe noktası"] },
+  { slug: "ikinci-derece-denklem-esitsizlik-10", title: "İkinci Dereceden Denklem ve Eşitsizlikler", track: "10", unit: "nicelikler-degisimler-10", summary: "Diskriminant, kök bulma ve ikinci derece eşitsizliklerin işareti.", minutes: 8, difficulty: "Orta", questionCount: 22, status: "soon", keywords: ["diskriminant", "delta"] },
+  { slug: "karekok-rasyonel-fonksiyon-10", title: "Karekök ve Rasyonel Fonksiyonlar", track: "10", unit: "nicelikler-degisimler-10", summary: "Karekök ve rasyonel fonksiyonların tanım kümesi, grafiği ve özellikleri.", minutes: 8, difficulty: "Orta", questionCount: 18, status: "soon", keywords: ["karekök fonksiyonu", "rasyonel fonksiyon", "asimptot"] },
+  { slug: "ters-fonksiyon", title: "Ters Fonksiyonlar", track: "10", unit: "nicelikler-degisimler-10", summary: "Bir fonksiyonun tersi ve grafiğin y=x doğrusuna göre simetrisi.", minutes: 7, difficulty: "Orta", questionCount: 16, status: "soon", keywords: ["ters fonksiyon"] },
 
-  // ── 10. Sınıf · Polinomlar ──
-  { slug: "polinom-kavrami", title: "Polinom Kavramı", track: "10", unit: "polinomlar-10", summary: "Polinom tanımı, derece ve katsayılar.", minutes: 5, difficulty: "Kolay", questionCount: 12, status: "soon" },
-  { slug: "polinomlarda-bolme", title: "Polinomlarda Bölme ve Çarpanlara Ayırma", track: "10", unit: "polinomlar-10", summary: "Kalan, bölüm ve çarpanlara ayırma yöntemleri.", minutes: 8, difficulty: "Orta", questionCount: 20, status: "soon", keywords: ["çarpanlara ayırma", "kalan teoremi"] },
+  // ── 10. Sınıf · Sayma, Algoritma ve Bilişim ──
+  { slug: "sayma-permutasyon-10", title: "Sayma Yöntemleri ve Permütasyon", track: "10", unit: "sayma-algoritma-10", summary: "Toplama-çarpma yoluyla sayma, faktöriyel ve permütasyon.", minutes: 8, difficulty: "Orta", questionCount: 22, status: "soon", keywords: ["permütasyon", "faktöriyel", "sayma"] },
+  { slug: "kombinasyon-10", title: "Kombinasyon", track: "10", unit: "sayma-algoritma-10", summary: "Kombinasyon kavramı, özellikleri ve permütasyonla farkı.", minutes: 7, difficulty: "Orta", questionCount: 20, status: "soon", keywords: ["kombinasyon", "seçme"] },
+  { slug: "islemlerin-algoritmasi-10", title: "İşlemlerin Algoritmik Yapısı", track: "10", unit: "sayma-algoritma-10", summary: "Cebirsel ve fonksiyonel işlemlerin algoritmik biçimde ifadesi.", minutes: 6, difficulty: "Kolay", questionCount: 14, status: "soon", keywords: ["algoritma"] },
 
-  // ── 10. Sınıf · İkinci Dereceden Denklemler ──
-  { slug: "ikinci-derece-denklem-cozumu", title: "İkinci Dereceden Denklemlerin Çözümü", track: "10", unit: "ikinci-derece-10", summary: "Diskriminant, kök bulma ve çarpanlara ayırma.", minutes: 8, difficulty: "Orta", questionCount: 22, status: "soon", keywords: ["diskriminant", "delta"] },
-  { slug: "kokler-katsayilar", title: "Kökler ve Katsayılar İlişkisi", track: "10", unit: "ikinci-derece-10", summary: "Kökler toplamı, çarpımı ve simetrik ifadeler.", minutes: 6, difficulty: "Orta", questionCount: 16, status: "soon" },
-  { slug: "parabol", title: "Parabol", track: "10", unit: "ikinci-derece-10", summary: "İkinci derece fonksiyonun grafiği, tepe noktası ve eksen kesişimleri.", minutes: 8, difficulty: "Orta", questionCount: 20, status: "soon", keywords: ["tepe noktası", "parabol"] },
+  // ── 10. Sınıf · Geometrik Şekiller ──
+  { slug: "dik-ucgen-trigonometri-10", title: "Dik Üçgende Trigonometrik Oranlar ve Özdeşlikler", track: "10", unit: "geometrik-sekiller-10", summary: "Sinüs, kosinüs, tanjant oranları ve temel trigonometrik özdeşlikler.", minutes: 9, difficulty: "Orta", questionCount: 24, status: "soon", keywords: ["sinüs", "kosinüs", "tanjant", "trigonometri"] },
+  { slug: "ucgende-yardimci-elemanlar-10", title: "Üçgende Yardımcı Elemanlar", track: "10", unit: "geometrik-sekiller-10", summary: "Açıortay, kenarortay, kenar orta dikme ve yükseklik.", minutes: 8, difficulty: "Orta", questionCount: 18, status: "soon", keywords: ["açıortay", "kenarortay", "yükseklik"] },
+  { slug: "ucgende-alan-10", title: "Üçgende Alan", track: "10", unit: "geometrik-sekiller-10", summary: "Taban-yükseklik, iki kenar-sinüs ve özel alan formülleri.", minutes: 8, difficulty: "Orta", questionCount: 20, status: "soon", keywords: ["alan", "üçgen alanı"] },
+  { slug: "sinus-kosinus-teoremi-10", title: "Sinüs ve Kosinüs Teoremleri", track: "10", unit: "geometrik-sekiller-10", summary: "Sinüs ve kosinüs teoremiyle kenar ve açı hesabı.", minutes: 8, difficulty: "Zor", questionCount: 18, status: "soon", keywords: ["sinüs teoremi", "kosinüs teoremi"] },
 
-  // ── 10. Sınıf · Dörtgenler ──
-  { slug: "dortgenler-cokgenler", title: "Çokgenler ve Dörtgenler", track: "10", unit: "dortgenler-10", summary: "Çokgenlerde açı ve dörtgen çeşitleri.", minutes: 6, difficulty: "Orta", questionCount: 14, status: "soon" },
-  { slug: "ozel-dortgenler", title: "Özel Dörtgenler", track: "10", unit: "dortgenler-10", summary: "Paralelkenar, dikdörtgen, eşkenar dörtgen, yamuk.", minutes: 8, difficulty: "Orta", questionCount: 22, status: "soon" },
+  // ── 10. Sınıf · Analitik İnceleme ──
+  { slug: "iki-nokta-uzaklik-10", title: "Koordinat Düzleminde Nokta ve İki Nokta Arası Uzaklık", track: "10", unit: "analitik-inceleme-10", summary: "Koordinat düzleminde nokta ve uzaklık formülü.", minutes: 7, difficulty: "Orta", questionCount: 16, status: "soon", keywords: ["uzaklık", "koordinat"] },
+  { slug: "dogruyu-oranla-bolme-10", title: "Doğru Parçasını Belli Oranda Bölme", track: "10", unit: "analitik-inceleme-10", summary: "Orta nokta ve bir doğru parçasını verilen oranda bölme.", minutes: 7, difficulty: "Orta", questionCount: 16, status: "soon", keywords: ["orta nokta", "oranla bölme"] },
+  { slug: "koordinatta-dogru-10", title: "Koordinat Düzleminde Doğru: Eğim ve Denklem", track: "10", unit: "analitik-inceleme-10", summary: "Eğim, doğru denklemi ve iki doğrunun durumu.", minutes: 8, difficulty: "Orta", questionCount: 20, status: "soon", keywords: ["eğim", "doğru denklemi"] },
 
-  // ── 10. Sınıf · Analitik ──
-  { slug: "dogrunun-analitik-incelenmesi", title: "Doğrunun Analitik İncelenmesi", track: "10", unit: "analitik-10", summary: "Eğim, doğru denklemi ve iki doğrunun durumu.", minutes: 8, difficulty: "Orta", questionCount: 20, status: "soon", keywords: ["eğim", "doğru denklemi"] },
+  // ── 10. Sınıf · İstatistiksel Araştırma Süreci ──
+  { slug: "iki-kategorik-degisken-10", title: "İki Kategorik Değişken Arasında İlişki", track: "10", unit: "istatistik-10", summary: "İki yönlü (çapraz) tablo ile kategorik değişkenler arasındaki ilişki.", minutes: 7, difficulty: "Orta", questionCount: 14, status: "soon", keywords: ["çapraz tablo", "kategorik değişken"] },
+  { slug: "veri-surec-10", title: "Veri Toplama, Yorumlama ve Değerlendirme", track: "10", unit: "istatistik-10", summary: "İstatistiksel araştırma sürecinde veri toplama, bulgulara ulaşma ve değerlendirme.", minutes: 6, difficulty: "Orta", questionCount: 12, status: "soon" },
+
+  // ── 10. Sınıf · Veriden Olasılığa ──
+  { slug: "kosullu-olasilik", title: "Koşullu Olasılık", track: "10", unit: "veriden-olasiliga-10", summary: "Bir olayın gerçekleştiği bilindiğinde diğer olayın olasılığı.", minutes: 8, difficulty: "Zor", questionCount: 18, status: "soon", keywords: ["koşullu olasılık"] },
+  { slug: "bagimli-bagimsiz-olaylar-10", title: "Bağımlı ve Bağımsız Olaylar", track: "10", unit: "veriden-olasiliga-10", summary: "Bağımlı ve bağımsız olaylarda çarpma kuralı.", minutes: 7, difficulty: "Orta", questionCount: 16, status: "soon", keywords: ["bağımsız olay", "bağımlı olay"] },
+  { slug: "bayes-teoremi-10", title: "Bayes Teoremi", track: "10", unit: "veriden-olasiliga-10", summary: "Koşullu olasılıkları tersine çeviren Bayes teoremi ve uygulamaları.", minutes: 8, difficulty: "Zor", questionCount: 14, status: "soon", keywords: ["bayes"] },
 
   // ── 11. Sınıf · Trigonometri ──
   { slug: "yonlu-acilar", title: "Yönlü Açılar ve Birim Çember", track: "11", unit: "trigonometri-11", summary: "Radyan-derece dönüşümü ve birim çember.", minutes: 7, difficulty: "Orta", questionCount: 16, status: "soon", keywords: ["radyan", "birim çember"] },
