@@ -1,0 +1,298 @@
+import { topicMetadata } from "@/lib/seo";
+
+export const metadata = topicMetadata("islemlerin-algoritmasi-10");
+
+<Konu slug="islemlerin-algoritmasi-10" />
+
+<p className="lead">Cebirsel ve fonksiyonel işlemler de tıpkı bir tarif gibi **adım adım** (algoritmik) ifade edilebilir. Bu derste bir hesabı ya da bir fonksiyon değerini **sıralı işlem adımlarıyla** yazmayı, adımların **sırasının** sonucu nasıl değiştirdiğini ve bir çıktıyı veren adımları **izlemeyi** (trace) öğreneceğiz. Bu beceri, karmaşık ifadeleri hatasız hesaplamanın ve ileride kod yazmanın temelidir. Bol örnek ve "Sıra Sende" alıştırmalarıyla pekiştireceğiz.</p>
+
+## 1. Bir İşlemi Adımlara Dökmek
+
+Bir hesaplama, **girdi → işlem adımları → çıktı** biçiminde yazılabilir. Her adım tek ve kesin bir işlem yapar; **işlem önceliği** korunur (önce parantez/üs, sonra çarpma-bölme, sonra toplama-çıkarma).
+
+<Ornek>
+
+<Soru>
+
+$f(x)=3x^2-5$ fonksiyonunun bir $x$ girdisi için çıktısını veren algoritmayı adımlarla yazınız.
+
+</Soru>
+
+<Cozum>
+
+1. $x$ değerini al.
+2. Karesini al: $k=x^2$.
+3. $3$ ile çarp: $u=3k$.
+4. $5$ çıkar: $s=u-5$.
+5. $s$'i yaz (çıktı $f(x)$).
+
+<Cevap>$5$ adımlı algoritma; çıktı $3x^2-5$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 2. Adımları İzleme (Trace)
+
+Bir algoritmanın çıktısını bulmak için, değişkenlerin her adımdaki değerini sırayla **izlersin**.
+
+<Ornek>
+
+<Soru>
+
+Şu algoritmanın $x=4$ için çıktısını bulunuz: "$a=x+1$; $\;b=2a$; $\;c=b-3$; $\;c$'yi yaz."
+
+</Soru>
+
+<Ipucu>
+
+Bir tabloyla izle: her adımda yalnız o satırın değerini güncelle.
+
+</Ipucu>
+
+<Cozum>
+
+1. $a=4+1=5$.
+2. $b=2\cdot 5=10$.
+3. $c=10-3=7$.
+
+<Cevap>Çıktı $7$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 3. Adımların Sırası Önemlidir
+
+Aynı işlemler farklı sırayla yapılırsa sonuç değişebilir. Algoritmada **sıra**, sonucu belirler.
+
+<Ornek>
+
+<Soru>
+
+$x=2$ için iki algoritmanın çıktısını karşılaştırınız:
+**A:** "kare al, sonra $3$ ekle." **B:** "$3$ ekle, sonra kare al."
+
+</Soru>
+
+<Cozum>
+
+1. **A:** $2^2=4$, $\;4+3=7$.
+2. **B:** $2+3=5$, $\;5^2=25$.
+3. Sıra değişince çıktı $7$ yerine $25$ oldu.
+
+<Cevap>A → $7$, B → $25$; sıra sonucu değiştirir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 4. Fonksiyonel İşlemler
+
+İki fonksiyonu **art arda** uygulamak (bileşke) da bir algoritmadır: önce içteki, sonra dıştaki çalışır.
+
+<Ornek>
+
+<Soru>
+
+$f(x)=x+3$ ve $g(x)=2x$ için, "önce $g$, sonra $f$ uygula" algoritmasının $x=5$ için çıktısını bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Önce $g$: $g(5)=2\cdot 5=10$.
+2. Sonra $f$: $f(10)=10+3=13$.
+
+<Cevap>Çıktı $13$ (yani $f(g(5))$).</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Çözümlü Örnekler
+
+<Ornek>
+
+<Soru>
+
+"$a=x-2$; $\;b=a^2$; $\;b$'yi yaz" algoritmasının $x=5$ için çıktısı nedir?
+
+</Soru>
+
+<Cozum>
+
+1. $a=5-2=3$.
+2. $b=3^2=9$.
+
+<Cevap>$9$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=\dfrac{x+4}{2}$ fonksiyonunu, çıktıyı veren adımlarla yazınız.
+
+</Soru>
+
+<Cozum>
+
+1. $x$ al.
+2. $4$ ekle: $t=x+4$.
+3. $2$'ye böl: $s=\dfrac{t}{2}$.
+4. $s$'i yaz.
+
+<Cevap>$3$ işlem adımı; çıktı $\dfrac{x+4}{2}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=x^2$, $g(x)=x-1$ için "önce $f$, sonra $g$" ($x=3$) çıktısını bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $f(3)=9$.
+2. $g(9)=9-1=8$.
+
+<Cevap>$8$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+"$t=0$; $\;i=1$ iken $i\le 3$ olduğu sürece $t=t+i^2$, $i=i+1$" algoritmasının çıktısını bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $i=1$: $t=0+1=1$.
+2. $i=2$: $t=1+4=5$.
+3. $i=3$: $t=5+9=14$.
+4. $i=4$ olunca döngü durur.
+
+<Cevap>$14$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Alıştırmalar — Sıra Sende
+
+> Önce kendin çözmeyi dene; sonra çözümü açıp karşılaştır.
+
+<Ornek>
+
+<Soru>
+
+"$a=2x$; $\;b=a+1$; $\;b$'yi yaz" algoritmasının $x=6$ için çıktısı nedir?
+
+</Soru>
+
+<Cozum>
+
+1. $a=12$, $b=13$.
+
+<Cevap>$13$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=x-4$, $g(x)=3x$ için $f(g(2))$ kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. $g(2)=6$; $f(6)=2$.
+
+<Cevap>$2$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$x=3$ için "kare al, sonra $1$ çıkar" ile "$1$ çıkar, sonra kare al" çıktıları nedir?
+
+</Soru>
+
+<Cozum>
+
+1. İlk: $9-1=8$. İkinci: $(3-1)^2=4$.
+
+<Cevap>$8$ ve $4$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+"$p=1$; $\;i=1$ iken $i\le 4$ olduğu sürece $p=p\cdot i$, $i=i+1$" çıktısını bul.
+
+</Soru>
+
+<Cozum>
+
+1. $p$ sırasıyla $1,2,6,24$ olur ($=4!$).
+
+<Cevap>$24$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=2x+1$ fonksiyonunu adım adım (girdi→çıktı) yaz.
+
+</Soru>
+
+<Cozum>
+
+1. $x$ al; $2$ ile çarp ($t=2x$); $1$ ekle ($s=t+1$); $s$'i yaz.
+
+<Cevap>$2$ işlem adımı; çıktı $2x+1$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **İşlem önceliğini bozmak.** Adımlara dökerken de önce üs/parantez, sonra çarpma-bölme, sonra toplama-çıkarma sırasını koru.
+- **Adım sırasını önemsiz sanmak.** "Kare al sonra ekle" ile "ekle sonra kare al" farklı sonuç verir.
+- **Bileşkede sırayı ters uygulamak.** $f(g(x))$'te **önce $g$** (içteki) çalışır, sonra $f$.
+- **İzlemede eski değeri kullanmak.** $t=t+i$ atamasında her adımda $t$'nin **güncel** değerini kullan.
+
+> **Not:** Bir algoritmanın çıktısını bulmanın en güvenli yolu **adım adım izlemektir**: değişkenlerin her satırdaki değerini yaz. Bileşke ($f(g(x))$) sorularında daima **içten dışa** ilerle.
+
+<KonuNav slug="islemlerin-algoritmasi-10" />

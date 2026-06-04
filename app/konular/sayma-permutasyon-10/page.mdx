@@ -1,0 +1,302 @@
+import { topicMetadata } from "@/lib/seo";
+
+export const metadata = topicMetadata("sayma-permutasyon-10");
+
+<Konu slug="sayma-permutasyon-10" />
+
+<p className="lead">*Sayma, Algoritma ve Bilişim* temasına "kaç farklı şekilde?" sorusunu yanıtlayan **sayma yöntemleriyle** başlıyoruz. Bu derste **toplama ve çarpma** yoluyla saymayı, **faktöriyel** kavramını ve sıralamanın önemli olduğu durumlarda **permütasyonu** öğreneceğiz. Sayma; olasılığın da temelidir — bir olayın olasılığını bulmak için önce "kaç durum var?" sorusunu yanıtlamak gerekir. Bol örnek ve "Sıra Sende" alıştırmalarıyla pekiştireceğiz.</p>
+
+## 1. Toplama ve Çarpma Yoluyla Sayma
+
+- **Çarpma kuralı:** Bir iş **ardışık** aşamalardan oluşuyorsa (önce şunu, sonra şunu), aşamaların seçenek sayıları **çarpılır**.
+- **Toplama kuralı:** Bir iş **birbirini dışlayan** seçeneklerden biriyle yapılıyorsa (ya şu ya bu), seçenek sayıları **toplanır**.
+
+<Ornek>
+
+<Soru>
+
+$3$ farklı gömlek ve $4$ farklı pantolonla kaç farklı kıyafet kombinasyonu oluşturulabilir?
+
+</Soru>
+
+<Cozum>
+
+1. Önce gömlek ($3$ seçenek), sonra pantolon ($4$ seçenek) — ardışık seçim.
+2. Çarpma kuralı: $3\cdot 4=12$.
+
+<Cevap>$12$ farklı kombinasyon.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 2. Faktöriyel
+
+$n$ pozitif tam sayısının faktöriyeli, $1$'den $n$'e kadarki sayıların çarpımıdır:
+
+$$n!=n\cdot(n-1)\cdot(n-2)\cdots 2\cdot 1$$
+
+Özel olarak $0!=1$ ve $1!=1$'dir. Örneğin $4!=4\cdot3\cdot2\cdot1=24$.
+
+<Ornek>
+
+<Soru>
+
+$\dfrac{6!}{4!}$ ifadesini hesaplayınız.
+
+</Soru>
+
+<Ipucu>
+
+Büyük faktöriyeli açmadan, küçüğü sadeleştir: $6!=6\cdot 5\cdot 4!$.
+
+</Ipucu>
+
+<Cozum>
+
+1. $6!=6\cdot 5\cdot 4!$.
+2. $\dfrac{6\cdot 5\cdot 4!}{4!}=6\cdot 5=30$.
+
+<Cevap>$30$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 3. Permütasyon
+
+**Permütasyon**, $n$ farklı nesneden $r$ tanesinin **sıralı** seçimidir (sıra önemlidir):
+
+$$P(n,r)=\dfrac{n!}{(n-r)!}$$
+
+$n$ nesnenin tamamının sıralanışı $P(n,n)=n!$'dir.
+
+<Ornek>
+
+<Soru>
+
+$5$ kişi bir sıraya kaç farklı şekilde dizilebilir?
+
+</Soru>
+
+<Cozum>
+
+1. $5$ kişinin tümünün sıralanışı $P(5,5)=5!$.
+2. $5!=120$.
+
+<Cevap>$120$ farklı diziliş.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$6$ kişi arasından $1.$, $2.$ ve $3.$lük için kaç farklı şekilde madalya dağıtılabilir?
+
+</Soru>
+
+<Cozum>
+
+1. Sıra önemli (1.lik–2.lik farklı); $6$ kişiden $3$ sıralı seçim: $P(6,3)$.
+2. $P(6,3)=\dfrac{6!}{3!}=6\cdot 5\cdot 4=120$.
+
+<Cevap>$120$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Çözümlü Örnekler
+
+<Ornek>
+
+<Soru>
+
+$0,1,2,3,4$ rakamlarıyla, rakamları tekrarsız, $3$ basamaklı kaç sayı yazılabilir?
+
+</Soru>
+
+<Cozum>
+
+1. Yüzler basamağı $0$ olamaz: $4$ seçenek.
+2. Onlar basamağı: kalan $4$ rakamdan biri (0 dâhil): $4$ seçenek.
+3. Birler basamağı: kalan $3$ rakam: $3$ seçenek.
+4. Çarp: $4\cdot 4\cdot 3=48$.
+
+<Cevap>$48$ sayı.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+"KALEM" kelimesinin harfleri kaç farklı şekilde sıralanır?
+
+</Soru>
+
+<Cozum>
+
+1. $5$ harf, hepsi farklı: $5!$.
+2. $5!=120$.
+
+<Cevap>$120$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$P(n,2)=20$ ise $n$ kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. $P(n,2)=n(n-1)=20$.
+2. $n(n-1)=20\Rightarrow n=5$ ($5\cdot 4=20$).
+
+<Cevap>$n=5$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$4$ kız ve $3$ erkek bir sıraya, kızlar yan yana olacak şekilde kaç farklı şekilde dizilir?
+
+</Soru>
+
+<Ipucu>
+
+Yan yana olması gereken grubu **tek bir blok** say; bloğu yerleştir, sonra blok içini ayrıca sırala.
+
+</Ipucu>
+
+<Cozum>
+
+1. $4$ kızı tek blok say: blok + $3$ erkek = $4$ nesne, $4!=24$ diziliş.
+2. Blok içinde kızlar: $4!=24$.
+3. Çarp: $24\cdot 24=576$.
+
+<Cevap>$576$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Alıştırmalar — Sıra Sende
+
+> Önce kendin çözmeyi dene; sonra çözümü açıp karşılaştır.
+
+<Ornek>
+
+<Soru>
+
+$2$ farklı çorba ve $5$ farklı ana yemekten oluşan menüde kaç farklı seçim yapılabilir?
+
+</Soru>
+
+<Cozum>
+
+1. Çarpma: $2\cdot 5=10$.
+
+<Cevap>$10$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\dfrac{8!}{6!}$ kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. $\dfrac{8\cdot 7\cdot 6!}{6!}=8\cdot 7=56$.
+
+<Cevap>$56$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$4$ kişi bir banka kaç farklı şekilde oturabilir?
+
+</Soru>
+
+<Cozum>
+
+1. $4!=24$.
+
+<Cevap>$24$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$7$ kişiden $2$'si seçilip başkan ve yardımcı yapılacak. Kaç farklı şekilde?
+
+</Soru>
+
+<Cozum>
+
+1. Sıra önemli: $P(7,2)=7\cdot 6=42$.
+
+<Cevap>$42$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$1,2,3,4,5$ rakamlarıyla tekrarsız $2$ basamaklı kaç sayı yazılır?
+
+</Soru>
+
+<Cozum>
+
+1. Onlar: $5$ seçenek; birler: kalan $4$. $5\cdot 4=20$.
+
+<Cevap>$20$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Toplama ile çarpma kuralını karıştırmak.** "Ya ... ya ..." → topla; "önce ... sonra ..." → çarp.
+- **$0!$'ı $0$ sanmak.** Tanım gereği $0!=1$'dir.
+- **Sıfırın baş basamağa gelmesini engellememek.** $3$ basamaklı sayıda baş basamak $0$ olamaz; bu durumu ayrı say.
+- **Sıra önemliyken permütasyon yerine başka şey kullanmak.** "Sıralama/dizme/başkan-yardımcı" → permütasyon ($P(n,r)$).
+
+> **Not:** İlk soru her zaman: **sıra önemli mi?** Önemliyse permütasyon. Ardışık adımları **çarp**, birbirini dışlayan halleri **topla**. Faktöriyel oranlarında büyük olanı açıp sadeleştir.
+
+<KonuNav slug="sayma-permutasyon-10" />

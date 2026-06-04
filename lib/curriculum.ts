@@ -213,9 +213,9 @@ export const TOPICS: Topic[] = [
   { slug: "ters-fonksiyon", title: "Ters Fonksiyonlar", track: "10", unit: "nicelikler-degisimler-10", summary: "Bir fonksiyonun tersi ve grafiğin y=x doğrusuna göre simetrisi.", minutes: 7, difficulty: "Orta", questionCount: 16, status: "published", keywords: ["ters fonksiyon"] },
 
   // ── 10. Sınıf · Sayma, Algoritma ve Bilişim ──
-  { slug: "sayma-permutasyon-10", title: "Sayma Yöntemleri ve Permütasyon", track: "10", unit: "sayma-algoritma-10", summary: "Toplama-çarpma yoluyla sayma, faktöriyel ve permütasyon.", minutes: 8, difficulty: "Orta", questionCount: 22, status: "soon", keywords: ["permütasyon", "faktöriyel", "sayma"] },
-  { slug: "kombinasyon-10", title: "Kombinasyon", track: "10", unit: "sayma-algoritma-10", summary: "Kombinasyon kavramı, özellikleri ve permütasyonla farkı.", minutes: 7, difficulty: "Orta", questionCount: 20, status: "soon", keywords: ["kombinasyon", "seçme"] },
-  { slug: "islemlerin-algoritmasi-10", title: "İşlemlerin Algoritmik Yapısı", track: "10", unit: "sayma-algoritma-10", summary: "Cebirsel ve fonksiyonel işlemlerin algoritmik biçimde ifadesi.", minutes: 6, difficulty: "Kolay", questionCount: 14, status: "soon", keywords: ["algoritma"] },
+  { slug: "sayma-permutasyon-10", title: "Sayma Yöntemleri ve Permütasyon", track: "10", unit: "sayma-algoritma-10", summary: "Toplama-çarpma yoluyla sayma, faktöriyel ve permütasyon.", minutes: 8, difficulty: "Orta", questionCount: 22, status: "published", keywords: ["permütasyon", "faktöriyel", "sayma"] },
+  { slug: "kombinasyon-10", title: "Kombinasyon", track: "10", unit: "sayma-algoritma-10", summary: "Kombinasyon kavramı, özellikleri ve permütasyonla farkı.", minutes: 7, difficulty: "Orta", questionCount: 20, status: "published", keywords: ["kombinasyon", "seçme"] },
+  { slug: "islemlerin-algoritmasi-10", title: "İşlemlerin Algoritmik Yapısı", track: "10", unit: "sayma-algoritma-10", summary: "Cebirsel ve fonksiyonel işlemlerin algoritmik biçimde ifadesi.", minutes: 6, difficulty: "Kolay", questionCount: 14, status: "published", keywords: ["algoritma"] },
 
   // ── 10. Sınıf · Geometrik Şekiller ──
   { slug: "dik-ucgen-trigonometri-10", title: "Dik Üçgende Trigonometrik Oranlar ve Özdeşlikler", track: "10", unit: "geometrik-sekiller-10", summary: "Sinüs, kosinüs, tanjant oranları ve temel trigonometrik özdeşlikler.", minutes: 9, difficulty: "Orta", questionCount: 24, status: "soon", keywords: ["sinüs", "kosinüs", "tanjant", "trigonometri"] },

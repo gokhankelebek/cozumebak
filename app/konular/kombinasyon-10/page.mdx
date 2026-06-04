@@ -1,0 +1,279 @@
+import { topicMetadata } from "@/lib/seo";
+
+export const metadata = topicMetadata("kombinasyon-10");
+
+<Konu slug="kombinasyon-10" />
+
+<p className="lead">Bazı seçimlerde **sıra önemli değildir** — bir takıma seçilen $3$ kişide kimin önce seçildiği fark etmez. Bu tür seçimleri **kombinasyon** sayar. Bu derste kombinasyon formülünü, temel özelliklerini ve **permütasyondan farkını** öğreneceğiz. Kombinasyon; takım kurma, el dağıtma, alt küme sayma gibi pek çok problemin ve olasılığın anahtarıdır. Bol örnek ve "Sıra Sende" alıştırmalarıyla pekiştireceğiz.</p>
+
+## 1. Kombinasyon Nedir?
+
+**Kombinasyon**, $n$ farklı nesneden $r$ tanesinin **sırasız** seçimidir:
+
+$$C(n,r)=\binom{n}{r}=\dfrac{n!}{r!\,(n-r)!}$$
+
+Sıra önemli olmadığından, kombinasyon permütasyonun $r!$'e bölünmüş hâlidir: $C(n,r)=\dfrac{P(n,r)}{r!}$.
+
+<Ornek>
+
+<Soru>
+
+$6$ kişilik bir gruptan $2$ kişilik bir komite kaç farklı şekilde seçilir?
+
+</Soru>
+
+<Cozum>
+
+1. Komitede sıra önemsiz → kombinasyon: $C(6,2)$.
+2. $C(6,2)=\dfrac{6\cdot 5}{2!}=\dfrac{30}{2}=15$.
+
+<Cevap>$15$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 2. Temel Özellikler
+
+- $C(n,0)=C(n,n)=1$ (hiç seçmemenin ve hepsini seçmenin tek yolu vardır).
+- $C(n,1)=n$.
+- **Simetri:** $C(n,r)=C(n,\,n-r)$ ($r$ tane seçmek, kalan $n-r$ taneyi ayırmaya denktir).
+
+<Ornek>
+
+<Soru>
+
+$C(10,\ 8)$ değerini kısa yoldan hesaplayınız.
+
+</Soru>
+
+<Ipucu>
+
+Simetriyi kullan: $C(10,8)=C(10,2)$. Küçük alttan saymak çok daha kolaydır.
+
+</Ipucu>
+
+<Cozum>
+
+1. $C(10,8)=C(10,2)=\dfrac{10\cdot 9}{2}=45$.
+
+<Cevap>$45$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 3. Permütasyon mu, Kombinasyon mu?
+
+Tek soru: **sıra önemli mi?**
+
+- Önemliyse (sıralama, başkan-yardımcı, şifre) → **permütasyon**.
+- Önemsizse (komite, takım, el, alt küme) → **kombinasyon**.
+
+<Ornek>
+
+<Soru>
+
+$8$ oyuncudan $5$'i sahaya çıkacak. Kaç farklı kadro oluşur?
+
+</Soru>
+
+<Cozum>
+
+1. Kadroda sıra önemsiz (kim seçildi önemli, hangi sırayla değil) → kombinasyon.
+2. $C(8,5)=C(8,3)=\dfrac{8\cdot 7\cdot 6}{3!}=\dfrac{336}{6}=56$.
+
+<Cevap>$56$ farklı kadro.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Çözümlü Örnekler
+
+<Ornek>
+
+<Soru>
+
+$7$ kişiden $3$ kişilik bir grup kaç farklı şekilde seçilir?
+
+</Soru>
+
+<Cozum>
+
+1. $C(7,3)=\dfrac{7\cdot 6\cdot 5}{3!}=\dfrac{210}{6}=35$.
+
+<Cevap>$35$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$5$ erkek ve $4$ kızdan, $2$ erkek ve $2$ kızlık bir ekip kaç farklı şekilde kurulur?
+
+</Soru>
+
+<Ipucu>
+
+Bağımsız iki seçimi ayrı ayrı kombinasyonla bul, sonra çarpma kuralıyla birleştir.
+
+</Ipucu>
+
+<Cozum>
+
+1. $2$ erkek: $C(5,2)=10$.
+2. $2$ kız: $C(4,2)=6$.
+3. Çarp: $10\cdot 6=60$.
+
+<Cevap>$60$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$C(n,2)=10$ ise $n$ kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. $C(n,2)=\dfrac{n(n-1)}{2}=10\Rightarrow n(n-1)=20$.
+2. $n=5$ ($5\cdot 4=20$).
+
+<Cevap>$n=5$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir düzlemde, herhangi üçü doğrusal olmayan $6$ noktanın belirlediği doğru sayısını bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. Bir doğru $2$ noktayla belirlenir; sıra önemsiz → $C(6,2)$.
+2. $C(6,2)=15$.
+
+<Cevap>$15$ doğru.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Alıştırmalar — Sıra Sende
+
+> Önce kendin çözmeyi dene; sonra çözümü açıp karşılaştır.
+
+<Ornek>
+
+<Soru>
+
+$9$ kişiden $2$ kişilik komite kaç şekilde seçilir?
+
+</Soru>
+
+<Cozum>
+
+1. $C(9,2)=\dfrac{9\cdot 8}{2}=36$.
+
+<Cevap>$36$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$C(12,\ 10)$ kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. $C(12,10)=C(12,2)=\dfrac{12\cdot 11}{2}=66$.
+
+<Cevap>$66$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$10$ soruluk testten $8$ soru kaç farklı şekilde seçilip çözülür (sıra önemsiz)?
+
+</Soru>
+
+<Cozum>
+
+1. $C(10,8)=C(10,2)=45$.
+
+<Cevap>$45$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$6$ kişiden $4$'ü seçilecek. Kaç farklı seçim vardır?
+
+</Soru>
+
+<Cozum>
+
+1. $C(6,4)=C(6,2)=15$.
+
+<Cevap>$15$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$8$ noktadan ($üçü doğrusal değil) kaç farklı üçgen oluşur?
+
+</Soru>
+
+<Cozum>
+
+1. Bir üçgen $3$ noktayla belirlenir, sıra önemsiz: $C(8,3)=56$.
+
+<Cevap>$56$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Sıra önemsizken permütasyon kullanmak.** Komite/takım/el → kombinasyon; sonucu $r!$ kat fazla bulursan permütasyona kaymışsındır.
+- **Simetriyi kullanmamak.** $C(n,r)=C(n,n-r)$; $C(20,18)$ yerine $C(20,2)$ hesapla.
+- **Bağımsız seçimleri toplamak.** "Hem ... hem ..." gruplarını **çarp** (erkekler × kızlar), toplama değil.
+- **$C(n,0)$'ı $0$ sanmak.** $C(n,0)=1$'dir.
+
+> **Not:** Karar ağacın tek soruyla başlasın: **sıra önemli mi?** Önemsizse kombinasyon. Büyük $r$ için **simetriyle** küçült; çok aşamalı seçimde her aşamayı kombinasyonla bulup **çarp**.
+
+<KonuNav slug="kombinasyon-10" />
