@@ -1,4 +1,5 @@
 import { topicMetadata } from "@/lib/seo";
+import { IsaretTablosu } from "@/components/figures/IkinciDereceEsitsizlikFig";
 
 export const metadata = topicMetadata("ikinci-derece-denklem-esitsizlik-10");
 
@@ -97,6 +98,14 @@ $x^2-7x+10=0$ denkleminin köklerinin toplamını ve çarpımını bulunuz.
 ## 4. İkinci Dereceden Eşitsizlikler
 
 $ax^2+bx+c$ ifadesinin işareti parabolün grafiğinden okunur. Kural ("**ortada ters, dışta aynı**"): kökler $x_1<x_2$ ise, ifade **kökler arasında** baş katsayının **tersi**, **dışında** baş katsayıyla **aynı** işaretlidir.
+
+<Figur>
+
+<IsaretTablosu />
+
+<Altyazi>Şekil 1 — $f(x)=x^2-x-6=(x+2)(x-3)$ ifadesinin işaret tablosu. $a=1>0$ olduğundan ifade kökler **dışında** ($x<-2$ veya $x>3$) pozitif, kökler **arasında** ($-2<x<3$) negatiftir: "ortada ters, dışta aynı".</Altyazi>
+
+</Figur>
 
 <Ornek>
 
@@ -292,12 +301,114 @@ $3x^2-12=0$ denklemini çöz.
 
 </Ornek>
 
+<Ornek>
+
+<Soru>
+
+$2x^2-3x-2=0$ denkleminin köklerini bul.
+
+</Soru>
+
+<Ipucu>
+
+Baş katsayı $1$ değil; ya kök formülünü kullan ya da $2x^2-3x-2=(2x+1)(x-2)$ çarpanlamasını dene.
+
+</Ipucu>
+
+<Cozum>
+
+1. $\Delta=(-3)^2-4\cdot2\cdot(-2)=9+16=25$, $\sqrt{25}=5$.
+2. $x=\dfrac{3\pm5}{4}$: $x=2$ veya $x=-\dfrac{1}{2}$.
+
+<Cevap>$x=2$ ve $x=-\dfrac{1}{2}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$x^2-(m-1)x+9=0$ denkleminin **çift katlı** (tek) kökü olması için $m$'nin alabileceği değerleri bul.
+
+</Soru>
+
+<Ipucu>
+
+Tek (çift katlı) kök $\Delta=0$ demektir. $b=-(m-1)$ alıp $b^2-4ac=0$ kur.
+
+</Ipucu>
+
+<Cozum>
+
+1. $\Delta=0$: $(m-1)^2-4\cdot1\cdot9=0\Rightarrow (m-1)^2=36$.
+2. $m-1=\pm 6\Rightarrow m=7$ veya $m=-5$.
+
+<Cevap>$m=7$ veya $m=-5$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Kökleri $x_1,\ x_2$ olan $x^2-5x+3=0$ denklemi için $\dfrac{1}{x_1}+\dfrac{1}{x_2}$ değerini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Kökleri tek tek bulma. Paydaları eşitle: $\dfrac{1}{x_1}+\dfrac{1}{x_2}=\dfrac{x_1+x_2}{x_1 x_2}$; kök–katsayı ilişkilerini kullan.
+
+</Ipucu>
+
+<Cozum>
+
+1. $x_1+x_2=-\dfrac{-5}{1}=5$, $\;x_1 x_2=\dfrac{3}{1}=3$.
+2. $\dfrac{1}{x_1}+\dfrac{1}{x_2}=\dfrac{x_1+x_2}{x_1 x_2}=\dfrac{5}{3}$.
+
+<Cevap>$\dfrac{5}{3}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\dfrac{x-1}{x-4}\le 0$ eşitsizliğinin çözüm kümesini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Rasyonel eşitsizlikte pay ve paydanın köklerini bir işaret tablosuna yerleştir. Payda **asla** sıfır olamaz, o yüzden $x=4$ çözüme dâhil edilmez.
+
+</Ipucu>
+
+<Cozum>
+
+1. Pay sıfırı: $x=1$ (dâhil, çünkü $\le$); payda sıfırı: $x=4$ (hariç).
+2. İşaret tablosunda kritik değerler $1$ ve $4$. İfade kökler arasında ($1<x<4$) negatiftir.
+3. $\le 0$ istendiğinden $x=1$ alınır, $x=4$ alınmaz.
+
+<Cevap>$x\in[1,\ 4)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
 ## Sık Yapılan Hatalar
 
 - **Diskriminantta işaret hatası.** $\Delta=b^2-4ac$; $c$ negatifse $-4ac$ pozitife döner — dikkatli ol.
 - **Kök–katsayı oranlarını ters yazmak.** Toplam $-\dfrac{b}{a}$, çarpım $\dfrac{c}{a}$; toplamdaki eksiyi unutma.
 - **Eşitsizlikte işaret bölgesini ezbere almak.** "Ortada ters, dışta aynı" kuralını baş katsayının işaretine göre uygula; $a<0$ ise bölgeler yer değiştirir.
 - **Uç noktaları yanlış dâhil etmek.** $<,>$ kökleri **dışlar**; $\le,\ge$ kökleri **içerir**.
+- **Rasyonel eşitsizlikte paydanın kökünü içermek.** $\le,\ge$ olsa bile payda sıfır olamayacağından paydanın kökü **her zaman** çözüm dışıdır.
 
 > **Not:** Çarpanlara kolay ayrılan denklemde çarpanlamayı dene; ayrılmıyorsa kök formülüne geç. Kök sayısını her zaman önce $\Delta$ ile kontrol et.
 

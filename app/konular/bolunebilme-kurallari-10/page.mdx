@@ -1,4 +1,5 @@
 import { topicMetadata } from "@/lib/seo";
+import { OnbirKurali } from "@/components/figures/BolunebilmeOnbirFig";
 
 export const metadata = topicMetadata("bolunebilme-kurallari-10");
 
@@ -65,6 +66,14 @@ Birler basamağından başlayıp dönüşümlü olarak topla-çıkar; sonuç $0$
 </Cozum>
 
 </Ornek>
+
+<Figur>
+
+<OnbirKurali />
+
+<Altyazi>Şekil 1 — $8\,294$ için $11$ kuralı. **Birler basamağından** başlayıp rakamlara dönüşümlü $+,-,+,-$ işareti veririz: $4-9+2-8=-11$. Sonuç $11$'in katı olduğundan sayı $11$'e bölünür. (İşareti soldan başlatırsan yanılırsın — daima sağdan başla.)</Altyazi>
+
+</Figur>
 
 ## 3. Bileşik Bölenler
 
@@ -289,6 +298,106 @@ $8\,1\square$ sayısının hem $2$ hem $3$ ile (yani $6$ ile) bölünmesi için 
 3. Ortak: $\square\in\{0,6\}$.
 
 <Cevap>$\square\in\{0,\ 6\}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$72\,5\square$ sayısının $8$ ile bölünebilmesi için $\square$ kaç olabilir?
+
+</Soru>
+
+<Cozum>
+
+1. $8$ kuralı: son **üç** basamak $5\square$ değil, $25\square$ sayısı $8$'e bölünmeli.
+2. $25\square$ değerleri $250\dots259$ arası; $8$'e bölünen tek değer $256=8\cdot 32$.
+3. $\square=6$.
+
+<Cevap>$\square=6$ (sayı $7256$).</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$1\,4\,7\,A$ sayısının $4$ ile bölümünden kalan $2$ ise $A$ rakamının alabileceği değerleri bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+$4$ ile bölünme yalnız son iki basamağa ($7A$) bağlıdır. $7A$ sayısının $4$'e bölümünden kalan $2$ olmalı.
+
+</Ipucu>
+
+<Cozum>
+
+1. Kalan, son iki basamak $7A=70+A$'nın $4$'e göre kalanına eşittir.
+2. $70=4\cdot 17+2$, kalanı $2$; o hâlde $(2+A)$'nın $4$'e bölümünden kalan $2$ olmalı → $A$, $4$'ün katı.
+3. $A\in\{0,4,8\}$. (Kontrol: $70,74,78$ → kalanlar $2,2,2$.) ✓
+
+<Cevap>$A\in\{0,\ 4,\ 8\}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$5\,A\,B\,0$ dört basamaklı sayısı hem $9$ hem $11$ ile bölünüyorsa $A+B$ kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+$9$ kuralı rakam toplamına, $11$ kuralı alternatif toplama bakar. İki denklemi kur; $A,B$ tek rakam ($0$–$9$) olduğundan tek çözümü ara.
+
+</Ipucu>
+
+<Cozum>
+
+1. **$9$ için:** $5+A+B+0=5+A+B$, $9$'un katı olmalı → $A+B\in\{4,13\}$.
+2. **$11$ için (sağdan $+,-,+,-$):** $0-B+A-5=A-B-5$, $11$'in katı olmalı → $A-B-5\in\{-11,0\}$ → $A-B=-6$ veya $A-B=5$.
+3. $A,B\in\{0,\dots,9\}$ deneyelim: $A+B=13$ ve $A-B=5$ → $A=9,\ B=4$ (geçerli). Diğer birleşimler tek rakam vermez.
+4. Demek $A=9,\ B=4$ ve $A+B=13$.
+
+<Cevap>$A+B=13$ (sayı $5940$).</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Rakamları farklı, $\overline{3\,a\,4}$ biçiminde, $6$ ile bölünebilen kaç farklı üç basamaklı sayı vardır?
+
+</Soru>
+
+<Ipucu>
+
+$6=2\cdot 3$. Sayı zaten $4$ ile bittiğinden çift; yalnız $3$ koşulunu uygula. Sonra rakamların farklı olma şartını ($a\ne 3,\ a\ne 4$) ele.
+
+</Ipucu>
+
+<Cozum>
+
+1. Birler basamağı $4$ → sayı çift, $2$ koşulu sağlanır.
+2. $3$ için: $3+a+4=7+a$, $3$'ün katı → $a\in\{2,5,8\}$ (toplam $9,12,15$).
+3. Rakamlar farklı olmalı: $a\ne 3$ ve $a\ne 4$; $\{2,5,8\}$ zaten bunları içermez.
+4. $3$ farklı değer → $3$ sayı ($324,\ 354,\ 384$).
+
+<Cevap>$3$ farklı sayı.</Cevap>
 
 </Cozum>
 

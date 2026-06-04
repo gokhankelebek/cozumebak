@@ -1,5 +1,6 @@
 import { topicMetadata } from "@/lib/seo";
 import { IcAcilar } from "@/components/figures/UcgenFig";
+import { KosinusTeoremi } from "@/components/figures/KosinusTeoremiFig";
 
 export const metadata = topicMetadata("sinus-kosinus-teoremi-10");
 
@@ -59,6 +60,14 @@ $\dfrac{a}{\sin A}=\dfrac{b}{\sin B}$ orantısını kur; $\sin 30°=\dfrac12$, $
 $$a^2=b^2+c^2-2bc\cos A$$
 
 **Ne zaman?** İki kenar + aralarındaki açı verildiğinde (üçüncü kenarı bulmak için) ya da üç kenar verildiğinde (bir açıyı bulmak için). $A=90°$ ise $\cos 90°=0$ olur ve teorem **Pisagor'a** indirgenir.
+
+<Figur>
+
+<KosinusTeoremi />
+
+<Altyazi>Şekil 2 — $A$ köşesinde buluşan $b$ ve $c$ kenarları ile $\widehat{A}$ açısı bilindiğinde, karşı kenar $a$ kosinüs teoremiyle bulunur: $a^2=b^2+c^2-2bc\cos A$.</Altyazi>
+
+</Figur>
 
 <Ornek>
 
@@ -277,12 +286,90 @@ $\dfrac{a}{\sin A}=10$ ve $\sin B=\dfrac12$ ise $b$ kenarı kaçtır?
 
 </Ornek>
 
+<Ornek>
+
+<Soru>
+
+İki kenarı $7$ ve $5$, aralarındaki açısı $120°$ olan üçgenin üçüncü kenarını bul. ($\cos 120°=-\dfrac12$.)
+
+</Soru>
+
+<Ipucu>
+
+Kosinüs teoreminde $\cos 120°=-\dfrac12$ negatiftir; $-2bc\cos A$ terimi bu yüzden **artı** işaretine döner.
+
+</Ipucu>
+
+<Cozum>
+
+1. $a^2=7^2+5^2-2\cdot 7\cdot 5\cdot\cos 120°=49+25-70\cdot\left(-\dfrac12\right)$.
+2. $=74+35=109$.
+3. $a=\sqrt{109}$.
+
+<Cevap>$\sqrt{109}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Üç kenarı $a=6$, $b=5$, $c=4$ olan üçgende en büyük açı hangi kenarın karşısındadır ve bu açının kosinüsü kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+En büyük açı, en uzun kenarın ($a=6$) karşısındadır. $\widehat{A}$ için kosinüs teoremini $\cos A$'ya göre düzenle.
+
+</Ipucu>
+
+<Cozum>
+
+1. En uzun kenar $a=6$ olduğundan en büyük açı $\widehat{A}$'dır.
+2. $a^2=b^2+c^2-2bc\cos A\Rightarrow 36=25+16-2\cdot 5\cdot 4\cos A$.
+3. $36=41-40\cos A\Rightarrow 40\cos A=5\Rightarrow \cos A=\dfrac{1}{8}$.
+
+<Cevap>En büyük açı $a=6$'nın karşısında; $\cos A=\dfrac{1}{8}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir üçgende $\widehat{A}=30°$, $\widehat{B}=45°$ ve $a=6$ ise $b$ kenarını bul. ($\sin 45°=\dfrac{\sqrt2}{2}$.)
+
+</Soru>
+
+<Ipucu>
+
+Kenar–karşı açı çifti ($a$, $\widehat{A}$) verilmiş; sinüs teoremiyle $\dfrac{a}{\sin A}=\dfrac{b}{\sin B}$ kur.
+
+</Ipucu>
+
+<Cozum>
+
+1. $\dfrac{6}{\sin 30°}=\dfrac{b}{\sin 45°}\Rightarrow \dfrac{6}{1/2}=\dfrac{b}{\sqrt2/2}$.
+2. $12=\dfrac{b}{\sqrt2/2}\Rightarrow b=12\cdot\dfrac{\sqrt2}{2}=6\sqrt2$.
+
+<Cevap>$b=6\sqrt2$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
 ## Sık Yapılan Hatalar
 
 - **Yanlış teoremi seçmek.** Kenar–karşı açı çifti → **sinüs**; iki kenar+aralarındaki açı veya üç kenar → **kosinüs**.
 - **Kosinüs teoreminde işaret hatası.** Formül $a^2=b^2+c^2-2bc\cos A$; eksi işaretini ve $\cos A$ negatifse işaret dönüşünü gözden kaçırma.
 - **Kenarı yanlış açıyla eşlemek.** $a$ daima $\widehat{A}$'nın **karşısındaki** kenardır.
 - **$a^2$'den $a$'ya geçerken kökü atlamak.** Sonuçta $a=\sqrt{\dots}$ almayı unutma.
+- **Kosinüsü negatif çıkınca şaşırmak.** $\cos A<0$ ise açı **geniştir** ($90°<A<180°$); bu bir hata değil, geçerli bir sonuçtur. Örneğin $\cos A=-\dfrac12\Rightarrow A=120°$.
 
 > **Not:** Karar kuralı net: **bir kenar ve karşı açısı** varsa sinüs teoremi; **iki kenar + aralarındaki açı** ya da **üç kenar** varsa kosinüs teoremi. $A=90°$'de kosinüs teoremi Pisagor olur.
 

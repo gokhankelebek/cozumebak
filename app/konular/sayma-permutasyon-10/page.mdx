@@ -1,4 +1,5 @@
 import { topicMetadata } from "@/lib/seo";
+import { CarpmaAgaci } from "@/components/figures/SaymaAgaciFig";
 
 export const metadata = topicMetadata("sayma-permutasyon-10");
 
@@ -29,6 +30,16 @@ $3$ farklı gömlek ve $4$ farklı pantolonla kaç farklı kıyafet kombinasyonu
 </Cozum>
 
 </Ornek>
+
+Çarpma kuralını bir **ağaç şeması** ile görmek de mümkündür. Aşağıda $2$ çorba ($\text{Ç}1,\text{Ç}2$) ve $3$ ana yemekten ($\text{A}1,\text{A}2,\text{A}3$) oluşan bir menü ele alınmış: her çorba dalı $3$ ana yemeğe ayrıldığından uç (yaprak) sayısı $2\cdot 3=6$'dır.
+
+<Figur>
+
+<CarpmaAgaci />
+
+<Altyazi>Şekil 1 — Çarpma kuralının ağaç şeması. İlk aşamada $2$, her dalda ikinci aşamada $3$ seçenek var; yaprakları sayınca $2\cdot 3=6$ farklı menü çıkar. Çarpma kuralı, "her dalın aynı sayıda alt dala ayrılması" demektir.</Altyazi>
+
+</Figur>
 
 ## 2. Faktöriyel
 
@@ -290,12 +301,110 @@ $1,2,3,4,5$ rakamlarıyla tekrarsız $2$ basamaklı kaç sayı yazılır?
 
 </Ornek>
 
+<Ornek>
+
+<Soru>
+
+$\dfrac{(n+1)!}{(n-1)!}$ ifadesini sadeleştiriniz.
+
+</Soru>
+
+<Cozum>
+
+1. $(n+1)!=(n+1)\cdot n\cdot (n-1)!$.
+2. $\dfrac{(n+1)\cdot n\cdot (n-1)!}{(n-1)!}=(n+1)\cdot n=n^2+n$.
+
+<Cevap>$n^2+n$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+"MASKE" kelimesinin harfleri, **M ile E baş ve son** harf olacak şekilde kaç farklı şekilde sıralanır?
+
+</Soru>
+
+<Ipucu>
+
+Önce baş ve son basamağı $M$ ve $E$ ile doldurmanın kaç yolu olduğunu say; sonra ortadaki $3$ harfi serbestçe sırala.
+
+</Ipucu>
+
+<Cozum>
+
+1. Baş–son için $M$ ve $E$'nin yerleşimi: $M$ başa $E$ sona ya da $E$ başa $M$ sona → $2$ yol.
+2. Geriye kalan $A,S,K$ harfleri ortadaki $3$ yere $3!=6$ şekilde dizilir.
+3. Çarp: $2\cdot 6=12$.
+
+<Cevap>$12$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$5$ farklı kitap bir rafa, **iki belirli kitap yan yana gelmeyecek** şekilde kaç farklı şekilde dizilir?
+
+</Soru>
+
+<Ipucu>
+
+"Yan yana gelmesin" tipinde **tümleyen** kullan: toplam dizilişten, ikisinin yan yana olduğu dizilişleri çıkar.
+
+</Ipucu>
+
+<Cozum>
+
+1. Tüm dizilişler: $5!=120$.
+2. İki belirli kitap yan yana: bunları tek blok say → $4!$ diziliş, blok içi $2!$ → $4!\cdot 2!=24\cdot 2=48$.
+3. Yan yana olmayanlar: $120-48=72$.
+
+<Cevap>$72$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$0,1,2,3,4,5$ rakamlarıyla, rakamları tekrarsız, $4$ basamaklı kaç **çift** sayı yazılabilir?
+
+</Soru>
+
+<Ipucu>
+
+"Çift sayı" koşulu birler basamağını ($0,2,4$) sınırlar; ama birler $0$ ise baş basamak için $0$ engeli kalkar. Bu yüzden **birler $0$ mı değil mi** diye iki duruma ayır.
+
+</Ipucu>
+
+<Cozum>
+
+1. **Durum 1 — birler basamağı $0$:** birler $1$ yolla dolar; kalan $5$ rakamdan baş basamak $5$, sonra $4$, sonra $3$ → $5\cdot 4\cdot 3=60$.
+2. **Durum 2 — birler basamağı $2$ veya $4$ ($2$ seçenek):** baş basamak $0$ ve seçilen çift rakam hariç $4$ seçenek; sonra $4$, sonra $3$ → $2\cdot 4\cdot 4\cdot 3=96$.
+3. Topla: $60+96=156$.
+
+<Cevap>$156$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
 ## Sık Yapılan Hatalar
 
 - **Toplama ile çarpma kuralını karıştırmak.** "Ya ... ya ..." → topla; "önce ... sonra ..." → çarp.
 - **$0!$'ı $0$ sanmak.** Tanım gereği $0!=1$'dir.
 - **Sıfırın baş basamağa gelmesini engellememek.** $3$ basamaklı sayıda baş basamak $0$ olamaz; bu durumu ayrı say.
 - **Sıra önemliyken permütasyon yerine başka şey kullanmak.** "Sıralama/dizme/başkan-yardımcı" → permütasyon ($P(n,r)$).
+- **"Yan yana gelmesin" koşulunu doğrudan saymaya çalışmak.** En kolayı **tümleyen**: tüm dizilişlerden, yan yana olanları çıkar.
 
 > **Not:** İlk soru her zaman: **sıra önemli mi?** Önemliyse permütasyon. Ardışık adımları **çarp**, birbirini dışlayan halleri **topla**. Faktöriyel oranlarında büyük olanı açıp sadeleştir.
 

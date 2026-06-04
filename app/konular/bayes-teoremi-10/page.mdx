@@ -258,6 +258,80 @@ Bir üretimde A hattı $\%70$ (hata $\%2$), B hattı $\%30$ (hata $\%6$) üretiy
 
 </Ornek>
 
+<Ornek>
+
+<Soru>
+
+Üç torba var: 1.'de $1$ kırmızı $3$ mavi, 2.'de $2$ kırmızı $2$ mavi, 3.'te $3$ kırmızı $1$ mavi top. Bir torba **eşit olasılıkla** seçilip bir top çekiliyor. Çekilen topun kırmızı olma olasılığı nedir?
+
+</Soru>
+
+<Ipucu>
+
+Üç ayrık yol var; her torba seçimi $\dfrac13$. Her yolda $\dfrac13\cdot P(\text{kırmızı}\mid \text{torba})$ çarpımını yazıp **topla**.
+
+</Ipucu>
+
+<Cozum>
+
+1. 1. torba: $\dfrac13\cdot\dfrac14=\dfrac{1}{12}$.
+2. 2. torba: $\dfrac13\cdot\dfrac24=\dfrac{2}{12}$.
+3. 3. torba: $\dfrac13\cdot\dfrac34=\dfrac{3}{12}$.
+4. Toplam: $\dfrac{1+2+3}{12}=\dfrac{6}{12}=\dfrac12$.
+
+<Cevap>$\dfrac{1}{2}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Yukarıdaki üç torbalı soruda çekilen top **kırmızı** ise **3. torbadan** gelmiş olma olasılığı nedir?
+
+</Soru>
+
+<Cozum>
+
+1. Pay (3. torba–kırmızı yolu): $\dfrac{3}{12}$.
+2. Payda (toplam kırmızı): $\dfrac{6}{12}=\dfrac12$.
+3. $\dfrac{3/12}{6/12}=\dfrac{3}{6}=\dfrac12$.
+
+<Cevap>$\dfrac{1}{2}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir hastalık nüfusun $\%2$'sinde var. Test, hastaya $\%95$ pozitif veriyor; sağlam birine ise $\%10$ **yanlış pozitif** veriyor. Testi **negatif** çıkan birinin gerçekten **sağlam** olma olasılığı nedir?
+
+</Soru>
+
+<Ipucu>
+
+Bu kez sonuç "negatif". Hastaya negatif olasılığı $1-0{,}95=0{,}05$; sağlama negatif $1-0{,}10=0{,}90$. İstenen $P(\text{sağlam}\mid -)$: sağlam–negatif yolu bölü toplam negatif.
+
+</Ipucu>
+
+<Cozum>
+
+1. Hasta–negatif: $0{,}02\cdot0{,}05=0{,}001$.
+2. Sağlam–negatif: $0{,}98\cdot0{,}90=0{,}882$.
+3. Toplam negatif: $0{,}001+0{,}882=0{,}883$.
+4. $P(\text{sağlam}\mid -)=\dfrac{0{,}882}{0{,}883}\approx 0{,}9989$.
+
+<Cevap>Yaklaşık $\%99{,}9$ (negatif test çok güven verir).</Cevap>
+
+</Cozum>
+
+</Ornek>
+
 ## Sık Yapılan Hatalar
 
 - **$P(A\mid B)$ ile $P(B\mid A)$'yı eşitlemek.** Bayes'in tüm amacı bunların **farklı** olduğunu ve birinden diğerine geçmeyi göstermektir.

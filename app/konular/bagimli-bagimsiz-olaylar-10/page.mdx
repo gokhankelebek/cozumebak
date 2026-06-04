@@ -1,4 +1,5 @@
 import { topicMetadata } from "@/lib/seo";
+import { Agac } from "@/components/figures/OlasilikAgaci";
 
 export const metadata = topicMetadata("bagimli-bagimsiz-olaylar-10");
 
@@ -39,6 +40,16 @@ Bir madenî para ile bir zar birlikte atılıyor. Para **tura**, zar **6** gelme
 İki olay **bağımlıysa**, birinin sonucu diğerinin olasılığını değiştirir (örneğin **geri koymadan** çekiş). Çarpma kuralı **koşullu** olasılıkla yazılır:
 
 $$P(A\cap B)=P(A)\cdot P(B\mid A)$$
+
+İkinci aşamanın dalları **birinci sonuca göre değişir**; bunu ağaç şemasında ikinci basamağın koşullu dalları olarak görürüz.
+
+<Figur>
+
+<Agac />
+
+<Altyazi>Şekil 1 — Bağımlı olaylarda ağaç şeması. İkinci aşama dalları $P(B\mid A)$ ve $P(B\mid A')$ **koşulludur** (ilk sonuca göre değişir). Bir yolun olasılığı dalların çarpımıdır; bağımsızlıkta ise $P(B\mid A)=P(B)$ olur ve dallar değişmez.</Altyazi>
+
+</Figur>
 
 <Ornek>
 
@@ -258,6 +269,79 @@ $4$ kırmızı, $6$ sarı toptan geri koymadan ilk kırmızı, ikinci sarı çek
 1. $\dfrac{4}{10}\cdot\dfrac{6}{9}=\dfrac25\cdot\dfrac23=\dfrac{4}{15}$.
 
 <Cevap>$\dfrac{4}{15}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Ali bir soruyu $0{,}8$, Ayşe ise $0{,}6$ olasılıkla doğru çözüyor. İkisi de bağımsız çalışıyor. Soruyu **en az birinin** doğru çözme olasılığı nedir?
+
+</Soru>
+
+<Ipucu>
+
+"En az biri" → tümleyen: ikisinin de yanlış yapması. $P(\text{yanlış})=1-P(\text{doğru})$.
+
+</Ipucu>
+
+<Cozum>
+
+1. Tümleyen: ikisi de yanlış. $P(\text{Ali yanlış})=0{,}2$, $P(\text{Ayşe yanlış})=0{,}4$.
+2. Bağımsız: $P(\text{ikisi de yanlış})=0{,}2\cdot0{,}4=0{,}08$.
+3. $P(\text{en az biri doğru})=1-0{,}08=0{,}92$.
+
+<Cevap>$0{,}92$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir torbada $3$ kırmızı, $2$ mavi, $1$ yeşil top var. Geri koymadan **art arda üç** top çekiliyor. Çekiliş sırasının **kırmızı–kırmızı–mavi** olma olasılığı nedir?
+
+</Soru>
+
+<Cozum>
+
+1. İlk kırmızı: $\dfrac{3}{6}$.
+2. İkinci kırmızı (kalan $5$ top, $2$ kırmızı): $\dfrac{2}{5}$.
+3. Üçüncü mavi (kalan $4$ top, $2$ mavi): $\dfrac{2}{4}$.
+4. Çarp: $\dfrac{3}{6}\cdot\dfrac{2}{5}\cdot\dfrac{2}{4}=\dfrac12\cdot\dfrac25\cdot\dfrac12=\dfrac{1}{10}$.
+
+<Cevap>$\dfrac{1}{10}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir torbada $4$ kırmızı, $5$ mavi top var. Geri koymadan iki top çekiliyor. İkisinin **aynı renk** olma olasılığı nedir?
+
+</Soru>
+
+<Ipucu>
+
+"Aynı renk" iki ayrık yoldan olur: ikisi de kırmızı **veya** ikisi de mavi. Her yolu çarp, sonra **topla**.
+
+</Ipucu>
+
+<Cozum>
+
+1. İkisi de kırmızı: $\dfrac{4}{9}\cdot\dfrac{3}{8}=\dfrac{12}{72}=\dfrac16$.
+2. İkisi de mavi: $\dfrac{5}{9}\cdot\dfrac{4}{8}=\dfrac{20}{72}=\dfrac{5}{18}$.
+3. Topla: $\dfrac16+\dfrac{5}{18}=\dfrac{3}{18}+\dfrac{5}{18}=\dfrac{8}{18}=\dfrac{4}{9}$.
+
+<Cevap>$\dfrac{4}{9}$.</Cevap>
 
 </Cozum>
 

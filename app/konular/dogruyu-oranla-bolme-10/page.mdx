@@ -1,4 +1,5 @@
 import { topicMetadata } from "@/lib/seo";
+import { OrtaNokta, OranlaBolme } from "@/components/figures/OranBolmeFig";
 
 export const metadata = topicMetadata("dogruyu-oranla-bolme-10");
 
@@ -11,6 +12,14 @@ export const metadata = topicMetadata("dogruyu-oranla-bolme-10");
 $A(x_1,y_1)$ ve $B(x_2,y_2)$ uçlu doğru parçasının **orta noktası**, koordinatların ortalamasıdır:
 
 $$M=\left(\dfrac{x_1+x_2}{2},\ \dfrac{y_1+y_2}{2}\right)$$
+
+<Figur>
+
+<OrtaNokta />
+
+<Altyazi>Şekil 1 — $A(2,1)$ ile $B(8,7)$ doğru parçasının orta noktası $M(5,4)$. Her koordinat, uçların ortalamasıdır: $\dfrac{2+8}{2}=5$, $\dfrac{1+7}{2}=4$. $M$ parçayı iki eşit kısma böler.</Altyazi>
+
+</Figur>
 
 <Ornek>
 
@@ -66,6 +75,16 @@ $A$'dan $B$'ye doğru parçayı $k:l$ oranında **içten** bölen $P$ noktası:
 $$P=\left(\dfrac{l\,x_1+k\,x_2}{k+l},\ \dfrac{l\,y_1+k\,y_2}{k+l}\right)$$
 
 (Orta nokta, bu formülün $k:l=1:1$ özel hâlidir.)
+
+Dikkat: $A$'ya **yakın** uca, ona uzaktaki oran terimi ($l$) ağırlık olarak gelir; bu yüzden formülde ağırlıklar **çapraz** yazılır. $k:l$ küçükse $P$ noktası $A$'ya yakın düşer.
+
+<Figur>
+
+<OranlaBolme />
+
+<Altyazi>Şekil 2 — $A(2,1)$ ile $B(8,7)$ parçasını $A$'dan itibaren $1:2$ oranında bölen $P(4,3)$. $|AP|:|PB|=1:2$ olduğundan $P$, $A$'ya yakındır; kısa parça (turuncu) bir birim, uzun parça iki birimdir.</Altyazi>
+
+</Figur>
 
 <Ornek>
 
@@ -257,13 +276,116 @@ $A(-4,\ 0)$ ile $B(4,\ 8)$ orta noktası nedir?
 
 </Ornek>
 
+<Ornek>
+
+<Soru>
+
+$A(1,\ 5)$ ile $B(9,\ 1)$ arasını $A$'dan itibaren $3:1$ oranında bölen noktayı bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+$k:l=3:1$, yani $k=3,\ l=1$. Ağırlıkları çapraz yaz: $A$'nın koordinatına $l=1$, $B$'ninkine $k=3$ çarpan gelir.
+
+</Ipucu>
+
+<Cozum>
+
+1. $k=3,\ l=1$, $k+l=4$.
+2. $x=\dfrac{1\cdot 1+3\cdot 9}{4}=\dfrac{1+27}{4}=7$.
+3. $y=\dfrac{1\cdot 5+3\cdot 1}{4}=\dfrac{5+3}{4}=2$.
+
+<Cevap>$(7,\ 2)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$A(-1,\ 2)$, $B(3,\ 4)$ ve $C(7,\ 0)$ bir üçgenin köşeleridir. $A$'ya ait kenarortayın ayağı (yani $BC$ kenarının orta noktası) $D$'yi bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Kenarortay, bir köşeyi karşı kenarın **orta noktasına** birleştirir. Burada $A$ köşesinin karşı kenarı $BC$'dir; ayak, $BC$'nin orta noktasıdır.
+
+</Ipucu>
+
+<Cozum>
+
+1. $D$, $BC$'nin orta noktasıdır: $\left(\dfrac{3+7}{2},\ \dfrac{4+0}{2}\right)$.
+2. $D=(5,\ 2)$.
+
+<Cevap>$D(5,\ 2)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Köşeleri $A(2,\ 1)$, $B(6,\ 3)$, $C(4,\ 7)$ olan üçgenin **ağırlık merkezini** bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Ağırlık merkezi $G$, üç köşenin koordinat **ortalamasıdır**: $G=\left(\dfrac{x_A+x_B+x_C}{3},\ \dfrac{y_A+y_B+y_C}{3}\right)$.
+
+</Ipucu>
+
+<Cozum>
+
+1. $x_G=\dfrac{2+6+4}{3}=\dfrac{12}{3}=4$.
+2. $y_G=\dfrac{1+3+7}{3}=\dfrac{11}{3}$.
+
+<Cevap>$G\left(4,\ \dfrac{11}{3}\right)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$ABCD$ bir paralelkenardır ve $A(1,\ 2)$, $B(5,\ 3)$, $C(7,\ 8)$ veriliyor. Dördüncü köşe $D$'yi bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Paralelkenarda köşegenler ($AC$ ve $BD$) birbirini **ortalar**. Yani $AC$'nin orta noktası ile $BD$'nin orta noktası aynıdır. Önce $AC$'nin orta noktasını bul, sonra $D=2M-B$ uygula.
+
+</Ipucu>
+
+<Cozum>
+
+1. $AC$ köşegeninin orta noktası: $M=\left(\dfrac{1+7}{2},\ \dfrac{2+8}{2}\right)=(4,\ 5)$.
+2. $M$ aynı zamanda $BD$'nin de orta noktasıdır: $D=2M-B$.
+3. $x_D=2\cdot 4-5=3$, $\;y_D=2\cdot 5-3=7$.
+
+<Cevap>$D(3,\ 7)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
 ## Sık Yapılan Hatalar
 
 - **Orta noktada toplamayı ikiye bölmeyi unutmak.** $M=\left(\dfrac{x_1+x_2}{2},\dfrac{y_1+y_2}{2}\right)$; yalnız toplamak yanlıştır.
 - **Uç bulurken yanlış işaret.** $B=2M-A$; çıkarmayı koordinat koordinat yap.
 - **Oranlı bölmede ağırlıkları ters koymak.** $k:l$ oranında $A$'ya yakın uca $l$, $B$'ye yakın uca $k$ ağırlığı düşer (çapraz).
 - **İçten/dıştan bölmeyi karıştırmak.** Bu derste **içten** bölme; nokta parçanın **üzerindedir**.
+- **Ağırlık merkezinde ikiye bölmek.** Üçgenin ağırlık merkezinde koordinatlar **üçe** bölünür ($\div 3$), orta noktadaki gibi ikiye değil.
 
-> **Not:** Orta nokta, oranlı bölmenin $1:1$ hâlidir. Paralelkenar/köşegen sorularında "köşegenler birbirini ortalar" bilgisi orta nokta formülüyle hızla çözülür.
+> **Not:** Orta nokta, oranlı bölmenin $1:1$ hâlidir. Paralelkenar/köşegen sorularında "köşegenler birbirini ortalar" bilgisi orta nokta formülüyle hızla çözülür. Üçgenin **ağırlık merkezi** ise üç köşenin ortalamasıdır.
 
 <KonuNav slug="dogruyu-oranla-bolme-10" />

@@ -1,4 +1,5 @@
 import { topicMetadata } from "@/lib/seo";
+import { EbobEkokVenn } from "@/components/figures/EbobEkokVennFig";
 
 export const metadata = topicMetadata("ebob-ekok-10");
 
@@ -53,6 +54,14 @@ $\text{EKOK}(48,\ 72)$ değerini bulunuz.
 </Cozum>
 
 </Ornek>
+
+<Figur>
+
+<EbobEkokVenn />
+
+<Altyazi>Şekil 1 — $48=2^4\cdot 3$ ve $72=2^3\cdot 3^2$'nin asal çarpanları. **Ortak** kısım ($2^3\cdot 3$) EBOB $=24$'tür; iki dairenin **birleşimi** ($2^4\cdot 3^2$) ise EKOK $=144$'tür. EBOB ortak (en küçük üs), EKOK ise tüm çarpanları (en büyük üs) toplar.</Altyazi>
+
+</Figur>
 
 ## 3. EBOB · EKOK İlişkisi
 
@@ -285,12 +294,113 @@ $48$, $60$ ve $72$ boyutlu üç çubuğu eşit ve en uzun parçalara bölersek h
 
 </Ornek>
 
+<Ornek>
+
+<Soru>
+
+$\text{EKOK}(6,\ 8,\ 15)$ kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. $6=2\cdot 3$, $8=2^3$, $15=3\cdot 5$.
+2. Tüm asallar $2,3,5$; en büyük üsler $2^3,\ 3^1,\ 5^1$.
+3. $\text{EKOK}=2^3\cdot 3\cdot 5=120$.
+
+<Cevap>$120$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+İki kenarı $36$ cm ve $48$ cm olan dikdörtgen bir zemin, aynı boyutta en büyük kare fayanslarla hiç boşluk kalmadan döşeniyor. Kaç fayans gerekir?
+
+</Soru>
+
+<Ipucu>
+
+Fayansın kenarı, hem $36$'yı hem $48$'i tam bölmeli ve en büyük olmalı → $\text{EBOB}(36,48)$. Fayans sayısı için alanı kare alanına böl.
+
+</Ipucu>
+
+<Cozum>
+
+1. Kare kenarı $=\text{EBOB}(36,48)$. $36=2^2\cdot 3^2$, $48=2^4\cdot 3$; EBOB $=2^2\cdot 3=12$ cm.
+2. Bir kenarda $36/12=3$, diğerinde $48/12=4$ fayans.
+3. Toplam: $3\cdot 4=12$ fayans.
+
+<Cevap>$12$ fayans (her biri $12\times 12$ cm).</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$5$'e bölündüğünde $3$, $6$'ya bölündüğünde $4$ kalanını veren en küçük pozitif tam sayı kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+Her iki koşulda kalan, bölenden $2$ eksik ($5-3=2$, $6-4=2$). Demek ki sayının $2$ fazlası hem $5$'e hem $6$'ya tam bölünür.
+
+</Ipucu>
+
+<Cozum>
+
+1. $5-3=2$ ve $6-4=2$; eksik kalan aynı, $2$.
+2. O hâlde $N+2$ hem $5$'e hem $6$'ya bölünür → $N+2=\text{EKOK}(5,6)\cdot k=30k$.
+3. En küçük pozitif için $k=1$: $N+2=30\Rightarrow N=28$.
+4. Kontrol: $28=5\cdot 5+3$ (kalan $3$), $28=6\cdot 4+4$ (kalan $4$). ✓
+
+<Cevap>$28$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+İki sayının EBOB'u $8$, EKOK'u $240$'tır. Bu koşula uyan kaç farklı sayı çifti $\{a,b\}$ vardır?
+
+</Soru>
+
+<Ipucu>
+
+$a=8x$, $b=8y$ yaz; burada $x,y$ aralarında asaldır. EKOK $=8xy=240\Rightarrow xy=30$. $30$'u **aralarında asal** iki çarpana ayırmanın yollarını say.
+
+</Ipucu>
+
+<Cozum>
+
+1. $a=8x,\ b=8y$ ve $\text{EBOB}(x,y)=1$.
+2. $\text{EKOK}(a,b)=8xy=240\Rightarrow xy=30=2\cdot 3\cdot 5$.
+3. $30$'u aralarında asal $\{x,y\}$ çiftlerine ayır: $\{1,30\},\{2,15\},\{3,10\},\{5,6\}$ → $4$ çift.
+4. Her çift bir $\{a,b\}$ verir: $\{8,240\},\{16,120\},\{24,80\},\{40,48\}$.
+
+<Cevap>$4$ farklı çift.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
 ## Sık Yapılan Hatalar
 
 - **EBOB ile EKOK kuralını karıştırmak.** EBOB: **ortak** çarpanlar, **en küçük** üs. EKOK: **tüm** çarpanlar, **en büyük** üs.
 - **EBOB·EKOK ilişkisini ikiden çok sayıya uygulamak.** $\text{EBOB}\cdot\text{EKOK}=a\cdot b$ yalnız **iki** sayı için geçerlidir.
 - **Problemde yanlış aracı seçmek.** "Aynı anda/tekrar" → EKOK; "eşit en büyük parça/grup" → EBOB.
 - **Ortak olmayan çarpanı EBOB'a katmak.** Bir asal yalnız bir sayıda varsa EBOB'a girmez (EKOK'a girer).
+- **"Kalan" problemini doğrudan EKOK sanmak.** Bölenden eşit miktarda **eksik** kalan veriliyorsa ($5-3=6-4=2$ gibi), önce $N+2$'nin EKOK'a eşit olduğunu kur; kalanı unutma.
 
 > **Not:** Problemi okurken anahtar kelimeyi yakala: **"en büyük/eşit böl" → EBOB**, **"en küçük/aynı anda" → EKOK**. İkisi de önce asal çarpanlara ayırmakla başlar.
 

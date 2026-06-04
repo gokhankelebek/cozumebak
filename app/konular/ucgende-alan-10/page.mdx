@@ -1,5 +1,6 @@
 import { topicMetadata } from "@/lib/seo";
 import { AlanTabanYukseklik } from "@/components/figures/BenzerlikFig";
+import { EskenarAlan } from "@/components/figures/EskenarAlanFig";
 
 export const metadata = topicMetadata("ucgende-alan-10");
 
@@ -74,6 +75,14 @@ $\dfrac12 ab\sin C$ formülünü kullan; $\sin 30°=\dfrac12$.
 
 - **Dik üçgen:** dik kenarlar taban ve yüksekliktir → $\text{Alan}=\dfrac{\text{dik kenar}_1\cdot\text{dik kenar}_2}{2}$.
 - **Eşkenar üçgen** (kenarı $a$): $\text{Alan}=\dfrac{a^2\sqrt3}{4}$.
+
+<Figur>
+
+<EskenarAlan />
+
+<Altyazi>Şekil 2 — Kenarı $a$ olan eşkenar üçgende tabana inen yükseklik $h=\dfrac{a\sqrt3}{2}$'dir. Alanı $\dfrac{a\cdot h}{2}=\dfrac{a^2\sqrt3}{4}$ olarak verir.</Altyazi>
+
+</Figur>
 
 <Ornek>
 
@@ -279,6 +288,82 @@ Alanı $36$ olan üçgenin tabanı $12$ ise yüksekliği kaçtır?
 1. $\dfrac{12h}{2}=36\Rightarrow 6h=36\Rightarrow h=6$.
 
 <Cevap>$6$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+İki kenarı $10$ ve $6$, aralarındaki açısı $150°$ olan üçgenin alanı kaçtır? ($\sin 150°=\dfrac12$ bilgisini kullan.)
+
+</Soru>
+
+<Ipucu>
+
+$150°$ geniş bir açıdır ama $\dfrac12 ab\sin C$ formülü geniş açılarda da geçerlidir; $\sin 150°=\sin 30°=\dfrac12$.
+
+</Ipucu>
+
+<Cozum>
+
+1. $\text{Alan}=\dfrac12\cdot 10\cdot 6\cdot\sin 150°=\dfrac12\cdot 60\cdot\dfrac12$.
+2. $=30\cdot\dfrac12=15$.
+
+<Cevap>$15$ birimkare.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir eşkenar üçgenin alanı $16\sqrt3$ birimkaredir. Bu üçgenin bir kenarı kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+Eşkenar üçgende $\dfrac{a^2\sqrt3}{4}=16\sqrt3$ denklemini kurup $a^2$'yi çek.
+
+</Ipucu>
+
+<Cozum>
+
+1. $\dfrac{a^2\sqrt3}{4}=16\sqrt3$; iki tarafı $\sqrt3$'e böl: $\dfrac{a^2}{4}=16$.
+2. $a^2=64\Rightarrow a=8$.
+
+<Cevap>$8$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir üçgende $|AB|=8$, $|AC|=10$ ve $A$ açısı $30°$'dir. $A$ köşesinden $BC$ kenarına ait yükseklik için önce alanı bul; sonra $|BC|=12$ ise bu kenara ait yükseklik kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+Önce $\dfrac12\cdot|AB|\cdot|AC|\cdot\sin A$ ile alanı bul; sonra aynı alanı $\dfrac{|BC|\cdot h}{2}$'ye eşitleyerek $h$'yi çek.
+
+</Ipucu>
+
+<Cozum>
+
+1. Alan $=\dfrac12\cdot 8\cdot 10\cdot\sin 30°=\dfrac12\cdot 80\cdot\dfrac12=20$.
+2. Aynı alanı $BC$ tabanıyla yaz: $\dfrac{|BC|\cdot h}{2}=20\Rightarrow \dfrac{12h}{2}=20$.
+3. $6h=20\Rightarrow h=\dfrac{10}{3}$.
+
+<Cevap>Alan $20$ birimkare; $BC$'ye ait yükseklik $h=\dfrac{10}{3}$.</Cevap>
 
 </Cozum>
 

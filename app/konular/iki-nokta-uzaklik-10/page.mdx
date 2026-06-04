@@ -1,5 +1,6 @@
 import { topicMetadata } from "@/lib/seo";
 import { IkiNokta } from "@/components/figures/AnalitikFig";
+import { UzaklikPisagor } from "@/components/figures/UzaklikFig";
 
 export const metadata = topicMetadata("iki-nokta-uzaklik-10");
 
@@ -24,6 +25,16 @@ Düzlemdeki her nokta bir **sıralı ikili** $(x,\ y)$ ile gösterilir: $x$ yata
 $A(x_1,y_1)$ ve $B(x_2,y_2)$ noktaları arasındaki uzaklık, yatay ve dikey farkların oluşturduğu dik üçgenin hipotenüsüdür (Pisagor):
 
 $$|AB|=\sqrt{(x_2-x_1)^2+(y_2-y_1)^2}$$
+
+Formülün altında yatan fikir basittir: $A$ ve $B$'yi bir **dik üçgenin** iki köşesi yapan üçüncü bir nokta düşün ($C(x_2,y_1)$). O zaman yatay kenar $\Delta x$, dikey kenar $\Delta y$ ve hipotenüs de aradığımız $|AB|$ olur.
+
+<Figur>
+
+<UzaklikPisagor />
+
+<Altyazi>Şekil 2 — $A(1,2)$ ile $B(4,6)$ arasındaki uzaklık, dik kenarları $\Delta x=3$ ve $\Delta y=4$ olan dik üçgenin hipotenüsüdür: $|AB|=\sqrt{3^2+4^2}=5$. Dik köşe $C(4,2)$ noktasındadır.</Altyazi>
+
+</Figur>
 
 <Ornek>
 
@@ -248,13 +259,113 @@ $A(1,\ 1)$ ile $B(4,\ 5)$ arasındaki uzaklık kaçtır?
 
 </Ornek>
 
+<Ornek>
+
+<Soru>
+
+$A(-2,\ 3)$ ile $B(4,\ -5)$ arasındaki uzaklık kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. $\Delta x=4-(-2)=6$, $\;\Delta y=-5-3=-8$.
+2. $\sqrt{6^2+(-8)^2}=\sqrt{36+64}=\sqrt{100}=10$.
+
+<Cevap>$10$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$A(1,\ 2)$ ile $B(6,\ k)$ arasındaki uzaklık $13$ ise $k$'nın iki olası değerini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+$\Delta x=5$ sabittir; uzaklık karesinde $(k-2)^2$ kalır. $13$ sayısı $5\text{-}12\text{-}13$ üçlüsünü hatırlatır.
+
+</Ipucu>
+
+<Cozum>
+
+1. $\sqrt{(6-1)^2+(k-2)^2}=13\Rightarrow 25+(k-2)^2=169$.
+2. $(k-2)^2=144\Rightarrow k-2=\pm 12$.
+3. $k=14$ veya $k=-10$.
+
+<Cevap>$k=14$ veya $k=-10$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$A(-3,\ 0)$, $B(3,\ 0)$ ve $C(0,\ 4)$ üçgeninin çevresini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+$AB$ kenarı $x$ ekseni üzerindedir (yatay). $C$ tepe noktası eksenin tam ortasındadır; bu yüzden $|AC|=|BC|$ (ikizkenar).
+
+</Ipucu>
+
+<Cozum>
+
+1. $|AB|=|3-(-3)|=6$ (yatay).
+2. $|AC|=\sqrt{(0-(-3))^2+(4-0)^2}=\sqrt{9+16}=5$.
+3. Simetriden $|BC|=\sqrt{3^2+4^2}=5$.
+4. Çevre: $6+5+5=16$.
+
+<Cevap>$16$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$A(1,\ 2)$ ve $B(7,\ 10)$ noktalarından **eşit uzaklıkta** olan ve $x$ ekseni üzerinde bulunan $P(a,\ 0)$ noktasının $a$ değerini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+$|PA|=|PB|$ koşulunu yaz. Karekökten kurtulmak için iki tarafın **karesini** al; karekökler kaybolur, $a$ birinci dereceden kalır.
+
+</Ipucu>
+
+<Cozum>
+
+1. $|PA|^2=(a-1)^2+(0-2)^2=a^2-2a+1+4=a^2-2a+5$.
+2. $|PB|^2=(a-7)^2+(0-10)^2=a^2-14a+49+100=a^2-14a+149$.
+3. Eşitle: $a^2-2a+5=a^2-14a+149$.
+4. $-2a+5=-14a+149\Rightarrow 12a=144\Rightarrow a=12$.
+
+<Cevap>$a=12$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
 ## Sık Yapılan Hatalar
 
 - **Farkları toplamadan önce karelemeyi unutmak.** Uzaklık $\sqrt{(\Delta x)^2+(\Delta y)^2}$; farkları doğrudan toplamak yanlıştır.
 - **İşaret hatası.** Fark negatif çıkabilir ama karesi pozitiftir; yine de farkı doğru hesapla.
 - **Eksen üzerindeki kısa yolu kaçırmak.** $x$ ya da $y$ eşitse tek farkın mutlak değeri yeter; formüle gerek yok.
 - **Karekökü almayı unutmak.** $(\Delta x)^2+(\Delta y)^2$ uzaklığın **karesidir**; sonuçta kök al.
+- **"Eşit uzaklık" sorularında kökle uğraşmak.** $|PA|=|PB|$ ise iki tarafın **karesini** al: $|PA|^2=|PB|^2$. Kökler kaybolur, $x^2,\ y^2$ terimleri sadeleşir ve birinci dereceden bir denklem kalır.
 
-> **Not:** Uzaklık formülü aslında **Pisagor teoremidir**: yatay ve dikey farklar dik kenarlar, uzaklık hipotenüstür. $3\text{-}4\text{-}5$, $5\text{-}12\text{-}13$ üçlüleri burada da işini hızlandırır.
+> **Not:** Uzaklık formülü aslında **Pisagor teoremidir**: yatay ve dikey farklar dik kenarlar, uzaklık hipotenüstür. $3\text{-}4\text{-}5$, $5\text{-}12\text{-}13$, $8\text{-}15\text{-}17$ üçlüleri burada da işini hızlandırır.
 
 <KonuNav slug="iki-nokta-uzaklik-10" />

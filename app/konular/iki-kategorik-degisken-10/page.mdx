@@ -1,4 +1,5 @@
 import { topicMetadata } from "@/lib/seo";
+import { KumelenmisSutun } from "@/components/figures/CaprazTabloFig";
 
 export const metadata = topicMetadata("iki-kategorik-degisken-10");
 
@@ -72,6 +73,16 @@ Kızların yüzde kaçı futbol sever? (Tablodaki değerleri kullan.)
 ## 3. İlişki Var mı?
 
 İki değişken arasında ilişki olup olmadığını anlamak için **grupların yüzdelerini karşılaştırırız**. Yüzdeler belirgin biçimde farklıysa bir ilişki vardır; benzerse ilişki zayıftır.
+
+Tabloyu bir **kümelenmiş sütun grafiğine** dönüştürmek bu karşılaştırmayı görselleştirir: aynı grup içindeki sütunların boyları, o grubun tercih dağılımını gösterir.
+
+<Figur>
+
+<KumelenmisSutun />
+
+<Altyazi>Şekil 1 — Baştaki tablonun kümelenmiş sütun grafiği. Kız grubunda basketbol ($30$) futbolu ($20$) geçerken, erkek grubunda futbol ($35$) basketbolu ($15$) geçer. Sütun örüntüsü gruptan gruba **tersine döndüğü** için cinsiyetle spor tercihi arasında bir ilişki vardır.</Altyazi>
+
+</Figur>
 
 <Ornek>
 
@@ -249,12 +260,130 @@ Bir çapraz tabloda bir sütunun toplamı $80$, o sütundaki bir hücre $20$ ise
 
 </Ornek>
 
+<Ornek>
+
+<Soru>
+
+Baştaki tabloya göre futbol sevenlerin yüzde kaçı kızdır?
+
+</Soru>
+
+<Cozum>
+
+1. Bütün, futbol **sütunu** ($55$). Futbolcu kız $20$.
+2. $\dfrac{20}{55}\cdot 100\approx \%36$.
+
+<Cevap>Yaklaşık $\%36$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir çapraz tabloda satır toplamları $40$ ve $60$, sütun toplamları $45$ ve $55$ veriliyor. $1.$ satır $1.$ sütun hücresi $30$ ise $1.$ satır $2.$ sütun hücresi kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. Bir satırın hücreleri o satırın toplamını verir: $1.$ satır toplamı $40$.
+2. Eksik hücre $=40-30=10$.
+
+<Cevap>$10$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$120$ kişilik bir araştırmada bir hücrenin genel yüzdesi $\%15$ ise o hücredeki birey sayısı kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. Genel yüzde $=\dfrac{\text{hücre}}{\text{toplam}}$, yani hücre $=\%15\cdot 120$.
+2. $\dfrac{15}{100}\cdot 120=18$.
+
+<Cevap>$18$ kişi.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir ankette sinema türü ile yaş grubu karşılaştırılıyor.
+
+| | Aksiyon | Komedi | Toplam |
+|---|:---:|:---:|:---:|
+| **Genç** | $48$ | $32$ | $80$ |
+| **Yetişkin** | $24$ | $36$ | $60$ |
+| **Toplam** | $72$ | $68$ | $140$ |
+
+Yaş grubu ile aksiyon sevme arasında ilişki var mıdır? Satır yüzdeleriyle karşılaştır.
+
+</Soru>
+
+<Ipucu>
+
+Her yaş grubunda **aksiyon oranını** ayrı ayrı bul: hücreyi kendi **satır toplamına** böl, sonra iki oranı karşılaştır.
+
+</Ipucu>
+
+<Cozum>
+
+1. Gençlerde aksiyon oranı: $\dfrac{48}{80}\cdot 100=\%60$.
+2. Yetişkinlerde aksiyon oranı: $\dfrac{24}{60}\cdot 100=\%40$.
+3. Oranlar belirgin farklı ($\%60$ vs $\%40$) → yaş grubu ile aksiyon tercihi arasında ilişki vardır.
+
+<Cevap>Evet; gençlerde aksiyon oranı ($\%60$) yetişkinlerden ($\%40$) belirgin yüksek, ilişki vardır.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir tabloda A grubunda evet diyenlerin oranı $\dfrac{45}{90}$, B grubunda evet diyenlerin oranı $\dfrac{50}{100}$'dür. İki grup arasında bu özellik bakımından ilişki var mıdır?
+
+</Soru>
+
+<Ipucu>
+
+Ham sayıları ($45$ ve $50$) değil, her grubun **kendi oranını** karşılaştır.
+
+</Ipucu>
+
+<Cozum>
+
+1. A grubunda evet oranı: $\dfrac{45}{90}=\%50$.
+2. B grubunda evet oranı: $\dfrac{50}{100}=\%50$.
+3. Oranlar **eşit** ($\%50=\%50$) → gruplar arası fark yok; ilişki yoktur.
+
+<Cevap>Hayır; iki grupta da oran $\%50$ olduğundan ilişki yoktur. (Ham sayıların farklı olması yanıltıcıdır.)</Cevap>
+
+</Cozum>
+
+</Ornek>
+
 ## Sık Yapılan Hatalar
 
 - **Yanlış bütüne bölmek.** "Kızların yüzdesi" satır toplamına, "futbolcuların yüzdesi" sütun toplamına bölünür; soruyu dikkatle oku.
 - **Marjinal toplamı hücreyle karıştırmak.** Kenardaki toplamlar gruplar, içerdeki hücreler **kesişimlerdir**.
 - **İlişkiyi tek hücreden okumak.** İlişki için grupların **yüzdelerini karşılaştır**, ham sayıyı değil.
 - **Eşit yüzdeyi ilişki sanmak.** Gruplarda oranlar **benzerse** ilişki yoktur.
+- **Ham sayıyı oran yerine koymak.** $\dfrac{45}{90}$ ile $\dfrac{50}{100}$ ham sayıları farklı görünse de **oranları** aynıdır ($\%50$); karşılaştırma daima oran üzerinden yapılır.
 
 > **Not:** İki kategorik değişken arasında ilişki var mı? sorusunda yöntem hep aynı: **grupların yüzdelerini hesapla ve karşılaştır.** Belirgin fark = ilişki; benzer oran = ilişki yok.
 

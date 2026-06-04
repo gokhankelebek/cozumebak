@@ -1,4 +1,5 @@
 import { topicMetadata } from "@/lib/seo";
+import { TersSimetri } from "@/components/figures/TersFonksiyonFig";
 
 export const metadata = topicMetadata("ters-fonksiyon");
 
@@ -69,6 +70,14 @@ $y=2x+6$ yaz, $x$ ile $y$'yi değiştir, sonra yeni $y$'yi çek.
 ## 3. Grafikte Simetri
 
 $f$ ve $f^{-1}$'in grafikleri $y=x$ doğrusuna göre **simetriktir**. Bu yüzden $f$ üzerindeki $(a,b)$ noktası, $f^{-1}$ üzerinde $(b,a)$ olur. Örneğin $f(x)=x^2$ ($x\ge 0$) ile $f^{-1}(x)=\sqrt{x}$ birbirinin yansımasıdır.
+
+<Figur>
+
+<TersSimetri />
+
+<Altyazi>Şekil 1 — $f(x)=2x-1$ ve tersi $f^{-1}(x)=\dfrac{x+1}{2}$ doğruları $y=x$ doğrusuna göre simetriktir. $f$ üzerindeki $(2,3)$ noktası, $f^{-1}$ üzerinde $(3,2)$ noktasına yansır.</Altyazi>
+
+</Figur>
 
 <Ornek>
 
@@ -284,6 +293,102 @@ $f$ grafiği $(0,\ 5)$'ten geçiyorsa $f^{-1}$ hangi noktadan geçer?
 1. $(0,5)\to(5,0)$.
 
 <Cevap>$(5,\ 0)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=\dfrac{2x-1}{3}$ fonksiyonunun tersini bul.
+
+</Soru>
+
+<Cozum>
+
+1. $y=\dfrac{2x-1}{3}$ → değiştir: $x=\dfrac{2y-1}{3}$.
+2. $3x=2y-1\Rightarrow 2y=3x+1\Rightarrow y=\dfrac{3x+1}{2}$.
+
+<Cevap>$f^{-1}(x)=\dfrac{3x+1}{2}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=\dfrac{x+3}{x-2}$ fonksiyonunun tersini bul.
+
+</Soru>
+
+<Ipucu>
+
+$x$ ile $y$'yi değiştirdikten sonra $y$'li terimleri bir tarafta topla ve $y$'yi parantezine al.
+
+</Ipucu>
+
+<Cozum>
+
+1. $y=\dfrac{x+3}{x-2}$ → değiştir: $x=\dfrac{y+3}{y-2}$.
+2. İçler-dışlar: $x(y-2)=y+3\Rightarrow xy-2x=y+3$.
+3. $y$'leri topla: $xy-y=2x+3\Rightarrow y(x-1)=2x+3$.
+4. $y=\dfrac{2x+3}{x-1}$.
+
+<Cevap>$f^{-1}(x)=\dfrac{2x+3}{x-1}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f$ doğrusal bir fonksiyon, $f(1)=4$ ve $f(3)=10$ veriliyor. $f^{-1}(7)$ kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+Önce doğrunun eğimini iki noktadan bul, $f(x)=ax+b$'yi yaz; sonra $f(x)=7$ denklemini çöz.
+
+</Ipucu>
+
+<Cozum>
+
+1. Eğim: $a=\dfrac{10-4}{3-1}=3$. $f(x)=3x+b$ ve $f(1)=4\Rightarrow 3+b=4\Rightarrow b=1$, yani $f(x)=3x+1$.
+2. $f^{-1}(7)$: $3x+1=7\Rightarrow x=2$.
+
+<Cevap>$f^{-1}(7)=2$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=2x+3$ ve $g(x)=x-1$ için $(f\circ g)^{-1}(9)$ kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+Önce $h(x)=(f\circ g)(x)=f(g(x))$ bileşkesini sadeleştir, sonra $h(x)=9$ denklemini çöz; çünkü $h^{-1}(9)$, "$h(x)=9$ yapan $x$"tir.
+
+</Ipucu>
+
+<Cozum>
+
+1. $(f\circ g)(x)=f(x-1)=2(x-1)+3=2x+1$.
+2. $h^{-1}(9)$: $2x+1=9\Rightarrow 2x=8\Rightarrow x=4$.
+
+<Cevap>$(f\circ g)^{-1}(9)=4$.</Cevap>
 
 </Cozum>
 

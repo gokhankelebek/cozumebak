@@ -103,6 +103,8 @@ $f(x)=\dfrac{1}{x-2}$ fonksiyonunun düşey asimptotu nedir?
 
 Bir ifade hem kök hem payda içeriyorsa **her iki koşul** birden sağlanmalıdır: kök içi $\ge 0$ **ve** payda $\neq 0$.
 
+Özel bir durum: bir kök **paydada** ise (örneğin $\dfrac{1}{\sqrt{A}}$), kök içi hem $\ge 0$ olmalı hem de payda $0$ olamaz. İki koşul birleşince kök içi **kesin pozitif** olur: $A>0$.
+
 <Ornek>
 
 <Soru>
@@ -294,12 +296,83 @@ $f(x)=\sqrt{x-2}$ için $f(6)$ kaçtır?
 
 </Ornek>
 
+<Ornek>
+
+<Soru>
+
+$f(x)=\dfrac{x+2}{x^2-4}$ fonksiyonu nerede tanımsızdır?
+
+</Soru>
+
+<Cozum>
+
+1. Payda sıfır: $x^2-4=0\Rightarrow x=\pm 2$.
+
+<Cevap>$x=2$ ve $x=-2$'de tanımsızdır.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=\sqrt{x^2-9}$ fonksiyonunun tanım kümesini bul.
+
+</Soru>
+
+<Ipucu>
+
+Kök içi $\ge 0$ olmalı: $x^2-9\ge 0$ ikinci dereceden eşitsizliğini "ortada ters, dışta aynı" kuralıyla çöz.
+
+</Ipucu>
+
+<Cozum>
+
+1. Kök içi $\ge 0$: $x^2-9\ge 0\Rightarrow (x-3)(x+3)\ge 0$.
+2. Kökler $\pm 3$, $a=1>0$; ifade kökler **dışında** pozitiftir (uçlar dâhil).
+3. Çözüm: $x\le -3$ veya $x\ge 3$.
+
+<Cevap>$(-\infty,\ -3]\cup[3,\ \infty)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=\dfrac{\sqrt{x+2}}{\sqrt{5-x}}$ fonksiyonunun tanım kümesini bul.
+
+</Soru>
+
+<Ipucu>
+
+İki koşul birden: paydaki kök içi $\ge 0$ **ve** paydadaki kök içi $>0$ (payda hem köklü hem $0$ olamaz, bu yüzden eşitlik yok).
+
+</Ipucu>
+
+<Cozum>
+
+1. Pay kökü: $x+2\ge 0\Rightarrow x\ge -2$.
+2. Payda kökü: $5-x>0\Rightarrow x<5$ (payda $0$ olamayacağından **kesin** büyük).
+3. Kesişim: $-2\le x<5$.
+
+<Cevap>$[-2,\ 5)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
 ## Sık Yapılan Hatalar
 
 - **Kök içini negatif bırakmak.** $\sqrt{A}$ için daima $A\ge 0$ koşulunu çöz.
 - **Paydanın sıfır olabileceğini unutmak.** Rasyonel fonksiyonda payda $\neq 0$; bu değer tanım kümesinden **çıkarılır**.
 - **Birleşik koşullarda yalnız birini almak.** Hem kök hem payda varsa **iki** koşulu da sağla (kesişimlerini al).
 - **Asimptotu grafiğin değdiği doğru sanmak.** Grafik asimptota **yaklaşır ama dokunmaz**.
+- **Paydadaki kökte eşitliğe izin vermek.** Kök paydadaysa kök içi $\ge 0$ değil, $>0$ olmalıdır; aksi hâlde payda $0$ olur.
 
 > **Not:** Tanım kümesi sorularında refleksin iki kontrol olsun: **kök içi $\ge 0$** ve **payda $\neq 0$**. Her iki koşulu yazıp ortak çözümü aralık olarak ver.
 

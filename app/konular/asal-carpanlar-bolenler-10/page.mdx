@@ -1,4 +1,5 @@
 import { topicMetadata } from "@/lib/seo";
+import { CarpanAgaci360 } from "@/components/figures/AsalCarpanAgaciFig";
 
 export const metadata = topicMetadata("asal-carpanlar-bolenler-10");
 
@@ -33,6 +34,14 @@ $360$ sayısını asal çarpanlarına ayırınız.
 </Cozum>
 
 </Ornek>
+
+<Figur>
+
+<CarpanAgaci360 />
+
+<Altyazi>Şekil 1 — $360$ sayısının **çarpan ağacı**. Her adımda en küçük asalı (turuncu yaprak) sola, kalan çarpanı sağa yazarız: $360\to 2\cdot180\to 2\cdot90\to 2\cdot45\to 3\cdot15\to 3\cdot 5$. Yapraklardaki asalları sayınca $360=2^3\cdot 3^2\cdot 5$ çıkar.</Altyazi>
+
+</Figur>
 
 ## 2. Pozitif Bölen Sayısı
 
@@ -273,12 +282,105 @@ $45$ sayısının pozitif bölenlerinin toplamını bulunuz.
 
 </Ornek>
 
+<Ornek>
+
+<Soru>
+
+$300$ sayısının kaç tek böleni vardır?
+
+</Soru>
+
+<Cozum>
+
+1. $300=2^2\cdot 3\cdot 5^2$.
+2. Tek bölen için $2$'yi yok say; geriye $3\cdot 5^2$ kalır.
+3. $(1+1)(2+1)=2\cdot 3=6$.
+
+<Cevap>$6$ tek bölen.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$2^5\cdot 3^a$ sayısının $24$ pozitif böleni varsa $a$ kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. Bölen sayısı: $(5+1)(a+1)=24$.
+2. $6\cdot(a+1)=24\Rightarrow a+1=4\Rightarrow a=3$.
+
+<Cevap>$a=3$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$720$ sayısının kaç böleni **tam karedir** (yani bir tam sayının karesine eşittir)?
+
+</Soru>
+
+<Ipucu>
+
+Bir bölenin tam kare olması için asal çarpanlarının **tüm üsleri çift** olmalıdır. Her asal için seçilebilecek çift üsleri ($0,2,4,\dots$) say.
+
+</Ipucu>
+
+<Cozum>
+
+1. $720=2^4\cdot 3^2\cdot 5$.
+2. Tam kare bölen $2^x\cdot 3^y\cdot 5^z$'de $x,y,z$ çift olmalı.
+3. $x\in\{0,2,4\}$ (3 seçenek), $y\in\{0,2\}$ (2 seçenek), $z\in\{0\}$ (1 seçenek).
+4. Sayısı: $3\cdot 2\cdot 1=6$.
+
+<Cevap>$6$ tane (bunlar $1,4,16,9,36,144$).</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$12$ pozitif böleni olan ve $2^a\cdot 3^b$ biçiminde yazılabilen kaç farklı sayı vardır? ($a,b\ge 1$ tam sayı.)
+
+</Soru>
+
+<Ipucu>
+
+$(a+1)(b+1)=12$ olacak şekilde, ikisi de $\ge 2$ olan çarpan çiftlerini listele. $a,b\ge 1$ olduğundan $a+1\ge 2$ ve $b+1\ge 2$.
+
+</Ipucu>
+
+<Cozum>
+
+1. $(a+1)(b+1)=12$ ve her iki çarpan $\ge 2$.
+2. $12$'nin çarpan çiftleri (sıralı): $2\cdot 6,\ 3\cdot 4,\ 4\cdot 3,\ 6\cdot 2$.
+3. Buradan $(a,b)$: $(1,5),(2,3),(3,2),(5,1)$ → $4$ farklı sayı.
+
+<Cevap>$4$ farklı sayı.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
 ## Sık Yapılan Hatalar
 
 - **$1$'i asal saymak.** $1$ asal değildir; en küçük asal $2$'dir.
 - **Bölen sayısında üsleri çarpmak.** Bölen sayısı üslerin çarpımı değil, **birer fazlasının** çarpımıdır: $(a+1)(b+1)\dots$
 - **Asal bölen ile bölen sayısını karıştırmak.** $200=2^3\cdot 5^2$'nin $12$ böleni ama yalnız $2$ asal böleni vardır.
 - **Tek bölende $2$'yi tamamen atmamak.** Tek bölen sayısı için $2$'nin üssünü **sıfır** kabul et (yok say), sonra kalan üslerle hesapla.
+- **Tam kare bölende üsleri tek bırakmak.** Bir bölenin tam kare olması için her asalın üssü **çift** ($0,2,4,\dots$) olmalı; her asal için kaç çift üs seçilebildiğini çarp.
 
 > **Not:** Hemen her bölen sorusu önce **asal çarpanlara ayırmakla** başlar. Ayrışımı yazdıktan sonra bölen sayısı $(a+1)(b+1)\dots$ formülü kapıyı açar.
 
