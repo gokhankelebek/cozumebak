@@ -197,8 +197,8 @@ export const TOPICS: Topic[] = [
   { slug: "veri-yorumlama-9", title: "Veri Dağılımlarını Eleştirel Yorumlama", track: "9", unit: "istatistik-9", summary: "Hazır veri dağılımlarını eleştirel biçimde okuma ve yorumlama.", minutes: 6, difficulty: "Orta", questionCount: 12, status: "published" },
 
   // ── 9. Sınıf · Veriden Olasılığa ──
-  { slug: "deneye-dayali-olasilik-9", title: "Deneye Dayalı Olasılık ve Tahmin", track: "9", unit: "veriden-olasiliga-9", summary: "Gözleme dayalı olasılık tahmini ve örnek uzay.", minutes: 6, difficulty: "Kolay", questionCount: 14, status: "soon", keywords: ["olasılık", "örnek uzay"] },
-  { slug: "olasilik-akil-yurutme-9", title: "Olasılıkta Tümevarımsal Akıl Yürütme", track: "9", unit: "veriden-olasiliga-9", summary: "Olayların olasılığı üzerine tümevarımsal çıkarım yapma.", minutes: 6, difficulty: "Orta", questionCount: 12, status: "soon" },
+  { slug: "deneye-dayali-olasilik-9", title: "Deneye Dayalı Olasılık ve Tahmin", track: "9", unit: "veriden-olasiliga-9", summary: "Gözleme dayalı olasılık tahmini ve örnek uzay.", minutes: 6, difficulty: "Kolay", questionCount: 14, status: "published", keywords: ["olasılık", "örnek uzay"] },
+  { slug: "olasilik-akil-yurutme-9", title: "Olasılıkta Tümevarımsal Akıl Yürütme", track: "9", unit: "veriden-olasiliga-9", summary: "Olayların olasılığı üzerine tümevarımsal çıkarım yapma.", minutes: 6, difficulty: "Orta", questionCount: 12, status: "published" },
 
   // ── 10. Sınıf · Sayma ve Olasılık ──
   { slug: "siralama-secme", title: "Sıralama ve Seçme (Permütasyon-Kombinasyon)", track: "10", unit: "sayma-olasilik-10", summary: "Permütasyon, kombinasyon ve sayma yöntemleri.", minutes: 8, difficulty: "Orta", questionCount: 24, status: "soon", keywords: ["permütasyon", "kombinasyon", "faktöriyel"] },

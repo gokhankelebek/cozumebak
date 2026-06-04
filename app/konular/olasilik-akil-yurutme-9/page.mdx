@@ -1,0 +1,273 @@
+import { topicMetadata } from "@/lib/seo";
+
+export const metadata = topicMetadata("olasilik-akil-yurutme-9");
+
+<Konu slug="olasilik-akil-yurutme-9" />
+
+<p className="lead">Olasılık, yalnız hesaplanan değil, **gözlemlerden çıkarsanan** bir kavramdır. Bu derste deneme sayısı arttıkça **deneysel olasılığın teorik olasılığa yaklaştığını**, gözlenen verilerden bir olay hakkında **tümevarımsal** (örnekten genele) çıkarım yapmayı ve bu çıkarımların **sınırlarını** öğreneceğiz. Amaç, "elimdeki veriye dayanarak ne kadar emin olabilirim?" sorusunu mantıklı yanıtlamak. Bol örnek ve "Sıra Sende" alıştırmalarıyla pekiştireceğiz.</p>
+
+## 1. Deneysel Olasılık Teorik Olasılığa Yaklaşır
+
+Bir deney az kez yapıldığında deneysel olasılık teorik değerden uzak olabilir; ancak **deneme sayısı arttıkça** deneysel olasılık teorik olasılığa **yaklaşır**. Bu, olasılıkta tümevarımsal akıl yürütmenin temelidir.
+
+<Ornek>
+
+<Soru>
+
+Bir madenî para atışında teorik tura olasılığı $0{,}5$'tir. Bir öğrenci parayı $10$ kez atıp $7$ tura, sonra $1000$ kez atıp $508$ tura gözlemliyor. Hangi deneysel olasılık teorik değere daha yakındır?
+
+</Soru>
+
+<Cozum>
+
+1. $10$ atış: $\dfrac{7}{10}=0{,}7$ (teorikten uzak).
+2. $1000$ atış: $\dfrac{508}{1000}=0{,}508$ (teorike çok yakın).
+3. Deneme sayısı arttıkça deneysel olasılık $0{,}5$'e yaklaşmıştır.
+
+<Cevap>$1000$ atışlık sonuç ($0{,}508$) teorik değere daha yakındır.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 2. Gözlemden Tahmine (Tümevarım)
+
+Bir olayı çok kez gözlemleyip elde ettiğimiz deneysel olasılıkla, **gelecekteki** denemeler için tahmin yaparız:
+
+$$\text{beklenen sayı}\approx P_{\text{deneysel}}\cdot \text{yeni deneme sayısı}$$
+
+<Ornek>
+
+<Soru>
+
+Bir fabrikada $500$ üründen $20$'si kusurlu çıkmıştır. Aynı üretimden $2000$ ürün alınırsa yaklaşık kaç kusurlu beklenir?
+
+</Soru>
+
+<Ipucu>
+
+Önce gözlenen kusur oranını (deneysel olasılık) bul, sonra yeni üretim sayısıyla çarp.
+
+</Ipucu>
+
+<Cozum>
+
+1. Kusur oranı: $\dfrac{20}{500}=0{,}04$.
+2. Beklenen kusur: $0{,}04\cdot 2000=80$.
+
+<Cevap>Yaklaşık $80$ kusurlu ürün beklenir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 3. Çıkarımın Sınırları
+
+Tümevarımsal tahmin **kesinlik değil, beklenti** verir. Güvenilirliği şu etkenlere bağlıdır:
+
+- **Örneklem büyüklüğü:** az gözlem yanıltıcı olabilir; çok gözlem daha güvenilirdir.
+- **Temsil edicilik:** örneklem bütünü yansıtmıyorsa çıkarım yanlış olur.
+- **Koşulların aynılığı:** koşullar değişirse geçmiş oran geleceği tahmin etmez.
+
+<Ornek>
+
+<Soru>
+
+Bir öğrenci zarı yalnız $5$ kez atıp $4$ kez $6$ geliyor ve "Bu zarda $6$ gelme olasılığı $0{,}8$'dir" diyor. Bu çıkarım güvenilir mi?
+
+</Soru>
+
+<Cozum>
+
+1. Yalnız $5$ deneme çok küçük bir örneklemdir.
+2. Bu kadar az denemeyle deneysel olasılık şansa bağlı sapabilir; teorik değer $\dfrac{1}{6}\approx 0{,}17$'dir.
+3. Güvenilir bir tahmin için çok daha fazla deneme gerekir.
+
+<Cevap>Hayır; örneklem çok küçük, çıkarım güvenilir değil.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Çözümlü Örnekler
+
+<Ornek>
+
+<Soru>
+
+Bir hava durumu modeli, son $200$ benzer günün $150$'sinde yağmur gözlemiş. Yarın için yağmur olasılığını bu veriye göre tahmin ediniz.
+
+</Soru>
+
+<Cozum>
+
+1. Deneysel olasılık: $\dfrac{150}{200}=0{,}75$.
+
+<Cevap>Yaklaşık $0{,}75$ (yani $\%75$).</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir markette $400$ müşteriden $100$'ü nakit ödemiştir. Aynı gün gelecek $1200$ müşteriden yaklaşık kaçının nakit ödemesi beklenir?
+
+</Soru>
+
+<Cozum>
+
+1. Nakit oranı: $\dfrac{100}{400}=0{,}25$.
+2. Beklenen: $0{,}25\cdot 1200=300$.
+
+<Cevap>Yaklaşık $300$ müşteri.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir zar çok kez atıldığında $3$ gelme deneysel olasılığı $0{,}30$, $0{,}18$, $0{,}168$ olarak ölçülüyor (sırasıyla $10$, $100$, $1000$ atış). Teorik olasılık hangisine en yakındır ve neden?
+
+</Soru>
+
+<Cozum>
+
+1. Teorik olasılık $\dfrac{1}{6}\approx 0{,}167$.
+2. Deneme sayısı arttıkça değer $0{,}167$'ye yaklaşır; $0{,}168$ ($1000$ atış) en yakını.
+
+<Cevap>$0{,}168$; çünkü en çok denemeyle elde edilmiştir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir okulda $50$ öğrenciyle yapılan ankette $30$'u futbol seviyor. Okuldaki $1000$ öğrenciden yaklaşık kaçının futbol sevmesi beklenir? Bu tahmin neden kesin değildir?
+
+</Soru>
+
+<Cozum>
+
+1. Oran: $\dfrac{30}{50}=0{,}6$; beklenen: $0{,}6\cdot 1000=600$.
+2. $50$ kişilik örneklem tüm okulu birebir temsil etmeyebilir; tahmin yaklaşıktır.
+
+<Cevap>Yaklaşık $600$; örneklem sınırlı olduğundan kesin değildir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Alıştırmalar — Sıra Sende
+
+> Önce kendin çözmeyi dene; sonra çözümü açıp karşılaştır.
+
+<Ornek>
+
+<Soru>
+
+$1000$ atışta $250$ kez gelen bir olayın deneysel olasılığı kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. $\dfrac{250}{1000}=0{,}25$.
+
+<Cevap>$0{,}25$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir üründe kusur oranı gözlemle $0{,}05$ bulunmuş. $600$ üründe yaklaşık kaç kusur beklenir?
+
+</Soru>
+
+<Cozum>
+
+1. $0{,}05\cdot 600=30$.
+
+<Cevap>$30$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Aynı deney için $0{,}40$ ($20$ deneme) ve $0{,}503$ ($2000$ deneme) ölçülüyor. Teorik olasılık $0{,}5$ ise hangisi daha güvenilirdir?
+
+</Soru>
+
+<Cozum>
+
+1. Daha çok deneme daha güvenilirdir: $0{,}503$ ($2000$ deneme).
+
+<Cevap>$0{,}503$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir otobüs son $80$ seferin $72$'sinde zamanında kalkmış. Bir sonraki seferin zamanında kalkma olasılığını tahmin et.
+
+</Soru>
+
+<Cozum>
+
+1. $\dfrac{72}{80}=0{,}9$.
+
+<Cevap>Yaklaşık $0{,}9$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir kişi parayı $4$ kez atıp $4$'ünde de tura gözlüyor ve "tura olasılığı $1$'dir" diyor. Bu çıkarımın hatası nedir?
+
+</Soru>
+
+<Cozum>
+
+1. Örneklem çok küçük ($4$ atış); az denemede şans eseri hep tura gelebilir.
+2. Teorik olasılık $0{,}5$; çok atışta sonuç buna yaklaşır.
+
+<Cevap>Örneklem çok küçük; bu kadar az veriyle olasılık $1$ sonucu çıkarılamaz.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Az denemeyle kesin yargıya varmak.** Küçük örneklemde deneysel olasılık çok sapabilir; güvenilir tahmin çok sayıda gözlem ister.
+- **Deneysel olasılığı "kesin" sanmak.** Tümevarım bir **beklenti** verir, garanti değil.
+- **Temsil etmeyen örneklemden genellemek.** Örneklem bütünü yansıtmıyorsa çıkarım yanlış olur.
+- **"Yaklaşır" ile "eşittir"i karıştırmak.** Deneme arttıkça deneysel olasılık teorik değere yaklaşır; ona tam **eşit olmak zorunda değildir**.
+
+> **Not:** Tümevarımsal akıl yürütmede iki anahtar: **(1)** deneme sayısı arttıkça deneysel olasılık teorik olasılığa yaklaşır; **(2)** tahmin her zaman yaklaşıktır — güvenilirliği örneklem büyüklüğüne ve temsil ediciliğine bağlıdır.
+
+<KonuNav slug="olasilik-akil-yurutme-9" />

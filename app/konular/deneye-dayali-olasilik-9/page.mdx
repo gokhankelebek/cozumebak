@@ -1,0 +1,305 @@
+import { topicMetadata } from "@/lib/seo";
+
+export const metadata = topicMetadata("deneye-dayali-olasilik-9");
+
+<Konu slug="deneye-dayali-olasilik-9" />
+
+<p className="lead">*Veriden Olasılığa* teması, belirsizliği **sayıyla** ifade etmeyi öğretir. Bu derste **örnek uzay** ve **olay** kavramlarını, bir olayın **teorik olasılığını** ($P=\frac{\text{istenen}}{\text{tüm durumlar}}$) ve bir deneyi tekrarlayarak elde edilen **deneysel (gözleme dayalı) olasılığı** öğreneceğiz. Olasılık, "ne kadar mümkün?" sorusunu $0$ ile $1$ arasında bir sayıya çevirir. Bol örnek ve "Sıra Sende" alıştırmalarıyla pekiştireceğiz.</p>
+
+## 1. Örnek Uzay ve Olay
+
+Bir rastgele deneyin **tüm olası sonuçlarının** kümesine **örnek uzay** ($E$) denir. Örnek uzayın bir alt kümesine **olay** denir.
+
+- Bir zar atışında örnek uzay: $E=\{1,2,3,4,5,6\}$, $\;s(E)=6$.
+- "Çift gelmesi" olayı: $A=\{2,4,6\}$, $\;s(A)=3$.
+
+<Ornek>
+
+<Soru>
+
+Bir madenî para iki kez atılıyor. Örnek uzayı yazıp eleman sayısını bulunuz. (Y: yazı, T: tura)
+
+</Soru>
+
+<Cozum>
+
+1. Her atışta iki sonuç var; iki atış için tüm ikililer: $YY,\ YT,\ TY,\ TT$.
+2. $E=\{YY,\ YT,\ TY,\ TT\}$, $\;s(E)=4$.
+
+<Cevap>$E=\{YY,\ YT,\ TY,\ TT\}$, $s(E)=4$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 2. Teorik Olasılık
+
+Tüm sonuçların **eşit olası** olduğu bir deneyde, bir $A$ olayının olasılığı:
+
+$$P(A)=\dfrac{s(A)}{s(E)}=\dfrac{\text{istenen durum sayısı}}{\text{tüm durum sayısı}}$$
+
+Her olasılık $0\le P(A)\le 1$ aralığındadır. **İmkânsız** olayın olasılığı $0$, **kesin** olayın olasılığı $1$'dir.
+
+<Ornek>
+
+<Soru>
+
+Bir zar atıldığında üst yüze $4$'ten büyük bir sayı gelmesi olasılığı kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+Önce istenen sonuçları listele ($4$'ten büyük: $5,6$), sonra tüm sonuç sayısına böl.
+
+</Ipucu>
+
+<Cozum>
+
+1. İstenen olay: $A=\{5,\ 6\}$, $\;s(A)=2$.
+2. Örnek uzay $s(E)=6$.
+3. $P(A)=\dfrac{2}{6}=\dfrac{1}{3}$.
+
+<Cevap>$P(A)=\dfrac{1}{3}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 3. Deneysel (Gözleme Dayalı) Olasılık
+
+Bir deney çok kez tekrarlandığında, bir olayın **gözlenen sıklığının** deneme sayısına oranı, **deneysel olasılıktır**:
+
+$$P_{\text{deneysel}}(A)=\dfrac{\text{olayın gözlenme sayısı}}{\text{toplam deneme sayısı}}$$
+
+Teorik olasılığı bilinmeyen ya da eşit olası olmayan durumlarda (örneğin hileli bir zar) olasılık ancak **gözlemle** tahmin edilir.
+
+<Ornek>
+
+<Soru>
+
+Bir raptiye $200$ kez atılıyor ve $120$ kez "ucu yukarı" geliyor. Bu olayın deneysel olasılığı kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. Deneysel olasılık $=\dfrac{\text{gözlenme}}{\text{deneme}}=\dfrac{120}{200}$.
+2. Sadeleştir: $\dfrac{120}{200}=0{,}6$.
+
+<Cevap>$P_{\text{deneysel}}=0{,}6$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 4. Olasılıkla Tahmin
+
+Bilinen bir olasılık, gelecekteki bir deneyde olayın **kaç kez** olacağını tahmin etmeye yarar:
+
+$$\text{beklenen sayı}=P(A)\cdot \text{deneme sayısı}$$
+
+<Ornek>
+
+<Soru>
+
+Bir torbadaki toplardan birinin kırmızı gelme olasılığı $\dfrac{1}{4}$'tür. $40$ kez (geri koyarak) çekilirse yaklaşık kaç kez kırmızı beklenir?
+
+</Soru>
+
+<Cozum>
+
+1. Beklenen sayı $=P\cdot n=\dfrac{1}{4}\cdot 40$.
+2. $=10$.
+
+<Cevap>Yaklaşık $10$ kez kırmızı beklenir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Çözümlü Örnekler
+
+<Ornek>
+
+<Soru>
+
+$1$'den $10$'a kadar numaralı kartlardan biri çekiliyor. Çekilen sayının asal olması olasılığı kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. Asal sayılar: $2,3,5,7$ → $s(A)=4$.
+2. Örnek uzay $s(E)=10$.
+3. $P(A)=\dfrac{4}{10}=\dfrac{2}{5}$.
+
+<Cevap>$\dfrac{2}{5}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir torbada $3$ kırmızı, $5$ mavi top var. Rastgele bir top çekildiğinde mavi gelme olasılığı kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. Toplam top: $3+5=8$.
+2. Mavi sayısı $5$.
+3. $P(\text{mavi})=\dfrac{5}{8}$.
+
+<Cevap>$\dfrac{5}{8}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir zar $300$ kez atılıyor ve $6$ gelme sayısı $48$'dir. $6$ gelmesinin deneysel olasılığı kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. $P_{\text{deneysel}}=\dfrac{48}{300}$.
+2. Sadeleştir: $\dfrac{48}{300}=0{,}16$.
+
+<Cevap>$0{,}16$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir madenî para atışında tura gelme olasılığı $\dfrac{1}{2}$'dir. Para $80$ kez atılırsa yaklaşık kaç kez tura beklenir?
+
+</Soru>
+
+<Cozum>
+
+1. Beklenen sayı $=\dfrac{1}{2}\cdot 80=40$.
+
+<Cevap>Yaklaşık $40$ kez.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Alıştırmalar — Sıra Sende
+
+> Önce kendin çözmeyi dene; sonra çözümü açıp karşılaştır.
+
+<Ornek>
+
+<Soru>
+
+Bir zar atıldığında tek sayı gelme olasılığı kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. Tek sayılar: $1,3,5$ → $s(A)=3$, $s(E)=6$.
+2. $P=\dfrac{3}{6}=\dfrac{1}{2}$.
+
+<Cevap>$\dfrac{1}{2}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$26$ harfli bir alfabeden rastgele bir harf seçiliyor. Seçilen harfin sesli (a, e, ı, i, o, ö, u, ü — $8$ harf) olma olasılığını yaz. (Türk alfabesinde $29$ harf vardır.)
+
+</Soru>
+
+<Cozum>
+
+1. Sesli harf sayısı $8$, toplam harf $29$.
+2. $P=\dfrac{8}{29}$.
+
+<Cevap>$\dfrac{8}{29}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir oyun çarkı $150$ kez çevriliyor ve $90$ kez "kazandı" sonucu çıkıyor. "Kazanma"nın deneysel olasılığı kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. $\dfrac{90}{150}=0{,}6$.
+
+<Cevap>$0{,}6$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir torbadan yeşil top çekme olasılığı $\dfrac{2}{5}$'tir. $35$ çekilişte yaklaşık kaç yeşil beklenir?
+
+</Soru>
+
+<Cozum>
+
+1. $\dfrac{2}{5}\cdot 35=14$.
+
+<Cevap>$14$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir olayın olasılığı $0$ ise bu olay hakkında ne söylenir?
+
+</Soru>
+
+<Cozum>
+
+1. Olasılığı $0$ olan olay **imkânsızdır** (hiç gerçekleşmez).
+
+<Cevap>Olay imkânsızdır.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Olasılığı $1$'den büyük bulmak.** Her olasılık $0$ ile $1$ arasındadır; $1$'i aşan bir sonuç hatalıdır.
+- **Örnek uzayı eksik yazmak.** İki paranın atışında $4$ sonuç vardır ($YT$ ile $TY$ farklıdır); birini unutma.
+- **Teorik ve deneysel olasılığı karıştırmak.** Teorik olasılık sayımla, deneysel olasılık **gözlemle** (sıklık/deneme) bulunur.
+- **Geri koymalı/koymasız ayrımını atlamak.** "Geri koyarak" çekişte toplam sonuç sayısı değişmez; aksi belirtilmedikçe sorudaki koşula dikkat et.
+
+> **Not:** Teorik olasılık $\dfrac{\text{istenen}}{\text{tüm}}$, deneysel olasılık $\dfrac{\text{gözlenen}}{\text{deneme}}$. Bir sonraki derste deneme sayısı arttıkça deneysel olasılığın teorik olasılığa **yaklaştığını** göreceğiz.
+
+<KonuNav slug="deneye-dayali-olasilik-9" />
