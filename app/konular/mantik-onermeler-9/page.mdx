@@ -1,0 +1,353 @@
+import { topicMetadata } from "@/lib/seo";
+
+export const metadata = topicMetadata("mantik-onermeler-9");
+
+<Konu slug="mantik-onermeler-9" />
+
+<p className="lead">Algoritmaların karar adımları "doğru mu, yanlış mı?" sorusuna dayanır — işte **mantık** bunun dilidir. Bu derste **önerme** kavramını, önermeleri birleştiren **bağlaçları** (değil, ve, veya, ise, ancak ve ancak), bunların **doğruluk tablolarını** ve "her / bazı" gibi **niceleyicileri** öğreneceğiz. Mantık, hem koşul kurmanın hem de bir akıl yürütmenin geçerli olup olmadığını denetlemenin temelidir. Bol örnek ve "Sıra Sende" alıştırmalarıyla pekiştireceğiz.</p>
+
+## 1. Önerme Kavramı
+
+**Önerme**, doğru ($1$) ya da yanlış ($0$) olduğu **kesin olarak** söylenebilen yargı cümlesidir. Bir önerme aynı anda hem doğru hem yanlış olamaz.
+
+- "$5$ asal sayıdır." → önerme (doğru, $1$).
+- "$3>7$" → önerme (yanlış, $0$).
+- "Bu çiçek çok güzel." → **önerme değil** (kişiden kişiye değişir).
+- "Saat kaç?" → **önerme değil** (soru cümlesi).
+
+Önermeler $p,\ q,\ r$ harfleriyle gösterilir. Bir $p$ önermesinin **değili** $p'$ (ya da $\neg p$), doğruluk değerini tersine çevirir.
+
+<Ornek>
+
+<Soru>
+
+Aşağıdakilerden hangileri önermedir? "$2+2=5$", "Pencereyi aç.", "$7$ tek sayıdır."
+
+</Soru>
+
+<Cozum>
+
+1. "$2+2=5$": doğru/yanlış denebilir (yanlış) → **önerme**.
+2. "Pencereyi aç.": emir cümlesi → **önerme değil**.
+3. "$7$ tek sayıdır": doğru → **önerme**.
+
+<Cevap>1. ve 3. önermedir; 2. değildir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 2. Değil (Olumsuzlama)
+
+$p'$ önermesi, $p$ doğruysa yanlış, $p$ yanlışsa doğrudur:
+
+| $p$ | $p'$ |
+|:---:|:---:|
+| $1$ | $0$ |
+| $0$ | $1$ |
+
+Ayrıca $(p')'=p$'dir (bir önermenin değilinin değili kendisidir).
+
+<Ornek>
+
+<Soru>
+
+"$p$: 9 bir tam karedir" önermesinin değilini yazıp doğruluk değerini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $p$ doğrudur ($9=3^2$), yani $p=1$.
+2. Değili $p'$: "9 bir tam kare **değildir**".
+3. $p=1$ olduğundan $p'=0$ (yanlış).
+
+<Cevap>$p'$: "9 tam kare değildir", değeri $0$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 3. Ve ($\wedge$) — Veya ($\vee$)
+
+İki önerme bağlaçla birleştirilir:
+
+- **Ve** ($p\wedge q$): **yalnız ikisi de doğruysa** doğrudur.
+- **Veya** ($p\vee q$): **en az biri doğruysa** doğrudur; yalnız ikisi de yanlışsa yanlıştır.
+
+| $p$ | $q$ | $p\wedge q$ | $p\vee q$ |
+|:---:|:---:|:---:|:---:|
+| $1$ | $1$ | $1$ | $1$ |
+| $1$ | $0$ | $0$ | $1$ |
+| $0$ | $1$ | $0$ | $1$ |
+| $0$ | $0$ | $0$ | $0$ |
+
+<Ornek>
+
+<Soru>
+
+$p=1$, $q=0$ iken $p\wedge q$ ve $p\vee q$ değerlerini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $p\wedge q$: ikisi birden doğru değil ($q=0$) → $0$.
+2. $p\vee q$: en az biri doğru ($p=1$) → $1$.
+
+<Cevap>$p\wedge q=0$, $\;p\vee q=1$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 4. İse ($\Rightarrow$) — Ancak ve Ancak ($\Leftrightarrow$)
+
+- **Koşullu** ($p\Rightarrow q$, "$p$ ise $q$"): yalnız **$p$ doğru, $q$ yanlış** iken yanlıştır; diğer tüm durumlarda doğrudur.
+- **İki yönlü** ($p\Leftrightarrow q$, "$p$ ancak ve ancak $q$"): iki önermenin **doğruluk değerleri aynıysa** doğrudur.
+
+| $p$ | $q$ | $p\Rightarrow q$ | $p\Leftrightarrow q$ |
+|:---:|:---:|:---:|:---:|
+| $1$ | $1$ | $1$ | $1$ |
+| $1$ | $0$ | $0$ | $0$ |
+| $0$ | $1$ | $1$ | $0$ |
+| $0$ | $0$ | $1$ | $1$ |
+
+<Ornek>
+
+<Soru>
+
+"Yağmur yağarsa ($p$) yerler ıslanır ($q$)" önermesi $p=0$ (yağmur yağmadı) iken $p\Rightarrow q$ ne olur?
+
+</Soru>
+
+<Ipucu>
+
+Koşullu önerme **yalnız** $p$ doğru ve $q$ yanlışken yanlıştır. $p$ yanlışsa önerme her durumda doğru kabul edilir.
+
+</Ipucu>
+
+<Cozum>
+
+1. $p=0$ (öncül yanlış).
+2. Tabloya göre $p=0$ olan satırlarda $p\Rightarrow q$ daima $1$'dir.
+
+<Cevap>$p\Rightarrow q=1$ (doğru).</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## 5. Niceleyiciler: Her ($\forall$) ve Bazı ($\exists$)
+
+Bir özelliğin kaç eleman için geçerli olduğunu **niceleyiciler** belirtir:
+
+- **Evrensel** ($\forall$, "her"): özellik **bütün** elemanlar için geçerli.
+- **Varlıksal** ($\exists$, "bazı / en az bir"): özellik **en az bir** eleman için geçerli.
+
+Değil alındığında niceleyici **yer değiştirir**: "her ... doğru"nun değili "bazı ... yanlış"tır.
+
+<Ornek>
+
+<Soru>
+
+"Her doğal sayı çifttir" önermesinin doğruluk değerini bulup değilini yazınız.
+
+</Soru>
+
+<Cozum>
+
+1. Önerme: $\forall$ doğal sayı çift. Bu **yanlıştır** çünkü $3$ tektir (bir karşıt örnek yeter).
+2. Değili: "**Bazı** doğal sayılar çift **değildir**" — bu doğrudur.
+
+<Cevap>Önerme yanlış ($0$); değili "bazı doğal sayılar tektir" (doğru).</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Çözümlü Örnekler
+
+<Ornek>
+
+<Soru>
+
+$p=0$, $q=1$ iken $p'\vee q$ değerini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $p'=1$ ($p=0$'ın değili).
+2. $p'\vee q=1\vee 1=1$.
+
+<Cevap>$1$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$p=1$, $q=1$ iken $(p\wedge q)\Rightarrow p'$ değerini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. $p\wedge q=1\wedge 1=1$.
+2. $p'=0$.
+3. $1\Rightarrow 0$: öncül doğru, sonuç yanlış → $0$.
+
+<Cevap>$0$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+"$x>2$ ise $x>0$'dır" önermesi her gerçek $x$ için doğru mudur?
+
+</Soru>
+
+<Cozum>
+
+1. $x>2$ olan her sayı zaten $0$'dan büyüktür.
+2. Öncül doğruyken sonuç da daima doğru; öncül yanlışken önerme zaten doğru kabul edilir.
+
+<Cevap>Evet, her $x$ için doğrudur.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+"Bazı asal sayılar çifttir" önermesinin doğruluk değerini bulunuz.
+
+</Soru>
+
+<Cozum>
+
+1. En az bir örnek yeterli: $2$ hem asal hem çifttir.
+
+<Cevap>Doğru ($1$).</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Alıştırmalar — Sıra Sende
+
+> Önce kendin çözmeyi dene; sonra çözümü açıp karşılaştır.
+
+<Ornek>
+
+<Soru>
+
+"$10$, $3$ ile tam bölünür" önermesinin doğruluk değeri ve değili nedir?
+
+</Soru>
+
+<Cozum>
+
+1. $10$, $3$'e tam bölünmez → önerme $0$ (yanlış).
+2. Değili: "$10$, $3$ ile tam bölünmez" → $1$ (doğru).
+
+<Cevap>Önerme $0$; değili doğru.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$p=1$, $q=0$ iken $p\wedge q'$ değerini bul.
+
+</Soru>
+
+<Cozum>
+
+1. $q'=1$.
+2. $p\wedge q'=1\wedge 1=1$.
+
+<Cevap>$1$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$p=0$, $q=0$ iken $p\Rightarrow q$ değerini bul.
+
+</Soru>
+
+<Cozum>
+
+1. Öncül $p=0$ olduğundan koşullu önerme doğrudur.
+
+<Cevap>$1$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+"Her üçgenin iç açıları toplamı $180°$'dir" önermesinin niceleyicisi ve doğruluk değeri nedir?
+
+</Soru>
+
+<Cozum>
+
+1. Niceleyici "her" → evrensel ($\forall$).
+2. Bu, bütün üçgenler için geçerlidir → doğru.
+
+<Cevap>Evrensel niceleyici; önerme doğru ($1$).</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+"Bütün kuşlar uçar" önermesinin değilini yaz.
+
+</Soru>
+
+<Cozum>
+
+1. "Her" → değili "bazı ... değil".
+
+<Cevap>"Bazı kuşlar uçmaz."</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sık Yapılan Hatalar
+
+- **Her cümleyi önerme sanmak.** Soru, emir ve görüş cümleleri önerme değildir; doğru/yanlış denebilmesi gerekir.
+- **"Ve" ile "veya"yı karıştırmak.** $p\wedge q$ ikisi de doğruyken, $p\vee q$ en az biri doğruyken doğrudur.
+- **$p\Rightarrow q$'yu öncül yanlışken yanlış sanmak.** Öncül ($p$) yanlışsa koşullu önerme **daima doğrudur**.
+- **Niceleyicinin değilini almada yön şaşırmak.** "Her" → "bazı ... değil"; "bazı" → "hiçbiri / her ... değil".
+
+> **Not:** Bir bileşik önermenin değerini bulmanın güvenli yolu **doğruluk tablosu** kurmaktır: içteki ifadeleri ($p'$, $p\wedge q$ gibi) tek tek hesapla, dıştakini en son birleştir.
+
+<KonuNav slug="mantik-onermeler-9" />

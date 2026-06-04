@@ -180,8 +180,8 @@ export const TOPICS: Topic[] = [
   { slug: "birinci-derece-problemler-9", title: "Birinci Dereceden Denklem ve Eşitsizlik Problemleri", track: "9", unit: "nicelikler-degisimler-9", summary: "Doğrusal fonksiyonlarla ifade edilen denklem ve eşitsizlik problemleri.", minutes: 8, difficulty: "Orta", questionCount: 22, status: "published" },
 
   // ── 9. Sınıf · Algoritma ve Bilişim ──
-  { slug: "algoritmik-dusunme-9", title: "Algoritmik Düşünme ve Problem Çözme", track: "9", unit: "algoritma-bilisim-9", summary: "Problemleri algoritmik yaklaşımla adım adım çözme.", minutes: 6, difficulty: "Kolay", questionCount: 14, status: "soon", keywords: ["algoritma", "akış"] },
-  { slug: "mantik-onermeler-9", title: "Mantık: Önermeler ve Niceleyiciler", track: "9", unit: "algoritma-bilisim-9", summary: "Önermeler, bağlaçlar ve niceleyicilerin algoritmik yapılardaki kullanımı.", minutes: 7, difficulty: "Orta", questionCount: 18, status: "soon", keywords: ["önerme", "mantık", "niceleyici"] },
+  { slug: "algoritmik-dusunme-9", title: "Algoritmik Düşünme ve Problem Çözme", track: "9", unit: "algoritma-bilisim-9", summary: "Problemleri algoritmik yaklaşımla adım adım çözme.", minutes: 6, difficulty: "Kolay", questionCount: 14, status: "published", keywords: ["algoritma", "akış"] },
+  { slug: "mantik-onermeler-9", title: "Mantık: Önermeler ve Niceleyiciler", track: "9", unit: "algoritma-bilisim-9", summary: "Önermeler, bağlaçlar ve niceleyicilerin algoritmik yapılardaki kullanımı.", minutes: 7, difficulty: "Orta", questionCount: 18, status: "published", keywords: ["önerme", "mantık", "niceleyici"] },
 
   // ── 9. Sınıf · Geometrik Şekiller ──
   { slug: "ucgende-acilar", title: "Üçgende Açılar", track: "9", unit: "geometrik-sekiller-9", summary: "İç açı, dış açı ve açı bağıntıları.", minutes: 5, difficulty: "Kolay", questionCount: 14, status: "soon" },
