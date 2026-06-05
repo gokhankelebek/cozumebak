@@ -453,6 +453,100 @@ A) $0$ · B) $4$ · C) $9$ · D) $13$ · E) $17$
 
 </Ornek>
 
+<Ornek>
+
+<Soru>
+
+Bir eğrinin her $(x,y)$ noktasındaki teğetinin eğimi $4x-3$'tür. Bu eğri $(2,5)$ noktasından geçtiğine göre, eğrinin $x=1$ apsisli noktasının ordinatı kaçtır?
+
+A) $-1$ · B) $0$ · C) $1$ · D) $2$ · E) $3$
+
+</Soru>
+
+<Cozum>
+
+1. Teğet eğimi türevdir: $y'=4x-3$. Eğriyi bulmak için integral al: $\displaystyle y=\int (4x-3)\,dx=2x^{2}-3x+c$.
+
+2. $(2,5)$ noktasını yerine koy: $5=2\cdot 4-3\cdot 2+c=8-6+c=2+c$. Buradan $c=3$.
+
+3. Eğri: $y=2x^{2}-3x+3$.
+
+4. $x=1$ için ordinatı hesapla: $y=2-3+3=2$.
+
+5. Kontrol: $y'=4x-3$ ve $(2,5)$: $2\cdot 4-6+3=5$. Sağlanır.
+
+<Cevap>D) $2$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\displaystyle\int f(x)\,dx=x^{2}\ln x+c$ olduğuna göre, $f(e)$ kaçtır?
+
+A) $1$ · B) $2$ · C) $e$ · D) $2e$ · E) $3e$
+
+</Soru>
+
+<Ipucu>
+
+İntegralin sonucu $F(x)=x^{2}\ln x$ ise $f(x)=F'(x)$'tir. Çarpım kuralını kullan.
+
+</Ipucu>
+
+<Cozum>
+
+1. İntegralin sonucu antiderivatiftir; dolayısıyla $f(x)=\big(x^{2}\ln x\big)'$.
+
+2. Çarpım kuralı: $\big(x^{2}\ln x\big)'=2x\cdot\ln x+x^{2}\cdot\dfrac{1}{x}=2x\ln x+x$.
+
+3. $f(x)=2x\ln x+x$. İstenen $f(e)$: $\ln e=1$ olduğundan $f(e)=2e\cdot 1+e=2e+e=3e$.
+
+4. Çeldirici kontrolü: $\ln$ türevini atlayıp yalnız $2x\ln x$ alan $2e$ (D) bulur; $+x$ terimini unutmamak gerekir.
+
+<Cevap>E) $3e$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f''(x)=12x-2$, $f'(1)=4$ ve $f(0)=3$ olduğuna göre $f(1)$ kaçtır?
+
+A) $4$ · B) $5$ · C) $6$ · D) $7$ · E) $8$
+
+</Soru>
+
+<Ipucu>
+
+İki kez integral al. Önce $f''$'den $f'$'ı $f'(1)=4$ ile, sonra $f'$'dan $f$'i $f(0)=3$ ile sabitlerini belirleyerek bul.
+
+</Ipucu>
+
+<Cozum>
+
+1. İlk integral: $\displaystyle f'(x)=\int (12x-2)\,dx=6x^{2}-2x+c_{1}$.
+
+2. $f'(1)=4$ koşulu: $6-2+c_{1}=4\Rightarrow c_{1}=0$. Yani $f'(x)=6x^{2}-2x$.
+
+3. İkinci integral: $\displaystyle f(x)=\int (6x^{2}-2x)\,dx=2x^{3}-x^{2}+c_{2}$.
+
+4. $f(0)=3$ koşulu: $0-0+c_{2}=3\Rightarrow c_{2}=3$. Yani $f(x)=2x^{3}-x^{2}+3$.
+
+5. İstenen değer: $f(1)=2-1+3=4$.
+
+<Cevap>A) $4$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
 ## Sık Yapılan Hatalar
 
 - **İntegral sabiti $+c$'yi unutmak.** Belirsiz integralin cevabı bir fonksiyon ailesidir; $+c$ olmadan eksik sayılır.

@@ -34,6 +34,18 @@ Yani integralin değeri, antiderivatifin **üst sınırdaki değeri eksi alt sı
 
 > **Neden $+c$ yazmıyoruz?** Antiderivatif $F(x)+c$ alınsaydı, $\big(F(b)+c\big)-\big(F(a)+c\big)=F(b)-F(a)$ olurdu; $c$ sabiti farkta sadeleşir. Bu yüzden belirli integralde köşeli parantez içine **asla $+c$ yazılmaz**.
 
+### Üst Sınırı Değişken Olan İntegralin Türevi
+
+Alt sınır sabit, üst sınır değişken olan bir integral aslında bir **fonksiyon** tanımlar. Teoremin türev biçimi şudur:
+
+$$\frac{d}{dx}\int_{a}^{x} f(t)\,dt=f(x).$$
+
+Üst sınır $x$ yerine $g(x)$ gibi bir ifadeyse **zincir kuralı** devreye girer:
+
+$$\frac{d}{dx}\int_{a}^{g(x)} f(t)\,dt=f\big(g(x)\big)\cdot g'(x).$$
+
+Buradaki $g'(x)$ çarpanını unutmak, AYT'de bu tip soruların en sık çeldiricisidir.
+
 ## 3. Belirli İntegralin Özellikleri
 
 Aşağıdaki özellikler, integral hesaplarını kısaltır ve sınav sorularının çoğunun temelidir:
@@ -428,6 +440,104 @@ A) $9$ · B) $\dfrac{21}{2}$ · C) $\dfrac{27}{2}$ · D) $11$ · E) $12$
 4. Farkı al: $18-\dfrac{15}{2}=\dfrac{36}{2}-\dfrac{15}{2}=\dfrac{21}{2}$.
 
 <Cevap>B) $\dfrac{21}{2}$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\displaystyle F(x)=\int_{1}^{x^{2}} \dfrac{1}{t}\,dt$ fonksiyonu $x>0$ için tanımlanıyor.
+
+Buna göre $F'(x)$ aşağıdakilerden hangisidir?
+
+A) $\dfrac{1}{x^{2}}$ · B) $\dfrac{1}{x}$ · C) $\dfrac{2}{x}$ · D) $2x$ · E) $\dfrac{2}{x^{2}}$
+
+</Soru>
+
+<Ipucu>
+
+Üst sınır $x^{2}$ olduğundan zincir kuralı devreye girer: $\dfrac{d}{dx}\displaystyle\int_{a}^{g(x)} f(t)\,dt=f\big(g(x)\big)\cdot g'(x)$.
+
+</Ipucu>
+
+<Cozum>
+
+1. Analizin temel teoreminin zincir kurallı biçimi: $\displaystyle\dfrac{d}{dx}\int_{1}^{g(x)} f(t)\,dt=f\big(g(x)\big)\cdot g'(x)$.
+
+2. Burada $f(t)=\dfrac{1}{t}$ ve $g(x)=x^{2}$, $g'(x)=2x$.
+
+3. Yerine yaz: $F'(x)=\dfrac{1}{x^{2}}\cdot 2x=\dfrac{2x}{x^{2}}=\dfrac{2}{x}$.
+
+4. Çeldirici kontrolü: $g'(x)=2x$ çarpanını (zincir kuralını) unutan, B şıkkındaki $\dfrac{1}{x^{2}}$ veya $\dfrac{1}{x}$'i seçer.
+
+<Cevap>C) $\dfrac{2}{x}$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f$ sürekli bir fonksiyon ve $a$ bir gerçek sayı olmak üzere $\displaystyle\int_{0}^{3} f(x)\,dx=8$ veriliyor.
+
+Buna göre $\displaystyle\int_{0}^{3}\big(f(x)+a\big)\,dx=20$ eşitliğini sağlayan $a$ kaçtır?
+
+A) $2$ · B) $3$ · C) $4$ · D) $5$ · E) $6$
+
+</Soru>
+
+<Cozum>
+
+1. Toplam özelliğiyle ayır: $\displaystyle\int_{0}^{3}\big(f(x)+a\big)\,dx=\int_{0}^{3} f(x)\,dx+\int_{0}^{3} a\,dx$.
+
+2. İlk terim $8$; ikinci terim sabit integralidir: $\displaystyle\int_{0}^{3} a\,dx=a\big[x\big]_{0}^{3}=3a$.
+
+3. Eşitliği kur: $8+3a=20\Rightarrow 3a=12\Rightarrow a=4$.
+
+4. Çeldirici kontrolü: $\int_{0}^{3} a\,dx$'i $a$ (aralık uzunluğunu unutarak) sanan, $8+a=20$'den $a=12$ bulur — hata.
+
+<Cevap>C) $4$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f$ fonksiyonu tüm gerçek sayılarda **tek fonksiyon** ($f(-x)=-f(x)$) ve süreklidir. $\displaystyle\int_{0}^{4} f(x)\,dx=6$ veriliyor.
+
+Buna göre $\displaystyle\int_{-4}^{4}\big(f(x)+x^{2}\big)\,dx$ kaçtır?
+
+A) $\dfrac{128}{3}$ · B) $\dfrac{128}{3}+6$ · C) $\dfrac{128}{3}+12$ · D) $\dfrac{64}{3}$ · E) $\dfrac{64}{3}+6$
+
+</Soru>
+
+<Ipucu>
+
+Tek fonksiyonun simetrik aralıktaki integrali $0$'dır. $x^{2}$ ise çift fonksiyondur: $\int_{-4}^{4}x^{2}\,dx=2\int_{0}^{4}x^{2}\,dx$.
+
+</Ipucu>
+
+<Cozum>
+
+1. Toplam özelliğiyle ayır: $\displaystyle\int_{-4}^{4} f(x)\,dx+\int_{-4}^{4} x^{2}\,dx$.
+
+2. $f$ tek fonksiyon ve aralık simetrik olduğundan $\displaystyle\int_{-4}^{4} f(x)\,dx=0$. (Verilen $6$ değeri tuzaktır.)
+
+3. $x^{2}$ çift fonksiyon: $\displaystyle\int_{-4}^{4} x^{2}\,dx=2\int_{0}^{4} x^{2}\,dx=2\Big[\dfrac{x^{3}}{3}\Big]_{0}^{4}=2\cdot\dfrac{64}{3}=\dfrac{128}{3}$.
+
+4. Topla: $0+\dfrac{128}{3}=\dfrac{128}{3}$.
+
+5. Çeldirici kontrolü: tek fonksiyon simetrisini atlayıp $6$'yı ekleyen B şıkkını seçer.
+
+<Cevap>A) $\dfrac{128}{3}$</Cevap>
 
 </Cozum>
 

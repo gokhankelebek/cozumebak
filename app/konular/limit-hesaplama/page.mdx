@@ -502,6 +502,102 @@ A) $-7$ · B) $-5$ · C) $1$ · D) $5$ · E) $7$
 
 </Ornek>
 
+<Ornek>
+
+<Soru>
+
+$L=\lim\limits_{x\to 0}\dfrac{\tan 4x-\sin 4x}{x^{3}}$ limiti veriliyor.
+
+Buna göre $L$ kaçtır?
+
+A) $8$ · B) $16$ · C) $24$ · D) $32$ · E) $64$
+
+</Soru>
+
+<Cozum>
+
+1. Payı ortak parantezine al: $\tan 4x-\sin 4x=\dfrac{\sin 4x}{\cos 4x}-\sin 4x=\sin 4x\cdot\dfrac{1-\cos 4x}{\cos 4x}$.
+
+2. İfade: $\dfrac{\sin 4x\,(1-\cos 4x)}{x^{3}\cos 4x}$.
+
+3. $1-\cos 4x$'i $1+\cos 4x$ ile genişlet: $1-\cos 4x=\dfrac{\sin^{2}4x}{1+\cos 4x}$.
+
+4. İfade: $\dfrac{\sin 4x\cdot\sin^{2}4x}{x^{3}\cos 4x\,(1+\cos 4x)}=\dfrac{\sin^{3}4x}{x^{3}}\cdot\dfrac{1}{\cos 4x\,(1+\cos 4x)}$.
+
+5. $\dfrac{\sin^{3}4x}{x^{3}}=\Big(\dfrac{\sin 4x}{x}\Big)^{3}\to 4^{3}=64$, ve $x\to 0$ iken $\cos 4x\to 1$, $1+\cos 4x\to 2$.
+
+6. Limit: $L=64\cdot\dfrac{1}{1\cdot 2}=32$.
+
+<Cevap>D) $32$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\lim\limits_{x\to 1}\dfrac{\sqrt[3]{x}-1}{\sqrt{x}-1}$ limiti veriliyor.
+
+Buna göre bu limitin değeri kaçtır?
+
+A) $\dfrac{1}{3}$ · B) $\dfrac{1}{2}$ · C) $\dfrac{2}{3}$ · D) $1$ · E) $\dfrac{3}{2}$
+
+</Soru>
+
+<Ipucu>
+
+$u=\sqrt[6]{x}$ dönüşümü ile $\sqrt[3]{x}=u^{2}$ ve $\sqrt{x}=u^{3}$ olur; $x\to 1$ iken $u\to 1$.
+
+</Ipucu>
+
+<Cozum>
+
+1. $u=\sqrt[6]{x}$ diyelim. O zaman $\sqrt[3]{x}=x^{1/3}=u^{2}$ ve $\sqrt{x}=x^{1/2}=u^{3}$. $x\to 1$ iken $u\to 1$.
+
+2. İfade: $\dfrac{u^{2}-1}{u^{3}-1}=\dfrac{(u-1)(u+1)}{(u-1)(u^{2}+u+1)}$.
+
+3. $u\to 1$ için $u\ne 1$, sadeleştir: $\dfrac{u+1}{u^{2}+u+1}$.
+
+4. Yerine koy ($u=1$): $\dfrac{1+1}{1+1+1}=\dfrac{2}{3}$.
+
+<Cevap>C) $\dfrac{2}{3}$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=\dfrac{\sin(x-2)}{x^{2}-4}$ olmak üzere $L=\lim\limits_{x\to 2} f(x)$ değeri veriliyor.
+
+Buna göre $8L$ kaçtır?
+
+A) $1$ · B) $2$ · C) $3$ · D) $4$ · E) $6$
+
+</Soru>
+
+<Cozum>
+
+1. Paydayı çarpanlara ayır: $x^{2}-4=(x-2)(x+2)$.
+
+2. İfade: $\dfrac{\sin(x-2)}{(x-2)(x+2)}=\dfrac{\sin(x-2)}{x-2}\cdot\dfrac{1}{x+2}$.
+
+3. $x\to 2$ iken $(x-2)\to 0$, yani $\dfrac{\sin(x-2)}{x-2}\to 1$ (temel limit, argüman ile payda aynı).
+
+4. Geri kalan: $\dfrac{1}{x+2}\to\dfrac{1}{2+2}=\dfrac{1}{4}$.
+
+5. Limit: $L=1\cdot\dfrac{1}{4}=\dfrac{1}{4}$, dolayısıyla $8L=8\cdot\dfrac{1}{4}=2$.
+
+<Cevap>B) $2$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
 ## Sık Yapılan Hatalar
 
 - **$\frac{0}{0}$'ı $0$ ya da "tanımsız/limit yok" sanmak.** $\frac{0}{0}$ bir **belirsizliktir**; çarpanlara ayırma veya eşlenikle çözülür, sonuç çoğu zaman sonlu bir sayıdır.

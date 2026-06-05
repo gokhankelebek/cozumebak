@@ -1,4 +1,5 @@
 import { topicMetadata } from "@/lib/seo";
+import { UstelLogSimetri } from "@/components/figures/UstelLogFig";
 
 export const metadata = topicMetadata("logaritma-kavrami-ayt");
 
@@ -13,6 +14,16 @@ $a > 0$, $a\ne 1$ ve $b > 0$ olmak üzere logaritma şöyle tanımlanır:
 $$\log_a b=c \iff a^{c}=b$$
 
 Yani $\log_a b$, **$a$ tabanını $b$ yapan üstür**. Buradaki koşullar zorunludur: taban pozitif ve $1$'den farklı, **logaritması alınan sayı ise kesinlikle pozitif** olmalıdır.
+
+Logaritma, üstel fonksiyonun **tersidir**. Bu yüzden $y=a^{x}$ ile $y=\log_a x$ grafikleri $y=x$ doğrusuna göre **simetriktir**: üstel grafik $(0,1)$'den, logaritma grafiği ise onun yansıması olan $(1,0)$'dan geçer.
+
+<Figur>
+
+<UstelLogSimetri />
+
+<Altyazi>Şekil 1 — $y=2^{x}$ (turuncu) ile $y=\log_2 x$ (lacivert), $y=x$ doğrusuna göre simetriktir. Üstel grafik $(0,1)$'den, logaritma grafiği $(1,0)$'dan geçer; biri tersi diğerinin.</Altyazi>
+
+</Figur>
 
 İki taban o kadar sık kullanılır ki özel adları vardır:
 
@@ -330,6 +341,62 @@ $2^{\log_2 7+\log_2 3}$ ifadesinin değerini bulunuz.
 
 </Ornek>
 
+<Ornek>
+
+<Soru>
+
+$\log 2=0{,}30$ ve $\log 3=0{,}48$ olduğuna göre $\log 0{,}6$ değerini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+$0{,}6=\dfrac{6}{10}$ yaz; bölümün logaritması çıkarmaya, $6=2\cdot 3$ çarpımı ise toplamaya dönüşür.
+
+</Ipucu>
+
+<Cozum>
+
+1. $0{,}6=\dfrac{6}{10}$ olduğundan $\log 0{,}6=\log 6-\log 10$.
+
+2. $\log 6=\log 2+\log 3=0{,}30+0{,}48=0{,}78$ ve $\log 10=1$.
+
+3. Çıkar: $\log 0{,}6=0{,}78-1=-0{,}22$.
+
+<Cevap>$\log 0{,}6=-0{,}22$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\log_a 2=3$ olduğuna göre $\log_a 8\sqrt{2}$ ifadesinin değerini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+$8\sqrt{2}$ ifadesini $2$'nin tek bir kuvveti olarak yaz: $8=2^{3}$, $\sqrt2=2^{1/2}$.
+
+</Ipucu>
+
+<Cozum>
+
+1. $8\sqrt{2}=2^{3}\cdot 2^{1/2}=2^{7/2}$.
+
+2. Üs özelliği: $\log_a 8\sqrt{2}=\log_a 2^{7/2}=\dfrac{7}{2}\log_a 2$.
+
+3. $\log_a 2=3$ yerine yaz: $\dfrac{7}{2}\cdot 3=\dfrac{21}{2}$.
+
+<Cevap>$\dfrac{21}{2}$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
 ## Sınav Tarzı Sorular
 
 > Aşağıdaki sorular, ÖSYM'nin AYT'de sorduğu **çok kavramlı, dolaylı (5 şıklı)** soru tarzına örnek olarak **özgün biçimde** hazırlanmıştır.
@@ -411,6 +478,82 @@ A) $8$ · B) $6$ · C) $4$ · D) $3$ · E) $\dfrac{5}{2}$
 4. Yerine yaz: $\dfrac{2\log 3\cdot 4\log 2}{\log 2\cdot \log 3}=2\cdot 4=8$.
 
 <Cevap>A) $8$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\log 2=a$ ve $\log 7=b$ olduğuna göre $\log_{14} 56$ ifadesinin $a$ ve $b$ türünden değeri kaçtır?
+
+A) $\dfrac{3a+b}{a+b}$ · B) $\dfrac{a+3b}{a+b}$ · C) $\dfrac{2a+b}{a+b}$ · D) $\dfrac{3a+b}{2a+b}$ · E) $\dfrac{a+b}{3a+b}$
+
+</Soru>
+
+<Cozum>
+
+1. Taban değiştirme ile $10$ tabanına geç: $\log_{14} 56=\dfrac{\log 56}{\log 14}$.
+
+2. Çarpanlara ayır: $56=8\cdot 7=2^{3}\cdot 7$ ve $14=2\cdot 7$.
+
+3. Pay: $\log 56=\log 2^{3}+\log 7=3\log 2+\log 7=3a+b$.
+
+4. Payda: $\log 14=\log 2+\log 7=a+b$.
+
+5. Oranı yaz: $\dfrac{3a+b}{a+b}$.
+
+<Cevap>A) $\dfrac{3a+b}{a+b}$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$x > 1$ olmak üzere $\log_x 1000=6$ olduğuna göre $\log_x 10$ değeri kaçtır?
+
+A) $1$ · B) $\dfrac{3}{2}$ · C) $2$ · D) $\dfrac{5}{2}$ · E) $3$
+
+</Soru>
+
+<Cozum>
+
+1. $1000=10^{3}$ olduğundan $\log_x 1000=\log_x 10^{3}=3\log_x 10$.
+
+2. Verilen eşitlik: $3\log_x 10=6$, yani $\log_x 10=2$.
+
+<Cevap>C) $2$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$\log_2 x+\log_4 x+\log_{16} x=7$ olduğuna göre $x$ değeri kaçtır?
+
+A) $2^{3}$ · B) $2^{4}$ · C) $2^{5}$ · D) $2^{6}$ · E) $2^{7}$
+
+</Soru>
+
+<Cozum>
+
+1. Tüm terimleri $2$ tabanına indir. Taban değiştirme: $\log_4 x=\dfrac{\log_2 x}{\log_2 4}=\dfrac{\log_2 x}{2}$ ve $\log_{16} x=\dfrac{\log_2 x}{\log_2 16}=\dfrac{\log_2 x}{4}$.
+
+2. $\log_2 x=t$ diyelim: $t+\dfrac{t}{2}+\dfrac{t}{4}=7$.
+
+3. Ortak paydada topla: $\dfrac{4t+2t+t}{4}=\dfrac{7t}{4}=7$, buradan $t=4$.
+
+4. $\log_2 x=4 \Rightarrow x=2^{4}$.
+
+<Cevap>B) $2^{4}$</Cevap>
 
 </Cozum>
 

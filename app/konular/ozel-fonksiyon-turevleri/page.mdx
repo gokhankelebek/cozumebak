@@ -416,6 +416,78 @@ A) $1$ · B) $2\ln 2$ · C) $0$ · D) $\ln 2$ · E) $2$
 
 </Ornek>
 
+<Ornek>
+
+<Soru>
+
+$f(x)=\ln\!\big(\sin x\big)$ fonksiyonu veriliyor.
+
+Buna göre $f'\!\left(\dfrac{\pi}{6}\right)$ değeri kaçtır?
+
+A) $\sqrt{3}$ · B) $\dfrac{\sqrt{3}}{2}$ · C) $\dfrac{1}{2}$ · D) $2$ · E) $\dfrac{1}{\sqrt{3}}$
+
+</Soru>
+
+<Cozum>
+
+1. $\big(\ln u\big)'=\dfrac{u'}{u}$ formülünde $u=\sin x$, $u'=\cos x$: $f'(x)=\dfrac{\cos x}{\sin x}=\cot x$.
+2. $x=\dfrac{\pi}{6}$ koy: $\cos\dfrac{\pi}{6}=\dfrac{\sqrt 3}{2}$, $\sin\dfrac{\pi}{6}=\dfrac{1}{2}$.
+3. Oran: $f'\!\left(\dfrac{\pi}{6}\right)=\dfrac{\sqrt 3/2}{1/2}=\sqrt 3$.
+
+<Cevap>A) $\sqrt{3}$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=e^{ax}\cos x$ fonksiyonunun grafiğine $x=0$ noktasında çizilen teğetin eğimi $3$'tür.
+
+Buna göre $a$ kaçtır?
+
+A) $1$ · B) $2$ · C) $3$ · D) $4$ · E) $5$
+
+</Soru>
+
+<Cozum>
+
+1. Teğetin eğimi $f'(0)$'dır. Çarpım kuralı: $f'(x)=\big(e^{ax}\big)'\cos x+e^{ax}\big(\cos x\big)'=a\,e^{ax}\cos x-e^{ax}\sin x$.
+2. $x=0$ koy: $e^{0}=1$, $\cos 0=1$, $\sin 0=0$, dolayısıyla $f'(0)=a\cdot 1\cdot 1-1\cdot 0=a$.
+3. Koşul $f'(0)=3$ olduğundan $a=3$.
+
+<Cevap>C) $3$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=\dfrac{\ln x}{x}$ fonksiyonu $x>0$ için tanımlıdır ve yalnızca bir kritik noktası vardır.
+
+Bu kritik noktadaki fonksiyon değeri $f(c)$ kaçtır?
+
+A) $0$ · B) $\dfrac{1}{e}$ · C) $1$ · D) $e$ · E) $\dfrac{1}{e^{2}}$
+
+</Soru>
+
+<Cozum>
+
+1. Bölüm kuralı: $f'(x)=\dfrac{\big(\ln x\big)'\cdot x-\ln x\cdot 1}{x^{2}}=\dfrac{\frac{1}{x}\cdot x-\ln x}{x^{2}}=\dfrac{1-\ln x}{x^{2}}$.
+2. Kritik nokta: $f'(x)=0\Rightarrow 1-\ln x=0\Rightarrow \ln x=1\Rightarrow x=e$, yani $c=e$.
+3. Değer: $f(e)=\dfrac{\ln e}{e}=\dfrac{1}{e}$.
+
+<Cevap>B) $\dfrac{1}{e}$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
 ## Sık Yapılan Hatalar
 
 - **$\big(\ln u\big)'$'i $\dfrac{1}{u}$ sanmak:** doğrusu $\dfrac{u'}{u}$'dur; iç türev $u'$ ile çarpılmalıdır. Örneğin $\big(\ln(x^{2}+1)\big)'=\dfrac{2x}{x^{2}+1}$, $\dfrac{1}{x^{2}+1}$ değil.

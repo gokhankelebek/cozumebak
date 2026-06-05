@@ -1,4 +1,6 @@
 import { topicMetadata } from "@/lib/seo";
+import { IntegralAlan } from "@/components/figures/IntegralAlanFig";
+import { IntegralIkiEgri } from "@/components/figures/IntegralIkiEgriFig";
 
 export const metadata = topicMetadata("integralde-alan");
 
@@ -20,6 +22,14 @@ $$A=\Big|\int_{a}^{b} f(x)\,dx\Big|=-\int_{a}^{b} f(x)\,dx$$
 
 > **Dikkat:** Alan her zaman pozitiftir. İntegralin işareti bölgenin eksene göre konumunu söyler; alan ise bu büyüklüğün mutlak değeridir.
 
+<Figur>
+
+<IntegralAlan />
+
+<Altyazi>Şekil 1 — $f(x)\ge 0$ iken $y=f(x)$ eğrisi ile $x$-ekseni arasında, $x=a$ ile $x=b$ arasındaki taranmış alan $A=\int_{a}^{b} f(x)\,dx$'tir.</Altyazi>
+
+</Figur>
+
 ### Eğri Ekseni Kesiyorsa: Bölgeleri Ayır
 
 Eğer $f$, $[a,b]$ üzerinde işaret değiştiriyorsa (yani ekseni kesiyorsa), tüm aralıkta tek bir integral **yanlış sonuç** verir; çünkü eksen üstü ve altı bölgeler birbirini götürür. Doğru yöntem: kökleri ($f(x)=0$ çözümleri) bul, aralığı bu noktalardan **parçalara ayır**, her parçanın integralinin **mutlak değerini** topla.
@@ -33,6 +43,14 @@ $[a,b]$ aralığında $f(x)\ge g(x)$ ise (yani $f$ üstte, $g$ altta), iki eğri
 $$A=\int_{a}^{b}\big(f(x)-g(x)\big)\,dx$$
 
 Bu formülde sınırlar $a$ ve $b$, eğrilerin **kesişim noktalarının apsisleridir**. Kesişimi bulmak için $f(x)=g(x)$ denklemini çözeriz. İki eğri arasında her iki bölge eksenin altında bile olsa, "üst fonksiyon eksi alt fonksiyon" farkı $[a,b]$ üzerinde pozitif olduğundan mutlak değere gerek kalmaz.
+
+<Figur>
+
+<IntegralIkiEgri />
+
+<Altyazi>Şekil 2 — $y=x$ doğrusu (üstte) ile $y=x^{2}$ parabolü (altta) arasında, kesişim apsisleri $x=0$ ve $x=1$ arasında kalan taranmış bölge: $A=\int_{0}^{1}\big(x-x^{2}\big)\,dx=\dfrac{1}{6}$.</Altyazi>
+
+</Figur>
 
 | Durum | Alan formülü |
 | --- | --- |
@@ -391,6 +409,100 @@ A) $0$ · B) $4$ · C) $6$ · D) $8$ · E) $16$
 5. Alan: $A=2\cdot 4=8$.
 
 <Cevap>D) $8$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$y=4-x^{2}$ parabolü ile $y=x^{2}-4$ parabolü arasında kalan bölgenin alanı $A$ birimkaredir. Buna göre $A$ kaçtır?
+
+A) $\dfrac{32}{3}$ · B) $\dfrac{48}{3}$ · C) $\dfrac{64}{3}$ · D) $\dfrac{80}{3}$ · E) $\dfrac{128}{3}$
+
+</Soru>
+
+<Ipucu>
+
+Kesişimleri $4-x^{2}=x^{2}-4$'ten bul. Üstteki $y=4-x^{2}$, alttaki $y=x^{2}-4$'tür; "üst eksi alt" farkını al.
+
+</Ipucu>
+
+<Cozum>
+
+1. Kesişimler: $4-x^{2}=x^{2}-4\Rightarrow 8=2x^{2}\Rightarrow x^{2}=4\Rightarrow x=\pm 2$. Sınırlar $-2$ ile $2$.
+
+2. Üst-alt: $x=0$ için $4-x^{2}=4$, $x^{2}-4=-4$; $y=4-x^{2}$ üstte.
+
+3. "Üst eksi alt": $\displaystyle A=\int_{-2}^{2}\big((4-x^{2})-(x^{2}-4)\big)\,dx=\int_{-2}^{2}\big(8-2x^{2}\big)\,dx$.
+
+4. Çift fonksiyon simetrisi: $\displaystyle A=2\int_{0}^{2}\big(8-2x^{2}\big)\,dx=2\Big[8x-\dfrac{2x^{3}}{3}\Big]_{0}^{2}=2\Big(16-\dfrac{16}{3}\Big)=2\cdot\dfrac{32}{3}=\dfrac{64}{3}$.
+
+<Cevap>C) $\dfrac{64}{3}$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$y=\dfrac{1}{x}$ eğrisi, $x$-ekseni ve $x=1$ ile $x=k$ ($k>1$) doğruları arasında kalan bölgenin alanı $\ln 4$ birimkaredir.
+
+Buna göre $k$ kaçtır?
+
+A) $2$ · B) $3$ · C) $4$ · D) $e^{2}$ · E) $16$
+
+</Soru>
+
+<Cozum>
+
+1. $[1,k]$ üzerinde $\dfrac{1}{x}>0$ olduğundan alan doğrudan integraldir: $\displaystyle A=\int_{1}^{k}\dfrac{1}{x}\,dx$.
+
+2. Antiderivatif: $\big[\ln x\big]_{1}^{k}=\ln k-\ln 1=\ln k$.
+
+3. Eşitliği kur: $\ln k=\ln 4\Rightarrow k=4$.
+
+4. Çeldirici kontrolü: $\ln 4=2\ln 2$ olduğundan $\ln k=2\ln 2$ yazıp $k=e^{2}$ sanmak (D) yaygın hatadır; doğrusu $k=4$'tür.
+
+<Cevap>C) $4$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$y=x^{2}$ parabolü ile $y=8$ doğrusu ve $y$-ekseni arasında, birinci bölgede (yani $x\ge 0$) kalan bölgenin alanı $A$ birimkaredir.
+
+Buna göre $A$ kaçtır?
+
+A) $\dfrac{16\sqrt2}{3}$ · B) $\dfrac{32\sqrt2}{3}$ · C) $16$ · D) $\dfrac{40\sqrt2}{3}$ · E) $\dfrac{64}{3}$
+
+</Soru>
+
+<Ipucu>
+
+$x\ge 0$ bölgesinde, $y=8$ doğrusu üstte, $y=x^{2}$ parabolü altta. Parabolün doğruyu kestiği apsis $x^{2}=8\Rightarrow x=2\sqrt2$'dir; soldaki sınır $y$-ekseni, yani $x=0$.
+
+</Ipucu>
+
+<Cozum>
+
+1. Kesişim (sağ sınır): $x^{2}=8\Rightarrow x=2\sqrt2$ ($x\ge 0$). Sol sınır $y$-ekseni: $x=0$.
+
+2. Üst-alt: $0<x<2\sqrt2$ üzerinde $y=8$ üstte, $y=x^{2}$ altta.
+
+3. "Üst eksi alt": $\displaystyle A=\int_{0}^{2\sqrt2}\big(8-x^{2}\big)\,dx=\Big[8x-\dfrac{x^{3}}{3}\Big]_{0}^{2\sqrt2}$.
+
+4. $x=2\sqrt2$ için: $x^{3}=(2\sqrt2)^{3}=8\cdot 2\sqrt2=16\sqrt2$ ve $8x=16\sqrt2$. Yani $A=16\sqrt2-\dfrac{16\sqrt2}{3}=\dfrac{48\sqrt2-16\sqrt2}{3}=\dfrac{32\sqrt2}{3}$.
+
+<Cevap>B) $\dfrac{32\sqrt2}{3}$</Cevap>
 
 </Cozum>
 

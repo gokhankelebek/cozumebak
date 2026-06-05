@@ -399,6 +399,84 @@ A) $2$ · B) $1$ · C) $0$ · D) $-1$ · E) $4$
 
 </Ornek>
 
+<Ornek>
+
+<Soru>
+
+Türevlenebilir bir $f$ fonksiyonu için $f(2)=5$ ve $f'(2)=3$ veriliyor.
+
+Buna göre
+
+$$\lim_{h\to 0}\frac{f(2+3h)-f(2-h)}{h}$$
+
+limitinin değeri kaçtır?
+
+A) $6$ · B) $9$ · C) $12$ · D) $15$ · E) $18$
+
+</Soru>
+
+<Cozum>
+
+1. Payı, $f(2)$ ekleyip çıkararak iki türev tanımına böl: $f(2+3h)-f(2-h)=\big[f(2+3h)-f(2)\big]+\big[f(2)-f(2-h)\big]$.
+2. İlk parça: $\dfrac{f(2+3h)-f(2)}{h}=3\cdot\dfrac{f(2+3h)-f(2)}{3h}\to 3f'(2)$.
+3. İkinci parça: $\dfrac{f(2)-f(2-h)}{h}=\dfrac{f(2-h)-f(2)}{-h}\to f'(2)$.
+4. Toplam: $3f'(2)+f'(2)=4f'(2)=4\cdot 3=12$.
+
+<Cevap>C) $12$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=\begin{cases}x^{2}+ax,& x\le 1\\[2pt] b\ln x+3,& x>1\end{cases}$ fonksiyonu $x=1$ noktasında türevlenebilirdir.
+
+Buna göre $a\cdot b$ çarpımı kaçtır?
+
+A) $8$ · B) $10$ · C) $12$ · D) $15$ · E) $18$
+
+</Soru>
+
+<Cozum>
+
+1. **Süreklilik** ($x=1$): soldan $1+a$, sağdan $b\ln 1+3=3$. Eşitle: $1+a=3\Rightarrow a=2$.
+2. **Türev eşitliği:** soldan türev $f'_-(x)=2x+a\Rightarrow f'_-(1)=2+a$; sağdan türev $f'_+(x)=\dfrac{b}{x}\Rightarrow f'_+(1)=b$. Eşitle: $b=2+a=2+2=4$.
+3. Bulunanlar: $a=2$, $b=4$ (her iki koşul da sağlanır).
+4. İstenen çarpım: $a\cdot b=2\cdot 4=8$.
+
+<Cevap>A) $8$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f$ ve $g$ türevlenebilir fonksiyonlar olup $f(x)=x^{2}\,g(x)$ biçiminde tanımlanmıştır. $g(2)=3$ ve $g'(2)=-1$ veriliyor.
+
+Buna göre $f'(2)$ kaçtır?
+
+A) $4$ · B) $6$ · C) $8$ · D) $10$ · E) $12$
+
+</Soru>
+
+<Cozum>
+
+1. Çarpım kuralı: $f'(x)=\big(x^{2}\big)'g(x)+x^{2}g'(x)=2x\,g(x)+x^{2}g'(x)$.
+2. $x=2$ koy: $f'(2)=2\cdot 2\cdot g(2)+2^{2}\cdot g'(2)=4\cdot 3+4\cdot(-1)$.
+3. Hesapla: $f'(2)=12-4=8$.
+
+<Cevap>C) $8$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
 ## Sık Yapılan Hatalar
 
 - **Limit tanımında $h$'yi sadeleştirmeden $h=0$ koymak:** $\frac{0}{0}$ belirsizliği çıkar. Önce payı çarpanlarına ayırıp $h$ ile sadeleştir.

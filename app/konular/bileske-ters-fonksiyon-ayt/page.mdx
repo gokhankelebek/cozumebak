@@ -1,4 +1,5 @@
 import { topicMetadata } from "@/lib/seo";
+import { TersSimetri } from "@/components/figures/TersFonksiyonFig";
 
 export const metadata = topicMetadata("bileske-ters-fonksiyon-ayt");
 
@@ -79,6 +80,12 @@ $f(x)=ax+b$ ($a\ne 0$) biçimindeki doğrusal bir fonksiyonun tersi:
 $$f^{-1}(x)=\dfrac{x-b}{a}$$
 
 Bunu bulmak için $y=ax+b$ yazıp $x$'i $y$ cinsinden çözer, sonra değişkenleri yer değiştiririz.
+
+> **Geometrik anlam:** Bir fonksiyon ile tersinin grafikleri $y=x$ doğrusuna göre **simetriktir**. Aşağıda $f(x)=2x-1$ ile tersi $f^{-1}(x)=\dfrac{x+1}{2}$ gösteriliyor; $f$ üzerindeki $(2,3)$ noktası, tersi üzerindeki $(3,2)$ noktasına yansır.
+
+<Figur>
+  <TersSimetri />
+</Figur>
 
 <Ornek>
 
@@ -296,6 +303,88 @@ $\big(f\circ f\big)^{-1}(2)=a$ demek $\big(f\circ f\big)(a)=2$, yani $f\big(f(a)
 
 </Ornek>
 
+<Ornek>
+
+<Soru>
+
+$f(x)=3x+1$ ve $(g\circ f)(x)=6x+5$ veriliyor. $g(x)$ fonksiyonunu bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+$(g\circ f)(x)=g\big(f(x)\big)=g(3x+1)$'dir. $g$'yi doğrusal $g(x)=ax+b$ alıp eşitleyebilir ya da $f(x)=u$ değişken değiştirmesi yapabilirsin.
+
+</Ipucu>
+
+<Cozum>
+
+1. $f(x)=3x+1=u$ diyelim; o hâlde $x=\dfrac{u-1}{3}$.
+
+2. $(g\circ f)(x)=g(u)=6x+5$. $x$ yerine $\dfrac{u-1}{3}$ koy: $g(u)=6\cdot\dfrac{u-1}{3}+5=2(u-1)+5=2u+3$.
+
+3. Değişkeni $x$ olarak yaz: $g(x)=2x+3$. (Kontrol: $g(3x+1)=2(3x+1)+3=6x+5$. ✓)
+
+<Cevap>$g(x)=2x+3$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=\dfrac{x+1}{x-2}$ fonksiyonu için $f^{-1}(3)$ değerini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Ters formülü bulmak yerine doğrudan $f(a)=3$ denklemini çözmek daha hızlıdır.
+
+</Ipucu>
+
+<Cozum>
+
+1. $f^{-1}(3)=a \iff f(a)=3$: $\dfrac{a+1}{a-2}=3$.
+
+2. İçler dışlar çarpımı: $a+1=3(a-2)=3a-6$.
+
+3. Düzenle: $a+1=3a-6 \Rightarrow 7=2a \Rightarrow a=\dfrac{7}{2}$.
+
+<Cevap>$f^{-1}(3)=\dfrac{7}{2}$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=2x-1$ olmak üzere $\big(f^{-1}\circ f^{-1}\big)(x)$ ifadesini bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Önce $f^{-1}(x)$'i bul, sonra onu kendi içine uygula.
+
+</Ipucu>
+
+<Cozum>
+
+1. $f^{-1}(x)$: $y=2x-1 \Rightarrow x=\dfrac{y+1}{2}$, yani $f^{-1}(x)=\dfrac{x+1}{2}$.
+
+2. Kendi içine uygula: $\big(f^{-1}\circ f^{-1}\big)(x)=f^{-1}\!\left(\dfrac{x+1}{2}\right)=\dfrac{\frac{x+1}{2}+1}{2}=\dfrac{\frac{x+3}{2}}{2}=\dfrac{x+3}{4}$.
+
+<Cevap>$\big(f^{-1}\circ f^{-1}\big)(x)=\dfrac{x+3}{4}$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
 ## Sınav Tarzı Sorular
 
 > Aşağıdaki sorular, ÖSYM'nin AYT'de sorduğu **çok kavramlı, dolaylı (5 şıklı)** soru tarzına örnek olarak **özgün biçimde** hazırlanmıştır. Önce kendin çöz, sonra çözüme bak.
@@ -381,6 +470,100 @@ A) $3$ · B) $4$ · C) $5$ · D) $6$ · E) $7$
 2. $(f\circ g)^{-1}(5)$, $(f\circ g)(x)=5$ olan $x$ değeridir: $2x-5=5\Rightarrow x=5$.
 
 <Cevap>C) $5$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bire bir ve örten bir $f$ fonksiyonu için $f(2x-1)=3x+4$ eşitliği her $x$ için sağlanmaktadır.
+
+Buna göre $f^{-1}(13)$ değeri kaçtır?
+
+A) $3$ · B) $5$ · C) $7$ · D) $9$ · E) $11$
+
+</Soru>
+
+<Ipucu>
+
+Önce $f(x)$'i bulmak için $2x-1=t$ değişken değiştirmesi yap; sonra $f^{-1}(13)=a \iff f(a)=13$ denklemini çöz.
+
+</Ipucu>
+
+<Cozum>
+
+1. $2x-1=t$ diyelim: $x=\dfrac{t+1}{2}$. O hâlde $f(t)=3\cdot\dfrac{t+1}{2}+4=\dfrac{3t+3}{2}+4=\dfrac{3t+11}{2}$.
+
+2. Yani $f(x)=\dfrac{3x+11}{2}$.
+
+3. $f^{-1}(13)=a \iff f(a)=13$: $\dfrac{3a+11}{2}=13 \Rightarrow 3a+11=26 \Rightarrow 3a=15 \Rightarrow a=5$.
+
+<Cevap>B) $5$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=2x+3$ ve $g$ bire bir bir fonksiyon olmak üzere $\big(f\circ g\big)(x)=4x-1$ veriliyor.
+
+Buna göre $g^{-1}(4)$ değeri kaçtır?
+
+A) $1$ · B) $2$ · C) $3$ · D) $4$ · E) $5$
+
+</Soru>
+
+<Ipucu>
+
+Önce $g(x)$'i bul: $f\big(g(x)\big)=2g(x)+3=4x-1$ eşitliğinden $g(x)$'i yalnız bırak. Sonra $g^{-1}(4)=a \iff g(a)=4$.
+
+</Ipucu>
+
+<Cozum>
+
+1. $f\big(g(x)\big)=2g(x)+3=4x-1 \Rightarrow 2g(x)=4x-4 \Rightarrow g(x)=2x-2$.
+
+2. $g^{-1}(4)=a \iff g(a)=4$: $2a-2=4 \Rightarrow 2a=6 \Rightarrow a=3$.
+
+<Cevap>C) $3$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=x-4$ ve $g(x)=3x$ fonksiyonları veriliyor.
+
+Buna göre $\big(g\circ f\big)^{-1}(6)$ değeri kaçtır?
+
+A) $4$ · B) $5$ · C) $6$ · D) $7$ · E) $8$
+
+</Soru>
+
+<Ipucu>
+
+$\big(g\circ f\big)^{-1}=f^{-1}\circ g^{-1}$ kuralını kullanabilir ya da önce $(g\circ f)(x)$ bileşkesini bulup $=6$ denklemini çözebilirsin.
+
+</Ipucu>
+
+<Cozum>
+
+1. Bileşkeyi bul: $(g\circ f)(x)=g(x-4)=3(x-4)=3x-12$.
+
+2. $\big(g\circ f\big)^{-1}(6)$, $(g\circ f)(x)=6$ olan $x$ değeridir: $3x-12=6 \Rightarrow 3x=18 \Rightarrow x=6$.
+
+3. Kural ile kontrol: $g^{-1}(x)=\dfrac{x}{3}$, $f^{-1}(x)=x+4$. $\big(f^{-1}\circ g^{-1}\big)(6)=f^{-1}\!\left(\dfrac{6}{3}\right)=f^{-1}(2)=2+4=6$. ✓
+
+<Cevap>C) $6$</Cevap>
 
 </Cozum>
 

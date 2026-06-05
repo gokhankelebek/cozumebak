@@ -1,4 +1,5 @@
 import { topicMetadata } from "@/lib/seo";
+import { AsimptotFig } from "@/components/figures/LimitFig";
 
 export const metadata = topicMetadata("sonsuzda-limit-asimptot");
 
@@ -97,6 +98,14 @@ Pay ve payda derecelerini karşılaştır; pay derecesi büyükse limit sonlu ol
 <Soru>
 
 $f(x)=\dfrac{2x+1}{x-3}$ fonksiyonunun düşey ve yatay asimptotlarını bulunuz.
+
+<Figur>
+
+<AsimptotFig />
+
+<Altyazi>Şekil — $f(x)=\dfrac{2x+1}{x-3}$ tipi bir rasyonel fonksiyon: düşey asimptot $x=a$ (burada $x=3$), yatay asimptot $y=L$ (burada $y=2$). Eğri bu iki doğruya sınırsızca yaklaşır ama onlara değmez.</Altyazi>
+
+</Figur>
 
 </Soru>
 
@@ -442,6 +451,108 @@ A) $\dfrac{3}{4}$ · B) $2$ · C) $3$ · D) $4$ · E) $6$
 5. İstenen: $\dfrac{M}{L}=\dfrac{3}{\frac{3}{4}}=3\cdot\dfrac{4}{3}=4$.
 
 <Cevap>D) $4$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f(x)=\dfrac{x^{2}+ax-6}{x^{2}-9}$ fonksiyonunun $x=3$ noktasında düşey asimptotu **yoktur** (orada delik vardır).
+
+Buna göre, fonksiyonun var olan tek düşey asimptotunun apsisi ile yatay asimptotunun ordinatının toplamı kaçtır?
+
+A) $-3$ · B) $-2$ · C) $0$ · D) $1$ · E) $2$
+
+</Soru>
+
+<Cozum>
+
+1. Payda $x^{2}-9=(x-3)(x+3)$; düşey asimptot adayları $x=3$ ve $x=-3$.
+
+2. $x=3$'te delik olması için pay da $x=3$'te sıfırlanmalı: $9+3a-6=0\Rightarrow 3a+3=0\Rightarrow a=-1$.
+
+3. $a=-1$ için pay $x^{2}-x-6=(x-3)(x+2)$. Sadeleştir: $f(x)=\dfrac{(x-3)(x+2)}{(x-3)(x+3)}=\dfrac{x+2}{x+3}$ (burada $x\ne 3$).
+
+4. **Düşey asimptot:** Sadeleşmiş paydayı sıfır yapan $x=-3$ (payı sıfır yapmaz); apsisi $-3$.
+
+5. **Yatay asimptot:** Başlangıçta dereceler eşit ($2=2$), baş katsayı oranı $\dfrac{1}{1}=1$, yani $y=1$; ordinatı $1$.
+
+6. İstenen toplam: $-3+1=-2$.
+
+<Cevap>B) $-2$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$L=\lim\limits_{x\to-\infty}\dfrac{\sqrt{9x^{2}+1}}{2x-1}$ limiti veriliyor.
+
+Buna göre $L$ kaçtır?
+
+A) $-3$ · B) $-\dfrac{3}{2}$ · C) $0$ · D) $\dfrac{3}{2}$ · E) $3$
+
+</Soru>
+
+<Ipucu>
+
+$x\to-\infty$ iken $x<0$ olduğundan $\sqrt{x^{2}}=|x|=-x$ alınır. İşaret hatası en sık yapılan tuzaktır.
+
+</Ipucu>
+
+<Cozum>
+
+1. Kök içini düzenle: $\sqrt{9x^{2}+1}=\sqrt{x^{2}\left(9+\dfrac{1}{x^{2}}\right)}=|x|\sqrt{9+\dfrac{1}{x^{2}}}$.
+
+2. $x\to-\infty$ için $x<0$, dolayısıyla $|x|=-x$.
+
+3. İfade: $\dfrac{-x\sqrt{9+\frac{1}{x^{2}}}}{2x-1}$. Pay ve paydayı $x$'e böl: $\dfrac{-\sqrt{9+\frac{1}{x^{2}}}}{2-\frac{1}{x}}$.
+
+4. $x\to-\infty$ iken $\dfrac{1}{x^{2}}\to 0$ ve $\dfrac{1}{x}\to 0$: $L=\dfrac{-\sqrt{9}}{2}=\dfrac{-3}{2}=-\dfrac{3}{2}$.
+
+<Cevap>B) $-\dfrac{3}{2}$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$A=\lim\limits_{x\to\infty}\dfrac{4^{x}+3^{x+1}}{2\cdot 4^{x}-1}$ ve $B=\lim\limits_{x\to-\infty}\dfrac{2^{x}+5}{2^{x}-3}$ olarak veriliyor.
+
+Buna göre $A+B$ kaçtır?
+
+A) $-\dfrac{7}{6}$ · B) $-\dfrac{5}{6}$ · C) $\dfrac{1}{2}$ · D) $\dfrac{7}{6}$ · E) $2$
+
+</Soru>
+
+<Ipucu>
+
+$x\to\infty$ iken $\big(\frac{3}{4}\big)^{x}\to 0$; ama $x\to-\infty$ iken $2^{x}\to 0$. Yön, hangi terimin baskın olduğunu değiştirir.
+
+</Ipucu>
+
+<Cozum>
+
+1. $A$: pay ve paydayı $4^{x}$'e böl. Pay $1+3\cdot\big(\frac{3}{4}\big)^{x}$, payda $2-\dfrac{1}{4^{x}}$.
+
+2. $x\to\infty$ iken $\big(\frac{3}{4}\big)^{x}\to 0$ ve $\dfrac{1}{4^{x}}\to 0$: $A=\dfrac{1+0}{2-0}=\dfrac{1}{2}$.
+
+3. $B$: $x\to-\infty$ iken $2^{x}\to 0$. Doğrudan yerine yaz: $B=\dfrac{0+5}{0-3}=-\dfrac{5}{3}$.
+
+4. İstenen: $A+B=\dfrac{1}{2}-\dfrac{5}{3}=\dfrac{3-10}{6}=-\dfrac{7}{6}$.
+
+5. Dikkat: $A$'da yön $x\to+\infty$ olduğundan $\big(\frac{3}{4}\big)^{x}\to 0$ oldu; yön $-\infty$ olsaydı bu terim $\infty$'a giderdi. Üstel limitlerde yönü daima kontrol et.
+
+<Cevap>A) $-\dfrac{7}{6}$</Cevap>
 
 </Cozum>
 

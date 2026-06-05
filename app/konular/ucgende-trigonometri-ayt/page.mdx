@@ -1,4 +1,5 @@
 import { topicMetadata } from "@/lib/seo";
+import { KosinusTeoremi } from "@/components/figures/KosinusTeoremiFig";
 
 export const metadata = topicMetadata("ucgende-trigonometri-ayt");
 
@@ -33,6 +34,14 @@ Açıyı yalnız bırakacak şekilde de düzenlenebilir:
 $$\cos A=\dfrac{b^{2}+c^{2}-a^{2}}{2bc}$$
 
 Bu teorem, **iki kenar ile aralarındaki açı** ya da **üç kenar** bilindiğinde kullanılır.
+
+<Figur>
+
+<KosinusTeoremi />
+
+<Altyazi>Şekil 1 — Herhangi bir $ABC$ üçgeninde $A$ köşesinde buluşan $b$ ve $c$ kenarları ile aralarındaki $A$ açısı verildiğinde, karşı kenar $a$ kosinüs teoremiyle bulunur: $a^{2}=b^{2}+c^{2}-2bc\cos A$.</Altyazi>
+
+</Figur>
 
 ### Üçgenin Alanı
 
@@ -421,6 +430,108 @@ A) $\dfrac{63}{8}$ · B) $\dfrac{65}{8}$ · C) $8$ · D) $\dfrac{65}{4}$ · E) $
 5. İkiye böl: $R=\dfrac{65}{8}$.
 
 <Cevap>B) $\dfrac{65}{8}$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir $ABC$ üçgeninde $b=2\sqrt{3}$ birim, $c=2$ birim ve bu iki kenar arasındaki açı $A=30^{\circ}$'dir.
+
+Buna göre, $a$ kenarının karşısındaki $A$ açısı dışında kalan, $b$ kenarının karşısındaki $B$ açısı kaç derecedir?
+
+A) $30$ · B) $45$ · C) $60$ · D) $90$ · E) $120$
+
+</Soru>
+
+<Ipucu>
+
+Önce kosinüs teoremiyle $a$ kenarını bul, sonra sinüs teoremiyle $\sin B$'yi hesapla. $b$ en büyük kenar değil; dar açı seç.
+
+</Ipucu>
+
+<Cozum>
+
+1. Kosinüs teoremi: $a^{2}=b^{2}+c^{2}-2bc\cos A=12+4-2\cdot 2\sqrt{3}\cdot 2\cdot\cos 30^{\circ}$.
+
+2. $\cos 30^{\circ}=\dfrac{\sqrt{3}}{2}$ ile: $a^{2}=16-8\sqrt{3}\cdot\dfrac{\sqrt{3}}{2}=16-12=4 \Rightarrow a=2$.
+
+3. Sinüs teoremi: $\dfrac{a}{\sin A}=\dfrac{b}{\sin B}\Rightarrow \dfrac{2}{\sin 30^{\circ}}=\dfrac{2\sqrt{3}}{\sin B}$.
+
+4. $\sin 30^{\circ}=\dfrac12$ ile: $\dfrac{2}{1/2}=4=\dfrac{2\sqrt{3}}{\sin B}\Rightarrow \sin B=\dfrac{2\sqrt{3}}{4}=\dfrac{\sqrt{3}}{2}$.
+
+5. $\sin B=\dfrac{\sqrt{3}}{2}$ veren açı $60^{\circ}$ ya da $120^{\circ}$'dir. $A=30^{\circ}$ olduğundan $B=120^{\circ}$ alınırsa açılar toplamı $30+120=150$ olur ve $C=30^{\circ}$ kalır (geçerli). $B=60^{\circ}$ ise $C=90^{\circ}$ olur. İki kenarla aralarındaki açı (SAS) verildiğinde üçgen tek türlü belirlidir; $a=c=2$ olduğundan üçgen ikizkenardır ve $A=C$, yani $C=30^{\circ}$, dolayısıyla $B=120^{\circ}$'dir.
+
+<Cevap>E) $120$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir $ABC$ üçgeninde $\dfrac{a}{\sin A}=12$ birimdir ve $a=6$ birimdir.
+
+Buna göre, $a$ kenarını gören (karşı) $A$ açısı kaç derecedir?
+
+A) $30$ · B) $45$ · C) $60$ · D) $90$ · E) $120$
+
+</Soru>
+
+<Ipucu>
+
+$\dfrac{a}{\sin A}=2R=12$ ilişkisinden $\sin A$'yı doğrudan çek.
+
+</Ipucu>
+
+<Cozum>
+
+1. Sinüs teoremi: $\dfrac{a}{\sin A}=12 \Rightarrow \sin A=\dfrac{a}{12}=\dfrac{6}{12}=\dfrac12$.
+
+2. $\sin A=\dfrac12$ veren dar açı $A=30^{\circ}$'dir (geniş açı seçeneği $150^{\circ}$ şıklarda yok).
+
+<Cevap>A) $30$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir $ABC$ üçgeninde $b=6$, $c=10$ birim ve bu iki kenar arasındaki $A$ açısı için $\cos A=\dfrac{4}{5}$ veriliyor ($A$ dar açı).
+
+Buna göre, $a$ kenarının uzunluğunun karesi ($a^{2}$) ile üçgenin alanının ($S$) toplamı $a^{2}+S$ kaçtır?
+
+A) $40$ · B) $48$ · C) $54$ · D) $58$ · E) $76$
+
+</Soru>
+
+<Ipucu>
+
+$a$ için kosinüs teoremi (cos zaten verilmiş); alan için önce $\sin A$'yı Pisagor'la bul, sonra $\dfrac12 bc\sin A$ uygula.
+
+</Ipucu>
+
+<Cozum>
+
+1. Kosinüs teoremi: $a^{2}=b^{2}+c^{2}-2bc\cos A=36+100-2\cdot 6\cdot 10\cdot\dfrac{4}{5}$.
+
+2. Hesapla: $a^{2}=136-120\cdot\dfrac{4}{5}=136-96=40$.
+
+3. Sinüsü bul: $A$ dar açı olduğundan $\sin A=\sqrt{1-\dfrac{16}{25}}=\dfrac{3}{5}$.
+
+4. Alan: $S=\dfrac12\,b\,c\,\sin A=\dfrac12\cdot 6\cdot 10\cdot\dfrac{3}{5}=30\cdot\dfrac{3}{5}=18$.
+
+5. Toplamı yaz: $a^{2}+S=40+18=58$.
+
+<Cevap>D) $58$</Cevap>
 
 </Cozum>
 

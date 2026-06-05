@@ -390,9 +390,112 @@ A) $3$ · B) $4$ · C) $5$ · D) $6$ · E) $8$
 
 </Ornek>
 
+<Ornek>
+
+<Soru>
+
+Genel terimi $a_n=n^{2}-3n+1$ olan bir dizinin kaç terimi negatiftir?
+
+A) $1$ · B) $2$ · C) $3$ · D) $4$ · E) Sonsuz çoklukta
+
+</Soru>
+
+<Ipucu>
+
+$a_n<0$ eşitsizliğini çöz; $n$ yalnızca pozitif tam sayı değerleri alabildiğinden, aralıktaki tam sayıları say.
+
+</Ipucu>
+
+<Cozum>
+
+1. Negatif terim koşulu: $n^{2}-3n+1<0$.
+
+2. $n^{2}-3n+1=0$ denkleminin kökleri $n=\dfrac{3\pm\sqrt{5}}{2}$, yaklaşık $0{,}38$ ve $2{,}62$'dir. Parabol bu iki kök arasında negatiftir.
+
+3. Bu aralıktaki pozitif tam sayılar yalnızca $n=1$ ve $n=2$'dir: $a_1=1-3+1=-1<0$, $a_2=4-6+1=-1<0$.
+
+4. $n=3$ için $a_3=9-9+1=1>0$; sonraki terimler de pozitiftir. Demek ki yalnızca $2$ terim negatiftir.
+
+<Cevap>B) $2$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir $(a_n)$ dizisi $a_1=2$ ve her $n\in\mathbb{Z}^{+}$ için $a_{n+1}=a_n+2n$ kuralıyla tanımlanıyor.
+
+Buna göre $a_5$ kaçtır?
+
+A) $18$ · B) $20$ · C) $22$ · D) $24$ · E) $26$
+
+</Soru>
+
+<Ipucu>
+
+Özyinelemeli (recursive) tanımı terim terim aç ya da $a_n=a_1+\sum_{k=1}^{n-1}2k$ toplamını kullan.
+
+</Ipucu>
+
+<Cozum>
+
+1. Kuralı terim terim uygula: $a_2=a_1+2\cdot 1=2+2=4$.
+
+2. Devam et: $a_3=a_2+2\cdot 2=4+4=8$ ve $a_4=a_3+2\cdot 3=8+6=14$.
+
+3. Son adım: $a_5=a_4+2\cdot 4=14+8=22$.
+
+4. (Kontrol: $a_n=2+2\cdot\big(1+2+\cdots+(n-1)\big)=2+n(n-1)$ olur; $n=5$ için $2+20=22$.)
+
+<Cevap>C) $22$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir $(a_n)$ dizisinin ilk $n$ teriminin toplamı $S_n=n^{2}+2n$ ile veriliyor.
+
+Buna göre dizinin $5.$ terimi $a_5$ kaçtır?
+
+A) $9$ · B) $10$ · C) $11$ · D) $12$ · E) $13$
+
+</Soru>
+
+<Ipucu>
+
+Bir terim, ardışık iki kısmi toplamın farkıdır: $a_n=S_n-S_{n-1}$ ($n\ge 2$ için).
+
+</Ipucu>
+
+<Cozum>
+
+1. Anahtar bağıntı: $a_n=S_n-S_{n-1}$. Aranan $a_5=S_5-S_4$'tür.
+
+2. Toplamları hesapla: $S_5=5^{2}+2\cdot 5=25+10=35$ ve $S_4=4^{2}+2\cdot 4=16+8=24$.
+
+3. Farkı al: $a_5=35-24=11$.
+
+<Cevap>C) $11$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
 ## Sık Yapılan Hatalar
 
 - **Terim sırası $n$'in pozitif tam sayı olması gerektiğini unutmak.** Bir sayının dizinin terimi olup olmadığını ararken, denklemden $n=\dfrac{49}{3}$ gibi kesirli bir değer çıkıyorsa o sayı dizinin terimi **değildir**. Çözümü pozitif tam sayı çıkmayan $n$ değerini geçerli sanmayın.
 - **$a_n$ ile $n$'i karıştırmak.** $n$, terimin **sırasını** (kaçıncı terim olduğunu) gösterir; $a_n$ ise o sıradaki **terimin değeridir**. "23 kaçıncı terim?" diye sorulduğunda istenen $n$'dir, $a_n$ değil.
+- **Kısmi toplam $S_n$ ile genel terim $a_n$'i karıştırmak.** $S_n$, ilk $n$ terimin toplamıdır; tek bir terimi geri elde etmek için $a_n=S_n-S_{n-1}$ farkını alın. Doğrudan $a_5=S_5$ yazmak hatalıdır (bu yalnızca $n=1$ için doğrudur).
+
+## Sınav İpucu
+
+> Genel terim sorularında verilen koşulu **bir denkleme** çevirin. "Kaçıncı terim?" türü için $a_n=$ (verilen sayı) yazıp $n$ çözün ve $n\in\mathbb{Z}^{+}$ kontrolünü unutmayın. $S_n$ verilmişse tek terim için $a_n=S_n-S_{n-1}$, özyinelemeli (recursive) tanımda ise birkaç terimi sırayla açmak en hızlı yoldur. Artan/azalan incelemesinde $a_{n+1}-a_n$ farkının **işareti** her zaman yeterlidir.
 
 <KonuNav slug="dizi-kavrami-ayt" />

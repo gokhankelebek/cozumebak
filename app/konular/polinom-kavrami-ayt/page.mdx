@@ -282,6 +282,118 @@ $P(x)=x^2-3x+2$ olduğuna göre $P(2x)$ ifadesini ve $P(x+1)$ değerini ayrı ay
 
 </Ornek>
 
+<Ornek>
+
+<Soru>
+
+Bir $P(x)$ polinomu her $x$ için $P(x+1)-P(x)=6x+4$ eşitliğini sağlıyor ve $P(0)=2$ dir. Buna göre $P(2)$ kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+Fark $6x+4$ birinci dereceden olduğundan $P(x)$ ikinci derecedendir: $P(x)=ax^2+bx+c$ al. Ya katsayıları eşitle ya da $x=0,1$ yazıp ardışık değerleri topla.
+
+</Ipucu>
+
+<Cozum>
+
+1. $x=0$ koy: $P(1)-P(0)=6\cdot 0+4=4$, yani $P(1)=P(0)+4=2+4=6$.
+
+2. $x=1$ koy: $P(2)-P(1)=6\cdot 1+4=10$, yani $P(2)=P(1)+10=6+10=16$.
+
+<Cevap>$P(2)=16$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$P(x)=(2x-1)^{8}\cdot(x+3)^{5}$ polinomunun katsayılar toplamı ile sabit teriminin oranı $\dfrac{P(1)}{P(0)}$ kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+Açmaya çalışma; katsayılar toplamı $P(1)$, sabit terim $P(0)$. Her birini doğrudan yerine yazarak hesapla.
+
+</Ipucu>
+
+<Cozum>
+
+1. Katsayılar toplamı: $P(1)=(2\cdot 1-1)^{8}\cdot(1+3)^{5}=1^{8}\cdot 4^{5}=4^{5}$.
+
+2. Sabit terim: $P(0)=(2\cdot 0-1)^{8}\cdot(0+3)^{5}=(-1)^{8}\cdot 3^{5}=3^{5}$.
+
+3. Oran: $\dfrac{P(1)}{P(0)}=\dfrac{4^{5}}{3^{5}}=\left(\dfrac{4}{3}\right)^{5}$.
+
+<Cevap>$\dfrac{P(1)}{P(0)}=\left(\dfrac{4}{3}\right)^{5}=\dfrac{1024}{243}$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$P(x)$ baş katsayısı $1$ olan ikinci dereceden bir polinomdur. $P(x)=P(4-x)$ özdeşliği her $x$ için sağlanıyor ve $P(1)=0$ ise $P(x)$ polinomunu bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+$P(x)=P(4-x)$ simetri koşulu, parabolün simetri ekseninin $x=2$ olduğunu söyler; bu da $P(x)=(x-2)^2+k$ biçimini verir.
+
+</Ipucu>
+
+<Cozum>
+
+1. $P(x)=P(4-x)$ koşulu, $x$ ile $4-x$ değerlerinin eşit görüntü vermesi demektir; bu noktaların orta noktası $\dfrac{x+(4-x)}{2}=2$ olduğundan simetri ekseni $x=2$'dir.
+
+2. Baş katsayı $1$ ve tepe $x=2$ olduğundan $P(x)=(x-2)^2+k$ yazılır.
+
+3. $P(1)=0$ koşulu: $(1-2)^2+k=1+k=0\Rightarrow k=-1$.
+
+4. Düzenle: $P(x)=(x-2)^2-1=x^2-4x+3$.
+
+<Cevap>$P(x)=x^2-4x+3$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$P(x)=x^{20}+x^{15}+x^{10}+x^{5}+1$ polinomunda, $P(x)$ ifadesinin $x^{2}$ türünden ifade edilen (yani çift dereceli) terimlerinin katsayıları toplamı kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+Çift dereceli terimlerin katsayılar toplamı $\dfrac{P(1)+P(-1)}{2}$ formülüyle bulunur; tek dereceliler $x=-1$'de işaret değiştirip yok olur.
+
+</Ipucu>
+
+<Cozum>
+
+1. $P(1)=1+1+1+1+1=5$ (tüm katsayıların toplamı).
+
+2. $P(-1)=(-1)^{20}+(-1)^{15}+(-1)^{10}+(-1)^{5}+1=1-1+1-1+1=1$.
+
+3. Çift dereceli terimlerin katsayılar toplamı $\dfrac{P(1)+P(-1)}{2}=\dfrac{5+1}{2}=3$.
+
+<Cevap>$3$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
 ## Sınav Tarzı Sorular
 
 > Aşağıdaki sorular, ÖSYM'nin AYT'de sorduğu **çok kavramlı, dolaylı (5 şıklı)** soru tarzına örnek olarak **özgün biçimde** hazırlanmıştır.
@@ -365,6 +477,92 @@ A) $25$ · B) $27$ · C) $30$ · D) $33$ · E) $35$
 4. İstenen: $\deg(P^2\cdot Q^3)=2m+3n=2\cdot 5+3\cdot 5=10+15=25$.
 
 <Cevap>A) $25$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$P(x)$ ikinci dereceden bir polinomdur ve her $x$ gerçek sayısı için
+
+$$P(x+1)=P(x)+2x+3$$
+
+eşitliği sağlanmaktadır. $P(0)=4$ olduğuna göre $P(5)$ kaçtır?
+
+A) $24$ · B) $29$ · C) $34$ · D) $39$ · E) $44$
+
+</Soru>
+
+<Cozum>
+
+1. Eşitlik bir ardışık fark bağıntısıdır. $x=0,1,2,3,4$ için yazıp toplayalım.
+
+2. $x=0:\ P(1)=P(0)+3$. $x=1:\ P(2)=P(1)+5$. $x=2:\ P(3)=P(2)+7$. $x=3:\ P(4)=P(3)+9$. $x=4:\ P(5)=P(4)+11$.
+
+3. Taraf tarafa toplayıp sadeleştir: $P(5)=P(0)+(3+5+7+9+11)=P(0)+35$.
+
+4. $P(0)=4$ olduğundan $P(5)=4+35=39$.
+
+<Cevap>D) $39$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$P(x)$ ve $Q(x)$ polinomları için her $x$ gerçek sayısında
+
+$$P(x)=(x^{2}-1)\,Q(x)+3x+5$$
+
+eşitliği sağlanıyor. Buna göre $P(1)+P(-1)$ toplamı kaçtır?
+
+A) $8$ · B) $9$ · C) $10$ · D) $12$ · E) $16$
+
+</Soru>
+
+<Cozum>
+
+1. $x=1$ koy: $x^2-1=0$ olduğundan ilk terim sıfırlanır; $P(1)=3\cdot 1+5=8$.
+
+2. $x=-1$ koy: yine $x^2-1=0$; $P(-1)=3\cdot(-1)+5=-3+5=2$.
+
+3. Toplam: $P(1)+P(-1)=8+2=10$.
+
+<Cevap>C) $10$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Baş katsayısı $2$ olan ikinci dereceden bir $P(x)$ polinomunun grafiği, $y$ eksenini $(0,6)$ noktasında kesmekte ve $x=2$ doğrusuna göre simetriktir.
+
+Buna göre $P(x)$ polinomunun katsayılar toplamı kaçtır?
+
+A) $-3$ · B) $-1$ · C) $0$ · D) $2$ · E) $4$
+
+</Soru>
+
+<Cozum>
+
+1. Baş katsayı $2$ ve simetri ekseni $x=2$ olduğundan tepe biçiminde $P(x)=2(x-2)^2+k$ yazılır.
+
+2. Grafik $(0,6)$'dan geçer: $P(0)=2(0-2)^2+k=8+k=6\Rightarrow k=-2$.
+
+3. Böylece $P(x)=2(x-2)^2-2$. Açık biçim: $2(x^2-4x+4)-2=2x^2-8x+6$.
+
+4. Katsayılar toplamı $P(1)=2-8+6=0$.
+
+<Cevap>C) $0$</Cevap>
 
 </Cozum>
 

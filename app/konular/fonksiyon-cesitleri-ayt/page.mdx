@@ -1,4 +1,5 @@
 import { topicMetadata } from "@/lib/seo";
+import { DogruGrafik } from "@/components/figures/FonksiyonFig";
 
 export const metadata = topicMetadata("fonksiyon-cesitleri-ayt");
 
@@ -34,6 +35,12 @@ Bir bağıntının fonksiyon olması için iki koşul birlikte sağlanmalıdır:
 | **İçine** | $f(A)\ne B$ | Örten olmayan; bazı değerler alınmaz |
 
 Bire bir olma koşulunu kontrol etmenin pratik yolu: $f(x_1)=f(x_2)$ kabul edip $x_1=x_2$ sonucuna ulaşabiliyorsak fonksiyon bire birdir.
+
+> **Grafik testi (yatay doğru testi):** Bir fonksiyonun grafiği her **yatay doğruyu en fazla bir noktada** kesiyorsa fonksiyon bire birdir. Aşağıdaki $f(x)=2x+1$ doğrusu bu testi geçer; her yatay doğruyu tam bir kez keser, dolayısıyla bire birdir.
+
+<Figur>
+  <DogruGrafik />
+</Figur>
 
 <Ornek>
 
@@ -331,6 +338,80 @@ $f:[0,\infty)\to[k,\infty)$, $f(x)=x^2+3$ fonksiyonunun örten olması için $k$
 
 </Ornek>
 
+<Ornek>
+
+<Soru>
+
+$f:\mathbb{R}\to\mathbb{R}$, $f(x)=(m-2)x+5$ fonksiyonunun bire bir ve örten (yani tersinir) olması için $m$ hangi koşulu sağlamalıdır?
+
+</Soru>
+
+<Ipucu>
+
+Doğrusal fonksiyon $f(x)=ax+b$, ancak $a\ne 0$ ise hem bire bir hem örtendir. Burada $a=m-2$'dir.
+
+</Ipucu>
+
+<Cozum>
+
+1. $f$ doğrusaldır; bire bir ve örten olması için eğim sıfırdan farklı olmalıdır: $m-2\ne 0$.
+
+2. Buradan $m\ne 2$ bulunur. $m=2$ olsaydı $f(x)=5$ sabit fonksiyon olur, ne bire bir ne örten olurdu.
+
+<Cevap>$m\ne 2$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f:\mathbb{R}\to\mathbb{R}$ bir tek fonksiyondur ve $f(2)=7$, $f(5)=-3$ veriliyor. Buna göre $f(-2)+f(-5)$ toplamını bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Tek fonksiyonda $f(-x)=-f(x)$ olur. Her terimi bu kuralla negatif girdiye taşı.
+
+</Ipucu>
+
+<Cozum>
+
+1. Tek fonksiyon olduğundan $f(-2)=-f(2)=-7$ ve $f(-5)=-f(5)=-(-3)=3$.
+
+2. Topla: $f(-2)+f(-5)=-7+3=-4$.
+
+<Cevap>$f(-2)+f(-5)=-4$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f:\mathbb{R}\to\mathbb{R}$, $f(x)=\dfrac{x-3}{2}$ fonksiyonu örten midir? Gerekçesiyle açıklayınız.
+
+</Soru>
+
+<Cozum>
+
+1. $f$ doğrusaldır ($a=\tfrac12\ne 0$). Örten olup olmadığını görmek için herhangi bir $y\in\mathbb{R}$ için $f(x)=y$ denkleminin çözülebildiğini gösterelim.
+
+2. $\dfrac{x-3}{2}=y \Rightarrow x-3=2y \Rightarrow x=2y+3$. Her gerçek $y$ için bir $x$ vardır.
+
+3. Görüntü kümesi tüm $\mathbb{R}$'dir; değer kümesine eşittir, dolayısıyla fonksiyon örtendir (ayrıca bire birdir).
+
+<Cevap>Evet, $f$ örtendir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
 ## Sınav Tarzı Sorular
 
 > Aşağıdaki sorular, ÖSYM'nin AYT'de sorduğu **çok kavramlı, dolaylı (5 şıklı)** soru tarzına örnek olarak **özgün biçimde** hazırlanmıştır.
@@ -414,6 +495,84 @@ A) $11$ · B) $15$ · C) $18$ · D) $21$ · E) $24$
 4. İstenen çarpım: $f(3)\cdot g(3)=8\cdot 3=24$.
 
 <Cevap>E) $24$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f:\mathbb{R}\to\mathbb{R}$ olmak üzere $f(x)=\dfrac{(2a-6)x^2+5x+(b+1)}{x^2+3}$ fonksiyonu **tek** fonksiyondur.
+
+Buna göre $a+b$ kaçtır?
+
+A) $1$ · B) $2$ · C) $3$ · D) $4$ · E) $5$
+
+</Soru>
+
+<Cozum>
+
+1. Payda $x^2+3$ çift bir ifadedir. Bütün kesrin tek olabilmesi için **pay da tek** olmalıdır; yani payda yalnızca tek dereceli terim kalmalı, çift dereceli ve sabit terimler sıfırlanmalıdır.
+
+2. $x^2$ katsayısı sıfır: $2a-6=0 \Rightarrow a=3$.
+
+3. Sabit terim sıfır: $b+1=0 \Rightarrow b=-1$. (Kontrol: $f(0)=\dfrac{0}{3}=0$, tek fonksiyon koşuluyla uyumlu.)
+
+4. Geriye $f(x)=\dfrac{5x}{x^2+3}$ kalır; bu gerçekten tektir. İstenen: $a+b=3+(-1)=2$.
+
+<Cevap>B) $2$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f:[1,5]\to B$, $f(x)=x^2-2x+4$ fonksiyonunun **örten** olması için $B$ değer kümesi aşağıdakilerden hangisi olmalıdır?
+
+A) $[3,19]$ · B) $[4,19]$ · C) $[0,19]$ · D) $[3,20]$ · E) $[4,20]$
+
+</Soru>
+
+<Cozum>
+
+1. $f(x)=x^2-2x+4=(x-1)^2+3$. Tepe noktası $x=1$'dedir ve tepe değeri $3$'tür.
+
+2. Tanım kümesi $[1,5]$, tepe noktasından başlar; bu aralıkta fonksiyon **artandır**. En küçük değer $x=1$'de $f(1)=(0)^2+3=3$.
+
+3. En büyük değer $x=5$'te: $f(5)=(5-1)^2+3=16+3=19$.
+
+4. Görüntü kümesi $[3,19]$'dur. Örtenlik için $B$ buna eşit olmalıdır.
+
+<Cevap>A) $[3,19]$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$f$ ve $g$, $\mathbb{R}$ üzerinde tanımlı fonksiyonlardır. $f$ **çift**, $g$ **tek** fonksiyondur ve her ikisi de aynı anda bire bir olamaz. $g(x)=x^3+kx$ tek fonksiyon olduğuna ve $g(2)=14$ sağlandığına göre $k$ kaçtır?
+
+A) $1$ · B) $2$ · C) $3$ · D) $4$ · E) $5$
+
+</Soru>
+
+<Cozum>
+
+1. $g(x)=x^3+kx$ ifadesinin tüm üsleri tektir; her $k$ değeri için zaten tektir, ek koşul gerekmez.
+
+2. $g(2)=14$ koşulunu kullan: $2^3+k\cdot 2=14 \Rightarrow 8+2k=14$.
+
+3. $2k=6 \Rightarrow k=3$.
+
+<Cevap>C) $3$</Cevap>
 
 </Cozum>
 

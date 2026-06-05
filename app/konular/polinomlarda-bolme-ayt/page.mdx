@@ -330,6 +330,124 @@ Yeni polinomun kalanı için yine kalan teoremini kullan: $Q(2)$ değerini hesap
 
 </Ornek>
 
+<Ornek>
+
+<Soru>
+
+$P(x)=x^{50}-3x^{20}+2$ polinomunun $(x^{2}-1)$ ile bölümünden kalanı bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Bölen ikinci dereceden, $x^2-1=(x-1)(x+1)$. Kalan $K(x)=mx+n$; $P(1)$ ve $P(-1)$ değerlerini kullan.
+
+</Ipucu>
+
+<Cozum>
+
+1. $x^2-1=(x-1)(x+1)$ olduğundan kalan $K(x)=mx+n$ biçimindedir: $P(x)=(x-1)(x+1)Q(x)+mx+n$.
+
+2. $x=1$ koy: $P(1)=1-3+2=0$, yani $m+n=0$.
+
+3. $x=-1$ koy: $P(-1)=(-1)^{50}-3(-1)^{20}+2=1-3+2=0$, yani $-m+n=0$.
+
+4. Sistemi çöz: iki denklemden $n=0$ ve $m=0$. Demek ki kalan $0$'dır.
+
+<Cevap>Kalan $0$'dır; yani $(x^2-1)\mid P(x)$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$P(x)$ polinomunun $(x-2)$ ile bölümünden kalan $3$'tür. Buna göre $P(x)\cdot(x+1)$ polinomunun $(x-2)$ ile bölümünden kalanı bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Kalan teoremi çarpımlara da uygulanır: aranan kalan, $\big(P(x)(x+1)\big)$ ifadesinin $x=2$'deki değeridir.
+
+</Ipucu>
+
+<Cozum>
+
+1. Kalan teoremine göre aranan kalan, $R(x)=P(x)(x+1)$ ifadesinin $x=2$'deki değeridir: $R(2)=P(2)\cdot(2+1)$.
+
+2. $P(x)$'in $(x-2)$ ile bölümünden kalan $3$ olduğundan $P(2)=3$.
+
+3. Yerine yaz: $R(2)=3\cdot 3=9$.
+
+<Cevap>Kalan $9$'dur.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$P(x)=x^{4}+2x^{3}-7x^{2}-8x+12$ polinomunu çarpanlarına ayırınız.
+
+</Soru>
+
+<Ipucu>
+
+Rasyonel kökler sabit terim $12$'nin bölenleri arasındadır: $\pm1,\pm2,\pm3,\pm4,\pm6,\pm12$. Bir kök bulunca böl, kalan üçüncü dereceliyi yeniden dene.
+
+</Ipucu>
+
+<Cozum>
+
+1. $P(1)=1+2-7-8+12=0$, demek ki $(x-1)$ çarpandır. Bölersek $P(x)=(x-1)(x^{3}+3x^{2}-4x-12)$.
+
+2. Üçüncü dereceliyi dene: $x=2$ için $8+12-8-12=0$, yani $(x-2)$ çarpandır. Bölersek $x^{3}+3x^{2}-4x-12=(x-2)(x^{2}+5x+6)$.
+
+3. Son çarpanı ayır: $x^{2}+5x+6=(x+2)(x+3)$.
+
+4. Tümünü birleştir: $P(x)=(x-1)(x-2)(x+2)(x+3)$.
+
+<Cevap>$P(x)=(x-1)(x-2)(x+2)(x+3)$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$P(x)$ polinomunun $(x-1)$ ile bölümünden kalan $2$, $(x-2)$ ile bölümünden kalan $3$, $(x-3)$ ile bölümünden kalan $4$'tür. $P(x)$'in $(x-1)(x-2)(x-3)$ ile bölümünden kalanı bulunuz.
+
+</Soru>
+
+<Ipucu>
+
+Verilen değerler $P(1)=2,\ P(2)=3,\ P(3)=4$, yani $P(a)=a+1$ örüntüsündedir. Kalan en çok ikinci derecedendir; bu örüntü kalanı tahmin etmeyi kolaylaştırır.
+
+</Ipucu>
+
+<Cozum>
+
+1. Bölen üçüncü dereceden olduğundan kalan en çok ikinci derecedendir: $K(x)=ax^2+bx+c$.
+
+2. Verilenler: $P(1)=2,\ P(2)=3,\ P(3)=4$. Yani $K(1)=2,\ K(2)=3,\ K(3)=4$.
+
+3. Değerler $K(a)=a+1$ örüntüsündedir. $L(x)=K(x)-(x+1)$ polinomu $x=1,2,3$'te sıfırlanır ve derecesi $\le 2$'dir; üç kökü olamayacağından $L(x)\equiv 0$.
+
+4. Demek ki $K(x)=x+1$.
+
+<Cevap>$K(x)=x+1$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
 ## Sınav Tarzı Sorular
 
 > Aşağıdaki sorular, ÖSYM'nin AYT'de sorduğu **çok kavramlı, dolaylı (5 şıklı)** soru tarzına örnek olarak **özgün biçimde** hazırlanmıştır.
@@ -419,6 +537,84 @@ A) $-6$ · B) $-5$ · C) $-4$ · D) $-2$ · E) $0$
 4. İstenen değeri hesapla: $P(1)=2-3-1-2=-4$.
 
 <Cevap>C) $-4$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir $P(x)$ polinomunun $(x-2)$ ile bölümünden kalan $5$'tir.
+
+Buna göre $P(x)+x^{2}-3$ polinomunun $(x-2)$ ile bölümünden kalan kaçtır?
+
+A) $4$ · B) $5$ · C) $6$ · D) $7$ · E) $8$
+
+</Soru>
+
+<Cozum>
+
+1. Kalan teoremine göre $(x-2)$ ile bölümden kalan, ifadenin $x=2$'deki değeridir.
+
+2. $P(x)$'in kalanı $5$ olduğundan $P(2)=5$.
+
+3. Yeni ifadeyi $x=2$'de hesapla: $P(2)+2^{2}-3=5+4-3=6$.
+
+<Cevap>C) $6$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$P(x)$ polinomunun $(x^{2}-3x+2)$ ile bölümünden kalan $2x+1$'dir.
+
+Buna göre $P(x)$ polinomunun $(x-1)$ ile bölümünden kalan kaçtır?
+
+A) $1$ · B) $2$ · C) $3$ · D) $4$ · E) $5$
+
+</Soru>
+
+<Cozum>
+
+1. Bölme özdeşliği: $P(x)=(x^{2}-3x+2)\,Q(x)+(2x+1)$.
+
+2. $x^{2}-3x+2=(x-1)(x-2)$ olduğundan $x=1$ koyunca bölünen terim sıfırlanır: $P(1)=2\cdot 1+1=3$.
+
+3. $(x-1)$ ile bölümden kalan, kalan teoremiyle $P(1)$'dir.
+
+<Cevap>C) $3$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$P(x)$ baş katsayısı $1$ olan üçüncü dereceden bir polinomdur. $P(x)$ polinomu $(x-1)$, $(x+2)$ ve $(x-3)$ ile tam bölünmektedir.
+
+Buna göre $P(x)$ polinomunun $(x-2)$ ile bölümünden kalan kaçtır?
+
+A) $-4$ · B) $-2$ · C) $0$ · D) $2$ · E) $4$
+
+</Soru>
+
+<Cozum>
+
+1. $(x-1)$, $(x+2)$, $(x-3)$ ile tam bölündüğünden bunlar çarpandır; baş katsayı $1$ ve derece $3$ olduğundan $P(x)=(x-1)(x+2)(x-3)$.
+
+2. $(x-2)$ ile bölümden kalan, kalan teoremiyle $P(2)$'dir.
+
+3. Yerine yaz: $P(2)=(2-1)(2+2)(2-3)=1\cdot 4\cdot(-1)=-4$.
+
+<Cevap>A) $-4$</Cevap>
 
 </Cozum>
 
