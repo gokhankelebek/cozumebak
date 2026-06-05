@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import Link from "next/link";
+import Script from "next/script";
 import SiteHeader from "@/components/SiteHeader";
 import MathClient from "@/components/MathClient";
 import "katex/dist/katex.min.css";
@@ -47,6 +48,18 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         />
       </head>
       <body>
+        {/* Google Analytics 4 (gtag.js). GA4 enhanced measurement tracks
+            client-side route changes automatically, so no extra pageview code. */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-G30880NL87"
+          strategy="afterInteractive"
+        />
+        <Script id="ga4-init" strategy="afterInteractive">
+          {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-G30880NL87');`}
+        </Script>
         <div className="paper-bg" aria-hidden="true" />
         <MathClient />
         <SiteHeader />
