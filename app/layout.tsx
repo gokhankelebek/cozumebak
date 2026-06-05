@@ -19,6 +19,7 @@ export const metadata: Metadata = {
   applicationName: "çözümebak",
   authors: [{ name: "çözümebak" }],
   alternates: { canonical: "/" },
+  verification: { google: "LukG2Ox-BZnh3o6YgK_76Kc7KsydlFWZVTo8M_Cl5OM" },
   openGraph: {
     type: "website",
     siteName: "çözümebak",
