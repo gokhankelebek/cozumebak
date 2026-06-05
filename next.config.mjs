@@ -17,6 +17,10 @@ const nextConfig = {
   // .mdx files in app/ become routes, e.g. app/konular/turevin-tanimi/page.mdx
   pageExtensions: ["ts", "tsx", "js", "jsx", "md", "mdx"],
   eslint: { ignoreDuringBuilds: true },
+  // 141 KaTeX-rendered MDX pages make the production compile memory-heavy.
+  // This trades a little build time for a much lower peak heap so the build
+  // doesn't OOM on memory-capped CI/deploy containers (e.g. Vercel).
+  experimental: { webpackMemoryOptimizations: true },
 };
 
 export default withMDX(nextConfig);
