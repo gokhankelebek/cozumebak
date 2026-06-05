@@ -1,0 +1,3 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="cozumebak">
+  <circle cx="256" cy="256" r="256" fill="#0E1B33"/><defs><clipPath id="ac"><circle cx="256" cy="256" r="256"/></clipPath></defs><g clip-path="url(#ac)"><line x1="90" y1="188" x2="422" y2="188" stroke="#FBF8F1" stroke-width="5" stroke-dasharray="9 13" stroke-linecap="round" opacity="0.5"/><path d="M118,386 C196,386 236,188 300,188 C352,188 372,266 410,300" fill="none" stroke="#E5492B" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/></g><circle cx="300" cy="188" r="13" fill="#FBF8F1"/>
+</svg>
