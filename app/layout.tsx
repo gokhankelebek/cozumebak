@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import Link from "next/link";
 import SiteHeader from "@/components/SiteHeader";
+import MathClient from "@/components/MathClient";
 import "katex/dist/katex.min.css";
 import "./globals.css";
 
@@ -46,6 +47,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       </head>
       <body>
         <div className="paper-bg" aria-hidden="true" />
+        <MathClient />
         <SiteHeader />
         {children}
         <footer className="site-footer">
