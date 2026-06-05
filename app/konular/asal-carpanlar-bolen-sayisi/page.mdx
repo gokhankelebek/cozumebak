@@ -1,4 +1,5 @@
 import { topicMetadata } from "@/lib/seo";
+import { CarpanAgaci360 } from "@/components/figures/AsalCarpanAgaciFig";
 
 export const metadata = topicMetadata("asal-carpanlar-bolen-sayisi");
 
@@ -27,6 +28,14 @@ Bölme tablosuyla:
 | $1$ | — |
 
 Doğrulama: $2^{3}\cdot 3^{2}\cdot 5=8\cdot 9\cdot 5=360$. Buradaki $2,3,5$ asallarının üsleri sırasıyla $3,2,1$'dir; **üssü $1$ olan asalı ($5^{1}$) gözden kaçırmamak** önemlidir.
+
+<Figur>
+
+<CarpanAgaci360 />
+
+<Altyazi>Şekil 1 — $360$ sayısının asal çarpan ağacı. Her adımda en küçük asal (kırmızı yaprak) ayrılır; geriye kalan çarpan (açık düğüm) yeniden bölünür. Yapraklardaki asallar $2,2,2,3,3,5$ olduğundan $360=2^{3}\cdot 3^{2}\cdot 5$ elde edilir.</Altyazi>
+
+</Figur>
 
 ## 2. Pozitif Bölen (Tam Bölen) Sayısı
 
@@ -461,6 +470,82 @@ A) $8$ · B) $10$ · C) $12$ · D) $14$ · E) $16$
 3. $12<32$; en küçük aday $12$'dir ($1,2,3,4,6,12$).
 
 <Cevap>C) $12$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir oyunda her oyuncuya, kareye dizilebilen (tam kare sayıda) ve **tam olarak $5$ farklı pozitif böleni** olan bir taş sayısı veriliyor. Yönetici, mümkün olan en az taşı seçmek istiyor.
+
+Buna göre bir oyuncuya en az kaç taş verilir?
+
+A) $16$ · B) $25$ · C) $32$ · D) $36$ · E) $81$
+
+</Soru>
+
+<Cozum>
+
+1. Bölen sayısı $5$ asal olduğundan $(a+1)\cdots=5$ ancak tek çarpanla, $a+1=5$ ile sağlanır; yapı $p^{4}$ olmalıdır.
+
+2. $p^{4}$ daima tam karedir. En küçük için en küçük asalı seç: $2^{4}=16$.
+
+3. $16$'nın bölenleri $1,2,4,8,16$ → tam $5$ bölen, ve $16=4^{2}$ tam kare.
+
+<Cevap>A) $16$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir üretim kodu $N=2^{a}\cdot 3^{2}\cdot 5$ biçimindedir ve sistemin kayıtlarına göre bu kodun tam $24$ farklı pozitif böleni vardır.
+
+Buna göre $a$ kaçtır?
+
+A) $2$ · B) $3$ · C) $4$ · D) $5$ · E) $6$
+
+</Soru>
+
+<Cozum>
+
+1. Bölen sayısı: $(a+1)(2+1)(1+1)=(a+1)\cdot 3\cdot 2=6(a+1)$.
+
+2. $6(a+1)=24\Rightarrow a+1=4\Rightarrow a=3$.
+
+<Cevap>B) $3$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir markette $90$ numaralı raf grubuna ait ürünler kodlanırken yalnızca **tek** bölenler (yani $2$ ile bölünmeyen bölenler) kullanılacaktır.
+
+Buna göre $90$ sayısının kaç tane tek pozitif böleni vardır?
+
+A) $4$ · B) $5$ · C) $6$ · D) $8$ · E) $12$
+
+</Soru>
+
+<Cozum>
+
+1. $90=2\cdot 3^{2}\cdot 5$ asal çarpanlarına ayrılır.
+
+2. Tek bölende $2$'nin üssü $0$ olmalı; geriye $3^{2}\cdot 5$ kalır.
+
+3. Bunun bölen sayısı: $(2+1)(1+1)=3\cdot 2=6$. (Bu bölenler $1,3,5,9,15,45$'tir.)
+
+<Cevap>C) $6$</Cevap>
 
 </Cozum>
 

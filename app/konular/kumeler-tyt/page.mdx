@@ -1,5 +1,6 @@
 import { topicMetadata } from "@/lib/seo";
 import { Birlesim, Kesisim, Fark } from "@/components/figures/KumelerFig";
+import { UcVenn } from "@/components/figures/KumelerUcVennFig";
 
 export const metadata = topicMetadata("kumeler-tyt");
 
@@ -333,6 +334,70 @@ $30$ kişilik bir sınıfta İngilizce bilenler $19$, Almanca bilenler $12$ kiş
 
 </Ornek>
 
+### Üç kümeli problemler
+
+Üç kümeli sorularda Venn şemasını **yedi ayrık bölgeye** ayırırız: yalnız $A$, yalnız $B$, yalnız $C$, ikili kesişimlerin "yalnız" kısımları ve ortadaki üçlü kesişim $A\cap B\cap C$. Doldurmaya **daima en içteki** ($A\cap B\cap C$) bölgeden başlanır.
+
+<Figur>
+
+<UcVenn />
+
+<Altyazi>Şekil 4 — Üç kümeli Venn şeması. En içteki bölge $A\cap B\cap C$'tir; sayma her zaman bu bölgeden dışa doğru yapılır.</Altyazi>
+
+</Figur>
+
+<Ornek>
+
+<Soru>
+
+Bir sınıftaki öğrencilerden tam olarak iki dersi sevenler $9$, üç dersin üçünü birden sevenler $4$ kişidir. Yalnızca bir ders seven $15$ öğrenci olduğuna göre ve sınıfta bu derslerden en az birini seven herkes sayıldığında toplam kaç öğrenci sayılmıştır?
+
+</Soru>
+
+<Ipucu>
+
+Bölgeler ayrıktır; "yalnız bir" $+$ "tam iki" $+$ "üçü birden" toplamı en az birini sevenleri verir.
+
+</Ipucu>
+
+<Cozum>
+
+1. Bölgeleri ayrık olarak topla: yalnız bir $=15$, tam iki $=9$, üçü birden $=4$.
+2. Toplam: $15+9+4=28$.
+
+<Cevap>$28$ öğrenci sayılmıştır.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$s(A\cup B\cup C)=40$, $s(A)=22$, $s(B)=18$, $s(C)=15$ ve ikili kesişimler $s(A\cap B)=8$, $s(A\cap C)=6$, $s(B\cap C)=5$ veriliyor. Üçlü kesişim $s(A\cap B\cap C)$ kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+Üç kümeli içerme-dışarma formülünü kullan: $s(A\cup B\cup C)=\sum s-\sum s(\text{ikili})+s(\text{üçlü})$.
+
+</Ipucu>
+
+<Cozum>
+
+1. Formül: $s(A\cup B\cup C)=s(A)+s(B)+s(C)-s(A\cap B)-s(A\cap C)-s(B\cap C)+s(A\cap B\cap C)$.
+2. Yerine koy: $40=22+18+15-8-6-5+x$.
+3. Sadeleştir: $40=55-19+x=36+x$.
+4. Çöz: $x=40-36=4$.
+
+<Cevap>$s(A\cap B\cap C)=4$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
 ## Sınav Tarzı Sorular
 
 > Aşağıdaki sorular, ÖSYM'nin TYT Temel Matematik'te sorduğu **çok kavramlı, dolaylı (5 şıklı)** soru tarzına örnek olarak **özgün biçimde** hazırlanmıştır.
@@ -402,12 +467,123 @@ A) $6$ · B) $10$ · C) $12$ · D) $14$ · E) $18$
 
 </Ornek>
 
+<Ornek>
+
+<Soru>
+
+Bir kafede $50$ müşteriye yapılan ankette $30$ kişi çayı, $26$ kişi kahveyi sevdiğini söylemiştir. Ankete katılan herkesin en az birini sevdiği biliniyorsa, **yalnızca çayı** sevenlerin sayısı kaçtır?
+
+A) $18$ · B) $20$ · C) $24$ · D) $26$ · E) $30$
+
+</Soru>
+
+<Ipucu>
+
+Önce iki şeyi de sevenleri ($s(\text{Ç}\cap K)$) bul; çeldirici şık ($30$), "yalnızca çayı" değil "çayı sevenlerin tamamı"dır.
+
+</Ipucu>
+
+<Cozum>
+
+1. Herkes en az birini sevdiğinden $s(\text{Ç}\cup K)=50$.
+2. $50=30+26-s(\text{Ç}\cap K)\Rightarrow s(\text{Ç}\cap K)=56-50=6$.
+3. Yalnızca çayı sevenler: $30-6=24$.
+
+<Cevap>C) $24$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir okulda $120$ öğrenciye yapılan ankette satranç kulübüne $54$, münazara kulübüne $48$ öğrenci üyedir. **Her iki kulübe de** üye olan $20$ öğrenci varsa, **hiçbir kulübe** üye olmayan kaç öğrenci vardır?
+
+A) $20$ · B) $32$ · C) $38$ · D) $44$ · E) $58$
+
+</Soru>
+
+<Ipucu>
+
+Önce en az bir kulübe üye olanların sayısını ($s(S\cup M)$) bul; toplam öğrenciden çıkar. Çeldirici $82$ değil, kapsam-dışı sayıdır.
+
+</Ipucu>
+
+<Cozum>
+
+1. En az bir kulübe üye: $s(S\cup M)=54+48-20=82$.
+2. Hiçbirine üye olmayan: $120-82=38$.
+
+<Cevap>C) $38$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir spor salonunda üyeler yüzme, pilates ve koşu derslerinden en az birine yazılmıştır. Yalnız yüzmeye $12$, yalnız pilatese $9$, yalnız koşuya $7$ üye yazılmıştır. Tam olarak **iki** derse yazılan $6$, **üçüne birden** yazılan $2$ üye olduğuna göre salondaki toplam üye sayısı kaçtır?
+
+A) $30$ · B) $32$ · C) $34$ · D) $36$ · E) $40$
+
+</Soru>
+
+<Ipucu>
+
+"En az birine yazılmış" toplam üye demektir. Bölgeleri çakışmadan topla: yalnız birer bölge $+$ tam iki bölge $+$ üçü birden.
+
+</Ipucu>
+
+<Cozum>
+
+1. Yalnız bir derse yazılanlar: $12+9+7=28$.
+2. Tam iki derse yazılanlar: $6$. Üçüne birden: $2$.
+3. Bütün bölgeler ayrık olduğundan toplam: $28+6+2=36$.
+
+<Cevap>D) $36$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$A$ ve $B$ kümeleri için $s(A)=18$, $s(B)=14$ ve $s(A\setminus B)=11$ veriliyor. Buna göre $s(A\cup B)$ kaçtır?
+
+A) $21$ · B) $23$ · C) $25$ · D) $28$ · E) $32$
+
+</Soru>
+
+<Ipucu>
+
+$s(A\setminus B)=s(A)-s(A\cap B)$ ilişkisinden önce kesişimi bul. Çeldirici $32$, kesişimi çıkarmayı unutan $s(A)+s(B)$ tuzağıdır.
+
+</Ipucu>
+
+<Cozum>
+
+1. $s(A\setminus B)=s(A)-s(A\cap B)\Rightarrow 11=18-s(A\cap B)$, yani $s(A\cap B)=7$.
+2. $s(A\cup B)=s(A)+s(B)-s(A\cap B)=18+14-7=25$.
+
+<Cevap>C) $25$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
 ## Sık Yapılan Hatalar
 
 - **Kesişimi iki kez saymak:** $s(A\cup B)$ hesabında $s(A\cap B)$ terimi **bir kez çıkarılmalıdır**; çıkarmayı unutmak sonucu şişirir.
 - **"Yalnızca biri" ile "en az biri"ni karıştırmak:** "En az biri" $=s(A\cup B)$ iken; "yalnızca biri" $=s(A\cup B)-s(A\cap B)$'dir.
 - **Boş kümeyi atlamak:** $\varnothing$ her kümenin alt kümesidir; alt küme sayarken unutulmamalıdır.
+- **"Tam iki" ile "ikili kesişim"i karıştırmak:** Üç kümeli problemde $s(A\cap B)$, $A\cap B\cap C$ bölgesini de içerir; "tam olarak iki kümeye ait" sayısı bundan üçlü kesişim çıkarılarak bulunur.
 
-> **Sınav ipucu:** İki kümeli problemlerde önce Venn şemasını çiz. Ortak bölgeyi ($A\cap B$) en başta yerleştir, sonra dışa doğru "yalnız $A$" ve "yalnız $B$" sayılarını doldur. Bu sıra, çoğu hatayı baştan engeller.
+> **Sınav ipucu:** İki kümeli problemlerde önce Venn şemasını çiz. Ortak bölgeyi ($A\cap B$) en başta yerleştir, sonra dışa doğru "yalnız $A$" ve "yalnız $B$" sayılarını doldur. Üç kümeli problemlerde $s(A\cup B\cup C)=s(A)+s(B)+s(C)-s(A\cap B)-s(A\cap C)-s(B\cap C)+s(A\cap B\cap C)$ formülünü kullan; doldurmaya **en içteki** üçlü kesişimden başla. Bu sıra, çoğu hatayı baştan engeller.
 
 <KonuNav slug="kumeler-tyt" />

@@ -337,7 +337,7 @@ $A=\{-1,0,1,2\}$ kümesinden gerçek sayılara tanımlı $f(x)=x^{2}+1$ fonksiyo
 
 </Ornek>
 
-## Sınav Tarzı Sorular (3 questions each)
+## Sınav Tarzı Sorular
 
 > Aşağıdaki sorular, ÖSYM'nin TYT Temel Matematik'te sorduğu **çok kavramlı, dolaylı (5 şıklı)** soru tarzına örnek olarak **özgün biçimde** hazırlanmıştır.
 
@@ -345,19 +345,19 @@ $A=\{-1,0,1,2\}$ kümesinden gerçek sayılara tanımlı $f(x)=x^{2}+1$ fonksiyo
 
 <Soru>
 
-$f(x)=3x-2$ fonksiyonu için $f(4)+f(-1)$ toplamı kaçtır?
+Bir kargo şirketi, bir paketin gönderim ücretini $f(x)=3x+20$ kuralıyla hesaplıyor; burada $x$ paketin kilogram cinsinden ağırlığı, $f(x)$ ise lira cinsinden ücrettir. Buna göre $4$ kg'lık bir paketin ücreti ile $1$ kg'lık bir paketin ücreti arasındaki fark kaç liradır?
 
-A) $-5$ · B) $0$ · C) $5$ · D) $10$ · E) $15$
+A) $9$ · B) $12$ · C) $20$ · D) $23$ · E) $32$
 
 </Soru>
 
 <Cozum>
 
-1. $f(4)=3\cdot 4-2=10$.
-2. $f(-1)=3\cdot(-1)-2=-5$.
-3. Toplam: $10+(-5)=5$.
+1. $4$ kg için ücret: $f(4)=3\cdot 4+20=32$ lira.
+2. $1$ kg için ücret: $f(1)=3\cdot 1+20=23$ lira.
+3. Fark: $f(4)-f(1)=32-23=9$ lira. (Sabit terim $20$ farkta sadeleşir; yalnızca $3\cdot(4-1)=9$ kalır.)
 
-<Cevap>C) $5$</Cevap>
+<Cevap>A) $9$</Cevap>
 
 </Cozum>
 
@@ -367,18 +367,19 @@ A) $-5$ · B) $0$ · C) $5$ · D) $10$ · E) $15$
 
 <Soru>
 
-$A=\{1,2,3,4\}$ ve $B=\{a,b,c\}$ kümeleri veriliyor. $A$'dan $B$'ye tanımlı kaç farklı fonksiyon yazılabilir?
+Bir taksi, açılış ücreti ile birlikte gidilen her kilometre için sabit bir tutar ekleyerek ücretlendiriyor ve toplam ücret doğrusal bir $f(x)=ax+b$ fonksiyonuyla veriliyor. $2$ km sonunda ücret $34$ lira, $5$ km sonunda ücret $58$ lira olduğuna göre, açılış ücreti (yani $f(0)$) kaç liradır?
 
-A) $12$ · B) $27$ · C) $64$ · D) $81$ · E) $256$
+A) $10$ · B) $12$ · C) $16$ · D) $18$ · E) $22$
 
 </Soru>
 
 <Cozum>
 
-1. Her $a\in A$ için $3$ seçenek vardır; seçimler bağımsızdır.
-2. Toplam: $3^{4}=81$.
+1. Verilenler: $2a+b=34$ ve $5a+b=58$.
+2. İkinci denklemden birinciyi çıkar: $3a=24\Rightarrow a=8$ (km başına ücret).
+3. $2\cdot 8+b=34\Rightarrow b=18$. Açılış ücreti $f(0)=b=18$ liradır.
 
-<Cevap>D) $81$</Cevap>
+<Cevap>D) $18$</Cevap>
 
 </Cozum>
 
@@ -388,17 +389,102 @@ A) $12$ · B) $27$ · C) $64$ · D) $81$ · E) $256$
 
 <Soru>
 
-$f(x)=\dfrac{x+1}{x-2}$ fonksiyonu için $f(5)$ değeri kaçtır?
+Bir su deposu, $g(t)=\dfrac{120}{t-1}$ kuralıyla modellenen bir basınç değerine sahiptir; burada $t$ saat cinsinden zamandır. Bu modelin geçerli olabilmesi için paydanın sıfır olmaması gerekir. Buna göre modelin **tanımsız** olduğu $t$ değeri ile $t=4$ anındaki basınç değerinin toplamı kaçtır?
 
-A) $-2$ · B) $2$ · C) $3$ · D) $4$ · E) $6$
+A) $40$ · B) $41$ · C) $42$ · D) $43$ · E) $44$
 
 </Soru>
 
 <Cozum>
 
-1. $f(5)=\dfrac{5+1}{5-2}=\dfrac{6}{3}=2$.
+1. Payda sıfır olamaz: $t-1=0\Rightarrow t=1$. Model $t=1$'de tanımsızdır.
+2. $t=4$ için basınç: $g(4)=\dfrac{120}{4-1}=\dfrac{120}{3}=40$.
+3. İstenen toplam: $1+40=41$.
 
-<Cevap>B) $2$</Cevap>
+<Cevap>B) $41$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir okulda öğrencilere bir kart dağıtım uygulaması yapılıyor. $A=\{\text{Ali},\text{Beren},\text{Can}\}$ öğrenci kümesinden $B=\{\text{kırmızı},\text{mavi}\}$ renk kümesine, "her öğrenciye tam bir kart rengi" atayan eşlemeler birer fonksiyon kabul ediliyor. Buna göre **tüm öğrencilere aynı rengin verilmediği** kaç farklı atama (fonksiyon) yapılabilir?
+
+A) $2$ · B) $4$ · C) $6$ · D) $8$ · E) $9$
+
+</Soru>
+
+<Ipucu>
+
+Önce toplam fonksiyon sayısını bul; sonra "hepsi aynı renk" olan durumları çıkar.
+
+</Ipucu>
+
+<Cozum>
+
+1. Her öğrenciye $2$ renkten biri verilir; toplam fonksiyon sayısı $2^{3}=8$.
+2. "Hepsi aynı renk" durumları: hepsi kırmızı ya da hepsi mavi, yani $2$ durum.
+3. İstenen: $8-2=6$.
+
+<Cevap>C) $6$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir fabrikada üretim maliyeti $f(x)=2x+5$ (bin TL) fonksiyonuyla, satış geliri ise $g(x)=4x-1$ (bin TL) fonksiyonuyla modelleniyor; $x$ üretilen ürün miktarıdır (bin adet). Kâr, gelir ile maliyetin farkı olarak $K(x)=g(x)-f(x)$ biçiminde tanımlanıyor. Buna göre fabrikanın **başabaş** noktası (kârın sıfır olduğu $x$ değeri) kaçtır?
+
+A) $1$ · B) $2$ · C) $3$ · D) $4$ · E) $5$
+
+</Soru>
+
+<Ipucu>
+
+Önce $K(x)$ fonksiyonunu yaz; sonra $K(x)=0$ denklemini çöz.
+
+</Ipucu>
+
+<Cozum>
+
+1. Kâr fonksiyonu: $K(x)=g(x)-f(x)=(4x-1)-(2x+5)=2x-6$.
+2. Başabaş noktası: $K(x)=0\Rightarrow 2x-6=0\Rightarrow x=3$.
+
+<Cevap>C) $3$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir mağaza, kampanyada bir ürünün fiyatını $f(x)=\dfrac{x-3}{2}$ kuralıyla belirliyor; $x$ ürünün etiket fiyatıdır (TL). Müşteri bir üründe $f(x)=12$ lira ödediğine göre, bu ürünün etiket fiyatı $x$ kaç liradır?
+
+A) $21$ · B) $24$ · C) $27$ · D) $30$ · E) $33$
+
+</Soru>
+
+<Ipucu>
+
+$f(x)=12$ eşitliğini kur ve $x$ için çöz; payı $2$ ile çarpmadan paydadan kurtulma adımını atlama.
+
+</Ipucu>
+
+<Cozum>
+
+1. Eşitliği kur: $\dfrac{x-3}{2}=12$.
+2. Paydadan kurtul: $x-3=24$.
+3. Çöz: $x=27$.
+
+<Cevap>C) $27$</Cevap>
 
 </Cozum>
 

@@ -1,4 +1,5 @@
 import { topicMetadata } from "@/lib/seo";
+import { RasyonelSiralama } from "@/components/figures/RasyonelSiralamaFig";
 
 export const metadata = topicMetadata("rasyonel-sayilar");
 
@@ -42,6 +43,16 @@ Kesirleri büyüklük olarak karşılaştırmanın iki yolu vardır:
 
 - **Ortak payda:** Paydaları eşitle. Pozitif kesirlerde payda eşitse **büyük paylı büyüktür**; pay eşitse **küçük paydalı büyüktür**.
 - **İçler-dışlar (çapraz çarpım):** Paydalar pozitifken $\dfrac{a}{b}$ ile $\dfrac{c}{d}$ için $a\cdot d$ ile $b\cdot c$ karşılaştırılır. $a\cdot d > b\cdot c$ ise $\dfrac{a}{b}>\dfrac{c}{d}$ olur.
+
+Sıralamayı görselleştirmek için kesirleri sayı doğrusuna yerleştirmek de işe yarar; soldan sağa gidildikçe değer büyür.
+
+<Figur>
+
+<RasyonelSiralama />
+
+<Altyazi>Şekil 1 — $\dfrac{2}{3}$, $\dfrac{3}{4}$ ve $\dfrac{5}{6}$ kesirleri $0$ ile $1$ arasındaki sayı doğrusunda. Ortak payda $12$'de $\dfrac{8}{12},\dfrac{9}{12},\dfrac{10}{12}$ olduklarından soldan sağa $\dfrac{2}{3}<\dfrac{3}{4}<\dfrac{5}{6}$ sıralanır.</Altyazi>
+
+</Figur>
 
 ## 4. Devirli Ondalık Sayıyı Kesre Çevirme
 
@@ -462,6 +473,84 @@ A) $\dfrac{5}{6}$ · B) $\dfrac{7}{12}$ · C) $\dfrac{2}{3}$ · D) $\dfrac{11}{1
 2. Sonuç $1$'dir.
 
 <Cevap>E) $1$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Üç işçi aynı işin sırasıyla $\dfrac{2}{3}$'ünü, $\dfrac{3}{4}$'ünü ve $\dfrac{4}{5}$'ini tek başına bir günde bitirebiliyor. Yönetici, bir günde işin **en büyük** kısmını bitiren işçiyi seçmek istiyor.
+
+Buna göre seçilen işçinin bitirdiği kesir hangisidir?
+
+A) $\dfrac{2}{3}$ · B) $\dfrac{3}{4}$ · C) $\dfrac{4}{5}$ · D) Üçü de eşit · E) Karşılaştırılamaz
+
+</Soru>
+
+<Cozum>
+
+1. $\dfrac{2}{3}$ ile $\dfrac{3}{4}$: çapraz çarpım $2\cdot 4=8$ ve $3\cdot 3=9$; $8<9$ olduğundan $\dfrac{2}{3}<\dfrac{3}{4}$.
+
+2. $\dfrac{3}{4}$ ile $\dfrac{4}{5}$: $3\cdot 5=15$ ve $4\cdot 4=16$; $15<16$ olduğundan $\dfrac{3}{4}<\dfrac{4}{5}$.
+
+3. En büyük kesir $\dfrac{4}{5}$'tir.
+
+<Cevap>C) $\dfrac{4}{5}$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir hesap makinesi ekranında bir ölçüm $0,\overline{36}$ olarak görünüyor. Bu değer rapora **en sade kesir** biçiminde yazılacaktır.
+
+Buna göre yazılacak kesir hangisidir?
+
+A) $\dfrac{36}{99}$ · B) $\dfrac{4}{11}$ · C) $\dfrac{2}{5}$ · D) $\dfrac{1}{3}$ · E) $\dfrac{9}{25}$
+
+</Soru>
+
+<Cozum>
+
+1. Devreden iki basamak ($36$) var; payda $99$ olur: $0,\overline{36}=\dfrac{36}{99}$.
+
+2. Sadeleştir ($\gcd=9$): $\dfrac{36}{99}=\dfrac{4}{11}$.
+
+3. Çeldirici A sadeleştirilmemiş hâldir; cevap en sade biçimdir.
+
+<Cevap>B) $\dfrac{4}{11}$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir depodaki suyun başlangıçta $\dfrac{1}{3}$'ü kullanıldı; ardından kalan suyun $\dfrac{2}{3}$'ü daha kullanıldı.
+
+Buna göre depoda başlangıçtaki suyun kaçta kaçı kalmıştır?
+
+A) $\dfrac{1}{9}$ · B) $\dfrac{2}{9}$ · C) $\dfrac{1}{3}$ · D) $\dfrac{4}{9}$ · E) $\dfrac{1}{6}$
+
+</Soru>
+
+<Cozum>
+
+1. İlk kullanımdan sonra kalan: $1-\dfrac{1}{3}=\dfrac{2}{3}$.
+
+2. İkinci kullanımda bu kalanın $\dfrac{2}{3}$'ü gider; geriye kalanın $\dfrac{1}{3}$'ü kalır: $\dfrac{1}{3}\cdot\dfrac{2}{3}=\dfrac{2}{9}$.
+
+3. Çeldirici D, "$\dfrac{2}{3}$'ü kullanıldı"yu "$\dfrac{2}{3}$'ü kaldı" sanmaktan gelir; doğru kalan $\dfrac{2}{9}$'dur.
+
+<Cevap>B) $\dfrac{2}{9}$</Cevap>
 
 </Cozum>
 

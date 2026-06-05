@@ -1,5 +1,6 @@
 import { topicMetadata } from "@/lib/seo";
 import { Prizma, Silindir, Koni } from "@/components/figures/KatiCisimFig";
+import { Piramit, Kure } from "@/components/figures/KatiCisim2Fig";
 
 export const metadata = topicMetadata("kati-cisimler-tyt");
 
@@ -116,9 +117,17 @@ $$V=\pi r^{2}h=\pi\cdot 3^{2}\cdot 5=\pi\cdot 9\cdot 5=45\pi$$
 
 <Figur>
 
+<Piramit />
+
+<Altyazi>Şekil 3 — Kare tabanlı dik piramit. Taban kenarı $a$, yükseklik $h$. Hacim $V=\dfrac{1}{3}\,a^{2}\cdot h$.</Altyazi>
+
+</Figur>
+
+<Figur>
+
 <Koni />
 
-<Altyazi>Şekil 3 — Koni. Taban yarıçapı $r$, yükseklik $h$. Hacim $V=\dfrac{1}{3}\pi r^{2}h$.</Altyazi>
+<Altyazi>Şekil 4 — Koni. Taban yarıçapı $r$, yükseklik $h$. Hacim $V=\dfrac{1}{3}\pi r^{2}h$.</Altyazi>
 
 </Figur>
 
@@ -150,6 +159,14 @@ $$V=\dfrac{1}{3}\pi r^{2}h=\dfrac{1}{3}\pi\cdot 3^{2}\cdot 4=\dfrac{1}{3}\pi\cdo
 ## 4. Küre
 
 **Küre**, merkezden eşit uzaklıktaki noktaların oluşturduğu top biçimli cisimdir. Tek bir ölçüsü vardır: yarıçap $r$. Hacim ve yüzey formüllerini karıştırmamaya dikkat et.
+
+<Figur>
+
+<Kure />
+
+<Altyazi>Şekil 5 — Küre. Tek ölçüsü yarıçap $r$'dir. Hacim $V=\dfrac{4}{3}\pi r^{3}$, yüzey alanı $4\pi r^{2}$.</Altyazi>
+
+</Figur>
 
 | Cisim | Hacim | Yüzey Alanı |
 | --- | --- | --- |
@@ -349,7 +366,65 @@ Taban ayrıtı $6$ birim olan bir kare dik piramidin yüksekliği $10$ birimdir.
 
 </Ornek>
 
-## Sınav Tarzı Sorular (3 questions each)
+<Ornek>
+
+<Soru>
+
+İçi boş bir koni biçimli külahın taban yarıçapı $6$ birim, yüksekliği $9$ birimdir. Bu külahın içine sıvı doldurularak, aynı tabana ($r=6$) sahip bir silindirin yarısına kadar dökülüyor. Silindirin yüksekliği $6$ birim olduğuna göre, sıvı silindirde kaç birim yüksekliğe ulaşır?
+
+</Soru>
+
+<Ipucu>
+
+Önce koninin hacmini bul; sonra bu hacmin silindirde hangi yüksekliğe denk geldiğini $V=\pi r^{2}h$ ile çöz.
+
+</Ipucu>
+
+<Cozum>
+
+1. Koninin hacmi:
+
+$$V=\dfrac{1}{3}\pi r^{2}h=\dfrac{1}{3}\pi\cdot 6^{2}\cdot 9=\dfrac{1}{3}\pi\cdot 36\cdot 9=108\pi$$
+
+2. Silindirde aynı tabanla ($r=6$) bu hacmin oluşturduğu yükseklik $h_s$:
+
+$$108\pi=\pi\cdot 6^{2}\cdot h_s=36\pi h_s$$
+
+3. Buradan:
+
+$$h_s=\dfrac{108\pi}{36\pi}=3$$
+
+<Cevap>Sıvı silindirde $3$ birim yüksekliğe ulaşır.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir küpün yüzey alanı $96$ birim karedir. Yarıçapı, bu küpün kenarının yarısına eşit olan bir kürenin hacmi kaç $\pi$ birim küptür?
+
+</Soru>
+
+<Cozum>
+
+1. Küpün yüzey alanından kenarı bul: $6a^{2}=96\Rightarrow a^{2}=16\Rightarrow a=4$.
+
+2. Kürenin yarıçapı kenarın yarısı: $r=\dfrac{4}{2}=2$.
+
+3. Küre hacmi:
+
+$$V=\dfrac{4}{3}\pi r^{3}=\dfrac{4}{3}\pi\cdot 2^{3}=\dfrac{4}{3}\pi\cdot 8=\dfrac{32}{3}\pi$$
+
+<Cevap>$V=\dfrac{32}{3}\pi$ birim küp.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Sınav Tarzı Sorular
 
 > Aşağıdaki sorular, ÖSYM'nin TYT Temel Matematik'te sorduğu **çok kavramlı, dolaylı (5 şıklı)** soru tarzına örnek olarak **özgün biçimde** hazırlanmıştır.
 
@@ -357,17 +432,21 @@ Taban ayrıtı $6$ birim olan bir kare dik piramidin yüksekliği $10$ birimdir.
 
 <Soru>
 
-Yarıçapı $3$ birim, yüksekliği $5$ birim olan bir silindirin hacmi kaç birim küptür? ($\pi$ cinsinden)
+Bir su deposu, taban yarıçapı $2$ metre, yüksekliği $5$ metre olan dik silindir biçimindedir. Depo tamamen doluyken içindeki suyun tamamı, taban alanı $10$ metrekare olan dikdörtgen bir havuza boşaltılıyor. Suyun havuzda oluşturduğu yükseklik kaç $\pi$ metredir?
 
-A) $15\pi$ · B) $30\pi$ · C) $35\pi$ · D) $45\pi$ · E) $90\pi$
+A) $\pi$ · B) $2\pi$ · C) $4\pi$ · D) $5\pi$ · E) $20\pi$
 
 </Soru>
 
 <Cozum>
 
-1. $V=\pi r^{2}h=\pi\cdot 3^{2}\cdot 5=45\pi$.
+1. Silindirdeki su hacmi:
+$$V=\pi r^{2}h=\pi\cdot 2^{2}\cdot 5=20\pi.$$
+2. Havuzda taban alanı $10$ olduğundan yükseklik:
+$$h=\dfrac{V}{\text{taban}}=\dfrac{20\pi}{10}=2\pi\ \text{metre}.$$
+(Çeldirici: hacmi $10$'a bölmeyi unutan $20\pi$, ya da yarıçap yerine çap kullanan $4$ kat hata yapar.)
 
-<Cevap>D) $45\pi$</Cevap>
+<Cevap>B) $2\pi$</Cevap>
 
 </Cozum>
 
@@ -377,17 +456,21 @@ A) $15\pi$ · B) $30\pi$ · C) $35\pi$ · D) $45\pi$ · E) $90\pi$
 
 <Soru>
 
-Bir kenarı $4$ birim olan küpün hacmi kaç birim küptür?
+Bir kuyumcu, kenarı $6$ cm olan küp biçimli bir altın külçesini eritip, kenarı $3$ cm olan küçük küpler dökecektir. Eritmede kayıp olmadığına göre, kaç tane küçük küp elde edilir?
 
-A) $16$ · B) $64$ · C) $96$ · D) $128$ · E) $256$
+A) $2$ · B) $4$ · C) $6$ · D) $8$ · E) $9$
 
 </Soru>
 
 <Cozum>
 
-1. $V=a^{3}=4^{3}=64$.
+1. Büyük küpün hacmi: $6^{3}=216$ cm³.
+2. Küçük küpün hacmi: $3^{3}=27$ cm³.
+3. Küçük küp sayısı:
+$$\dfrac{216}{27}=8.$$
+(Çeldirici: kenar oranı $\tfrac{6}{3}=2$'yi doğrudan cevap sanan A şıkkına düşer; oysa hacim oranı $2^{3}=8$'dir.)
 
-<Cevap>B) $64$</Cevap>
+<Cevap>D) $8$</Cevap>
 
 </Cozum>
 
@@ -397,17 +480,94 @@ A) $16$ · B) $64$ · C) $96$ · D) $128$ · E) $256$
 
 <Soru>
 
-Taban yarıçapı $3$ birim, yüksekliği $4$ birim olan bir dik dairesel koninin hacmi kaç birim küptür? ($\pi$ cinsinden)
+Bir dondurma külahı, taban yarıçapı $3$ cm, yüksekliği $8$ cm olan dik koni biçimindedir. Külahın üstüne, yarıçapı yine $3$ cm olan yarım küre biçiminde dondurma konuyor. Külah ve üstündeki yarım kürenin toplam hacmi kaç $\pi$ cm³'tür?
 
-A) $12\pi$ · B) $18\pi$ · C) $24\pi$ · D) $36\pi$ · E) $108\pi$
+A) $18\pi$ · B) $24\pi$ · C) $36\pi$ · D) $42\pi$ · E) $48\pi$
 
 </Soru>
 
 <Cozum>
 
-1. $V=\dfrac{1}{3}\pi r^{2}h=\dfrac{1}{3}\pi\cdot 9\cdot 4=12\pi$.
+1. Koni hacmi:
+$$V_k=\dfrac{1}{3}\pi r^{2}h=\dfrac{1}{3}\pi\cdot 9\cdot 8=24\pi.$$
+2. Yarım küre hacmi (tam kürenin yarısı):
+$$V_{yk}=\dfrac{1}{2}\cdot\dfrac{4}{3}\pi r^{3}=\dfrac{2}{3}\pi\cdot 3^{3}=\dfrac{2}{3}\pi\cdot 27=18\pi.$$
+3. Toplam: $24\pi+18\pi=42\pi$.
+(Çeldirici: yarım küre yerine tam küre alan $24\pi+36\pi=60\pi$ ya da koninin $\tfrac13$'ünü unutan kişi şaşar.)
 
-<Cevap>A) $12\pi$</Cevap>
+<Cevap>D) $42\pi$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir hediye kutusu, kenarları $5$ cm, $4$ cm ve $3$ cm olan dikdörtgenler prizması biçimindedir. Kutunun tüm dış yüzeyi süs kağıdıyla kaplanacaktır. $1$ cm² kağıt $0{,}5$ kuruş olduğuna göre, gereken kağıdın maliyeti kaç kuruştur?
+
+A) $47$ · B) $60$ · C) $94$ · D) $120$ · E) $188$
+
+</Soru>
+
+<Cozum>
+
+1. Yüzey alanı $2(ab+bc+ac)$:
+$$2(5\cdot 4+4\cdot 3+5\cdot 3)=2(20+12+15)=2\cdot 47=94\ \text{cm}^{2}.$$
+2. Maliyet: $94\cdot 0{,}5=47$ kuruş.
+(Çeldirici: yüzey alanı $94$'ü doğrudan cevap sanan C şıkkına, ya da $2$ çarpanını unutup $47\cdot 0{,}5$ yapan başka şıkka düşer.)
+
+<Cevap>A) $47$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir fabrika, taban ayrıtı $4$ cm ve yüksekliği $12$ cm olan kare dik piramit biçiminde çikolatalar üretiyor. Aynı çikolatadan $8$ tanesi eritilip kayıpsız olarak küp biçimli bir kalıba dökülüyor. Oluşan küpün bir kenarı kaç cm olur?
+
+A) $4$ · B) $6$ · C) $8$ · D) $12$ · E) $16$
+
+</Soru>
+
+<Cozum>
+
+1. Bir piramidin hacmi:
+$$V=\dfrac{1}{3}\,a^{2}h=\dfrac{1}{3}\cdot 4^{2}\cdot 12=\dfrac{1}{3}\cdot 16\cdot 12=64\ \text{cm}^{3}.$$
+2. $8$ tanesinin toplam hacmi: $8\cdot 64=512$ cm³.
+3. Bu hacim bir küpün hacmi olduğundan kenar:
+$$a^{3}=512\Rightarrow a=\sqrt[3]{512}=8\ \text{cm}.$$
+(Çeldirici: $\tfrac13$ çarpanını unutup piramit hacmini $192$ alan, ya da $512$'nin küpkökü yerine kenarı $4$ veya $16$ sanan tuzağa düşer.)
+
+<Cevap>C) $8$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir silindir biçimli kutunun taban yarıçapı $r$, yüksekliği $h$'dir. Yarıçap aynı kalıp yükseklik $2$ katına çıkarılırsa, yeni silindirin hacmi eski hacmin kaç katı olur?
+
+A) $\dfrac{1}{2}$ · B) $1$ · C) $2$ · D) $4$ · E) $8$
+
+</Soru>
+
+<Cozum>
+
+1. Eski hacim $V=\pi r^{2}h$.
+2. Yeni hacim, yükseklik $2h$ olunca:
+$$V'=\pi r^{2}(2h)=2\pi r^{2}h=2V.$$
+3. Oran $\dfrac{V'}{V}=2$.
+(Çeldirici: yarıçap değişmediği halde $2^{2}=4$ kat sanan, ya da $r$ de iki katına çıkmış gibi $8$ kat diyen tuzağa düşer.)
+
+<Cevap>C) $2$</Cevap>
 
 </Cozum>
 

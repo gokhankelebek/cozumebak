@@ -357,7 +357,7 @@ Yan yana oturacak erkekleri tek bir blok sayın, sonra blok içini ayrıca sıra
 
 </Ornek>
 
-## Sınav Tarzı Sorular (3 questions each)
+## Sınav Tarzı Sorular
 
 > Aşağıdaki sorular, ÖSYM'nin TYT Temel Matematik'te sorduğu **çok kavramlı, dolaylı (5 şıklı)** soru tarzına örnek olarak **özgün biçimde** hazırlanmıştır.
 
@@ -365,17 +365,150 @@ Yan yana oturacak erkekleri tek bir blok sayın, sonra blok içini ayrıca sıra
 
 <Soru>
 
-$5$ farklı kitap bir rafa kaç farklı şekilde dizilebilir?
+Bir kafede $4$ farklı kahve, $3$ farklı süt türü ve $2$ farklı şurup bulunmaktadır. Bir müşteri **bir kahve seçip** isteğe bağlı olarak yanına bir süt türü (ya da sütsüz) ve isteğe bağlı bir şurup (ya da şurupsuz) ekleyebiliyor. Bu kafede kaç farklı içecek hazırlanabilir?
 
-A) $20$ · B) $60$ · C) $100$ · D) $120$ · E) $240$
+A) $9$ · B) $24$ · C) $36$ · D) $48$ · E) $60$
 
 </Soru>
 
+<Ipucu>
+
+"İsteğe bağlı" seçenekler için "hiçbirini seçmeme" de bir seçenektir; o adımın seçenek sayısına $1$ ekle.
+
+</Ipucu>
+
 <Cozum>
 
-1. Sıra önemli olduğundan permütasyon: $5!=120$.
+1. Kahve zorunlu: $4$ seçenek.
+2. Süt isteğe bağlı: $3$ tür $+$ "sütsüz" $=4$ seçenek.
+3. Şurup isteğe bağlı: $2$ tür $+$ "şurupsuz" $=3$ seçenek.
+4. Ardışık seçim, çarparız: $4\cdot 4\cdot 3=48$.
 
-<Cevap>D) $120$</Cevap>
+Çeldirici: süt ve şurupta "hiç" seçeneğini saymazsan $4\cdot 3\cdot 2=24$ (B) bulup yanılırsın.
+
+<Cevap>D) $48$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$5$ farklı kitap bir rafa diziliyor. **En kalın** kitabın her zaman **en sağ uçta** bulunduğu kaç farklı diziliş vardır?
+
+A) $24$ · B) $48$ · C) $60$ · D) $96$ · E) $120$
+
+</Soru>
+
+<Ipucu>
+
+Yeri sabitlenen kitabı bir kenara ayır; kalan kitaplar serbestçe sıralanır.
+
+</Ipucu>
+
+<Cozum>
+
+1. En kalın kitabın yeri sabit (en sağ uç): $1$ yol.
+2. Kalan $4$ kitap diğer $4$ yere sıralanır: $4!=24$.
+3. Toplam: $1\cdot 24=24$.
+
+Çeldirici: kitabı sabitlemeyi unutup $5!=120$ (E) yazmak tipik hatadır.
+
+<Cevap>A) $24$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir öğrenci, $6$ farklı seçmeli dersten **en az $4$ tanesini** seçmek zorundadır. Bu öğrenci ders seçimini kaç farklı şekilde yapabilir?
+
+A) $15$ · B) $20$ · C) $22$ · D) $31$ · E) $42$
+
+</Soru>
+
+<Ipucu>
+
+"En az $4$" demek $4$, $5$ ya da $6$ ders demektir; her durumu ayrı ayrı say ve **topla**.
+
+</Ipucu>
+
+<Cozum>
+
+1. $4$ ders: $C(6,4)=C(6,2)=\dfrac{6\cdot 5}{2}=15$.
+2. $5$ ders: $C(6,5)=C(6,1)=6$.
+3. $6$ ders: $C(6,6)=1$.
+4. Durumlar ayrık, toplarız: $15+6+1=22$.
+
+Çeldirici: yalnız $C(6,4)=15$ (A) ya da $5$ ve $6$'yı unutmak sık yapılan hatadır.
+
+<Cevap>C) $22$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir sınıftan $4$ kız ve $5$ erkek öğrenci arasından, içinde **en az $1$ kız** bulunan $3$ kişilik bir ekip seçilecektir. Bu ekip kaç farklı şekilde seçilebilir?
+
+A) $10$ · B) $64$ · C) $74$ · D) $84$ · E) $120$
+
+</Soru>
+
+<Ipucu>
+
+"En az $1$ kız" için tümleyeni kullan: tüm seçimlerden "hiç kız olmayan" (hepsi erkek) seçimleri çıkar.
+
+</Ipucu>
+
+<Cozum>
+
+1. $9$ kişiden $3$ kişilik tüm seçimler: $C(9,3)=\dfrac{9\cdot 8\cdot 7}{3\cdot 2\cdot 1}=84$.
+2. Hiç kız olmayan (hepsi erkek) seçimler: $C(5,3)=\dfrac{5\cdot 4\cdot 3}{3\cdot 2\cdot 1}=10$.
+3. En az $1$ kız: $84-10=74$.
+
+Çeldirici: tümleyeni çıkarmayı unutup $84$ (D) yazmak tipik hatadır.
+
+<Cevap>C) $74$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+$2,\ 3,\ 5,\ 7,\ 8$ rakamları kullanılarak, rakamları **farklı** ve **çift** olan üç basamaklı kaç sayı yazılabilir?
+
+A) $12$ · B) $24$ · C) $36$ · D) $48$ · E) $60$
+
+</Soru>
+
+<Ipucu>
+
+Çift sayı birler basamağı çift olan sayıdır. Önce birler basamağını yerleştir, sonra kalan basamakları doldur.
+
+</Ipucu>
+
+<Cozum>
+
+1. Sayının çift olması için birler basamağı $\{2,8\}$ den biri olmalı: $2$ seçenek.
+2. Yüzler basamağına kalan $4$ rakamdan biri (sıfır yok, kısıt yok): $4$ seçenek.
+3. Onlar basamağına kalan $3$ rakamdan biri: $3$ seçenek.
+4. Çarparız: $2\cdot 4\cdot 3=24$.
+
+Çeldirici: birler basamağını en sona bırakıp $5\cdot 4\cdot ?$ kurgusuna girmek karışıklık yaratır; kısıtlı basamaktan başla.
+
+<Cevap>B) $24$</Cevap>
 
 </Cozum>
 
@@ -395,35 +528,9 @@ A) $24$ · B) $42$ · C) $56$ · D) $84$ · E) $336$
 
 1. Sıra önemsiz: $C(8,3)=\dfrac{8\cdot 7\cdot 6}{3\cdot 2\cdot 1}=56$.
 
+Çeldirici: paydadaki $3!$'i unutursan $P(8,3)=336$ (E) bulursun.
+
 <Cevap>C) $56$</Cevap>
-
-</Cozum>
-
-</Ornek>
-
-<Ornek>
-
-<Soru>
-
-$4$ matematik ve $3$ fizik kitabı rafa dizilecektir. Aynı dersteki kitaplar yan yana olacak şekilde kaç farklı dizilim vardır?
-
-A) $72$ · B) $144$ · C) $210$ · D) $252$ · E) $288$
-
-</Soru>
-
-<Ipucu>
-
-Her ders grubunu tek blok say; blokları ve blok içlerini ayrı sırala.
-
-</Ipucu>
-
-<Cozum>
-
-1. İki blok (matematik, fizik) $2!=2$ şekilde sıralanır.
-2. Matematik kitapları $4!=24$, fizik kitapları $3!=6$ şekilde sıralanır.
-3. Toplam: $2\cdot 24\cdot 6=288$.
-
-<Cevap>E) $288$</Cevap>
 
 </Cozum>
 

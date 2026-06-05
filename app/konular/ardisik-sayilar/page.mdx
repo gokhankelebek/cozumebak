@@ -1,4 +1,5 @@
 import { topicMetadata } from "@/lib/seo";
+import { DiziSayiDogrusu } from "@/components/figures/DiziSayiDogrusuFig";
 
 export const metadata = topicMetadata("ardisik-sayilar");
 
@@ -17,6 +18,14 @@ Bir sayıya $n$ dersek, ardışık sayıları tek bir bilinmeyenle yazarız. Bu,
 | Ardışık tek sayılar | $n,\ n+2,\ n+4,\ \cdots$ ($n$ tek) | $2$ |
 
 > **Dikkat:** Ardışık çift ve ardışık tek sayılarda fark $1$ değil $2$'dir. Örneğin ardışık çift sayılar $4,\ 6,\ 8$; ardışık tek sayılar $5,\ 7,\ 9$ biçimindedir.
+
+<Figur>
+
+<DiziSayiDogrusu />
+
+<Altyazi>Şekil 1 — Ardışık terimler arasındaki farkın **sabit** olması, terimleri sayı doğrusunda eşit aralıklarla yerleştirir. Burada fark $3$ (ardışık $3$'ün katları); ardışık tam sayılarda bu fark $1$, ardışık çift/tek sayılarda ise $2$ olur. Sabit fark, ardışık sayıların toplamını ilk–son ortalaması üzerinden hesaplamayı mümkün kılar.</Altyazi>
+
+</Figur>
 
 ## 2. Ardışık Sayıların Toplamı
 
@@ -445,6 +454,86 @@ A) $7$ · B) $6$ · C) $8$ · D) $5$ · E) $4$
 3. Ortadaki (dördüncü) düğme: $n+3=7$.
 
 <Cevap>A) $7$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir tiyatroda koltuklar $1$. sıradan başlayarak sıra numarası kadar koltuk içerecek biçimde diziliyor: $1$. sırada $1$, $2$. sırada $2$, $\dots$, $n$. sırada $n$ koltuk. Salon tam dolduğunda toplam $210$ koltuk kullanılmıştır.
+
+Buna göre salonda kaç sıra ($n$) vardır?
+
+A) $18$ · B) $19$ · C) $20$ · D) $21$ · E) $22$
+
+</Soru>
+
+<Cozum>
+
+1. Toplam koltuk: $1+2+\cdots+n=\dfrac{n(n+1)}{2}=210$.
+
+2. $n(n+1)=420$. Ardışık iki sayının çarpımı $420$: $20\cdot 21=420$.
+
+3. Buradan $n=20$. (Çeldirici: $\dfrac{n(n+1)}{2}=210$ yerine $n(n+1)=210$ alıp yanlış kök aramak.)
+
+<Cevap>C) $20$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir maratonda ardışık $9$ tam sayı ile numaralandırılmış istasyonların numaralarının **aritmetik ortalaması** $40$'tır.
+
+Buna göre en büyük istasyon numarası kaçtır?
+
+A) $42$ · B) $43$ · C) $44$ · D) $45$ · E) $48$
+
+</Soru>
+
+<Cozum>
+
+1. Terim sayısı $9$ (tek) olduğundan ortalama, tam ortadaki ($5.$) terime eşittir: orta terim $=40$.
+
+2. En büyük terim, ortadan $4$ adım ileridedir: $40+4=44$.
+
+3. (Çeldirici: ortalamayı ilk terim sanıp $40+8=48$ demek, ya da yanlış adım sayısı.)
+
+<Cevap>C) $44$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+<Ornek>
+
+<Soru>
+
+Bir depoda ardışık **çift** numaralı $6$ raf vardır; numaralarının toplamı $90$'dır. Görevli, en küçük ve en büyük raf numarasının **çarpımını** etikete yazacaktır.
+
+Buna göre etikete yazılacak çarpım kaçtır?
+
+A) $180$ · B) $200$ · C) $220$ · D) $240$ · E) $260$
+
+</Soru>
+
+<Cozum>
+
+1. Raflar $n,\ n+2,\ n+4,\ n+6,\ n+8,\ n+10$ olsun ($n$ çift).
+
+2. Toplam: $6n+30=90 \Rightarrow 6n=60 \Rightarrow n=10$.
+
+3. Numaralar: $10,12,14,16,18,20$; en küçük $10$, en büyük $20$.
+
+4. Çarpım: $10\cdot 20=200$. (Çeldirici: ardışık çift farkı $1$ sanıp $6n+15$ kurmak yanlış $n$ verir.)
+
+<Cevap>B) $200$</Cevap>
 
 </Cozum>
 
