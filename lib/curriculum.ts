@@ -24,6 +24,7 @@ export interface Topic {
   questionCount?: number;
   status: Status; // "published" = has MDX; "soon" = stub page
   keywords?: string[]; // extra search terms / synonyms
+  updated?: string; // ISO date (YYYY-MM-DD) of last content update → sitemap lastModified
 }
 
 export interface Unit {

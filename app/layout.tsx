@@ -4,6 +4,8 @@ import Link from "next/link";
 import Script from "next/script";
 import SiteHeader from "@/components/SiteHeader";
 import MathClient from "@/components/MathClient";
+import JsonLd from "@/components/JsonLd";
+import { organizationLd, websiteLd } from "@/lib/jsonLd";
 import "katex/dist/katex.min.css";
 import "./globals.css";
 
@@ -60,6 +62,8 @@ function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'G-G30880NL87');`}
         </Script>
+        <JsonLd data={organizationLd()} />
+        <JsonLd data={websiteLd()} />
         <div className="paper-bg" aria-hidden="true" />
         <MathClient />
         <SiteHeader />
@@ -92,10 +96,10 @@ gtag('config', 'G-G30880NL87');`}
               </div>
               <div className="foot-col">
                 <h4>Kurumsal</h4>
-                <Link href="/">Hakkımızda</Link>
-                <Link href="/">İletişim</Link>
-                <Link href="/">Gizlilik</Link>
-                <Link href="/">SSS</Link>
+                <Link href="/hakkimizda">Hakkımızda</Link>
+                <Link href="/iletisim">İletişim</Link>
+                <Link href="/gizlilik">Gizlilik</Link>
+                <Link href="/sss">SSS</Link>
               </div>
             </div>
             <div className="foot-bottom">

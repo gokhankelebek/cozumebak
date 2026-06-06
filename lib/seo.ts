@@ -41,6 +41,13 @@ export function topicMetadata(slug: string): Metadata {
     `${topic.title} konu anlatımı ve adım adım çözümlü sorular. ${tm.label}${unit ? " · " + unit.title : ""}.`;
   const url = `/konular/${slug}`;
   const isSoon = topic.status === "soon";
+  // Distinct per-topic share card, generated on the fly by app/api/og.
+  const ogImage = {
+    url: `/api/og?slug=${slug}`,
+    width: 1200,
+    height: 630,
+    alt: title,
+  };
 
   return {
     title: topic.title,
@@ -57,11 +64,13 @@ export function topicMetadata(slug: string): Metadata {
       url,
       siteName: SITE_NAME,
       locale: "tr_TR",
+      images: [ogImage],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
+      images: [ogImage.url],
     },
   };
 }

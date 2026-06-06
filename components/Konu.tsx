@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { getTopic, getUnit, trackMeta, breadcrumb } from "@/lib/curriculum";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbLd, learningResourceLd } from "@/lib/jsonLd";
 
 // Manifest-driven lesson header. The author writes only <Konu slug="..."/> at
 // the top of the MDX; breadcrumb, eyebrow, title and chips all come from
@@ -21,6 +23,8 @@ export default function Konu({ slug }: { slug: string }) {
 
   return (
     <>
+      <JsonLd data={breadcrumbLd(slug)} />
+      <JsonLd data={learningResourceLd(slug)} />
       <nav className="crumb">
         {crumbs.map((c, i) => {
           const last = i === crumbs.length - 1;

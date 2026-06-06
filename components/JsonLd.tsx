@@ -1,0 +1,12 @@
+// Renders a JSON-LD payload into a <script type="application/ld+json"> tag.
+// Server component; data is app-controlled (curriculum manifest), so the
+// dangerouslySetInnerHTML below carries no user-input XSS risk.
+export default function JsonLd({ data }: { data: object | null }) {
+  if (!data) return null;
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+    />
+  );
+}

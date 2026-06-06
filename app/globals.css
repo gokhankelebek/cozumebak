@@ -270,6 +270,16 @@ table.rules tbody tr:nth-child(even),.konu table tbody tr:nth-child(even){backgr
 .konu-nav .kn-title{display:block;font-family:var(--serif);font-size:1.12rem;font-weight:600;margin-top:4px}
 .konu-nav .next{text-align:right}
 
+/* related topics in the same unit (above prev/next) */
+.konu-related{margin:54px 0 8px;border-top:1px solid var(--line);padding-top:28px}
+.konu-related h2{font-family:var(--serif);font-weight:600;font-size:1.3rem;margin:0 0 16px;padding-top:0}
+.konu-related ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,1fr);gap:10px 24px}
+.konu-related li{margin:0}
+.konu-related a{display:block;color:var(--ink);font-size:1.02rem;padding:6px 0 6px 18px;position:relative;border-bottom:1px solid transparent;transition:color .15s,border-color .2s}
+.konu-related a::before{content:"›";position:absolute;left:0;color:var(--coral);font-weight:700}
+.konu-related a:hover{color:var(--coral-deep);border-color:var(--line)}
+@media(max-width:560px){.konu-related ul{grid-template-columns:1fr}}
+
 /* page-load animation */
 .reveal-up{opacity:0;transform:translateY(22px);animation:up .7s cubic-bezier(.2,.7,.2,1) forwards}
 @keyframes up{to{opacity:1;transform:none}}
