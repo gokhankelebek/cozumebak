@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import Link from "next/link";
 import Script from "next/script";
@@ -36,6 +36,12 @@ export const metadata: Metadata = {
     title: "çözümebak — Lise Matematiği",
     description: SITE_DESCRIPTION,
   },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#FBF8F1",
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
