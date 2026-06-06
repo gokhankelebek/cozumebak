@@ -51,7 +51,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..600&family=Hanken+Grotesk:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..600&family=Hanken+Grotesk:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Quicksand:wght@500;600;700&display=swap"
           rel="stylesheet"
         />
       </head>
@@ -79,7 +79,11 @@ gtag('config', 'G-G30880NL87');`}
             <div className="foot-grid">
               <div>
                 <div className="foot-brand">
-                  çözüme<span className="brand-accent">bak</span>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src="/logo-mark-white.svg" alt="" width={30} height={30} />
+                  <span>
+                    çözüme<span className="brand-accent">bak</span>
+                  </span>
                 </div>
                 <p className="foot-tag">
                   Türkiye&apos;nin en kapsamlı matematik konu anlatımı ve çözümlü soru
