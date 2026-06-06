@@ -92,6 +92,7 @@ gtag('config', 'G-G30880NL87');`}
                 <Link href="/tyt">TYT Matematik</Link>
                 <Link href="/ayt">AYT Matematik</Link>
                 <Link href="/konular">Tüm Konular</Link>
+                <Link href="/blog">Blog</Link>
                 <Link href="/ara">Konu Ara</Link>
               </div>
               <div className="foot-col">

@@ -1,11 +1,14 @@
 import Link from "next/link";
 import Math from "@/components/Math";
 import SearchBox from "@/components/SearchBox";
+import PostCard from "@/components/PostCard";
 import { TRACKS, unitsByTrack, trackStats } from "@/lib/curriculum";
+import { publishedPosts } from "@/lib/blog";
 
 const KONU = "/konular/turevin-tanimi";
 
 export default function Home() {
+  const latestPosts = publishedPosts().slice(0, 3);
   return (
     <main>
       <section className="hero container">
@@ -119,6 +122,25 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {latestPosts.length > 0 && (
+        <section className="section container">
+          <div className="section-head">
+            <p className="eyebrow">Blog</p>
+            <h2>Son Yazılar</h2>
+          </div>
+          <div className="post-list home-posts">
+            {latestPosts.map((post) => (
+              <PostCard key={post.slug} post={post} />
+            ))}
+          </div>
+          <div className="home-posts-more">
+            <Link href="/blog" className="btn btn-ghost">
+              Tüm yazılar →
+            </Link>
+          </div>
+        </section>
+      )}
     </main>
   );
 }

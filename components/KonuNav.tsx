@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { getTopic, getUnit, trackMeta, siblings, topicsByUnit } from "@/lib/curriculum";
+import { postsForTopic } from "@/lib/blog";
 
 // Manifest-driven lesson navigation. Author writes only <KonuNav slug="..."/>
 // at the bottom of the MDX. Renders a "related topics in this unit" list (for
@@ -21,8 +22,23 @@ export default function KonuNav({ slug }: { slug: string }) {
     (t) => t.status === "published" && t.slug !== slug,
   );
 
+  // Blog posts that explicitly reference this lesson (konu↔blog cross-link).
+  const relatedPosts = postsForTopic(slug);
+
   return (
     <>
+      {relatedPosts.length > 0 && (
+        <section className="konu-related konu-posts" aria-label="İlgili yazılar">
+          <h2>İlgili yazılar</h2>
+          <ul>
+            {relatedPosts.map((p) => (
+              <li key={p.slug}>
+                <Link href={`/blog/${p.slug}`}>{p.title}</Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
       {related.length > 0 && (
         <section className="konu-related" aria-label="Bu ünitedeki diğer konular">
           <h2>{unit ? `${unit.title} — diğer konular` : "İlgili konular"}</h2>

@@ -1,29 +1,40 @@
 import { ImageResponse } from "next/og";
 import { getTopic, getUnit, trackMeta } from "@/lib/curriculum";
+import { getPost } from "@/lib/blog";
 
 export const runtime = "edge";
 
-// Dynamic per-topic OpenGraph card. Referenced from topicMetadata() in
-// lib/seo.ts as /api/og?slug=<slug>, so every lesson (published + "soon") gets a
-// distinct share image. Mirrors the static app/opengraph-image.tsx design but
-// injects the topic title + track/unit context. Unknown slugs fall back to the
-// generic brand line.
+// Dynamic OpenGraph card. Referenced from topicMetadata()/postMetadata() in
+// lib/seo.ts as /api/og?slug=<slug>[&type=blog], so every lesson and blog post
+// gets a distinct share image. Mirrors the static app/opengraph-image.tsx design
+// but injects title + context. Unknown slugs fall back to the generic brand line.
 export function GET(req: Request) {
   const { searchParams } = new URL(req.url);
   const slug = searchParams.get("slug") ?? "";
-  const topic = getTopic(slug);
+  const type = searchParams.get("type");
 
-  const eyebrow = topic
-    ? (() => {
-        const tm = trackMeta(topic.track);
-        const unit = getUnit(topic.unit);
-        return unit ? `${tm.label} · ${unit.title}` : tm.label;
-      })()
-    : "MEB Müfredatı · TYT · AYT";
+  let eyebrow: string;
+  let heading: string;
 
-  const heading = topic
-    ? topic.title
-    : "Lise Matematiği · Konu Anlatımı & Çözümlü Sorular";
+  if (type === "blog") {
+    const post = getPost(slug);
+    eyebrow = post ? "çözümebak · Blog" : "çözümebak · Blog";
+    heading = post ? post.title : "çözümebak Blog";
+  } else {
+    const topic = getTopic(slug);
+    eyebrow = topic
+      ? (() => {
+          const tm = trackMeta(topic.track);
+          const unit = getUnit(topic.unit);
+          return unit ? `${tm.label} · ${unit.title}` : tm.label;
+        })()
+      : "MEB Müfredatı · TYT · AYT";
+    heading = topic
+      ? topic.title
+      : "Lise Matematiği · Konu Anlatımı & Çözümlü Sorular";
+  }
+
+  const longHeading = heading.length > 48;
 
   return new ImageResponse(
     (
@@ -56,7 +67,7 @@ export function GET(req: Request) {
         <div
           style={{
             display: "flex",
-            fontSize: topic ? 76 : 64,
+            fontSize: longHeading ? 60 : 76,
             fontWeight: 700,
             color: "#0e1b33",
             lineHeight: 1.08,

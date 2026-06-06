@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { TRACKS, publishedTopics, soonTopics } from "@/lib/curriculum";
+import { publishedPosts, allTagsWithCounts } from "@/lib/blog";
 import { SITE_URL } from "@/lib/seo";
 
 // Manifest-derived sitemap. Published lessons get a high priority; "soon" stubs
@@ -33,6 +34,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.4,
   }));
 
+  const blogIndex: MetadataRoute.Sitemap = [
+    { url: `${SITE_URL}/blog`, lastModified: buildDate, changeFrequency: "weekly", priority: 0.7 },
+  ];
+
+  const blogPosts = publishedPosts().map((p) => ({
+    url: `${SITE_URL}/blog/${p.slug}`,
+    lastModified: new Date(p.updated ?? p.date),
+    changeFrequency: "monthly" as const,
+    priority: 0.6,
+  }));
+
+  const blogTags = allTagsWithCounts().map(({ tag }) => ({
+    url: `${SITE_URL}/blog/etiket/${tag.slug}`,
+    lastModified: buildDate,
+    changeFrequency: "monthly" as const,
+    priority: 0.3,
+  }));
+
   const published = publishedTopics().map((t) => ({
     url: `${SITE_URL}/konular/${t.slug}`,
     lastModified: t.updated ? new Date(t.updated) : buildDate,
@@ -47,5 +66,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.2,
   }));
 
-  return [...staticRoutes, ...corporate, ...published, ...soon];
+  return [
+    ...staticRoutes,
+    ...corporate,
+    ...blogIndex,
+    ...blogPosts,
+    ...blogTags,
+    ...published,
+    ...soon,
+  ];
 }

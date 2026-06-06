@@ -4,6 +4,8 @@ import { Ornek, Soru, Cevap, Figur, Altyazi } from "@/components/icerik";
 import KonuBaslik from "@/components/KonuBaslik";
 import Konu from "@/components/Konu";
 import KonuNav from "@/components/KonuNav";
+import BlogPost from "@/components/BlogPost";
+import BlogPostFooter from "@/components/BlogPostFooter";
 import Math from "@/components/Math";
 
 // Anything returned here is usable in ANY .mdx file with zero imports.
@@ -14,6 +16,8 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     KonuBaslik,
     Konu,
     KonuNav,
+    BlogPost,
+    BlogPostFooter,
     Ornek,
     Soru,
     Ipucu,

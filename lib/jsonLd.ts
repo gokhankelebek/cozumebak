@@ -4,6 +4,7 @@
 // from the curriculum manifest), never user input.
 // ─────────────────────────────────────────────────────────────────────────────
 import { getTopic, getUnit, trackMeta, breadcrumb } from "@/lib/curriculum";
+import { getPost, tagsOf } from "@/lib/blog";
 import { SITE_URL, SITE_NAME } from "@/lib/seo";
 
 const abs = (path: string) => (path.startsWith("http") ? path : `${SITE_URL}${path}`);
@@ -107,6 +108,51 @@ export function faqLd(items: FaqItem[]) {
       "@type": "Question",
       name: it.question,
       acceptedAnswer: { "@type": "Answer", text: it.answer },
+    })),
+  };
+}
+
+/** BlogPosting for a blog post → eligible for article rich results. */
+export function blogPostingLd(slug: string) {
+  const post = getPost(slug);
+  if (!post) return null;
+  const url = abs(`/blog/${slug}`);
+  return {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "@id": url,
+    headline: post.title,
+    description: post.description,
+    url,
+    mainEntityOfPage: { "@type": "WebPage", "@id": url },
+    inLanguage: "tr-TR",
+    datePublished: post.date,
+    dateModified: post.updated ?? post.date,
+    author: { "@id": ORG_ID },
+    publisher: { "@id": ORG_ID },
+    image: abs(`/api/og?slug=${slug}&type=blog`),
+    articleSection: tagsOf(post).map((t) => t.label),
+    keywords: post.tags.join(", "),
+    isAccessibleForFree: true,
+  };
+}
+
+/** BreadcrumbList for a blog post: Anasayfa › Blog › <title>. */
+export function blogBreadcrumbLd(slug: string) {
+  const post = getPost(slug);
+  const crumbs: { name: string; item?: string }[] = [
+    { name: "Anasayfa", item: abs("/") },
+    { name: "Blog", item: abs("/blog") },
+    ...(post ? [{ name: post.title }] : []),
+  ];
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: crumbs.map((c, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: c.name,
+      ...(c.item ? { item: c.item } : {}),
     })),
   };
 }

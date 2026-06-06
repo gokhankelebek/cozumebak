@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { getTopic, trackMeta, getUnit, type Track } from "@/lib/curriculum";
+import { getPost, getTag } from "@/lib/blog";
 
 export const SITE_URL = "https://cozumebak.com";
 export const SITE_NAME = "çözümebak";
@@ -71,6 +72,78 @@ export function topicMetadata(slug: string): Metadata {
       title,
       description,
       images: [ogImage.url],
+    },
+  };
+}
+
+/**
+ * Per-post metadata, derived from the blog manifest. Author writes one line:
+ *   export const metadata = postMetadata("maarif-modeli-matematik-mufredati");
+ */
+export function postMetadata(slug: string): Metadata {
+  const post = getPost(slug);
+  if (!post) {
+    return { title: "Yazı", robots: { index: false, follow: true } };
+  }
+  const url = `/blog/${slug}`;
+  const isDraft = post.status === "draft";
+  const ogImage = {
+    url: `/api/og?slug=${slug}&type=blog`,
+    width: 1200,
+    height: 630,
+    alt: post.title,
+  };
+
+  return {
+    title: post.title,
+    description: post.description,
+    keywords: post.tags,
+    authors: [{ name: SITE_NAME }],
+    alternates: {
+      canonical: url,
+      types: { "application/rss+xml": `${SITE_URL}/blog/rss.xml` },
+    },
+    robots: isDraft ? { index: false, follow: true } : undefined,
+    openGraph: {
+      type: "article",
+      title: `${post.title} | ${SITE_NAME}`,
+      description: post.description,
+      url,
+      siteName: SITE_NAME,
+      locale: "tr_TR",
+      publishedTime: post.date,
+      modifiedTime: post.updated ?? post.date,
+      authors: [SITE_NAME],
+      tags: post.tags,
+      images: [ogImage],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.description,
+      images: [ogImage.url],
+    },
+  };
+}
+
+/** Metadata for a blog tag listing page. */
+export function tagMetadata(tagSlug: string): Metadata {
+  const tag = getTag(tagSlug);
+  const label = tag?.label ?? tagSlug;
+  const title = `${label} yazıları`;
+  const description = `${label} etiketli tüm çözümebak blog yazıları.`;
+  const url = `/blog/etiket/${tagSlug}`;
+  return {
+    title,
+    description,
+    alternates: { canonical: url },
+    openGraph: {
+      type: "website",
+      title: `${title} | ${SITE_NAME}`,
+      description,
+      url,
+      siteName: SITE_NAME,
+      locale: "tr_TR",
     },
   };
 }
