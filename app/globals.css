@@ -387,8 +387,9 @@ table.rules tbody tr:nth-child(even),.konu table tbody tr:nth-child(even){backgr
   .featured-card{padding:24px 16px}
   /* wide content tables scroll horizontally instead of clipping */
   .konu table,.post table,table.rules{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;white-space:nowrap;max-width:100%}
-  /* roomier footer tap targets */
-  .foot-col a{display:inline-block;padding:5px 0;min-height:24px}
+  /* keep footer links stacked (block), with roomier tap targets */
+  .foot-col a{display:block;padding:9px 0}
+  .foot-col{margin-bottom:8px}
 }
 /* long unbreakable strings (urls, long tokens) never force horizontal overflow */
 .konu p,.konu li,.post>p,.post>ul li,.post>ol li{overflow-wrap:break-word}
