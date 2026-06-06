@@ -111,7 +111,9 @@ body.nav-locked{overflow:hidden}
 .btn-ghost:hover{border-color:var(--ink)}
 
 /* ---------- hero ---------- */
-.hero{padding:84px 0 56px;max-width:880px}
+/* vertical-only padding so the .container horizontal gutter (20–28px) is kept;
+   a `padding` shorthand here would zero left/right and jam text to the edges */
+.hero{padding-top:84px;padding-bottom:56px;max-width:880px}
 .hero-title{
   font-family:var(--serif);font-weight:600;font-size:clamp(2.7rem,6.4vw,4.9rem);
   line-height:1.02;letter-spacing:-.028em;margin:0 0 26px;
@@ -378,7 +380,7 @@ table.rules tbody tr:nth-child(even),.konu table tbody tr:nth-child(even){backgr
 @media(max-width:560px){
   .container{padding:0 20px}
   .grid-cards,.feat-grid{grid-template-columns:1fr}
-  .hero{padding:54px 0 40px}
+  .hero{padding-top:54px;padding-bottom:40px}
   .stats{gap:14px 26px}
   .foot-grid{grid-template-columns:1fr}
   .featured-inner{padding:26px 20px}
