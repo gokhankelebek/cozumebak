@@ -29,7 +29,7 @@ export default function Home() {
           9, 10, 11 ve 12. sınıf matematiğinin tamamı — TYT ve AYT için adım adım
           çözümlü sorular, net konu anlatımları ve interaktif grafiklerle.
         </p>
-        <div className="reveal-up d4">
+        <div className="reveal-up d4 hero-search">
           <SearchBox variant="hero" />
         </div>
         <div className="stats reveal-up d5">
