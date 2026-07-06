@@ -7,6 +7,7 @@ import KonuNav from "@/components/KonuNav";
 import BlogPost from "@/components/BlogPost";
 import BlogPostFooter from "@/components/BlogPostFooter";
 import Math from "@/components/Math";
+import Sorular from "@/components/quiz/Sorular";
 
 // Anything returned here is usable in ANY .mdx file with zero imports.
 // This is the magic that makes authoring konu #1.201 feel effortless:
@@ -26,6 +27,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     Figur,
     Altyazi,
     Math,
+    Sorular,
     ...components,
   };
 }

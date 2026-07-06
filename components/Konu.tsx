@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { getTopic, getUnit, trackMeta, breadcrumb } from "@/lib/curriculum";
+import { getQuizCount } from "@/lib/sorular";
 import JsonLd from "@/components/JsonLd";
 import { breadcrumbLd, learningResourceLd } from "@/lib/jsonLd";
 
@@ -15,10 +16,14 @@ export default function Konu({ slug }: { slug: string }) {
   const crumbs = breadcrumb(slug);
   const eyebrow = unit ? `${tm.label} · ${unit.title}` : tm.label;
 
+  // Prefer the real question-bank size over the manifest estimate, so the
+  // chip is truthful on topics whose interactive quiz has shipped.
+  const questionCount = getQuizCount(slug) ?? topic.questionCount;
+
   const chips = [
     topic.minutes ? `~${topic.minutes} dk okuma` : null,
     topic.difficulty ? `Zorluk: ${topic.difficulty}` : null,
-    topic.questionCount ? `${topic.questionCount} çözümlü soru` : null,
+    questionCount ? `${questionCount} çözümlü soru` : null,
   ].filter(Boolean) as string[];
 
   return (

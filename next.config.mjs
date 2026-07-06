@@ -33,12 +33,14 @@ const nextConfig = {
     memoryBasedWorkersCount: true,
   },
   webpack: (config, { dev }) => {
-    // On Vercel (8 GB, 2 cores) the persistent PackFileCache OOM'd the build:
-    // restoring the stale pre-KaTeX pack and re-serializing a module graph
-    // with 141 pages of build-time-rendered math spikes memory well past the
-    // container limit (SIGKILL ~5 min in; local clean builds pass at ~2.5 GB).
-    // An in-memory cache skips both the restore and the serialization spike.
-    if (!dev && process.env.VERCEL) {
+    // The persistent PackFileCache OOMs production builds of this project —
+    // on Vercel (SIGKILL on 8 GB container) AND locally (JS heap OOM during
+    // pack serialization). Restoring a stale pack and re-serializing a module
+    // graph with 141 pages of build-time-rendered KaTeX is the amplifier, so
+    // production builds always use an in-memory cache: no restore, no
+    // serialization spike. Clean builds peak ~2.5 GB. (Dev keeps the default
+    // cache — incremental dev compiles are small and benefit from it.)
+    if (!dev) {
       config.cache = { type: "memory" };
     }
     return config;

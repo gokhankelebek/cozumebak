@@ -71,6 +71,19 @@ Bir parabolün tepe noktası: $x = -\dfrac{b}{2a}$.
 | `<Cozum>` | İmza etkileşim: "Çözüme Bak" → adım adım çözüm (yeşil) |
 | `<Cevap>` | Yeşil sonuç kutusu |
 | `<Figur>` / `<Altyazi>` | Şekil ve alt yazı |
+| `<Sorular slug="…"/>` | İnteraktif çözümlü soru seti (A–E, ÖSYM formatı) — banka `lib/sorular/<slug>.ts` |
+
+### Konuya soru seti eklemek
+
+1. `lib/sorular/<slug>.ts` dosyasını oluştur (örnek: `lib/sorular/turevin-tanimi.ts`) —
+   5 şıklı sorular, adım adım çözüm ve sonuç; math için `String.raw` + `$...$`.
+2. `lib/sorular/index.ts` içindeki `BANKS`'e kaydet.
+3. Konu MDX'inin sonuna (KonuNav'dan önce) `<Sorular slug="<slug>" />` ekle.
+
+Soru içeriği sunucuda render edilir (SEO'ya dahil); istemci adası yalnızca
+şık seçimi/skor durumunu yönetir. Cevaplar `localStorage`'a yazılır
+(`cb-quiz:<slug>`) — ileride ilerleme takibinin temeli. `<Konu>` çipindeki
+soru sayısı, banka varsa gerçek sayıyı gösterir.
 
 Düz markdown numaralı liste `<Cozum>` içine konunca otomatik olarak numaralı
 adım çemberlerine dönüşür. Tablolar `.konu` içinde otomatik stillenir.
