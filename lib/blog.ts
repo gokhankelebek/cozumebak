@@ -43,6 +43,24 @@ export const TAGS: Tag[] = [
 
 export const POSTS: BlogPost[] = [
   {
+    slug: "tyt-matematik-problemleri-denklem-kurma",
+    title: "TYT Problemlerinin Sırrı: Cümleyi Denkleme Çevirmek",
+    description:
+      "TYT'nin en büyük soru bloğu problemler ve öğrencilerin çoğu matematikte değil, okumada takılıyor. Cümleyi denkleme çeviren 4 adımlık yöntem, bir çeviri sözlüğü ve elle çözülmüş sayı, yaş ve hareket problemleriyle.",
+    date: "2026-07-06",
+    tags: ["calisma-teknikleri", "yks", "egitim"],
+    readingMinutes: 7,
+    relatedTopics: [
+      "sayi-problemleri",
+      "yas-isci-problemleri",
+      "yuzde-kar-zarar",
+      "hareket-problemleri",
+      "oran-oranti-tyt",
+      "temel-kavramlar",
+    ],
+    status: "published",
+  },
+  {
     slug: "yks-matematik-yaz-calisma-plani",
     title: "YKS 2027'ye Yazdan Başlayanlar Kazanır: 8 Haftalık Matematik Planı",
     description:
