@@ -3,7 +3,6 @@ import type { ReactNode } from "react";
 import Link from "next/link";
 import Script from "next/script";
 import SiteHeader from "@/components/SiteHeader";
-import MathClient from "@/components/MathClient";
 import JsonLd from "@/components/JsonLd";
 import { organizationLd, websiteLd } from "@/lib/jsonLd";
 import "katex/dist/katex.min.css";
@@ -71,7 +70,6 @@ gtag('config', 'G-G30880NL87');`}
         <JsonLd data={organizationLd()} />
         <JsonLd data={websiteLd()} />
         <div className="paper-bg" aria-hidden="true" />
-        <MathClient />
         <SiteHeader />
         {children}
         <footer className="site-footer">
