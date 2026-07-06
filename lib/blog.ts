@@ -35,11 +35,31 @@ export const TAGS: Tag[] = [
   { slug: "mufredat", label: "Müfredat" },
   { slug: "meb", label: "MEB" },
   { slug: "egitim", label: "Eğitim" },
+  { slug: "yks", label: "YKS" },
+  { slug: "calisma-teknikleri", label: "Çalışma Teknikleri" },
 ];
 
 // ── Posts (newest first by convention; helpers also sort defensively) ──────────
 
 export const POSTS: BlogPost[] = [
+  {
+    slug: "yks-matematik-yaz-calisma-plani",
+    title: "YKS 2027'ye Yazdan Başlayanlar Kazanır: 8 Haftalık Matematik Planı",
+    description:
+      "Temmuz-Ağustos'u boşa geçirme: TYT temellerinden AYT türevine, haftalık ritim, deneme takvimi ve en sık yapılan 5 hatayla, 12'ye geçenler için uygulanabilir bir yaz matematik planı.",
+    date: "2026-07-05",
+    tags: ["yks", "calisma-teknikleri", "egitim"],
+    readingMinutes: 7,
+    relatedTopics: [
+      "temel-kavramlar",
+      "sayi-problemleri",
+      "fonksiyon-kavrami-tyt",
+      "limit-kavrami",
+      "turevin-tanimi",
+      "turev-alma-kurallari",
+    ],
+    status: "published",
+  },
   {
     slug: "maarif-modeli-matematik-mufredati",
     title: "Çıkararak Derinleşmek: Maarif Modeli Matematik Müfredatında Ne Değişti?",
