@@ -1,0 +1,103 @@
+import { postMetadata } from "@/lib/seo";
+
+export const metadata = postMetadata("tyt-matematik-problemleri-denklem-kurma");
+
+<BlogPost slug="tyt-matematik-problemleri-denklem-kurma" />
+
+<p className="lead">TYT matematiğin en büyük soru bloğu problemler ve öğrencilerin çoğu burada matematikte değil, okumada takılıyor. İşin sırrı zekâ değil çeviri: bir cümleyi denkleme dönüştürebiliyorsan, gerisi sadece işlem. Bu yazıda o çeviriyi 4 adıma indiriyor, bir sözlük çıkarıyor ve üç problemi baştan sona birlikte çözüyoruz.</p>
+
+Bir öğrenciye "$3x + 5 = 2x + 17$ ise $x$ kaçtır?" diye sor, üç saniyede çözer. Aynı öğrenciye "*Bir sayının 3 katının 5 fazlası, o sayının 2 katının 17 fazlasına eşitse sayı kaçtır?*" diye sor, gözü buğulanır. Oysa iki soru **birebir aynıdır.** Aradaki tek fark, ikincisinin Türkçe yazılmış olması.
+
+İşte problemlerin bütün sırrı bu cümlede saklı: problem çözmek bir matematik becerisi değil, bir **çeviri** becerisidir. Denklemi kurabilen herkes çözebilir; takılan öğrenci genellikle denklemi kuramadığı için takılır. İyi haber şu — çeviri öğrenilebilir bir şeydir, üstelik birkaç kalıpla.
+
+## Neden problemler bu kadar önemli?
+
+TYT'de 40 matematik sorusunun içinde problemler (sayı, kesir, yaş-işçi, yüzde-kâr, karışım, hareket) tek başına en kalabalık gruptur. Bir öğrencinin netini asıl belirleyen yer burasıdır: temel kavramları oturmuş ama problem kuramayan öğrenci ortada kalır; problemi güvene alan öğrenci ise sıralamada yukarı çıkar. [YKS yaz çalışma planımızda](/blog/yks-matematik-yaz-calisma-plani) 3. ve 4. haftanın tamamını problemlere ayırmamız tesadüf değil.
+
+## Cümleyi denkleme çeviren 4 adım
+
+Hangi problem tipiyle karşılaşırsan karşılaş, aynı dört adım işini görür:
+
+1. **Soruyu sonundan oku.** "Sayı kaçtır?", "Kaç yıl sonra?", "Baba kaç yaşında?" — önce *neyin* sorulduğunu bul. Bilinmeyeni ($x$'i) buna göre seçeceksin.
+2. **Bilinmeyeni akıllıca seç.** Genellikle en küçük ya da en çok bahsi geçen büyüklüğe $x$ demek işi kolaylaştırır. İki bilinmeyen varsa, birini diğerinin cinsinden yazabiliyorsan tek harfle kurtul.
+3. **Cümleyi parça parça çevir.** Baştan sona okuyup "eh anladım" deme; her ifadeyi tek tek matematiğe çevir. "3 katı" gördüğün an $3x$ yaz, "5 fazlası" gördüğün an $+5$ ekle. Cümle bittiğinde denklem kurulmuş olur.
+4. **Çöz ve cümleye geri koy.** Bulduğun sayıyı problemin kendi cümlesinde dene. Tutmuyorsa çeviri hatası yapmışsındır — çoğunlukla "fazla/eksik" ya da "kimin kaç katı" yönünde.
+
+## Cebine koyacağın çeviri sözlüğü
+
+Problemlerin %90'ı aşağıdaki kalıpların birleşiminden oluşur. Bunları ezberlemek değil, *tanımak* yeter:
+
+| Türkçe ifade | Matematik karşılığı |
+| --- | --- |
+| bir sayının 3 katı | $3x$ |
+| bir sayının yarısı | $\dfrac{x}{2}$ |
+| ...in 5 fazlası | $+\,5$ |
+| ...in 5 eksiği | $-\,5$ |
+| iki sayının toplamı 20 | $x + y = 20$ |
+| $x$, $y$'nin 2 katı | $x = 2y$ |
+| ardışık iki tam sayı | $x,\ x+1$ |
+| ardışık iki çift sayı | $x,\ x+2$ |
+| 5 yıl sonraki yaş | (bugünkü yaş) $+\,5$ |
+| %20 zam / artış | $\times\,1{,}20$ |
+| %20 indirim | $\times\,0{,}80$ |
+
+Küçük ama hayat kurtaran bir uyarı: **"fazla" yönü şaşırtır.** "A, B'den 5 fazladır" cümlesi $A = B + 5$ demektir — fazlalık kimin üstündeyse eşitliği o taraf *büyük* olur. Öğrencilerin en sık yaptığı hata, bunu ters yazıp $B = A + 5$ kurmaktır.
+
+## Örnek 1 — Sayı problemi
+
+> Bir sayının 3 katının 5 fazlası, aynı sayının 2 katının 17 fazlasına eşittir. Bu sayı kaçtır?
+
+Yazının başındaki soru buydu; şimdi adımlarla çevirelim. Soru "sayı kaçtır" diyor, o hâlde sayıya $x$ diyelim.
+
+- "3 katının 5 fazlası" → $3x + 5$
+- "2 katının 17 fazlası" → $2x + 17$
+- "eşittir" → $=$
+
+$$3x + 5 = 2x + 17 \;\Rightarrow\; x = 12$$
+
+Kontrol: $3\cdot 12 + 5 = 41$ ve $2\cdot 12 + 17 = 41$. İki taraf da tuttu, sayı **12**. Gördün mü — zor olan denklem değil, denkleme *çevirmekti*.
+
+## Örnek 2 — Yaş problemi
+
+> Bir baba ile oğlunun yaşları toplamı 42'dir. 5 yıl sonra babanın yaşı, oğlunun yaşının 3 katı olacaktır. Baba bugün kaç yaşındadır?
+
+Yaş problemlerinin tek püf noktası var: **zaman geçince herkes aynı kadar yaşlanır.** 5 yıl sonra hem baba hem oğul 5 yaş büyür.
+
+Oğlun bugünkü yaşına $x$ diyelim; toplam 42 olduğuna göre babanın yaşı $42 - x$.
+
+5 yıl sonra oğul $x + 5$, baba $42 - x + 5 = 47 - x$ olur. "Babanın yaşı oğlunun 3 katı" cümlesini çevirelim:
+
+$$47 - x = 3\,(x + 5)$$
+
+$$47 - x = 3x + 15 \;\Rightarrow\; 32 = 4x \;\Rightarrow\; x = 8$$
+
+Oğul bugün 8, baba $42 - 8 = 34$. Kontrol: 5 yıl sonra baba 39, oğul 13 ve $39 = 3 \cdot 13$. Baba bugün **34** yaşında. Buradaki tek tuzak, "5 yıl sonra" ifadesini yalnızca babaya eklemek — sözlükteki kural ikisini de kapsıyor.
+
+## Örnek 3 — Hareket problemi
+
+> Aralarında 480 km bulunan iki şehirden aynı anda birbirine doğru iki araç hareket ediyor. Hızları 70 km/sa ve 90 km/sa'tir. Kaç saat sonra karşılaşırlar?
+
+Hareket probleminde ezberlenecek tek kural şu: **zıt yönde gidenlerin hızları toplanır, aynı yönde gidenlerin hızları çıkarılır.** Araçlar birbirine doğru gittiği için aradaki mesafe her saat $70 + 90 = 160$ km azalır.
+
+$$t = \frac{\text{yol}}{\text{bağıl hız}} = \frac{480}{160} = 3$$
+
+Araçlar **3 saat** sonra karşılaşır. Bu problemi zorlaştıran şey formül değil — "birbirine doğru" ifadesini hızların toplandığına çevirebilmek. Çeviriyi kurduktan sonra iş, ilkokul bölme işlemine iniyor.
+
+## En sık düşülen 4 tuzak
+
+- **Yön karıştırmak.** "Fazla/eksik" ve "kimin kaç katı" ifadelerini ters yazmak. Şüphe edersen bulduğun sayıyı cümleye geri koy.
+- **Yüzdede tabanı şaşırmak.** Kâr genelde **maliyet** üzerinden hesaplanır, satış üzerinden değil. "Neyin yüzdesi?" sorusunu her seferinde sor.
+- **Birimleri eşitlememek.** Hız km/sa iken süreyi dakika vermek klasik tuzaktır; denklemi kurmadan önce her şeyi aynı birime çevir.
+- **Baştan denklemsiz gitmeye çalışmak.** "Kafamdan hallederim" düşüncesi kolay sorularda çalışır, sınavdaki zor soruda çökertir. Alışkanlığı her zaman denklem kurarak edin.
+
+## Bunu nasıl kalıcı hâle getirirsin?
+
+Problem çözmede ilerlemenin tek yolu, çok sayıda soruyu *denklem kurarak* çözmek — cevaba bakıp "bunu yapardım" demek değil. Şu ritmi dene: her problem tipinden (sayı, yaş, yüzde, hareket, karışım) günde 10 soru, her birinde denklemini **deftere yazarak.** İki hafta sonra çoğu kalıbı tanır hâle gelirsin.
+
+Konu konu çalışmak istersen [TYT Matematik](/tyt) sayfasındaki ünite sıralamasını takip edebilir, [sayı problemleri](/konular/sayi-problemleri) ve [hareket problemleri](/konular/hareket-problemleri) sayfalarındaki çözümlü sorularla kendini anında test edebilirsin.
+
+Unutma: problem bir bilmece değil, çevrilmeyi bekleyen bir cümledir. Cümleyi denkleme çevirmeyi öğrendiğin gün, TYT'nin en büyük soru bloğu senin lehine döner.
+
+Takıldığın her soruda — çözüme bak. 🧡
+
+<BlogPostFooter slug="tyt-matematik-problemleri-denklem-kurma" />
