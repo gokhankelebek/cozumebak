@@ -1,17 +1,20 @@
 import createMDX from "@next/mdx";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
+import rehypeKatexServer from "./lib/rehypeKatexServer.mjs";
 
 const withMDX = createMDX({
   options: {
-    // remark-math parses $...$ / $$...$$ into math nodes (and shields the LaTeX
-    // braces from MDX). We deliberately do NOT run rehype-katex at build time:
-    // rendering KaTeX for all ~141 pages during the build blew past Vercel's
-    // build-machine memory (OOM/SIGKILL). Instead the math is emitted as
-    // <span class="math math-inline">…</span> / <div class="math math-display">
-    // and rendered in the browser by <MathClient> (components/MathClient.tsx).
+    // remark-math parses $...$ / $$...$$ into math nodes (and shields the
+    // LaTeX braces from MDX). rehypeKatexServer then renders every formula to
+    // static HTML AT BUILD TIME — crawlers see real math, no client JS needed.
+    // See lib/rehypeKatexServer.mjs for the three key decisions (HTML-only
+    // output for memory, aria-label for accessibility, and the single-line
+    // $$…$$ display heuristic). The MathML twin that rehype-katex emits by
+    // default is what OOM'd the build machine historically — do not re-enable
+    // it without re-measuring peak build memory.
     remarkPlugins: [remarkGfm, remarkMath],
-    rehypePlugins: [],
+    rehypePlugins: [rehypeKatexServer],
   },
 });
 

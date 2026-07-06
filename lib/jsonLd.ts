@@ -88,6 +88,8 @@ export function learningResourceLd(slug: string) {
     educationalUse: "Konu anlatımı, sınava hazırlık",
     teaches: topic.title,
     ...(unit ? { about: unit.title } : {}),
+    ...(topic.minutes ? { timeRequired: `PT${topic.minutes}M` } : {}),
+    ...(topic.updated ? { dateModified: topic.updated } : {}),
     isAccessibleForFree: true,
     inDefinedTermSet: "MEB Matematik Müfredatı",
     provider: { "@id": ORG_ID },

@@ -82,15 +82,32 @@ adım çemberlerine dönüşür. Tablolar `.konu` içinde otomatik stillenir.
   arama indeksi ve `sitemap.xml` hepsi buradan türetilir.
 - **Tek çatı:** `app/layout.tsx` (header + footer + kareli grid + fontlar + KaTeX CSS).
 - **Tasarım sistemi:** `app/globals.css` — tüm CSS değişkenleriyle tema burada.
-- **İstemci adaları:** sadece `components/SiteHeader.tsx` (scroll) ve
-  `components/SearchBox.tsx` (anlık arama). Geri kalan her şey sunucuda statik HTML.
+- **İstemci adaları:** sadece `components/SiteHeader.tsx` (scroll),
+  `components/SearchBox.tsx` (anlık arama) ve `components/Reveal.tsx`
+  ("Çözüme Bak" / "İpucu" aç-kapa — içerik yine sunucuda render edilir, sadece
+  CSS ile gizlenir; yani çözümler arama motorlarına görünür). Geri kalan her
+  şey sunucuda statik HTML.
 - **Arama:** `components/SearchBox.tsx` + `lib/searchIndex.ts` — manifest'ten üretilen
   statik indekste, Türkçe-duyarlı (ı/türev) anlık eşleme. Backend yok.
 - **Konu durumu:** her topic `status: "published" | "soon"`. `soon` konular index'te
   görünür ama tıklanınca "Yakında" stub sayfası (`noindex`) açar — içerik gelince sadece
   `status`'ü çevirip MDX dosyasını eklemen yeterli.
-- **SEO:** Matematik `remark-math` + `rehype-katex` ile derleme anında HTML'e çevrilir;
-  her konunun `metadata`'sı `lib/seo.ts`'teki `topicMetadata(slug)`'tan gelir.
+- **SEO / Matematik:** Matematik `remark-math` + `lib/rehypeKatexServer.mjs`
+  ile **derleme anında** HTML'e çevrilir — tarayıcıda KaTeX çalışmaz, arama
+  motorları formülleri render edilmiş hâlde görür. Üç bilinçli karar:
+  - **Bellek:** KaTeX çıktısı yalnızca HTML (`output: "html"`). rehype-katex'in
+    varsayılanı olan MathML ikizi her formülün derlenmiş boyutunu ikiye katlar;
+    tarihsel Vercel OOM'unun (SIGKILL) baş şüphelisi budur. HTML-only build
+    yerel ölçümde ~2.3 GB tepe bellekle geçer (Vercel makinesi 8 GB). MathML'i
+    geri açmak istersen önce tepe belleği yeniden ölç.
+  - **Erişilebilirlik:** MathML olmadığı için her formül `role="img"` +
+    LaTeX kaynağını taşıyan `aria-label` alır.
+  - **Display sezgiseli:** Tek satırlık `$$…$$` micromark'ta "inline" sayılır;
+    paragrafta tek başına duran matematik display bloğuna terfi ettirilir
+    (eski istemci renderer'ın sezgiseliyle birebir aynı).
+  Her konunun `metadata`'sı `lib/seo.ts`'teki `topicMetadata(slug)`'tan gelir;
+  yapılandırılmış veri (`LearningResource`, `BreadcrumbList`) `<Konu>`
+  bileşeni üzerinden her konu sayfasına otomatik eklenir (`lib/jsonLd.ts`).
 
 ## Yayına alma (Vercel)
 
