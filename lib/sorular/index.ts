@@ -8,9 +8,11 @@
 
 import type { TopicQuiz } from "./types";
 import turevinTanimi from "./turevin-tanimi";
+import limitKavrami from "./limit-kavrami";
 
 const BANKS: Record<string, TopicQuiz> = {
   [turevinTanimi.slug]: turevinTanimi,
+  [limitKavrami.slug]: limitKavrami,
 };
 
 export function getQuiz(slug: string): TopicQuiz | undefined {

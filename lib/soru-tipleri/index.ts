@@ -8,9 +8,11 @@
 
 import type { TopicSoruTipleri } from "./types";
 import turevAlmaKurallari from "./turev-alma-kurallari";
+import ozelFonksiyonTurevleri from "./ozel-fonksiyon-turevleri";
 
 const KB: Record<string, TopicSoruTipleri> = {
   [turevAlmaKurallari.slug]: turevAlmaKurallari,
+  [ozelFonksiyonTurevleri.slug]: ozelFonksiyonTurevleri,
 };
 
 export function getSoruTipleri(slug: string): TopicSoruTipleri | undefined {
