@@ -17,6 +17,9 @@ import bolmeBolunebilme from "./bolme-bolunebilme";
 import carpanlaraAyirmaTyt from "./carpanlara-ayirma-tyt";
 import cemberAnalitikAyt from "./cember-analitik-ayt";
 import cemberDaireTyt from "./cember-daire-tyt";
+import cemberdeAcilar from "./cemberde-acilar";
+import cemberinAnalitikIncelenmesi from "./cemberin-analitik-incelenmesi";
+import dairedeAlanCevre from "./dairede-alan-cevre";
 import dikUcgenPisagor from "./dik-ucgen-pisagor";
 import diziKavrami from "./dizi-kavrami";
 import diziKavramiAyt from "./dizi-kavrami-ayt";
@@ -27,11 +30,16 @@ import ebobEkok10 from "./ebob-ekok-10";
 import fonksiyonCesitleriAyt from "./fonksiyon-cesitleri-ayt";
 import fonksiyonGrafikTyt from "./fonksiyon-grafik-tyt";
 import fonksiyonKavramiTyt from "./fonksiyon-kavrami-tyt";
+import fonksiyonlarinDonusumleri from "./fonksiyonlarin-donusumleri";
 import geometrikDizi from "./geometrik-dizi";
 import geometrikDiziAyt from "./geometrik-dizi-ayt";
 import hareketProblemleri from "./hareket-problemleri";
+import ikiNoktaArasiUzaklik from "./iki-nokta-arasi-uzaklik";
 import ikinciDereceDenklemAyt from "./ikinci-derece-denklem-ayt";
+import ikinciDereceDenklemSistemleri11 from "./ikinci-derece-denklem-sistemleri-11";
 import ikinciDereceEsitsizlikAyt from "./ikinci-derece-esitsizlik-ayt";
+import ikinciDereceEsitsizlikler11 from "./ikinci-derece-esitsizlikler-11";
+import ikinciDereceFonksiyonlar from "./ikinci-derece-fonksiyonlar";
 import ikinciTurevKonkavlik from "./ikinci-turev-konkavlik";
 import integralDegiskenDegistirme from "./integral-degisken-degistirme";
 import integralKavrami from "./integral-kavrami";
@@ -58,16 +66,21 @@ import paydayiRasyonelYapma from "./paydayi-rasyonel-yapma";
 import permutasyonKombinasyonTyt from "./permutasyon-kombinasyon-tyt";
 import polinomKavramiAyt from "./polinom-kavrami-ayt";
 import polinomlardaBolmeAyt from "./polinomlarda-bolme-ayt";
+import prizmaPiramit11 from "./prizma-piramit-11";
 import rasyonelSayilar from "./rasyonel-sayilar";
 import sayiBasamaklari from "./sayi-basamaklari";
 import sayiProblemleri from "./sayi-problemleri";
+import silindirKoniKure11 from "./silindir-koni-kure-11";
 import sonsuzdaLimitAsimptot from "./sonsuzda-limit-asimptot";
 import sureklilik from "./sureklilik";
 import tegetNormal from "./teget-normal";
 import tekCiftSayilar from "./tek-cift-sayilar";
 import temelKavramlar from "./temel-kavramlar";
 import tersTrigonometrik12 from "./ters-trigonometrik-12";
+import toplamFarkFormulleri from "./toplam-fark-formulleri";
+import trigonometrikDenklemler from "./trigonometrik-denklemler";
 import trigonometrikDenklemlerAyt from "./trigonometrik-denklemler-ayt";
+import trigonometrikFonksiyonlar from "./trigonometrik-fonksiyonlar";
 import trigonometrikFonksiyonlarAyt from "./trigonometrik-fonksiyonlar-ayt";
 import trigonometrikOzdesliklerAyt from "./trigonometrik-ozdeslikler-ayt";
 import turevAlmaKurallari from "./turev-alma-kurallari";
@@ -87,6 +100,7 @@ import ustelFonksiyonAyt from "./ustel-fonksiyon-ayt";
 import veriIstatistikTyt from "./veri-istatistik-tyt";
 import yarimAciDonusum12 from "./yarim-aci-donusum-12";
 import yasIsciProblemleri from "./yas-isci-problemleri";
+import yonluAcilar from "./yonlu-acilar";
 import yuzdeKarZarar from "./yuzde-kar-zarar";
 
 const BANKS: Record<string, TopicQuiz> = {
@@ -108,6 +122,9 @@ const BANKS: Record<string, TopicQuiz> = {
   [carpanlaraAyirmaTyt.slug]: carpanlaraAyirmaTyt,
   [cemberAnalitikAyt.slug]: cemberAnalitikAyt,
   [cemberDaireTyt.slug]: cemberDaireTyt,
+  [cemberdeAcilar.slug]: cemberdeAcilar,
+  [cemberinAnalitikIncelenmesi.slug]: cemberinAnalitikIncelenmesi,
+  [dairedeAlanCevre.slug]: dairedeAlanCevre,
   [dikUcgenPisagor.slug]: dikUcgenPisagor,
   [diziKavrami.slug]: diziKavrami,
   [diziKavramiAyt.slug]: diziKavramiAyt,
@@ -118,11 +135,16 @@ const BANKS: Record<string, TopicQuiz> = {
   [fonksiyonCesitleriAyt.slug]: fonksiyonCesitleriAyt,
   [fonksiyonGrafikTyt.slug]: fonksiyonGrafikTyt,
   [fonksiyonKavramiTyt.slug]: fonksiyonKavramiTyt,
+  [fonksiyonlarinDonusumleri.slug]: fonksiyonlarinDonusumleri,
   [geometrikDizi.slug]: geometrikDizi,
   [geometrikDiziAyt.slug]: geometrikDiziAyt,
   [hareketProblemleri.slug]: hareketProblemleri,
+  [ikiNoktaArasiUzaklik.slug]: ikiNoktaArasiUzaklik,
   [ikinciDereceDenklemAyt.slug]: ikinciDereceDenklemAyt,
+  [ikinciDereceDenklemSistemleri11.slug]: ikinciDereceDenklemSistemleri11,
   [ikinciDereceEsitsizlikAyt.slug]: ikinciDereceEsitsizlikAyt,
+  [ikinciDereceEsitsizlikler11.slug]: ikinciDereceEsitsizlikler11,
+  [ikinciDereceFonksiyonlar.slug]: ikinciDereceFonksiyonlar,
   [ikinciTurevKonkavlik.slug]: ikinciTurevKonkavlik,
   [integralDegiskenDegistirme.slug]: integralDegiskenDegistirme,
   [integralKavrami.slug]: integralKavrami,
@@ -149,16 +171,21 @@ const BANKS: Record<string, TopicQuiz> = {
   [permutasyonKombinasyonTyt.slug]: permutasyonKombinasyonTyt,
   [polinomKavramiAyt.slug]: polinomKavramiAyt,
   [polinomlardaBolmeAyt.slug]: polinomlardaBolmeAyt,
+  [prizmaPiramit11.slug]: prizmaPiramit11,
   [rasyonelSayilar.slug]: rasyonelSayilar,
   [sayiBasamaklari.slug]: sayiBasamaklari,
   [sayiProblemleri.slug]: sayiProblemleri,
+  [silindirKoniKure11.slug]: silindirKoniKure11,
   [sonsuzdaLimitAsimptot.slug]: sonsuzdaLimitAsimptot,
   [sureklilik.slug]: sureklilik,
   [tegetNormal.slug]: tegetNormal,
   [tekCiftSayilar.slug]: tekCiftSayilar,
   [temelKavramlar.slug]: temelKavramlar,
   [tersTrigonometrik12.slug]: tersTrigonometrik12,
+  [toplamFarkFormulleri.slug]: toplamFarkFormulleri,
+  [trigonometrikDenklemler.slug]: trigonometrikDenklemler,
   [trigonometrikDenklemlerAyt.slug]: trigonometrikDenklemlerAyt,
+  [trigonometrikFonksiyonlar.slug]: trigonometrikFonksiyonlar,
   [trigonometrikFonksiyonlarAyt.slug]: trigonometrikFonksiyonlarAyt,
   [trigonometrikOzdesliklerAyt.slug]: trigonometrikOzdesliklerAyt,
   [turevAlmaKurallari.slug]: turevAlmaKurallari,
@@ -178,6 +205,7 @@ const BANKS: Record<string, TopicQuiz> = {
   [veriIstatistikTyt.slug]: veriIstatistikTyt,
   [yarimAciDonusum12.slug]: yarimAciDonusum12,
   [yasIsciProblemleri.slug]: yasIsciProblemleri,
+  [yonluAcilar.slug]: yonluAcilar,
   [yuzdeKarZarar.slug]: yuzdeKarZarar,
 };
 
