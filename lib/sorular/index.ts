@@ -3,10 +3,13 @@ import acilarDogrular from "./acilar-dogrular";
 import analitikGeometriTyt from "./analitik-geometri-tyt";
 import ardisikSayilar from "./ardisik-sayilar";
 import ardisikTurev from "./ardisik-turev";
+import aritmetikDizi from "./aritmetik-dizi";
 import aritmetikDiziAyt from "./aritmetik-dizi-ayt";
 import artanAzalanEkstremum from "./artan-azalan-ekstremum";
 import asalCarpanlarBolenSayisi from "./asal-carpanlar-bolen-sayisi";
+import belirliIntegral from "./belirli-integral";
 import belirliIntegralTeoremi from "./belirli-integral-teoremi";
+import belirsizIntegral from "./belirsiz-integral";
 import bileskeTersFonksiyonAyt from "./bileske-ters-fonksiyon-ayt";
 import birimCemberAyt from "./birim-cember-ayt";
 import birinciDereceDenklemTyt from "./birinci-derece-denklem-tyt";
@@ -15,6 +18,7 @@ import carpanlaraAyirmaTyt from "./carpanlara-ayirma-tyt";
 import cemberAnalitikAyt from "./cember-analitik-ayt";
 import cemberDaireTyt from "./cember-daire-tyt";
 import dikUcgenPisagor from "./dik-ucgen-pisagor";
+import diziKavrami from "./dizi-kavrami";
 import diziKavramiAyt from "./dizi-kavrami-ayt";
 import dogruAnalitikAyt from "./dogru-analitik-ayt";
 import dortgenlerTyt from "./dortgenler-tyt";
@@ -23,6 +27,7 @@ import ebobEkok10 from "./ebob-ekok-10";
 import fonksiyonCesitleriAyt from "./fonksiyon-cesitleri-ayt";
 import fonksiyonGrafikTyt from "./fonksiyon-grafik-tyt";
 import fonksiyonKavramiTyt from "./fonksiyon-kavrami-tyt";
+import geometrikDizi from "./geometrik-dizi";
 import geometrikDiziAyt from "./geometrik-dizi-ayt";
 import hareketProblemleri from "./hareket-problemleri";
 import ikinciDereceDenklemAyt from "./ikinci-derece-denklem-ayt";
@@ -37,7 +42,9 @@ import kokluIfadeler from "./koklu-ifadeler";
 import kumelerTyt from "./kumeler-tyt";
 import limitHesaplama from "./limit-hesaplama";
 import limitKavrami from "./limit-kavrami";
+import logaritmaFonksiyonu from "./logaritma-fonksiyonu";
 import logaritmaKavramiAyt from "./logaritma-kavrami-ayt";
+import logaritmaliDenklemler from "./logaritmali-denklemler";
 import logaritmikDenklemAyt from "./logaritmik-denklem-ayt";
 import mantikTyt from "./mantik-tyt";
 import mutlakDegerTyt from "./mutlak-deger-tyt";
@@ -59,20 +66,26 @@ import sureklilik from "./sureklilik";
 import tegetNormal from "./teget-normal";
 import tekCiftSayilar from "./tek-cift-sayilar";
 import temelKavramlar from "./temel-kavramlar";
+import tersTrigonometrik12 from "./ters-trigonometrik-12";
 import trigonometrikDenklemlerAyt from "./trigonometrik-denklemler-ayt";
 import trigonometrikFonksiyonlarAyt from "./trigonometrik-fonksiyonlar-ayt";
 import trigonometrikOzdesliklerAyt from "./trigonometrik-ozdeslikler-ayt";
 import turevAlmaKurallari from "./turev-alma-kurallari";
+import turevAlmaKurallari12 from "./turev-alma-kurallari-12";
 import turevFormulOzeti from "./turev-formul-ozeti";
+import turevdeUygulamalar from "./turevde-uygulamalar";
 import turevinTanimi from "./turevin-tanimi";
+import turevinTanimi12 from "./turevin-tanimi-12";
 import ucgendeBenzerlikAlan from "./ucgende-benzerlik-alan";
 import ucgendeTrigonometriAyt from "./ucgende-trigonometri-ayt";
 import ucgenlerTyt from "./ucgenler-tyt";
 import usluDenklemler from "./uslu-denklemler";
 import usluIfadeler from "./uslu-ifadeler";
 import usluIfadeler9 from "./uslu-ifadeler-9";
+import ustelFonksiyon from "./ustel-fonksiyon";
 import ustelFonksiyonAyt from "./ustel-fonksiyon-ayt";
 import veriIstatistikTyt from "./veri-istatistik-tyt";
+import yarimAciDonusum12 from "./yarim-aci-donusum-12";
 import yasIsciProblemleri from "./yas-isci-problemleri";
 import yuzdeKarZarar from "./yuzde-kar-zarar";
 
@@ -81,10 +94,13 @@ const BANKS: Record<string, TopicQuiz> = {
   [analitikGeometriTyt.slug]: analitikGeometriTyt,
   [ardisikSayilar.slug]: ardisikSayilar,
   [ardisikTurev.slug]: ardisikTurev,
+  [aritmetikDizi.slug]: aritmetikDizi,
   [aritmetikDiziAyt.slug]: aritmetikDiziAyt,
   [artanAzalanEkstremum.slug]: artanAzalanEkstremum,
   [asalCarpanlarBolenSayisi.slug]: asalCarpanlarBolenSayisi,
+  [belirliIntegral.slug]: belirliIntegral,
   [belirliIntegralTeoremi.slug]: belirliIntegralTeoremi,
+  [belirsizIntegral.slug]: belirsizIntegral,
   [bileskeTersFonksiyonAyt.slug]: bileskeTersFonksiyonAyt,
   [birimCemberAyt.slug]: birimCemberAyt,
   [birinciDereceDenklemTyt.slug]: birinciDereceDenklemTyt,
@@ -93,6 +109,7 @@ const BANKS: Record<string, TopicQuiz> = {
   [cemberAnalitikAyt.slug]: cemberAnalitikAyt,
   [cemberDaireTyt.slug]: cemberDaireTyt,
   [dikUcgenPisagor.slug]: dikUcgenPisagor,
+  [diziKavrami.slug]: diziKavrami,
   [diziKavramiAyt.slug]: diziKavramiAyt,
   [dogruAnalitikAyt.slug]: dogruAnalitikAyt,
   [dortgenlerTyt.slug]: dortgenlerTyt,
@@ -101,6 +118,7 @@ const BANKS: Record<string, TopicQuiz> = {
   [fonksiyonCesitleriAyt.slug]: fonksiyonCesitleriAyt,
   [fonksiyonGrafikTyt.slug]: fonksiyonGrafikTyt,
   [fonksiyonKavramiTyt.slug]: fonksiyonKavramiTyt,
+  [geometrikDizi.slug]: geometrikDizi,
   [geometrikDiziAyt.slug]: geometrikDiziAyt,
   [hareketProblemleri.slug]: hareketProblemleri,
   [ikinciDereceDenklemAyt.slug]: ikinciDereceDenklemAyt,
@@ -115,7 +133,9 @@ const BANKS: Record<string, TopicQuiz> = {
   [kumelerTyt.slug]: kumelerTyt,
   [limitHesaplama.slug]: limitHesaplama,
   [limitKavrami.slug]: limitKavrami,
+  [logaritmaFonksiyonu.slug]: logaritmaFonksiyonu,
   [logaritmaKavramiAyt.slug]: logaritmaKavramiAyt,
+  [logaritmaliDenklemler.slug]: logaritmaliDenklemler,
   [logaritmikDenklemAyt.slug]: logaritmikDenklemAyt,
   [mantikTyt.slug]: mantikTyt,
   [mutlakDegerTyt.slug]: mutlakDegerTyt,
@@ -137,20 +157,26 @@ const BANKS: Record<string, TopicQuiz> = {
   [tegetNormal.slug]: tegetNormal,
   [tekCiftSayilar.slug]: tekCiftSayilar,
   [temelKavramlar.slug]: temelKavramlar,
+  [tersTrigonometrik12.slug]: tersTrigonometrik12,
   [trigonometrikDenklemlerAyt.slug]: trigonometrikDenklemlerAyt,
   [trigonometrikFonksiyonlarAyt.slug]: trigonometrikFonksiyonlarAyt,
   [trigonometrikOzdesliklerAyt.slug]: trigonometrikOzdesliklerAyt,
   [turevAlmaKurallari.slug]: turevAlmaKurallari,
+  [turevAlmaKurallari12.slug]: turevAlmaKurallari12,
   [turevFormulOzeti.slug]: turevFormulOzeti,
+  [turevdeUygulamalar.slug]: turevdeUygulamalar,
   [turevinTanimi.slug]: turevinTanimi,
+  [turevinTanimi12.slug]: turevinTanimi12,
   [ucgendeBenzerlikAlan.slug]: ucgendeBenzerlikAlan,
   [ucgendeTrigonometriAyt.slug]: ucgendeTrigonometriAyt,
   [ucgenlerTyt.slug]: ucgenlerTyt,
   [usluDenklemler.slug]: usluDenklemler,
   [usluIfadeler.slug]: usluIfadeler,
   [usluIfadeler9.slug]: usluIfadeler9,
+  [ustelFonksiyon.slug]: ustelFonksiyon,
   [ustelFonksiyonAyt.slug]: ustelFonksiyonAyt,
   [veriIstatistikTyt.slug]: veriIstatistikTyt,
+  [yarimAciDonusum12.slug]: yarimAciDonusum12,
   [yasIsciProblemleri.slug]: yasIsciProblemleri,
   [yuzdeKarZarar.slug]: yuzdeKarZarar,
 };
