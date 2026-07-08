@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getTopic, getUnit, trackMeta, breadcrumb } from "@/lib/curriculum";
 import { getQuizCount } from "@/lib/sorular";
+import { weightChip, isMaarifLeaving, MAARIF_NOTE } from "@/lib/examInsights";
 import JsonLd from "@/components/JsonLd";
 import { breadcrumbLd, learningResourceLd } from "@/lib/jsonLd";
 
@@ -20,10 +21,14 @@ export default function Konu({ slug }: { slug: string }) {
   // chip is truthful on topics whose interactive quiz has shipped.
   const questionCount = getQuizCount(slug) ?? topic.questionCount;
 
+  const examChip = weightChip(topic.unit);
+  const maarifLeaving = isMaarifLeaving(slug, topic.unit);
+
   const chips = [
     topic.minutes ? `~${topic.minutes} dk okuma` : null,
     topic.difficulty ? `Zorluk: ${topic.difficulty}` : null,
     questionCount ? `${questionCount} çözümlü soru` : null,
+    examChip,
   ].filter(Boolean) as string[];
 
   return (
@@ -57,6 +62,7 @@ export default function Konu({ slug }: { slug: string }) {
             ))}
           </div>
         )}
+        {maarifLeaving && <p className="maarif-note">{MAARIF_NOTE}</p>}
       </header>
     </>
   );
