@@ -19,6 +19,7 @@ import diziKavramiAyt from "./dizi-kavrami-ayt";
 import dogruAnalitikAyt from "./dogru-analitik-ayt";
 import dortgenlerTyt from "./dortgenler-tyt";
 import ebobEkok from "./ebob-ekok";
+import ebobEkok10 from "./ebob-ekok-10";
 import fonksiyonCesitleriAyt from "./fonksiyon-cesitleri-ayt";
 import fonksiyonGrafikTyt from "./fonksiyon-grafik-tyt";
 import fonksiyonKavramiTyt from "./fonksiyon-kavrami-tyt";
@@ -69,6 +70,7 @@ import ucgendeTrigonometriAyt from "./ucgende-trigonometri-ayt";
 import ucgenlerTyt from "./ucgenler-tyt";
 import usluDenklemler from "./uslu-denklemler";
 import usluIfadeler from "./uslu-ifadeler";
+import usluIfadeler9 from "./uslu-ifadeler-9";
 import ustelFonksiyonAyt from "./ustel-fonksiyon-ayt";
 import veriIstatistikTyt from "./veri-istatistik-tyt";
 import yasIsciProblemleri from "./yas-isci-problemleri";
@@ -95,6 +97,7 @@ const BANKS: Record<string, TopicQuiz> = {
   [dogruAnalitikAyt.slug]: dogruAnalitikAyt,
   [dortgenlerTyt.slug]: dortgenlerTyt,
   [ebobEkok.slug]: ebobEkok,
+  [ebobEkok10.slug]: ebobEkok10,
   [fonksiyonCesitleriAyt.slug]: fonksiyonCesitleriAyt,
   [fonksiyonGrafikTyt.slug]: fonksiyonGrafikTyt,
   [fonksiyonKavramiTyt.slug]: fonksiyonKavramiTyt,
@@ -145,6 +148,7 @@ const BANKS: Record<string, TopicQuiz> = {
   [ucgenlerTyt.slug]: ucgenlerTyt,
   [usluDenklemler.slug]: usluDenklemler,
   [usluIfadeler.slug]: usluIfadeler,
+  [usluIfadeler9.slug]: usluIfadeler9,
   [ustelFonksiyonAyt.slug]: ustelFonksiyonAyt,
   [veriIstatistikTyt.slug]: veriIstatistikTyt,
   [yasIsciProblemleri.slug]: yasIsciProblemleri,
