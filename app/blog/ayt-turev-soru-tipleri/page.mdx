@@ -1,0 +1,109 @@
+import { postMetadata } from "@/lib/seo";
+
+export const metadata = postMetadata("ayt-turev-soru-tipleri");
+
+<BlogPost slug="ayt-turev-soru-tipleri" />
+
+<p className="lead">Türev, AYT matematiğin en çok soru getiren konularından biri: çıkmış sınavlarda yılda ortalama 6 soruyla "çok yüksek" ağırlıkta. Maarif Modeli integrali programdan çıkarıp merkeze türevi koyunca önemi daha da arttı. Peki bu 6 soru tam olarak nereden geliyor? Dört ana soru tipini, elle çözülmüş örneklerle tek tek açıyoruz.</p>
+
+Türev, öğrencilerin çoğu için "kuralları ezberledim ama soruda ne isteneceğini bilmiyorum" konusu. Oysa AYT'de türev soruları rastgele değil — neredeyse her yıl aynı **dört kalıptan** gelir. Kalıpları tanıdığın an, konu bir formül yığını olmaktan çıkıp tanıdık bir haritaya dönüşür.
+
+## Neden türev? Çünkü sınav orada yoğunlaşıyor
+
+Çözümebak'ın gerçek ÖSYM sınavlarına (2018–2025) dayanan sınav analizine göre türev kümesi, 40 soruluk AYT matematik testine **yılda ortalama ~6 soru** getiriyor ve "çok yüksek ağırlık" grubunda. Bu, tek bir konuya bakılınca sıra dışı bir yoğunluk.
+
+Üstelik bir de [Maarif Modeli](/blog/maarif-modeli-matematik-mufredati) etkisi var: yeni programda integral çıkarıldı, limit ve türev ise "Değişimin Matematiği" temasında genişletildi. İntegral YKS'de yaklaşık 2027 sınavına kadar geçerli olsa da yön belli — **türev, geleceğin sınavında daha da baskın.** Kısacası bir AYT öğrencisinin en yüksek getiriyle çalışabileceği konuların başında türev geliyor.
+
+## Önce zemin: türev aslında neyi ölçer?
+
+Bütün soru tiplerinin altında tek bir fikir yatar: **türev, anlık değişim hızıdır** — bir grafikte o noktadaki teğetin eğimidir. Bunu bir kez içselleştirirsen dört soru tipi de aynı fikrin farklı kılıkları olduğunu görürsün.
+
+Küçük bir örnekle sabitleyelim. Bir cismin konumu $s(t) = t^2 - 4t + 5$ (metre, saniye) ise, hızı konumun türevidir:
+
+$$v(t) = s'(t) = 2t - 4$$
+
+Cisim ne zaman durur? Hız sıfır olduğunda: $2t - 4 = 0 \Rightarrow t = 2$ s. İşte "anlık hız" ve "durma anı" soruları bu kadar — türevi al, gerekirse sıfıra eşitle.
+
+## Soru tipi 1 — Türev alma: zincir kuralı
+
+En temel tip: sana bir fonksiyon verilir, belirli bir noktadaki türevini isterler. Kilit beceri **zincir kuralıdır** — bileşik fonksiyonda "dıştan içe" türev.
+
+> $f(x) = (x^2 - 3x)^4$ ise $f'(2)$ kaçtır?
+
+Dıştaki kuvvetin türevini al, içeridekiyle çarp:
+
+$$f'(x) = 4\,(x^2 - 3x)^3 \cdot (2x - 3)$$
+
+Şimdi $x = 2$ koyalım: içeride $x^2 - 3x = 4 - 6 = -2$, ayrıca $2x - 3 = 1$.
+
+$$f'(2) = 4 \cdot (-2)^3 \cdot 1 = 4 \cdot (-8) = -32$$
+
+Cevap **$-32$**. Buradaki tek tuzak, içerideki $(2x-3)$ ile çarpmayı unutmak — zincir kuralının en sık atlanan halkası tam da bu.
+
+## Soru tipi 2 — Teğet ve normal doğrusu
+
+Türevin geometrik anlamının doğrudan sınandığı tip: bir eğriye belirli bir noktadan çizilen teğetin denklemi. Mantık iki adım: **eğim = o noktadaki türev**, sonra noktadan geçen doğruyu yaz.
+
+> $f(x) = x^2 - 4x + 3$ eğrisinin $x = 3$ apsisli noktasındaki teğet doğrusunun denklemi nedir?
+
+Önce nokta: $f(3) = 9 - 12 + 3 = 0$, yani teğet $(3, 0)$ noktasından geçiyor. Eğim için türev:
+
+$$f'(x) = 2x - 4 \quad\Rightarrow\quad f'(3) = 2$$
+
+Noktadan geçen, eğimi 2 olan doğru:
+
+$$y - 0 = 2\,(x - 3) \quad\Rightarrow\quad y = 2x - 6$$
+
+Not: **Normal doğrusu** sorulursa, teğete dik olan doğruyu istiyorlardır; eğimi $-\tfrac{1}{2}$ alırsın (dik doğruların eğimleri çarpımı $-1$).
+
+## Soru tipi 3 — Artan-azalan ve ekstremum
+
+Türevin en verimli soru ailesi: bir fonksiyonun nerede arttığı-azaldığı ve yerel maksimum/minimum noktaları. Kural net — **türev pozitifse fonksiyon artar, negatifse azalır; işaret değiştirdiği yerde ekstremum vardır.**
+
+> $f(x) = x^3 - 3x$ fonksiyonunun yerel maksimum ve yerel minimum değerlerini bulunuz.
+
+Türevi alıp sıfıra eşitleyerek kritik noktaları bulalım:
+
+$$f'(x) = 3x^2 - 3 = 3(x - 1)(x + 1) = 0 \Rightarrow x = -1 \ \text{veya}\ x = 1$$
+
+Türevin işaretine bakalım: $x < -1$ için $f' > 0$ (artan), $-1 < x < 1$ için $f' < 0$ (azalan), $x > 1$ için $f' > 0$ (artan). Demek ki:
+
+- $x = -1$'de artandan azalana geçiş → **yerel maksimum**: $f(-1) = -1 + 3 = 2$
+- $x = 1$'de azalandan artana geçiş → **yerel minimum**: $f(1) = 1 - 3 = -2$
+
+İşaret tablosunu çizmeyi alışkanlık edin; ekstremumun "maksimum mu minimum mu" olduğunu ezberle değil, türevin işaret değişimiyle söylersin.
+
+## Soru tipi 4 — Optimizasyon (gerçek hayat max-min)
+
+AYT'nin gözde tipi: "en fazla alan", "en az malzeme", "maksimum hacim". Korkutucu görünür ama iskeleti hep aynıdır: **bir büyüklüğü tek değişkenle yaz, türevini sıfıra eşitle.**
+
+> Çevresi 40 m olan dikdörtgen bir bahçenin alanı en fazla kaç m² olabilir?
+
+Kenarlara $x$ ve $y$ diyelim. Çevre koşulu: $2(x + y) = 40 \Rightarrow y = 20 - x$. Alanı tek değişkenle yazalım:
+
+$$A(x) = x\,(20 - x) = 20x - x^2$$
+
+Maksimum için türevi sıfırlayalım:
+
+$$A'(x) = 20 - 2x = 0 \Rightarrow x = 10 \Rightarrow y = 10$$
+
+$A''(x) = -2 < 0$ olduğundan bu bir maksimumdur. Alan: $A = 10 \cdot 10 = 100$ m². (Sabit çevrede alanı en büyük yapan dikdörtgenin **kare** çıkması, bu tip soruların klasik güzel sonucudur.)
+
+## Sık düşülen 4 tuzak
+
+- **Zincir kuralında iç türevi unutmak.** $(f(g(x)))' = f'(g(x)) \cdot g'(x)$ — o son çarpanı atlamak en pahalı hata.
+- **Kritik noktayı cevap sanmak.** Soru "yerel maksimum *değeri*" diyorsa $x$'i değil, $f(x)$'i vermelisin.
+- **İşaret tablosu çizmeden ekstremum türü söylemek.** Her kritik nokta ekstremum değildir; işaret değişmiyorsa (ör. $x=0$'da $f'=x^2$) orada ekstremum yoktur.
+- **Optimizasyonda kısıtı kullanmayı unutmak.** İki değişken kalırsa türev alınmaz; önce çevre/hacim koşuluyla tek değişkene indir.
+
+## Bunu nasıl çalışacaksın?
+
+Türevde ilerlemenin yolu, kuralı bir kez öğrenip her tipten bol soru çözmek. Şu sırayı öner: önce türev alma kurallarını otomatiğe bağla, sonra sırasıyla teğet → ekstremum → optimizasyon sorularına geç. Her tipten hatanı **çözüme bakmadan** yakalamaya çalış.
+
+Konuyu adım adım çalışmak için [AYT Matematik](/ayt) sayfasındaki türev ünitesini takip edebilir, [türevin tanımı](/konular/turevin-tanimi) ve [artan-azalan ve ekstremum](/konular/artan-azalan-ekstremum) sayfalarındaki çözümlü sorularla kendini anında test edebilirsin.
+
+Unutma: türev tek bir fikirdir — anlık değişim. Dört soru tipi de o fikrin kılık değiştirmiş hâli. Fikri tut, kalıpları tanı, 6 soruyu cebine koy.
+
+Takıldığın her soruda — çözüme bak. 🧡
+
+<BlogPostFooter slug="ayt-turev-soru-tipleri" />
