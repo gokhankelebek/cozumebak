@@ -67,11 +67,14 @@ export default function DurumClient({
   topics,
   tracks,
   aytUnitWeight,
+  tytUnitWeight,
 }: {
   topics: DurumTopic[];
   tracks: DurumTrack[];
   /** Unit slug → avg AYT questions/year; drives the "next topic" suggestion. */
   aytUnitWeight: Record<string, number>;
+  /** Unit slug → avg TYT questions/year; same role for TYT-active students. */
+  tytUnitWeight: Record<string, number>;
 }) {
   // Render nothing meaningful until after mount — localStorage is client-only.
   const [attempts, setAttempts] = useState<Map<string, Attempt> | null>(null);
@@ -131,18 +134,25 @@ export default function DurumClient({
   const strong = meaningful.filter((a) => (accuracy(a) as number) >= 0.8).length;
 
   // ── Next-topic suggestion ───────────────────────────────────────────────────
-  // Highest ÖSYM-weight AYT unit that still has an untouched topic; falls back
-  // to the first untouched topic of the student's most-active track.
+  // Highest ÖSYM-weight unit (AYT first, then TYT) that still has an untouched
+  // topic; falls back to the first untouched topic of the most-active track.
   const untouched = topics.filter((t) => !attempts.has(t.slug));
   let next: DurumTopic | undefined;
   let nextReason = "";
-  const aytUntouched = untouched
-    .filter((t) => t.track === "ayt" && aytUnitWeight[t.unitSlug] !== undefined)
-    .sort((a, b) => aytUnitWeight[b.unitSlug] - aytUnitWeight[a.unitSlug]);
-  const activeAyt = done.some((a) => bySlug.get(a.slug)!.track === "ayt");
-  if (activeAyt && aytUntouched.length > 0) {
+  const byWeight = (track: string, w: Record<string, number>) =>
+    untouched
+      .filter((t) => t.track === track && w[t.unitSlug] !== undefined)
+      .sort((a, b) => w[b.unitSlug] - w[a.unitSlug]);
+  const active = (track: string) =>
+    done.some((a) => bySlug.get(a.slug)!.track === track);
+  const aytUntouched = byWeight("ayt", aytUnitWeight);
+  const tytUntouched = byWeight("tyt", tytUnitWeight);
+  if (active("ayt") && aytUntouched.length > 0) {
     next = aytUntouched[0];
     nextReason = `AYT'de en yüksek soru getiren ünitelerden: ${next.unitTitle} (~${aytUnitWeight[next.unitSlug]} soru/yıl).`;
+  } else if (active("tyt") && tytUntouched.length > 0) {
+    next = tytUntouched[0];
+    nextReason = `TYT'de en yüksek soru getiren ünitelerden: ${next.unitTitle} (~${tytUnitWeight[next.unitSlug]} soru/yıl).`;
   } else {
     const counts = new Map<string, number>();
     for (const a of done) {

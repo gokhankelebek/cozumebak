@@ -19,6 +19,13 @@ export interface UnitInsight {
   cluster: string;
 }
 
+export interface TytUnitInsight {
+  /** Average questions this cluster brings to the 40-question TYT math test. */
+  tytAvg: number;
+  weight: ExamWeight;
+  cluster: string;
+}
+
 // Keyed by Unit.slug (see lib/curriculum.ts). AYT units only for now.
 export const AYT_UNIT_INSIGHT: Record<string, UnitInsight> = {
   "analitik-ayt": { aytAvg: 9, weight: "çok-yüksek", cluster: "İleri Geometri" },
@@ -33,6 +40,26 @@ export const AYT_UNIT_INSIGHT: Record<string, UnitInsight> = {
   "logaritma-ayt": { aytAvg: 2.5, weight: "orta", cluster: "Üstel ve Logaritma" },
 };
 
+// TYT weights, aggregated from released-exam topic tables (2018–2025) published
+// by matematikonline.com and ozeldersalani.com — the two sources agree year by
+// year (Problemler: 11,12,13,11,13,10,11,11 → ~11.5/yıl; köklü 1/yıl sabit vb).
+// The 30 "matematik" questions are covered per-topic by those tables; the 10
+// geometry questions are reported coarser (üçgenler 3-5, dörtgenler 2-3, katı
+// cisimler ~2, analitik ~1), so the two geometry clusters carry approximate
+// splits (~7 plane / ~2.5 analitik+katı). Cluster sums ≈ 39-40 ✓.
+export const TYT_UNIT_INSIGHT: Record<string, TytUnitInsight> = {
+  "oran-problem-tyt": { tytAvg: 12, weight: "çok-yüksek", cluster: "Problemler" },
+  "geometri-tyt": { tytAvg: 7, weight: "çok-yüksek", cluster: "Temel Geometri" },
+  "temel-kavramlar-tyt": { tytAvg: 4, weight: "yüksek", cluster: "Temel Kavramlar ve Basamak" },
+  "cebir-tyt": { tytAvg: 3, weight: "yüksek", cluster: "Denklem, Eşitsizlik, Mutlak Değer" },
+  "sayma-olasilik-tyt": { tytAvg: 3, weight: "yüksek", cluster: "Sayma, Olasılık ve Veri" },
+  "sayilar-tyt": { tytAvg: 2.5, weight: "orta", cluster: "Bölünebilme ve Rasyonel Sayılar" },
+  "analitik-kati-tyt": { tytAvg: 2.5, weight: "orta", cluster: "Analitik ve Katı Cisimler" },
+  "uslu-koklu-tyt": { tytAvg: 2, weight: "orta", cluster: "Üslü ve Köklü İfadeler" },
+  "kumeler-mantik-tyt": { tytAvg: 2, weight: "orta", cluster: "Kümeler ve Mantık" },
+  "fonksiyonlar-tyt": { tytAvg: 1, weight: "düşük", cluster: "Fonksiyonlar" },
+};
+
 const WEIGHT_LABEL: Record<ExamWeight, string> = {
   "çok-yüksek": "Sınavda çok yüksek ağırlık",
   "yüksek": "Sınavda yüksek ağırlık",
@@ -45,11 +72,14 @@ export function insightForUnit(unitSlug: string): UnitInsight | null {
   return AYT_UNIT_INSIGHT[unitSlug] ?? null;
 }
 
-/** Short chip text, e.g. "AYT · Türev: ~6 soru/yıl (çok yüksek ağırlık)". */
+/** Short chip text, e.g. "AYT'de ~6 soru/yıl · Sınavda çok yüksek ağırlık".
+ *  Unit slugs are unique site-wide, so one lookup covers both exams. */
 export function weightChip(unitSlug: string): string | null {
-  const i = AYT_UNIT_INSIGHT[unitSlug];
-  if (!i) return null;
-  return `AYT'de ~${i.aytAvg} soru/yıl · ${WEIGHT_LABEL[i.weight]}`;
+  const ayt = AYT_UNIT_INSIGHT[unitSlug];
+  if (ayt) return `AYT'de ~${ayt.aytAvg} soru/yıl · ${WEIGHT_LABEL[ayt.weight]}`;
+  const tyt = TYT_UNIT_INSIGHT[unitSlug];
+  if (tyt) return `TYT'de ~${tyt.tytAvg} soru/yıl · ${WEIGHT_LABEL[tyt.weight]}`;
+  return null;
 }
 
 // ── Maarif Modeli transition ────────────────────────────────────────────────
