@@ -43,6 +43,24 @@ export const TAGS: Tag[] = [
 
 export const POSTS: BlogPost[] = [
   {
+    slug: "ayt-turev-soru-tipleri",
+    title: "AYT'de Türev Nereden Çıkar? 4 Soru Tipi ve Çözüm Stratejisi",
+    description:
+      "Türev, AYT matematikte yılda ortalama 6 soruyla en yüksek ağırlıklı kümelerden biri ve Maarif Modeli integrali çıkarınca merkeze iyice oturuyor. Teğet, ekstremum, optimizasyon ve anlık değişim sorularını elle çözülmüş örneklerle tek tek ele alıyoruz.",
+    date: "2026-07-11",
+    tags: ["yks", "calisma-teknikleri", "egitim"],
+    readingMinutes: 8,
+    relatedTopics: [
+      "turevin-tanimi",
+      "turev-alma-kurallari",
+      "teget-normal",
+      "artan-azalan-ekstremum",
+      "optimizasyon",
+      "limit-kavrami",
+    ],
+    status: "published",
+  },
+  {
     slug: "tyt-matematik-problemleri-denklem-kurma",
     title: "TYT Problemlerinin Sırrı: Cümleyi Denkleme Çevirmek",
     description:
