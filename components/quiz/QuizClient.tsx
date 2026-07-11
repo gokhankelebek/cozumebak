@@ -45,17 +45,24 @@ export default function QuizClient({
 
   // Persist after commit; functional updates in pick() keep rapid taps on
   // different questions from clobbering each other (stale-closure hazard).
+  // score/total feed the /durumum progress page; entries saved before those
+  // fields existed self-heal on the next visit (restore → this effect re-runs).
   useEffect(() => {
     if (!picks.some((p) => p !== null)) return; // don't persist a blank sheet
     try {
       localStorage.setItem(
         `cb-quiz:${slug}`,
-        JSON.stringify({ picks, t: Date.now() }),
+        JSON.stringify({
+          picks,
+          score: picks.filter((p, i) => p === questions[i].correct).length,
+          total: questions.length,
+          t: Date.now(),
+        }),
       );
     } catch {
       /* private mode etc. — quiz still works, just not persisted */
     }
-  }, [slug, picks]);
+  }, [slug, picks, questions]);
 
   const pick = (qi: number, oi: number) => {
     setPicks((prev) =>
