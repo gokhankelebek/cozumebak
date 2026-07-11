@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { TRACKS, publishedTopics, getUnit } from "@/lib/curriculum";
-import { AYT_UNIT_INSIGHT } from "@/lib/examInsights";
+import { AYT_UNIT_INSIGHT, TYT_UNIT_INSIGHT } from "@/lib/examInsights";
 import DurumClient, {
   type DurumTopic,
   type DurumTrack,
@@ -36,6 +36,9 @@ export default function DurumumPage() {
   const aytUnitWeight = Object.fromEntries(
     Object.entries(AYT_UNIT_INSIGHT).map(([slug, i]) => [slug, i.aytAvg]),
   );
+  const tytUnitWeight = Object.fromEntries(
+    Object.entries(TYT_UNIT_INSIGHT).map(([slug, i]) => [slug, i.tytAvg]),
+  );
 
   return (
     <main className="container">
@@ -47,7 +50,12 @@ export default function DurumumPage() {
           istiyor, sıradaki en değerli adımın ne.
         </p>
       </section>
-      <DurumClient topics={topics} tracks={tracks} aytUnitWeight={aytUnitWeight} />
+      <DurumClient
+        topics={topics}
+        tracks={tracks}
+        aytUnitWeight={aytUnitWeight}
+        tytUnitWeight={tytUnitWeight}
+      />
     </main>
   );
 }
