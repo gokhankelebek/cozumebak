@@ -19,6 +19,13 @@ import tegetNormal from "./teget-normal";
 import artanAzalanEkstremum from "./artan-azalan-ekstremum";
 import ikinciTurevKonkavlik from "./ikinci-turev-konkavlik";
 import optimizasyon from "./optimizasyon";
+import birimCemberAyt from "./birim-cember-ayt";
+import trigonometrikFonksiyonlarAyt from "./trigonometrik-fonksiyonlar-ayt";
+import trigonometrikOzdesliklerAyt from "./trigonometrik-ozdeslikler-ayt";
+import trigonometrikDenklemlerAyt from "./trigonometrik-denklemler-ayt";
+import ucgendeTrigonometriAyt from "./ucgende-trigonometri-ayt";
+import dogruAnalitikAyt from "./dogru-analitik-ayt";
+import cemberAnalitikAyt from "./cember-analitik-ayt";
 
 // Curriculum order (limit → türev), matching the AYT ünite flow.
 const KB: Record<string, TopicSoruTipleri> = {
@@ -34,6 +41,13 @@ const KB: Record<string, TopicSoruTipleri> = {
   [artanAzalanEkstremum.slug]: artanAzalanEkstremum,
   [ikinciTurevKonkavlik.slug]: ikinciTurevKonkavlik,
   [optimizasyon.slug]: optimizasyon,
+  [birimCemberAyt.slug]: birimCemberAyt,
+  [trigonometrikFonksiyonlarAyt.slug]: trigonometrikFonksiyonlarAyt,
+  [trigonometrikOzdesliklerAyt.slug]: trigonometrikOzdesliklerAyt,
+  [trigonometrikDenklemlerAyt.slug]: trigonometrikDenklemlerAyt,
+  [ucgendeTrigonometriAyt.slug]: ucgendeTrigonometriAyt,
+  [dogruAnalitikAyt.slug]: dogruAnalitikAyt,
+  [cemberAnalitikAyt.slug]: cemberAnalitikAyt,
 };
 
 export function getSoruTipleri(slug: string): TopicSoruTipleri | undefined {
