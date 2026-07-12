@@ -26,6 +26,14 @@ import trigonometrikDenklemlerAyt from "./trigonometrik-denklemler-ayt";
 import ucgendeTrigonometriAyt from "./ucgende-trigonometri-ayt";
 import dogruAnalitikAyt from "./dogru-analitik-ayt";
 import cemberAnalitikAyt from "./cember-analitik-ayt";
+import fonksiyonCesitleriAyt from "./fonksiyon-cesitleri-ayt";
+import bileskeTersFonksiyonAyt from "./bileske-ters-fonksiyon-ayt";
+import ozelFonksiyonlarAyt from "./ozel-fonksiyonlar-ayt";
+import polinomKavramiAyt from "./polinom-kavrami-ayt";
+import polinomlardaBolmeAyt from "./polinomlarda-bolme-ayt";
+import ikinciDereceDenklemAyt from "./ikinci-derece-denklem-ayt";
+import ikinciDereceEsitsizlikAyt from "./ikinci-derece-esitsizlik-ayt";
+import parabolAyt from "./parabol-ayt";
 
 // Curriculum order (limit → türev), matching the AYT ünite flow.
 const KB: Record<string, TopicSoruTipleri> = {
@@ -48,6 +56,14 @@ const KB: Record<string, TopicSoruTipleri> = {
   [ucgendeTrigonometriAyt.slug]: ucgendeTrigonometriAyt,
   [dogruAnalitikAyt.slug]: dogruAnalitikAyt,
   [cemberAnalitikAyt.slug]: cemberAnalitikAyt,
+  [fonksiyonCesitleriAyt.slug]: fonksiyonCesitleriAyt,
+  [bileskeTersFonksiyonAyt.slug]: bileskeTersFonksiyonAyt,
+  [ozelFonksiyonlarAyt.slug]: ozelFonksiyonlarAyt,
+  [polinomKavramiAyt.slug]: polinomKavramiAyt,
+  [polinomlardaBolmeAyt.slug]: polinomlardaBolmeAyt,
+  [ikinciDereceDenklemAyt.slug]: ikinciDereceDenklemAyt,
+  [ikinciDereceEsitsizlikAyt.slug]: ikinciDereceEsitsizlikAyt,
+  [parabolAyt.slug]: parabolAyt,
 };
 
 export function getSoruTipleri(slug: string): TopicSoruTipleri | undefined {
