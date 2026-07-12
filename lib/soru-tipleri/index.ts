@@ -34,6 +34,12 @@ import polinomlardaBolmeAyt from "./polinomlarda-bolme-ayt";
 import ikinciDereceDenklemAyt from "./ikinci-derece-denklem-ayt";
 import ikinciDereceEsitsizlikAyt from "./ikinci-derece-esitsizlik-ayt";
 import parabolAyt from "./parabol-ayt";
+import oranOrantiTyt from "./oran-oranti-tyt";
+import sayiProblemleri from "./sayi-problemleri";
+import yasIsciProblemleri from "./yas-isci-problemleri";
+import yuzdeKarZarar from "./yuzde-kar-zarar";
+import karisimProblemleri from "./karisim-problemleri";
+import hareketProblemleri from "./hareket-problemleri";
 
 // Curriculum order (limit → türev), matching the AYT ünite flow.
 const KB: Record<string, TopicSoruTipleri> = {
@@ -64,6 +70,12 @@ const KB: Record<string, TopicSoruTipleri> = {
   [ikinciDereceDenklemAyt.slug]: ikinciDereceDenklemAyt,
   [ikinciDereceEsitsizlikAyt.slug]: ikinciDereceEsitsizlikAyt,
   [parabolAyt.slug]: parabolAyt,
+  [oranOrantiTyt.slug]: oranOrantiTyt,
+  [sayiProblemleri.slug]: sayiProblemleri,
+  [yasIsciProblemleri.slug]: yasIsciProblemleri,
+  [yuzdeKarZarar.slug]: yuzdeKarZarar,
+  [karisimProblemleri.slug]: karisimProblemleri,
+  [hareketProblemleri.slug]: hareketProblemleri,
 };
 
 export function getSoruTipleri(slug: string): TopicSoruTipleri | undefined {
