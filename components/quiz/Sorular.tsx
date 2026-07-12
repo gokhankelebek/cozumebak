@@ -1,6 +1,7 @@
 import { getQuiz } from "@/lib/sorular";
 import MathText from "./MathText";
 import QuizClient from "./QuizClient";
+import Tuzaklar from "./Tuzaklar";
 
 // Manifest-driven quiz section. The author writes one line in the topic MDX:
 //   <Sorular slug="turevin-tanimi" />
@@ -40,6 +41,7 @@ export default function Sorular({ slug }: { slug: string }) {
       <p className="quiz-sub">
         Her soruyu önce kendin dene; takıldığında <strong>Çözüme Bak</strong>.
       </p>
+      <Tuzaklar slug={slug} />
       <QuizClient slug={slug} questions={questions} />
     </section>
   );
