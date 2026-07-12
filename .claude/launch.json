@@ -3,15 +3,15 @@
   "configurations": [
     {
       "name": "cozumebak",
-      "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "dev"],
+      "runtimeExecutable": "zsh",
+      "runtimeArgs": ["-lc", "npm run dev"],
       "port": 3000,
       "autoPort": true
     },
     {
       "name": "cozumebak-prod",
-      "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "start"],
+      "runtimeExecutable": "zsh",
+      "runtimeArgs": ["-lc", "npm run start"],
       "port": 3000,
       "autoPort": true
     }
