@@ -7,7 +7,7 @@ import type { TopicSoruTipleri } from "./types";
 // asit) — yüzdeler asla doğrudan toplanmaz/çıkarılmaz.
 const kb: TopicSoruTipleri = {
   slug: "karisim-problemleri",
-  durum: "taslak", // → "verified" after teacher sign-off
+  durum: "verified", // → "verified" after teacher sign-off
   tipler: [
     {
       id: "karisim-01-madde-miktari",

@@ -5,7 +5,7 @@ import type { TopicSoruTipleri } from "./types";
 // celdiriciler map each classic wrong answer to the exact mistake behind it.
 const kb: TopicSoruTipleri = {
   slug: "temel-kavramlar",
-  durum: "taslak", // → "verified" after teacher sign-off
+  durum: "verified", // → "verified" after teacher sign-off
   tipler: [
     {
       id: "temel-kavramlar-01-sayi-kumeleri",

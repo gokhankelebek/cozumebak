@@ -6,7 +6,7 @@ import type { TopicSoruTipleri } from "./types";
 // neredeyse her yıl en az bir soru getirir.
 const kb: TopicSoruTipleri = {
   slug: "mutlak-deger-tyt",
-  durum: "taslak", // → "verified" after teacher sign-off
+  durum: "verified", // → "verified" after teacher sign-off
   tipler: [
     {
       id: "mutlak-deger-01-iki-dal",

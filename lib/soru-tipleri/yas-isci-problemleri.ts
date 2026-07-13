@@ -7,7 +7,7 @@ import type { TopicSoruTipleri } from "./types";
 // üçlüsü bu blokta neredeyse her yıl temsil edilir.
 const kb: TopicSoruTipleri = {
   slug: "yas-isci-problemleri",
-  durum: "taslak", // → "verified" after teacher sign-off
+  durum: "verified", // → "verified" after teacher sign-off
   tipler: [
     {
       id: "yas-isci-01-zaman-ilkesi",

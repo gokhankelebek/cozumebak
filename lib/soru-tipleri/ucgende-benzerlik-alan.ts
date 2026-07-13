@@ -7,7 +7,7 @@ import type { TopicSoruTipleri } from "./types";
 // tuzağı: çevre k ile, alan k² ile orantılıdır.
 const kb: TopicSoruTipleri = {
   slug: "ucgende-benzerlik-alan",
-  durum: "taslak", // → "verified" after teacher sign-off
+  durum: "verified", // → "verified" after teacher sign-off
   tipler: [
     {
       id: "ucgende-benzerlik-01-tales-paralel",

@@ -7,7 +7,7 @@ import type { TopicSoruTipleri } from "./types";
 // each classic wrong answer to the exact mistake that produces it.
 const kb: TopicSoruTipleri = {
   slug: "ucgenler-tyt",
-  durum: "taslak", // → "verified" after teacher sign-off
+  durum: "verified", // → "verified" after teacher sign-off
   tipler: [
     {
       id: "ucgenler-tyt-01-ic-acilar-toplami",

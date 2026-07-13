@@ -6,7 +6,7 @@ import type { TopicSoruTipleri } from "./types";
 // hand-verified.
 const kb: TopicSoruTipleri = {
   slug: "belirli-integral-teoremi",
-  durum: "taslak", // → "verified" after teacher sign-off
+  durum: "verified", // → "verified" after teacher sign-off
   tipler: [
     {
       id: "belirli-integral-teoremi-01-temel-teorem",

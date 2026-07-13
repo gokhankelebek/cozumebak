@@ -5,7 +5,7 @@ import type { TopicSoruTipleri } from "./types";
 // every örnek hand-verified.
 const kb: TopicSoruTipleri = {
   slug: "ozel-fonksiyon-turevleri",
-  durum: "taslak",
+  durum: "verified",
   tipler: [
     {
       id: "ozel-turev-01-trigonometrik",
