@@ -7,7 +7,7 @@ import type { TopicSoruTipleri } from "./types";
 // devam ediyor; site geçiş notunu zaten gösteriyor.
 const kb: TopicSoruTipleri = {
   slug: "trigonometrik-ozdeslikler-ayt",
-  durum: "taslak", // → "verified" after teacher sign-off
+  durum: "verified", // → "verified" after teacher sign-off
   tipler: [
     {
       id: "trig-ozdeslik-01-sadelestirme",

@@ -7,7 +7,7 @@ import type { TopicSoruTipleri } from "./types";
 // ÇARPAN olarak yürütmek (%k artış → 1+k/100, %k azalış → 1−k/100).
 const kb: TopicSoruTipleri = {
   slug: "yuzde-kar-zarar",
-  durum: "taslak", // → "verified" after teacher sign-off
+  durum: "verified", // → "verified" after teacher sign-off
   tipler: [
     {
       id: "yuzde-01-yuzde-carpan",

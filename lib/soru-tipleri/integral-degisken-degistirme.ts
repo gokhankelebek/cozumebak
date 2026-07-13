@@ -6,7 +6,7 @@ import type { TopicSoruTipleri } from "./types";
 // Ordered easy→hard. Every örnek is hand-verified.
 const kb: TopicSoruTipleri = {
   slug: "integral-degisken-degistirme",
-  durum: "taslak", // → "verified" after teacher sign-off
+  durum: "verified", // → "verified" after teacher sign-off
   tipler: [
     {
       id: "integral-degisken-degistirme-01-klasik-u",

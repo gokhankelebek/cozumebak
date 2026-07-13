@@ -5,7 +5,7 @@ import type { TopicSoruTipleri } from "./types";
 // classic wrong answer to the exact mistake that produces it.
 const kb: TopicSoruTipleri = {
   slug: "teget-normal",
-  durum: "taslak", // → "verified" after teacher sign-off
+  durum: "verified", // → "verified" after teacher sign-off
   tipler: [
     {
       id: "teget-normal-01-noktada-teget",

@@ -5,7 +5,7 @@ import type { TopicSoruTipleri } from "./types";
 // each classic wrong answer to the exact mistake that produces it.
 const kb: TopicSoruTipleri = {
   slug: "polinomlarda-bolme-ayt",
-  durum: "taslak", // → "verified" after teacher sign-off
+  durum: "verified", // → "verified" after teacher sign-off
   tipler: [
     {
       id: "polinomlarda-bolme-01-kalan-teoremi",

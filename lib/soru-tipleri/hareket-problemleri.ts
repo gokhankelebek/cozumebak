@@ -7,7 +7,7 @@ import type { TopicSoruTipleri } from "./types";
 // fark, bağıl, ortalama) kurulacağını sorar.
 const kb: TopicSoruTipleri = {
   slug: "hareket-problemleri",
-  durum: "taslak", // → "verified" after teacher sign-off
+  durum: "verified", // → "verified" after teacher sign-off
   tipler: [
     {
       id: "hareket-01-yol-hiz-zaman",

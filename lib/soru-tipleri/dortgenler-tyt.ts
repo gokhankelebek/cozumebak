@@ -6,7 +6,7 @@ import type { TopicSoruTipleri } from "./types";
 // şekilli sorulardır; örneklerde şekil sözel olarak tarif edilir.
 const kb: TopicSoruTipleri = {
   slug: "dortgenler-tyt",
-  durum: "taslak", // → "verified" after teacher sign-off
+  durum: "verified", // → "verified" after teacher sign-off
   tipler: [
     {
       id: "dortgenler-tyt-01-ic-acilar",
