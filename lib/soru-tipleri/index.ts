@@ -46,6 +46,31 @@ import dikUcgenPisagor from "./dik-ucgen-pisagor";
 import ucgendeBenzerlikAlan from "./ucgende-benzerlik-alan";
 import dortgenlerTyt from "./dortgenler-tyt";
 import cemberDaireTyt from "./cember-daire-tyt";
+import temelKavramlar from "./temel-kavramlar";
+import tekCiftSayilar from "./tek-cift-sayilar";
+import ardisikSayilar from "./ardisik-sayilar";
+import sayiBasamaklari from "./sayi-basamaklari";
+import bolmeBolunebilme from "./bolme-bolunebilme";
+import asalCarpanlarBolenSayisi from "./asal-carpanlar-bolen-sayisi";
+import ebobEkok from "./ebob-ekok";
+import rasyonelSayilar from "./rasyonel-sayilar";
+import usluIfadeler from "./uslu-ifadeler";
+import usluDenklemler from "./uslu-denklemler";
+import kokluIfadeler from "./koklu-ifadeler";
+import paydayiRasyonelYapma from "./paydayi-rasyonel-yapma";
+import carpanlaraAyirmaTyt from "./carpanlara-ayirma-tyt";
+import birinciDereceDenklemTyt from "./birinci-derece-denklem-tyt";
+import mutlakDegerTyt from "./mutlak-deger-tyt";
+import diziKavramiAyt from "./dizi-kavrami-ayt";
+import aritmetikDiziAyt from "./aritmetik-dizi-ayt";
+import geometrikDiziAyt from "./geometrik-dizi-ayt";
+import ustelFonksiyonAyt from "./ustel-fonksiyon-ayt";
+import logaritmaKavramiAyt from "./logaritma-kavrami-ayt";
+import logaritmikDenklemAyt from "./logaritmik-denklem-ayt";
+import integralKavrami from "./integral-kavrami";
+import integralDegiskenDegistirme from "./integral-degisken-degistirme";
+import belirliIntegralTeoremi from "./belirli-integral-teoremi";
+import integraldeAlan from "./integralde-alan";
 
 // Curriculum order (limit → türev), matching the AYT ünite flow.
 const KB: Record<string, TopicSoruTipleri> = {
@@ -88,6 +113,31 @@ const KB: Record<string, TopicSoruTipleri> = {
   [ucgendeBenzerlikAlan.slug]: ucgendeBenzerlikAlan,
   [dortgenlerTyt.slug]: dortgenlerTyt,
   [cemberDaireTyt.slug]: cemberDaireTyt,
+  [temelKavramlar.slug]: temelKavramlar,
+  [tekCiftSayilar.slug]: tekCiftSayilar,
+  [ardisikSayilar.slug]: ardisikSayilar,
+  [sayiBasamaklari.slug]: sayiBasamaklari,
+  [bolmeBolunebilme.slug]: bolmeBolunebilme,
+  [asalCarpanlarBolenSayisi.slug]: asalCarpanlarBolenSayisi,
+  [ebobEkok.slug]: ebobEkok,
+  [rasyonelSayilar.slug]: rasyonelSayilar,
+  [usluIfadeler.slug]: usluIfadeler,
+  [usluDenklemler.slug]: usluDenklemler,
+  [kokluIfadeler.slug]: kokluIfadeler,
+  [paydayiRasyonelYapma.slug]: paydayiRasyonelYapma,
+  [carpanlaraAyirmaTyt.slug]: carpanlaraAyirmaTyt,
+  [birinciDereceDenklemTyt.slug]: birinciDereceDenklemTyt,
+  [mutlakDegerTyt.slug]: mutlakDegerTyt,
+  [diziKavramiAyt.slug]: diziKavramiAyt,
+  [aritmetikDiziAyt.slug]: aritmetikDiziAyt,
+  [geometrikDiziAyt.slug]: geometrikDiziAyt,
+  [ustelFonksiyonAyt.slug]: ustelFonksiyonAyt,
+  [logaritmaKavramiAyt.slug]: logaritmaKavramiAyt,
+  [logaritmikDenklemAyt.slug]: logaritmikDenklemAyt,
+  [integralKavrami.slug]: integralKavrami,
+  [integralDegiskenDegistirme.slug]: integralDegiskenDegistirme,
+  [belirliIntegralTeoremi.slug]: belirliIntegralTeoremi,
+  [integraldeAlan.slug]: integraldeAlan,
 };
 
 export function getSoruTipleri(slug: string): TopicSoruTipleri | undefined {
