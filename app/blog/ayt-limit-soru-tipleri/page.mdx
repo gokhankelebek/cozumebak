@@ -1,0 +1,116 @@
+import { postMetadata } from "@/lib/seo";
+
+export const metadata = postMetadata("ayt-limit-soru-tipleri");
+
+<BlogPost slug="ayt-limit-soru-tipleri" />
+
+<p className="lead">Limit, AYT matematiğin en kural odaklı konusudur: türev ve süreklilik onun üstüne kurulur, soruları da birkaç sabit kalıptan çıkar. Maarif Modeli integrali çıkarıp merkeze türevi koyunca, türevin zemini olan limit iyice değer kazandı. Bu yazıda AYT'de karşına çıkan dört limit tipini elle çözülmüş örneklerle tek tek ele alıyoruz — kalıbı tanı, sorunun kendini çözmesini izle.</p>
+
+Çoğu öğrenci limitten korkar; oysa limit, AYT'nin en **cömert** konularından biridir. Türev bir yorum ister, geometri bir şekil kurmayı ister — limitse çoğu zaman tek bir soruyu sorar: *"Bu ifadeyi doğrudan yerine koyabiliyor musun, koyamıyorsan hangi belirsizlik türü var?"* Bu iki soruyu ayırt edebilen öğrenci, limit sorularının neredeyse tamamını çözer.
+
+İşin güzel yanı, [Maarif Modeli müfredatında](/blog/maarif-modeli-matematik-mufredati) integral çıkarılıp 12. sınıf "Değişimin Matematiği" teması limit ve türev üzerine kurulunca, limitin AYT'deki ağırlığı azalmadı — tersine türevin ön koşulu olarak daha da vazgeçilmez oldu. Limiti sağlam kuran öğrenci, [türev sorularına](/blog/ayt-turev-soru-tipleri) da bir adım önde girer.
+
+Şimdi dört tipe geçelim. Her tipte önce **kalıbı** tanıyacağız, sonra **refleksi** kuracağız.
+
+## Tip 1 — Doğrudan yerine koyma: en kolay puanı kaçırma
+
+İlk refleksin her zaman aynı olsun: **sayıyı yerine koy.** Fonksiyon o noktada tanımlıysa ve tıkanmıyorsa, limit doğrudan çıkar. Öğrencilerin bu tipte kaybettiği tek net, "her limitte bir hile vardır" sanıp gereksiz işleme girmekten gelir.
+
+$$\lim_{x \to 2}\left(x^2 - 3x + 5\right) = 2^2 - 3\cdot 2 + 5 = 4 - 6 + 5 = 3$$
+
+Bitti. Polinomlarda, paydası sıfırlanmayan rasyonel ifadelerde ve tanımlı trigonometrik değerlerde ilk hamlen budur. Yerine koyduğunda **anlamlı bir sayı** çıkıyorsa, cevap odur — daha fazla arama.
+
+> **Refleks:** Önce yerine koy. Belirsizlik ($\frac{0}{0}$, $\frac{\infty}{\infty}$ gibi) çıkmıyorsa, iş bitmiştir.
+
+## Tip 2 — 0/0 belirsizliği: çarpanlara ayır ya da eşleniğini al
+
+Yerine koyduğunda $\frac{0}{0}$ çıktıysa, bu bir hata değil — sorunun sana verdiği **ipucu**dur. $\frac{0}{0}$, pay ve paydanın *ortak bir çarpanı* olduğunu söyler; işin o çarpanı sadeleştirmek.
+
+**Çarpanlara ayırma ile:**
+
+$$\lim_{x \to 3}\frac{x^2 - 9}{x - 3}$$
+
+Yerine koyunca $\frac{0}{0}$. Payı çarpanlarına ayır: $x^2 - 9 = (x-3)(x+3)$.
+
+$$\lim_{x \to 3}\frac{(x-3)(x+3)}{x-3} = \lim_{x \to 3}(x+3) = 3 + 3 = 6$$
+
+Sadeleşmeden sonra artık yerine koyabiliyoruz. İçinde kök yoksa, $\frac{0}{0}$ sorularının çoğu bu tek hamleyle biter.
+
+**Eşlenik (kök) ile:** Pay veya paydada kök varsa, çarpan görünmez; onu görünür yapmak için **eşlenikle** genişletirsin.
+
+$$\lim_{x \to 0}\frac{\sqrt{x+4} - 2}{x}$$
+
+Payı ve paydayı $\left(\sqrt{x+4} + 2\right)$ ile çarp. Pay, $(\sqrt{x+4})^2 - 2^2 = (x+4) - 4 = x$ olur:
+
+$$\lim_{x \to 0}\frac{x}{x\left(\sqrt{x+4} + 2\right)} = \lim_{x \to 0}\frac{1}{\sqrt{x+4} + 2} = \frac{1}{\sqrt{4} + 2} = \frac{1}{4}$$
+
+İki alt-tip, tek mantık: **$\frac{0}{0}$ gördüğünde ortak çarpanı yok et.** Kök varsa eşlenik, yoksa çarpanlara ayırma.
+
+## Tip 3 — Sonsuzda limit: dereceye bak, katsayıyı oku
+
+$x \to \infty$ (ya da $x \to -\infty$) giden ve $\frac{\infty}{\infty}$ belirsizliği veren rasyonel ifadelerde uzun uzun işlem yapmana gerek yok. Tek bakman gereken şey **pay ve paydanın dereceleri**:
+
+- Pay derecesi **büyükse** → limit $\pm\infty$
+- Pay derecesi **küçükse** → limit $0$
+- Dereceler **eşitse** → limit, en yüksek dereceli terimlerin **baş katsayılarının oranı**
+
+$$\lim_{x \to \infty}\frac{3x^2 + 2x - 1}{5x^2 - x + 7}$$
+
+Pay ve payda ikişer dereceli, yani eşit. O halde cevap doğrudan baş katsayıların oranı:
+
+$$\lim_{x \to \infty}\frac{3x^2 + 2x - 1}{5x^2 - x + 7} = \frac{3}{5}$$
+
+Neden? Çünkü $x$ büyüdükçe $2x$, $-1$, $-x$, $7$ gibi düşük dereceli terimler $x^2$'li terimlerin yanında **ihmal edilir hale** gelir; geriye $\frac{3x^2}{5x^2} = \frac{3}{5}$ kalır. Bu üçlü kuralı ezberlediğinde, bu tip sorular bakışta çözülür.
+
+Aynı fikir, bir fonksiyonun **yatay asimptotunu** bulmanın da yoludur: $x \to \infty$ limiti bir sayıya gidiyorsa, o sayı yatay asimptottur. [Sonsuzda limit ve asimptot](/konular/sonsuzda-limit-asimptot) konusu, grafik yorumlama sorularının da anahtarıdır.
+
+> **Refleks:** $\frac{\infty}{\infty}$ gördüğünde işleme girme — dereceleri karşılaştır.
+
+## Tip 4 — Parçalı fonksiyon ve süreklilik: soldan ve sağdan bak
+
+En çok "kolay göründüğü için" kaybedilen tip budur. Parçalı (kural değiştiren) bir fonksiyonun kritik noktasında limiti sorulduğunda, tek bir tarafa bakmak yetmez: **soldan limit** ile **sağdan limit** ayrı ayrı hesaplanır.
+
+Altın kural şudur: *Bir noktada limitin var olması için, soldan ve sağdan limit birbirine eşit olmalıdır.*
+
+$$f(x) = \begin{cases} 2x + 3, & x < 1 \\ x^2 + a, & x \geq 1 \end{cases}$$
+
+Diyelim ki bu fonksiyonun $x = 1$ noktasında **sürekli** olması için $a$ kaç olmalı diye soruluyor — klasik AYT kalıbı.
+
+**Soldan limit** ($x \to 1^-$, üstteki kural): $2\cdot 1 + 3 = 5$
+
+**Sağdan limit** ($x \to 1^+$, alttaki kural): $1^2 + a = 1 + a$
+
+Süreklilik için iki taraf hem birbirine hem de $f(1)$ değerine eşit olmalı:
+
+$$1 + a = 5 \;\Longrightarrow\; a = 4$$
+
+Eğer soru "limit var mıdır" diye sorsaydı ve iki taraf farklı çıksaydı (mesela $5 \neq 6$), cevabımız net olurdu: **limit yoktur.** Fonksiyon o noktada "sıçrar". [Süreklilik](/konular/sureklilik) sorularının tamamı bu soldan–sağdan karşılaştırmasının üstüne kuruludur; refleksin oturduğunda bu tip sana puan *dağıtır*.
+
+## Dört tipi tek çatı altında topla
+
+Limit sorusunu gördüğünde kafandan geçmesi gereken karar ağacı aslında çok kısa:
+
+| Ne görüyorsun? | Ne yapıyorsun? |
+| --- | --- |
+| Sıradan ifade, tanımlı nokta | **Yerine koy** (Tip 1) |
+| $\frac{0}{0}$ belirsizliği | Çarpanlara ayır / eşlenik al (Tip 2) |
+| $x \to \infty$ ve $\frac{\infty}{\infty}$ | Dereceleri karşılaştır (Tip 3) |
+| Parçalı fonksiyon / kritik nokta | Soldan = sağdan mı? (Tip 4) |
+
+Dikkat et: dördünün de ilk adımı **aynı** — yerine koymak. Belirsizlik çıkarsa, hangi belirsizlik olduğuna göre yolunu seçersin. Yani gerçekte tek bir refleks var; gerisi o refleksin dallanması.
+
+## Nasıl çalışmalı?
+
+Limiti "okuyarak" öğrenemezsin; bu konu tümüyle **refleks** konusudur. Önerim şu üç adımlık ritim:
+
+1. **Her tipten 10'ar soru.** Tipleri karıştırma; önce Tip 1'den 10 soru çöz ki yerine koyma refleksi otursun, sonra Tip 2'ye geç. Karışık çözmek, kalıbı henüz tanımayan beyni yorar.
+2. **Karışık 20 soru.** Dört tip oturduktan sonra karıştır — çünkü sınavda soru sana hangi tip olduğunu söylemez; onu *sen* teşhis edeceksin.
+3. **Yanlışları konu değil, tip olarak etiketle.** "Bu soruyu $\frac{0}{0}$'da eşlenik almayı unuttuğum için kaçırdım" demek, "limitte kötüyüm" demekten yüz kat işe yarar.
+
+Konu anlatımlarını ve çözümlü setleri [AYT Matematik](/ayt) sayfasındaki ünite sırasından takip edebilirsin; [limit kavramı](/konular/limit-kavrami) ve [limit hesaplama](/konular/limit-hesaplama) sayfalarındaki interaktif sorular tam da bu dört tipi tekrarlaman için var.
+
+Limit, matematikte "değişimi" ilk kez kavradığın yerdir — türevin de, sürekliliğin de kapısı buradan açılır. Kalıpları bir kez oturttuğunda, bu konu senin için soru değil, **hazır net** olur.
+
+Takıldığın her soruda — çözüme bak. 🧡
+
+<BlogPostFooter slug="ayt-limit-soru-tipleri" />
