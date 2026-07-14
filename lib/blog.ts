@@ -43,6 +43,24 @@ export const TAGS: Tag[] = [
 
 export const POSTS: BlogPost[] = [
   {
+    slug: "ayt-limit-soru-tipleri",
+    title: "AYT'de Limit Soruları: 4 Soru Tipi ve Garanti Net Stratejisi",
+    description:
+      "Limit, AYT matematiğin en kural odaklı ve en cömert konularından biri; Maarif Modeli integrali çıkarıp merkeze türevi koyunca zemini olan limit iyice değerlendi. Yerine koyma, 0/0 belirsizliği, sonsuzda limit ve parçalı fonksiyon–süreklilik tiplerini elle çözülmüş örneklerle tek tek ele alıyoruz.",
+    date: "2026-07-13",
+    tags: ["yks", "calisma-teknikleri", "egitim"],
+    readingMinutes: 8,
+    relatedTopics: [
+      "limit-kavrami",
+      "limit-hesaplama",
+      "sonsuzda-limit-asimptot",
+      "sureklilik",
+      "turevin-tanimi",
+      "limit-ayt",
+    ],
+    status: "published",
+  },
+  {
     slug: "ayt-turev-soru-tipleri",
     title: "AYT'de Türev Nereden Çıkar? 4 Soru Tipi ve Çözüm Stratejisi",
     description:
