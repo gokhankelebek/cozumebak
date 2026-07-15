@@ -1,9 +1,31 @@
 // ─────────────────────────────────────────────────────────────────────────────
-// YKS exam intelligence — grounded in REAL released ÖSYM exams (2018–2025), not
-// assumptions. This is what makes the site coach like a veteran: it knows how
+// YKS exam intelligence — what makes the site coach like a veteran: it knows how
 // heavily each topic actually appears, and which content the Maarif Modeli is
-// phasing out. Sources: rehberpanda (AYT çıkmış trend analizi), unikazan,
-// pervinkaplan, tymm.meb.gov.tr. See memory/yks-exam-system.md.
+// phasing out.
+//
+// AYT weights below are MEASURED, not sourced: every question of all 7 YKS-era
+// AYT Matematik papers (2018–2025, 280 questions) was catalogued directly from
+// ÖSYM's own PDFs (dokuman.osym.gov.tr/pdfdokuman/<yıl>/YKS/TSK/).
+//
+// 2026-07-15 correction — the previous values came from third-party trend blogs
+// and overstated calculus badly (türev 6 vs real ~3.7; limit 4 vs real exactly 2
+// every single year). Cause: that model had no cluster for Sayılar/Kümeler/
+// Mantık/Sayma (~8 soru/yıl of the real paper), yet was normalised to sum to 40 —
+// so the missing mass was smeared onto the clusters it did model, and calculus
+// absorbed most of it. Those topics are still unmodelled here (no AYT unit owns
+// them), which is why these values now sum to ~31.5, not 40. That is correct.
+//
+// Per-year counts behind each figure (2020 and 2023 excluded — both verified to
+// contain ZERO limit/türev/integral after crisis-year scope narrowing; 2022/24/25
+// carry a full calculus block, so it is not a trend):
+//   İleri Geometri 8,9,10,10,10,13 · Türev 4,4,4,4,3,3 · İntegral 4,4,4,4,4,3
+//   Limit+Süreklilik 2,2,2,2,2,2 (the most stable number on the paper)
+//   Trigonometri 4,2,5,4,4,4 · Diziler 1,1,1,1,1,1
+// See memory/real-ayt-archetype-laws.md for the full catalogue and design laws.
+//
+// NOTE: the TYT weights further down are still third-party-sourced and have NOT
+// been verified against the real TYT papers the way these have. Same method would
+// settle them.
 //
 // Weights are at the topic-CLUSTER level (that's how ÖSYM frequency is reported);
 // per-lesson we surface the cluster's tier, not a fake per-lesson integer.
@@ -28,16 +50,16 @@ export interface TytUnitInsight {
 
 // Keyed by Unit.slug (see lib/curriculum.ts). AYT units only for now.
 export const AYT_UNIT_INSIGHT: Record<string, UnitInsight> = {
-  "analitik-ayt": { aytAvg: 9, weight: "çok-yüksek", cluster: "İleri Geometri" },
-  "turev-ayt": { aytAvg: 6, weight: "çok-yüksek", cluster: "Türev" },
-  "integral-ayt": { aytAvg: 5.5, weight: "çok-yüksek", cluster: "İntegral" },
-  "limit-ayt": { aytAvg: 4, weight: "yüksek", cluster: "Limit ve Süreklilik" },
-  "trigonometri-ayt": { aytAvg: 3.5, weight: "yüksek", cluster: "Trigonometri" },
-  "fonksiyonlar-ayt": { aytAvg: 2, weight: "orta", cluster: "İleri Cebir" },
-  "polinomlar-ayt": { aytAvg: 2, weight: "orta", cluster: "İleri Cebir" },
-  "ikinci-derece-ayt": { aytAvg: 2, weight: "orta", cluster: "İleri Cebir" },
-  "diziler-ayt": { aytAvg: 2.5, weight: "orta", cluster: "Diziler" },
-  "logaritma-ayt": { aytAvg: 2.5, weight: "orta", cluster: "Üstel ve Logaritma" },
+  "analitik-ayt": { aytAvg: 10, weight: "çok-yüksek", cluster: "İleri Geometri" },
+  "turev-ayt": { aytAvg: 4, weight: "yüksek", cluster: "Türev" },
+  "integral-ayt": { aytAvg: 4, weight: "yüksek", cluster: "İntegral" },
+  "limit-ayt": { aytAvg: 2, weight: "orta", cluster: "Limit ve Süreklilik" },
+  "trigonometri-ayt": { aytAvg: 4, weight: "yüksek", cluster: "Trigonometri" },
+  "fonksiyonlar-ayt": { aytAvg: 1.5, weight: "orta", cluster: "İleri Cebir" },
+  "polinomlar-ayt": { aytAvg: 1.5, weight: "orta", cluster: "İleri Cebir" },
+  "ikinci-derece-ayt": { aytAvg: 1.5, weight: "orta", cluster: "İleri Cebir" },
+  "diziler-ayt": { aytAvg: 1, weight: "düşük", cluster: "Diziler" },
+  "logaritma-ayt": { aytAvg: 2, weight: "orta", cluster: "Üstel ve Logaritma" },
 };
 
 // TYT weights, aggregated from released-exam topic tables (2018–2025) published
