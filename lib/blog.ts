@@ -43,6 +43,24 @@ export const TAGS: Tag[] = [
 
 export const POSTS: BlogPost[] = [
   {
+    slug: "osym-nasil-soru-kurar",
+    title: "ÖSYM Soruyu Nasıl Kurar? 280 Gerçek AYT Sorusunu Tek Tek İnceledik",
+    description:
+      "Herkes hangi konudan kaç soru çıktığını konuşuyor; kimse ÖSYM'nin soruyu nasıl kurduğunu konuşmuyor. 2018–2025 arasındaki yedi YKS'nin AYT matematik testini — 280 sorunun tamamını — tek tek inceleyip sınavın kendi tasarım mantığını çıkardık: nesneyi değil gölgesini vermek, kavramları kaynaştırmak, çöküş hamlesi, çözdüğünü sormamak ve kısıt cümlesi.",
+    date: "2026-07-15",
+    tags: ["yks", "calisma-teknikleri", "egitim"],
+    readingMinutes: 9,
+    relatedTopics: [
+      "turevin-tanimi",
+      "limit-kavrami",
+      "sureklilik",
+      "polinomlarda-bolme-ayt",
+      "trigonometrik-ozdeslikler-ayt",
+      "artan-azalan-ekstremum",
+    ],
+    status: "published",
+  },
+  {
     slug: "ayt-limit-soru-tipleri",
     title: "AYT'de Limit Soruları: 4 Soru Tipi ve Garanti Net Stratejisi",
     description:
@@ -64,7 +82,7 @@ export const POSTS: BlogPost[] = [
     slug: "ayt-turev-soru-tipleri",
     title: "AYT'de Türev Nereden Çıkar? 4 Soru Tipi ve Çözüm Stratejisi",
     description:
-      "Türev, AYT matematikte yılda ortalama 6 soruyla en yüksek ağırlıklı kümelerden biri ve Maarif Modeli integrali çıkarınca merkeze iyice oturuyor. Teğet, ekstremum, optimizasyon ve anlık değişim sorularını elle çözülmüş örneklerle tek tek ele alıyoruz.",
+      "Türev, AYT matematikte yılda ortalama ~4 soruyla yüksek ağırlıklı kümelerden biri ve Maarif Modeli integrali çıkarınca merkeze iyice oturuyor. Teğet, ekstremum, optimizasyon ve anlık değişim sorularını elle çözülmüş örneklerle tek tek ele alıyoruz.",
     date: "2026-07-11",
     tags: ["yks", "calisma-teknikleri", "egitim"],
     readingMinutes: 8,
