@@ -46,7 +46,7 @@ export const POSTS: BlogPost[] = [
     slug: "osym-nasil-soru-kurar",
     title: "ÖSYM Soruyu Nasıl Kurar? 280 Gerçek AYT Sorusunu Tek Tek İnceledik",
     description:
-      "Herkes hangi konudan kaç soru çıktığını konuşuyor; kimse ÖSYM'nin soruyu nasıl kurduğunu konuşmuyor. 2018–2025 arasındaki yedi YKS'nin AYT matematik testini — 280 sorunun tamamını — tek tek inceleyip sınavın kendi tasarım mantığını çıkardık: nesneyi değil gölgesini vermek, kavramları kaynaştırmak, çöküş hamlesi, çözdüğünü sormamak ve kısıt cümlesi.",
+      "Herkes hangi konudan kaç soru çıktığını konuşuyor; kimse ÖSYM'nin soruyu nasıl kurduğunu konuşmuyor. 2018–2025 arasındaki yedi YKS'nin AYT matematik testini — 280 sorunun tamamını — tek tek inceleyip sınavın kendi tasarım mantığını çıkardık: aradığını doğrudan değil izini vermek, kavramları kaynaştırmak, zorluğu işlemde değil saklamada aramak, çözdüğünü sormamak ve kısıt cümlesi.",
     date: "2026-07-15",
     tags: ["yks", "calisma-teknikleri", "egitim"],
     readingMinutes: 9,
