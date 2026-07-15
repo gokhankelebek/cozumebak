@@ -1,0 +1,129 @@
+import { postMetadata } from "@/lib/seo";
+
+export const metadata = postMetadata("osym-nasil-soru-kurar");
+
+<BlogPost slug="osym-nasil-soru-kurar" />
+
+<p className="lead">Her kaynak sana "hangi konudan kaç soru çıkar" der. Neredeyse hiç kimse "ÖSYM bu soruyu nasıl kuruyor" demez. Biz 2018–2025 arasındaki yedi YKS'nin AYT matematik testini — 280 sorunun tamamını — tek tek okuduk ve sınavın kendi tasarım mantığını çıkardık. Ortaya beş yasa çıktı. Bunları bilen öğrenci soruya bakışını değiştirir.</p>
+
+Bir konuyu bilmekle, o konudan gelen **soruyu** bilmek aynı şey değildir. Türevi ezbere bilen ama AYT'de türev sorusunu yapamayan binlerce öğrenci var. Sebep bilgi eksiği değil: ÖSYM'nin soruyu **kurma biçimini** tanımamak.
+
+Bu yüzden konu dağılımına bakmayı bıraktık ve sorulara baktık. Yedi sınav, 280 soru; her birinin hangi kavramları kaynaştırdığını, hangi içgörüyü istediğini ve hangi tuzağı kurduğunu tek tek kaydettik. Aşağıdakiler o kayıttan çıkan, sayılarla desteklenen beş yasadır.
+
+## 1. Nesneyi vermez, gölgesini verir
+
+Sınavın en belirgin imzası bu. ÖSYM aradığın şeyi neredeyse hiç doğrudan vermez; onun **izini** verir, sen geri kurarsın.
+
+- $f$ yerine $f'$'nin **grafiğini** verir
+- Sayıların kendisi yerine **EBOB'unu** verir
+- $f$ ve $g$ yerine $f+g$ ile $f\cdot g$ grafiklerini verir
+- Eğri yerine ona çizilen **teğeti** verir
+- $K$ ile $L$ kümesi yerine $K \cup L$'yi verir
+
+Her sınavda soruların kabaca yarısı bu kalıpta. Ve buradan çok önemli bir sonuç çıkıyor:
+
+> **ÖSYM bir soruyu zorlaştırmak istediğinde sayıları büyütmez — nesneyi bir katman geriye iter.**
+
+Bunu bir kez gördüğünde soruya bakışın değişir. "Bana ne verilmiş?" diye sorma. **"Bana verilenin arkasında ne saklanıyor?"** diye sor.
+
+Kendi soru bankamızdan bir örnek:
+
+<Ornek>
+$P(x)$ polinomunun $(x-2)^2$ ile bölümünden kalan $3x-5$'tir. $R(x)=\big(P(x)\big)^3 + x\cdot P(x)$ olduğuna göre $R'(2)$ kaçtır?
+</Ornek>
+
+Dikkat et: $P(x)$ sana **hiç verilmedi**. Verilen şey onun gölgesi — bir kalan. Ama o gölge, ihtiyacın olan iki bilgiyi de taşıyor: $P(2)=1$ ve $P'(2)=3$.
+
+## 2. Tek kavram sormaz: kavramları kaynaştırır
+
+İncelediğimiz 280 sorunun **ortalama %87'si** en az iki farklı kavramı birbirine bağlıyor. Yıl yıl: %92,5 · %97,5 · %82,5 · %95 · %85 · %77,5 · %85 · %82,5. Yani kabaca **her 10 sorudan 9'u** tek konuluk değil.
+
+Dahası: bu soruların önemli bir kısmı ikiyle de kalmıyor, **üç ve daha fazla** kavramı kaynaştırıyor.
+
+Buradaki asıl ders şu: 2020 (pandemi) ve 2023 (deprem) yıllarında ÖSYM müfredatın önemli bir bölümünü kapsam dışı bıraktı — o iki sınavda limit, türev ve integralden **tek bir soru bile** çıkmadı. Peki sınav kolaylaştı mı? Hayır. Kaynaşma oranı **%82,5'te sabit kaldı**. ÖSYM konuyu çıkardı, ayırt ediciliği kaynaştırmayla korudu.
+
+> **Sonuç:** Kaynaştırma ÖSYM'nin zor konularda başvurduğu bir süs değil, soruyu kurma biçiminin ta kendisi. Tek konu çalışıp tek konu sorusu bekleyen öğrenci hazırlıksız girer.
+
+<Ornek>
+$f(x)=|x-1|\cdot\left(x^2+ax+b\right)$ fonksiyonu $x=1$ noktasında türevlenebilirdir ve $f(0)=3$'tür. Buna göre $f'(2)$ kaçtır?
+</Ornek>
+
+Tek bir soruda: mutlak değerin türevlenebilirliği (tek yanlı türevler), çarpım kuralı ve fonksiyon değerinden katsayı belirleme. Üçünden biri eksikse soru çözülmez.
+
+## 3. Her zor soruda bir "çöküş hamlesi" saklıdır
+
+Bu, incelediğimiz her yıl karşımıza çıktı. Zor bir ÖSYM sorusunun içinde **tek bir fark ediş** vardır; onu görürsen soru iki satırda biter, göremezsen kaba kuvvetle çözülür ama **süre yetmez**.
+
+Sınav seni bilgiden değil, **zamandan** eler. Kaba yol her zaman vardır — 3 saatte 160 soruya sığmaz, o kadar.
+
+<Ornek>
+$x\in\left(0,\dfrac{\pi}{4}\right)$ olmak üzere $f(x)=\dfrac{\sin 3x}{\sin x}+\dfrac{\cos 3x}{\cos x}$ fonksiyonu veriliyor. $f'(x)=-4$ olduğuna göre $f(x)$ kaçtır?
+</Ornek>
+
+Bu soruya olduğu gibi saldırırsan bölüm kuralıyla boğulursun. Çöküş hamlesi şu: üç kat açı formülleriyle ifade **tek satırda** $4\cos 2x$'e iner. Ondan sonrası çocuk oyuncağı.
+
+> **Refleks:** Bir soru "çok işlem" istiyor gibi görünüyorsa, dur. Muhtemelen görmediğin bir sadeleşme var. ÖSYM sana işçilik yaptırmaz.
+
+## 4. Çözdüğün şeyi sormaz
+
+Sorunun sonuna dikkat et. ÖSYM çoğu zaman $a$'yı sormaz; **$a+b+c$**'yi, **$a\cdot b$**'yi, "**alabileceği değerlerin toplamı**"nı, bir **sıralamayı** ya da "**en küçük tam sayı değeri**"ni sorar. Sınavların yaklaşık üçte birinde bu kalıp var, gevşek biçimleriyle birlikte neredeyse yarısında.
+
+Bu bir üslup tercihi değil, iki işi birden yapıyor:
+
+**Birincisi: şıktan geri gitmeyi öldürür.** Tek bir $a$ sorulsaydı şıkları tek tek deneyip tutturabilirdin. $a+b+c$ sorulduğunda bu yol kapanır.
+
+**İkincisi — ve asıl önemlisi — bir sinyaldir.** ÖSYM "toplamı" ya da "çarpımı" soruyorsa, çoğu zaman **birden fazla geçerli dal** vardır. Yani soru sana gizliden şunu söylüyor: *"tek bir cevap bulup durma, hepsini bul."*
+
+Bir sürprizle de karşılaştık: bazı sorularda bilinmeyenler **tek tek bulunamıyor**; yalnızca istenen o toplam ya da fark bulunabiliyor. Bilinmeyenlerin peşine düşen öğrenci duvara toslar — soruyu okuyan öğrenci bitirir.
+
+> **Refleks:** Soruyu çözmeye başlamadan **son cümleyi** oku. Ne istendiğini bilmeden başlarsan, bulduğun doğru sayı yanlış cevap olabilir.
+
+## 5. O küçük kısıt cümlesi, sorunun kendisidir
+
+"Ardışık olmayan", "birbirinden farklı", "asal", "tam sayı", "tam olarak iki farklı gerçel kök", "hiçbir zaman tam ortada değil"...
+
+Bunlar süs değil. Çoğu soruda **bütün zorluk o kısa yan cümlede** saklı. Kısıtı atlayan öğrenci cebirsel olarak kusursuz bir çözüm yapar ve **yanlış şıkkı** işaretler — çünkü çeldiriciler tam olarak oraya konumlanmıştır.
+
+Bu, sınavın en acımasız tarafı: çeldiriciler rastgele sayılar değil, **doğru ama eksik** cebirin sonuçlarıdır. Sen hata yapmazsın; sadece bir cümleyi okumazsın.
+
+> **Refleks:** Sorudaki her sıfatın altını çiz. "Farklı", "asal", "tam sayı", "ardışık olmayan" — bunların her biri çözüm kümesini buduyor. Biri bile atlanırsa cevap değişir.
+
+## Bir de şunu bulduk: kendi tablomuz yanlışmış
+
+Bu incelemenin bize öğrettiği ilk şey, kendi hatamız oldu.
+
+Sitemizde her konunun yanında "AYT'de ~kaç soru/yıl" rozeti var. O sayılar, sektörün geri kalanı gibi, üçüncü taraf trend analizlerinden geliyordu. Gerçek kâğıtları sayınca tablo tutmadı:
+
+| Konu | Eskiden diyorduk | **Gerçek** |
+|---|---|---|
+| Türev | 6 | **~4** |
+| İntegral | 5,5 | **~4** |
+| Limit ve Süreklilik | 4 | **2** |
+| Trigonometri | 3,5 | **~4** |
+| İleri Geometri | 9 | **~10** |
+
+Limit, kullanılabilir **altı yılın altısında da tam olarak 2 soru** — sınavdaki en kararlı sayı. Biz 4 diyorduk.
+
+Hatanın sebebi ilginç: o modelde Sayılar, Kümeler, Mantık ve Sayma için hiç küme yoktu — oysa gerçek sınavda bunlar yılda ~8 soru. Model 40'a tamamlanınca, eksik olan o 8 soruluk kütle var olan kümelerin üstüne dağıldı ve en çok analiz bloğu şişti.
+
+Düzelttik. Şimdi rozetlerin arkasında yıl yıl gerçek sayımlar var. **Türeve 6 soruluk yatırım yapman gerektiğini söylüyorduk; gerçek 4.** Bunu söylemek hoş değil ama doğrusu bu, ve senin zamanın bizim haklı çıkmamızdan daha önemli.
+
+## Peki bunu nasıl kullanacaksın?
+
+Bu beş yasa sana yeni bir formül vermiyor. Daha değerli bir şey veriyor: **soruya bakma biçimi.**
+
+Bir AYT sorusunun karşısına oturduğunda sırayla şunu yap:
+
+1. **Son cümleyi oku.** Ne isteniyor? Tek bir değer mi, bir toplam mı? Toplamsa, muhtemelen birden fazla dal var.
+2. **Sıfatların altını çiz.** "Farklı", "asal", "ardışık olmayan" — kısıt nerede?
+3. **"Bana ne verilmemiş?" diye sor.** Aradığın nesne muhtemelen verilmedi; gölgesi verildi. Gölgeden nesneye giden yol nedir?
+4. **İşlem kabardıysa dur.** Görmediğin bir sadeleşme var. Çöküş hamlesini ara.
+5. **"Bu soru hangi iki konuyu birleştiriyor?" diye sor.** Cevabın tek konu ise, muhtemelen bir şeyi kaçırıyorsun.
+
+Konu çalışmak zemindir; bunlar zeminin üstüne kurulur. [Türev](/konular/turevin-tanimi), [limit](/konular/limit-kavrami) ve [süreklilik](/konular/sureklilik) konularını sağlam kur — ama sınava girerken ÖSYM'nin bu beş alışkanlığını da cebinde taşı.
+
+Sınav seni bilmediğin için elemez. **Kalıbı tanımadığın için eler.**
+
+Takıldığın her soruda — çözüme bak. 🧡
+
+<BlogPostFooter slug="osym-nasil-soru-kurar" />
