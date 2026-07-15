@@ -67,6 +67,11 @@ import geometrikDiziAyt from "./geometrik-dizi-ayt";
 import ustelFonksiyonAyt from "./ustel-fonksiyon-ayt";
 import logaritmaKavramiAyt from "./logaritma-kavrami-ayt";
 import logaritmikDenklemAyt from "./logaritmik-denklem-ayt";
+import permutasyonKombinasyonTyt from "./permutasyon-kombinasyon-tyt";
+import olasilikTyt from "./olasilik-tyt";
+import kumelerTyt from "./kumeler-tyt";
+import mantikTyt from "./mantik-tyt";
+import katiCisimlerTyt from "./kati-cisimler-tyt";
 import integralKavrami from "./integral-kavrami";
 import integralDegiskenDegistirme from "./integral-degisken-degistirme";
 import belirliIntegralTeoremi from "./belirli-integral-teoremi";
@@ -138,6 +143,15 @@ const KB: Record<string, TopicSoruTipleri> = {
   [integralDegiskenDegistirme.slug]: integralDegiskenDegistirme,
   [belirliIntegralTeoremi.slug]: belirliIntegralTeoremi,
   [integraldeAlan.slug]: integraldeAlan,
+  // Sayma, olasılık, kümeler, mantık, katı cisimler — 2026-07-15. Bu beş konu
+  // "tyt" etiketli ama gerçek AYT kâğıtlarında da ~5,9 soru/yıl çıkıyor (280
+  // sorunun kataloğundan ölçüldü) ve KB'de hiç karşılığı yoktu. Arketipler
+  // ders kitabından değil, 48 gerçek ÖSYM sorusundan çıkarıldı.
+  [permutasyonKombinasyonTyt.slug]: permutasyonKombinasyonTyt,
+  [olasilikTyt.slug]: olasilikTyt,
+  [kumelerTyt.slug]: kumelerTyt,
+  [mantikTyt.slug]: mantikTyt,
+  [katiCisimlerTyt.slug]: katiCisimlerTyt,
 };
 
 export function getSoruTipleri(slug: string): TopicSoruTipleri | undefined {
