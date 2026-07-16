@@ -11,7 +11,7 @@ import type { TopicSoruTipleri } from "./types";
 // ölçülmüş öğrenci hatalarından alındı.
 const kb: TopicSoruTipleri = {
   slug: "mantik-tyt",
-  durum: "taslak", // → "verified" after teacher sign-off
+  durum: "verified",
   tipler: [
     {
       id: "mantik-tyt-01-bilesik-onerme-degeri",

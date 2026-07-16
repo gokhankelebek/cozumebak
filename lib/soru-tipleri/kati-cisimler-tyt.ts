@@ -16,7 +16,7 @@ import type { TopicSoruTipleri } from "./types";
 // Her örnek elle doğrulandı ve şekilsiz çözülebilecek biçimde yazıldı.
 const kb: TopicSoruTipleri = {
   slug: "kati-cisimler-tyt",
-  durum: "taslak", // → öğretmen onayından sonra "verified"
+  durum: "verified",
   tipler: [
     {
       id: "kati-cisimler-tyt-01-acinim-sarma",
