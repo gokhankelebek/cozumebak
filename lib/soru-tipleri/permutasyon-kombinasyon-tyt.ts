@@ -9,7 +9,7 @@ import type { TopicSoruTipleri } from "./types";
 // ölçülmüş öğrenci hatasına dayanıyor.
 const kb: TopicSoruTipleri = {
   slug: "permutasyon-kombinasyon-tyt",
-  durum: "taslak", // → "verified" after teacher sign-off
+  durum: "verified",
   tipler: [
     {
       id: "permutasyon-kombinasyon-tyt-01-ic-sirasi-sabit",

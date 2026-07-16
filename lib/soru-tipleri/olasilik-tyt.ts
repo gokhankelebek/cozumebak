@@ -8,7 +8,7 @@ import type { TopicSoruTipleri } from "./types";
 // Her örnek elle doğrulandı; çeldiriciler gerçek kâğıtlarda ölçülen hatalar.
 const kb: TopicSoruTipleri = {
   slug: "olasilik-tyt",
-  durum: "taslak", // → "verified" after teacher sign-off
+  durum: "verified",
   tipler: [
     {
       id: "olasilik-tyt-01-uygun-toplam-kombinasyon",

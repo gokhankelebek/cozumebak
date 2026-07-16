@@ -10,7 +10,7 @@ import type { TopicSoruTipleri } from "./types";
 // ölçülmüş öğrenci hatalarından alındı.
 const kb: TopicSoruTipleri = {
   slug: "kumeler-tyt",
-  durum: "taslak", // → "verified" after teacher sign-off
+  durum: "verified",
   tipler: [
     {
       id: "kumeler-tyt-01-birlesim-kesisim-eleman",
