@@ -1,10 +1,16 @@
 import type { Metadata } from "next";
 import { TRACKS, publishedTopics, getUnit } from "@/lib/curriculum";
 import { AYT_UNIT_INSIGHT, TYT_UNIT_INSIGHT } from "@/lib/examInsights";
+import { getPost } from "@/lib/blog";
 import DurumClient, {
   type DurumTopic,
   type DurumTrack,
+  type DurumPost,
 } from "@/components/DurumClient";
+
+// The strategy post that mirrors what this page does — plan the year by real
+// exam weight. Sourced from the blog manifest so title/desc stay single-source.
+const FEATURED_POST_SLUG = "yks-2027-matematik-hangi-konudan-baslamali";
 
 // Personal progress page — computed entirely client-side from the quiz answers
 // QuizClient stores in localStorage. Server's only job: a compact manifest of
@@ -40,6 +46,12 @@ export default function DurumumPage() {
     Object.entries(TYT_UNIT_INSIGHT).map(([slug, i]) => [slug, i.tytAvg]),
   );
 
+  const fp = getPost(FEATURED_POST_SLUG);
+  const featuredPost: DurumPost | undefined =
+    fp && fp.status === "published"
+      ? { slug: fp.slug, title: fp.title, description: fp.description }
+      : undefined;
+
   return (
     <main className="container">
       <section className="hero" style={{ paddingBottom: 24 }}>
@@ -55,6 +67,7 @@ export default function DurumumPage() {
         tracks={tracks}
         aytUnitWeight={aytUnitWeight}
         tytUnitWeight={tytUnitWeight}
+        featuredPost={featuredPost}
       />
     </main>
   );

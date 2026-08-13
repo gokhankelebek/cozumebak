@@ -25,6 +25,26 @@ export interface DurumTrack {
   total: number; // published topics in this track
 }
 
+export interface DurumPost {
+  slug: string;
+  title: string;
+  description: string;
+}
+
+// A strategy post surfaced on this page — its topic (plan the year by exam
+// weight) is exactly what the coverage/next-step logic below acts on.
+function ReadCard({ post }: { post: DurumPost }) {
+  return (
+    <aside className="durum-read">
+      <p className="durum-read-label">Bunu da oku</p>
+      <Link href={`/blog/${post.slug}`} className="durum-read-title">
+        {post.title} →
+      </Link>
+      <p className="durum-note">{post.description}</p>
+    </aside>
+  );
+}
+
 interface Attempt {
   slug: string;
   answered: number;
@@ -68,6 +88,7 @@ export default function DurumClient({
   tracks,
   aytUnitWeight,
   tytUnitWeight,
+  featuredPost,
 }: {
   topics: DurumTopic[];
   tracks: DurumTrack[];
@@ -75,6 +96,8 @@ export default function DurumClient({
   aytUnitWeight: Record<string, number>;
   /** Unit slug → avg TYT questions/year; same role for TYT-active students. */
   tytUnitWeight: Record<string, number>;
+  /** Optional strategy post to surface (from the blog manifest). */
+  featuredPost?: DurumPost;
 }) {
   // Render nothing meaningful until after mount — localStorage is client-only.
   const [attempts, setAttempts] = useState<Map<string, Attempt> | null>(null);
@@ -108,6 +131,7 @@ export default function DurumClient({
           <Link href="/ayt">AYT</Link> sayfasından bir konu seç, ya da doğrudan{" "}
           <Link href="/konular/turevin-tanimi">türevin tanımı</Link>ndan dene.
         </p>
+        {featuredPost && <ReadCard post={featuredPost} />}
       </div>
     );
   }
@@ -239,6 +263,8 @@ export default function DurumClient({
           {nextReason && <p className="durum-note">{nextReason}</p>}
         </section>
       )}
+
+      {featuredPost && <ReadCard post={featuredPost} />}
 
       <p className="durum-privacy">
         Bu sayfa yalnızca senin cihazındaki verilerle hesaplanır; hiçbir bilgi
