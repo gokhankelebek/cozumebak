@@ -43,6 +43,23 @@ export const TAGS: Tag[] = [
 
 export const POSTS: BlogPost[] = [
   {
+    slug: "yks-2027-matematik-hangi-konudan-baslamali",
+    title: "YKS 2027 Matematik: Yıla Hangi Konudan Başlamalı?",
+    description:
+      "Ağustos bitiyor, okul açılıyor ve YKS 2027'ye yaklaşık 10 ayın var. Yılın en önemli kararı 'günde kaç saat' değil, 'hangi sırayla' — çünkü sınav her konuyu eşit ağırlıkta sormuyor. 2018–2025 gerçek sınavlarından çıkardığımız AYT ve TYT konu ağırlıklarıyla yılı doğru sıraya koyuyoruz; bir de Maarif paniğine dair net cevap: 2027'de integral hâlâ sınavda.",
+    date: "2026-08-13",
+    tags: ["yks", "calisma-teknikleri", "maarif-modeli"],
+    readingMinutes: 8,
+    relatedTopics: [
+      "dogru-analitik-ayt",
+      "turevin-tanimi",
+      "belirsiz-integral",
+      "trigonometrik-fonksiyonlar",
+      "yuzde-kar-zarar",
+    ],
+    status: "published",
+  },
+  {
     slug: "osym-nasil-soru-kurar",
     title: "ÖSYM Soruyu Nasıl Kurar? 280 Gerçek AYT Sorusunu Tek Tek İnceledik",
     description:
