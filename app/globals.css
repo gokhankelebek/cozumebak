@@ -490,6 +490,12 @@ section[id]{scroll-margin-top:90px}
 .durum-next p{margin:0}
 .durum-next-link{font-family:var(--serif);font-size:1.3rem;font-weight:600;color:var(--ink)}
 .durum-next-link:hover{color:var(--coral)}
+.durum-read{background:var(--paper-2);border:1px solid var(--line);border-radius:14px;padding:18px 22px;margin-top:22px}
+.durum-empty .durum-read{margin-top:26px}
+.durum-read-label{font-family:var(--mono);font-size:.7rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--coral);margin:0 0 8px}
+.durum-read-title{display:inline-block;font-family:var(--serif);font-size:1.15rem;font-weight:600;line-height:1.3;color:var(--ink);letter-spacing:-.01em}
+.durum-read-title:hover{color:var(--coral)}
+.durum-read .durum-note{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 .durum-privacy{font-size:.82rem;color:var(--ink-faint);border-top:1px solid var(--line);padding-top:16px;margin:0}
 
 /* ── Sınavda Tuzaklar (soru-tipleri KB surface, above the quiz) ─────────────── */
