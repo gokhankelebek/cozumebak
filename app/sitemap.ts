@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { TRACKS, publishedTopics, soonTopics } from "@/lib/curriculum";
 import { publishedPosts, allTagsWithCounts } from "@/lib/blog";
+import { coveredTopics } from "@/lib/soru-tipleri";
 import { SITE_URL } from "@/lib/seo";
 
 // Manifest-derived sitemap. Published lessons get a high priority; "soon" stubs
@@ -66,6 +67,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.2,
   }));
 
+  // Soru-tipleri hub + one page per topic that has a knowledge base.
+  const soruTipleriIndex: MetadataRoute.Sitemap = [
+    {
+      url: `${SITE_URL}/soru-tipleri`,
+      lastModified: buildDate,
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
+  ];
+  const soruTipleri = coveredTopics().map((slug) => ({
+    url: `${SITE_URL}/soru-tipleri/${slug}`,
+    lastModified: buildDate,
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }));
+
   return [
     ...staticRoutes,
     ...corporate,
@@ -74,5 +91,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...blogTags,
     ...published,
     ...soon,
+    ...soruTipleriIndex,
+    ...soruTipleri,
   ];
 }

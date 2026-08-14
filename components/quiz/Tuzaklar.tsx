@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { getSoruTipleri } from "@/lib/soru-tipleri";
 
 // "Sınavda Tuzaklar" — surfaces the soru-tipleri knowledge base on lesson
@@ -10,10 +11,12 @@ export default function Tuzaklar({ slug }: { slug: string }) {
   if (!kb || kb.tipler.length === 0) return null;
 
   // High-frequency archetypes first (stable within each group), one trap per
-  // archetype, capped so the block warns rather than lectures.
-  const rows = [...kb.tipler]
+  // archetype, capped so the block warns rather than lectures. The full
+  // catalogue (every archetype + every trap + method) lives on /soru-tipleri.
+  const withTraps = [...kb.tipler]
     .sort((a, b) => Number(b.sikCikar) - Number(a.sikCikar))
-    .filter((t) => t.celdiriciler.length > 0)
+    .filter((t) => t.celdiriciler.length > 0);
+  const rows = withTraps
     .slice(0, 6)
     .map((t) => ({ id: t.id, ad: t.ad, c: t.celdiriciler[0] }));
 
@@ -34,6 +37,12 @@ export default function Tuzaklar({ slug }: { slug: string }) {
           </li>
         ))}
       </ul>
+      <p className="tuzaklar-more">
+        <Link href={`/soru-tipleri/${slug}`}>
+          Bu konunun {kb.tipler.length} soru tipinin tamamı — yöntem ve tüm
+          tuzaklar →
+        </Link>
+      </p>
     </aside>
   );
 }
