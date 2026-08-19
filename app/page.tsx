@@ -33,8 +33,8 @@ export default function Home() {
           <SearchBox variant="hero" />
         </div>
         <div className="stats reveal-up d5">
-          <div className="stat"><strong>1.200+</strong><span>konu anlatımı</span></div>
-          <div className="stat"><strong>9.000+</strong><span>çözümlü soru</span></div>
+          <div className="stat"><strong>140+</strong><span>konu anlatımı</span></div>
+          <div className="stat"><strong>2.500+</strong><span>çözümlü soru</span></div>
           <div className="stat"><strong>4</strong><span>sınıf düzeyi</span></div>
           <div className="stat"><strong>TYT + AYT</strong><span>tam kapsam</span></div>
         </div>
