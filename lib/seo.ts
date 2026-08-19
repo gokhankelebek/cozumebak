@@ -77,6 +77,46 @@ export function topicMetadata(slug: string): Metadata {
 }
 
 /**
+ * Metadata for a /soru-tipleri/<slug> page. Targets the high-intent
+ * "<konu> soru tipleri / tuzaklar" query family, which the lesson pages don't.
+ */
+export function soruTipleriMetadata(slug: string): Metadata {
+  const topic = getTopic(slug);
+  if (!topic) {
+    return { title: "Soru Tipleri", robots: { index: false, follow: true } };
+  }
+  const tm = trackMeta(topic.track);
+  const unit = getUnit(topic.unit);
+  const title = `${topic.title} — Soru Tipleri ve Tuzaklar`;
+  const description = `${topic.title} konusunda ÖSYM'nin sorduğu soru tipleri, adım adım çözüm yöntemleri ve öğrencilerin düştüğü tuzaklar. ${tm.label}${unit ? " · " + unit.title : ""}.`;
+  const url = `/soru-tipleri/${slug}`;
+  const ogImage = { url: `/api/og?slug=${slug}`, width: 1200, height: 630, alt: title };
+
+  return {
+    title,
+    description,
+    keywords: [
+      `${topic.title} soru tipleri`,
+      `${topic.title} tuzaklar`,
+      `${topic.title} çeldiriciler`,
+      tm.label,
+      unit?.title,
+    ].filter(Boolean) as string[],
+    alternates: { canonical: url },
+    openGraph: {
+      type: "article",
+      title,
+      description,
+      url,
+      siteName: SITE_NAME,
+      locale: "tr_TR",
+      images: [ogImage],
+    },
+    twitter: { card: "summary_large_image", title, description, images: [ogImage.url] },
+  };
+}
+
+/**
  * Per-post metadata, derived from the blog manifest. Author writes one line:
  *   export const metadata = postMetadata("maarif-modeli-matematik-mufredati");
  */
