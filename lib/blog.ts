@@ -43,6 +43,24 @@ export const TAGS: Tag[] = [
 
 export const POSTS: BlogPost[] = [
   {
+    slug: "11-sinif-matematik-maarif-modeli",
+    title: "11. Sınıfa Maarif Modeli ile Başlıyorsun: Matematikte Ne Değişti?",
+    description:
+      "2026-2027'de Maarif Modeli 11. sınıfa geldi: MEB'in resmî programına göre 11. sınıf matematiği artık 5 tema ve 206 ders saati — üstel-logaritma 12'den indi, çember ve katı cisimler 12'ye taşındı. Ders saatlerinin gösterdiği takvim, ne geldi-ne gitti tablosu, elle çözülmüş iki örnek ve YKS 2028'e girecek ilk kuşak için somut bir 11. sınıf planı.",
+    date: "2026-08-31",
+    tags: ["maarif-modeli", "mufredat", "meb", "yks"],
+    readingMinutes: 8,
+    relatedTopics: [
+      "trigonometrik-fonksiyonlar",
+      "yonlu-acilar",
+      "trigonometrik-denklemler",
+      "ustel-fonksiyon",
+      "logaritma-fonksiyonu",
+      "logaritmali-denklemler",
+    ],
+    status: "published",
+  },
+  {
     slug: "yks-2027-matematik-hangi-konudan-baslamali",
     title: "YKS 2027 Matematik: Yıla Hangi Konudan Başlamalı?",
     description:
