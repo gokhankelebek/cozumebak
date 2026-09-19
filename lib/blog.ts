@@ -43,6 +43,24 @@ export const TAGS: Tag[] = [
 
 export const POSTS: BlogPost[] = [
   {
+    slug: "okul-doneminde-yks-matematik-calisma-plani",
+    title: "Okul Açıldı: Hafta İçi 2 Saatle YKS Matematik Planı",
+    description:
+      "Sınava yaklaşık 39 hafta var ve bunun 35'i okul haftası. Günde 4 saatlik hayalî plan üçüncü haftada çökerken, korunabilen 2 saat 350 saat eder. Bloğun dakika dakika bölünüşü, MEB'in resmî 2026-2027 takvimine oturtulmuş dört evrelik yıl haritası, deneme ritmi ve üç satırlık yanlış defteri.",
+    date: "2026-09-19",
+    tags: ["yks", "calisma-teknikleri", "egitim"],
+    readingMinutes: 8,
+    relatedTopics: [
+      "temel-kavramlar",
+      "sayi-problemleri",
+      "fonksiyon-kavrami-tyt",
+      "limit-kavrami",
+      "turevin-tanimi",
+      "integral-kavrami",
+    ],
+    status: "published",
+  },
+  {
     slug: "11-sinif-matematik-maarif-modeli",
     title: "11. Sınıfa Maarif Modeli ile Başlıyorsun: Matematikte Ne Değişti?",
     description:
