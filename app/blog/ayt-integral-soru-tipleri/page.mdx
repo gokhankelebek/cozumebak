@@ -1,0 +1,108 @@
+import { postMetadata } from "@/lib/seo";
+
+export const metadata = postMetadata("ayt-integral-soru-tipleri");
+
+<BlogPost slug="ayt-integral-soru-tipleri" />
+
+<p className="lead">İntegral, AYT matematikte her yıl neredeyse aynı sayıda soru getiren konulardan biri: çıkmış sınavları tek tek saydığımızda yılda ~4 soru. Okulda ise 12. sınıfın son ünitesi, yani çoğu zaman bahara, sınava birkaç ay kala işleniyor. Bu yazıda integral sorularının geldiği dört ana tipi elle çözülmüş örneklerle açıyoruz. Her tipte ÖSYM'nin kurduğu tuzağı da gösteriyoruz.</p>
+
+[Türev](/blog/ayt-turev-soru-tipleri) ve [limit](/blog/ayt-limit-soru-tipleri) yazılarından sonra seriyi integralle tamamlıyoruz. İyi haber şu: integral, türevi ters çevirmekten ibaret. Türevi sağlam olan biri için bu dört soru, AYT'de en hızlı toplanan netler arasında.
+
+## Neden şimdi integral?
+
+2018–2025 arasındaki YKS'lerin AYT matematik testlerini [soru soru inceledik](/blog/osym-nasil-soru-kurar). 2020 ve 2023 sınavlarında kapsam daraltıldığı için limit, türev ve integral hiç sorulmadı. Geri kalan altı sınavda integral kümesinin soru sayısı yıl yıl **4, 4, 4, 4, 4, 3**. Kâğıttaki en istikrarlı bloklardan biri: ne hayal kırıklığı yaratıyor ne sürpriz yapıyor.
+
+İki gerçeği birlikte düşün:
+
+| | Durum |
+|---|---|
+| Sınavdaki yeri | Yılda ~4 soru, "yüksek ağırlık" grubunda |
+| Okuldaki yeri | 12. sınıfın **son** ünitesi, genelde bahar döneminde işleniyor |
+| Maarif Modeli | Yeni programda yok, ama **YKS 2027'ye girenler eski kapsamdan sorumlu** |
+
+Yani okul sırasını beklersen integrale sınava birkaç ay kala başlarsın. Maarif haberlerine bakıp atlarsan dört soruyu baştan vermiş olursun. [Yıllık planımızda](/blog/okul-doneminde-yks-matematik-calisma-plani) önerdiğimiz gibi integrali türevin hemen arkasından, kış aylarında çalışmak en rahat yol.
+
+## Soru tipi 1: Belirsiz integral ve +C'yi bulmak
+
+Temel kural, kuvvet kuralı: $\int x^n\,dx = \dfrac{x^{n+1}}{n+1} + C$ $(n \neq -1)$. Ama ÖSYM seni nadiren düz bir integral almaya çağırır. Asıl sorduğu, **integral sabiti $C$'yi bir koşuldan bulman.** Sorunun kilidi genelde bu olur.
+
+> $f'(x) = 3x^2 - 4x$ ve $f(1) = 2$ ise $f(2)$ kaçtır?
+
+Türevi verilen fonksiyonu bulmak için integral al:
+
+$$f(x) = \int (3x^2 - 4x)\,dx = x^3 - 2x^2 + C$$
+
+Koşulu kullan: $f(1) = 1 - 2 + C = 2 \Rightarrow C = 3$. Demek ki $f(x) = x^3 - 2x^2 + 3$ ve
+
+$$f(2) = 8 - 8 + 3 = 3$$
+
+**Tuzak:** $C$'yi yazmayı unutan öğrenci $f(2) = 0$ bulur. Bu yanlış cevap şıklarda büyük ihtimalle seni bekliyor olur. Aynı tip "eğrinin her noktasındaki teğet eğimi $3x^2 - 4x$" diye de sorulabilir. Soru aynıdır: teğet eğimi $= f'(x)$.
+
+## Soru tipi 2: Değişken değiştirme ve sınır tuzağı
+
+Bileşik bir ifadenin yanında iç fonksiyonun türevi hazır duruyorsa değişken değiştirmenin zamanı gelmiştir. Belirli integralde bir tuzağı var: **$u$'ya geçince sınırlar da $u$ cinsinden değişir.**
+
+> $\displaystyle\int_0^1 2x\,(x^2 + 1)^3\,dx$ kaçtır?
+
+$u = x^2 + 1$ de; o zaman $du = 2x\,dx$. İntegralin içindeki $2x\,dx$ tam olarak $du$. Sınırları çevir: $x = 0 \Rightarrow u = 1$, $x = 1 \Rightarrow u = 2$.
+
+$$\int_1^2 u^3\,du = \left[\frac{u^4}{4}\right]_1^2 = \frac{16}{4} - \frac{1}{4} = \frac{15}{4}$$
+
+**Tuzak:** $u$'ya geçip sınırları 0 ve 1 olarak bırakırsan $\tfrac{1}{4}$ bulursun. İki güvenli yol var, birini seç ve hep onu kullan: ya sınırları $u$'ya çevir, ya da sonucu $x$'e geri yazıp eski sınırları kullan.
+
+## Soru tipi 3: Belirli integral, fonksiyonu vermeden
+
+ÖSYM'nin kalkülüs sorularında sık gördüğümüz bir kalıp var: **fonksiyonun açık hâlini vermez, bilgiyi başka biçimde verir.** Bu bir integral değeri, bir grafik ya da tek bir nokta koşulu olabilir. İntegralde bunun en tipik hâli şu:
+
+> $\displaystyle\int_0^2 f(x)\,dx = 5$ ise $\displaystyle\int_0^2 \big(2f(x) + 3\big)\,dx$ kaçtır?
+
+$f$'yi bilmene gerek yok. Belirli integral toplamı parçalara ayırır ve sabit çarpanı dışarı alır:
+
+$$2\int_0^2 f(x)\,dx + \int_0^2 3\,dx = 2 \cdot 5 + 3 \cdot 2 = 16$$
+
+**Tuzak:** $\int_0^2 3\,dx$'i $3$ sanmak ($6$ olmalı). Sabitin integrali, sabit çarpı aralığın uzunluğudur. Bu hatayı yapan $13$ bulur.
+
+Bu tipin iki yakın akrabası:
+
+- **Mutlak değer / parçalı fonksiyon.** $\int_0^3 |x - 1|\,dx$: ifade $x = 1$'de işaret değiştirir, oradan böl.
+  $\int_0^1 (1 - x)\,dx + \int_1^3 (x - 1)\,dx = \tfrac{1}{2} + 2 = \tfrac{5}{2}$.
+  Mutlak değeri görmezden gelip $\int_0^3 (x-1)\,dx$ hesaplayan $\tfrac{3}{2}$ bulur.
+- **Üst sınırı değişken olan integral.** $g(x) = \int_2^x (t^2 + 1)\,dt$ ise $g'(x) = x^2 + 1$, dolayısıyla $g'(3) = 10$. İntegrali hesaplamana gerek yok: türev ile integral birbirini götürür.
+
+## Soru tipi 4: İntegralle alan
+
+İntegral kümesinin en çok soru üreten konusu alan hesabı. Tek bir kuralı akılda tut: **alan = $\int$(üstteki eğri − alttaki eğri) $dx$**. Sınırlar da eğrilerin kesiştiği noktalardır.
+
+> $y = x^2$ parabolü ile $y = 2x$ doğrusu arasında kalan bölgenin alanı kaç birimkaredir?
+
+Önce kesişimler: $x^2 = 2x \Rightarrow x(x - 2) = 0 \Rightarrow x = 0$ veya $x = 2$. Aralıktan bir deneme değeri seç: $x = 1$'de doğru $2$, parabol $1$, yani **doğru üstte.**
+
+$$A = \int_0^2 (2x - x^2)\,dx = \left[x^2 - \frac{x^3}{3}\right]_0^2 = 4 - \frac{8}{3} = \frac{4}{3}$$
+
+**Tuzak:** Bölge $x$ ekseninin altına iniyorsa integral negatif çıkar, ama alan hiçbir zaman negatif olmaz. Eğri aralığın ortasında ekseni kesiyorsa, kesim noktasından böl ve her parçanın mutlak değerini ayrı ayrı topla. Tek integralde bırakırsan parçalar birbirini götürür. Bu tipin altı farklı kalıbını, çeldiricileriyle birlikte [integralle alan soru tipleri](/soru-tipleri/integralde-alan) sayfasında topladık.
+
+## Sık düşülen 4 hata
+
+- **$+C$'yi yazmamak.** Belirsiz integralde $C$ yoksa, koşuldan fonksiyonu bulma sorusu çöker.
+- **Değişken değiştirmede sınırları çevirmemek.** $u$'ya geçtiysen sınırlar da $u$ olur.
+- **İntegral sonucunu alan sanmak.** Negatif çıkan integral, bölgenin eksen altında olduğunu söyler. Alan onun mutlak değeridir.
+- **Sabitin integralini sabit sanmak.** $\int_a^b k\,dx = k(b - a)$.
+
+## Bunu nasıl çalışacaksın?
+
+Önerdiğimiz sıra, konuların birbirine yaslandığı sıra:
+
+1. **Hafta 1: Belirsiz integral.** Kuvvet kuralı, $\tfrac{1}{x}$ istisnası ve $C$'yi koşuldan bulma. Günde 10–15 soru.
+2. **Hafta 2: Değişken değiştirme.** Önce "türev yanında hazır" olan klasik hâl, sonra katsayı ayarlama ($\tfrac{1}{2}$, $\tfrac{1}{3}$ çarpanı), en son sınır dönüşümü.
+3. **Hafta 3: Belirli integral.** Newton–Leibniz, aralık toplama, mutlak değer ve üst sınırı değişken olan integral.
+4. **Hafta 4: Alan.** Eğri altı, eksen altı ve iki eğri arası alan. Her soruda önce kaba bir şekil çiz.
+
+Her haftanın sonunda o haftanın konularından karışık 10 soru çöz. Yanlışlarını tipine göre not al: "sınırı çevirmedim", "$C$'yi unuttum" gibi. Dört hafta sonra hangi tuzağa düştüğünü ezbere bileceksin.
+
+Konu anlatımları ve anında kontrol edebileceğin sorular [AYT Matematik](/ayt) sayfasındaki integral ünitesinde. İşe [belirsiz integral ve temel kurallar](/konular/integral-kavrami) ile başla.
+
+İntegral tek bir fikir: türevin tersi. Türevi çalışırken kurduğun her şey burada geri döner. Dört tipi tanı, dört tuzağı gör. O dört soru senin.
+
+Takıldığın her soruda: çözüme bak. 🧡
+
+<BlogPostFooter slug="ayt-integral-soru-tipleri" />
