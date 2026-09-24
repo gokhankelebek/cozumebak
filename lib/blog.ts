@@ -43,6 +43,24 @@ export const TAGS: Tag[] = [
 
 export const POSTS: BlogPost[] = [
   {
+    slug: "ayt-integral-soru-tipleri",
+    title: "AYT'de İntegral Soruları: 4 Soru Tipi ve Her Birinin Tuzağı",
+    description:
+      "İntegral, AYT'ye yılda ~4 soru getiren en istikrarlı bloklardan biri ve YKS 2027'de hâlâ sınavda; okulda ise 12. sınıfın son ünitesi. +C'yi koşuldan bulma, değişken değiştirmede sınır tuzağı, fonksiyon verilmeden belirli integral ve iki eğri arası alan — elle çözülmüş örnekler ve 4 haftalık çalışma sırasıyla.",
+    date: "2026-09-24",
+    tags: ["yks", "calisma-teknikleri", "egitim"],
+    readingMinutes: 8,
+    relatedTopics: [
+      "integral-kavrami",
+      "integral-degisken-degistirme",
+      "belirli-integral-teoremi",
+      "integralde-alan",
+      "belirsiz-integral",
+      "turev-alma-kurallari",
+    ],
+    status: "published",
+  },
+  {
     slug: "okul-doneminde-yks-matematik-calisma-plani",
     title: "Okul Açıldı: Hafta İçi 2 Saatle YKS Matematik Planı",
     description:
