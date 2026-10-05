@@ -43,6 +43,24 @@ export const TAGS: Tag[] = [
 
 export const POSTS: BlogPost[] = [
   {
+    slug: "ayt-trigonometri-soru-tipleri",
+    title: "AYT'de Trigonometri Soruları: 4 Soru Tipi ve Her Birinin Tuzağı",
+    description:
+      "Trigonometri AYT'ye yılda ~4 soru getiriyor ve limit, türev, geometri sorularının içinde de karşına çıkıyor; 12. sınıflar ise konuyu bir yıl önce görüp bıraktı. Bölgeyle işaret seçme, esas ölçü ve indirgeme, toplam-fark ve kare alma, aralıkta kök toplamı — elle çözülmüş örnekler ve 3 haftalık tekrar planıyla.",
+    date: "2026-10-05",
+    tags: ["yks", "calisma-teknikleri", "egitim"],
+    readingMinutes: 8,
+    relatedTopics: [
+      "birim-cember-ayt",
+      "trigonometrik-fonksiyonlar-ayt",
+      "trigonometrik-ozdeslikler-ayt",
+      "trigonometrik-denklemler-ayt",
+      "ucgende-trigonometri-ayt",
+      "ozel-fonksiyon-turevleri",
+    ],
+    status: "published",
+  },
+  {
     slug: "ayt-integral-soru-tipleri",
     title: "AYT'de İntegral Soruları: 4 Soru Tipi ve Her Birinin Tuzağı",
     description:

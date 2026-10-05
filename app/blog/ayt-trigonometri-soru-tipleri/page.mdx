@@ -1,0 +1,123 @@
+import { postMetadata } from "@/lib/seo";
+
+export const metadata = postMetadata("ayt-trigonometri-soru-tipleri");
+
+<BlogPost slug="ayt-trigonometri-soru-tipleri" />
+
+<p className="lead">Trigonometri, AYT matematikte çıkmış sınavları saydığımızda yılda ~4 soru getiriyor; türev ve integralle aynı ağırlıkta. Üstelik kendi ünitesinin dışına da taşıyor: limitte, türevde ve üçgen sorularında karşına yine o çıkıyor. Bu yazıda trigonometri sorularının dört ana tipini elle çözülmüş örneklerle açıyoruz ve her tipte ÖSYM'nin kurduğu tuzağı gösteriyoruz.</p>
+
+[Türev](/blog/ayt-turev-soru-tipleri), [limit](/blog/ayt-limit-soru-tipleri) ve [integral](/blog/ayt-integral-soru-tipleri) yazılarından sonra sıra trigonometride. Ama bu sefer sıralama bilerek böyle: trigonometri, analiz konularının **önünde** durması gereken bir konu.
+
+## Neden şimdi trigonometri?
+
+2018–2025 arasındaki AYT matematik testlerini [soru soru incelediğimizde](/blog/osym-nasil-soru-kurar) trigonometri kümesinden yılda ortalama **~4 soru** çıktığını gördük. Bu, türev ve integralle aynı seviye. Fark şu: türevi herkes çalışır, trigonometriyi ise çoğu öğrenci "geçen yıl gördüm" deyip rafa kaldırır.
+
+Bu yıl YKS'ye girecek 12. sınıflar ve mezunlar için tablo şöyle:
+
+| | Durum |
+|---|---|
+| Sınavdaki yeri | Yılda ~4 soru + limit, türev ve geometri sorularının içinde |
+| Okuldaki yeri | Eski programda 11. sınıfta işlendi; yani **bir yıl önce** |
+| Maarif Modeli | Yeni programda toplam-fark ve yarım açı kısmı daralıyor, ama **YKS 2027'ye girenler eski kapsamdan sorumlu** |
+
+Bir yıl önce öğrenilmiş ve sonra hiç tekrar edilmemiş bir konu, en hızlı unutulan konudur. Daha önemlisi: kasımdan itibaren türeve başladığında $\sin x$'in türevini, $\lim\limits_{x \to 0} \frac{\sin x}{x}$ limitini ve birim çemberi bildiğin varsayılacak. [Yıllık planımızda](/blog/okul-doneminde-yks-matematik-calisma-plani) ikinci evre limit-türev-integral ile başlıyor; trigonometriyi ondan önce, ekim-kasım aylarında toparlamak en ucuz yol.
+
+## Soru tipi 1: Bölge bilgisiyle işaret seçmek
+
+Trigonometrinin en temel sorusu: bir oran ve açının hangi bölgede olduğu verilir, diğer oranlar istenir. Hesap kolaydır. Sorunun asıl amacı, **karekökten çıkan işareti doğru seçip seçmediğini** ölçmek.
+
+> $\sin x = \dfrac{3}{5}$ ve $\dfrac{\pi}{2} < x < \pi$ ise $\tan x$ kaçtır?
+
+$\sin^2 x + \cos^2 x = 1$'den $\cos^2 x = 1 - \dfrac{9}{25} = \dfrac{16}{25}$, yani $\cos x = \pm\dfrac{4}{5}$. Açı II. bölgede; orada kosinüs negatif. O hâlde $\cos x = -\dfrac{4}{5}$ ve
+
+$$\tan x = \frac{\sin x}{\cos x} = \frac{3/5}{-4/5} = -\frac{3}{4}$$
+
+**Tuzak:** Bölge bilgisini okumadan $\cos x = \dfrac{4}{5}$ alan öğrenci $\dfrac{3}{4}$ bulur ve bu cevap şıklarda büyük ihtimalle onu bekliyordur. 3-4-5 ve 5-12-13 üçlülerini tanımak hızı getirir, işareti ise sadece bölge getirir.
+
+## Soru tipi 2: Büyük açıyı esas ölçüye ve dar açıya indirmek
+
+ÖSYM sana $1110°$ ya da $\dfrac{17\pi}{6}$ gibi tabloda olmayan bir açı verir. Yapacağın iş her zaman aynı iki adım: önce $360°$'nin katlarını at (esas ölçü), sonra açıyı bölgesine göre dar açıya indir.
+
+> $\sin 1110° + \cos 120°$ işleminin sonucu kaçtır?
+
+$1110° = 3 \cdot 360° + 30°$ olduğu için $\sin 1110° = \sin 30° = \dfrac{1}{2}$.
+
+$120°$ II. bölgede ve $120° = 180° - 60°$. II. bölgede kosinüs negatif olduğundan $\cos 120° = -\cos 60° = -\dfrac{1}{2}$. Sonuç:
+
+$$\frac{1}{2} + \left(-\frac{1}{2}\right) = 0$$
+
+**Tuzak:** $\cos 120°$'yi $+\dfrac{1}{2}$ alan $1$ bulur. Dikkat et, bu da birinci tipteki hatanın aynısı: **bölgeye bakmamak.** Trigonometride yanlışların büyük kısmı formül eksiğinden değil, işaretten gelir.
+
+## Soru tipi 3: Toplam-fark ve iki kat açı formülleri
+
+AYT'nin klasik trigonometri sorusu, iki dar açının oranlarını verip bunların toplamını ya da farkını sormaktır. Burada Pisagor ve formül aynı soruda buluşur.
+
+> $a$ ve $b$ dar açılar, $\sin a = \dfrac{3}{5}$ ve $\cos b = \dfrac{5}{13}$ ise $\sin(a + b)$ kaçtır?
+
+Önce eksik oranları tamamla: $\cos a = \dfrac{4}{5}$, $\sin b = \dfrac{12}{13}$ (dar açı olduğu için hepsi pozitif). Sonra formül:
+
+$$\sin(a + b) = \sin a \cos b + \cos a \sin b = \frac{3}{5}\cdot\frac{5}{13} + \frac{4}{5}\cdot\frac{12}{13} = \frac{15}{65} + \frac{48}{65} = \frac{63}{65}$$
+
+**Tuzak:** Fark formülünü karıştırıp ortaya eksi koyan $-\dfrac{33}{65}$ bulur. $\sin(a+b) = \sin a + \sin b$ sanan ise $1$'den büyük bir sayı bulur. Bir sinüs değeri $1$'i geçiyorsa hesap yanlıştır; bu kontrol sana bedava bir şık eletir.
+
+Bu tipin sık görülen bir akrabası **kare alma** sorusudur:
+
+> $\sin x - \cos x = \dfrac{1}{2}$ ise $\sin x \cdot \cos x$ kaçtır?
+
+İki tarafın karesini al: $\sin^2 x - 2\sin x\cos x + \cos^2 x = \dfrac{1}{4}$. $\sin^2 x + \cos^2 x = 1$ olduğundan $1 - 2\sin x\cos x = \dfrac{1}{4}$, buradan $2\sin x \cos x = \dfrac{3}{4}$ ve
+
+$$\sin x \cos x = \frac{3}{8}$$
+
+Çift çarpımın işaretini $+$ alan $-\dfrac{3}{8}$ bulur. Ayrıca $2\sin x\cos x$ zaten $\sin 2x$ demek; soru "$\sin 2x$ kaçtır?" diye de gelebilir, cevap $\dfrac{3}{4}$ olur.
+
+## Soru tipi 4: Aralıkta denklem ve kök toplamı
+
+Trigonometrik denklemlerde ÖSYM genelde tek bir kökü değil, belli bir aralıktaki **köklerin sayısını ya da toplamını** sorar. Çünkü toplamı doğru bulmak için hiçbir kökü kaçırmaman gerekir.
+
+> $2\sin^2 x - \sin x = 0$ denkleminin $[0, 2\pi)$ aralığındaki köklerinin toplamı kaçtır?
+
+Ortak çarpan parantezine al: $\sin x\,(2\sin x - 1) = 0$. İki durum var:
+
+- $\sin x = 0 \Rightarrow x = 0$ veya $x = \pi$
+- $\sin x = \dfrac{1}{2} \Rightarrow x = \dfrac{\pi}{6}$ veya $x = \pi - \dfrac{\pi}{6} = \dfrac{5\pi}{6}$
+
+Dört kök var ve toplamları
+
+$$0 + \frac{\pi}{6} + \frac{5\pi}{6} + \pi = 2\pi$$
+
+**Tuzak:** Denklemi $\sin x$'e bölen öğrenci $0$ ve $\pi$ köklerini kaybeder ve $\pi$ bulur. İkinci tuzak, $\sin x = \dfrac{1}{2}$'nin II. bölgedeki kökünü ($\dfrac{5\pi}{6}$) unutmak. Kural: **bilinmeyen içeren bir ifadeye asla bölme, çarpan parantezine al.** Ve sinüs denkleminin her zaman iki kök ailesi olduğunu hatırla: $\alpha$ ve $\pi - \alpha$.
+
+## Trigonometri başka konuların içinde de çıkar
+
+Çıkmış sorulardaki en güçlü kalıp, tek bir sorunun birden fazla konuyu birleştirmesi. Trigonometri bunun için en sık kullanılan konulardan biri. Üç örnek:
+
+- **Limitte:** $\lim\limits_{x \to 0} \dfrac{\sin 3x}{x} = 3$. Temel limit $\lim\limits_{x \to 0} \dfrac{\sin x}{x} = 1$'i bilmeyen bu soruyu çözemez.
+- **Türevde:** $f(x) = \sin 2x$ ise $f'(x) = 2\cos 2x$ ve $f'\!\left(\dfrac{\pi}{6}\right) = 2\cos\dfrac{\pi}{3} = 1$. Zincir kuralındaki $2$'yi unutan $\dfrac{1}{2}$ bulur; $\cos\dfrac{\pi}{3}$'ü bilmeyen hiç bulamaz.
+- **Geometride (kosinüs teoremi):** İki kenarı $3$ ve $5$, aralarındaki açısı $120°$ olan üçgende üçüncü kenar: $c^2 = 9 + 25 - 2 \cdot 3 \cdot 5 \cdot \cos 120° = 34 + 15 = 49$, yani $c = 7$. $\cos 120°$'yi pozitif alan $\sqrt{19}$ bulur. İkinci tipteki işaret hatası burada da peşini bırakmıyor.
+
+Yani trigonometrideki zayıflık, sadece trigonometri sorularına mal olmaz. Limitteki, türevdeki ve geometrideki netine de mal olur.
+
+## Sık düşülen 4 hata
+
+- **Bölgeye bakmadan işaret seçmek.** Karekök iki işaretlidir; hangisi olduğunu bölge söyler.
+- **$\sin(a+b)$'yi $\sin a + \sin b$ sanmak.** Sonuç $1$'i geçiyorsa bu hatayı yapmışsındır.
+- **Bilinmeyen içeren ifadeye bölmek.** $\sin x$'e bölersen $\sin x = 0$ köklerini kaybedersin.
+- **Sinüs denkleminde ikinci kök ailesini unutmak.** $\sin x = k$ için kökler $\alpha$ ve $\pi - \alpha$'dır.
+
+## Bunu nasıl çalışacaksın?
+
+Üç haftalık bir tekrar yeterli; çünkü konuyu sıfırdan öğrenmiyorsun, unuttuğunu geri çağırıyorsun. Okul döneminde ana bloğunu ikiye bölüp 30 dakikasını buna ayırman yeterli:
+
+1. **Hafta 1: Birim çember ve değerler.** Radyan-derece dönüşümü, esas ölçü, bölge işaretleri, indirgeme. Özel açı tablosunu kâğıda bakmadan yazabilene kadar her gün bir kez yaz.
+2. **Hafta 2: Özdeşlikler.** $\sin^2 x + \cos^2 x = 1$, toplam-fark, iki kat açı ve kare alma kalıbı. Günde 10–15 soru.
+3. **Hafta 3: Denklemler ve üçgende trigonometri.** Aralıkta kök bulma, kök toplamı; sinüs ve kosinüs teoremleri.
+
+Her haftanın sonunda karışık 10 soru çöz ve yanlışlarını tipine göre yaz: "bölgeye bakmadım", "$\sin x$'e böldüm" gibi. İkinci haftanın sonunda yanlışlarının çoğunun aynı satıra düştüğünü göreceksin.
+
+Konu anlatımları ve anında kontrol edebileceğin sorular [AYT Matematik](/ayt) sayfasındaki trigonometri ünitesinde. İşe [açılar ve birim çember](/konular/birim-cember-ayt) ile başla; özdeşliklerdeki yedi soru kalıbını ve çeldiricilerini [trigonometrik özdeşlikler soru tipleri](/soru-tipleri/trigonometrik-ozdeslikler-ayt) sayfasında topladık.
+
+Trigonometride formül sayısı korkutur, ama yanlışların çoğu formülden değil işaretten gelir. Bölgeye bakmayı refleks hâline getir; dört sorunun yanında limitteki ve türevdeki netlerin de sağlamlaşsın.
+
+Takıldığın her soruda: çözüme bak. 🧡
+
+<BlogPostFooter slug="ayt-trigonometri-soru-tipleri" />
