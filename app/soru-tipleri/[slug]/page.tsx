@@ -7,6 +7,7 @@ import { weightChip } from "@/lib/examInsights";
 import { soruTipleriMetadata } from "@/lib/seo";
 import SoruTipleri from "@/components/SoruTipleri";
 import JsonLd from "@/components/JsonLd";
+import { soruTipleriFaqLd } from "@/lib/jsonLd";
 import { SITE_URL } from "@/lib/seo";
 
 // Static params: every topic that has a knowledge base gets a page.
@@ -62,6 +63,7 @@ export default async function SoruTipleriPage({
   return (
     <main className="container">
       <JsonLd data={breadcrumbLd} />
+      <JsonLd data={soruTipleriFaqLd(slug)} />
       <nav className="crumb">
         <Link href="/">Anasayfa</Link>
         {" › "}
