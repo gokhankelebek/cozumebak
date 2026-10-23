@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { getTopic, trackMeta, getUnit, type Track } from "@/lib/curriculum";
 import { getPost, getTag } from "@/lib/blog";
+import { getYazili, SEASON } from "@/lib/yazili";
 
 export const SITE_URL = "https://cozumebak.com";
 export const SITE_NAME = "çözümebak";
@@ -163,6 +164,67 @@ export function postMetadata(slug: string): Metadata {
       description: post.description,
       images: [ogImage.url],
     },
+  };
+}
+
+/** Metadata for the /yazili-sinavlar hub. */
+export function yaziliHubMetadata(): Metadata {
+  const title = "Yazılı Sınavlar — 1. Dönem 1. Yazılı Matematik Konuları";
+  const description =
+    "9, 10, 11 ve 12. sınıf matematik 1. dönem 1. yazılı konuları, sınav tarihleri ve çalışma planı. Her sınıf için ÖSYM ve Maarif Modeli'ne uygun kapsam, tuzaklar ve çözümlü kaynaklar.";
+  const url = "/yazili-sinavlar";
+  return {
+    title,
+    description,
+    keywords: [
+      "yazılı sınav matematik",
+      "1. dönem 1. yazılı konuları",
+      "matematik yazılı konuları",
+      "birinci yazılı matematik",
+      `${SEASON.year} yazılı konuları`,
+    ],
+    alternates: { canonical: url },
+    openGraph: {
+      type: "website",
+      title: `${title} | ${SITE_NAME}`,
+      description,
+      url,
+      siteName: SITE_NAME,
+      locale: "tr_TR",
+    },
+    twitter: { card: "summary_large_image", title, description },
+  };
+}
+
+/** Metadata for a /yazili-sinavlar/<slug> grade page. */
+export function yaziliMetadata(slug: string): Metadata {
+  const y = getYazili(slug);
+  if (!y) {
+    return { title: "Yazılı Sınav", robots: { index: false, follow: true } };
+  }
+  const title = `${y.gradeLabel} Matematik 1. Dönem 1. Yazılı Konuları`;
+  const description = `${y.gradeLabel} matematik 1. yazılı konuları (${y.tema}), sınav tarihi, nasıl sorulur, sık yapılan hatalar ve 2 haftalık çalışma planı. ${SEASON.year} Maarif Modeli'ne uygun.`;
+  const url = `/yazili-sinavlar/${slug}`;
+  return {
+    title,
+    description,
+    keywords: [
+      `${y.gradeLabel} matematik 1. yazılı`,
+      `${y.gradeLabel} matematik 1. yazılı konuları`,
+      `${y.gradeLabel} 1. dönem 1. yazılı`,
+      `${y.gradeLabel} matematik yazılı`,
+      y.tema,
+    ],
+    alternates: { canonical: url },
+    openGraph: {
+      type: "article",
+      title: `${title} | ${SITE_NAME}`,
+      description,
+      url,
+      siteName: SITE_NAME,
+      locale: "tr_TR",
+    },
+    twitter: { card: "summary_large_image", title, description },
   };
 }
 

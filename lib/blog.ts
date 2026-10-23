@@ -43,6 +43,28 @@ export const TAGS: Tag[] = [
 
 export const POSTS: BlogPost[] = [
   {
+    slug: "birinci-yazililar-matematik",
+    title: "Birinci Yazılılar: Sınıf Sınıf Matematik 1. Yazılı Rehberi (2026-2027)",
+    description:
+      "Kasımda ilk yazılılar kapıda ve her sınıf farklı bir konudan sorumlu — Maarif Modeli'yle kapsam da değişti. 9'da kümeler ve üslü–köklü, 10'da üçgen geometrisi, 11'de (sürpriz) istatistik ve dörtgenler, 12'de üstel–logaritma. Okul yazılısı ile ülke geneli ortak sınavın farkı, sınıf sınıf konu listesi, tuzaklar ve son iki hafta planı.",
+    date: "2026-10-23",
+    tags: ["egitim", "calisma-teknikleri", "maarif-modeli", "meb"],
+    readingMinutes: 9,
+    relatedTopics: [
+      "kumelerde-temel-kavramlar",
+      "gercek-sayilar",
+      "uslu-ifadeler-9",
+      "koklu-ifadeler-9",
+      "dik-ucgen-trigonometri-10",
+      "sinus-kosinus-teoremi-10",
+      "dortgenler-tyt",
+      "ustel-fonksiyon",
+      "logaritma-fonksiyonu",
+      "logaritmali-denklemler",
+    ],
+    status: "published",
+  },
+  {
     slug: "ayt-trigonometri-soru-tipleri",
     title: "AYT'de Trigonometri Soruları: 4 Soru Tipi ve Her Birinin Tuzağı",
     description:
