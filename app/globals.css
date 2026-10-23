@@ -599,3 +599,10 @@ section[id]{scroll-margin-top:90px}
 .yazili-blogcta{background:var(--paper-2);border:1px solid var(--line);border-radius:14px;padding:18px 22px;margin:24px 0}
 .yazili-blogcta p{margin:0;font-size:1.05rem;color:#1f2c46}
 @media(max-width:560px){.yazili-cards{grid-template-columns:1fr}.yazili-plan li{grid-template-columns:1fr;gap:4px}}
+
+/* yazılı — ek anlatım (inline mini-lessons) + minor notes */
+.yazili-ekanlatim-item{border:1px solid var(--line);border-left:4px solid var(--solve,var(--coral));border-radius:12px;padding:14px 18px;margin:0 0 12px;background:var(--paper-2)}
+.yazili-ekanlatim-item h3{font-family:var(--serif);font-weight:600;font-size:1.12rem;margin:0 0 8px}
+.yazili-ekanlatim-item p{margin:0;color:#1f2c46;font-size:1.02rem;line-height:1.62}
+.yazili-mazeret{margin:10px 0 0;color:var(--ink-soft);font-size:.96rem}
+.yazili-plan-note{margin:12px 0 0;color:var(--ink-soft);font-size:.96rem}

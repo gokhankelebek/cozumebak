@@ -43,6 +43,10 @@ export default function YaziliSinav({ slug }: { slug: string }) {
       <section aria-label="Sınav takvimi" className="yazili-takvim">
         <h2>Sınav ne zaman?</h2>
         <p>{y.takvimNotu}</p>
+        <p className="yazili-mazeret">
+          Sınavı kaçırırsan mazeret sınavları genelde kasımın son haftasında yapılır;
+          kesin tarihi yine okulun duyurur.
+        </p>
       </section>
 
       <section aria-label="Konu kapsamı">
@@ -72,6 +76,23 @@ export default function YaziliSinav({ slug }: { slug: string }) {
           })}
         </ul>
       </section>
+
+      {y.ekAnlatim && y.ekAnlatim.length > 0 && (
+        <section aria-label="Yeni konular — kısa anlatım" className="yazili-ekanlatim">
+          <h2>Yeni konular — kısa anlatım</h2>
+          <p className="yazili-kapsam-note">
+            Bu başlıklar Maarif Modeli&apos;yle yeni geldi ve ayrıntılı konu
+            anlatımları hazırlanıyor. Yazılıya kadar işini görecek kısa anlatımı
+            aşağıda bulabilirsin.
+          </p>
+          {y.ekAnlatim.map((e, i) => (
+            <div key={i} className="yazili-ekanlatim-item">
+              <h3>{e.baslik}</h3>
+              <p>{e.icerik}</p>
+            </div>
+          ))}
+        </section>
+      )}
 
       <section aria-label="Nasıl sorulur">
         <h2>Sınavda nasıl sorulur?</h2>
@@ -103,6 +124,10 @@ export default function YaziliSinav({ slug }: { slug: string }) {
             </li>
           ))}
         </ol>
+        <p className="yazili-plan-note">
+          Pratik için her konunun kendi sayfasındaki çözümlü soru bankasını kullan —
+          yukarıdaki kapsam başlıklarına tıklayarak ulaşabilirsin.
+        </p>
       </section>
 
       {y.soruTipleri && y.soruTipleri.some((s) => getSoruTipleri(s)) && (

@@ -54,6 +54,11 @@ export interface Sss {
   cevap: string;
 }
 
+export interface EkAnlatim {
+  baslik: string;
+  icerik: string;
+}
+
 export interface YaziliGrade {
   slug: string; // → /yazili-sinavlar/<slug>
   grade: "9" | "10" | "11" | "12";
@@ -65,6 +70,13 @@ export interface YaziliGrade {
   /** Grade-specific timing / ülke-geneli note. */
   takvimNotu: string;
   kapsam: KapsamItem[];
+  /**
+   * Short inline mini-lessons for brand-new Maarif topics that have no lesson
+   * page yet (e.g. 11. sınıf serpme diyagramı & korelasyon). Without these, the
+   * "Yakında" kapsam items would be a dead end — the student is told they're
+   * tested on topics they can't study anywhere on the site.
+   */
+  ekAnlatim?: EkAnlatim[];
   nasilSorulur: string[];
   tuzaklar: Tuzak[];
   plan: PlanAdimi[];
@@ -83,9 +95,9 @@ export const YAZILILAR: YaziliGrade[] = [
     tema: "Sayılar",
     lead: "Lise matematiğinin ilk yazılısı, aslında bir konu sınavından çok bir alışma sınavıdır: ortaokuldan gelen işlem gücünün üstüne kümeler, gerçek sayılar ve üslü–köklü ifadelerin dilini kurar. Bu dört başlık sağlam oturursa yılın geri kalanı çok daha kolay akar.",
     takvimNotu:
-      "9. sınıf matematik 1. yazılısı okul düzeyinde ortak sınavdır; tarihini okulun kasım ayının ilk yarısında belirleyip en az bir hafta önceden duyurur. (Dikkat: 9. sınıfın ülke geneli ortak matematik sınavı 6 Ocak 2027'de, yani 1. dönemin ikinci yazılısında yapılır — bu ilk yazılı değildir.)",
+      "9. sınıf matematik 1. yazılısı okul düzeyinde ortak sınavdır; tarihini okul kasım ayının ilk yarısında belirleyip en az bir hafta önceden duyurur. (Dikkat: 9. sınıfın ülke geneli ortak matematik sınavı 6 Ocak 2027'de, yani 1. dönemin ikinci yazılısında yapılır — bu ilk yazılı değildir.)",
     kapsam: [
-      { topic: "kumelerde-temel-kavramlar", not: "Küme işlemleri (birleşim, kesişim, fark, tümleyen) ve Venn şemasıyla eleman sayısı." },
+      { topic: "kumelerde-temel-kavramlar", not: "Sayı kümeleri (ℕ, ℤ, ℚ, ℝ), küme işlemleri (birleşim, kesişim, fark, tümleyen) ve Venn şemasıyla eleman sayısı." },
       { topic: "gercek-sayilar", not: "Gerçek sayı kümeleri, sayı doğrusu, aralık gösterimi ve mutlak değerin temeli." },
       { topic: "uslu-ifadeler-9", not: "Üs kuralları, negatif ve sıfır üs, bilimsel gösterim ve üslü ifadelerde sadeleştirme." },
       { topic: "koklu-ifadeler-9", not: "Kök kuralları, köklü ifadelerde işlem ve paydayı rasyonel yapma." },
@@ -97,8 +109,8 @@ export const YAZILILAR: YaziliGrade[] = [
     ],
     tuzaklar: [
       { baslik: "Fark ile tümleyeni karıştırmak", aciklama: "A\\B ile A' farklı kümelerdir; soruyu okurken hangisinin istendiğini işaretle." },
-      { baslik: "Negatif tabanda parantez", aciklama: "(−2)⁴ ile −2⁴ aynı değildir; parantez yoksa üs önce tabana, sonra işarete uygulanır." },
-      { baslik: "Aralıkta açık/kapalı uç", aciklama: "'den büyük' ile 'den büyük eşit' farkı, uç noktayı dahil edip etmemeyi değiştirir — çözümü tümden kaydırır." },
+      { baslik: "Negatif tabanda parantez", aciklama: "(−2)⁴ ile −2⁴ aynı değildir: ikincisinde üs yalnızca 2'ye uygulanır, eksi en sonda gelir — yani −2⁴ = −(2⁴) = −16 iken (−2)⁴ = 16." },
+      { baslik: "Aralıkta açık/kapalı uç", aciklama: "> ile ≥ farkı, uç noktayı dahil edip etmemeyi değiştirir — çözümü tümden kaydırır." },
       { baslik: "Paydayı rasyonel yapmadan bırakmak", aciklama: "Köklü ifadelerde cevap genelde paydada kök kalmayacak biçimde beklenir; eşini bulamayınca buradan şaşılır." },
     ],
     plan: [
@@ -107,7 +119,7 @@ export const YAZILILAR: YaziliGrade[] = [
       { aralik: "Son 3 gün", is: "Dört konudan karışık 30 soruluk bir deneme çöz; sadece yanlış çıkan kuralları tekrar et." },
     ],
     sss: [
-      { soru: "9. sınıf matematik 1. yazılı ne zaman?", cevap: "Okul düzeyinde ortak sınav olduğu için tarihini okulun belirler; genelde kasım ayının ilk yarısında yapılır ve en az bir hafta önceden duyurulur. Kesin tarihi okulunun duyurularından ve e-Okul'dan takip et." },
+      { soru: "9. sınıf matematik 1. yazılı ne zaman?", cevap: "Okul düzeyinde ortak sınav olduğu için tarihini okul belirler; genelde kasım ayının ilk yarısında yapılır ve en az bir hafta önceden duyurulur. Kesin tarihi okulunun duyurularından ve e-Okul'dan takip et." },
       { soru: "Hangi konulardan sorumluyum?", cevap: "Sayılar temasının ilk başlıkları: kümeler, gerçek sayılar, üslü ifadeler ve köklü ifadeler. Kesin kapsam okulun yıllık planına göre biraz değişebilir." },
       { soru: "Sınav test mi, klasik mi olacak?", cevap: "Çoğu okul yazılısı açık uçlu (klasik) ve çözüm adımlarının puanlandığı sorulardan oluşur; bazı okullar karma yapar. Her adımı yazmayı alışkanlık hâline getir." },
     ],
@@ -122,7 +134,7 @@ export const YAZILILAR: YaziliGrade[] = [
     tema: "Geometrik Şekiller",
     lead: "Maarif Modeli'yle 10. sınıf matematiği, çoğu öğrencinin beklediği gibi sayılarla değil, geometriyle başlıyor. İlk yazılının kalbi üçgen: dik üçgende trigonometrik oranlar, yardımcı elemanlar, alan ve sinüs–kosinüs teoremleri. Bunu baştan bilmek, yanlış konuya çalışmanı önler.",
     takvimNotu:
-      "10. sınıf matematik 1. yazılısı okul düzeyinde ortak sınavdır; tarih okulun kasım ayının ilk yarısında belirlenir ve önceden duyurulur. (10. sınıfın ülke geneli ortak matematik sınavı çok daha sonra, 9 Haziran 2027'de yapılır — bu ilk yazılıyla karıştırma.)",
+      "10. sınıf matematik 1. yazılısı okul düzeyinde ortak sınavdır; tarihini okul kasım ayının ilk yarısında belirler ve önceden duyurur. (10. sınıfın ülke geneli ortak matematik sınavı çok daha sonra, 9 Haziran 2027'de yapılır — bu ilk yazılıyla karıştırma.)",
     kapsam: [
       { topic: "dik-ucgen-trigonometri-10", not: "Dik üçgende sin, cos, tan oranları; özel üçgenler (30-60-90, 45-45-90) ve temel özdeşlikler." },
       { topic: "ucgende-yardimci-elemanlar-10", not: "Kenarortay, açıortay, yükseklik ve kenar orta dikme; bunların uzunluk bağıntıları." },
@@ -148,7 +160,8 @@ export const YAZILILAR: YaziliGrade[] = [
     sss: [
       { soru: "10. sınıf matematik 1. yazılı hangi konulardan?", cevap: "Maarif Modeli'nde 10. sınıf yılı Geometrik Şekiller temasıyla başladığı için ilk yazılı üçgen ağırlıklıdır: dik üçgende trigonometri, yardımcı elemanlar, alan ve sinüs–kosinüs teoremleri. Kesin kapsam için okulun yıllık planına bak." },
       { soru: "Neden sayılarla değil geometriyle başlıyoruz?", cevap: "Yeni Maarif Modeli programında 10. sınıfın tema sırası değişti; yıl Geometrik Şekiller ve İstatistiksel Araştırma Süreci ile açılıyor, Sayılar teması daha sonra geliyor." },
-      { soru: "1. yazılı ne zaman yapılacak?", cevap: "Okul düzeyinde ortak sınav olduğu için tarihini okulun belirler; genelde kasımın ilk yarısında yapılır ve en az bir hafta önceden duyurulur." },
+      { soru: "1. yazılı ne zaman yapılacak?", cevap: "Okul düzeyinde ortak sınav olduğu için tarihini okul belirler; genelde kasımın ilk yarısında yapılır ve en az bir hafta önceden duyurulur." },
+      { soru: "Sınav test mi, klasik mi olacak?", cevap: "Çoğu okul yazılısı açık uçlu (klasik) ve çözüm adımlarının puanlandığı sorulardan oluşur; bazı okullar karma yapar. Geometride her adımı ve çizimi göstermeyi alışkanlık hâline getir." },
     ],
     soruTipleri: ["dik-ucgen-pisagor", "ucgenler-tyt"],
   },
@@ -161,12 +174,24 @@ export const YAZILILAR: YaziliGrade[] = [
     tema: "İstatistiksel Araştırma Süreci + Geometrik Şekiller",
     lead: "11. sınıfta en büyük sürpriz burada: Maarif Modeli'yle yıl trigonometriyle değil, İstatistiksel Araştırma Süreci ve Dörtgenler ile başlıyor. Trigonometri, üstel–logaritma ve fonksiyonlar bu yıl var ama daha sonraki temalarda — ilk yazılıya girmez. Yanlış konuya çalışmamak için bunu bilmek kritik.",
     takvimNotu:
-      "11. sınıf matematik 1. yazılısı okul düzeyinde ortak sınavdır; tarih okulun kasımın ilk yarısında belirler ve önceden duyurur. 11. sınıfın bu yıl ülke geneli ortak matematik sınavı yoktur; tüm matematik yazılıları okul düzeyindedir.",
+      "11. sınıf matematik 1. yazılısı okul düzeyinde ortak sınavdır; tarihini okul kasımın ilk yarısında belirler ve önceden duyurur. 11. sınıfın bu yıl ülke geneli ortak matematik sınavı yoktur; tüm matematik yazılıları okul düzeyindedir.",
     kapsam: [
       { label: "İki nicel değişken ve serpme diyagramı", soon: true, not: "İki nicel değişken arasındaki ilişkiyi serpme diyagramıyla gösterme ve okuma — Maarif'in 11. sınıfa yeni getirdiği başlık." },
       { label: "Korelasyon katsayısı", soon: true, not: "İlişkinin yönü ve gücü; korelasyonun nedensellik anlamına gelmediğini ayırt etme." },
       { topic: "dortgenler-tyt", not: "Özel dörtgenler (paralelkenar, eşkenar dörtgen, yamuk, deltoid, kare, dikdörtgen), hiyerarşileri; kenar, açı, köşegen ve alan." },
       { topic: "veri-istatistik-tyt", not: "Veri okuma, merkezî eğilim ve yayılım ölçüleri — istatistik temasının zeminini tazelemek için." },
+    ],
+    ekAnlatim: [
+      {
+        baslik: "Serpme diyagramı nasıl okunur?",
+        icerik:
+          "Serpme diyagramı (saçılım grafiği), iki nicel değişkeni bir koordinat düzleminde nokta nokta gösterir: her veri çifti bir nokta olur. Grafiğe bakarken iki şeyi ayrı ayrı oku. Yön: noktalar soldan sağa yükseliyorsa ilişki pozitiftir (biri artarken diğeri de artar), alçalıyorsa negatiftir. Güç: noktalar hayalî bir doğruya ne kadar yakın toplanmışsa ilişki o kadar güçlü, ne kadar dağınıksa o kadar zayıftır; her yöne bir bulut gibi saçılmışsa ilişki yok demektir. Sınavdaki tipik soru sana bir serpme diyagramı verip 'bu ilişki pozitif mi negatif mi, güçlü mü zayıf mı' diye sorar — hesap değil, okuma ister.",
+      },
+      {
+        baslik: "Korelasyon katsayısı (r) ne anlatır?",
+        icerik:
+          "Korelasyon katsayısı r, serpme diyagramındaki ilişkiyi tek bir sayıya indirir ve her zaman −1 ile +1 arasındadır. İşareti yönü verir: r pozitifse ilişki artan, negatifse azalandır. Mutlak değeri gücü verir: r, +1 veya −1'e yaklaştıkça ilişki güçlenir; 0'a yaklaştıkça zayıflar, 0 ise doğrusal ilişki yok demektir. Örneğin r = −0,9 güçlü ve negatif, r = 0,2 ise zayıf ve pozitif bir ilişkidir. En kritik nokta: güçlü bir korelasyon bile nedensellik kanıtlamaz. Dondurma satışı ile boğulma vakaları birlikte artar; sebep biri değil, ikisini birden etkileyen sıcak havadır. Sınav tam da bu ayrımı ölçmeyi sever.",
+      },
     ],
     nasilSorulur: [
       "İstatistik soruları hesap kadar yorum ister: bir serpme diyagramı verilir, ilişkinin yönünü (pozitif/negatif) ve gücünü (zayıf/güçlü) okuman beklenir.",
@@ -187,7 +212,8 @@ export const YAZILILAR: YaziliGrade[] = [
     sss: [
       { soru: "11. sınıf matematik 1. yazılı hangi konulardan?", cevap: "Maarif Modeli'nde 11. sınıf yılı İstatistiksel Araştırma Süreci ve Geometrik Şekiller (dörtgenler, çokgenler) ile başlar; ilk yazılı bu iki temadan sorumludur. Trigonometri ve üstel–logaritma bu yılın sonraki temalarıdır, ilk yazılıya girmez." },
       { soru: "Trigonometri 1. yazılıda çıkmıyor mu?", cevap: "Hayır. Eski programda 11. sınıf trigonometriyle başlardı, ama yeni Maarif Modeli'nde trigonometri daha sonraki 'Nicelikler ve Değişimler' temasındadır; ilk yazılı İstatistik ve Dörtgenler üzerinedir." },
-      { soru: "Korelasyon konusunun anlatımı sitede var mı?", cevap: "Serpme diyagramı ve korelasyon, Maarif'in 11. sınıfa yeni getirdiği başlıklar; konu anlatımları hazırlanıyor. Bu arada veri ve istatistik ile dörtgenler sayfalarından çalışabilirsin." },
+      { soru: "Korelasyon konusunun anlatımı sitede var mı?", cevap: "Serpme diyagramı ve korelasyon, Maarif'in 11. sınıfa yeni getirdiği başlıklar. İkisinin de kısa anlatımını bu sayfadaki 'Yeni konular — kısa anlatım' bölümünde bulabilirsin; ayrıntılı konu anlatımları da hazırlanıyor." },
+      { soru: "Sınav test mi, klasik mi olacak?", cevap: "Çoğu okul yazılısı açık uçlu (klasik) ve çözüm adımlarının puanlandığı sorulardan oluşur; bazı okullar karma yapar. Özellikle istatistik yorumunda ve dörtgen ispatlarında her adımı yazmayı alışkanlık hâline getir." },
     ],
     soruTipleri: ["dortgenler-tyt"],
   },
@@ -200,7 +226,7 @@ export const YAZILILAR: YaziliGrade[] = [
     tema: "Üstel ve Logaritmik Fonksiyonlar",
     lead: "12. sınıf, matematiğe en ağır başlayan sınıftır: yıl üstel ve logaritmik fonksiyonlarla açılır ve ilk yazılı doğrudan buradan gelir. İyi haber, bu blok aynı zamanda YKS'nin istikrarlı konularından biri — ilk yazılıya çalışırken sınava da çalışmış olursun.",
     takvimNotu:
-      "12. sınıf matematik 1. yazılısı okul düzeyinde ortak sınavdır; tarih okulun kasımın ilk yarısında belirler ve önceden duyurur. 12. sınıf ülke geneli ortak sınavlara girmez; tüm yazılılar okul düzeyindedir.",
+      "12. sınıf matematik 1. yazılısı okul düzeyinde ortak sınavdır; tarihini okul kasımın ilk yarısında belirler ve önceden duyurur. 12. sınıf ülke geneli ortak sınavlara girmez; tüm yazılılar okul düzeyindedir.",
     kapsam: [
       { topic: "ustel-fonksiyon", not: "Üstel fonksiyonun tanımı, grafiği, artan/azalan durumu ve üstel denklemlerde taban eşitleme." },
       { topic: "logaritma-fonksiyonu", not: "Logaritmanın tanımı, logaritma kuralları, taban değiştirme ve tanım kümesi koşulları." },
@@ -226,6 +252,7 @@ export const YAZILILAR: YaziliGrade[] = [
       { soru: "12. sınıf matematik 1. yazılı hangi konulardan?", cevap: "Yıl üstel ve logaritmik fonksiyonlarla başladığı için ilk yazılı bu bloktandır: üstel fonksiyon ve denklemler, logaritma kavramı ve kuralları, logaritmik denklem ve eşitsizlikler. Kesin kapsam okulun yıllık planına göre değişebilir." },
       { soru: "12. sınıf Maarif Modeli'ne geçti mi?", cevap: "Hayır. Maarif Modeli 12. sınıfa 2027-2028'de gelecek; 2026-2027'de 12. sınıf hâlâ önceki programdadır. Bu yüzden türev ve integral de bu yıl sınavlarda ve YKS 2027'de geçerlidir." },
       { soru: "İlk yazılıya çalışmak YKS'ye de yarar mı?", cevap: "Evet. Üstel ve logaritma, AYT'nin istikrarlı bloklarından biri; ilk yazılı için kurduğun zemin doğrudan YKS netine döner." },
+      { soru: "Sınav test mi, klasik mi olacak?", cevap: "Çoğu okul yazılısı açık uçlu (klasik) ve çözüm adımlarının puanlandığı sorulardan oluşur; bazı okullar karma yapar. Özellikle logaritmik denklemlerde tanım kümesi kontrolünü de yazıya dök." },
     ],
     soruTipleri: ["ustel-fonksiyon-ayt", "logaritma-kavrami-ayt", "logaritmik-denklem-ayt"],
   },
