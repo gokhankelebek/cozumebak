@@ -5,6 +5,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 import { getTopic, getUnit, trackMeta, breadcrumb } from "@/lib/curriculum";
 import { getPost, tagsOf } from "@/lib/blog";
+import { getYazili } from "@/lib/yazili";
 import { getSoruTipleri } from "@/lib/soru-tipleri";
 import { SITE_URL, SITE_NAME } from "@/lib/seo";
 
@@ -94,6 +95,66 @@ export function learningResourceLd(slug: string) {
     isAccessibleForFree: true,
     inDefinedTermSet: "MEB Matematik Müfredatı",
     provider: { "@id": ORG_ID },
+  };
+}
+
+// ── Yazılı sınav (first-term exam prep) ──────────────────────────────────────
+
+/** BreadcrumbList for a /yazili-sinavlar/<slug> grade page. */
+export function yaziliBreadcrumbLd(slug: string) {
+  const y = getYazili(slug);
+  const crumbs: { name: string; item?: string }[] = [
+    { name: "Anasayfa", item: abs("/") },
+    { name: "Yazılı Sınavlar", item: abs("/yazili-sinavlar") },
+    ...(y ? [{ name: `${y.gradeLabel} Matematik 1. Yazılı` }] : []),
+  ];
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: crumbs.map((c, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: c.name,
+      ...(c.item ? { item: c.item } : {}),
+    })),
+  };
+}
+
+/** LearningResource describing a grade's first-term exam-prep guide. */
+export function yaziliLd(slug: string) {
+  const y = getYazili(slug);
+  if (!y) return null;
+  const url = abs(`/yazili-sinavlar/${slug}`);
+  return {
+    "@context": "https://schema.org",
+    "@type": "LearningResource",
+    "@id": url,
+    name: `${y.gradeLabel} Matematik 1. Dönem 1. Yazılı Konuları`,
+    description: y.lead,
+    url,
+    inLanguage: "tr-TR",
+    learningResourceType: "Sınav hazırlık rehberi",
+    educationalLevel: y.gradeLabel,
+    educationalUse: "Yazılı sınava hazırlık",
+    about: y.tema,
+    isAccessibleForFree: true,
+    inDefinedTermSet: "Türkiye Yüzyılı Maarif Modeli Matematik Programı",
+    provider: { "@id": ORG_ID },
+  };
+}
+
+/** FAQPage for a grade page, from its (page-visible) SSS entries. */
+export function yaziliFaqLd(slug: string) {
+  const y = getYazili(slug);
+  if (!y || y.sss.length === 0) return null;
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: y.sss.map((it) => ({
+      "@type": "Question",
+      name: it.soru,
+      acceptedAnswer: { "@type": "Answer", text: it.cevap },
+    })),
   };
 }
 

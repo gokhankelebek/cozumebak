@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { TRACKS, publishedTopics, soonTopics } from "@/lib/curriculum";
 import { publishedPosts, allTagsWithCounts } from "@/lib/blog";
 import { coveredTopics } from "@/lib/soru-tipleri";
+import { yaziliSlugs } from "@/lib/yazili";
 import { SITE_URL } from "@/lib/seo";
 
 // Manifest-derived sitemap. Published lessons get a high priority; "soon" stubs
@@ -83,6 +84,23 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
+  // Yazılı sınavlar hub + one page per grade. Seasonal, high-intent queries
+  // ("9. sınıf matematik 1. yazılı konuları") — weekly during exam season.
+  const yaziliIndex: MetadataRoute.Sitemap = [
+    {
+      url: `${SITE_URL}/yazili-sinavlar`,
+      lastModified: buildDate,
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
+  ];
+  const yazili = yaziliSlugs().map((slug) => ({
+    url: `${SITE_URL}/yazili-sinavlar/${slug}`,
+    lastModified: buildDate,
+    changeFrequency: "weekly" as const,
+    priority: 0.7,
+  }));
+
   return [
     ...staticRoutes,
     ...corporate,
@@ -93,5 +111,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...soon,
     ...soruTipleriIndex,
     ...soruTipleri,
+    ...yaziliIndex,
+    ...yazili,
   ];
 }

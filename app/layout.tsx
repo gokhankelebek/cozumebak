@@ -99,6 +99,7 @@ gtag('config', 'G-G30880NL87');`}
                 <h4>Sınavlar</h4>
                 <Link href="/tyt">TYT Matematik</Link>
                 <Link href="/ayt">AYT Matematik</Link>
+                <Link href="/yazili-sinavlar">Yazılı Sınavlar</Link>
                 <Link href="/konular">Tüm Konular</Link>
                 <Link href="/blog">Blog</Link>
                 <Link href="/ara">Konu Ara</Link>
