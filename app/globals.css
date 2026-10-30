@@ -300,6 +300,9 @@ table.rules tbody tr:nth-child(even),.konu table tbody tr:nth-child(even){backgr
 /* "İlgili yazılar" (blog cross-link) sits above the unit list */
 .konu-posts{margin-top:48px}
 .konu-posts a::before{content:"✎"}
+/* soru-tipleri link — a CTA into the high-intent "soru tipleri" page */
+.konu-soru-tipleri a::before{content:"◎";color:var(--coral)}
+.konu-soru-tipleri a{font-weight:600;color:var(--coral-deep)}
 .rel-track{color:var(--ink-faint);font-weight:400;font-size:.92em}
 
 /* ─── BLOG ─────────────────────────────────────────────────────────────── */

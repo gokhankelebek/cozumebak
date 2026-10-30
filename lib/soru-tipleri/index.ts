@@ -158,6 +158,36 @@ export function getSoruTipleri(slug: string): TopicSoruTipleri | undefined {
   return KB[slug];
 }
 
+/**
+ * Topics that combine with `slug` in real exam questions, read from the KB
+ * `kombinasyon` graph in BOTH directions (topics this one names, and topics
+ * that name this one). These are the strongest semantic links the curriculum
+ * has — they cross unit boundaries (türev↔limit, integral↔türev), which the
+ * same-unit lesson navigation never surfaces. Returns deduped slugs, self
+ * excluded, outgoing links first then incoming, each in KB order.
+ */
+export function relatedBySoruTipi(slug: string): string[] {
+  const seen = new Set<string>();
+  const out: string[] = [];
+  const add = (s: string) => {
+    if (s && s !== slug && !seen.has(s)) {
+      seen.add(s);
+      out.push(s);
+    }
+  };
+
+  // Outgoing: topics THIS topic's archetypes combine with.
+  for (const t of KB[slug]?.tipler ?? []) {
+    for (const k of t.kombinasyon ?? []) add(k);
+  }
+  // Incoming: topics whose archetypes name THIS topic.
+  for (const [otherSlug, kb] of Object.entries(KB)) {
+    if (otherSlug === slug) continue;
+    if (kb.tipler.some((t) => (t.kombinasyon ?? []).includes(slug))) add(otherSlug);
+  }
+  return out;
+}
+
 /** Slugs that have a knowledge base yet (for coverage reporting). */
 export function coveredTopics(): string[] {
   return Object.keys(KB);

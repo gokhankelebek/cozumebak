@@ -6,6 +6,7 @@
 import { getTopic, getUnit, trackMeta, breadcrumb } from "@/lib/curriculum";
 import { getPost, tagsOf } from "@/lib/blog";
 import { getYazili } from "@/lib/yazili";
+import { getSoruTipleri } from "@/lib/soru-tipleri";
 import { SITE_URL, SITE_NAME } from "@/lib/seo";
 
 const abs = (path: string) => (path.startsWith("http") ? path : `${SITE_URL}${path}`);
@@ -172,6 +173,30 @@ export function faqLd(items: FaqItem[]) {
       name: it.question,
       acceptedAnswer: { "@type": "Answer", text: it.answer },
     })),
+  };
+}
+
+/**
+ * FAQPage for a /soru-tipleri page, built from the archetypes' worked examples
+ * (örnek). Every question/answer here is rendered verbatim on the page by the
+ * SoruTipleri component, so the markup mirrors visible content — a requirement
+ * for valid FAQ structured data. Returns null when no archetype has an örnek.
+ */
+export function soruTipleriFaqLd(slug: string) {
+  const kb = getSoruTipleri(slug);
+  if (!kb) return null;
+  const mainEntity = kb.tipler
+    .filter((t) => t.ornek)
+    .map((t) => ({
+      "@type": "Question",
+      name: t.ornek!.soru,
+      acceptedAnswer: { "@type": "Answer", text: t.ornek!.cevap },
+    }));
+  if (mainEntity.length === 0) return null;
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity,
   };
 }
 
