@@ -112,21 +112,25 @@ export const TRACKS: TrackMeta[] = [
 // ── Units ────────────────────────────────────────────────────────────────────
 
 export const UNITS: Unit[] = [
-  // 9. Sınıf — Türkiye Yüzyılı Maarif Modeli (2024) temaları
+  // 9. Sınıf — Türkiye Yüzyılı Maarif Modeli tema sırası (resmî:
+  // tymm.meb.gov.tr/ogretim-programlari/matematik-dersi/11). Geometrik Şekiller
+  // ve Eşlik ve Benzerlik, Algoritma ve Bilişim'den ÖNCE gelir.
   { slug: "sayilar-9", title: "Sayılar", track: "9", order: 1 },
   { slug: "nicelikler-degisimler-9", title: "Nicelikler ve Değişimler", track: "9", order: 2 },
-  { slug: "algoritma-bilisim-9", title: "Algoritma ve Bilişim", track: "9", order: 3 },
-  { slug: "geometrik-sekiller-9", title: "Geometrik Şekiller", track: "9", order: 4 },
-  { slug: "eslik-benzerlik-9", title: "Eşlik ve Benzerlik", track: "9", order: 5 },
+  { slug: "geometrik-sekiller-9", title: "Geometrik Şekiller", track: "9", order: 3 },
+  { slug: "eslik-benzerlik-9", title: "Eşlik ve Benzerlik", track: "9", order: 4 },
+  { slug: "algoritma-bilisim-9", title: "Algoritma ve Bilişim", track: "9", order: 5 },
   { slug: "istatistik-9", title: "İstatistiksel Araştırma Süreci", track: "9", order: 6 },
   { slug: "veriden-olasiliga-9", title: "Veriden Olasılığa", track: "9", order: 7 },
-  // 10. Sınıf — Türkiye Yüzyılı Maarif Modeli (2024) temaları
-  { slug: "sayilar-10", title: "Sayılar", track: "10", order: 1 },
-  { slug: "nicelikler-degisimler-10", title: "Nicelikler ve Değişimler", track: "10", order: 2 },
-  { slug: "sayma-algoritma-10", title: "Sayma, Algoritma ve Bilişim", track: "10", order: 3 },
-  { slug: "geometrik-sekiller-10", title: "Geometrik Şekiller", track: "10", order: 4 },
-  { slug: "analitik-inceleme-10", title: "Analitik İnceleme", track: "10", order: 5 },
-  { slug: "istatistik-10", title: "İstatistiksel Araştırma Süreci", track: "10", order: 6 },
+  // 10. Sınıf — Türkiye Yüzyılı Maarif Modeli tema sırası (resmî:
+  // tymm.meb.gov.tr/ogretim-programlari/matematik-dersi/12). Yıl Geometrik
+  // Şekiller ve İstatistiksel Araştırma Süreci ile başlar; Sayılar üçüncüdür.
+  { slug: "geometrik-sekiller-10", title: "Geometrik Şekiller", track: "10", order: 1 },
+  { slug: "istatistik-10", title: "İstatistiksel Araştırma Süreci", track: "10", order: 2 },
+  { slug: "sayilar-10", title: "Sayılar", track: "10", order: 3 },
+  { slug: "nicelikler-degisimler-10", title: "Nicelikler ve Değişimler", track: "10", order: 4 },
+  { slug: "sayma-algoritma-10", title: "Sayma, Algoritma ve Bilişim", track: "10", order: 5 },
+  { slug: "analitik-inceleme-10", title: "Analitik İnceleme", track: "10", order: 6 },
   { slug: "veriden-olasiliga-10", title: "Veriden Olasılığa", track: "10", order: 7 },
   // 11. Sınıf
   { slug: "trigonometri-11", title: "Trigonometri", track: "11", order: 1 },
