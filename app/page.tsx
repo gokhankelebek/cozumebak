@@ -2,13 +2,32 @@ import Link from "next/link";
 import Math from "@/components/Math";
 import SearchBox from "@/components/SearchBox";
 import PostCard from "@/components/PostCard";
-import { TRACKS, unitsByTrack, trackStats } from "@/lib/curriculum";
+import DevamClient, { type DevamTopic, type DevamTrack } from "@/components/DevamClient";
+import { TRACKS, unitsByTrack, trackStats, topicsByUnit } from "@/lib/curriculum";
 import { publishedPosts } from "@/lib/blog";
+import { YAZILILAR } from "@/lib/yazili";
+import { YKS_TYT_START } from "@/lib/examInsights";
 
 const KONU = "/konular/turevin-tanimi";
 
 export default function Home() {
   const latestPosts = publishedPosts().slice(0, 3);
+
+  // Compact manifest for the returning-student card: published lessons in
+  // curriculum order, so "next topic" follows the same path as the track pages.
+  const devamTopics: DevamTopic[] = TRACKS.flatMap((tm) =>
+    unitsByTrack(tm.key).flatMap((u) =>
+      topicsByUnit(u.slug)
+        .filter((t) => t.status === "published")
+        .map((t) => ({ slug: t.slug, title: t.title, track: tm.key })),
+    ),
+  );
+  const devamTracks: DevamTrack[] = TRACKS.map((tm) => ({
+    key: tm.key,
+    label: tm.label,
+    yks: tm.kind === "exam" || tm.key === "12",
+    yaziliSlug: YAZILILAR.find((y) => y.track === tm.key)?.slug,
+  }));
   return (
     <main>
       <section className="hero container">
@@ -39,6 +58,8 @@ export default function Home() {
           <div className="stat"><strong>TYT + AYT</strong><span>tam kapsam</span></div>
         </div>
       </section>
+
+      <DevamClient topics={devamTopics} tracks={devamTracks} yksStart={YKS_TYT_START} />
 
       <section className="section container">
         <div className="section-head">

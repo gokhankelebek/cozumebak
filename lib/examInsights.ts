@@ -122,3 +122,10 @@ export function isMaarifLeaving(slug: string, unitSlug: string): boolean {
 export const MAARIF_NOTE =
   "Bu konu yeni müfredattan (Türkiye Yüzyılı Maarif Modeli) kaldırıldı; " +
   "ancak geçiş dönemi nedeniyle ~2027 YKS'ye kadar sınavda çıkmaya devam ediyor.";
+
+/**
+ * YKS 2027 first session (TYT), Turkey time. From ÖSYM's 2027 calendar,
+ * published 28 Oct 2026: TYT 19 Haziran, AYT + YDT 20 Haziran 2027. Drives the
+ * homepage countdown — update when ÖSYM publishes the next year's calendar.
+ */
+export const YKS_TYT_START = "2027-06-19T10:15:00+03:00";
