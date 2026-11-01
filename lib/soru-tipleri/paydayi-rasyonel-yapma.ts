@@ -70,7 +70,7 @@ const kb: TopicSoruTipleri = {
       id: "paydayi-rasyonel-04-deger-hesabi",
       ad: "Rasyonelleştirme sonrası değer hesabı (x = √3 + √2 iken x + 1/x)",
       aciklama:
-        "x köklü bir sayı olarak verilir; x + 1/x veya x − 1/x istenir. 1/x eşlenikle rasyonelleştirilince kökler ya sadeleşir ya ikiye katlanır. Özdeşliklerle birleşen sınav ayarı soru.",
+        "x köklü bir sayı olarak verilir; x + 1/x veya x − 1/x istenir. 1/x eşlenikle rasyonelleştirilince kökler ya sadeleşir ya ikiye katlanır. Özdeşliklerle birleşir.",
       yontem: [
         "1/x'i eşlenikle rasyonelleştir: 1/(√3+√2) = (√3−√2)/(3−2) = √3 − √2.",
         "İstenen ifadeyi topla: x + 1/x = (√3+√2) + (√3−√2) = 2√3.",

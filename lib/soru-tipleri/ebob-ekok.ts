@@ -153,7 +153,7 @@ const kb: TopicSoruTipleri = {
       id: "ebob-ekok-07-oranli-sayilar",
       ad: "Oranı verilen sayılarda EBOB–EKOK",
       aciklama:
-        "İki sayının sade oranı (a⁄b = 3⁄4 gibi) ile EBOB'u veya EKOK'u verilir; sayılar, toplamları ya da diğer büyüklük istenir. Sade oranda sayılar 3k–4k yazılır; k = EBOB, EKOK = 3⋅4⋅k. Konunun sınav ayarındaki birleştirici sorusu.",
+        "İki sayının sade oranı (a⁄b = 3⁄4 gibi) ile EBOB'u veya EKOK'u verilir; sayılar, toplamları ya da diğer büyüklük istenir. Sade oranda sayılar 3k–4k yazılır; k = EBOB, EKOK = 3⋅4⋅k.",
       yontem: [
         "Oran SADE ise sayıları x⋅k ve y⋅k yaz; x ile y aralarında asal olduğundan k = EBOB'dur.",
         "EKOK(xk, yk) = x⋅y⋅k eşitliğini kur.",

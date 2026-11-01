@@ -114,7 +114,7 @@ const kb: TopicSoruTipleri = {
     },
     {
       id: "sayi-basamaklari-06-kosullu-sistem",
-      ad: "Basamak koşullarından sayıyı bulma (iki koşullu sistem — sınav ayarı)",
+      ad: "Basamak koşullarından sayıyı bulma (iki koşullu sistem)",
       aciklama:
         "Rakamları toplamı ve yer değiştirince artma/azalma miktarı birlikte verilir; sayının kendisi istenir. 9(b−a) özdeşliği + toplam koşulu iki bilinmeyenli sistemi kurar. Ters sayıyı işaretletmek ÖSYM'nin klasik son tuzağıdır.",
       yontem: [

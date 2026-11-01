@@ -122,7 +122,7 @@ const kb: TopicSoruTipleri = {
       id: "carpanlara-ayirma-07-kesir-sadelestirme",
       ad: "Cebirsel kesir sadeleştirme",
       aciklama:
-        "Pay ve payda ayrı ayrı çarpanlara ayrılıp ortak çarpan sadeleştirilir; sonra bir değer sorulur. Birden çok ayırma tekniğini aynı soruda birleştiren sınav ayarı tip.",
+        "Pay ve payda ayrı ayrı çarpanlara ayrılıp ortak çarpan sadeleştirilir; sonra bir değer sorulur. Birden çok ayırma tekniği aynı soruda birleşir.",
       yontem: [
         "Payı ve paydayı ayrı ayrı çarpanlara ayır (iki kare farkı, üç terimli, ortak çarpan...).",
         "Ortak çarpanı sadeleştir — sadeleşen çarpanın sıfır olmadığı koşulunu (x ≠ ...) unutma.",

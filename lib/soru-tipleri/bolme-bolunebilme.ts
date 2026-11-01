@@ -150,7 +150,7 @@ const kb: TopicSoruTipleri = {
       id: "bolme-bolunebilme-07-bolen-degisince",
       ad: "Bölen değişince kalan (ortak kalan / EKOK bağlantısı)",
       aciklama:
-        "Bir sayının iki farklı bölene göre kalanları verilir, üçüncü bir bölene (genellikle EKOK'a) göre kalanı istenir. Kalanlar bölenlerden hep aynı miktar eksikse '+1 hilesi' devreye girer. Konunun sınav ayarındaki zor sorusu.",
+        "Bir sayının iki farklı bölene göre kalanları verilir, üçüncü bir bölene (genellikle EKOK'a) göre kalanı istenir. Kalanlar bölenlerden hep aynı miktar eksikse '+1 hilesi' devreye girer.",
       yontem: [
         "Kalanlar bölenlerden aynı miktar eksikse (kalan = bölen − c): sayıya c ekle, sayı+c her bölenin katı olur.",
         "Sayı + c = EKOK(bölenler)⋅t yaz; sayı = EKOK⋅t − c.",

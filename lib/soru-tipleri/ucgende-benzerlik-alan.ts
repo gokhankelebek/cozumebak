@@ -146,7 +146,7 @@ const kb: TopicSoruTipleri = {
       id: "ucgende-benzerlik-07-alandan-cevreye",
       ad: "Alan oranından çevre/kenar bulma (karekök yönü)",
       aciklama:
-        "Alanlar verilir, çevre ya da kenar istenir — k² tuzağının TERS yönü. Alan oranının KAREKÖKÜ alınmadan çevreye geçilemez. Sınav ayarındaki karışık soru.",
+        "Alanlar verilir, çevre ya da kenar istenir — k² tuzağının TERS yönü. Alan oranının KAREKÖKÜ alınmadan çevreye geçilemez.",
       yontem: [
         "Alan oranını yaz ve sadeleştir: A₁/A₂ = 27/48 = 9/16.",
         "Benzerlik oranı karekökle gelir: k = √(9/16) = 3/4.",

@@ -111,9 +111,9 @@ const kb: TopicSoruTipleri = {
     },
     {
       id: "limit-hesaplama-06-degisken-degistirme",
-      ad: "Değişken değiştirmeli / bileşik limit (sınav ayarı)",
+      ad: "Değişken değiştirmeli / bileşik limit",
       aciklama:
-        "Kök dereceleri uyuşmayan ya da bileşke yapıdaki 0/0 limitleri. Uygun u dönüşümüyle ifade polinom oranına çevrilir; gerçek sınav zorluğu burada.",
+        "Kök dereceleri uyuşmayan ya da bileşke yapıdaki 0/0 limitleri. Uygun u dönüşümüyle ifade polinom oranına çevrilir.",
       yontem: [
         "Kökleri tek seferde kaldıracak dönüşümü seç (örnekte u = ∛x, yani x = u³).",
         "Limit noktasını da dönüştür: x→a iken u→ ilgili değer.",

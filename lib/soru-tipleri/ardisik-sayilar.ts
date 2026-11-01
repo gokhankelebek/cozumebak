@@ -116,7 +116,7 @@ const kb: TopicSoruTipleri = {
     },
     {
       id: "ardisik-06-uc-terimler-ortalama",
-      ad: "Uç terimlerin toplamı ve ortalama ilişkisi (sınav ayarı)",
+      ad: "Uç terimlerin toplamı ve ortalama ilişkisi",
       aciklama:
         "Ardışık dizide toplam/ortalama verilip en büyük ile en küçüğün toplamı ya da farkı istenir. En büyük + en küçük = 2⋅ortanca kısayolunu gören denklemsiz bitirir.",
       yontem: [

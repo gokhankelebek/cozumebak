@@ -97,7 +97,7 @@ const kb: TopicSoruTipleri = {
     },
     {
       id: "turev-alma-06-carpim-zincir",
-      ad: "Çarpım + zincir birleşimi (sınav ayarı)",
+      ad: "Çarpım + zincir birleşimi",
       aciklama:
         "Bir çarpanı bileşke olan çarpım. Gerçek sınav zorluğu burada; iki kuralın sırası şaşırılır.",
       yontem: [

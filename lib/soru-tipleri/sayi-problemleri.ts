@@ -132,7 +132,7 @@ const kb: TopicSoruTipleri = {
     },
     {
       id: "sayi-problemleri-07-esitsizlik-en-az-en-cok",
-      ad: "En az / en çok — eşitsizlikli sayı sorusu (sınav ayarı)",
+      ad: "En az / en çok — eşitsizlikli sayı sorusu",
       aciklama:
         "Toplam sabitken 'b en az kaçtır?' tipi. Denklem değil sınır mantığı ister: koşulu eşitsizliğe çevirip tam sayı sınırına yuvarlamak. TYT'nin eleyici sorusu.",
       yontem: [

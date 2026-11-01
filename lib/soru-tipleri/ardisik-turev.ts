@@ -121,9 +121,9 @@ const kb: TopicSoruTipleri = {
     },
     {
       id: "ardisik-turev-07-ic-turev-carpani",
-      ad: "İç türev çarpanlı örüntü: sin(ax), e^(ax) (sınav ayarı)",
+      ad: "İç türev çarpanlı örüntü: sin(ax), e^(ax)",
       aciklama:
-        "Bileşke fonksiyonda her türev bir a çarpanı üretir: f⁽ⁿ⁾'de aⁿ birikir, trigde ayrıca döngü işler. Zincir kuralı ile ardışık türevin birleştiği gerçek sınav sorusu.",
+        "Bileşke fonksiyonda her türev bir a çarpanı üretir: f⁽ⁿ⁾'de aⁿ birikir, trigde ayrıca döngü işler. Zincir kuralı ile ardışık türev birleşir.",
       yontem: [
         "Her türev adımında iç türev a bir kez çarpan olarak çıkar: n. türevde aⁿ.",
         "sin(ax) için ayrıca döngüyü işlet: aⁿ çarpanı + n mod 4 fazı birlikte.",
