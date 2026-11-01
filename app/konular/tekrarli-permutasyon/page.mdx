@@ -1,0 +1,570 @@
+import { topicMetadata } from "@/lib/seo";
+import {
+  TekrarliPermutasyonEtiketSilme,
+  TekrarliPermutasyonBosluk,
+  TekrarliPermutasyonIzgara,
+  TekrarliPermutasyonKapaliYol,
+} from "@/components/figures/TekrarliPermutasyonFig";
+
+export const metadata = topicMetadata("tekrarli-permutasyon");
+
+<Konu slug="tekrarli-permutasyon" />
+
+<p className="lead">Bu sayfanın tek fikri şudur: **özdeş nesneleri önce farklıymış gibi dizer, sonra etiketlerini silip her özdeş grubun kendi içindeki sıralama sayısına böleriz.** Tekrar eden harflerle kelime yazmak, sırası değişmeyen kişileri dizmek, tekrarlı rakamlarla sayı oluşturmak ve bir ızgarada en kısa yolları saymak bu tek fikrin farklı görünümleridir. Formülü ezberlemek yerine küçük bir örneği listeleyerek nereden geldiğini göreceğiz.</p>
+
+> **Bu sayfadaki varsayımlar**
+>
+> - **Özdeş** nesneler birbirinden ayırt edilemez; yerleri değiştiğinde yeni bir diziliş oluşmaz. **Farklı** nesnelerin her yer değiştirmesi yeni bir diziliştir.
+> - "Kelime" sözcüğü **anlamlı veya anlamsız** harf dizisi anlamına gelir. Türkçede İ ile I farklı harflerdir.
+> - **Sayı** yazarken ilk basamak $0$ olamaz. **Kod/şifre** yazarken $0$ başta olabilir.
+> - "A, B, C **bu sırayla**" demek, soldan sağa okunduğunda önce A, sonra B, sonra C gelir demektir; aralarında başka nesneler olabilir. "Hemen solunda" ise yan yana olmayı gerektirir.
+> - Izgarada **en kısa yol**, yalnız sağa ve yukarı birer birim ilerleyen yoldur.
+
+Bu konu, [Permütasyon ve Kombinasyon](/konular/permutasyon-kombinasyon-tyt) özet sayfasının bir alt başlığıdır. Temel bakış için [10. sınıf Sayma ve Permütasyon](/konular/sayma-permutasyon-10) dersine bakabilirsin. Maarif programında sayma, permütasyon ve kombinasyon 10. sınıfta işlenir.
+
+## 1. Özdeş Nesneler Neden Fazla Sayılır? Etiketleri Silmek
+
+$A, A, B, C$ harflerini düşünelim. İki $A$'yı geçici olarak $A_1$ ve $A_2$ diye etiketlersek elimizde $4$ farklı harf olur ve bunlar $4!=24$ şekilde dizilir.
+
+Şimdi etiketleri silelim. $A_1A_2BC$ ile $A_2A_1BC$ dizilişleri, etiketler gidince ikisi de $AABC$ olur. Her gerçek diziliş, etiketli listede tam olarak **iki kez** görünür; çünkü iki $A$ kendi aralarında $2!=2$ şekilde yer değiştirebilir.
+
+<Figur>
+
+<TekrarliPermutasyonEtiketSilme />
+
+<Altyazi>Şekil 1 — Etiketler silinince her iki etiketli diziliş tek bir dizilişe dönüşür. $24$ etiketli diziliş, $24\div 2=12$ gerçek dizilişe iner.</Altyazi>
+
+</Figur>
+
+Listeleyip doğrulayalım. $AABC$ harflerinin bütün dizilişleri şunlardır:
+
+| $A$ ile başlayanlar | $B$ ile başlayanlar | $C$ ile başlayanlar |
+| --- | --- | --- |
+| $AABC,\ AACB$ | $BAAC,\ BACA$ | $CAAB,\ CABA$ |
+| $ABAC,\ ABCA$ | $BCAA$ | $CBAA$ |
+| $ACAB,\ ACBA$ | | |
+
+Toplam $6+3+3=12$ diziliş vardır. Bu da $\dfrac{4!}{2!}=\dfrac{24}{2}=12$ ile aynıdır.
+
+> **Neden bölüyoruz?** Etiketli sayımda her gerçek diziliş, özdeş harflerin kendi aralarındaki sıralama sayısı kadar tekrar sayılır. Bölme işlemi bu fazlalığı geri alır.
+
+## 2. Tekrarlı Permütasyon Formülü
+
+$n$ nesneden $n_1$ tanesi birbirinin aynısı, $n_2$ tanesi başka bir türden birbirinin aynısı, …, $n_r$ tanesi de bir başka türden birbirinin aynısı olsun ($n_1+n_2+\dots+n_r=n$). Bu $n$ nesnenin tek sıra hâlindeki dizilişlerinin sayısı şudur:
+
+$$\dfrac{n!}{n_1!\cdot n_2!\cdots n_r!}$$
+
+Her grup **ayrı ayrı** fazla sayıldığı için paydaya **her grubun** faktöriyeli yazılır. Tek kez geçen bir nesnenin paydadaki çarpanı $1!=1$'dir; bu yüzden onu yazmasak da sonuç değişmez.
+
+Örneğin $A,A,A,B,B,C$ harfleri $\dfrac{6!}{3!\cdot 2!\cdot 1!}=\dfrac{720}{12}=60$ şekilde dizilir. Bütün nesneler farklıysa her $n_i=1$ olur ve formül bildiğimiz $n!$ olur.
+
+## 3. Kelime Dizilişleri: Tekrar Eden Harfler
+
+Tekrarın etkisini görmek için iki kelimeyi karşılaştıralım. KALEM'in $5$ harfi birbirinden farklıdır: $5!=120$ kelime. ANKARA'nın $6$ harfi vardır ama $A$ üç kez geçer; bu yüzden $6!=720$ değil, $\dfrac{6!}{3!}=120$ kelime yazılır. Bir harf fazla olduğu hâlde sonuç artmadı; çünkü üç $A$'nın yer değiştirmesi yeni kelime üretmez.
+
+Bir kelimenin harfleriyle kaç farklı kelime yazılabileceğini bulmak için önce **harf sayımı** yapılır: hangi harf kaç kez geçiyor?
+
+**MATEMATİK** kelimesinde $9$ harf vardır: $M$ iki kez, $A$ iki kez, $T$ iki kez; $E$, $\textit{İ}$ ve $K$ birer kez geçer. Buna göre:
+
+$$\dfrac{9!}{2!\cdot 2!\cdot 2!}=\dfrac{362\,880}{8}=45\,360$$
+
+Harf sayımını bir tabloyla yapmak, paydada bir grubu unutma hatasını önler:
+
+| Harf | M | A | T | E | İ | K | Toplam |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Tekrar | $2$ | $2$ | $2$ | $1$ | $1$ | $1$ | $9$ |
+
+> **Kontrol:** Tablodaki tekrar sayılarının toplamı kelimenin harf sayısına eşit olmalıdır. Eşit değilse bir harf atlanmış ya da iki kez sayılmıştır.
+
+## 4. Koşullu Kelime Dizilişleri: Başta, Sonda, Yan Yana, Ayrı
+
+**Belirli bir harfle başlamak.** Bir harf başa sabitlenince o harf artık dizilecek harfler arasında değildir; **kalan harflerin** yeni tekrar sayılarıyla hesap yapılır. MATEMATİK'te:
+
+- $K$ ile başlayanlar: kalan $8$ harfte $M$, $A$, $T$ yine ikişer kez geçer: $\dfrac{8!}{2!\cdot 2!\cdot 2!}=5040$.
+- $M$ ile başlayanlar: kalan $8$ harfte artık yalnız **bir** $M$ vardır: $\dfrac{8!}{2!\cdot 2!}=10\,080$.
+
+İki sonuç farklıdır; çünkü başa konan harfin tekrar sayısı bir azalır.
+
+Blok, tümleyen ve boşluk yöntemlerini farklı kişiler için [Permütasyon ve Faktöriyel](/konular/permutasyon-siralama) sayfasında gördük; burada bu yöntemleri özdeş harflere uyguluyoruz.
+
+**Aynı harfler yan yana.** Yan yana olması istenen harfler tek bir blok gibi düşünülür. **KAPAK** kelimesinin harfleri ($K$ iki, $A$ iki, $P$ bir) toplam $\dfrac{5!}{2!\cdot 2!}=30$ şekilde dizilir. İki $A$'nın yan yana olduğu dizilişlerde $AA$ bloğunu tek nesne sayarız: $[AA], K, K, P$ olmak üzere dört nesne $\dfrac{4!}{2!}=12$ şekilde dizilir. Bloğun içindeki iki $A$ özdeş olduğu için blok kendi içinde **tek** şekilde yazılır; ayrıca $2!$ ile çarpılmaz.
+
+**Aynı harfler yan yana değil.** İki yol vardır:
+
+- **Tümleyen:** $30-12=18$.
+- **Boşluk yöntemi:** Önce diğer harfleri dizeriz: $K, K, P$ harfleri $\dfrac{3!}{2!}=3$ şekilde dizilir. Bu üç harfin arasında ve iki ucunda $4$ boşluk oluşur. İki $A$'yı farklı iki boşluğa koyarsak yan yana gelmezler. $4$ boşluktan $2$'sini seçmenin $6$ yolu vardır ($12, 13, 14, 23, 24, 34$). Sonuç: $3\cdot 6=18$.
+
+<Figur>
+
+<TekrarliPermutasyonBosluk />
+
+<Altyazi>Şekil 2 — Boşluk yöntemi. $K, P, K$ dizildikten sonra $4$ boşluk kalır; iki özdeş $A$ farklı iki boşluğa konunca yan yana gelemez. Boşluklar özdeş harflerle dolduğu için yalnız **hangi** boşlukların seçildiği önemlidir.</Altyazi>
+
+</Figur>
+
+Yan yana gelmemesi istenen iki harf olduğunda iki yol da aynı sonucu verir. Üç ya da daha fazla nesnede "hepsi birden yan yana değil" ile "hiçbir ikisi yan yana değil" sorularının farklı olduğunu Permütasyon sayfasında gördük; Örnek 4'te bu ayrımı özdeş harfler üzerinde göreceğiz.
+
+**Sesli harfler bir arada.** Blok, farklı harflerden oluşabilir; o zaman bloğun içi de ayrıca dizilir ve bloğun içinde tekrar eden harf varsa orada da bölme yapılır. **ELEKTRİK** kelimesinde ($E$ iki, $K$ iki; $L, T, R, \textit{İ}$ birer) sesli harfler $E, E, \textit{İ}$'dir:
+
+- Bloğun içi: $E, E, \textit{İ}$ harfleri $\dfrac{3!}{2!}=3$ şekilde dizilir.
+- Dışarısı: $[EE\textit{İ}], L, K, T, R, K$ olmak üzere altı nesnede $K$ iki kez geçer: $\dfrac{6!}{2!}=360$.
+- Sesli harflerin bir arada olduğu kelime sayısı: $3\cdot 360=1080$.
+
+## 5. Bir Kelimenin Harflerinden k Harfli Kelimeler: Desene Göre Say
+
+Bir kelimenin **bütün** harflerini değil, yalnız bir kısmını kullanarak kelime yazmak istediğimizde formül doğrudan uygulanamaz; çünkü hangi harflerin seçildiğine göre tekrar sayısı değişir. Çözüm, kelimeleri **desene** göre ayırmaktır:
+
+| Desen (3 harf için) | Anlamı | Nasıl sayılır? |
+| --- | --- | --- |
+| $XXX$ | üç harf de aynı | o harften en az üç tane olmalı |
+| $XXY$ | iki aynı, bir farklı | harfleri seç, sonra $\dfrac{3!}{2!}=3$ şekilde diz |
+| $XYZ$ | üçü farklı | harfleri seç, sonra $3!=6$ şekilde diz |
+
+Her desende yöntem aynıdır: **önce harfleri seç, sonra seçilen harfleri tekrarlı permütasyonla diz.**
+
+Küçük bir örnekle listeleyip görelim. **ARABA** kelimesinin harfleriyle ($A$ üç, $R$ bir, $B$ bir) iki harfli kaç kelime yazılır?
+
+- $XX$ deseni: yalnız $AA$ olabilir. $1$ kelime.
+- $XY$ deseni: $\{A, R, B\}$'den farklı iki harf seçilir ve dizilir: $AR, RA, AB, BA, RB, BR$. $6$ kelime.
+
+Toplam $7$ kelime vardır. Beş harfi farklıymış gibi düşünüp $5\cdot 4=20$ demek yanlıştır; çünkü $A_1R$, $A_2R$, $A_3R$ etiketsiz hâlde aynı kelimedir.
+
+## 6. Sınırlı Tekrar: "Her Rakam En Çok İki Kez"
+
+"Her rakam en çok iki kez kullanılabilir" gibi bir koşul, desen yöntemiyle kolayca sayılır: izin verilen desenleri yazar, her birini ayrı sayar ve toplarız.
+
+$1, 2, 3, 4, 5$ rakamlarıyla, her rakam en çok iki kez kullanılarak üç basamaklı kaç sayı yazılabilir? ($0$ olmadığından baş basamakla ilgili bir kısıt yoktur.)
+
+| Desen | Nasıl sayılır? | Sayı adedi |
+| --- | --- | --- |
+| $XYZ$ | basamaklar sırayla doldurulur: $5\cdot 4\cdot 3$ | $60$ |
+| $XXY$ | tekrar eden rakam $5$, tek kalan rakam $4$ yolla seçilir; diziliş $\dfrac{3!}{2!}=3$: $5\cdot 4\cdot 3$ | $60$ |
+| $XXX$ | izin verilmez | $0$ |
+
+Toplam $60+60=120$'dir. **Sağlama:** Kısıtsız $5^3=125$ sayıdan, bir rakamın üç kez geçtiği $5$ sayı ($111, 222, \dots, 555$) çıkarılırsa yine $120$ kalır.
+
+> **Dikkat:** Dört basamakta $XXYY$ deseni de vardır (ör. $1122$). Bu deseni atlamak, sınırlı tekrar sorularında en sık yapılan hatadır (Örnek 6).
+
+## 7. İç Sırası Sabit Nesneler: Özdeşmiş Gibi Saymak
+
+Boyları birbirinden farklı $3$ kız ve $4$ erkek tek sıra hâlinde dizilecek. Kızların, kendi aralarında soldan sağa **kısadan uzuna** sıralanması isteniyor; erkekler serbest.
+
+Kızlara ait yerler belli olduktan sonra hangi kızın nereye geçeceği sorusunun tek cevabı vardır: bu yerlerden en soldakine en kısa kız, ortadakine orta boylu kız, en sağdakine en uzun kız gelir. Yani kızları **özdeşmiş gibi** düşünebiliriz: $K, K, K, E_1, E_2, E_3, E_4$ harflerini dizmek gibi.
+
+$$\dfrac{7!}{3!}=\dfrac{5040}{6}=840$$
+
+Başka bir bakışla: kızların $3!=6$ olası iç sıralamasından yalnız **biri** istenir. Toplam $7!$ dizilişin altıda biri bu koşulu sağlar.
+
+Erkekler de kendi aralarında kısadan uzuna dizilecek olsaydı iki grubu da özdeşmiş gibi sayardık: $\dfrac{7!}{3!\cdot 4!}=35$.
+
+## 8. Yer Seçimiyle Aynı Sonuç: C(n, k) Köprüsü
+
+Aynı soruyu başka bir yoldan da çözebiliriz: önce **yerleri** seç, sonra yerleştir.
+
+1. $7$ yerden kızlara ait $3$ yeri seçeriz. Kızları özdeşmiş gibi düşündüğümüz için bu, $3$ tane "K" ve $4$ tane "boş" işaretini dizmekle aynıdır: $\dfrac{7!}{3!\cdot 4!}=35$.
+2. Seçilen yerlere kızlar tek şekilde (kısadan uzuna) yerleşir: $1$ yol.
+3. Kalan $4$ yere erkekler $4!=24$ şekilde yerleşir.
+
+Sonuç $35\cdot 1\cdot 24=840$ olur ve ilk yolla aynıdır. Kızlar yerleştikten sonra ayrıca $3!$ ile çarpmak, "kısadan uzuna" koşulunu yok saymak demektir.
+
+$n$ yerden $k$ tanesini seçme sayısı, $k$ özdeş ve $n-k$ özdeş nesnenin diziliş sayısına eşittir:
+
+$$\dfrac{n!}{k!\cdot (n-k)!}$$
+
+Bu sayı [Kombinasyon: Seçme Problemleri](/konular/kombinasyon-secme) sayfasında $C(n,k)$ ya da $\dbinom{n}{k}$ ile gösterilir; orada seçme problemlerinin temelini oluşturacak. Bu sayfada onu bir tekrarlı permütasyon olarak kullanıyoruz.
+
+**Para dizileri.** Bir para $6$ kez atılıyor. Tam $2$ kez yazı gelen sonuç dizileri, $Y, Y, T, T, T, T$ harflerinin dizilişleridir: $\dfrac{6!}{2!\cdot 4!}=15$. Aynı sayı, $6$ atıştan yazı gelen $2$ atışı seçmenin yol sayısıdır.
+
+## 9. Tekrarlı Rakamlarla Sayı Oluşturma
+
+Verilen rakamların **tümü** kullanılarak sayı yazılacaksa tekrarlı permütasyon uygulanır; ancak rakamlar arasında $0$ varsa $0$ ile başlayan dizilişler sayı değildir. Baş basamağa $0$ gelemeyeceği kısıtını, rakamların farklı olduğu durumda [Rakamlarla Sayı Oluşturma](/konular/rakamlarla-sayi-olusturma) sayfasında gördük; burada tek fark, çıkarılacak dizilişleri sayarken de tekrar eden rakamlara bölmektir.
+
+$0, 1, 1, 3, 3$ rakamlarının tümü kullanılarak beş basamaklı kaç sayı yazılabilir?
+
+- **Önce hepsini say, sonra çıkar:** Tüm dizilişler $\dfrac{5!}{2!\cdot 2!}=30$. Başta $0$ olanlarda kalan $1, 1, 3, 3$ rakamları $\dfrac{4!}{2!\cdot 2!}=6$ şekilde dizilir. Sayı adedi $30-6=24$.
+- **Baş basamaktan başla:** Baş basamak $1$ ise kalan $0, 1, 3, 3$ rakamları $\dfrac{4!}{2!}=12$ şekilde dizilir. Baş basamak $3$ ise kalan $0, 1, 1, 3$ yine $12$ şekilde dizilir. Toplam $24$.
+
+İki yolun aynı sonucu vermesi iyi bir sağlamadır.
+
+## 10. Izgarada En Kısa Yol: Sağ–Yukarı Kelimesi
+
+Şekildeki sokak ızgarasında $A$'dan $B$'ye en kısa yoldan gitmek isteyen biri her adımda ya bir birim **sağa (S)** ya da bir birim **yukarı (Y)** gider. $B$, $A$'nın $4$ birim sağında ve $3$ birim yukarısındadır; bu yüzden her en kısa yol tam olarak $4$ tane S ve $3$ tane Y adımından oluşur.
+
+<Figur>
+
+<TekrarliPermutasyonIzgara />
+
+<Altyazi>Şekil 3 — $4$ birim sağa, $3$ birim yukarı giden bir ızgara. Kırmızı yol, $S\,S\,Y\,S\,Y\,Y\,S$ kelimesine karşılık gelir. Her en kısa yol böyle bir kelimedir; her kelime de bir en kısa yoldur.</Altyazi>
+
+</Figur>
+
+Böylece yolları saymak, $S, S, S, S, Y, Y, Y$ harflerinin dizilişlerini saymaya dönüşür:
+
+$$\dfrac{7!}{4!\cdot 3!}=35$$
+
+Genel olarak $m$ birim sağa ve $n$ birim yukarı giden en kısa yolların sayısı $\dfrac{(m+n)!}{m!\cdot n!}$'dir.
+
+> **Adım mı, nokta mı?** Hesapta kullanılan sayılar **birim adım** sayılarıdır. Bu ızgarada $5$ dikey ve $4$ yatay sokak, $5\cdot 4=20$ kesişim noktası ve $4\cdot 3=12$ kare vardır; ama bunların hiçbiri adım sayısı değildir. Önce "kaç birim sağa, kaç birim yukarı?" sorusunu cevapla.
+
+**Üç boyutta.** Üç boyutlu bir ızgarada sağa $a$, ileri $b$, yukarı $c$ birim gidilecekse yol, $a$ tane S, $b$ tane İ ve $c$ tane Y harfinden oluşan bir kelimedir: $\dfrac{(a+b+c)!}{a!\cdot b!\cdot c!}$. Örneğin $2$ sağa, $2$ ileri, $1$ yukarı için $\dfrac{5!}{2!\cdot 2!\cdot 1!}=30$ yol vardır.
+
+## 11. Belirli Noktadan Geçen, Geçmeyen ve Kapalı Yollu Izgaralar
+
+**Bir noktadan geçen yollar.** Şekil 3'teki $C$ noktası, $A$'nın $1$ birim sağında ve $2$ birim yukarısındadır. $C$'den geçen bir yol iki parçadan oluşur: $A$'dan $C$'ye bir yol, **ardından** $C$'den $B$'ye bir yol. İlk parçanın her seçeneği ikinci parçanın her seçeneğiyle birleşebildiği için **çarpılır**:
+
+- $A\to C$: $1$ S, $2$ Y: $\dfrac{3!}{1!\cdot 2!}=3$.
+- $C\to B$: $3$ S, $1$ Y: $\dfrac{4!}{3!\cdot 1!}=4$.
+- $C$'den geçen yollar: $3\cdot 4=12$.
+
+**Bir noktadan geçmeyen yollar.** Tümleyenle bulunur: $35-12=23$.
+
+**Kapalı bir sokak.** İki komşu nokta $P$ ile $Q$ arasındaki birim parça kapalıysa, önce bu parçayı **kullanan** yollar sayılır: $A\to P$ yolları $\cdot$ $Q\to B$ yolları. Sonra bu sayı tüm yollardan çıkarılır. Kapalı parçayı kullanan bir yol, $P$ noktasına ulaşıp hemen $Q$ noktasına geçen yoldur; bu yüzden aradaki parça için $1$ yol vardır. Bu yöntemi Örnek 8'de bir noktadan geçme koşuluyla birlikte kullanacağız.
+
+## 12. Merdiven ve Adım Problemleri
+
+$6$ basamaklı bir merdiveni her adımda $1$ ya da $2$ basamak çıkarak kaç farklı şekilde çıkabiliriz? Adımların **sırası** önemlidir: önce $2$ sonra $1$ çıkmak, önce $1$ sonra $2$ çıkmaktan farklıdır.
+
+Durumları **2'lik adım sayısına** göre ayıralım. $k$ tane 2'lik adım atılırsa geriye $6-2k$ tane 1'lik adım kalır; toplam adım sayısı $6-k$ olur. Bu adımları dizmek, bir tekrarlı permütasyondur:
+
+| 2'lik adım | 1'lik adım | Toplam adım | Diziliş |
+| --- | --- | --- | --- |
+| $0$ | $6$ | $6$ | $1$ |
+| $1$ | $4$ | $5$ | $\dfrac{5!}{1!\cdot 4!}=5$ |
+| $2$ | $2$ | $4$ | $\dfrac{4!}{2!\cdot 2!}=6$ |
+| $3$ | $0$ | $3$ | $1$ |
+
+Toplam $1+5+6+1=13$ farklı çıkış vardır.
+
+## Çözümlü Sorular
+
+{/* ornek-1 */}
+<Ornek>
+
+<Soru>
+
+$3$ özdeş kırmızı ve $2$ özdeş mavi bayrak, bir direğe yukarıdan aşağıya tek sıra hâlinde asılacaktır. Kaç farklı diziliş elde edilir?
+
+</Soru>
+
+<Ipucu>
+
+Bayraklar renklerinden başka bir şeyle ayırt edilemiyor. Hangi dizilişler birbirinden gerçekten farklıdır? Önce listelemeyi dene.
+
+</Ipucu>
+
+<Cozum>
+
+1. **Yanlış yol:** "$5$ bayrak var, $5!=120$ diziliş" demek, bayrakları numaralıymış gibi saymaktır. Örneğin $K_1K_2K_3M_1M_2$ ile $K_2K_1K_3M_1M_2$ direkte aynı görünür; ikisi de "kırmızı, kırmızı, kırmızı, mavi, mavi" dizilişidir.
+
+2. **Listele:** Her dizilişi, mavi bayrakların hangi sıralarda olduğuna göre yazalım (yukarıdan aşağıya, $K$ kırmızı, $M$ mavi):
+$MMKKK,\ MKMKK,\ MKKMK,\ MKKKM,\ KMMKK,\ KMKMK,\ KMKKM,\ KKMMK,\ KKMKM,\ KKKMM$. Toplam $10$ diziliş.
+
+3. **Formülle say:** Kırmızılar kendi aralarında $3!$, maviler $2!$ şekilde yer değiştirebilir; bu yer değiştirmeler yeni diziliş üretmez:
+$$\dfrac{5!}{3!\cdot 2!}=\dfrac{120}{12}=10$$
+
+4. **Sağlama:** $120$ etiketli dizilişin her biri, gerçek bir dizilişi $3!\cdot 2!=12$ kez tekrar eder; $120\div 12=10$, listeyle aynıdır.
+
+<Cevap>$10$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-2 */}
+<Ornek>
+
+<Soru>
+
+KELEBEK kelimesinin harflerinin tümü kullanılarak, anlamlı veya anlamsız, $7$ harfli kaç farklı kelime yazılabilir?
+
+</Soru>
+
+<Ipucu>
+
+Önce harf sayımı yap: hangi harf kaç kez geçiyor? Birden fazla geçen **her** harf için bölme gerekir.
+
+</Ipucu>
+
+<Cozum>
+
+1. **Harf sayımı:** $K$ iki kez, $E$ üç kez, $L$ bir kez, $B$ bir kez geçer. Kontrol: $2+3+1+1=7$.
+
+2. **Formül:**
+$$\dfrac{7!}{2!\cdot 3!}=\dfrac{5040}{12}=420$$
+
+3. **Yanlış yol:** Yalnız $E$'leri görüp $\dfrac{7!}{3!}=840$ yazmak. Bu sayımda iki $K$ hâlâ farklıymış gibi düşünülür: örneğin $K_1ELEBEK_2$ ile $K_2ELEBEK_1$ ayrı sayılır. Bu yüzden her kelime iki kez sayılmış olur; $840\div 2=420$.
+
+4. **Sağlama (yer seçerek):** Önce üç $E$ için $7$ yerden $3$'ünü seç: $\dfrac{7!}{3!\cdot 4!}=35$. Kalan $4$ yerden $2$'sine $K$'leri koy: $\dfrac{4!}{2!\cdot 2!}=6$. Son $2$ yere $L$ ve $B$: $2$ yol. Toplam $35\cdot 6\cdot 2=420$.
+
+<Cevap>$420$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-3 */}
+<Ornek>
+
+<Soru>
+
+ANTALYA kelimesinin harflerinin tümü kullanılarak yazılan, anlamlı veya anlamsız, $7$ harfli kelimelerden kaç tanesi $A$ harfiyle başlar?
+
+</Soru>
+
+<Ipucu>
+
+Başa bir $A$ konduktan sonra geriye kaç tane $A$ kalır?
+
+</Ipucu>
+
+<Cozum>
+
+1. **Harf sayımı:** $A$ üç kez; $N$, $T$, $L$, $Y$ birer kez geçer.
+
+2. Birinci harf $A$ olarak sabitlenir. Geriye $6$ harf kalır: $A, A, N, T, L, Y$. Artık yalnız **iki** $A$ vardır.
+
+3. Kalan harflerin dizilişleri:
+$$\dfrac{6!}{2!}=\dfrac{720}{2}=360$$
+
+4. **Yanlış yol:** $\dfrac{6!}{3!}=120$ yazmak. Başa konan $A$ kalan harflerin arasında değildir; paydada hâlâ $3!$ bırakmak, olmayan bir $A$ için bölmektir.
+
+5. **Sağlama (oranla):** Tüm kelimeler $\dfrac{7!}{3!}=840$ tanedir. Etiketli düşünürsek ilk harf, $7$ harften her biri olabilir ve bunların $3$'ü $A$'dır; yani kelimelerin $\dfrac{3}{7}$'si $A$ ile başlar. $840\cdot\dfrac{3}{7}=360$.
+
+<Cevap>$360$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-4 */}
+<Ornek>
+
+<Soru>
+
+TEKERLEK kelimesinin harflerinin tümü kullanılarak, anlamlı veya anlamsız, $8$ harfli kelimeler yazılıyor.
+
+a) Üç $E$ harfinin **üçünün birden** yan yana olmadığı kaç kelime vardır?
+
+b) **Hiçbir iki** $E$ harfinin yan yana olmadığı kaç kelime vardır?
+
+</Soru>
+
+<Ipucu>
+
+a) şıkkında tümleyeni kullan: tüm kelimelerden, üç $E$'nin tek blok olduğu kelimeleri çıkar. b) şıkkında önce $E$ olmayan harfleri diz, sonra $E$'leri boşluklara yerleştir.
+
+</Ipucu>
+
+<Cozum>
+
+1. **Harf sayımı:** $T$ bir, $E$ üç, $K$ iki, $R$ bir, $L$ bir kez geçer ($1+3+2+1+1=8$). Tüm kelimeler:
+$$\dfrac{8!}{3!\cdot 2!}=\dfrac{40\,320}{12}=3360$$
+
+2. **Üç $E$ yan yana:** $[EEE]$ bloğu tek nesnedir. $[EEE], T, K, K, R, L$ olmak üzere altı nesnede $K$ iki kez geçer: $\dfrac{6!}{2!}=360$.
+**Yanlış yol:** Bloğu ayrıca $3!$ ile çarpıp $2160$ bulmak. Blok içindeki üç $E$ özdeştir; $EEE$ yalnız tek şekilde yazılır.
+
+3. **a) şıkkı:** $3360-360=3000$.
+
+4. **b) şıkkı (boşluk yöntemi):** $T, K, K, R, L$ harfleri $\dfrac{5!}{2!}=60$ şekilde dizilir. Bu beş harfin arasında ve uçlarında $6$ boşluk vardır. Üç özdeş $E$ farklı üç boşluğa konur; yalnız hangi boşlukların seçildiği önemlidir. $6$ boşluktan $3$'ünü seçmek, $3$ "dolu" ve $3$ "boş" işaretini dizmektir: $\dfrac{6!}{3!\cdot 3!}=20$. Sonuç: $60\cdot 20=1200$.
+
+5. **İki sonuç neden farklı?** a) şıkkındaki $3000$ kelimenin içinde $EETEKKRL$ gibi, iki $E$'nin yan yana ama üçüncünün ayrı olduğu kelimeler de vardır.
+
+6. **Sağlama:** Tam olarak iki $E$'nin yan yana olduğu kelimeleri ayrıca sayalım: $T, K, K, R, L$ dizilir ($60$), sonra $[EE]$ bloğu ve tek $E$ farklı iki boşluğa konur. Bu ikisi birbirinden farklı nesneler olduğu için $6\cdot 5=30$ yol vardır: $60\cdot 30=1800$. Gerçekten de $1200+1800=3000$.
+
+<Cevap>a) $3000$ b) $1200$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-5 */}
+<Ornek>
+
+<Soru>
+
+ANKARA kelimesinin harfleri kullanılarak, anlamlı veya anlamsız, $3$ harfli kaç farklı kelime yazılabilir? (Bir harf, kelimede geçtiği sayıdan fazla kullanılamaz.)
+
+</Soru>
+
+<Ipucu>
+
+Kelimeleri desene göre ayır: üç harf aynı, iki harf aynı, üç harf farklı.
+
+</Ipucu>
+
+<Cozum>
+
+1. **Harf sayımı:** $A$ üç kez; $N$, $K$, $R$ birer kez geçer. Farklı harfler: $\{A, N, K, R\}$.
+
+2. **$XXX$ deseni:** Üç kez geçen tek harf $A$'dır: yalnız $AAA$. $1$ kelime.
+
+3. **$XXY$ deseni:** İki kez kullanılabilen tek harf $A$'dır. Farklı harf $N$, $K$ ya da $R$ olabilir: $3$ seçim. Her seçim $\dfrac{3!}{2!}=3$ şekilde dizilir (ör. $AAN, ANA, NAA$). $3\cdot 3=9$ kelime.
+
+4. **$XYZ$ deseni:** $4$ farklı harften $3$'ü seçilir; bu, dışarıda kalacak harfi seçmekle aynıdır: $4$ yol. Seçilen üç harf $3!=6$ şekilde dizilir. $4\cdot 6=24$ kelime.
+
+5. **Toplam:** $1+9+24=34$.
+
+6. **Yanlış yol:** "$6$ harften $3$'ünü sırayla seç" deyip $6\cdot 5\cdot 4=120$ yazmak. Bu sayım üç $A$'yı farklıymış gibi düşünür: $A_1NK$, $A_2NK$, $A_3NK$ dizilişleri aynı kelime olan $ANK$'yi üç kez sayar. Yalnız farklı harflerden $4\cdot 3\cdot 2=24$ yazmak da $AAN$ ve $AAA$ gibi kelimeleri unutur.
+
+7. **Sağlama:** $XXY$ desenindeki $9$ kelimeyi listeleyelim: $AAN, ANA, NAA, AAK, AKA, KAA, AAR, ARA, RAA$. Gerçekten $9$ tane.
+
+<Cevap>$34$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-6 */}
+<Ornek>
+
+<Soru>
+
+$0, 1, 2, 3, 4$ rakamları kullanılarak, her rakam en çok iki kez kullanılmak şartıyla, dört basamaklı kaç farklı sayı yazılabilir?
+
+</Soru>
+
+<Ipucu>
+
+Önce $0$'ın başa gelebildiği dört haneli **kodları** desene göre say ($XYZW$, $XXYZ$, $XXYY$). Sonra $0$ ile başlayanları düşün.
+
+</Ipucu>
+
+<Cozum>
+
+1. **Kodları desene göre say** ($0$ başta olabilir):
+- $XYZW$ (dördü farklı): rakamlar sırayla seçilir: $5\cdot 4\cdot 3\cdot 2=120$.
+- $XXYZ$ (biri iki kez, ikisi birer kez): iki kez geçecek rakam $5$ yolla, birer kez geçecek iki rakam kalan $4$ rakamdan $6$ yolla seçilir ($\dfrac{4\cdot 3}{2}$). Diziliş: $\dfrac{4!}{2!}=12$. Toplam $5\cdot 6\cdot 12=360$.
+- $XXYY$ (ikisi ikişer kez): iki kez geçecek iki rakam $\dfrac{5\cdot 4}{2}=10$ yolla seçilir. Diziliş: $\dfrac{4!}{2!\cdot 2!}=6$. Toplam $10\cdot 6=60$.
+- Kod sayısı: $120+360+60=540$.
+
+2. **Sağlama (tümleyen):** Kısıtsız $5^4=625$ koddan, bir rakamın üç kez geçtiği $5\cdot 4\cdot 4=80$ kod ve dört kez geçtiği $5$ kod çıkarılır: $625-85=540$.
+
+3. **$0$ ile başlayanlar:** Koşul beş rakamın hepsine aynı biçimde uygulanır; bu yüzden her rakam eşit sayıda kodun başında yer alır. $0$ ile başlayan kodlar $540\div 5=108$ tanedir. (Doğrudan sayım: başta $0$ varsa kalan üç hane için $5^3=125$ seçenekten, $0$'ın en az iki kez daha geçtiği $3\cdot 4+1=13$ ve sıfırdan farklı bir rakamın üç kez geçtiği $4$ seçenek çıkar: $125-17=108$.)
+
+4. **Sayı adedi:** $540-108=432$.
+
+5. **Yanlış yollar:** $XXYY$ desenini atlarsak $480$ kod, buradan da $384$ sayı bulunur. $XXYY$ desenini sayıp dizilişini bölmeden $4!=24$ alırsak bu desen için $10\cdot 24=240$ kod, toplamda $120+360+240=720$ kod buluruz; oysa $1122$ ile $2211$ gibi dizilişlerde aynı rakamların yer değiştirmesi yeni kod üretmez. $0$ ile başlayanları çıkarmayı unutursak $540$ buluruz. Hepsi yanlıştır.
+
+<Cevap>$432$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-7 */}
+<Ornek>
+
+<Soru>
+
+$n$ kişi tek sıra hâlinde dizilecektir. Bu kişiler arasındaki Ada, Barış ve Cem'in soldan sağa bu sırayla yer alması isteniyor (aralarında başka kişiler olabilir). Bu koşulu sağlayan $120$ farklı diziliş olduğuna göre $n$ kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+Ada, Barış ve Cem'in kendi aralarındaki $3!$ sıralamadan yalnız biri isteniyor.
+
+</Ipucu>
+
+<Cozum>
+
+1. Üç kişinin iç sırası sabit olduğundan onları özdeşmiş gibi sayarız: diziliş sayısı $\dfrac{n!}{3!}$ olur.
+
+2. $\dfrac{n!}{6}=120 \Rightarrow n!=720 \Rightarrow n=6$.
+
+3. **Yanlış yol:** Önce üç kişiye yer seçip ($\dfrac{n!}{3!\,(n-3)!}$), diğerlerini dizip ($(n-3)!$), sonra bir de üç kişiyi kendi aralarında $3!$ şekilde dizmek. Bu çarpım $n!$ eder ve "bu sırayla" koşulunu yok sayar. $n!=120$ denklemi $n=5$ gibi yanlış bir sonuç verir.
+
+4. **Sağlama ($n=6$ ile yer seçerek):** $6$ yerden üç kişiye ait $3$ yer $\dfrac{6!}{3!\cdot 3!}=20$ yolla seçilir; bu yerlere Ada, Barış, Cem soldan sağa tek şekilde yerleşir; kalan $3$ kişi $3!=6$ şekilde dizilir. $20\cdot 6=120$.
+
+<Cevap>$n=6$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-8 */}
+<Ornek>
+
+<Soru>
+
+<Figur>
+
+<TekrarliPermutasyonKapaliYol />
+
+<Altyazi>Şekil 4 — $B$ noktası $A$'nın $5$ birim sağında ve $3$ birim yukarısındadır. $C$ noktası $A$'nın $2$ birim sağında ve $1$ birim yukarısındadır. Çarpı ile işaretli birim sokak kapalıdır.</Altyazi>
+
+</Figur>
+
+Şekildeki sokak ızgarasında yalnız sağa ve yukarı birer birim ilerlenerek $A$'dan $B$'ye gidilecektir. Kapalı sokak kullanılamadığına göre, $C$ noktasından geçen kaç farklı en kısa yol vardır?
+
+</Soru>
+
+<Ipucu>
+
+Yolu $A\to C$ ve $C\to B$ diye iki parçaya ayır. Kapalı sokak hangi parçanın üzerinde?
+
+</Ipucu>
+
+<Cozum>
+
+1. **Adımları belirle:** Izgarada $6\cdot 4=24$ kesişim noktası vardır; ama sayılacak olan birim adımlardır. $A\to C$: $2$ S, $1$ Y. $C\to B$: $3$ S, $2$ Y.
+
+2. **$A\to C$ yolları:** $\dfrac{3!}{2!\cdot 1!}=3$. Kapalı sokak bu bölgede değildir.
+
+3. **$C\to B$ yolları (kısıtsız):** $\dfrac{5!}{3!\cdot 2!}=10$.
+
+4. **Kapalı sokağı kullanan $C\to B$ yolları:** Kapalı parçanın sol ucu $P$, sağ ucu $Q$ olsun. $P$, $C$'nin $1$ birim sağında ve $1$ birim yukarısındadır: $C\to P$ için $2$ yol. $Q$ noktasından $B$'ye $1$ S, $1$ Y kalır: $2$ yol. Kapalı parçayı kullanan yollar $2\cdot 1\cdot 2=4$.
+
+5. **Kullanılabilir $C\to B$ yolları:** $10-4=6$.
+
+6. **Sonuç:** İki parça art arda yürünür; ilk parçanın her yolu ikinci parçanın her yoluyla birleşir: $3\cdot 6=18$.
+
+7. **Yanlış yollar:** $C$'den $B$'ye giderken "$4$ nokta sağa, $3$ nokta yukarı" deyip $\dfrac{7!}{4!\cdot 3!}=35$ yazmak, nokta sayısını adım sayısı sanmaktır; $C$ ile $B$ arasındaki satırda $4$ nokta vardır ama aralarında yalnız $3$ birim adım vardır. Doğrusu $3$ S, $2$ Y ile $10$'dur. Parçaları toplamak ($3+6=9$) da yanlıştır; parçalar çarpılır. Kapalı sokağı unutmak ise $3\cdot 10=30$ verir.
+
+8. **Sağlama:** $C$'den başlayıp her noktaya, sol ve alt komşusundan gelen yol sayılarını toplayarak yazarsak (kapalı parçadan gelen yolu saymadan) $B$ noktasında $6$ buluruz. $3\cdot 6=18$ doğrulanır.
+
+<Cevap>$18$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Pekiştirme Soruları
+
+> Konuyu pekiştirmek için hazırlanmış özgün sorular.
+
+<Sorular slug="tekrarli-permutasyon" />
+
+## Sık Yapılan Hatalar
+
+- **Özdeş nesneleri farklı sayıp $n!$ yazmak.** Özdeş nesnelerin yer değiştirmesi yeni diziliş üretmez; her özdeş grubun faktöriyeline bölünür (Örnek 1).
+- **Paydaya yalnız bir grubun faktöriyelini yazmak.** Birden fazla tekrar eden harf varsa **her** grup için bölme yapılır. Harf sayımı tablosu bu hatayı önler (Örnek 2).
+- **Başa konan harfin tekrar sayısını azaltmamak.** Sabitlenen harf artık dizilmez; kalan harflerin yeni tekrar sayılarıyla hesap yapılır (Örnek 3).
+- **Özdeş bloğu kendi içinde $k!$ ile çarpmak.** $EEE$ bloğu tek şekilde yazılır. Blok farklı harflerden oluşuyorsa iç diziliş ayrıca sayılır ve içerideki tekrarlara yine bölünür (Örnek 4, Bölüm 4).
+- **"Hepsi birden yan yana değil" ile "hiçbir ikisi yan yana değil"i karıştırmak.** Üç ve daha fazla özdeş harfte bunlar farklı sonuçlar verir (Örnek 4).
+- **Bir kelimeden $k$ harf seçerken $P(n,k)$ yazmak.** Bu, tekrar eden harfleri farklıymış gibi saymaktır. Desenlere ayırıp her deseni ayrı say (Örnek 5).
+- **Sınırlı tekrarda bir deseni atlamak ya da desenin dizilişini bölmeden saymak.** Dört basamakta $XXYY$ deseni kolayca unutulur; sayıldığında da dizilişi $4!$ değil $\dfrac{4!}{2!\cdot 2!}$'dir. Kısıtsız sayıdan yasak desenleri çıkararak sağlama yap (Örnek 6).
+- **Tekrarlı rakamlarda $0$ ile başlayanları çıkarmamak.** Sayı yazılırken baş basamak $0$ olamaz (Örnek 6, Bölüm 9).
+- **İç sırası sabit grupta yer seçtikten sonra ayrıca $k!$ ile çarpmak.** Yerler seçilince sabit sıralı grup tek şekilde yerleşir (Örnek 7).
+- **Izgarada nokta ya da kare sayısını adım sayısı sanmak.** Hesapta yalnız "kaç birim sağa, kaç birim yukarı" kullanılır (Örnek 8, Bölüm 10).
+- **Bir noktadan geçen yolları toplayarak bulmak.** İki parça art arda yürünür; yol sayıları çarpılır (Örnek 8).
+
+## Özet
+
+| Durum | Ne yapılır? | Örnek |
+| --- | --- | --- |
+| Özdeş nesneler | $\dfrac{n!}{n_1!\cdot n_2!\cdots}$ | KELEBEK: $420$ |
+| Belirli harfle başlama | Harfi sabitle, kalanları yeni tekrar sayılarıyla diz | ANTALYA, $A$ ile: $360$ |
+| Özdeşler yan yana | Blok tek nesne, blok içi $1$ yol | TEKERLEK, $EEE$: $360$ |
+| Hiçbir ikisi yan yana değil | Diğerlerini diz, özdeşleri boşluklara koy | TEKERLEK: $1200$ |
+| $k$ harfli kelime | Desene göre ayır: seç, sonra diz | ANKARA, $3$ harf: $34$ |
+| Sınırlı tekrar | İzin verilen desenleri ayrı say | Örnek 6: $432$ |
+| İç sırası sabit | Sabit grubu özdeşmiş gibi say | $\dfrac{n!}{3!}$ |
+| Izgarada en kısa yol | S ve Y harflerinin dizilişi | $\dfrac{(m+n)!}{m!\cdot n!}$ |
+| Noktadan geçen yol | Parçaları çarp; geçmeyen için tümleyen | Örnek 8: $18$ |
+
+## Pratik İpucu
+
+Bir soruyu okurken önce şu üç soruyu sor: **Hangi nesneler özdeş? Bir koşul bir nesneyi sabitliyor ya da bir grubun sırasını donduruyor mu? Bütün nesneler mi kullanılıyor, yoksa bir kısmı mı seçiliyor?** Bütün nesneler kullanılıyorsa formül, bir kısmı seçiliyorsa desen yöntemi işe yarar.
+
+<KonuNav slug="tekrarli-permutasyon" />

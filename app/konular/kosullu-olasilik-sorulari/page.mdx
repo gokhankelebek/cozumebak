@@ -1,0 +1,700 @@
+import { KsSporTablosu } from "@/components/figures/KosulluSoruTabloFig";
+import { KsIkiCocuk } from "@/components/figures/KosulluSoruCocukFig";
+import { KsUcAtisAgaci, KsTorbaAgaci, KsTestAgaci } from "@/components/figures/KosulluSoruAgacFig";
+import { topicMetadata } from "@/lib/seo";
+
+export const metadata = topicMetadata("kosullu-olasilik-sorulari");
+
+<Konu slug="kosullu-olasilik-sorulari" />
+
+<p className="lead">Bir olayın gerçekleştiğini öğrendiğimizde örnek uzay o olayın içine daralır; koşullu olasılık, istenen olayın bu daralmış uzaydaki payıdır. Yeni uzayı listelemek, tablonun doğru satırını okumak, ağaçta dalları çarpmak, bağımsızlığı sınamak, Bayes ile sonuçtan nedene dönmek: bu sayfadaki her yöntem aynı fikre dayanır. **Payda, bilinen olaydır.**</p>
+
+> **Bu sayfadaki varsayımlar**
+>
+> - Zarlar ve paralar hilesizdir. Birden çok zar atıldığında zarlar birbirinden ayırt edilir; her sonuç sıralı bir ikilidir ($(4,6)$ ile $(6,4)$ farklı sonuçlardır).
+> - "Rastgele seçiliyor" ifadesi, seçeneklerin her birinin eşit olasılıkla seçildiği anlamına gelir.
+> - Torbadaki aynı renkli toplar, hesapta birbirinden ayrı (numaralı) düşünülür.
+> - "Geri koymadan" ya da "iadesiz" çekişte çekilen top torbaya dönmez; "aynı anda" çekiş de iadesiz çekiştir.
+> - Art arda yapılan atışlar, maçlar ve denemeler, aksi söylenmedikçe birbirinden **bağımsızdır** ve her denemede başarı olasılığı aynıdır.
+> - $P(A\mid B)$ yazıldığında $P(B)>0$ kabul edilir.
+> - Cevaplar en sade kesir olarak verilir.
+
+Koşullu olasılığın tanımı ve ilk örnekleri için 10. sınıf [Koşullu Olasılık](/konular/kosullu-olasilik), [Bağımlı ve Bağımsız Olaylar](/konular/bagimli-bagimsiz-olaylar-10) ve [Bayes Teoremi](/konular/bayes-teoremi-10) derslerine temel bakış olarak göz atabilirsin. Konunun genel haritası [Olasılık](/konular/olasilik-tyt) sayfasında. Maarif programında koşullu olasılık, bağımlı ve bağımsız olaylar ve Bayes teoremi 10. sınıfta işlenir. Bu sayfa aynı konuyu soru çözme derinliğinde ele alır ve [Olasılıkta Temel Kavramlar](/konular/olasilik-temel-kavramlar) ile [Kombinasyonla Olasılık](/konular/kombinasyonla-olasilik) sayfalarındaki tümleyen ve sayma yöntemlerini hazır kabul eder.
+
+## 1. Koşul Örnek Uzayını Daraltır
+
+Bir zar atılıyor. Gelen sayının tek olma olasılığı $\dfrac{3}{6}=\dfrac12$'dir. Şimdi biri zara bakıp "gelen sayı asal" diyor. Bu bilgiden sonra $1$, $4$ ve $6$ artık mümkün değildir; geriye yalnız
+
+$$\{2,\,3,\,5\}$$
+
+kalır. Bu üç sonuç hâlâ eşit olasılıklıdır ve bunların ikisi ($3$ ve $5$) tektir. Bu nedenle
+
+$$P(\text{tek}\mid \text{asal})=\dfrac{2}{3}.$$
+
+Bilgi, tek olma olasılığını $\dfrac12$'den $\dfrac23$'ye çıkardı. Zar değişmedi; değişen, **hangi sonuçların hâlâ mümkün olduğu** bilgisidir.
+
+> **Ana fikir:** "$B$ olduğu biliniyor" ifadesi örnek uzayı $B$'ye daraltır. $P(A\mid B)$ ("$B$ olduğu bilindiğine göre $A$'nın olasılığı"), $A$'nın bu yeni uzaydaki payıdır.
+
+## 2. Koşullu Olasılık Formülü ve İndirgenmiş Örnek Uzay
+
+Yeni uzay $B$ olduğuna göre, $A$'dan geriye yalnız $B$'nin içinde kalan kısım, yani $A\cap B$ kalır. Payda $B$, pay $A\cap B$ olur:
+
+$$P(A\mid B)=\dfrac{P(A\cap B)}{P(B)}\qquad (P(B)>0)$$
+
+Sonuçlar eşit olasılıklıysa olasılıkların yerine eleman sayıları yazılabilir:
+
+$$P(A\mid B)=\dfrac{s(A\cap B)}{s(B)}$$
+
+Bölüm 1'de $s(\text{asal})=3$ ve $s(\text{tek}\cap\text{asal})=2$ olduğundan sonuç $\dfrac23$ idi.
+
+Formülün iki yüzü vardır. Olduğu gibi okununca koşullu olasılığı hesaplar; iki tarafı $P(B)$ ile çarpınca **çarpma kuralını** verir:
+
+$$P(A\cap B)=P(B)\cdot P(A\mid B)=P(A)\cdot P(B\mid A)$$
+
+## 3. P(A | B) + P(A' | B) = 1, Ama P(A | B) ≠ 1 − P(A | B')
+
+$B$'nin içindeki her sonuç ya $A$ olayına ya da $A'$ olayına aittir. Bu iki parça daralmış uzayı tam olarak paylaşır:
+
+$$P(A\mid B)+P(A'\mid B)=1$$
+
+Buna karşılık $P(A\mid B)$ ile $P(A\mid B')$ **farklı uzaylarda** hesaplanır: biri $B$'nin içinde, öteki $B$'nin dışında. Toplamlarının $1$ olması için hiçbir neden yoktur. Örneğin bir sınıfta düzenli çalışanların $\%90$'ı, çalışmayanların ise $\%30$'u dersten geçmiş olsun:
+
+$$P(\text{geçti}\mid \text{çalıştı})+P(\text{geçti}\mid \text{çalışmadı})=0{,}9+0{,}3=1{,}2\neq 1.$$
+
+> **Kural:** Tümleyen almak için **koşulu sabit tut**, olayı değiştir. $1-P(A\mid B)=P(A'\mid B)$ doğrudur; $1-P(A\mid B)=P(A\mid B')$ genelde yanlıştır. Sayısal bir karşılaştırmayı Örnek 2'de bulabilirsin.
+
+## 4. Koşul Altında Sayma: Yeni Örnek Uzayını Listelemek
+
+Sonuç sayısı az ise en güvenli yol **listelemektir**: önce koşulu sağlayan sonuçları yaz, sonra bunların içinden isteneni say.
+
+Üç para atılıyor ve **en az iki** yazı geldiği biliniyor (Y: yazı, T: tura). Yeni uzay:
+
+$$\{YYT,\ YTY,\ TYY,\ YYY\}$$
+
+Dört sonucun yalnız biri üç yazıdır: $P(\text{üç yazı}\mid \text{en az iki yazı})=\dfrac14$. Koşulsuz olasılık ise $\dfrac18$'dir.
+
+Listelerken iki şeye dikkat et:
+
+- Listedeki sonuçlar **eşit olasılıklı** olmalıdır. $YYT$, $YTY$ ve $TYY$ üç ayrı sonuçtur; bunları "iki yazı bir tura" diye tek sonuç saymak oranları bozar.
+- Liste uzun olacaksa koşul olayını **tümleyenle** saymak daha kısadır: $s(\text{en az bir})=s(S)-s(\text{hiç})$ (Örnek 5).
+
+## 5. İki Yönlü Tablodan Koşullu Olasılık
+
+İki özelliğe göre sınıflandırılmış veriler **iki yönlü tablo** (çapraz tablo) ile verilir. Koşul bir satırı ya da bir sütunu seçer; payda o satırın ya da sütunun **toplamıdır**, tablonun genel toplamı değildir.
+
+<Figur>
+
+<KsSporTablosu />
+
+<Altyazi>Şekil 1 — $160$ öğrencinin cinsiyete ve lisanslı sporcu olup olmamaya göre dağılımı. "Kız" koşulu taralı satırı ($72$ kişi), "sporcu" koşulu kesikli çerçeveli sütunu ($50$ kişi) yeni örnek uzay yapar.</Altyazi>
+
+</Figur>
+
+| İstenen | Koşul (payda) | Hesap |
+| --- | --- | --- |
+| $P(\text{sporcu}\mid \text{kız})$ | Kız satırı: $72$ | $\dfrac{18}{72}=\dfrac14$ |
+| $P(\text{kız}\mid \text{sporcu})$ | Sporcu sütunu: $50$ | $\dfrac{18}{50}=\dfrac{9}{25}$ |
+| $P(\text{kız}\cap\text{sporcu})$ | Koşul yok: $160$ | $\dfrac{18}{160}=\dfrac{9}{80}$ |
+
+Üç satırda da pay $18$'dir; yalnız payda değişir. "Seçilen öğrenci kız ise sporcu olma olasılığı" sorusuna $\dfrac{18}{160}$ yazmak, koşulu hiç kullanmamak demektir.
+
+## 6. Çarpma Kuralı ve İadesiz Ardışık Çekişler
+
+Art arda yapılan iadesiz çekişlerde her çekişin olasılığı, önceki çekişlerin sonucuna **bağlıdır**. Çarpma kuralı bu yüzden zincir hâlinde uygulanır:
+
+$$P(A_1\cap A_2\cap A_3)=P(A_1)\cdot P(A_2\mid A_1)\cdot P(A_3\mid A_1\cap A_2)$$
+
+Bir kutuda $3$ bozuk, $7$ sağlam ampul var. Kutudan rastgele, geri koymadan art arda $3$ ampul çekiliyor. Üçünün de sağlam olma olasılığı:
+
+$$\dfrac{7}{10}\cdot\dfrac{6}{9}\cdot\dfrac{5}{8}=\dfrac{210}{720}=\dfrac{7}{24}$$
+
+Her kesirde hem pay hem payda bir azalır, çünkü önceki çekişte bir sağlam ampul kutudan çıkmıştır. Aynı sonucu [kombinasyonla](/konular/kombinasyonla-olasilik) da bulabiliriz: $\dfrac{C(7,3)}{C(10,3)}=\dfrac{35}{120}=\dfrac{7}{24}$.
+
+Koşul her zaman **önceki** çekişte olmak zorunda değildir. "İkinci top kırmızı ise birincinin kırmızı olma olasılığı" gibi **geriye dönük** sorularda da tanım aynen çalışır: $P(K_1\mid K_2)=\dfrac{P(K_1\cap K_2)}{P(K_2)}$. Bunun nasıl hesaplandığını Örnek 6'da göreceğiz.
+
+## 7. Bağımsız Olaylar: Tanım, Test ve Tümleyenlerin Bağımsızlığı
+
+$B$'nin gerçekleştiğini bilmek $A$'nın olasılığını değiştirmiyorsa, yani
+
+$$P(A\mid B)=P(A)$$
+
+ise $A$ ile $B$ **bağımsız** olaylardır. Bu eşitliği formülde yerine koyunca daha kullanışlı olan **çarpım testi** çıkar:
+
+$$A \text{ ile } B \text{ bağımsız} \iff P(A\cap B)=P(A)\cdot P(B)$$
+
+Bağımsızlık bir sezgi değil, bir **hesap sonucudur**: iki olasılığı çarpıp kesişimin olasılığıyla karşılaştırırız (Örnek 7).
+
+**Tümleyenler de bağımsızdır.** $A$ ile $B$ bağımsızsa $A'$ ile $B$ de bağımsızdır. Kanıtı kısadır. $B$ olayı ayrık iki parçaya ayrılır: $A\cap B$ ve $A'\cap B$. Buna göre
+
+$$P(A'\cap B)=P(B)-P(A\cap B)=P(B)-P(A)\,P(B)=P(B)\,\bigl(1-P(A)\bigr)=P(A')\,P(B).$$
+
+Aynı adım tekrarlanınca $A$ ile $B'$, $A'$ ile $B'$ de bağımsız çıkar. Bu sonuç "en az biri" sorularını kısaltır:
+
+$$P(A\cup B)=1-P(A'\cap B')=1-P(A')\,P(B')$$
+
+Örneğin bağımsız $A$ ve $B$ için $P(A)=0{,}3$ ve $P(B)=0{,}6$ ise $P(A'\cap B')=0{,}7\cdot 0{,}4=0{,}28$ ve $P(A\cup B)=1-0{,}28=0{,}72$ olur. Kontrol: $0{,}3+0{,}6-0{,}3\cdot 0{,}6=0{,}72$.
+
+## 8. Ayrık mı, Bağımsız mı? Kritik Fark
+
+Bu iki kavram sık karıştırılır, oysa neredeyse zıt anlamlıdır:
+
+| | Ayrık olaylar | Bağımsız olaylar |
+| --- | --- | --- |
+| Tanım | $A\cap B=\varnothing$ | $P(A\cap B)=P(A)\,P(B)$ |
+| Anlamı | Biri olursa öteki **kesinlikle olmaz** | Biri olsa da ötekinin olasılığı **değişmez** |
+| Kesişimin olasılığı | $0$ | $P(A)\,P(B)$ |
+
+$P(A)>0$ ve $P(B)>0$ olan iki ayrık olay **bağımsız olamaz**: kesişimin olasılığı $0$, çarpım ise pozitiftir. Üstelik $A$ gerçekleştiğinde $P(B\mid A)=0$ olur; $A$ bilgisi $B$'yi tamamen engeller. Bu, bir olayın ötekini etkilemesinin en güçlü biçimidir.
+
+> **Kural:** Ayrık ve olasılıkları pozitif olan iki olay her zaman **bağımlıdır**. "Ayrık" demek "birbirini etkilemiyor" demek değildir.
+
+## 9. Tekrarlanan Bağımsız Denemeler: Ağaçla Tam k Başarı ve İlk Başarı
+
+Bir atıcı hedefi her atışta $0{,}8$ olasılıkla vuruyor; atışlar bağımsız. $3$ atışta **tam $2$ isabet** olasılığını ağaçtan okuyalım.
+
+<Figur>
+
+<KsUcAtisAgaci />
+
+<Altyazi>Şekil 2 — Üç atışın ağaç şeması. Sekiz dal ucunun üçü (kırmızı) tam iki isabet içerir. Bu üç yolun her biri bir kez $0{,}2$, iki kez $0{,}8$ çarpanı taşır.</Altyazi>
+
+</Figur>
+
+- Tam iki isabet veren yollar: $VVV'$, $VV'V$, $V'VV$. Vuramadığı atış üç sıradan birinde olabilir, yani yol sayısı [kombinasyonla](/konular/kombinasyon-secme) $C(3,2)=3$'tür.
+- Her yolun olasılığı aynıdır: $0{,}8\cdot 0{,}8\cdot 0{,}2=0{,}128$.
+- Toplam: $3\cdot 0{,}128=0{,}384$.
+
+Genel olarak, başarı olasılığı $p$ olan bağımsız $n$ denemede tam $k$ başarı olasılığı **yol sayısı ile bir yolun olasılığının çarpımıdır**:
+
+$$C(n,k)\,p^{k}\,(1-p)^{\,n-k}$$
+
+Bu sayfada formülü yalnız $n\le 4$ için ve her zaman ağaçtan türeterek kullanacağız. $C(n,k)$ çarpanını unutmak, yolların yalnız birini saymak demektir.
+
+**İlk başarının $k$'inci denemede gelmesi** için ilk $k-1$ deneme başarısız, $k$'inci deneme başarılı olmalıdır. Burada tek bir yol vardır, $C$ çarpanı yoktur: atıcının ilk isabetini 3. atışta yapma olasılığı $0{,}2\cdot 0{,}2\cdot 0{,}8=0{,}032$'dir.
+
+**"En az kaç deneme?"** sorularında tümleyen kullanılır: $n$ atışta en az bir isabet olasılığı $1-0{,}2^{\,n}$'dir. Bunun $0{,}99$'dan büyük olması için $0{,}2^{\,n}<0{,}01$ gerekir. $n=2$ için $0{,}04$, $n=3$ için $0{,}008$ bulunur; en az $3$ atış gerekir.
+
+Bir takımın belirli sayıda galibiyete ulaşınca kazandığı **serilerde** ek bir kısıt vardır: seriyi bitiren son maçı her zaman seriyi kazanan takım kazanır, yani son maç **sabittir**; $C(n,k)$ çarpanı yalnız ondan önceki maçlara uygulanır (Örnek 8).
+
+## 10. Ağaç Şeması: Dallar Eş Olasılıklı Değildir
+
+Ağaç şemasında her dal kendi olasılığını taşır ve bir yol boyunca dallar **çarpılır**. Dalların sayısı onların olasılığı hakkında hiçbir şey söylemez.
+
+I. torbada $1$ kırmızı, $1$ beyaz; II. torbada $1$ kırmızı, $9$ beyaz top olsun. Bir para atılıp yazı gelirse I. torbadan, tura gelirse II. torbadan bir top çekiliyor. Kırmızı çekme olasılığı:
+
+$$\dfrac12\cdot\dfrac12+\dfrac12\cdot\dfrac{1}{10}=\dfrac14+\dfrac{1}{20}=\dfrac{3}{10}$$
+
+**Tek havuz tuzağı:** Bütün topları tek torbada toplayıp "$12$ topun $2$'si kırmızı, cevap $\dfrac16$" demek yanlıştır. I. torbadaki her topun çekilme olasılığı $\dfrac12\cdot\dfrac12=\dfrac14$, II. torbadakilerin her birininki ise $\dfrac12\cdot\dfrac1{10}=\dfrac1{20}$'dir. Toplar eşit şanslı değildir; tek havuz ancak her top eşit şanslı olsaydı doğru olurdu.
+
+## 11. Toplam Olasılık Kuralı
+
+Bir olaya birden çok yoldan ulaşılıyorsa, olasılığı **bütün yolların toplamıdır**. Yolların başlangıç olayları $A_1, A_2, \dots, A_k$ ayrık olmalı ve birleşimleri örnek uzayın tamamını vermelidir (iki dalda $A$ ve $A'$):
+
+$$P(B)=P(A_1)\,P(B\mid A_1)+P(A_2)\,P(B\mid A_2)+\dots+P(A_k)\,P(B\mid A_k)$$
+
+Her terim bir yolun çarpımıdır (çarpma kuralı); yollar ayrık olduğu için toplanır. Bölüm 10'daki $\dfrac14+\dfrac1{20}=\dfrac3{10}$ tam olarak bu toplamdı.
+
+## 12. Bayes: Sonuçtan Nedene Geri Dönmek
+
+Ağaç, nedenden sonuca doğru çizilir: önce torba, sonra top. Bayes kuralı soruyu ters çevirir: **top kırmızı çıktıysa hangi torbadan gelmiş olabilir?** Tanımı yazmak yeter:
+
+$$P(A_i\mid B)=\dfrac{P(A_i\cap B)}{P(B)}=\dfrac{\text{istenen yolun olasılığı}}{B\text{'ye giden bütün yolların toplamı}}$$
+
+Bölüm 10'daki torbalarda, çekilen top kırmızıysa I. torbadan gelmiş olma olasılığı
+
+$$P(\text{I}\mid K)=\dfrac{\tfrac14}{\tfrac3{10}}=\dfrac{5}{6}$$
+
+olur. Payda $\dfrac{3}{10}$ toplam olasılıktır. Paydaya yalnız ilgili yolu yazmak $\dfrac{1/4}{1/4}=1$ gibi anlamsız bir sonuç verir.
+
+## 13. Ağacı Tabloya Çevirmek: Sıklık Tablosu
+
+Yüzdeler kafa karıştırıyorsa ağacı **somut sayılara** çevir: deneyin uygun sayıda (örneğin $20$ ya da $1000$ kez) tekrarlandığını düşün ve her dala düşen beklenen sayıyı yaz.
+
+Bölüm 10'daki deneyi $20$ kez yaptığımızı düşünelim. Yaklaşık $10$ kez I. torba seçilir ve bunların yarısında, $5$ kez, kırmızı gelir. $10$ kez II. torba seçilir ve bunların onda birinde, $1$ kez, kırmızı gelir. Bu beklenen sayıları tabloya yazalım:
+
+| | Kırmızı | Beyaz | Toplam |
+| --- | --- | --- | --- |
+| I. torba | $5$ | $5$ | $10$ |
+| II. torba | $1$ | $9$ | $10$ |
+| Toplam | $6$ | $14$ | $20$ |
+
+"Kırmızı" koşulu tablonun ilk sütununu seçer. Bu sütundaki $6$ kırmızının $5$'i I. torbadandır:
+
+$$P(\text{I}\mid K)=\dfrac{5}{6},\qquad P(K)=\dfrac{6}{20}=\dfrac{3}{10}.$$
+
+İki sonuç da Bayes hesabıyla aynıdır. Böylece Bayes sorusu, Bölüm 5'teki tablo okumasına dönüşür. Görülme oranı (taban oranı) düşük olan durumlarda bu kontrol özellikle değerlidir; Örnek 10'da aynı yöntemi $1000$ kişilik bir tabloyla kullanacağız.
+
+## 14. P(A | B) ile P(B | A) Aynı Değildir
+
+İki koşullu olasılığın payı aynıdır ($P(A\cap B)$), paydaları farklıdır. Çarpma kuralının iki yazılışı aralarındaki bağı verir:
+
+$$P(A\mid B)\,P(B)=P(B\mid A)\,P(A)$$
+
+Bölüm 5'teki tabloda $P(\text{sporcu}\mid\text{kız})=\dfrac14$, $P(\text{kız}\mid\text{sporcu})=\dfrac{9}{25}$ idi. İkisi de aynı kesişimi verir: $\dfrac14\cdot\dfrac{72}{160}=\dfrac{9}{25}\cdot\dfrac{50}{160}=\dfrac{9}{80}$.
+
+Günlük dilde bu fark çok önemlidir: "Hastaların çoğunun testi pozitif çıkar" ile "testi pozitif çıkanların çoğu hastadır" farklı cümlelerdir. Birincisi doğru olduğu hâlde ikincisi yanlış olabilir (Örnek 10).
+
+> **Kontrol sorusu:** Payda hangi olay? Soruda "… olduğu biliniyor", "… ise", "… olduğuna göre" diye geçen olay paydadır.
+
+## Çözümlü Sorular
+
+{/* ornek-1 */}
+<Ornek>
+
+<Soru>
+
+İki zar birlikte atılıyor. Üst yüzlerdeki sayıların toplamının $10$ olduğu biliniyor. Buna göre zarlardan **en az birinin** $6$ gelmiş olma olasılığı kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+Koşul yeni örnek uzaydır. Önce toplamı $10$ olan bütün sıralı ikilileri yaz, sonra içlerinde $6$ bulunanları say.
+
+</Ipucu>
+
+<Cozum>
+
+1. Zarları birinci ve ikinci zar diye ayırırız; $36$ sıralı ikili eşit olasılıklıdır.
+
+2. Toplamı $10$ olanlar: $(4,6)$, $(5,5)$, $(6,4)$. Yeni örnek uzayda $3$ sonuç var ve bunlar hâlâ eşit olasılıklıdır.
+
+3. En az birinde $6$ olanlar: $(4,6)$ ve $(6,4)$, yani $2$ sonuç. $P=\dfrac{2}{3}$.
+
+4. **Yanlış yol 1:** Koşulu yok sayıp $36$ sonucun içinde en az bir $6$ içeren $11$ sonucu saymak $\dfrac{11}{36}$ verir. Bu, "toplam $10$" bilgisi hiç verilmemiş gibi hesaplanan koşulsuz olasılıktır.
+
+5. **Yanlış yol 2:** Toplamı $10$ yapan durumları "$4$ ile $6$" ve "$5$ ile $5$" diye iki durum sayıp $\dfrac12$ bulmak. Zarlar ayırt edildiği için $(4,6)$ ile $(6,4)$ ayrı sonuçlardır, $(5,5)$ ise tektir.
+
+6. Kontrol (tümleyen): Koşul altında hiç $6$ içermeyen yalnız $(5,5)$ vardır, olasılığı $\dfrac13$'dir. $1-\dfrac13=\dfrac23$ ✓.
+
+<Cevap>$\dfrac{2}{3}$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-2 */}
+<Ornek>
+
+<Soru>
+
+$A$ ve $B$ aynı örnek uzayın iki olayıdır. $P(A)=0{,}45$, $P(B)=0{,}4$ ve $P(A\cup B)=0{,}7$ olduğuna göre
+
+a) $P(A\mid B)$, b) $P(B\mid A)$, c) $P(A'\mid B)$, d) $P(A\mid B')$
+
+değerlerini bul.
+
+</Soru>
+
+<Ipucu>
+
+Hepsi için önce $P(A\cap B)$ gerekir. Her soruda "koşul olan olay paydadır" kuralını uygula. d şıkkında payda $B'$ olayıdır.
+
+</Ipucu>
+
+<Cozum>
+
+1. Kesişim: $P(A\cap B)=P(A)+P(B)-P(A\cup B)=0{,}45+0{,}4-0{,}7=0{,}15$.
+
+2. a) $P(A\mid B)=\dfrac{0{,}15}{0{,}4}=\dfrac{3}{8}$.
+
+3. b) $P(B\mid A)=\dfrac{0{,}15}{0{,}45}=\dfrac{1}{3}$. Pay aynı, payda farklı olduğu için a ve b şıklarının cevapları farklıdır.
+
+4. c) Koşul yine $B$; $B$'nin içindeki her sonuç ya $A$ olayına ya da $A'$ olayına aittir: $P(A'\mid B)=1-\dfrac38=\dfrac58$. Doğrudan hesap: $P(A'\cap B)=0{,}4-0{,}15=0{,}25$ ve $\dfrac{0{,}25}{0{,}4}=\dfrac58$ ✓.
+
+5. d) Koşul artık $B'$: $P(A\cap B')=P(A)-P(A\cap B)=0{,}45-0{,}15=0{,}30$ ve $P(B')=0{,}6$. Buradan $P(A\mid B')=\dfrac{0{,}30}{0{,}6}=\dfrac12$.
+
+6. **Tuzak:** d şıkkını $1-P(A\mid B)=\dfrac58$ diye yazmak yanlıştır. $1-P(A\mid B)$, c şıkkındaki $P(A'\mid B)$'dir. Doğru cevap $\dfrac12$'dir ve $\dfrac58$'ten farklıdır.
+
+7. Kontrol: $P(B)\,P(A\mid B)+P(B')\,P(A\mid B')=0{,}4\cdot\dfrac38+0{,}6\cdot\dfrac12=0{,}15+0{,}30=0{,}45=P(A)$ ✓.
+
+<Cevap>a) $\dfrac38$, b) $\dfrac13$, c) $\dfrac58$, d) $\dfrac12$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-3 */}
+<Ornek>
+
+<Soru>
+
+İki çocuklu bir aile rastgele seçiliyor. Her çocuğun kız ya da erkek olması eşit olasılıklıdır ve çocukların cinsiyetleri birbirinden bağımsızdır.
+
+a) Ailenin **en az bir** kız çocuğu olduğu biliniyorsa iki çocuğun da kız olma olasılığı kaçtır?
+
+b) Ailenin **büyük** çocuğunun kız olduğu biliniyorsa iki çocuğun da kız olma olasılığı kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+Çocukları büyük ve küçük diye ayır; her aile (büyük, küçük) biçiminde sıralı bir ikilidir. İki bilgi aynı durumları elemez.
+
+</Ipucu>
+
+<Cozum>
+
+1. Örnek uzay: $S=\{KK,\ KE,\ EK,\ EE\}$ (ilk harf büyük çocuk; K: kız, E: erkek). Dört durum eşit olasılıklıdır; $KE$ ile $EK$ ayrı durumlardır.
+
+<Figur>
+
+<KsIkiCocuk />
+
+<Altyazi>Şekil 3 — Aynı dört durum, iki farklı bilgiyle süzülüyor. "En az biri kız" yalnız $EE$'yi eler; "büyük çocuk kız" ise $EK$ ile $EE$'yi eler.</Altyazi>
+
+</Figur>
+
+2. a) "En az biri kız" bilgisi yalnız $EE$'yi eler. Yeni uzay $\{KK, KE, EK\}$ ve bunların biri $KK$: $P=\dfrac13$.
+
+3. b) "Büyük çocuk kız" bilgisi $EK$ ve $EE$'yi eler. Yeni uzay $\{KK, KE\}$: $P=\dfrac12$.
+
+4. **Neden farklı?** "En az biri kız" bilgisi **hangi** çocuğun kız olduğunu söylemez, bu yüzden $KE$ ile $EK$'nin ikisi de uzayda kalır. "Büyük çocuk kız" bilgisi belirli bir çocuğu sabitler; geriye yalnız küçük çocuğun cinsiyeti kalır, o da $\dfrac12$'dir.
+
+5. **Tuzak:** a şıkkında "bir çocuk kız, öteki de $\dfrac12$ olasılıkla kızdır" deyip $\dfrac12$ bulmak, a şıkkını b şıkkı gibi okumaktır. Örnek uzayı $\{\text{iki kız},\ \text{bir kız bir erkek},\ \text{iki erkek}\}$ diye üç durum almak da hatalıdır, çünkü "bir kız bir erkek" iki ayrı durumu ($KE$, $EK$) kapsar.
+
+6. Kontrol (formül): a) $\dfrac{P(KK)}{P(\text{en az bir kız})}=\dfrac{1/4}{3/4}=\dfrac13$ ✓; b) $\dfrac{1/4}{1/2}=\dfrac12$ ✓.
+
+<Cevap>a) $\dfrac13$, b) $\dfrac12$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-4 */}
+<Ornek>
+
+<Soru>
+
+Bir kursa kayıtlı $60$ öğrencinin $24$'ü kız, $36$'sı erkektir. Her öğrenci derslere ya çevrim içi ya da yüz yüze katılmaktadır. Erkeklerin $18$'i derslere çevrim içi katılmaktadır.
+
+Rastgele seçilen bir öğrencinin derslere çevrim içi katıldığı bilindiğinde bu öğrencinin kız olma olasılığı $\dfrac13$'dir. Buna göre rastgele seçilen bir **kız** öğrencinin derslere çevrim içi katılma olasılığı kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+Çevrim içi katılan kız sayısına $x$ de ve tabloyu kur. Verilen koşullu olasılığın paydası "çevrim içi" sütununun toplamıdır.
+
+</Ipucu>
+
+<Cozum>
+
+1. Tabloyu kuralım:
+
+| | Çevrim içi | Yüz yüze | Toplam |
+| --- | --- | --- | --- |
+| Kız | $x$ | $24-x$ | $24$ |
+| Erkek | $18$ | $18$ | $36$ |
+| Toplam | $x+18$ | $42-x$ | $60$ |
+
+2. Koşul "çevrim içi" olduğundan payda sütun toplamı $x+18$'dir: $\dfrac{x}{x+18}=\dfrac13$ ise $3x=x+18$, yani $x=9$.
+
+3. İstenen olasılıkta koşul "kız" olduğundan payda kız satırının toplamı $24$'tür: $P(\text{çevrim içi}\mid \text{kız})=\dfrac{9}{24}=\dfrac38$.
+
+4. **Tuzak 1:** Verilen bilgiyi $\dfrac{x}{60}=\dfrac13$ diye kurmak $x=20$ verir. Bu, paydaya genel toplamı yazmaktır; böyle kurulan denklem aslında $P(\text{kız}\cap\text{çevrim içi})=\dfrac13$ demektir.
+
+5. **Tuzak 2:** Verilen $\dfrac13$'i cevap sanmak. $\dfrac13=P(\text{kız}\mid\text{çevrim içi})$ idi; istenen ise $P(\text{çevrim içi}\mid\text{kız})=\dfrac38$'tür.
+
+6. Kontrol: $x=9$ ise çevrim içi $27$ öğrenci vardır ve $\dfrac{9}{27}=\dfrac13$ ✓. Ayrıca $0\le 9\le 24$ olduğundan tablo tutarlıdır.
+
+<Cevap>$\dfrac{3}{8}$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-5 */}
+<Ornek>
+
+<Soru>
+
+$4$ kız ve $5$ erkek öğrenciden oluşan bir gruptan rastgele $3$ kişilik bir temsilci kurulu seçiliyor; kurulda görev ayrımı yoktur. Kurulda **en az bir** kız bulunduğu biliniyor. Buna göre kurulda **tam olarak** $2$ kız bulunma olasılığı kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+Koşul olayının eleman sayısını tümleyenle bul: "en az bir kız" = tüm kurullar − "hiç kız olmayan" kurullar.
+
+</Ipucu>
+
+<Cozum>
+
+1. Tüm kurullar: $s(S)=C(9,3)=84$; hepsi eşit olasılıklıdır.
+
+2. Koşul $B$: "en az bir kız". Tümleyeni üç kişinin de erkek olmasıdır: $C(5,3)=10$. Buradan $s(B)=84-10=74$.
+
+3. İstenen $A$: "tam $2$ kız". $s(A)=C(4,2)\cdot C(5,1)=6\cdot 5=30$. Tam iki kız bulunan her kurulda en az bir kız vardır, yani $A\cap B=A$.
+
+4. $P(A\mid B)=\dfrac{s(A\cap B)}{s(B)}=\dfrac{30}{74}=\dfrac{15}{37}$.
+
+5. **Tuzak:** Koşulu yok sayıp $\dfrac{30}{84}=\dfrac{5}{14}$ yazmak. "En az bir kız" bilgisi, hiç kız olmayan $10$ kurulu uzaydan çıkarır ve olasılığı büyütür.
+
+6. Kontrol (doğrudan sayım): Tam $1$ kız: $4\cdot C(5,2)=40$; tam $2$ kız: $30$; tam $3$ kız: $C(4,3)=4$. Toplam $40+30+4=74=s(B)$ ✓.
+
+<Cevap>$\dfrac{15}{37}$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-6 */}
+<Ornek>
+
+<Soru>
+
+Bir torbada $4$ kırmızı ve $3$ beyaz top vardır. Torbadan rastgele, geri koymadan art arda iki top çekiliyor. **İkinci** çekilen topun kırmızı olduğu biliniyor. Buna göre **birinci** çekilen topun da kırmızı olma olasılığı kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+$P(K_1\mid K_2)=\dfrac{P(K_1\cap K_2)}{P(K_2)}$. $P(K_2)$'yi bulmak için ikinci topun kırmızı olduğu iki yolu topla.
+
+</Ipucu>
+
+<Cozum>
+
+1. Pay: $P(K_1\cap K_2)=\dfrac47\cdot\dfrac36=\dfrac27$.
+
+2. Payda: İkinci topun kırmızı olduğu iki yol vardır.
+   - Birinci kırmızı, ikinci kırmızı: $\dfrac27$.
+   - Birinci beyaz, ikinci kırmızı: $\dfrac37\cdot\dfrac46=\dfrac27$.
+
+   Buradan $P(K_2)=\dfrac27+\dfrac27=\dfrac47$.
+
+3. $P(K_1\mid K_2)=\dfrac{2/7}{4/7}=\dfrac12$.
+
+4. **Tuzak:** "Birinci çekiş daha önce yapıldı, sonradan gelen bilgi onu değiştirmez" deyip $\dfrac47$ yazmak. Bilgi topun rengini değiştirmez ama **olasılığı günceller**: ikinci top kırmızıysa, birinci çekiş için kırmızılardan biri "kullanılmış" demektir.
+
+5. Kontrol (ikinci yol): Rastgele ve geri koymadan yapılan çekişte toplar torbadan rastgele bir sırayla çıkar; bu yüzden çekişleri hangi sırayla düşündüğümüz sonucu değiştirmez. İkinci topu önce çekmişiz gibi düşünüp o kırmızı topu bir kenara ayıralım. Birinci top, kalan $6$ toptan ($3$ kırmızı, $3$ beyaz) herhangi biridir ve bunların hepsi eşit olasılıklıdır: $\dfrac36=\dfrac12$ ✓. Bu kısa yol yalnız çekişler bu şekilde simetrikken geçerlidir; ikinci çekişin kuralı birinci topun rengine bağlıysa (örneğin ikinci topun hangi torbadan çekileceği birinci topun rengine göre belirleniyorsa) kullanılamaz.
+
+<Cevap>$\dfrac{1}{2}$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-7 */}
+<Ornek>
+
+<Soru>
+
+Bir zar bir kez atılıyor ve şu olaylar tanımlanıyor:
+
+- $A$: gelen sayı $4$ ya da $4$'ten küçüktür,
+- $B$: gelen sayı çifttir,
+- $C$: gelen sayı $4$'ten büyüktür.
+
+a) $A$ ile $B$, $A$ ile $C$, $B$ ile $C$ olay çiftlerinden hangileri bağımsızdır?
+
+b) $P(A'\cap B')$ kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+Her çift için çarpım testini uygula: $P(X\cap Y)$ ile $P(X)\,P(Y)$ eşit mi?
+
+</Ipucu>
+
+<Cozum>
+
+1. $A=\{1,2,3,4\}$, $P(A)=\dfrac23$; $B=\{2,4,6\}$, $P(B)=\dfrac12$; $C=\{5,6\}$, $P(C)=\dfrac13$.
+
+2. $A$ ile $B$: $A\cap B=\{2,4\}$, $P(A\cap B)=\dfrac13$ ve $P(A)\,P(B)=\dfrac23\cdot\dfrac12=\dfrac13$. Eşit, yani **bağımsız**. Aynı sonucu tanımla da görürüz: $P(B\mid A)=\dfrac24=\dfrac12=P(B)$; $A$ bilgisi $B$'nin olasılığını değiştirmiyor.
+
+3. $A$ ile $C$: $A\cap C=\varnothing$, yani olaylar ayrıktır. $P(A\cap C)=0$ fakat $P(A)\,P(C)=\dfrac29$. Eşit değil, yani **bağımlı**. Gerçekten $A$ gerçekleşirse $C$ kesinlikle gerçekleşmez: $P(C\mid A)=0\neq\dfrac13$.
+
+4. $B$ ile $C$: $B\cap C=\{6\}$, $P(B\cap C)=\dfrac16$ ve $P(B)\,P(C)=\dfrac12\cdot\dfrac13=\dfrac16$. Eşit, yani **bağımsız**. Ortak elemanları olan olaylar da bağımsız olabilir.
+
+5. **Tuzak:** $A$ ile $C$'nin "ortak sonucu yok, birbirine karışmıyorlar" diye bağımsız sanılması. Ayrık ve olasılıkları pozitif iki olay her zaman bağımlıdır.
+
+6. b) $A$ ile $B$ bağımsız olduğundan $A'$ ile $B'$ de bağımsızdır (Bölüm 7): $P(A'\cap B')=\dfrac13\cdot\dfrac12=\dfrac16$.
+
+7. Kontrol (listeleme): $A'=\{5,6\}$, $B'=\{1,3,5\}$, $A'\cap B'=\{5\}$ ve olasılığı $\dfrac16$ ✓.
+
+<Cevap>a) $A$ ile $B$ ve $B$ ile $C$ bağımsızdır; $A$ ile $C$ bağımlıdır. b) $\dfrac16$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-8 */}
+<Ornek>
+
+<Soru>
+
+$A$ ve $B$ takımları arasında, takımlardan biri $3$ maç kazandığında sona eren bir seri oynanıyor. Maçlarda beraberlik yoktur; $A$ takımı her maçı $\dfrac23$ olasılıkla kazanır ve maçların sonuçları birbirinden bağımsızdır. $A$ takımının seriyi **tam olarak 4. maçta** kazanma olasılığı kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+Seri 4. maçta $A$'nın lehine bitiyorsa 4. maçı kesinlikle $A$ kazanmıştır. İlk üç maçta $A$ kaç galibiyet almış olmalı?
+
+</Ipucu>
+
+<Cozum>
+
+1. Koşulu yazalım: 4. maçı $A$ kazanır ve ilk üç maçta $A$ **tam $2$** galibiyet alır. İlk üç maçta $3$ galibiyet alsaydı seri 3. maçta biterdi; $2$'den az galibiyet alsaydı 4. maçta $3$'e ulaşamazdı.
+
+2. İlk üç maçta tam $2$ galibiyet: diziler $AAB$, $ABA$, $BAA$, yani $C(3,2)=3$ yol. Her yolun olasılığı $\left(\dfrac23\right)^2\cdot\dfrac13=\dfrac{4}{27}$; toplam $3\cdot\dfrac{4}{27}=\dfrac49$.
+
+3. 4. maçı $A$ kazanır: $\dfrac23$. Maçlar bağımsız olduğundan $\dfrac49\cdot\dfrac23=\dfrac{8}{27}$.
+
+4. **Tuzak 1:** "4 maçta 3 galibiyet" diye $C(4,3)\left(\dfrac23\right)^3\dfrac13=\dfrac{32}{81}$ yazmak. Bu hesap $AAAB$ dizisini de sayar, oysa o dizide seri 3. maçta bitmiştir ve 4. maç hiç oynanmaz. Fark tam olarak bu dizinin olasılığıdır: $\dfrac{32}{81}-\dfrac{24}{81}=\dfrac{8}{81}=\left(\dfrac23\right)^3\dfrac13$.
+
+5. **Tuzak 2:** $C(3,2)$ çarpanını unutup yalnız $\left(\dfrac23\right)^3\dfrac13=\dfrac{8}{81}$ yazmak. Bu, üç uygun diziden yalnız birini saymaktır.
+
+6. Kontrol (listeleme): Uygun diziler $AABA$, $ABAA$, $BAAA$'dır. Her birinin olasılığı $\dfrac{8}{81}$, toplam $\dfrac{24}{81}=\dfrac{8}{27}$ ✓.
+
+<Cevap>$\dfrac{8}{27}$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-9 */}
+<Ornek>
+
+<Soru>
+
+I. torbada $3$ kırmızı, $1$ beyaz; II. torbada $1$ kırmızı, $5$ beyaz top vardır. Bir zar atılıyor; zar $1$ ya da $2$ gelirse I. torbadan, aksi hâlde II. torbadan rastgele bir top çekiliyor.
+
+a) Çekilen topun kırmızı olma olasılığı kaçtır?
+
+b) Çekilen top kırmızı ise bu topun I. torbadan çekilmiş olma olasılığı kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+Torba seçimi eşit olasılıklı değildir: zar $6$ sonucun $2$'sinde I. torbayı seçtirir. Ağaç çiz; a şıkkı toplam olasılık, b şıkkı Bayes sorusudur.
+
+</Ipucu>
+
+<Cozum>
+
+1. Torba seçimi: $P(\text{I})=\dfrac26=\dfrac13$, $P(\text{II})=\dfrac23$.
+
+<Figur>
+
+<KsTorbaAgaci />
+
+<Altyazi>Şekil 4 — Önce zar torbayı, sonra torba topu belirler. Kırmızıya iki yol çıkar (kırmızı dallar): I. torba yolu $\dfrac14$, II. torba yolu $\dfrac19$.</Altyazi>
+
+</Figur>
+
+2. Kırmızıya giden yollar: I. torba yolu $\dfrac13\cdot\dfrac34=\dfrac14$; II. torba yolu $\dfrac23\cdot\dfrac16=\dfrac19$.
+
+3. a) Toplam olasılık: $P(K)=\dfrac14+\dfrac19=\dfrac{13}{36}$.
+
+4. **Tuzak (tek havuz):** On topu tek torbada toplayıp $\dfrac{4}{10}=\dfrac25$ yazmak. Her top eşit şanslı değildir: I. torbadaki her topun çekilme olasılığı $\dfrac13\cdot\dfrac14=\dfrac1{12}$, II. torbadakilerinki $\dfrac23\cdot\dfrac16=\dfrac19$'dir. Torbaları eşit şanslı sayıp $\dfrac12\cdot\dfrac34+\dfrac12\cdot\dfrac16=\dfrac{11}{24}$ yazmak da yanlıştır; torbayı zar seçiyor.
+
+5. b) Bayes: $P(\text{I}\mid K)=\dfrac{\text{I. torba yolu}}{\text{bütün kırmızı yollar}}=\dfrac{1/4}{13/36}=\dfrac{9}{13}$.
+
+6. **Tuzak:** Cevabı yalnız payla, yani $\dfrac14$ olarak vermek (bu $P(\text{I}\cap K)$'dır) ya da $\dfrac34$ yazmak (bu $P(K\mid\text{I})$'dir). Bayes'te payda, kırmızıya giden **bütün** yolların toplamıdır.
+
+7. Kontrol (sıklıkla): Deneyi $36$ kez yaptığımızı düşünelim. Yaklaşık $12$ kez I. torba seçilir, $9$ kırmızı gelir; $24$ kez II. torba seçilir, $4$ kırmızı gelir. Toplam $13$ kırmızı: $P(K)=\dfrac{13}{36}$ ✓; bunların $9$'u I. torbadan: $\dfrac{9}{13}$ ✓.
+
+<Cevap>a) $\dfrac{13}{36}$, b) $\dfrac{9}{13}$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-10 */}
+<Ornek>
+
+<Soru>
+
+Bir hastalık, bir toplumdaki kişilerin $\%4$'ünde görülmektedir. Bu hastalık için kullanılan bir test, hasta kişilerin $\%75$'inde pozitif sonuç vermektedir; hasta olmayan kişilerin ise $\%5$'inde yanlışlıkla pozitif sonuç vermektedir. Bu toplumdan rastgele seçilen bir kişinin testi pozitif çıkmıştır. Bu kişinin gerçekten hasta olma olasılığı kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+Ağacı $1000$ kişilik bir sıklık ağacına çevir. Koşul "pozitif" olduğuna göre payda, testi pozitif çıkan **herkestir**: hem hastalar hem de hasta olmayanlar.
+
+</Ipucu>
+
+<Cozum>
+
+1. $1000$ kişiyi düşünelim: $\%4$'ü, yani $40$ kişi hasta; $960$ kişi sağlam.
+
+2. Hastaların $\%75$'i, yani $30$ kişi pozitif, $10$ kişi negatif. Sağlamların $\%5$'i, yani $48$ kişi pozitif, $912$ kişi negatif.
+
+<Figur>
+
+<KsTestAgaci />
+
+<Altyazi>Şekil 5 — Ağacın yüzdeleri $1000$ kişiye uygulanınca her dal bir kişi sayısına dönüşür. Testi pozitif çıkan $78$ kişinin yalnız $30$'u hastadır.</Altyazi>
+
+</Figur>
+
+3. Aynı sayılar tabloda:
+
+| | Pozitif | Negatif | Toplam |
+| --- | --- | --- | --- |
+| Hasta | $30$ | $10$ | $40$ |
+| Sağlam | $48$ | $912$ | $960$ |
+| Toplam | $78$ | $922$ | $1000$ |
+
+4. Koşul "pozitif" olduğundan payda pozitif sütununun toplamı $78$'dir: $P(\text{hasta}\mid\text{pozitif})=\dfrac{30}{78}=\dfrac{5}{13}\approx 0{,}38$.
+
+5. Formülle doğrulama: $\dfrac{0{,}04\cdot 0{,}75}{0{,}04\cdot 0{,}75+0{,}96\cdot 0{,}05}=\dfrac{0{,}030}{0{,}030+0{,}048}=\dfrac{0{,}030}{0{,}078}=\dfrac{5}{13}$ ✓.
+
+6. **Tuzak:** Cevabı $\%75$ ya da "neredeyse kesin hasta" sanmak. $\%75$, $P(\text{pozitif}\mid\text{hasta})$'dır; istenen ise $P(\text{hasta}\mid\text{pozitif})$'tir. Sonucun düşük çıkmasının nedeni, sağlam kişilerin çok kalabalık olmasıdır: $960$ kişinin yalnız $\%5$'i bile $48$ yanlış pozitif sonuç demektir ve bu sayı $30$ gerçek pozitiften fazladır.
+
+7. Kontrol: $\dfrac{5}{13}$, $0$ ile $1$ arasındadır ve taban oranı olan $0{,}04$'ten büyüktür. Pozitif sonuç hasta olma olasılığını yaklaşık $\%4$'ten $\%38$'e çıkarmıştır; artmıştır ama kesinlik yoktur.
+
+<Cevap>$\dfrac{5}{13}$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Pekiştirme Soruları
+
+> Konuyu pekiştirmek için hazırlanmış özgün sorular.
+
+<Sorular slug="kosullu-olasilik-sorulari" />
+
+## Sık Yapılan Hatalar
+
+- **Koşulu yok sayıp koşulsuz olasılığı hesaplamak.** "… olduğu biliniyor" bilgisi örnek uzayı daraltır; payda artık tüm uzay değildir (Örnek 1, Örnek 5).
+- **$P(A\mid B)$ ile $P(B\mid A)$'yı karıştırmak.** İkisinin payı aynı, paydası farklıdır; paydaya koşul olan olay yazılır (Örnek 2, Örnek 4, Bölüm 14).
+- **$P(A\mid B)=1-P(A\mid B')$ sanmak.** Doğru eşitlik $P(A\mid B)+P(A'\mid B)=1$'dir; tümleyen alırken koşul sabit kalır (Örnek 2, Bölüm 3).
+- **Tabloda satır ya da sütun toplamı yerine genel toplama bölmek.** Koşul hangi satırı ya da sütunu seçiyorsa payda onun toplamıdır (Örnek 4, Bölüm 5).
+- **"En az biri kız" bilgisini "büyük çocuk kız" gibi okumak.** Belirli bir kişiyi sabitlemeyen bilgi, sıralı durumların ikisini de uzayda bırakır (Örnek 3).
+- **Ayrık olayları bağımsız sanmak.** Olasılıkları pozitif olan ayrık olaylar her zaman bağımlıdır; bağımlı olaylarda olasılıklar güncellenmeden çarpılmaz (Örnek 6, Örnek 7, Bölüm 8).
+- **Tekrarlanan denemelerde $C(n,k)$ çarpanını unutmak; seride son maçın sabit olduğunu atlamak.** Tam $k$ başarı için yolların hepsi sayılır; seri bittiği maçta sona erer (Örnek 8, Bölüm 9).
+- **Ağaçta dalları eş olasılıklı sanmak, bütün topları tek havuzda saymak.** Her dalın olasılığı ayrı ayrı yazılır ve yol boyunca çarpılır (Örnek 9, Bölüm 10).
+- **Bayes'te paydaya yalnız ilgili yolu yazmak.** Payda, koşul olayına giden bütün yolların toplamıdır (Örnek 9, Bölüm 12).
+- **Taban oranı düşükken pozitif testi "neredeyse kesin hasta" sanmak.** Sağlam grup kalabalıksa yanlış pozitifler gerçek pozitifleri geçebilir; ağacı $1000$ kişilik tabloya çevirip kontrol et (Örnek 10, Bölüm 13).
+
+## Özet
+
+| Durum | Yöntem |
+| --- | --- |
+| "… olduğu biliniyor" | $P(A\mid B)=\dfrac{P(A\cap B)}{P(B)}$; eşit olasılıklı sonuçlarda $\dfrac{s(A\cap B)}{s(B)}$ |
+| Koşul altında tümleyen | $P(A'\mid B)=1-P(A\mid B)$ (koşul aynı kalır) |
+| İki yönlü tablo | Payda = koşulun satır ya da sütun toplamı |
+| Art arda iadesiz çekiş | $P(A_1)\cdot P(A_2\mid A_1)\cdot P(A_3\mid A_1\cap A_2)$ |
+| Bağımsızlık testi | $P(A\cap B)=P(A)\,P(B)$ mi? |
+| Bağımsız $A$, $B$ için en az biri | $1-P(A')\,P(B')$ |
+| $n\le 4$ denemede tam $k$ başarı | $C(n,k)\,p^k(1-p)^{n-k}$ (yol sayısı × bir yol) |
+| İlk başarı $k$'inci denemede | $(1-p)^{k-1}\,p$ |
+| Toplam olasılık | Koşul olayına giden bütün yolların toplamı |
+| Bayes | İstenen yol ÷ bütün yolların toplamı |
+
+## Pratik İpucu
+
+- Soruyu okurken önce **paydayı** belirle: "biliniyor", "ise", "olduğuna göre" diye geçen olay paydadır.
+- Sonuç sayısı azsa koşulu sağlayan sonuçları **listele**; çoksa koşul olayını tümleyenle say.
+- Yüzdeli ağaç sorularında $100$ ya da $1000$ kişilik bir sıklık tablosu kur; Bayes sonucunu bir de tablodan oku.
+- Bulduğun koşullu olasılığın makul olup olmadığını kontrol et: $0$ ile $1$ arasında mı, bilgi olasılığı beklenen yönde değiştirdi mi?
+
+<KonuNav slug="kosullu-olasilik-sorulari" />

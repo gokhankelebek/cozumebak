@@ -1,0 +1,535 @@
+import { RakamSayiCiftDurum } from "@/components/figures/RakamSayiKutuFig";
+import { RakamSayiSayfaBloklari } from "@/components/figures/RakamSayiSayfaFig";
+import { RakamSayiArtanIzgara } from "@/components/figures/RakamSayiIzgaraFig";
+import { topicMetadata } from "@/lib/seo";
+
+export const metadata = topicMetadata("rakamlarla-sayi-olusturma");
+
+<Konu slug="rakamlarla-sayi-olusturma" />
+
+<p className="lead">Rakamlarla sayı oluşturmanın tek bir ana fikri var: **basamakları kutu gibi düşün ve doldurmaya en kısıtlı kutudan başla.** En soldaki basamak $0$ olamaz; çift ya da $5$'e bölünebilen bir sayı istendiğinde birler basamağı da kısıtlı hâle gelir. İki kısıt aynı rakam üzerinde çakıştığında, çoğunlukla $0$ yüzünden, sayımı durumlara ayırırız. Bu sayfada bu fikirle bölünebilme, aralık, "tam ikisi aynı", sayfa numaralama, artan rakamlar, sözlük sırası, sayıların toplamı ve farklı harflerle kelime oluşturma sorularını çözüyoruz.</p>
+
+> **Bu sayfadaki varsayımlar**
+>
+> - **Sayı** dendiğinde en soldaki basamak $0$ olamaz: $0352$ dört basamaklı bir sayı değildir, $352$'dir. Başında $0$ olabilen **kod/şifre** soruları [Sayma Kuralları](/konular/sayma-kurallari) sayfasındadır.
+> - **Rakamları farklı** (tekrarsız): her rakam en çok bir kez kullanılır. **Rakam tekrarı serbest**: aynı rakam birden çok kez kullanılabilir. Her soru hangisinin geçerli olduğunu açıkça söyler.
+> - "… arasında" ve "…-den büyük" ifadelerinde sınır sayısının dahil olup olmadığı soruda belirtilir; "$300$'den büyük" ifadesi $300$'ü dışarıda bırakır.
+> - **Kelime** sorularında harfler birbirinden farklıdır ve kelimenin **anlamlı veya anlamsız** olması önemli değildir. Tekrarlı harfler ve tekrarlı rakamlarla diziliş [Tekrarlı Permütasyon](/konular/tekrarli-permutasyon) sayfasındadır.
+> - Sıralama ve faktöriyel bilgisi [Permütasyon ve Faktöriyel](/konular/permutasyon-siralama) sayfasından, bölünebilme kuralları [Bölme ve Bölünebilme](/konular/bolme-bolunebilme) sayfasından gelir. Konunun genel haritası için [Permütasyon ve Kombinasyon](/konular/permutasyon-kombinasyon-tyt), 10. sınıf temel bakışı için [Sayma ve Permütasyon](/konular/sayma-permutasyon-10) sayfasına bakabilirsin. Maarif programında sayma ve permütasyon 10. sınıfta işlenir.
+
+## 1. Basamak Kutuları: Önce Kısıtlı Basamak
+
+Küçük bir örnekle başlayalım: $1, 2, 3$ rakamlarıyla, **rakamları farklı** iki basamaklı kaç sayı yazılır? Önce hepsini listeleyelim:
+
+$$12,\quad 13,\quad 21,\quad 23,\quad 31,\quad 32$$
+
+Altı sayı var. Listeye bakınca nedenini görürüz: onlar basamağı için $3$ seçenek var, hangisi seçilirse seçilsin birler basamağına kalan $2$ rakam gelebilir. Böylece $3\cdot 2=6$ olur. [Çarpma kuralını](/konular/sayma-kurallari) kullanabilmemizin nedeni, ilk basamak nasıl doldurulursa doldurulsun ikinci basamağa hep aynı sayıda ($2$) rakam kalmasıdır.
+
+Bunu **basamak kutularıyla** yazarız: her basamak bir kutudur, kutuya kaç rakam girebiliyorsa o sayı yazılır, sonra kutular çarpılır.
+
+> **Altın kural:** Kutuları soldan sağa değil, **en kısıtlı olandan başlayarak** doldur. Önce şartı olan basamak (baş basamak, birler basamağı ya da sınır koşulu olan basamak) doldurulur, serbest basamaklar sona kalır. Kısıtlı basamağı sona bırakırsan, oraya kaç rakam kaldığı önceki seçimlere göre değişir ve tek bir çarpım yazamazsın.
+
+## 2. Rakam Tekrarı Serbest mi, Yasak mı?
+
+Aynı rakam kümesiyle iki farklı soru sorulabilir:
+
+| Durum | Bir kutu doldurulduktan sonra | $1,2,3$ ile iki basamaklı |
+| --- | --- | --- |
+| Rakamları farklı | Kullanılan rakam bir sonraki kutuya giremez, seçenek sayısı azalır | $3\cdot 2=6$ |
+| Rakam tekrarı serbest | Her kutuda yine tüm rakamlar kullanılabilir | $3\cdot 3=9$ |
+
+Tekrar serbestken listeye $11$, $22$ ve $33$ eklenir: $6+3=9$. Rakamları farklı sayılar, tekrar serbest sayıların bir **alt kümesidir**. Bu yüzden "en az iki rakamı aynı olan" sayılar, tümleyenle "tüm sayılar − rakamları farklı olanlar" biçiminde bulunur (bkz. Örnek 1).
+
+## 3. Sıfır Problemi: Baş Basamak ve Durum Ayrımı
+
+Rakam kümesinde $0$ varsa baş basamak bir seçenek kaybeder. $0$ diğer basamaklara girebilir ve rakamları farklı sayılarda bir kez kullanıldıktan sonra başka kutuya giremez.
+
+Asıl tuzak, $0$'ın **iki kısıtın kesiştiği rakam** olmasıdır. Rakamları farklı bir **çift** sayıda birler basamağı çift olmalıdır. Birler basamağına $0$ gelirse baş basamak için $0$ zaten kullanılmış olur. Birler basamağına başka bir çift rakam gelirse baş basamak hem $0$'ı hem o rakamı kaybeder. İki durumda baş basamağın seçenek sayısı farklı olduğundan tek bir çarpım yazılamaz; sayım **birler $0$** ve **birler $0$ değil** diye ikiye ayrılır.
+
+<Figur>
+
+<RakamSayiCiftDurum />
+
+<Altyazi>Şekil 1 — $\{0,1,3,4,6,7\}$ rakamlarıyla, rakamları farklı üç basamaklı çift sayılar (Örnek 3). Kısıtlı birler basamağı önce doldurulur. Birler $0$ olunca yüzler basamağına $5$ rakam kalır; birler $4$ ya da $6$ olunca yüzler basamağı hem $0$'ı hem seçilen rakamı kaybeder ve $4$ seçenek kalır. Bu fark yüzünden durumlar ayrı sayılıp toplanır: $20+32=52$.</Altyazi>
+
+</Figur>
+
+Aynı sonuca tümleyenle de ulaşılabilir: "tüm rakamları farklı sayılar − tek olanlar". Tek sayılarda birler basamağına $0$ gelemediği için durum ayrımı gerekmez. Bu nedenle tümleyen yolu çoğu zaman daha kısadır (Örnek 3'teki kontrol adımı bu yolu izler).
+
+## 4. Tek, Çift ve 2, 4, 5, 25 ile Bölünebilme (Son Basamaklardan Başla)
+
+Bu kuralların hepsi sayının **sonuna** bakar. Bu yüzden doldurmaya en sağdaki kutulardan başlanır.
+
+| Koşul | Bakılan yer | Birler (ve onlar) basamağı |
+| --- | --- | --- |
+| Tek | Son basamak | $1,3,5,7,9$ |
+| Çift ($2$ ile bölünebilir) | Son basamak | $0,2,4,6,8$ |
+| $5$ ile bölünebilir | Son basamak | $0$ veya $5$ |
+| $4$ ile bölünebilir | **Son iki basamak** | Son iki basamağın oluşturduğu sayı $4$'ün katı |
+| $25$ ile bölünebilir | **Son iki basamak** | $00,\ 25,\ 50,\ 75$ |
+
+$4$ ve $25$ ile bölünebilmede en güvenli yol, uygun **iki basamaklı sonları listelemektir**. Örneğin $1,2,3,6,7$ rakamlarıyla, rakamları farklı üç basamaklı sayılardan $4$ ile bölünebilenleri sayalım. Rakamları farklı ve $4$'ün katı olan iki basamaklı sonlar şunlardır:
+
+$$12,\ 16,\ 32,\ 36,\ 72,\ 76$$
+
+Her son için yüzler basamağına kalan $3$ rakamdan biri gelir: $6\cdot 3=18$ sayı.
+
+> **Dikkat:** "$4$'e bölünür" koşulunda yalnız son basamağın çift olmasına bakmak yetmez. $126$ çifttir ama $4$ ile bölünmez, çünkü $26$ sayısı $4$'ün katı değildir. Yalnız son basamağa bakarak sayılsaydı ($2\cdot 4\cdot 3=24$), $126$ gibi $6$ sayı fazladan sayılırdı.
+
+$25$ ile bölünebilmede rakamları farklı sayılarda $00$ sonu kullanılamaz; kümede hangi rakamların bulunduğuna göre $25$, $50$ ve $75$ sonlarından uygun olanlar kalır. $50$ sonunda $0$ birler basamağında kullanılmış olur, bu yüzden baş basamakta ayrıca $0$ elenmez. $25$ ve $75$ sonlarında ise $0$ hâlâ kalmıştır ve baş basamağa gelemez.
+
+## 5. 3 ve 9 ile Bölünebilme: Rakam Kümesini Seç, Sonra Diz
+
+$3$ ve $9$ ile bölünebilme rakamların **yerine** değil **toplamına** bağlıdır. Bu yüzden iki adımda çalışılır:
+
+1. Rakam toplamı $3$'ün (ya da $9$'un) katı olan **rakam alt kümelerini** eksiksiz listele.
+2. Her alt kümeyi diz. Alt kümede $0$ varsa baş basamak düzeltmesini yap.
+
+Örnek: $0,1,2,3,4,5$ rakamlarıyla, rakamları farklı üç basamaklı sayılardan kaçı $3$ ile bölünür? Rakamları $3$'e bölümünden kalana göre gruplayalım: kalan $0$: $\{0,3\}$, kalan $1$: $\{1,4\}$, kalan $2$: $\{2,5\}$. Üç rakamın toplamının $3$'e bölünmesi için ya üçü aynı gruptan gelmeli (hiçbir grupta üç rakam yok) ya da her gruptan birer rakam alınmalıdır: $2\cdot 2\cdot 2=8$ alt küme.
+
+| Alt kümeler | Sayısı | Her birinden kaç sayı | Toplam |
+| --- | --- | --- | --- |
+| $0$ içerenler: $\{0,1,2\},\{0,1,5\},\{0,2,4\},\{0,4,5\}$ | $4$ | $3!-2!=4$ | $16$ |
+| $0$ içermeyenler: $\{1,2,3\},\{1,3,5\},\{2,3,4\},\{3,4,5\}$ | $4$ | $3!=6$ | $24$ |
+
+Sonuç $16+24=40$'tır. Her alt kümeyi $3!=6$ ile çarpıp $48$ bulmak, $0$'ın başa geldiği $4\cdot 2!=8$ diziyi de saymak demektir. $0$ içeren bir alt kümede $3!$ dizilişten, $0$'ın başta olduğu $2!$ diziliş çıkarılır.
+
+> **Dikkat:** Alt kümeleri akla geldiği gibi yazıp toplamak, en sık yapılan $3$'e bölünme hatasıdır. Kalan gruplarıyla sistemli listele ve alt küme sayısını ayrıca kontrol et.
+
+$9$ ile bölünebilmede de aynı iki adım uygulanır; yalnız bu kez rakam toplamı $9$'un katı olmalıdır. Önce rakamların toplamının hangi değerleri ($9$, $18$, …) alabileceğine bak, sonra her değer için alt kümeleri en küçük rakamdan başlayarak sistemli yaz.
+
+## 6. Aralık Koşulları: "…-den Büyük", "… Arasında"
+
+Aralık koşulu genellikle **baş basamağı** kısıtlar. Bu yüzden onu çoğunlukla ilk kutu olarak doldururuz. İki şeye dikkat etmek gerekir:
+
+- **Sınır sayısı oluşturulabiliyor mu?** "$300$'den büyük" sorusunda $300$ sayısı kurallara uygun biçimde yazılabiliyorsa (örneğin rakam tekrarı serbest ve $0$ kümede varsa), baş basamağı $3$ olan sayıları sayarken $300$'ü çıkarmak gerekir (bkz. Örnek 5). Rakamları farklı sayılarda $300$ zaten yazılamaz.
+- **Baş basamak sınırda mı?** "$3500$'den büyük" gibi bir koşulda baş basamağı $3$ olan sayıların yalnız bir kısmı uygundur. O zaman en büyük basamaktan başlayarak durumlara ayırırız: baş basamak $3$'ten büyükse tüm sayılar uygundur; baş basamak $3$ ise ikinci basamağa bakılır.
+
+  Örneğin $1, 3, 5, 7$ rakamlarının hepsi birer kez kullanılarak yazılan dört basamaklı sayılardan $3500$'den büyük olanlar: baş basamak $5$ veya $7$ ise $2\cdot 3!=12$ sayı; baş basamak $3$ ise ikinci basamak $5$ veya $7$ olmalıdır, $2\cdot 2!=4$ sayı. Toplam $12+4=16$.
+
+Aralık koşulu bir de çift/tek koşuluyla birleşirse iki kısıtlı kutu olur (baş ve birler basamağı). Ortak rakam varsa yine durum ayrımı gerekir.
+
+## 7. Tam İki Rakamı Aynı Olan Sayılar (AAB Tipi)
+
+"Rakamlarından tam ikisi aynı" olan üç basamaklı bir sayının rakamları iki çeşittir: iki kez geçen $A$ ve bir kez geçen $B$ ($A\neq B$). Sayım üç adımdır:
+
+1. Tekrar eden rakam $A$'yı seç.
+2. Diğer rakam $B$'yi seç.
+3. $B$'nin yerini seç: $AAB$, $ABA$ veya $BAA$ (3 kalıp).
+
+Kümede $0$ varsa, $0$'ın başa geldiği kalıplar çıkarılır: $A=0$ iken $AAB$ ve $ABA$ kalıpları, $B=0$ iken $BAA$ kalıbı geçersizdir. $A=0$ iken $BAA$ kalıbı ise **geçerlidir**: $100$, $300$ gibi. Yani tekrar eden rakamın $0$ olduğu durumları tamamen silmek de yanlıştır.
+
+Aynı sonuç tümleyenle kontrol edilir: tam ikisi aynı = tüm sayılar − rakamları farklı olanlar − üçü aynı olanlar (bkz. Örnek 6). Rakam kümesi tekrarlı verildiğinde (örneğin "$1,1,2,3$ rakamlarıyla") kullanılan genel kalıp yöntemi [Tekrarlı Permütasyon](/konular/tekrarli-permutasyon) sayfasındadır.
+
+**Palindrom sayılar** da kalıpla sayılır. Palindrom, tersten okunuşu kendisiyle aynı olan sayıdır ($4774$, $121$ gibi). Sayının **ilk yarısı** gerisini belirler. Dört basamaklı bir palindrom $\overline{abba}$ biçimindedir: $a$ için $9$ seçenek ($0$ olamaz), $b$ için $10$ seçenek vardır. Böylece $9\cdot 10=90$ palindrom elde edilir. Son iki basamak ilk ikisinin kopyası olduğu için ayrıca sayılmaz.
+
+## 8. 1'den N'ye Kadar Sayılar Yazılırken Kullanılan Rakamlar
+
+Bir kitabın sayfaları $1$'den başlayarak numaralanıyorsa, kullanılan rakam sayısı basamak sayısına göre gruplanarak bulunur:
+
+<Figur>
+
+<RakamSayiSayfaBloklari />
+
+<Altyazi>Şekil 2 — Sayfa numaralama blokları (genişlikler ölçekli değildir). Bir basamaklı $9$ sayı, iki basamaklı $99-10+1=90$ sayı, üç basamaklı $999-100+1=900$ sayı vardır. Blok sonlarında toplam rakam sayısı $9$, $189$ ve $2889$'dur. Bir rakam sayısı verilip sayfa sayısı sorulduğunda, önce verilen sayının hangi blokta olduğu bu eşiklerle bulunur.</Altyazi>
+
+</Figur>
+
+Bir bloktaki sayıların adedi "son − ilk + 1" ile bulunur. Sınırları kaydırmak ($10$–$99$ arasındaki sayıları $89$ ya da $91$ tane saymak) bu konudaki en sık hatadır.
+
+**Belirli bir rakam kaç kez yazılır?** Bu kez her basamağı ayrı sayarız. Örneğin $1$'den $30$'a kadar sayılar yazılırken $2$ rakamı kaç kez yazılır?
+
+- Birler basamağında $2$: $2,\ 12,\ 22$ → $3$ kez.
+- Onlar basamağında $2$: $20, 21, \dots, 29$ → $10$ kez.
+
+Toplam $3+10=13$'tür. $22$ iki kez sayıldı, bu doğrudur: $22$ yazılırken $2$ rakamı gerçekten iki kez kullanılır. Soru "kaç kez yazılır" yerine "kaç sayıda $2$ bulunur" olsaydı $22$ bir kez sayılır ve cevap $12$ olurdu.
+
+## 9. Rakamları Artan, Azalan ve Azalmayan Sayılar
+
+$1,2,3,4,5$ rakamlarıyla yazılan, rakamları soldan sağa **kesin artan** üç basamaklı sayıları listeleyelim:
+
+$$123,\ 124,\ 125,\ 134,\ 135,\ 145,\ 234,\ 235,\ 245,\ 345$$
+
+On sayı var. Bu listeyi farklı kılan şey şudur: üç rakamı **seçtiğimiz anda** sayı belirlenir, çünkü artan diziliş tek türlüdür. $\{2,4,5\}$ seçilirse yalnız $245$ yazılır. Yani artan sayıların adedi, rakam **alt kümelerinin** adedine eşittir. Seçilen rakamları ayrıca $3!$ ile dizmek, artan olmayan $254$, $425$ gibi sayıları da saymak olur.
+
+> **Seç, sıra zaten belli:** Rakamları kesin artan ya da kesin azalan sayılarda dizme adımı yoktur, yalnız seçme vardır. Bu fikir [Kombinasyon: Seçme Problemleri](/konular/kombinasyon-secme) sayfasında $C(n,r)$ adını alır. Oradaki araçla, tüm rakamlar kullanılabildiğinde rakamları kesin artan üç basamaklı sayıların $C(9,3)=84$, kesin azalanların $C(10,3)=120$ olduğu hemen bulunur.
+
+**$0$ farkı:** Artan bir sayıda $0$ seçilirse en küçük rakam olduğu için başa geçer ve sayı geçersiz olur. Bu yüzden artan sayılarda $0$ hiç seçilmez ve yalnız $1$–$9$ kullanılır. Azalan bir sayıda ise $0$ en sona gider ve sorun çıkarmaz ($520$ gibi). Bu yüzden azalan sayılarda $0$ da seçilebilir.
+
+**Azalmayan** (her rakam bir öncekinden küçük olmayan) sayılarda eşitliğe de izin verilir: $113$, $225$, $444$ uygundur. Bunları durumlara ayırarak sayarız. Önce iki basamaklı sayılara bir tabloda bakalım:
+
+<Figur>
+
+<RakamSayiArtanIzgara />
+
+<Altyazi>Şekil 3 — $1$–$5$ rakamlarıyla yazılan iki basamaklı sayılar. Köşegenin üstündeki $10$ hücre rakamları kesin artan sayılardır (iki rakam seçilince sayı belli olur). Köşegendeki $5$ hücrede iki rakam eşittir. Azalmayan sayılar bu ikisinin toplamıdır: $10+5=15$. Eşit rakamlı köşegeni unutmak, azalmayan sayılardaki en sık hatadır.</Altyazi>
+
+</Figur>
+
+Üç basamaklıda da aynı mantık işler ($1$–$5$ rakamlarıyla):
+
+| Rakam durumu | Nasıl sayılır | Adet |
+| --- | --- | --- |
+| Üçü farklı | Üç rakam seç, sıra belli | $10$ |
+| Tam ikisi aynı | İki farklı rakam seç ($10$ yol), iki kez geçecek olanı seç ($2$ yol); sıra belli | $10\cdot 2=20$ |
+| Üçü aynı | Bir rakam seç | $5$ |
+| **Toplam** | | $35$ |
+
+Azalmayan sayıların genel formülü, özdeş nesneleri kutulara dağıtma yöntemiyle elde edilir. O yöntem [Gruplara Ayırma ve Dağıtma](/konular/gruplara-ayirma-dagitma) sayfasındadır. Bu sayfada iki ve üç basamaklı sayıları durumlara ayırarak saymak yeterlidir.
+
+## 10. Sözlük Sırası: Kaçıncı Sayı, Kaçıncı Kelime
+
+Oluşturulabilen tüm sayılar küçükten büyüğe (kelimeler alfabetik olarak) dizildiğinde, verilen bir sayının kaçıncı olduğu şöyle bulunur:
+
+1. Soldan sağa ilerle. Her basamakta, o basamağa verilen rakamdan **küçük** olup henüz kullanılmamış her rakam için, o rakamla başlayan bloğun tamamını say.
+2. Bu blokların toplamı, verilen sayıdan **önce gelen** sayıların adedidir.
+3. Sıra numarası = önce gelenler **+ 1**.
+
+Son adımdaki $+1$ unutulursa cevap bir eksik çıkar. Kontrol için ters yönden de sayılabilir: verilen sayıdan **büyük** olanları say, toplamdan çıkar (bkz. Örnek 8). Kümede $0$ varsa baş basamakta $0$ ile başlayan blok yoktur. İkinci ve sonraki basamaklarda ise $0$ en küçük rakam olarak ilk blokları oluşturur.
+
+"$k$'ıncı sayı hangisidir?" sorusu aynı işlemin tersidir: bloklar sırayla atlanarak aranan sayının hangi bloğa düştüğü bulunur ve bir sonraki basamakta aynı işlem tekrarlanır. Örneğin $5$ farklı rakamın hepsiyle yazılan sayılarda her baş rakam $4!=24$ sayılık bir blok oluşturur; aranan sıra numarasından atlanan blokların toplamı çıkarılır ve aynı işlem bir sonraki basamakta $3!=6$'lık bloklarla sürdürülür.
+
+## 11. Oluşturulan Sayıların Toplamı
+
+Tüm sayıları tek tek toplamak yerine her rakamın her basamağa **kaç kez** geldiğini sayarız. $1,2,3$ ile rakamları farklı iki basamaklı sayıları listeleyip toplayalım:
+
+$$12+13+21+23+31+32=132$$
+
+Listede her rakam onlar basamağında $2$ kez, birler basamağında $2$ kez görünür. Rakamların toplamı $1+2+3=6$ olduğundan onlar basamağının katkısı $6\cdot 2\cdot 10=120$, birler basamağının katkısı $6\cdot 2\cdot 1=12$'dir: $120+12=132$.
+
+**$0$ varken bu simetri bozulur.** $0,1,2$ ile rakamları farklı iki basamaklı sayılar $10,\ 12,\ 20,\ 21$'dir ve toplamları $63$'tür. Simetrik formülle $(0+1+2)\cdot 2\cdot 11=66$ bulunur. Sonuç yanlıştır, çünkü $0$ onlar basamağına hiç gelemez ve birler basamağındaki dağılım eşit değildir. Doğru hesap:
+
+- Onlar basamağı: $1$ ve $2$ ikişer kez gelir ($10,12$ ve $20,21$) → $(1+2)\cdot 2\cdot 10=60$.
+- Birler basamağı: $0$ iki kez, $1$ ve $2$ birer kez gelir → $0\cdot 2+1+2=3$.
+
+Toplam $60+3=63$'tür. Genel kural: kümede $0$ varsa, her basamakta her rakamın kaç kez göründüğünü **ayrı ayrı** say ve simetrik formülü olduğu gibi kullanma.
+
+## 12. Harflerle Kelime Oluşturma (Farklı Harfler)
+
+Harfleri birbirinden farklı bir kelimede harfler, tıpkı rakamlar gibi kutulara yerleştirilir. "Baş basamak $0$ olamaz" kısıtı burada yoktur, onun yerine sesli ve sessiz harf kısıtları gelir. DOLAP kelimesinin harfleri farklıdır: sesliler $O, A$; sessizler $D, L, P$.
+
+- Tüm diziliş sayısı (anlamlı veya anlamsız): $5!=120$.
+- **Sesli harfle başlayıp sessiz harfle biten:** önce iki kısıtlı kutu doldurulur. İlk harf için $2$, son harf için $3$ seçenek vardır; kalan $3$ harf ortaya $3!$ yolla dizilir: $2\cdot 3\cdot 3!=36$.
+- **Sesliler yan yana:** [Permütasyon ve Faktöriyel](/konular/permutasyon-siralama) sayfasındaki blok yöntemiyle $OA$ bir blok olur; blok ve $3$ sessiz $4!$ yolla, blok içi $2!$ yolla dizilir: $4!\cdot 2!=48$. **Sesliler yan yana değil** ise tümleyenle bulunur: $120-48=72$.
+
+**Kaçıncı kelime?** DOLAP'ın harfleri alfabetik sıraya göre $A, D, L, O, P$'dir. Bu harflerle yazılan $120$ kelime alfabetik dizildiğinde DOLAP:
+
+- $A$ ile başlayanlar önce gelir: $4!=24$.
+- $D$ ile başlayıp ikinci harfi $O$'dan önce gelen ($A$ veya $L$) olanlar: $2\cdot 3!=12$.
+- $DO$ ile başlayıp üçüncü harfi $L$'den önce gelen ($A$) olanlar: $2!=2$.
+- $DOL$ ile başlayanlardan $DOLAP$ ilk sıradadır ($A$, $P$'den önce gelir); önünde hiç kelime yoktur.
+
+Önce gelenler $24+12+2=38$ olduğundan DOLAP $39$'uncu kelimedir.
+
+## Çözümlü Sorular
+
+{/* ornek-1 */}
+<Ornek>
+
+<Soru>
+
+$3, 4, 5, 6, 7$ rakamları kullanılarak üç basamaklı sayılar yazılacaktır.
+
+a) Rakamları farklı kaç sayı yazılabilir?
+
+b) Rakam tekrarı serbest olduğunda kaç sayı yazılabilir?
+
+c) Rakam tekrarı serbestken yazılabilen sayılardan kaçında en az iki rakam aynıdır?
+
+</Soru>
+
+<Ipucu>
+
+Kümede $0$ yok, yani hiçbir kutunun özel bir kısıtı yok. Fark yalnız, kullanılan rakamın bir sonraki kutuya girip giremeyeceğindedir.
+
+</Ipucu>
+
+<Cozum>
+
+1. a) Yüzler basamağı için $5$ seçenek vardır. Kullanılan rakam tekrar kullanılamadığından onlar basamağı için $4$, birler basamağı için $3$ seçenek kalır: $5\cdot 4\cdot 3=60$. Bu, $P(5,3)$ sayısıdır.
+
+2. b) Her kutuya yine $5$ rakamın her biri girebilir: $5\cdot 5\cdot 5=125$.
+
+3. c) "En az iki rakamı aynı" ifadesi, "rakamları farklı" ifadesinin tümleyenidir. Tekrar serbest sayılardan rakamları farklı olanları çıkarırız: $125-60=65$.
+
+4. Kontrol: "En az ikisi aynı" sayılar, "üçü aynı" ve "tam ikisi aynı" sayılardan oluşur. Üçü aynı: $333, 444, \dots, 777$, yani $5$ sayı. Tam ikisi aynı: tekrar eden rakam $5$, diğer rakam $4$, kalıp ($AAB$, $ABA$, $BAA$) $3$ yolla seçilir: $5\cdot 4\cdot 3=60$. Toplam $5+60=65$. ✓
+
+<Cevap>a) $60$  b) $125$  c) $65$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-2 */}
+<Ornek>
+
+<Soru>
+
+$0, 1, 3, 5, 7, 8$ rakamları kullanılarak rakamları farklı dört basamaklı kaç sayı yazılabilir? Rakam tekrarı serbest olsaydı kaç sayı yazılabilirdi?
+
+</Soru>
+
+<Ipucu>
+
+Binler basamağı $0$ olamaz. Bu kutuyu ilk doldur.
+
+</Ipucu>
+
+<Cozum>
+
+1. Sık yapılan yanlış: $6$ rakamdan $4$'ünü dizip $6\cdot 5\cdot 4\cdot 3=360$ demek. Bu sayım $0135$ gibi dizileri de içerir. Oysa $0135$ dört basamaklı bir sayı değildir, üç basamaklı $135$ sayısıdır.
+
+2. Doğru yol: binler basamağına $0$ dışındaki $5$ rakamdan biri gelir: $5$ seçenek. Yüzler basamağına $0$ dahil kalan $5$ rakamdan biri gelir: $5$ seçenek. Sonra onlar basamağı için $4$, birler basamağı için $3$ seçenek kalır. Sonuç: $5\cdot 5\cdot 4\cdot 3=300$.
+
+3. Kontrol (tümleyen): $360$ dizinin içinden $0$ ile başlayanları çıkaralım. Başa $0$ konunca kalan $3$ kutu $5\cdot 4\cdot 3=60$ yolla dolar. $360-60=300$. ✓
+
+4. Tekrar serbest olsaydı: binler basamağı yine $5$ seçenek ($0$ olamaz), diğer üç basamağın her biri $6$ seçenek: $5\cdot 6\cdot 6\cdot 6=1080$.
+
+<Cevap>Rakamları farklı: $300$; rakam tekrarı serbest: $1080$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-3 */}
+<Ornek>
+
+<Soru>
+
+$0, 1, 3, 4, 6, 7$ rakamları kullanılarak rakamları farklı üç basamaklı kaç **çift** sayı yazılabilir?
+
+</Soru>
+
+<Ipucu>
+
+Birler basamağı çift olmalı: $0$, $4$ veya $6$. Birlere $0$ gelirse yüzler basamağı için kaç seçenek kalır, $4$ gelirse kaç seçenek kalır?
+
+</Ipucu>
+
+<Cozum>
+
+1. Sık yapılan yanlış: "Birler $3$ seçenek, yüzler $0$ olamaz diye $4$ seçenek, onlar $4$ seçenek" deyip $3\cdot 4\cdot 4=48$ bulmak. Birlere $0$ gelirse yüzler basamağı aslında $5$ seçeneğe sahiptir. Örneğin $310$, $710$ gibi sayılarda yüzler basamağına $0$ dışındaki tüm rakamlar gelebilir. Tek çarpım bu farkı göremez.
+
+2. Bir başka yanlış: kutuları soldan sağa doldurmak. Yüzler ve onlar basamağı önce doldurulursa birlere kaç çift rakam kaldığı bu seçimlere bağlı olur: $31$ ile başlayan sayılarda birlere $0, 4, 6$ (üç rakam), $41$ ile başlayanlarda yalnız $0, 6$ (iki rakam), $46$ ile başlayanlarda yalnız $0$ (bir rakam) kalır. Birler basamağına tek bir sayı yazılamadığı için çarpım kurulamaz. Bu yüzden kısıtlı birler basamağı **önce** doldurulur.
+
+3. **Durum 1, birler $0$:** Yüzler basamağı için kalan $5$ rakamın hepsi uygundur: $5$ seçenek. Onlar basamağı için $4$ seçenek kalır. $1\cdot 5\cdot 4=20$.
+
+4. **Durum 2, birler $4$ veya $6$:** Birler $2$ seçenek. Yüzler basamağı hem $0$'ı hem birlerdeki rakamı kaybeder: $4$ seçenek. Onlar basamağında $0$ yeniden kullanılabilir; kalan $4$ rakamdan biri gelir: $4$ seçenek. $2\cdot 4\cdot 4=32$.
+
+5. Durumlar ayrık olduğundan toplanır: $20+32=52$ (Şekil 1).
+
+6. Kontrol (tümleyen): Rakamları farklı tüm üç basamaklı sayılar $5\cdot 5\cdot 4=100$'dür. Tek olanlarda birler $1$, $3$ veya $7$ olur ve $0$ birlere gelmediği için durum ayrımı gerekmez: $3\cdot 4\cdot 4=48$. Çift olanlar: $100-48=52$. ✓
+
+<Cevap>$52$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-4 */}
+<Ornek>
+
+<Soru>
+
+Üç basamaklı doğal sayılardan kaç tanesinin rakamlarından **en az biri** $5$'tir?
+
+</Soru>
+
+<Ipucu>
+
+"En az bir tane $5$" doğrudan sayılırsa bir tane, iki tane ve üç tane $5$ içeren sayılar ayrı ayrı sayılmalıdır. Tümleyeni, yani hiç $5$ içermeyen sayıları saymak daha kolaydır.
+
+</Ipucu>
+
+<Cozum>
+
+1. Üç basamaklı sayılar $100$'den $999$'a kadardır: $999-100+1=900$ sayı.
+
+2. Hiç $5$ içermeyen sayılar: yüzler basamağı ne $0$ ne $5$ olabilir: $8$ seçenek. Onlar ve birler basamaklarının her birine $5$ dışındaki $9$ rakamdan biri gelir: $9\cdot 9$. Toplam $8\cdot 9\cdot 9=648$.
+
+3. En az bir rakamı $5$ olanlar: $900-648=252$.
+
+4. Sık yapılan yanlış: "hiç $5$ yok" sayısını $9\cdot 9\cdot 9=729$ alıp $900-729=171$ bulmak. Bu hesapta yüzler basamağının $0$ olamayacağı unutulmuştur. Tümleyende de baş basamak kuralı geçerlidir.
+
+5. Kontrol (doğrudan sayım): Yüzler basamağı $5$ ise sayı $500$–$599$ arasındadır: $100$ sayı. Yüzler basamağı $5$ değilse ($8$ seçenek), son iki basamakta en az bir $5$ olmalıdır: $100-81=19$ yol, yani $8\cdot 19=152$ sayı. Toplam $100+152=252$. ✓
+
+<Cevap>$252$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-5 */}
+<Ornek>
+
+<Soru>
+
+$0, 2, 3, 5, 7$ rakamları kullanılarak, rakam tekrarı serbest olmak üzere, $300$'den büyük üç basamaklı kaç **çift** sayı yazılabilir?
+
+</Soru>
+
+<Ipucu>
+
+İki kısıtlı kutu var: yüzler basamağı (aralık) ve birler basamağı (çift). Sonra şunu sor: sınır sayısı $300$ bu rakamlarla yazılabiliyor mu?
+
+</Ipucu>
+
+<Cozum>
+
+1. Yüzler basamağı: sayı $300$'den büyük olmalı. Kümede $3$ ve $3$'ten büyük rakamlar $3, 5, 7$'dir: $3$ seçenek.
+
+2. Birler basamağı: çift rakamlar $0$ ve $2$: $2$ seçenek. Tekrar serbest olduğundan bu seçim yüzler basamağını etkilemez.
+
+3. Onlar basamağı serbesttir: $5$ seçenek. İlk sayım: $3\cdot 5\cdot 2=30$.
+
+4. Sınır kontrolü: Bu $30$ sayının içinde $300$ de var ($3$, $0$, $0$ rakamları kümede ve tekrar serbest). $300$ çifttir, ama "$300$'den büyük" değildir. Çıkarırız: $30-1=29$.
+
+5. Kontrol (listeleme): Yüzler basamağı $3$ olan çift sayılar $300, 302, 320, 322, 330, 332, 350, 352, 370, 372$'dir. $300$ dışarıda kalınca $9$ sayı olur. Yüzler $5$ ve $7$ için $10$'ar sayı vardır. $9+10+10=29$. ✓
+
+<Cevap>$29$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-6 */}
+<Ornek>
+
+<Soru>
+
+$0, 2, 4, 5, 8, 9$ rakamları kullanılarak, rakam tekrarı serbest olmak üzere, yazılabilen üç basamaklı sayılardan kaç tanesinin rakamlarından **tam olarak ikisi** aynıdır?
+
+</Soru>
+
+<Ipucu>
+
+Tekrar eden rakam $A$, diğeri $B$ olsun. $A$'yı, $B$'yi ve kalıbı ($AAB$, $ABA$, $BAA$) seç. Sonra başında $0$ olan dizileri ayıkla.
+
+</Ipucu>
+
+<Cozum>
+
+1. Kalıp sayımı: $A$ için $6$, $B$ için $5$ seçenek ($B\neq A$), kalıp için $3$ seçenek: $6\cdot 5\cdot 3=90$ dizi.
+
+2. Sık yapılan yanlış: $90$'ı cevap kabul etmek. Bu dizilerin bazıları $0$ ile başlar ($022$, $050$ gibi) ve üç basamaklı sayı değildir.
+
+3. Başında $0$ olan diziler: $A=0$ iken $AAB$ ($00B$) ve $ABA$ ($0B0$) kalıplarında $B$ için $5$'er seçenek vardır, yani $10$ dizi. $B=0$ iken $BAA$ ($0AA$) kalıbında $A$ için $5$ seçenek vardır, yani $5$ dizi. Toplam $15$ dizi çıkarılır: $90-15=75$.
+
+4. Dikkat: $A=0$ iken $BAA$ kalıbı geçerlidir: $200$, $400$, $500$, $800$, $900$. Bu yüzden "tekrar eden rakam $0$ olamaz" diyerek $A=0$ durumunu tamamen silmek de yanlıştır.
+
+5. Kontrol (tümleyen): Tüm üç basamaklı sayılar $5\cdot 6\cdot 6=180$. Rakamları farklı olanlar $5\cdot 5\cdot 4=100$. Üçü aynı olanlar $222, 444, 555, 888, 999$, yani $5$ sayı. Tam ikisi aynı: $180-100-5=75$. ✓
+
+<Cevap>$75$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-7 */}
+<Ornek>
+
+<Soru>
+
+Sayfaları $1$'den başlayarak sırayla numaralanan bir kitabın tüm sayfa numaraları yazılırken toplam $1002$ rakam kullanılmıştır. Bu kitap kaç sayfadır?
+
+</Soru>
+
+<Ipucu>
+
+Önce $1002$'nin hangi blokta olduğunu bul: bir ve iki basamaklı sayfalar toplam kaç rakam harcar?
+
+</Ipucu>
+
+<Cozum>
+
+1. $1$–$9$ arası sayfalar: $9$ sayfa, $9\cdot 1=9$ rakam.
+
+2. $10$–$99$ arası sayfalar: $99-10+1=90$ sayfa, $90\cdot 2=180$ rakam. İlk $99$ sayfada $9+180=189$ rakam kullanılır. $189<1002<2889$ olduğundan kitap üç basamaklı sayfalarda biter (Şekil 2).
+
+3. Üç basamaklı sayfalara kalan rakam: $1002-189=813$. Her sayfa $3$ rakam harcar: $813\div 3=271$ sayfa.
+
+4. Üç basamaklı sayfalar $100$'den başlar. $271$ sayfanın sonuncusu $100+271-1=370$'tir.
+
+5. Sık yapılan yanlış: son adımda $100+271=371$ demek (bir fazla) ya da $99$ yerine $100$ sayfa üzerinden hesap yapmak. Bloğun ilk sayfası da $271$ sayfaya dahildir.
+
+6. Kontrol: $370$ sayfada $9+180+(370-99)\cdot 3=9+180+813=1002$ rakam kullanılır. ✓
+
+<Cevap>$370$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-8 */}
+<Ornek>
+
+<Soru>
+
+$0, 1, 3, 6, 8$ rakamlarının hepsi birer kez kullanılarak yazılabilen beş basamaklı sayılar küçükten büyüğe sıralanıyor. $63180$ kaçıncı sıradadır?
+
+</Soru>
+
+<Ipucu>
+
+Önce kaç sayı yazılabildiğini bul. Sonra $63180$'den önce gelen blokları soldan sağa say ve en sonda $1$ ekle.
+
+</Ipucu>
+
+<Cozum>
+
+1. Toplam sayı: baş basamak $0$ olamaz, $4$ seçenek. Kalan $4$ rakam $4!$ yolla dizilir: $4\cdot 24=96$ sayı.
+
+2. Baş basamağı $6$'dan küçük olanlar: baş basamak $0$ olamayacağı için yalnız $1$ ve $3$ kalır. Her biri için $4!=24$ sayı vardır: $48$.
+
+3. $6$ ile başlayıp ikinci basamağı $3$'ten küçük olanlar: ikinci basamak $0$ veya $1$ olabilir. Burada $0$ geçerlidir, çünkü baş basamakta değildir. Her biri için $3!=6$ sayı: $12$.
+
+4. $63$ ile başlayıp üçüncü basamağı $1$'den küçük olanlar: üçüncü basamak yalnız $0$ olabilir. $2!=2$ sayı ($63018$, $63081$).
+
+5. $631$ ile başlayanlar: $63108$ ve $63180$. $63180$'den önce yalnız $63108$ gelir: $1$ sayı.
+
+6. Önce gelenler: $48+12+2+1=63$. Sıra numarası: $63+1=64$. Son adımdaki $+1$ unutulursa $63$ bulunur.
+
+7. Kontrol (ters yönden): $63180$'den büyük olanlar: $8$ ile başlayanlar $24$, $68$ ile başlayanlar $6$, $638$ ile başlayanlar $2$ sayı. Toplam $32$ sayı. $96-32=64$. ✓
+
+<Cevap>$64$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Pekiştirme Soruları
+
+> Konuyu pekiştirmek için hazırlanmış özgün sorular.
+
+<Sorular slug="rakamlarla-sayi-olusturma" />
+
+## Sık Yapılan Hatalar
+
+- **$0$'ı baş basamağa koymak ya da hiç kullanmamak.** $0$ baş basamağa gelemez ama diğer basamaklara gelir. Tümleyen hesabında da bu kural geçerlidir (bkz. Örnek 2 ve Örnek 4).
+- **Çift sayıları tek çarpımla saymak.** Birler basamağına $0$ gelip gelmemesi baş basamağın seçenek sayısını değiştirir. "Birler $0$" ve "birler $0$ değil" durumlarını ayır ya da tümleyenle tek sayılardan git (bkz. Örnek 3).
+- **Kısıtlı basamağı sona bırakmak.** Önce şartı olan kutuyu doldur. Aksi hâlde son kutuya kaç rakam kaldığı belirsiz kalır (bkz. Bölüm 1 ve Örnek 3).
+- **Sınır sayısını dahil etmek.** "$300$'den büyük" sorusunda $300$ yazılabiliyorsa çıkarılmalıdır (bkz. Örnek 5).
+- **$4$'e bölünmede yalnız son basamağa bakmak; $3$'e bölünmede alt küme atlamak.** $4$ için son iki basamağı listele. $3$ ve $9$ için rakam alt kümelerini kalan gruplarıyla sistemli yaz (bkz. Bölüm 4 ve 5).
+- **AAB tipinde başında $0$ olan dizileri ayıklamamak.** $A=0$ iken $AAB$ ve $ABA$ kalıpları, $B=0$ iken $BAA$ kalıbı geçersizdir. Ama $A=0$ iken $BAA$ ($100$ gibi) geçerlidir (bkz. Örnek 6).
+- **Sayfa numaralamada blok sınırlarını kaydırmak.** İki basamaklı sayılar $90$ tanedir. Üç basamaklı blok $100$'den başlar, yani $k$'ıncı üç basamaklı sayfa $99+k$'dır (bkz. Örnek 7).
+- **Artan rakamlı sayılarda seçilen rakamları ayrıca dizmek.** Seçilen rakamlarla artan diziliş tek türlüdür. Artan sayılarda $0$ seçilmez; azalmayan sayılarda eşit rakamlı durumlar unutulmamalıdır (bkz. Bölüm 9 ve Şekil 3).
+- **Sözlük sırasında $+1$'i unutmak.** Sayılan bloklar verilen sayıdan **önce** gelenlerdir; sıra numarası bunun bir fazlasıdır (bkz. Örnek 8).
+- **Toplam sorusunda $0$'ı hesaba katmamak.** Kümede $0$ varsa her rakam her basamakta aynı sayıda görünmez. Her basamağı ayrı say (bkz. Bölüm 11).
+
+## Özet
+
+| Soru tipi | İlk adım |
+| --- | --- |
+| Rakamları farklı / tekrar serbest | Kutuları çiz; kullanılan rakamın düşüp düşmediğine karar ver |
+| Kümede $0$ var | Baş basamağı ilk doldur; çift ve $5$'e bölünmede durum ayır |
+| $2, 4, 5, 25$ ile bölünme | Son basamak(lar)dan başla; $4$ ve $25$ için sonları listele |
+| $3$ ve $9$ ile bölünme | Önce rakam alt kümesini seç, sonra diz |
+| Aralık | Baş basamaktan durum ayır; sınır sayısının yazılıp yazılamadığına bak |
+| En az bir tane … | Tümleyen: hepsi − hiç olmayanlar |
+| Tam ikisi aynı | $A$, $B$, kalıp; başında $0$ olanları çıkar |
+| Sayfa numaralama | $9$, $189$, $2889$ eşikleri |
+| Artan / azalan rakamlar | Seç, sıra zaten belli |
+| Kaçıncı sayı | Önce gelen blokları say, $+1$ ekle |
+| Sayıların toplamı | Her rakamın her basamaktaki görünme sayısı |
+
+<KonuNav slug="rakamlarla-sayi-olusturma" />

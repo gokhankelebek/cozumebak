@@ -1,0 +1,501 @@
+import { topicMetadata } from "@/lib/seo";
+import { DaireselDonme, DaireselBosluk, DaireselKomsu, DaireselKolye } from "@/components/figures/DaireselPermutasyonFig";
+
+export const metadata = topicMetadata("dairesel-permutasyon");
+
+<Konu slug="dairesel-permutasyon" />
+
+<p className="lead">Yuvarlak bir masada başlangıç sandalyesi yoktur. Herkes aynı yöne birer sandalye kayarsa kimsenin sağındaki ve solundaki kişi değişmez, yani diziliş aynı kalır. Dairesel permütasyonun tek fikri budur: **döndürmeyle birbirine dönüşen dizilişler bir kez sayılır.** Bu yüzden $n$ farklı kişi yuvarlak masaya $n!$ değil, $(n-1)!$ farklı biçimde oturur. Bu sayfada formülü üç kişilik bir listeden çıkarıyor, ardından yan yana oturma, karşılıklı oturma, dönüşümlü oturma, evli çiftler, numaralı sandalyeler ile kolye, bilezik ve anahtarlık sorularını bu tek fikirle çözüyoruz.</p>
+
+> **Bu sayfadaki varsayımlar**
+>
+> - Kişiler ve nesneler, aksi söylenmedikçe birbirinden **farklıdır**.
+> - Sandalyeler masanın çevresine eşit aralıklarla dizilmiştir, sayısı kişi sayısına eşittir ve aksi söylenmedikçe **numarasızdır**. Bu durumda döndürmeyle elde edilen diziliş **aynı** sayılır: önemli olan, herkesin sağında ve solunda kimin oturduğudur.
+> - Masadaki herkesin yüzü masaya dönüktür. "Hemen sağında", oturan kişinin kendi sağındaki ilk sandalye demektir.
+> - "Yan yana" iki komşu sandalye demektir; hangisinin sağda olduğu fark etmez.
+> - Masa ters çevrilemez. Kolye, bilezik ve anahtarlık gibi ters çevrilebilen nesnelerde ise ters çevrilmiş hâl de aynı nesne sayılır.
+
+> **Temel bakış:** Faktöriyel, $P(n,r)$, düz sıraya diziliş, blok yöntemi ve boşluk yöntemi [Permütasyon ve Faktöriyel](/konular/permutasyon-siralama) sayfasında anlatılır; bu sayfa onları kullanır. Konunun genel haritası için [Permütasyon ve Kombinasyon](/konular/permutasyon-kombinasyon-tyt), 10. sınıf düzeyindeki temel anlatım için [Sayma ve Permütasyon (10. sınıf)](/konular/sayma-permutasyon-10) sayfasına bakabilirsin. Maarif programında sayma, permütasyon ve kombinasyon 10. sınıfta işlenir.
+
+## 1. Döndürme Neden Aynı Diziliş? Üç Kişiyle Listeleme
+
+$A$, $B$ ve $C$ düz bir sıraya $3!=6$ biçimde dizilir:
+
+$$ABC,\quad ACB,\quad BAC,\quad BCA,\quad CAB,\quad CBA$$
+
+Şimdi bu üç kişiyi yuvarlak bir masaya oturtalım ve masaya yukarıdan bakarak, en üstteki sandalyeden başlayıp saat yönünde okuyalım. $ABC$ dizilişinde herkes saat yönünde birer sandalye kayarsa okuma $CAB$ olur, bir kez daha kayarlarsa $BCA$ olur. Üçünde de $A$'nın hemen sağında $C$, hemen solunda $B$ oturur; aynı şey $B$ ve $C$ için de geçerlidir, herkesin sağındaki ve solundaki kişi aynı kalmıştır. ($ACB$ okumasında ise $A$'nın hemen sağında $B$ oturur; bu başka bir diziliştir.) Bu üç okuma **aynı dairesel dizilişin** üç farklı başlangıç noktasıdır.
+
+<Figur>
+
+<DaireselDonme />
+
+<Altyazi>Şekil 1 — Altı doğrusal sıralama, üçerli iki gruba ayrılır. Her satırdaki üç masa birbirinin döndürülmüş hâlidir, yani tek bir dairesel dizilişi gösterir. Birinci satırda $A$'nın hemen sağında $C$, ikinci satırda $B$ oturur. Bu yüzden üç kişi yuvarlak masaya yalnızca $6\div 3=2$ farklı biçimde oturur.</Altyazi>
+
+</Figur>
+
+Listeden çıkan sonuç: her dairesel diziliş, doğrusal listede **kişi sayısı kadar** (burada $3$ kez) görünür. Doğrusal sayıyı bu tekrar sayısına bölmek, her dairesel dizilişi bir kez saymak demektir.
+
+## 2. Bir Kişiyi Sabitle: (n − 1)!
+
+Aynı sonuca iki yoldan ulaşılır.
+
+**Bölme yolu.** $n$ farklı kişi düz sıraya $n!$ biçimde dizilir. Bir dairesel dizilişi $n$ farklı sandalyeden başlayarak okuyabiliriz; kişiler farklı olduğundan bu $n$ okuma birbirinden farklıdır. Yani her dairesel diziliş doğrusal listede tam $n$ kez sayılmıştır:
+
+$$\text{dairesel diziliş sayısı}=\dfrac{n!}{n}=(n-1)!$$
+
+**Sabitleme yolu.** Sandalyeler numarasız olduğundan ilk kişinin hangi sandalyeye oturduğunun önemi yoktur: nereye oturursa otursun, masa döndürülerek aynı yere getirilebilir. İlk kişi oturduğu anda ise sandalyeler artık ayırt edilebilir hâle gelir: "onun hemen sağındaki sandalye", "sağından ikinci sandalye" gibi adlandırılabilir. Geriye kalan $n-1$ kişi bu $n-1$ farklı sandalyeye düz sıradaki gibi $(n-1)!$ biçimde oturur.
+
+| Kişi sayısı $n$ | Düz sıra $n!$ | Yuvarlak masa $(n-1)!$ |
+| --- | --- | --- |
+| $3$ | $6$ | $2$ |
+| $4$ | $24$ | $6$ |
+| $5$ | $120$ | $24$ |
+| $n$ | $n!$ | $(n-1)!$ |
+
+> **Kısıtlı sorularda kimi sabitlemeli?** Sabitleme yolunun asıl gücü kısıtlı sorulardadır. Koşulda adı geçen bir kişiyi sabitle; o kişi oturduğu anda masa düz bir sıraya dönüşür ve geri kalan her şey [Permütasyon ve Faktöriyel](/konular/permutasyon-siralama) sayfasındaki yöntemlerle sayılır.
+
+## 3. Sandalyeler Numaralıysa veya Özel Koltuk Varsa: Masa Artık Dairesel Değil
+
+$(n-1)!$ formülü tek bir varsayıma dayanır: döndürmeyle elde edilen diziliş aynı sayılır. Sandalyeler birbirinden ayırt edilebiliyorsa bu varsayım geçerliliğini yitirir.
+
+- **Sandalyeler numaralıysa** herkesin bir sandalye kayması, herkesi farklı numaralı bir sandalyeye götürür; ortaya **yeni** bir diziliş çıkar. Bu durumda $n$ kişi $n$ numaralı sandalyeye $n!$ biçimde oturur.
+- **Tek bir özel koltuk bile yeterlidir.** Örneğin $7$ kişilik yuvarlak masada sandalyelerden biri başkan koltuğu olarak işaretlenmiş olsun. Bu koltuk bir başlangıç noktası verir; öbür sandalyeler de "başkan koltuğunun sağından birinci, ikinci, …" diye adlandırılabilir. Herhangi biri bu koltuğa oturabiliyorsa diziliş sayısı $7!=5040$ olur, $(7-1)!=720$ değil.
+- Aynı masada **başkanın kendi koltuğuna oturması** zorunluysa başkanın yeri tek biçimde belirlenir, kalan $6$ kişi $6$ farklı sandalyeye $6!=720$ biçimde oturur. Bu sayı $(7-1)!$ ile aynı çıkar, ama gerekçe farklıdır: burada başkanı biz sabitlemiyoruz, koltuk onu sabitliyor.
+
+**Kare masa.** Kare masada sandalyelerin konumu çoğu zaman ayırt edilebilir (pencere tarafı, kapı tarafı gibi); soru konumları farklı sayıyorsa diziliş sayısı $n!$ olur. Soru "masa döndürülünce elde edilen diziliş aynı sayılır" diyorsa ve her kenarda eşit sayıda sandalye varsa, kare kendi üzerine yalnız $4$ biçimde gelir (hiç döndürmeden, çeyrek tur, yarım tur ve üç çeyrek tur döndürülerek); bu durumda sayı $\dfrac{n!}{4}$ olur. $(n-1)!$ ancak her kenarda tek sandalye varsa ($n=4$) doğrudur; o zaman $\dfrac{4!}{4}=3!$ olduğu görülür. Kısacası kare masada önce soru metninin hangi dizilişleri aynı saydığına bakılır.
+
+## 4. Yuvarlak Masada Yan Yana ve Yan Yana Olmama
+
+**Yan yana (blok yöntemi).** Yan yana oturması istenen $k$ kişiyi tek bir blok gibi düşünürüz. Masada artık $n-k+1$ birim vardır; bunlar yuvarlak masaya $(n-k)!$ biçimde oturur. Bloğun içindeki $k$ kişi de kendi arasında $k!$ biçimde sıralanır:
+
+$$\text{belirli } k \text{ kişi bir arada: } (n-k)!\cdot k!$$
+
+İki kişi için bu $(n-2)!\cdot 2!$, üç kişi için $(n-3)!\cdot 3!$ demektir. Düz sıradaki blok yönteminden tek farkı, birimlerin $(n-k+1)!$ değil $(n-k)!$ biçimde dizilmesidir; bloğun iç sırası ($k!$) aynen kalır ve onu unutmak bu konudaki en yaygın hatalardan biridir.
+
+**İki kişi yan yana değil.** İki yol vardır:
+
+- **Tümleyen:** Tüm dizilişlerden yan yana olanları çıkar: $(n-1)!-2\cdot(n-2)!$.
+- **Sabitleme:** $A$'yı sabitle. $B$, $A$'nın iki komşu sandalyesine oturamaz; kalan $n-3$ sandalyeden birini seçer. Sonra öbür $n-2$ kişi kalan sandalyelere $(n-2)!$ biçimde oturur: $(n-3)\cdot(n-2)!$.
+
+İki ifade aynıdır: $(n-1)!-2(n-2)!=(n-2)!\,\big[(n-1)-2\big]=(n-3)\cdot(n-2)!$.
+
+**Birden çok kişiden hiçbiri yan yana değil (boşluk yöntemi).** Önce kısıtsız $m$ kişiyi yuvarlak masaya oturt: $(m-1)!$. Masada oturan $m$ kişinin arasında **$m$ boşluk** oluşur. Bu boşluklar artık birbirinden ayırt edilebilir, çünkü masa oturanlarla sabitlenmiştir. Kısıtlı $k$ kişiyi farklı boşluklara yerleştir: $P(m,k)=m\cdot(m-1)\cdots(m-k+1)$.
+
+<Figur>
+
+<DaireselBosluk />
+
+<Altyazi>Şekil 2 — Düz sırada oturan $5$ kişinin arasında ve iki ucunda toplam $6$ boşluk vardır. Dairede uç yoktur: ilk kişiyle son kişi arasındaki boşluk zaten sayılmıştır, bu yüzden $5$ kişi yalnız $5$ boşluk oluşturur.</Altyazi>
+
+</Figur>
+
+> **Dikkat:** Üç veya daha çok kişi için "hiçbiri yan yana değil" ile "hepsi bir arada değil" aynı soru değildir. "Hepsi bir arada değil" koşulunda ikisi yan yana, üçüncüsü uzakta oturabilir; "hiçbiri yan yana değil" ise bunu da yasaklar. Tümleyen (tümü − hepsi bir arada) "hepsi bir arada değil" sorusunu cevaplar; "hiçbiri yan yana değil" sorusu ise boşluk yöntemiyle çözülür.
+
+## 5. Karşılıklı Oturma ve Yönlü Kısıtlar (Sağında, Solunda)
+
+İki kişi arasındaki konum kısıtlarında en kısa yol, kişilerden birini sabitleyip öbürüne **kaç sandalyenin uygun olduğunu** saymaktır.
+
+<Figur>
+
+<DaireselKomsu />
+
+<Altyazi>Şekil 3 — $8$ sandalyeli masada $B$ sabitlendi. "$A$, $B$ ile yan yana" iki sandalyeden birine, "$A$, $B$'nin hemen sağında" tek bir sandalyeye, "$A$, $B$'nin tam karşısında" yine tek bir sandalyeye karşılık gelir.</Altyazi>
+
+</Figur>
+
+$B$ sabitlendikten sonra $A$'nın yeri belirlenir, kalan $n-2$ kişi kalan sandalyelere $(n-2)!$ biçimde oturur:
+
+| Koşul | $A$ için uygun sandalye | Diziliş sayısı |
+| --- | --- | --- |
+| $A$ ile $B$ yan yana | $2$ | $2\cdot(n-2)!$ |
+| $A$, $B$'nin hemen sağında | $1$ | $(n-2)!$ |
+| $A$, $B$'nin tam karşısında ($n$ çift) | $1$ | $(n-2)!$ |
+
+- "Hemen sağında" koşulu **yön** belirtir; bu yüzden $2$ ile çarpılmaz. Yan yana koşulundaki $2$ çarpanı, iki kişinin yer değiştirebilmesinden gelir; "hemen sağında" bu yer değiştirmeyi zaten yasaklar.
+- Karşılıklı oturma yalnız **çift** sayıda sandalye varsa mümkündür; tek sayıda sandalyede hiçbir sandalyenin tam karşısında bir sandalye yoktur.
+- Yuvarlak masada "hemen" sözcüğü önemlidir. Masanın çevresi kapalı olduğu için bir kişinin sağından başlayıp masayı dolaşırsak herkese ulaşırız; yani "sağında" sözcüğü tek başına belirli bir sandalyeyi göstermez. Bu sayfadaki sorularda her zaman "hemen sağında" ya da "sağından ikinci sandalyede" gibi açık ifadeler kullanılır.
+- **Bir kişinin iki yanı.** "$A$'nın iki yanında $B$ ile $C$ otursun" koşulunda $B$, $A$, $C$ üçlü bir blok oluşturur ve $A$ ortadadır. Bloğun iç sıralaması yalnız $BAC$ ve $CAB$ olmak üzere $2$ tanedir: $(n-3)!\cdot 2$.
+
+## 6. Dönüşümlü Oturma ve Evli Çiftler
+
+**Dönüşümlü oturma.** $k$ kadın ve $k$ erkek, iki kadın ve iki erkek yan yana gelmeyecek biçimde oturacaksa:
+
+1. Önce kadınları, aralarında birer boş sandalye kalacak biçimde masaya oturt: $(k-1)!$. Burada dairesel sayımı yapan kadınlardır.
+2. Kadınlar oturduğunda masa sabitlenmiştir ve aradaki $k$ boş sandalye birbirinden ayırt edilir. Erkekler bu $k$ sandalyeye düz sıradaki gibi $k!$ biçimde oturur.
+
+$$\text{dönüşümlü: } (k-1)!\cdot k!$$
+
+İkinci grubu yeniden $(k-1)!$ ile saymak yanlıştır, çünkü masayı ikinci kez döndürme serbestliği yoktur. Düz sıradaki dönüşümlü dizilişte bulunan "kadınla mı başlıyor, erkekle mi?" seçimi ($\times 2$) de dairede yoktur, çünkü dairenin başı yoktur. Dairede dönüşümlü oturma ancak iki grubun kişi sayıları eşitse mümkündür.
+
+**Evli çiftler, her çift yan yana.** Her çifti bir blok say: $k$ blok yuvarlak masaya $(k-1)!$ biçimde oturur, her blok kendi içinde $2$ biçimde sıralanır:
+
+$$\text{dairede: } (k-1)!\cdot 2^{k}\qquad\qquad \text{düz sırada: } k!\cdot 2^{k}$$
+
+İki sonucun oranı $k$'dır, yani masaya yerleştirilen blok sayısıdır. Nedeni şudur: $k$ bloklu bir dairesel dizilişi iki blok arasından kesip açarsak düz bir sıra elde ederiz; kesilebilecek $k$ yer vardır ve her biri farklı bir düz sıra verir. Örnek olarak $2$ evli çift yuvarlak masada $(2-1)!\cdot 2^2=4$ biçimde oturur. Kontrol için $A$ ile eşi $a$, $B$ ile eşi $b$ olsun: $A$'yı sabitle; $a$ onun sağına ya da soluna oturur ($2$), $B$ ile $b$ kalan iki sandalyeye $2$ biçimde oturur. Toplam $4$.
+
+> **Dikkat:** Düz sıra ile daire arasındaki bu oran her koşulda birim sayısına eşit değildir. Koşul boşluklarla ya da dairenin kapanan yeriyle ilgiliyse (örneğin "yan yana değil") düz sıranın iki ucu ile dairenin kapanışı farklı davranır. Örneğin $7$ kişiden belirli iki kişi yan yana oturmasın: düz sırada $7!-2\cdot 6!=3600$, yuvarlak masada $480$ diziliş vardır (Örnek 2); oran $7$ değil, $7{,}5$'tir.
+
+## 7. Kolye, Bilezik, Anahtarlık: Ters Çevrilebilen Nesnelerde 2'ye Bölme
+
+Masadaki kişiler ters çevrilemez: yüzleri masaya dönüktür. Bir bilezik ise havaya kaldırılıp çevrilebilir. Saat yönünde $ABCD$ okunan bir bilezik ters çevrildiğinde saat yönünde $ADCB$ okunur; masada bunlar iki ayrı diziliştir, bilezikte ise **aynı** nesnedir.
+
+<Figur>
+
+<DaireselKolye />
+
+<Altyazi>Şekil 4 — Bilezik kesikli eksen çevresinde ters çevrilince saat yönündeki $ABCD$ okuması $ADCB$ olur. Her dairesel diziliş, ayna görüntüsüyle eşleşir; bu yüzden ters çevrilebilen nesnelerde sayı yarıya iner.</Altyazi>
+
+</Figur>
+
+$n\ge 3$ farklı boncukta her dairesel dizilişin ayna görüntüsü kendisinden farklıdır, dolayısıyla dizilişler ikişer ikişer eşleşir:
+
+$$\text{kolye, bilezik, anahtarlık: } \dfrac{(n-1)!}{2}\qquad (n\ge 3)$$
+
+**Listeyle kontrol.** $4$ farklı boncuk masada $3!=6$ dairesel diziliş verirdi. $A$'yı en üste koyup saat yönünde okursak bunlar $ABCD$, $ABDC$, $ACBD$, $ACDB$, $ADBC$, $ADCB$ olur. Ters çevirince $ABCD \leftrightarrow ADCB$, $ABDC \leftrightarrow ACDB$, $ACBD \leftrightarrow ADBC$ eşleşir. Geriye $3$ farklı bilezik kalır ve $\dfrac{3!}{2}=3$ ile uyuşur.
+
+- $n=2$ için formül kullanılmaz: iki boncuk yalnız bir biçimde dizilir, $\dfrac{1!}{2}$ ise tam sayı bile değildir. Çünkü iki boncukta ters çevirmek yeni bir diziliş üretmez, eşleşecek bir çift yoktur.
+- Kısıtlı sorularda önce masadaki gibi say, sonra $2$'ye böl; ancak bu yalnız koşul ters çevirmeyle bozulmuyorsa doğrudur. "Yan yana", "yan yana değil", "karşılıklı" gibi koşullarda uygun bir dizilişin ayna görüntüsü de uygundur; bu yüzden uygun dizilişler de kendi aralarında ikişer ikişer eşleşir ve $2$'ye bölmek doğrudur. "Hemen sağında" gibi yönlü koşullar ise ters çevrilebilen nesnelerde anlamını yitirir, çünkü ters çevirince sağ ile sol yer değiştirir. Örneğin belirli iki boncuğun yan yana olduğu bilezik sayısı $\dfrac{(n-2)!\cdot 2}{2}=(n-2)!$'dir.
+- $2$'ye bölmek **yalnız** ters çevrilebilen nesnelere özgüdür. Yuvarlak masa sorusunda $2$'ye bölmek, sağ ile solu karıştırmak demektir.
+
+> **Not:** Bu sayfadaki bütün boncuklar birbirinden farklıdır. Bazı boncuklar özdeş olduğunda (örneğin $3$ kırmızı, $2$ mavi boncuklu bir kolye) bu basit bölmeler doğru sonuç vermez; bu tür sayımlar lise düzeyinin dışındadır.
+
+## 8. Seç, Sonra Yuvarlak Masaya Oturt
+
+$n$ kişiden $r$ kişi seçilip yuvarlak masaya oturtulacaksa iş iki adımdır: önce kişileri seç, sonra seçilenleri $(r-1)!$ biçimde oturt. $n$ kişiden $r$ kişilik bir grubun kaç biçimde seçilebileceği $C(n,r)=\dbinom{n}{r}$ ile gösterilir; seçimde sıra önemli değildir. Bu sayının nasıl hesaplandığı bir sonraki adımda, [Kombinasyon: Seçme Problemleri](/konular/kombinasyon-secme) sayfasında ayrıntılı olarak işlenir; burada $C(8,4)=70$ gibi değerleri yalnızca kullanacağız. Seçim sayısını henüz bilmiyorsan aşağıdaki ikinci yol yeterlidir.
+
+$$C(n,r)\cdot (r-1)!$$
+
+Seçim sayısını kullanmadan da aynı sonuca ulaşılır: $r$ kişiyi masadaki $r$ sandalyeye sırayla yerleştirmek $P(n,r)$ yol verir; her dairesel diziliş bu sayımda $r$ kez (her döndürmede bir kez) görünür. Bu yüzden sayı $\dfrac{P(n,r)}{r}$'dir.
+
+**İki masaya bölme.** Bir grup, iki farklı yuvarlak masaya bölünecekse önce birinci masaya oturacakları seç, sonra her masayı kendi içinde dairesel olarak say. Masalar farklı olmalıdır: büyüklükleri farklıdır ya da "1. masa, 2. masa" diye adlandırılmıştır. Aynı büyüklükte ve adsız iki masa olsaydı, hangi grubun hangi masaya gittiği önemsiz olurdu; bu durum [Gruplara Ayırma ve Dağıtma](/konular/gruplara-ayirma-dagitma) sayfasının konusudur.
+
+## Çözümlü Sorular
+
+{/* ornek-1 */}
+<Ornek>
+
+<Soru>
+
+Ali, Burak, Cem, Deniz ve Ece adlı beş arkadaş, yuvarlak bir masanın çevresindeki $5$ sandalyeye oturacaktır.
+
+a) Sandalyeler numarasızsa, döndürmeyle elde edilen dizilişler aynı sayıldığında kaç farklı biçimde oturabilirler?
+
+b) Sandalyeler $1$'den $5$'e kadar numaralıysa kaç farklı biçimde oturabilirler?
+
+</Soru>
+
+<Ipucu>
+
+a) şıkkında Ali'yi sabitle. b) şıkkında herkesin bir sandalye kayması yeni bir diziliş verir mi, düşün.
+
+</Ipucu>
+
+<Cozum>
+
+1. **Yaygın yanlış:** "Beş kişi beş sandalyeye $5!=120$ biçimde oturur." Bu sayım, aynı dairesel dizilişi $5$ kez sayar. Örneğin saat yönünde $A,B,C,D,E$ dizilişinde herkes bir sandalye kayarsa $E,A,B,C,D$ okunur; ama herkesin sağında ve solunda oturan kişi aynıdır.
+
+2. a) Ali'yi herhangi bir sandalyeye oturt; sandalyeler numarasız olduğundan bunun tek bir yolu vardır. Ali oturunca kalan $4$ sandalye ("Ali'nin sağından birinci, ikinci, üçüncü, dördüncü") birbirinden ayırt edilir. Kalan $4$ kişi bu sandalyelere $4!=24$ biçimde oturur.
+
+3. b) Sandalyeler numaralı olunca kayma, herkesi farklı numaralı bir sandalyeye götürür; yani yeni bir diziliş oluşur. Masa artık düz bir sıra gibidir: $5!=120$.
+
+4. Kontrol: Her dairesel dizilişten masa döndürülerek $5$ farklı numaralı diziliş elde edilir. Gerçekten $24\cdot 5=120$.
+
+<Cevap>a) $24$ &nbsp;&nbsp; b) $120$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-2 */}
+<Ornek>
+
+<Soru>
+
+Aralarında Aslı ile Berk'in de bulunduğu $7$ kişi, $7$ sandalyeli yuvarlak bir masaya oturacaktır.
+
+a) Aslı ile Berk yan yana oturacaksa kaç farklı diziliş vardır?
+
+b) Aslı ile Berk yan yana oturmayacaksa kaç farklı diziliş vardır?
+
+</Soru>
+
+<Ipucu>
+
+a) şıkkında Aslı ile Berk'i tek bir blok say. b) şıkkını hem tümleyenle hem de Aslı'yı sabitleyerek çöz.
+
+</Ipucu>
+
+<Cozum>
+
+1. a) Aslı ile Berk bir blok olsun. Masada blok ve öbür $5$ kişi, yani $6$ birim vardır. Bu $6$ birim yuvarlak masaya $(6-1)!=5!=120$ biçimde oturur.
+
+2. **Yaygın yanlış:** Burada durup cevabı $120$ vermek. Blok içinde Aslı solda Berk sağda ya da Berk solda Aslı sağda oturabilir; bunlar farklı dizilişlerdir. Bloğun iç sıralaması $2!=2$'dir: $120\cdot 2=240$.
+
+3. b) **Tümleyen yolu:** Kısıtsız diziliş sayısı $(7-1)!=720$'dir. Yan yana olanları çıkar: $720-240=480$.
+
+4. b) **Sabitleme yolu:** Aslı'yı sabitle. Berk, Aslı'nın iki komşu sandalyesine oturamaz; kalan $6-2=4$ sandalyeden birini seçer. Kalan $5$ kişi kalan $5$ sandalyeye $5!=120$ biçimde oturur: $4\cdot 120=480$.
+
+5. Kontrol: İki yol aynı sonucu verdi. Ayrıca a) ile b)'nin toplamı tüm dizilişleri vermelidir: $240+480=720=6!$.
+
+<Cevap>a) $240$ &nbsp;&nbsp; b) $480$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-3 */}
+<Ornek>
+
+<Soru>
+
+$3$ öğretmen ve $5$ öğrenci, $8$ sandalyeli yuvarlak bir masaya oturacaktır. Hiçbir iki öğretmen yan yana oturmayacağına göre kaç farklı diziliş vardır?
+
+</Soru>
+
+<Ipucu>
+
+Önce öğrencileri oturt, öğretmenleri öğrencilerin arasındaki boşluklara yerleştir. Dairede kaç boşluk oluştuğunu dikkatle say.
+
+</Ipucu>
+
+<Cozum>
+
+1. Önce $5$ öğrenci yuvarlak masaya oturur: $(5-1)!=4!=24$.
+
+2. Oturan $5$ öğrencinin arasında $5$ boşluk vardır (Şekil 2). Her boşluğa en çok bir öğretmen girerse hiçbir iki öğretmen yan yana gelmez.
+
+3. $3$ farklı öğretmen $5$ farklı boşluğa, her boşluğa en çok bir kişi olmak üzere $P(5,3)=5\cdot 4\cdot 3=60$ biçimde yerleşir.
+
+4. Toplam: $24\cdot 60=1440$.
+
+5. **Yaygın yanlış:** Düz sıradaki gibi $5+1=6$ boşluk sayıp $24\cdot P(6,3)=24\cdot 120=2880$ bulmak. Dairede ilk öğrenciyle son öğrenci arasındaki boşluk tektir; "iki uç" diye ikinci kez sayılırsa iki öğretmen aslında aynı boşluğa, yani yan yana oturtulmuş olur.
+
+6. **İkinci yol (sabitleme):** Bir öğretmeni sabitle ve sandalyeleri onun sağından başlayarak $1$'den $7$'ye numarala. $1$ ve $7$ numaralı sandalyeler onun komşusudur. Öbür iki öğretmen $2,3,4,5,6$ numaralı sandalyelerden yan yana olmayan ikisine oturmalıdır. Bu beş sandalyeden iki sandalye seçmenin $10$ yolu vardır; bunların $4$'ünde sandalyeler yan yana ($2$-$3$, $3$-$4$, $4$-$5$, $5$-$6$) olduğundan $6$ uygun sandalye çifti kalır. İki öğretmen bu sandalyelere $2$ biçimde oturur, öğrenciler de kalan $5$ sandalyeye $5!=120$ biçimde: $6\cdot 2\cdot 120=1440$.
+
+<Cevap>$1440$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-4 */}
+<Ornek>
+
+<Soru>
+
+Aralarında Can ile Duru'nun da bulunduğu $8$ kişi, $8$ sandalyeli yuvarlak bir masaya oturacaktır. Aşağıdaki koşulların her biri için kaç farklı diziliş vardır?
+
+a) Duru, Can'ın hemen sağında oturuyor.
+
+b) Duru ile Can yan yana oturuyor.
+
+c) Duru, Can'ın tam karşısında oturuyor.
+
+</Soru>
+
+<Ipucu>
+
+Can'ı sabitle ve her koşulda Duru için kaç sandalyenin uygun olduğunu say (Şekil 3).
+
+</Ipucu>
+
+<Cozum>
+
+1. Can'ı sabitle. Kalan $6$ kişi, Duru yerleştikten sonra kalan $6$ sandalyeye her durumda $6!=720$ biçimde oturur. Bu yüzden yalnız Duru için uygun sandalye sayısını bulmak yeterlidir.
+
+2. a) Can'ın hemen sağında tek bir sandalye vardır: $1\cdot 720=720$.
+
+3. **Yaygın yanlış:** a) şıkkında "iki kişi yan yana" diye düşünüp $2$ ile çarparak $1440$ bulmak. $2$ çarpanı, Duru'nun Can'ın sağına da soluna da oturabilmesinden gelir; "hemen sağında" koşulu soldaki sandalyeyi zaten dışarıda bırakır.
+
+4. b) Can'ın iki komşu sandalyesi vardır: $2\cdot 720=1440$. Blok yöntemiyle de aynı sonuç çıkar: $7$ birim $6!$ biçimde, blok kendi içinde $2$ biçimde, $720\cdot 2=1440$.
+
+5. c) Sandalye sayısı çift olduğundan Can'ın tam karşısında tek bir sandalye vardır: $1\cdot 720=720$.
+
+6. Kontrol: Kısıtsız $7!=5040$ diziliş vardır. Can sabitlendiğinde Duru'nun oturabileceği $7$ sandalyenin her biri eşit sayıda, yani $5040\div 7=720$ dizilişe karşılık gelir; a) ve c) birer sandalye, b) iki sandalye olduğundan sonuçlar tutarlıdır.
+
+<Cevap>a) $720$ &nbsp;&nbsp; b) $1440$ &nbsp;&nbsp; c) $720$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-5 */}
+<Ornek>
+
+<Soru>
+
+$3$ evli çift ($3$ kadın, $3$ erkek), $6$ sandalyeli yuvarlak bir masaya oturacaktır.
+
+a) Kadınlarla erkekler dönüşümlü oturacaksa (iki kadın ya da iki erkek yan yana gelmeyecekse) kaç farklı diziliş vardır?
+
+b) Her çift yan yana oturacaksa kaç farklı diziliş vardır? Aynı $6$ kişi düz bir sıraya, her çift yan yana olacak biçimde kaç farklı biçimde dizilir?
+
+c) Hem dönüşümlü oturma hem de her çiftin yan yana oturması isteniyorsa kaç farklı diziliş vardır?
+
+</Soru>
+
+<Ipucu>
+
+a) şıkkında dairesel sayımı yalnız bir grup yapar. c) şıkkında çiftleri blok yaptıktan sonra bloğun iç sırasının serbest kalıp kalmadığını kontrol et.
+
+</Ipucu>
+
+<Cozum>
+
+1. a) Kadınlar aralarında birer boş sandalye kalacak biçimde oturur: $(3-1)!=2$. Masa artık sabitlenmiştir; aradaki $3$ sandalye birbirinden ayırt edilir ve $3$ erkek bunlara $3!=6$ biçimde oturur: $2\cdot 6=12$.
+
+2. **Yaygın yanlışlar:** Erkekleri de dairesel sayıp $2!\cdot 2!=4$ bulmak ya da düz sıradaki gibi "kadınla mı, erkekle mi başlıyor" diye $2$ ile çarpıp $24$ bulmak. Dairede ikinci bir döndürme serbestliği ve bir başlangıç noktası yoktur.
+
+3. b) Her çift bir blok olsun. $3$ blok yuvarlak masaya $(3-1)!=2$ biçimde oturur, her blok kendi içinde $2$ biçimde sıralanır: $2\cdot 2^3=2\cdot 8=16$. Düz sırada ise bloklar $3!=6$ biçimde dizilir: $6\cdot 8=48$. Oran $48\div 16=3$, yani blok sayısıdır (Bölüm 6).
+
+4. c) Çiftler yine blok olsun ve $3$ blok masaya $2!=2$ biçimde otursun. Bir bloğun içinde saat yönünde önce kadın sonra erkek oturuyorsa, dönüşümlü oturmanın bozulmaması için bir sonraki blok da kadınla başlamalıdır. Böylece **bütün** bloklar aynı yönde sıralanır: ya hepsi "kadın, erkek" ya da hepsi "erkek, kadın". İç sıralama için $2^3$ değil, yalnız $2$ seçenek vardır: $2\cdot 2=4$.
+
+5. Kontrol (c için ikinci yol): Kadınlar dönüşümlü düzende $2!=2$ biçimde oturur. Bir kadının eşi onun hemen sağına oturursa, o sandalye sağdaki kadının solundaki sandalyedir; bu yüzden sağdaki kadının eşi de onun sağına oturmak zorundadır. Sonuç olarak ya bütün erkekler eşlerinin sağına ya da hepsi soluna oturur: $2\cdot 2=4$. Ayrıca beklendiği gibi $4$, hem $12$'den hem de $16$'dan küçüktür.
+
+<Cevap>a) $12$ &nbsp;&nbsp; b) dairede $16$, düz sırada $48$ &nbsp;&nbsp; c) $4$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-6 */}
+<Ornek>
+
+<Soru>
+
+Renkleri birbirinden farklı $7$ boncuk (aralarında bir kırmızı ve bir mavi boncuk var), üzerinde boncuklardan başka hiçbir parça (düğüm, kilit vb.) bulunmayan bir bileziğe dizilecektir. Döndürülerek ya da ters çevrilerek birbirine dönüşen bilezikler aynı sayıldığına göre:
+
+a) Kaç farklı bilezik yapılabilir?
+
+b) Kırmızı ile mavi boncuğun yan yana olduğu kaç farklı bilezik yapılabilir?
+
+</Soru>
+
+<Ipucu>
+
+Önce boncuklar yuvarlak bir masadaymış gibi say, sonra ters çevirmenin her dizilişi kaç başka dizilişle eşleştirdiğini düşün.
+
+</Ipucu>
+
+<Cozum>
+
+1. a) Masadaki gibi sayarsak $(7-1)!=720$ dairesel diziliş vardır. Bilezik ters çevrilince her diziliş ayna görüntüsüyle aynı nesne olur ve $7$ farklı boncukta ayna görüntüsü kendisinden farklıdır. Dizilişler ikişer ikişer eşleşir: $\dfrac{720}{2}=360$.
+
+2. b) Önce masadaki gibi say: kırmızı ile mavi bir blok, toplam $6$ birim; $(6-1)!\cdot 2=240$. Kırmızı ile mavi bir dizilişte yan yana ise ayna görüntüsünde de yan yanadır; bu yüzden bu $240$ diziliş kendi içinde ikişer ikişer eşleşir: $\dfrac{240}{2}=120$.
+
+3. **Yaygın yanlışlar:** Anahtarlık, kolye ve bilezikte $2$'ye bölmeyi unutup $720$ ve $240$ demek; ya da tersine, yuvarlak masa sorularında da $2$'ye bölmek. Bu sayılar, aynı $7$ öğeli düzenin masadaki karşılıklarıdır: Örnek 2'de $7$ kişi için $720$ ve $240$ bulmuştuk, orada $2$'ye bölmedik, çünkü kişiler ters çevrilemez.
+
+4. Kontrol: Bölme ancak eşleşme çift çift olursa anlamlıdır. Küçük bir durumda listeleyerek bakalım: $4$ boncukta $3!=6$ dairesel diziliş $3$ çifte ayrılır ve $3$ bilezik verir (Bölüm 7). Ayrıca $360$ ve $120$ tam sayıdır.
+
+<Cevap>a) $360$ &nbsp;&nbsp; b) $120$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-7 */}
+<Ornek>
+
+<Soru>
+
+$7$ kişilik bir arkadaş grubu, biri $4$ sandalyeli diğeri $3$ sandalyeli iki yuvarlak masaya oturacaktır. Bütün sandalyeler dolacağına göre kaç farklı oturma düzeni vardır?
+
+</Soru>
+
+<Ipucu>
+
+Önce $4$ kişilik masaya kimlerin oturacağını seç; kalanlar kendiliğinden öbür masaya gider. Sonra her masayı kendi içinde dairesel say.
+
+</Ipucu>
+
+<Cozum>
+
+1. $4$ sandalyeli masaya oturacak $4$ kişi, $7$ kişiden $C(7,4)=\dbinom{7}{4}=35$ biçimde seçilir. Kalan $3$ kişi $3$ sandalyeli masaya gider; bunun için ayrıca seçim yapılmaz.
+
+2. $4$ kişilik masada dairesel diziliş: $(4-1)!=6$.
+
+3. $3$ kişilik masada dairesel diziliş: $(3-1)!=2$.
+
+4. Toplam: $35\cdot 6\cdot 2=420$.
+
+5. **Yaygın yanlışlar:** Masaları düz sıra gibi sayıp $35\cdot 4!\cdot 3!=5040$ bulmak (bu, $7!$'dir, yani masaların hiç dönemediğini varsayar). Ya da $7$ kişiyi tek bir masadaymış gibi düşünüp $6!=720$ bulmak.
+
+6. **İkinci yol (seçim sayısı kullanmadan):** $4$ kişilik masanın sandalyelerine sırayla kişi yerleştirmek $P(7,4)=7\cdot 6\cdot 5\cdot 4=840$ yol verir; her dairesel diziliş bu sayımda $4$ kez görünür, bu yüzden $840\div 4=210$. Kalan $3$ kişi öbür masaya $2!=2$ biçimde oturur: $210\cdot 2=420$.
+
+<Cevap>$420$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-8 */}
+<Ornek>
+
+<Soru>
+
+$n$ kişinin düz bir sıraya diziliş sayısı, aynı $n$ kişinin yuvarlak bir masaya diziliş sayısından $4320$ fazladır. Buna göre $n$ kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+Farkı $(n-1)!$ parantezine alarak yaz.
+
+</Ipucu>
+
+<Cozum>
+
+1. Düz sıra $n!$, yuvarlak masa $(n-1)!$ verir. Koşul: $n!-(n-1)!=4320$.
+
+2. $n!=n\cdot (n-1)!$ olduğundan fark $(n-1)!\cdot(n-1)$ olur. Denklem: $(n-1)!\cdot (n-1)=4320$.
+
+3. Küçük değerleri dene: $n=5$ için $24\cdot 4=96$; $n=6$ için $120\cdot 5=600$; $n=7$ için $720\cdot 6=4320$. Aradığımız değer bulundu.
+
+4. Sol taraf $n$ büyüdükçe artar ($n=8$ için $5040\cdot 7=35280$), bu yüzden başka çözüm yoktur.
+
+5. Kontrol: $7!-6!=5040-720=4320$.
+
+<Cevap>$n=7$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Pekiştirme Soruları
+
+> Konuyu pekiştirmek için hazırlanmış özgün sorular.
+
+<Sorular slug="dairesel-permutasyon" />
+
+## Sık Yapılan Hatalar
+
+- **Yuvarlak masaya $n!$ yazmak.** Döndürmeyle elde edilen dizilişler aynıdır; her dairesel diziliş $n!$ içinde $n$ kez sayılır. Doğrusu $(n-1)!$ (Örnek 1).
+- **Numaralı sandalye ya da özel koltuk varken yine $(n-1)!$ kullanmak.** Tek bir ayırt edilebilir sandalye bile masayı düz sıraya çevirir: $n!$ (Örnek 1 b, Bölüm 3).
+- **Bloğun iç sıralamasını unutmak.** Yan yana oturan iki kişi kendi arasında $2!$ biçimde sıralanır (Örnek 2).
+- **Dairede boşlukları düz sıradaki gibi saymak.** Dairede oturan $m$ kişi $m+1$ değil, $m$ boşluk oluşturur (Örnek 3).
+- **Yönlü koşulda gereksiz yere $2$ ile çarpmak.** "Hemen sağında" tek bir sandalyedir; $2$ çarpanı yalnız "yan yana" koşulunda vardır (Örnek 4).
+- **Dönüşümlü oturmada ikinci grubu da $(k-1)!$ ile saymak ya da düz sıradaki gibi $2$ ile çarpmak.** Bir grup oturunca masa sabitlenir; doğrusu $(k-1)!\cdot k!$ (Örnek 5).
+- **Her dairesel soruda $2$'ye bölmek ya da anahtarlıkta bölmeyi unutmak.** $2$'ye bölme yalnız ters çevrilebilen nesnelerde (kolye, bilezik, anahtarlık) yapılır, yuvarlak masada yapılmaz (Örnek 6).
+- **Seçip masaya oturturken masayı düz sıra gibi saymak.** Seçimden sonra her masa kendi içinde $(r-1)!$ ile sayılır; $r!$ yazmak masanın dönebildiğini unutmaktır (Örnek 7).
+
+## Özet
+
+| Durum | Sayı |
+| --- | --- |
+| $n$ kişi, numarasız yuvarlak masa | $(n-1)!$ |
+| Sandalyeler numaralı ya da özel koltuk var | $n!$ |
+| Belirli $k$ kişi bir arada | $(n-k)!\cdot k!$ |
+| Belirli iki kişi yan yana değil | $(n-1)!-2(n-2)!=(n-3)(n-2)!$ |
+| $k$ kişiden hiçbiri yan yana değil ($m$ kişi daha var) | $(m-1)!\cdot P(m,k)$ |
+| $A$, $B$'nin hemen sağında / tam karşısında | $(n-2)!$ |
+| $k$ kadın, $k$ erkek dönüşümlü | $(k-1)!\cdot k!$ |
+| $k$ evli çift, her çift yan yana | $(k-1)!\cdot 2^{k}$ (düz sırada $k!\cdot 2^{k}$) |
+| Kolye, bilezik, anahtarlık ($n\ge 3$) | $\dfrac{(n-1)!}{2}$ |
+| $n$ kişiden $r$'si seçilip yuvarlak masaya oturtuluyor | $C(n,r)\cdot(r-1)!=\dfrac{P(n,r)}{r}$ |
+
+## Pratik İpucu
+
+- Soruyu okurken önce iki şeyi işaretle: **Sandalyeler ayırt edilebiliyor mu?** (numara, özel koltuk) ve **nesne ters çevrilebiliyor mu?** (kolye, bilezik, anahtarlık). İlki $(n-1)!$ yerine $n!$, ikincisi ayrıca $2$'ye bölme demektir.
+- Kısıtlı sorularda koşulda adı geçen kişiyi sabitle. Masa o anda düz bir sıraya döner ve gerisi bildiğin permütasyon sayımıdır.
+
+<KonuNav slug="dairesel-permutasyon" />

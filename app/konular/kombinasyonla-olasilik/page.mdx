@@ -1,0 +1,684 @@
+import { topicMetadata } from "@/lib/seo";
+import { KombOlasilikEtiket, KombOlasilikSiraliTablo, KombOlasilikIzgaraYol, KombOlasilikZarEnBuyuk } from "@/components/figures/KombOlasilikFig";
+
+export const metadata = topicMetadata("kombinasyonla-olasilik");
+
+<Konu slug="kombinasyonla-olasilik" />
+
+<p className="lead">Bu sayfanın tek kuralı şudur: **olasılığın payı ile paydası aynı dilde sayılır.** Ya ikisi de sıralı ya da ikisi de sırasız sayılır. Ayrıca sayım, eş olasılıklı sonuçlardan oluşan bir örnek uzayda yapılır; bunun için nesneler, aynı renkte olsalar bile, birbirinden ayırt edilerek sayılır. Torbadan top çekme, ekip seçme, sıraya dizilme, zar atma ve kura eşleştirme soruları bu kuralın farklı görünümleridir. Kuralı önce küçük bir torbada listeleyerek görecek, sonra her soru tipinde aynı kuralı uygulayacağız.</p>
+
+> **Bu sayfadaki varsayımlar**
+>
+> - **Rastgele** sözcüğü, her sonucun eşit olasılıklı olduğunu söyler: her top, her ekip, her diziliş aynı şansa sahiptir.
+> - Torbadaki toplar aynı renkte olsalar bile **birbirinden farklı nesnelerdir**. Hesap yaparken onları $K_1, K_2, \dots$ gibi etiketleriz.
+> - **Aynı anda çekiş** sırasızdır ve bir top iki kez gelemez. **Art arda iadeli** çekişte çekilen top rengine bakıldıktan sonra torbaya geri konur; **art arda iadesiz** çekişte geri konmaz. Her soru bu üçünden hangisinin geçerli olduğunu açıkça söyler.
+> - Zarlar **hilesizdir**. Birden çok zar atıldığında zarlar birbirinden ayırt edilebilir kabul edilir; örneğin $(1,2)$ ile $(2,1)$ farklı sonuçlardır.
+> - Kişiler birbirinden farklıdır. Yuvarlak masada sandalyeler, aksi söylenmedikçe numarasızdır.
+> - Sonuçlar en sade kesir olarak verilir.
+> - $P(A)$ bir olayın olasılığını, $P(n,r)$ ise $n$ nesneden $r$'sinin sıralı dizilişlerinin sayısını gösterir. İkisini parantezin içine bakarak ayırt edebilirsin: parantezde iki sayı varsa permütasyon sayısıdır.
+
+> **Temel bakış:** Olasılığın tanımı, örnek uzay ve tümleyen kuralı [Olasılıkta Temel Kavramlar](/konular/olasilik-temel-kavramlar) sayfasında anlatılır; seçim sayıları [Kombinasyon: Seçme Problemleri](/konular/kombinasyon-secme) sayfasından gelir. Konunun genel haritası için [Olasılık](/konular/olasilik-tyt) sayfasına, temel anlatım için [Kombinasyon (10. sınıf)](/konular/kombinasyon-10) ve [Bağımlı ve Bağımsız Olaylar (10. sınıf)](/konular/bagimli-bagimsiz-olaylar-10) sayfalarına bakabilirsin. Maarif programında sayma, permütasyon ve kombinasyon 10. sınıfta işlenir.
+
+## 1. Pay ve Payda Aynı Dilde Sayılmalı
+
+Eş olasılıklı bir örnek uzayda bir $A$ olayının olasılığı
+
+$$P(A)=\dfrac{s(A)}{s(S)}$$
+
+ile bulunur. Bu oranda $s(A)$ ile $s(S)$ **aynı türden** nesneleri saymalıdır. Bir çekilişi iki dilde anlatabiliriz:
+
+- **Sırasız dil:** Sonuç, çekilen topların kümesidir. "$K_1$ ve $M_2$ çekildi."
+- **Sıralı dil:** Sonuç, topların çekiliş sırasıdır. "Önce $K_1$, sonra $M_2$ çekildi."
+
+İki dil de doğrudur. Yanlış olan, payı bir dilde, paydayı öbür dilde saymaktır.
+
+**Listele, sonra say.** Bir torbada $2$ kırmızı ($K_1, K_2$) ve $2$ mavi ($M_1, M_2$) top olsun. Aynı anda $2$ top çekiliyor; ikisinin aynı renkte olma olasılığını arıyoruz. Sırasız dilde bütün sonuçlar şunlardır:
+
+$$\{K_1,K_2\},\ \{K_1,M_1\},\ \{K_1,M_2\},\ \{K_2,M_1\},\ \{K_2,M_2\},\ \{M_1,M_2\}$$
+
+$6$ sonucun $2$'si aynı renktir: $P=\dfrac{2}{6}=\dfrac{1}{3}$. Payı sırasız ($2$), paydayı sıralı ($4\cdot 3=12$) sayan biri $\dfrac{2}{12}=\dfrac{1}{6}$ bulur; bu sonuç yanlıştır. Doğru sıralı sayımı Bölüm 5'te yapacağız.
+
+## 2. Eş Olasılık İçin Nesneleri Etiketle
+
+$\dfrac{s(A)}{s(S)}$ formülü yalnız örnek uzaydaki sonuçlar **eşit olasılıklıysa** geçerlidir. Aynı renkteki iki top gözle ayırt edilemese de iki ayrı toptur. Onları etiketlediğimizde eşit olasılıklı sonuçlar ortaya çıkar; etiketleri silersek bazı sonuçlar birleşir ve eşitlik bozulur.
+
+En küçük örnek: $2$ top, $2$ kutuya rastgele atılıyor. Her top, öbüründen bağımsız olarak kutulardan birine eşit olasılıkla düşüyor.
+
+<Figur>
+
+<KombOlasilikEtiket />
+
+<Altyazi>Şekil 1 — Toplar $T_1$ ve $T_2$ diye etiketlenince $2\cdot 2=4$ eş olasılıklı sonuç vardır. Etiketler silinince yalnız "kutulardaki top sayıları" kalır: $(2,0)$, $(1,1)$, $(0,2)$. Ortadaki sonuç iki etiketli sonucun birleşimidir, bu yüzden olasılığı $\dfrac{1}{3}$ değil, $\dfrac{2}{4}=\dfrac{1}{2}$'dir.</Altyazi>
+
+</Figur>
+
+[Gruplara Ayırma ve Dağıtma](/konular/gruplara-ayirma-dagitma) sayfasında özdeş nesnelerin dağılımlarını çubuk–yıldız yöntemiyle **saymıştık**. Bu sayım, "kaç farklı dağılım vardır?" sorusunun doğru cevabıdır. Ama bu dağılımlar eşit olasılıklı değildir; bu yüzden olasılığın paydası olamazlar. Olasılık sorusunda her zaman topları etiketleyip sayarız (Örnek 10).
+
+## 3. Aynı Anda Çekiş: Kombinasyonla Olasılık
+
+$N$ toplu bir torbadan aynı anda $r$ top çekildiğinde her $r$'li seçim eşit olasılıklıdır. Örnek uzayın eleman sayısı, $N$ topun $r$'li seçimlerinin sayısıdır:
+
+$$s(S)=\dbinom{N}{r}=C(N,r)$$
+
+Torbada $K$ kırmızı ve $N-K$ başka renkte top varsa, **tam olarak $k$ kırmızı** gelen seçimleri iki adımda sayarız: önce kırmızılardan $k$ tanesini, sonra diğerlerinden $r-k$ tanesini seçeriz. Birinci adımdaki her seçim, ikinci adımdaki her seçimle birlikte yapılabildiği için çarparız (çarpma kuralı):
+
+$$P(\text{tam } k \text{ kırmızı})=\dfrac{C(K,k)\cdot C(N-K,\,r-k)}{C(N,r)}$$
+
+Bölüm 1'deki küçük torbada bu formül, $N=4$, $K=2$, $r=2$, $k=2$ için $\dfrac{C(2,2)\cdot C(2,0)}{C(4,2)}=\dfrac{1}{6}$ verir: listedeki tek $\{K_1,K_2\}$ sonucu.
+
+Birden çok renk varsa aynı fikir geçerlidir: her renkten kaç top istendiyse o renkten o kadar seçilir ve seçimler çarpılır. Örneğin üç renkli bir torbadan aynı anda $3$ top çekilirken "her renkten birer top" isteniyorsa pay, üç rengin top sayılarının çarpımıdır; payda yine $C(N,3)$'tür.
+
+## 4. Ardışık Çekiş: İadeli ve İadesiz
+
+Art arda çekişte sonuçlar sıralıdır; bu yüzden pay da sıralı sayılır.
+
+- **İadeli:** Her çekişte torba aynıdır. $r$ çekişte $N^r$ sıralı sonuç vardır ve aynı top birden çok kez gelebilir.
+- **İadesiz:** Her çekişte torbada bir top eksilir. $r$ çekişte $N\cdot(N-1)\cdots(N-r+1)=P(N,r)$ sıralı sonuç vardır.
+
+Torbada $N$ top, bunların $K$'si kırmızı olsun. İki çekişte iki kırmızı gelme olasılığı üç durumda şöyledir:
+
+| Çekiş biçimi | Sayım | $P(\text{iki kırmızı})$ |
+| --- | --- | --- |
+| Aynı anda | sırasız | $\dfrac{C(K,2)}{C(N,2)}=\dfrac{K(K-1)}{N(N-1)}$ |
+| Art arda, iadesiz | sıralı | $\dfrac{K}{N}\cdot\dfrac{K-1}{N-1}$ |
+| Art arda, iadeli | sıralı | $\dfrac{K}{N}\cdot\dfrac{K}{N}$ |
+
+İlk iki satır aynı sonucu verir; nedenini bir sonraki bölümde göreceğiz. İadeli çekişte olasılık daha büyüktür, çünkü aynı kırmızı top iki kez gelebilir. İadesiz çekişte ikinci kesrin paydasını $1$ azaltmayı unutmak, çekişi farkında olmadan iadeli yapmak demektir (Örnek 2).
+
+## 5. Sıralı ve Sırasız Sayım Neden Aynı Sonucu Verir?
+
+Aynı anda çekilen $r$ topluk her küme, bu topların çekilebileceği $r!$ farklı sıraya karşılık gelir. Yani sıralı dile geçince **hem pay hem payda** $r!$ ile çarpılır ve oran değişmez:
+
+$$\dfrac{r!\cdot s(A)_{\text{sırasız}}}{r!\cdot s(S)_{\text{sırasız}}}=\dfrac{s(A)_{\text{sırasız}}}{s(S)_{\text{sırasız}}}$$
+
+Bölüm 1'deki torbayı sıralı dilde sayalım.
+
+<Figur>
+
+<KombOlasilikSiraliTablo />
+
+<Altyazi>Şekil 2 — $K_1, K_2, M_1, M_2$ toplarından iadesiz iki çekiliş. Satır birinci çekilen topu, sütun ikinci çekilen topu gösterir. Köşegendeki hücreler imkânsızdır, geriye $12$ sıralı sonuç kalır ve bunların $4$'ü aynı renktir. Köşegenin üstündeki $6$ hücre, $6$ sırasız seçimin her birini bir kez gösterir. İki sayım da $\dfrac{1}{3}$ verir.</Altyazi>
+
+</Figur>
+
+Bundan iki pratik sonuç çıkar:
+
+1. **"Aynı anda $r$ top" ile "art arda iadesiz $r$ top" sorularının cevabı aynıdır**, yeter ki olay sıradan söz etmesin. İstediğin dili seç, ama payı da paydayı da o dilde say.
+2. **Olay sıradan söz ediyorsa** ("ilk top kırmızı, ikinci top mavi") yalnız sıralı dil kullanılabilir. Öte yandan olay sırasızsa ("biri kırmızı, biri mavi") ve sıralı dilde çalışıyorsan, olayın bütün sıralamalarını saymalısın: $KM$ ve $MK$. Bu, sıralı çözümdeki "$\times 2$" çarpanıdır (Örnek 2).
+
+## 6. İkinci Çekişin Simetrisi ve Kura Sırası
+
+Bir torbada $N$ top, bunların $K$'si kırmızı olsun. Art arda ve iadesiz çekilen **ikinci topun** kırmızı olma olasılığı nedir? Birinci topun rengini bilmiyoruz; bu yüzden ilk iki çekişin sıralı sonuçlarını sayalım. Bütün sıralı sonuçlar $N(N-1)$ tanedir. Uygun sonuçlarda ikinci yere $K$ kırmızıdan biri gelir, birinci yere de kalan $N-1$ toptan biri:
+
+$$\dfrac{K\cdot(N-1)}{N(N-1)}=\dfrac{K}{N}$$
+
+Sonuç birinci çekişle aynıdır. Nedeni basittir: bütün topları tek tek çekip çekiliş sırasıyla yan yana dizdiğimizi düşünelim. Her top bu sıranın her yerine eşit olasılıkla düşer; ikinci yerin birinci yerden bir farkı yoktur. Aynı şey üçüncü, dördüncü ve sonraki her çekiş için de geçerlidir: **önceki topların rengi bilinmiyorsa**, $k$'ıncı çekilen topun kırmızı olma olasılığı $\dfrac{K}{N}$'dir.
+
+Aynı sonucu, birinci topun kırmızı ya da başka renkte olduğu iki durumu toplayarak da denetleyebiliriz:
+
+$$\dfrac{K}{N}\cdot\dfrac{K-1}{N-1}+\dfrac{N-K}{N}\cdot\dfrac{K}{N-1}=\dfrac{K\big[(K-1)+(N-K)\big]}{N(N-1)}=\dfrac{K}{N}$$
+
+Burada çarpma kuralını sezgisel olarak kullanıyoruz; kesirleri art arda çarpmanın gerekçesi [Koşullu Olasılık Soruları](/konular/kosullu-olasilik-sorulari) sayfasında verilir.
+
+**Kura sırası adil midir?** $5$ kâğıttan yalnız birinde "kazandı" yazıyor ve $5$ kişi sırayla, iadesiz birer kâğıt çekiyor. Üçüncü sıradaki kişinin kazanması için ilk ikisinin boş kâğıt çekmesi, kendisinin de kalan $3$ kâğıttan kazanan kâğıdı çekmesi gerekir:
+
+$$\dfrac{4}{5}\cdot\dfrac{3}{4}\cdot\dfrac{1}{3}=\dfrac{1}{5}$$
+
+Her sıradaki kişi için sonuç $\dfrac{1}{5}$'tir; kura sırası adildir. Önceki kâğıtlar açılıp görülürse durum değişir: o zaman verilen bir bilgiye göre olasılık sorulur. Bu tür sorular [Koşullu Olasılık Soruları](/konular/kosullu-olasilik-sorulari) sayfasında çözülür.
+
+## 7. "En Az Bir", "Tam k Tane" ve Tümleyen
+
+"En az" ve "en çok" içeren olaylar çoğu zaman birkaç ayrık durumun toplamıdır. Bu durumların sayısı fazlaysa tümleyen daha kısadır:
+
+$$P(A)=1-P(A')$$
+
+| Olay | Tümleyeni |
+| --- | --- |
+| en az bir kırmızı | hiç kırmızı yok |
+| en az iki kırmızı | en çok bir kırmızı (hiç yok ya da tam bir) |
+| en çok $r-1$ kırmızı ($r$ top çekilirken) | hepsi kırmızı |
+
+"Tam $k$ tane" ise tek bir durumdur ve Bölüm 3'teki çarpımla doğrudan sayılır. Tümleyen yolunun tek tuzağı son adımdır: $P(A')$ bulunduktan sonra $1$'den çıkarmak unutulmamalıdır (Örnek 3, Örnek 6).
+
+## 8. "İlk Başarı k'ıncı Çekişte" Soruları
+
+"İlk kırmızı top tam olarak $k$'ıncı çekişte geliyor" cümlesi iki bilgi taşır: $k$'ıncı top kırmızıdır ve **ondan önceki $k-1$ topun hiçbiri kırmızı değildir**. Torbada $N$ top, bunların $K$'si kırmızı ve $M=N-K$ tanesi başka renkte olsun. Art arda iadesiz çekişte:
+
+$$P(\text{ilk kırmızı } k\text{'ıncı çekişte})=\dfrac{M}{N}\cdot\dfrac{M-1}{N-1}\cdots\dfrac{M-k+2}{N-k+2}\cdot\dfrac{K}{N-k+1}$$
+
+Bu çarpım aynı zamanda bir sayımdır: ilk $k$ çekişin $P(N,k)$ sıralı sonucundan uygun olanlar $M\cdot(M-1)\cdots(M-k+2)\cdot K$ tanedir; kesirleri çarpmak, bu sayımı adım adım yapmaktır (Bölüm 6'daki gibi). Önceki başarısızlıkların kesirlerini atlayıp yalnız son kesri yazmak bu konunun en sık hatasıdır (Örnek 4). İadeli çekişte her kesir aynı kalır: $\left(\dfrac{M}{N}\right)^{k-1}\cdot\dfrac{K}{N}$.
+
+**İki kişi sırayla çekerse.** İki kişi bir torbadan sırayla ve iadesiz top çekiyor, ilk kırmızıyı çeken kazanıyor olsun. Birinci kişi, ilk kırmızı topun $1$., $3$., $5$., … çekişte gelmesi durumunda kazanır. Çekiş iadesiz olduğu için bu durumların sayısı sonludur; her birinin olasılığı yukarıdaki formülle bulunur ve bu ayrık durumların olasılıkları toplanır. Kontrol olarak, iki oyuncunun kazanma olasılıklarının toplamı $1$ olmalıdır.
+
+## 9. Seçim, Gruplama ve Eşleştirme Olasılıkları
+
+**Belirli bir kişi ekipte mi?** $n$ kişiden rastgele $r$ kişilik bir ekip seçilsin. Belirli bir kişinin ekipte olduğu seçimler, onu ekibe koyup kalan $n-1$ kişiden $r-1$ kişi seçerek bulunur:
+
+$$\dfrac{C(n-1,\,r-1)}{C(n,r)}=\dfrac{r}{n}$$
+
+Sonuç sezgiyle de uyuşur: $n$ kişiden $r$'si seçiliyorsa her kişinin seçilme şansı eşittir ve $\dfrac{r}{n}$'dir. Belirli iki kişinin birlikte ekipte olması için ikisini ekibe koyup kalan $n-2$ kişiden $r-2$ kişi seçeriz: $\dfrac{C(n-2,\,r-2)}{C(n,r)}$.
+
+**Gruplara ayırma ile eşleştirme farklıdır.** İki soruda da en kısa yol, kişilerden birini sabitleyip ötekinin **onun yanındaki boş yerlerden birine** düşme şansına bakmaktır. $2m$ kişi rastgele $m$'şerli iki gruba ayrılırsa, sabitlediğimiz kişinin grubunda $m-1$ boş yer vardır ve öteki kişi $2m-1$ yerden birine eşit olasılıkla düşer: $\dfrac{m-1}{2m-1}$. Aynı $2m$ kişi rastgele ikişerli eşleştirilirse sabitlenen kişinin yanında yalnız $1$ boş yer vardır: $\dfrac{1}{2m-1}$ (Örnek 9).
+
+**Derinleştirme — kimse kendi ödevini almıyor.** Bir öğretmen $5$ öğrencinin ödevini okuduktan sonra ödevleri karıştırıp rastgele dağıtıyor; her öğrenci bir ödev alıyor. $5!=120$ dağıtımın hepsi eşit olasılıklıdır. Hiçbir öğrencinin kendi ödevini almadığı dağıtımlar, [Dahil Etme–Hariç Tutma](/konular/dahil-etme-haric-tutma) sayfasında sayılan düzensiz permütasyonlardır: $D_5=44$. Buna göre:
+
+$$P(\text{kimse kendi ödevini almıyor})=\dfrac{44}{120}=\dfrac{11}{30}$$
+
+## 10. Diziliş Olasılıkları
+
+**Düz sırada yan yana.** $n$ kişi düz bir sıraya rastgele dizilsin. Belirli iki kişiyi tek blok sayarsak $n-1$ birim $(n-1)!$ biçimde dizilir, blok içi $2$ biçimde sıralanır:
+
+$$P(\text{yan yana})=\dfrac{2\cdot(n-1)!}{n!}=\dfrac{2}{n}$$
+
+Formülü küçük bir listeyle denetleyelim. $A$, $B$, $C$ dizilişleri $ABC$, $ACB$, $BAC$, $BCA$, $CAB$, $CBA$'dır. $A$ ile $B$ bunların $4$'ünde yan yanadır: $\dfrac{4}{6}=\dfrac{2}{3}$. Formül de $\dfrac{2}{3}$ verir.
+
+**Yuvarlak masada yan yana.** Masa numarasızsa $A$'yı sabitleriz ([Dairesel Permütasyon](/konular/dairesel-permutasyon)). $B$ kalan $n-1$ sandalyeden birine eşit olasılıkla oturur; bunlardan $2$'si $A$'nın yanındadır: $\dfrac{2}{n-1}$. Dairede uç olmadığı için bu sonuç düz sıradakinden büyüktür.
+
+**Tekrarlı harflerle kelimeler.** ANNE kelimesinin harfleri rastgele dizilsin (anlamlı ya da anlamsız). $A$ ile $E$'nin yan yana gelme olasılığını iki yoldan bulalım:
+
+- **Tekrarlı permütasyonla:** Bütün dizilişler $\dfrac{4!}{2!}=12$'dir. $[AE]$ bloğu, $N$, $N$ birimleri $\dfrac{3!}{2!}=3$ biçimde dizilir, blok içi $2$ biçimde sıralanır: $6$. Olasılık $\dfrac{6}{12}=\dfrac{1}{2}$.
+- **Etiketleyerek:** İki $N$'yi $N_1$, $N_2$ diye ayırırsak $4$ farklı harf olur ve yan yana olma olasılığı $\dfrac{2}{4}=\dfrac{1}{2}$'dir.
+
+İki yol aynı sonucu verir, çünkü etiketleri silmek pay ile paydayı aynı sayıya ($2!$'e) böler. Bu yüzden tekrarlı harfli sorularda paydayı tekrarlı permütasyonla alıyorsan, payı da öyle saymalısın.
+
+**Izgarada rastgele en kısa yol.** Şekildeki ızgarada $A$'dan $B$'ye giden en kısa yollardan biri **rastgele seçiliyor**; yani her en kısa yol eşit olasılıklıdır. Yolun $C$'den geçme olasılığı bir sayım oranıdır.
+
+<Figur>
+
+<KombOlasilikIzgaraYol />
+
+<Altyazi>Şekil 3 — $B$, $A$'nın $3$ birim sağında ve $3$ birim yukarısındadır; $C$ ise $A$'nın $2$ birim sağında ve $1$ birim yukarısındadır. $A\to C$ yolu $3$, $C\to B$ yolu $3$ tanedir; $C$'den geçen yollar $3\cdot 3=9$'dur. Kırmızı yol bunlardan biridir.</Altyazi>
+
+</Figur>
+
+Yol sayılarını [Tekrarlı Permütasyon](/konular/tekrarli-permutasyon) sayfasındaki gibi buluruz: bütün yollar $\dfrac{6!}{3!\cdot 3!}=20$, $C$'den geçenler $9$. Olasılık $\dfrac{9}{20}$'dir.
+
+> **Dikkat: "her kavşakta yazı–tura" başka bir modeldir.** Bir yolcu her kavşakta, iki yön de mümkünse para atarak sağa ya da yukarı gitsin; ızgaranın kenarına varınca tek yön kaldığı için o yönde devam etsin. Sağa adımı $S$, yukarı adımı $Y$ ile gösterelim. Bu yolcunun $C$'den geçme olasılığı, $C$'ye ilk üç adımda varan $SSY$, $SYS$, $YSS$ dizilerinin olasılıkları toplamıdır: $3\cdot\dfrac{1}{8}=\dfrac{3}{8}$, yani $\dfrac{9}{20}$ değil. Nedeni, bu modelde yolların eşit olasılıklı olmamasıdır: $SSSYYY$ yolunun olasılığı $\dfrac{1}{8}$, $SYSYSY$ yolununki ise $\dfrac{1}{32}$'dir. Sayım oranı ancak soru "yollardan biri rastgele seçiliyor" dediğinde kullanılır.
+
+## 11. Zarlar: Hepsi Farklı, Artan Sıra ve En Büyük Değer
+
+$n$ zar atıldığında zarlar ayırt edilebilir kabul edildiği için $6^n$ eş olasılıklı sıralı sonuç vardır. Üç soru tipi aynı paydayı kullanır, ama payları farklı sayılır:
+
+| Olay | Uygun sonuç sayısı | Neden? |
+| --- | --- | --- |
+| Hepsi farklı | $P(6,n)$ | Zarlar sırayla, daha önce gelmemiş bir sayı alır. |
+| Kesin artan sırada | $C(6,n)$ | Farklı $n$ sayıdan oluşan her kümenin yalnız bir artan sıralaması vardır. |
+| En büyüğü tam $k$ | $k^n-(k-1)^n$ | "En büyük $\le k$" sonuçlarından "en büyük $\le k-1$" sonuçlarını çıkarırız. |
+
+Son satır bir tümleyen fikridir. "En büyük değer tam $k$" demek, bütün zarların $k$ ya da daha küçük olması **ve** en az birinin tam $k$ olmasıdır. Bütün zarların en çok $k$ olduğu sonuçlar $k^n$ tanedir; bunlardan hiçbirinin $k$ olmadığı, yani hepsinin en çok $k-1$ olduğu $(k-1)^n$ sonuç çıkarılır.
+
+<Figur>
+
+<KombOlasilikZarEnBuyuk />
+
+<Altyazi>Şekil 4 — İki zarın $36$ sonucu. En büyüğü en çok $4$ olan sonuçlar $4\times 4$'lük gri kareyi, en büyüğü en çok $5$ olanlar $5\times 5$'lik kareyi oluşturur. Aradaki kırmızı L şeridi "en büyük tam $5$" olayıdır: $25-16=9$ hücre.</Altyazi>
+
+</Figur>
+
+"En büyük zar $k$" olayını $\left(\dfrac{1}{6}\right)^n$ ile (bütün zarlar $k$) ya da $\left(\dfrac{k}{6}\right)^n$ ile (bütün zarlar en çok $k$) hesaplamak yaygın iki hatadır (Örnek 8).
+
+## 12. Doğum Günü Tipi: "En Az İkisi Aynı"
+
+$n$ kişinin her biri $m$ eşit olasılıklı seçenekten birine (ay, gün, kutu…) bağımsız olarak düşüyorsa, "en az ikisi aynı" olayının tümleyeni "hepsi farklı" olayıdır:
+
+$$P(\text{en az ikisi aynı})=1-\dfrac{P(m,n)}{m^n}$$
+
+Örneğin $3$ kişinin doğduğu gün haftanın günlerinden biri olsun ve her gün eşit olasılıklı kabul edilsin. Hepsinin farklı günlerde doğduğu sonuçlar $7\cdot 6\cdot 5=210$'dur; bütün sonuçlar $7^3=343$'tür. En az ikisinin aynı günde doğma olasılığı $1-\dfrac{210}{343}=\dfrac{133}{343}=\dfrac{19}{49}$ olur.
+
+Payda ($m^n$) sıralı sayılır: Ali'nin Pazartesi, Banu'nun Salı doğması ile Ali'nin Salı, Banu'nun Pazartesi doğması farklı sonuçlardır. Bu yüzden pay da sıralı sayılmalıdır; "hepsi farklı" sonuçları $C(m,n)$ değil, $P(m,n)$ tanedir. Aynı tuzak zar sorularında da vardır (Örnek 8 b).
+
+## 13. Rastgele Sayılar: Tek–Çift ve Bölünebilme
+
+Sayıların toplamı ve çarpımı için tek–çift kuralları şunlardır:
+
+| İşlem | Sonuç |
+| --- | --- |
+| tek + tek | çift |
+| tek + çift | tek |
+| çift + çift | çift |
+| çarpım | çarpanlardan en az biri çiftse çift, hepsi tekse tek |
+
+İki sonuç özellikle önemlidir. **Çarpımın çift olması** "en az bir çift" demektir; bu yüzden tümleyenle ("hepsi tek") hesaplanır. **Toplamın çift olması** ise toplanan tek sayıların adedinin çift olması demektir. Yalnız "hepsi çift" durumunu saymak, iki tek sayının toplamının da çift olduğunu unutmaktır (Örnek 6).
+
+**Rastgele seçilen sayılar.** Rakamları farklı üç basamaklı sayılardan biri rastgele seçiliyorsa payda, bu sayıların sayısıdır: $9\cdot 9\cdot 8=648$ ([Rakamlarla Sayı Oluşturma](/konular/rakamlarla-sayi-olusturma)). Sayının $5$ ile bölünmesi için son rakam $0$ ya da $5$ olmalıdır ve bu iki durum ayrı sayılır, çünkü $0$ başa gelemez:
+
+- Son rakam $0$: ilk rakam $9$, orta rakam $8$ biçimde seçilir, yani $72$ sayı.
+- Son rakam $5$: ilk rakam $0$ ve $5$ dışında $8$ biçimde, orta rakam $8$ biçimde seçilir, yani $64$ sayı.
+
+Olasılık $\dfrac{72+64}{648}=\dfrac{136}{648}=\dfrac{17}{81}$ olur.
+
+## 14. Bilinmeyeni Olasılıktan Bulmak
+
+Bir olasılık verilip torbadaki top sayısı sorulduğunda, olasılığı bilinmeyenle yazıp verilen değere eşitleriz. Aynı anda iki top çekiliyorsa model kombinasyondur:
+
+$$\dfrac{C(n,2)}{C(n+m,2)}=\dfrac{n(n-1)}{(n+m)(n+m-1)}$$
+
+Bu kesir yerine $\left(\dfrac{n}{n+m}\right)^2$ yazmak, çekişi iadeli saymaktır. Ortaya çıkan denklem genellikle ikinci derecedendir; negatif ya da tam sayı olmayan kök atılır ve bulunan $n$ ile olasılık yeniden hesaplanarak denetlenir (Örnek 5).
+
+## Çözümlü Sorular
+
+{/* ornek-1 */}
+<Ornek>
+
+<Soru>
+
+Bir torbada $4$ kırmızı ve $3$ mavi top vardır. Torbadan aynı anda $2$ top rastgele çekiliyor. Çekilen iki topun aynı renkte olma olasılığı kaçtır? Soruyu önce sırasız sayımla, sonra sıralı sayımla çöz.
+
+</Soru>
+
+<Ipucu>
+
+Sıralı çözümde toplardan birine "birinci", öbürüne "ikinci" de. O zaman payı da sıralı saymalısın.
+
+</Ipucu>
+
+<Cozum>
+
+1. **Sırasız sayım:** $s(S)=C(7,2)=21$. İkisi kırmızı: $C(4,2)=6$. İkisi mavi: $C(3,2)=3$. Bu iki durum ayrıktır, toplanır: $6+3=9$. Olasılık $\dfrac{9}{21}=\dfrac{3}{7}$.
+
+2. **Sıralı sayım:** Toplar birinci ve ikinci diye ayrılınca $7\cdot 6=42$ sıralı sonuç vardır. İkisi kırmızı: $4\cdot 3=12$. İkisi mavi: $3\cdot 2=6$. Olasılık $\dfrac{18}{42}=\dfrac{3}{7}$.
+
+3. **Yaygın yanlış:** Payı sırasız ($9$), paydayı sıralı ($42$) almak ve $\dfrac{9}{42}=\dfrac{3}{14}$ bulmak. Tersi de yanlıştır: $\dfrac{18}{21}=\dfrac{6}{7}$. Her sırasız seçim sıralı listede $2!=2$ kez görünür. Dilleri karıştırınca bu $2$ çarpanı yalnız payda ya da yalnız paydada kalır ve sonuç $2$ kat küçük ya da büyük çıkar.
+
+4. **Kontrol:** Farklı renk olasılığı $\dfrac{4\cdot 3}{21}=\dfrac{12}{21}=\dfrac{4}{7}$'dir ve $\dfrac{3}{7}+\dfrac{4}{7}=1$ olur.
+
+<Cevap>$\dfrac{3}{7}$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-2 */}
+<Ornek>
+
+<Soru>
+
+Bir torbada $6$ kırmızı ve $3$ beyaz top vardır. Torbadan iki top çekilecektir. Çekilen iki topun farklı renkte olma olasılığını aşağıdaki üç durumda bul.
+
+a) İki top art arda ve iadeli çekiliyor: ilk top, rengine bakıldıktan sonra torbaya geri konuyor.
+
+b) İki top art arda ve iadesiz çekiliyor: ilk top torbaya geri konmuyor.
+
+c) İki top aynı anda çekiliyor.
+
+</Soru>
+
+<Ipucu>
+
+Sıralı sayımda "farklı renk" olayı iki durumdan oluşur: önce kırmızı sonra beyaz ($KB$) ve önce beyaz sonra kırmızı ($BK$).
+
+</Ipucu>
+
+<Cozum>
+
+1. a) Her çekişte torbada $9$ top vardır: $s(S)=9\cdot 9=81$. $KB$: $6\cdot 3=18$, $BK$: $3\cdot 6=18$. Olasılık $\dfrac{36}{81}=\dfrac{4}{9}$.
+
+2. b) İkinci çekişte torbada $8$ top kalır: $s(S)=9\cdot 8=72$. $KB$: $6\cdot 3=18$, $BK$: $3\cdot 6=18$. Olasılık $\dfrac{36}{72}=\dfrac{1}{2}$.
+
+3. c) $s(S)=C(9,2)=36$. Bir kırmızı ve bir beyaz top $6\cdot 3=18$ biçimde seçilir. Olasılık $\dfrac{18}{36}=\dfrac{1}{2}$. Sonuç b) ile aynıdır (Bölüm 5).
+
+4. **Yaygın yanlış 1:** Sıralı çözümde yalnız $KB$'yi sayıp $\dfrac{18}{72}=\dfrac{1}{4}$ bulmak. Soru hangi rengin önce geleceğini söylemiyor; bu yüzden $BK$ sıralaması da sayılmalıdır. Bu, sıralı çözümdeki $\times 2$ çarpanıdır.
+
+5. **Yaygın yanlış 2:** "Aynı anda" ya da "iadesiz" çekişte paydayı $9\cdot 9=81$ alıp $\dfrac{4}{9}$ bulmak. $81$ sıralı sonucun $9$'u aynı topun iki kez çekildiği sonuçlardır ($K_1K_1$ gibi). Top geri konmadığında bu sonuçlar örnek uzayda yoktur: $81-9=72$. İkinci kesrin paydasını $1$ azaltmak bu demektir.
+
+6. **Kontrol:** b) için aynı renk: $KK$: $6\cdot 5=30$, $BB$: $3\cdot 2=6$, toplam $\dfrac{36}{72}=\dfrac{1}{2}$. Farklı renk ile aynı renk olasılıklarının toplamı $1$'dir.
+
+<Cevap>a) $\dfrac{4}{9}$ &nbsp;&nbsp; b) $\dfrac{1}{2}$ &nbsp;&nbsp; c) $\dfrac{1}{2}$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-3 */}
+<Ornek>
+
+<Soru>
+
+$5$ kız ve $7$ erkek öğrenciden oluşan bir kulüpten $4$ kişilik bir ekip rastgele seçiliyor; her $4$ kişilik ekibin seçilme olasılığı eşittir.
+
+a) Ekipte tam olarak $2$ kız bulunma olasılığı kaçtır?
+
+b) Ekipte en az bir kız bulunma olasılığı kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+b) şıkkında "en az bir kız" olayının tümleyeni "hiç kız yok", yani "dördü de erkek" olayıdır.
+
+</Ipucu>
+
+<Cozum>
+
+1. $s(S)=C(12,4)=495$.
+
+2. a) $2$ kız $C(5,2)=10$, $2$ erkek $C(7,2)=21$ biçimde seçilir: $10\cdot 21=210$. Olasılık $\dfrac{210}{495}=\dfrac{14}{33}$.
+
+3. b) **Tümleyen yolu:** Dördü de erkek olan ekipler $C(7,4)=35$ tanedir, yani $P(\text{hiç kız yok})=\dfrac{35}{495}=\dfrac{7}{99}$. Buradan $P(\text{en az bir kız})=1-\dfrac{7}{99}=\dfrac{92}{99}$.
+
+4. **Doğrudan yol:** Tam $1$, $2$, $3$, $4$ kız: $5\cdot 35+10\cdot 21+10\cdot 7+5\cdot 1=175+210+70+5=460$. Olasılık $\dfrac{460}{495}=\dfrac{92}{99}$. İki yol aynı sonucu verir, ama tümleyen tek bir sayım ister.
+
+5. **Yaygın yanlış 1:** $\dfrac{7}{99}$'u bulup cevap olarak bırakmak. Bu sayı "hiç kız yok" olayının olasılığıdır; $1$'den çıkarılmalıdır.
+
+6. **Yaygın yanlış 2:** "Önce bir kız seç, kalan $3$ kişi serbest" diyerek $5\cdot C(11,3)=5\cdot 165=825$ uygun ekip saymak. $825>495$ olduğu için sonuç $1$'den büyük çıkar; bu, sayımın hatalı olduğunu gösterir. Tam $k$ kız bulunan bir ekip, kızlardan hangisinin "önce seçilen" olduğuna göre $k$ kez sayılmıştır: $175+2\cdot 210+3\cdot 70+4\cdot 5=825$.
+
+7. **Kontrol:** $\dfrac{14}{33}=\dfrac{42}{99}\le\dfrac{92}{99}\le 1$. "Tam $2$ kız" olayı "en az bir kız" olayının bir parçası olduğu için küçük çıkması gerekir.
+
+<Cevap>a) $\dfrac{14}{33}$ &nbsp;&nbsp; b) $\dfrac{92}{99}$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-4 */}
+<Ornek>
+
+<Soru>
+
+Bir torbada $3$ kırmızı ve $5$ mavi top vardır. Torbadan art arda ve iadesiz olarak top çekiliyor.
+
+a) İlk kırmızı topun tam olarak $3$. çekişte gelme olasılığı kaçtır?
+
+b) $2$. çekilen topun kırmızı olma olasılığı kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+a) "İlk kırmızı $3$. çekişte" demek, ilk iki topun mavi olması demektir. b) Birinci topun rengi bilinmiyor; Bölüm 6'yı hatırla.
+
+</Ipucu>
+
+<Cozum>
+
+1. a) İstenen sıra: mavi, mavi, kırmızı. $\dfrac{5}{8}\cdot\dfrac{4}{7}\cdot\dfrac{3}{6}=\dfrac{60}{336}=\dfrac{5}{28}$.
+
+2. Sayımla aynı sonuç: ilk üç çekişin sıralı sonuçları $P(8,3)=8\cdot 7\cdot 6=336$, uygun olanlar $5\cdot 4\cdot 3=60$.
+
+3. **Yaygın yanlış:** Yalnız üçüncü çekişe bakıp $\dfrac{3}{8}$ ya da $\dfrac{3}{6}=\dfrac{1}{2}$ yazmak. "İlk kırmızı" sözcüğü, önceki iki çekişin mavi olduğunu da söyler; bu iki başarısızlığın olasılıkları da çarpılmalıdır.
+
+4. b) Simetri nedeniyle $2$. topun kırmızı olma olasılığı $1$. topunkiyle aynıdır: $\dfrac{3}{8}$. Durumları ayırarak denetleyelim: $KK$: $\dfrac{3}{8}\cdot\dfrac{2}{7}=\dfrac{6}{56}$, $MK$: $\dfrac{5}{8}\cdot\dfrac{3}{7}=\dfrac{15}{56}$. Toplam $\dfrac{21}{56}=\dfrac{3}{8}$.
+
+5. **Kontrol:** İlk kırmızı top $1$. ile $6$. çekiş arasında bir yerde mutlaka gelir ($5$ mavi bittikten sonra sıradaki top kırmızıdır). Aynı yöntemle bu altı durumun olasılıkları $\dfrac{21}{56},\ \dfrac{15}{56},\ \dfrac{10}{56},\ \dfrac{6}{56},\ \dfrac{3}{56},\ \dfrac{1}{56}$ çıkar ve toplamları $1$'dir. a) şıkkının cevabı bu listenin üçüncü terimidir: $\dfrac{10}{56}=\dfrac{5}{28}$.
+
+<Cevap>a) $\dfrac{5}{28}$ &nbsp;&nbsp; b) $\dfrac{3}{8}$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-5 */}
+<Ornek>
+
+<Soru>
+
+Bir torbada $n$ kırmızı ve $5$ beyaz top vardır. Torbadan aynı anda rastgele çekilen $2$ topun ikisinin de kırmızı olma olasılığı $\dfrac{3}{7}$ olduğuna göre $n$ kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+Aynı anda çekişte payda $C(n+5,2)$'dir. Kombinasyonları açıp ikinci dereceden bir denklem kur.
+
+</Ipucu>
+
+<Cozum>
+
+1. $\dfrac{C(n,2)}{C(n+5,2)}=\dfrac{n(n-1)}{(n+5)(n+4)}=\dfrac{3}{7}$.
+
+2. İçler dışlar çarpımı: $7n^2-7n=3(n^2+9n+20)=3n^2+27n+60$, yani $4n^2-34n-60=0$, sadeleşince $2n^2-17n-30=0$.
+
+3. Çarpanlara ayırma: $(n-10)(2n+3)=0$. $n$ pozitif tam sayı olduğundan $n=10$.
+
+4. **Yaygın yanlış:** $\left(\dfrac{n}{n+5}\right)^2=\dfrac{3}{7}$ kurmak. Bu, iadeli çekişin modelidir. Üstelik $\dfrac{n}{n+5}=\sqrt{\dfrac{3}{7}}$ rasyonel bir sayı olmadığı için hiçbir tam sayı $n$ bu denklemi sağlamaz; denklemin çözümsüz çıkması, kurulumun yanlış olduğunun işaretidir.
+
+5. **Kontrol:** $n=10$ için $\dfrac{C(10,2)}{C(15,2)}=\dfrac{45}{105}=\dfrac{3}{7}$.
+
+<Cevap>$n=10$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-6 */}
+<Ornek>
+
+<Soru>
+
+Üzerlerinde $1$'den $11$'e kadar sayılar yazılı $11$ kart vardır; her sayı yalnız bir kartta yazılıdır. Bu kartlardan aynı anda $3$ kart rastgele çekiliyor.
+
+a) Çekilen kartlardaki sayıların çarpımının çift olma olasılığı kaçtır?
+
+b) Çekilen kartlardaki sayıların toplamının çift olma olasılığı kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+Önce tek ve çift sayıları ayır. Çarpım için tümleyeni düşün; toplam için kaç tek sayı çekilmesi gerektiğini düşün.
+
+</Ipucu>
+
+<Cozum>
+
+1. Tek sayılar $1, 3, 5, 7, 9, 11$ ($6$ tane), çift sayılar $2, 4, 6, 8, 10$ ($5$ tane). $s(S)=C(11,3)=165$.
+
+2. a) Çarpım çift $\iff$ en az bir sayı çift. Tümleyeni "üçü de tek": $C(6,3)=20$. Olasılık $1-\dfrac{20}{165}=\dfrac{145}{165}=\dfrac{29}{33}$. $\dfrac{20}{165}=\dfrac{4}{33}$ değerini cevap olarak bırakmak, tümleyeni $1$'den çıkarmayı unutmaktır.
+
+3. b) Toplam çift $\iff$ çekilen tek sayıların adedi çift ($0$ ya da $2$).
+   - $0$ tek, $3$ çift: $C(5,3)=10$.
+   - $2$ tek, $1$ çift: $C(6,2)\cdot C(5,1)=15\cdot 5=75$.
+
+   Olasılık $\dfrac{10+75}{165}=\dfrac{85}{165}=\dfrac{17}{33}$.
+
+4. **Yaygın yanlış:** "Toplamın çift olması için üç sayı da çift olmalı" deyip yalnız $10$ durumu sayarak $\dfrac{10}{165}=\dfrac{2}{33}$ bulmak. Tek $+$ tek $=$ çift olduğu için iki tek ve bir çift sayının toplamı da çifttir.
+
+5. **Kontrol:** Toplamın tek olduğu durumlar: $1$ tek, $2$ çift: $6\cdot C(5,2)=60$; $3$ tek: $C(6,3)=20$; toplam $80$. $85+80=165$ olur, yani bütün durumlar sayılmıştır.
+
+<Cevap>a) $\dfrac{29}{33}$ &nbsp;&nbsp; b) $\dfrac{17}{33}$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-7 */}
+<Ornek>
+
+<Soru>
+
+Aralarında Ayla ile Bora'nın da bulunduğu $7$ kişi rastgele oturacaktır.
+
+a) Kişiler düz bir sıradaki $7$ sandalyeye oturursa Ayla ile Bora'nın yan yana oturma olasılığı kaçtır?
+
+b) Kişiler $7$ sandalyeli yuvarlak bir masaya oturursa (sandalyeler numarasız) Ayla ile Bora'nın yan yana oturma olasılığı kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+a) şıkkında Ayla ile Bora'yı tek blok say. b) şıkkında Ayla'yı sabitle ve Bora'nın kaç sandalyeden birine oturabileceğine bak.
+
+</Ipucu>
+
+<Cozum>
+
+1. a) $s(S)=7!$. Ayla ile Bora bir blok olunca $6$ birim $6!$ biçimde dizilir, blok içi $2$ biçimde sıralanır. Olasılık $\dfrac{2\cdot 6!}{7!}=\dfrac{2}{7}$.
+
+2. **İkinci yol:** Yalnız Ayla ile Bora'nın oturduğu iki sandalyeye bakalım. $7$ sandalyeden $2$'si $C(7,2)=21$ biçimde seçilir ve bu seçimler eşit olasılıklıdır. Yan yana sandalye çiftleri $6$ tanedir: $\dfrac{6}{21}=\dfrac{2}{7}$.
+
+3. b) Masa numarasız olduğu için Ayla'yı sabitleriz. Bora kalan $6$ sandalyeden birine eşit olasılıkla oturur ve bunların $2$'si Ayla'nın yanındadır: $\dfrac{2}{6}=\dfrac{1}{3}$. Sayımla: yan yana dizilişler $(7-2)!\cdot 2=240$, bütün dairesel dizilişler $(7-1)!=720$, oran $\dfrac{240}{720}=\dfrac{1}{3}$.
+
+4. **Yaygın yanlış:** b) şıkkında payı dairesel ($240$), paydayı düz sıra gibi ($7!=5040$) sayıp $\dfrac{240}{5040}=\dfrac{1}{21}$ bulmak. Bu, pay ile paydayı farklı dillerde saymanın bir başka biçimidir.
+
+5. **Kontrol:** $\dfrac{1}{3}>\dfrac{2}{7}$ olması beklenir. Düz sırada uçta oturan kişinin tek komşusu vardır; yuvarlak masada ise herkesin iki komşusu vardır.
+
+<Cevap>a) $\dfrac{2}{7}$ &nbsp;&nbsp; b) $\dfrac{1}{3}$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-8 */}
+<Ornek>
+
+<Soru>
+
+Biri kırmızı, biri mavi, biri yeşil olan üç hilesiz zar birlikte atılıyor.
+
+a) Üç zarda gelen sayıların hepsinin farklı olma olasılığı kaçtır?
+
+b) Üç zardan en az ikisinde aynı sayının gelme olasılığı kaçtır?
+
+c) Kırmızı zardaki sayının mavidekinden, mavi zardaki sayının da yeşildekinden küçük olma olasılığı kaçtır?
+
+d) Gelen üç sayıdan en büyüğünün $5$ olma olasılığı kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+Zarlar ayırt edilebildiği için bütün sonuçlar sıralı üçlülerdir: $s(S)=6^3$. "En büyük tam $5$" için "en büyük en çok $5$" sonuçlarından "en büyük en çok $4$" sonuçlarını çıkar.
+
+</Ipucu>
+
+<Cozum>
+
+1. $s(S)=6^3=216$.
+
+2. a) Kırmızı zar $6$, mavi zar $5$, yeşil zar $4$ farklı değer alabilir: $P(6,3)=120$. Olasılık $\dfrac{120}{216}=\dfrac{5}{9}$.
+
+3. b) Bu olay a) şıkkının tümleyenidir: $1-\dfrac{5}{9}=\dfrac{4}{9}$. **Yaygın yanlış:** Payda sıralıyken "farklı üç sayı" için $C(6,3)=20$ alıp $1-\dfrac{20}{216}=\dfrac{49}{54}$ bulmak. Zarlar ayırt edilebildiği için $(1,2,3)$ ile $(3,2,1)$ farklı sonuçlardır.
+
+4. c) Farklı üç sayıdan oluşan her küme, örneğin $\{2,4,5\}$, $3!=6$ sıralı sonuç verir ve bunlardan yalnız biri kırmızı $<$ mavi $<$ yeşil sırasındadır. Uygun sonuçlar $C(6,3)=20$ tanedir. Olasılık $\dfrac{20}{216}=\dfrac{5}{54}$. Denetim: $120\div 6=20$.
+
+5. d) En büyüğü en çok $5$ olan sonuçlar $5^3=125$, en çok $4$ olanlar $4^3=64$ tanedir. En büyüğü tam $5$ olanlar $125-64=61$'dir. Olasılık $\dfrac{61}{216}$.
+
+6. **Yaygın yanlışlar:** $\dfrac{125}{216}$, en büyüğün en çok $5$ olma olasılığıdır; en büyüğü $4$ olan sonuçları da içerir. $\dfrac{1}{216}$ ise yalnız üç zarın da $5$ geldiği sonuçtur.
+
+7. **Kontrol (doğrudan sayım):** Tam bir zarda $5$, diğer ikisinde $5$'ten küçük sayı: $3\cdot 4\cdot 4=48$. Tam iki zarda $5$, diğerinde $5$'ten küçük sayı: $3\cdot 4=12$. Üç zarda $5$: $1$. Toplam $48+12+1=61$.
+
+<Cevap>a) $\dfrac{5}{9}$ &nbsp;&nbsp; b) $\dfrac{4}{9}$ &nbsp;&nbsp; c) $\dfrac{5}{54}$ &nbsp;&nbsp; d) $\dfrac{61}{216}$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-9 */}
+<Ornek>
+
+<Soru>
+
+Aralarında Kartal ve Şahin takımlarının da bulunduğu $8$ takım için iki ayrı kura çekilecektir.
+
+a) Birinci kurada takımlar rastgele ikişer ikişer eşleştirilerek $4$ maç belirleniyor; her eşleştirme biçimi eşit olasılıklıdır. Kartal ile Şahin'in birbiriyle eşleşme olasılığı kaçtır?
+
+b) İkinci kurada aynı $8$ takım rastgele dörder takımlık iki gruba ayrılıyor; her ayrılış biçimi eşit olasılıklıdır. Kartal ile Şahin'in aynı grupta olma olasılığı kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+Her iki şıkta Kartal'ı sabitle. Şahin, Kartal'ın yanındaki kaç boş yerden birine düşerse istenen olay gerçekleşir?
+
+</Ipucu>
+
+<Cozum>
+
+1. a) Kartal'ın rakibi, kalan $7$ takımdan biridir ve simetri nedeniyle her biri eşit olasılıklıdır. Bu takımlardan yalnız biri Şahin'dir: $\dfrac{1}{7}$.
+
+2. Sayımla denetleyelim ([Gruplara Ayırma ve Dağıtma](/konular/gruplara-ayirma-dagitma)): $8$ takımın ikişerli eşleştirme sayısı $\dfrac{8!}{(2!)^4\cdot 4!}=105$'tir. Kartal–Şahin maçını içeren eşleştirmelerde kalan $6$ takım $\dfrac{6!}{(2!)^3\cdot 3!}=15$ biçimde eşleşir. Oran $\dfrac{15}{105}=\dfrac{1}{7}$.
+
+3. b) Kartal'ın grubunda $3$ boş yer vardır. Şahin, kalan $7$ yerden birine eşit olasılıkla düşer: $\dfrac{3}{7}$.
+
+4. Sayımla: $8$ takım iki adsız dörtlü gruba $\dfrac{C(8,4)}{2}=35$ biçimde ayrılır. Kartal ile Şahin aynı gruptaysa o gruba kalan $6$ takımdan $2$'si $C(6,2)=15$ biçimde seçilir. Oran $\dfrac{15}{35}=\dfrac{3}{7}$.
+
+5. **Yaygın yanlış:** İki soruyu aynı sanıp ikisine de $\dfrac{1}{7}$ ya da $\dfrac{3}{7}$ demek. Eşleştirmede Kartal'ın yanında $1$ boş yer, dörtlü grupta ise $3$ boş yer vardır.
+
+6. **Kontrol:** Aynı maçta karşılaşmak, aynı grupta olmaktan daha dar bir olaydır; bu yüzden $\dfrac{1}{7}<\dfrac{3}{7}$ olması gerekir.
+
+<Cevap>a) $\dfrac{1}{7}$ &nbsp;&nbsp; b) $\dfrac{3}{7}$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-10 */}
+<Ornek>
+
+<Soru>
+
+$3$ özdeş top, $1$'den $3$'e kadar numaralı $3$ kutuya rastgele atılıyor: her top, diğer toplardan bağımsız olarak kutulardan birine eşit olasılıkla düşüyor.
+
+a) Her kutuya birer top düşme olasılığı kaçtır?
+
+b) Üç topun da aynı kutuya düşme olasılığı kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+Toplar gözle ayırt edilemese de üç ayrı toptur. Onları $T_1$, $T_2$, $T_3$ diye etiketle (Bölüm 2).
+
+</Ipucu>
+
+<Cozum>
+
+1. **Yaygın yanlış:** "Toplar özdeş olduğuna göre sonuçlar $x+y+z=3$ denkleminin doğal sayı çözümleridir. Bunlar $C(5,2)=10$ tanedir ve $(1,1,1)$ bunlardan biridir; olasılık $\dfrac{1}{10}$." Bu $10$ dağılım doğru sayılmıştır, ama eşit olasılıklı değildir.
+
+2. Topları etiketleyelim. Her top $3$ kutudan birine düşer: $s(S)=3^3=27$ eş olasılıklı sonuç.
+
+3. a) Her kutuya birer top düşmesi, üç topun üç kutuya birer birer yerleşmesidir: $3!=6$ sonuç. Olasılık $\dfrac{6}{27}=\dfrac{2}{9}$.
+
+4. b) Üç top da $1$. kutuda, $2$. kutuda ya da $3$. kutuda olabilir: $3$ sonuç. Olasılık $\dfrac{3}{27}=\dfrac{1}{9}$. Çubuk–yıldız modeli burada da yanlış bir sonuç ($\dfrac{3}{10}$) verir.
+
+5. **Kontrol:** Geriye "bir kutuda $2$, birinde $1$, birinde $0$ top" dağılımları kalır. $2$ top alacak kutu $3$, $1$ top alacak kutu $2$ biçimde seçilir; o kutuya birlikte düşecek $2$ top $C(3,2)=3$ biçimde seçilir: $3\cdot 2\cdot 3=18$. $6+3+18=27$ olur. Ayrıca $10$ dağılımın olasılıkları eşit değildir: $(1,1,1)$ dağılımının olasılığı $\dfrac{6}{27}$, $(3,0,0)$ dağılımınınki $\dfrac{1}{27}$, $(2,1,0)$ dağılımınınki $\dfrac{3}{27}$'dir.
+
+<Cevap>a) $\dfrac{2}{9}$ &nbsp;&nbsp; b) $\dfrac{1}{9}$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Pekiştirme Soruları
+
+> Konuyu pekiştirmek için hazırlanmış özgün sorular.
+
+<Sorular slug="kombinasyonla-olasilik" />
+
+## Sık Yapılan Hatalar
+
+- **Payı sıralı, paydayı sırasız saymak ya da tersini yapmak.** Sonuç $r!$ kat yanlış çıkar. Önce dili seç, sonra payı da paydayı da o dilde say (Örnek 1, Örnek 7 b).
+- **"Aynı anda" çekişi iadeli gibi hesaplamak.** Aynı anda çekilen toplar farklı toplardır; aynı top iki kez gelemez (Örnek 2).
+- **İadesiz çekişte ikinci kesrin paydasını azaltmamak.** Top geri konmadıysa torbada bir top eksilmiştir (Örnek 2).
+- **Sırasız "biri kırmızı, biri beyaz" olayında sıralı yöntemle çalışıp $\times 2$'yi unutmak.** $KB$ ve $BK$ sıralamalarının ikisi de sayılmalıdır (Örnek 2).
+- **Tümleyeni bulup $1$'den çıkarmayı unutmak.** $P(\text{hiç})$ değeri cevap değil, ara sonuçtur (Örnek 3, Örnek 6).
+- **"İlk başarı $k$'ıncı çekişte" sorusunda önceki başarısızlıkları çarpmamak.** "İlk" sözcüğü, önceki çekişlerin hepsinin başarısız olduğunu söyler (Örnek 4).
+- **Özdeş nesneleri ayırt edilemez sayıp eş olasılıklı olmayan bir örnek uzayla çalışmak.** Çubuk–yıldız dağılımları eşit olasılıklı değildir; olasılık sorusunda nesneler etiketlenir (Bölüm 2, Örnek 10).
+- **Rastgele eşleştirmeyi rastgele iki gruba ayırmayla karıştırmak.** $8$ takımda biri $\dfrac{1}{7}$, öbürü $\dfrac{3}{7}$'dir (Örnek 9).
+- **"En büyük zar $k$" olayını $\left(\dfrac{1}{6}\right)^n$ ya da $\left(\dfrac{k}{6}\right)^n$ ile bulmak.** Doğrusu $\dfrac{k^n-(k-1)^n}{6^n}$'dir (Örnek 8 d).
+- **Doğum günü tipi sorularda $P(m,n)$ yerine $C(m,n)$ yazmak.** Kişiler ve zarlar ayırt edilebildiği için "hepsi farklı" sonuçları sıralı sayılır (Bölüm 12, Örnek 8 b).
+- **Tek–çift sorusunda tek $+$ tek durumunu unutmak.** İki tek sayının toplamı çifttir (Örnek 6).
+- **Bilinmeyen top sayısı sorusunda $C(n,2)$ yerine $n^2$ ile denklem kurmak.** $\left(\dfrac{n}{n+m}\right)^2$ iadeli çekişin modelidir (Örnek 5).
+
+## Özet
+
+| Durum | Olasılık |
+| --- | --- |
+| Aynı anda $r$ top, tam $k$ kırmızı | $\dfrac{C(K,k)\cdot C(N-K,\,r-k)}{C(N,r)}$ |
+| Art arda iadesiz, iki kırmızı | $\dfrac{K}{N}\cdot\dfrac{K-1}{N-1}$ (aynı anda çekişle aynı) |
+| Art arda iadeli, iki kırmızı | $\left(\dfrac{K}{N}\right)^2$ |
+| En az bir kırmızı | $1-P(\text{hiç kırmızı yok})$ |
+| İlk kırmızı $k$'ıncı çekişte (iadesiz, $M=N-K$) | $\dfrac{M}{N}\cdot\dfrac{M-1}{N-1}\cdots\dfrac{K}{N-k+1}$ |
+| Öncekilerin rengi bilinmeden $k$'ıncı topun kırmızı olması | $\dfrac{K}{N}$ |
+| $n$ kişiden $r$'lik ekipte belirli bir kişi | $\dfrac{r}{n}$ |
+| Düz sırada / yuvarlak masada belirli iki kişi yan yana | $\dfrac{2}{n}$ / $\dfrac{2}{n-1}$ |
+| $2m$ kişi: iki gruba ayırmada / eşleştirmede belirli iki kişi birlikte | $\dfrac{m-1}{2m-1}$ / $\dfrac{1}{2m-1}$ |
+| $n$ zar: hepsi farklı / kesin artan / en büyüğü $k$ | $\dfrac{P(6,n)}{6^n}$ / $\dfrac{C(6,n)}{6^n}$ / $\dfrac{k^n-(k-1)^n}{6^n}$ |
+| $n$ kişi, $m$ seçenek: en az ikisi aynı | $1-\dfrac{P(m,n)}{m^n}$ |
+
+## Pratik İpucu
+
+- Soruyu okurken önce çekiliş biçimini işaretle: **aynı anda mı, art arda iadeli mi, art arda iadesiz mi?** Sonra olayın sıradan söz edip etmediğine bak. Bu iki karar, hangi dilde sayacağını belirler.
+- Her cevabı en az bir yolla denetle: tümleyenle toplamın $1$ olması, ikinci bir sayım ya da küçük bir listeleme. $1$'den büyük bir olasılık, sayımın bir yerde bir durumu iki kez saydığını gösterir.
+
+<KonuNav slug="kombinasyonla-olasilik" />

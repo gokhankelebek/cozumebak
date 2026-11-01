@@ -1,0 +1,570 @@
+import { DehtIkiVenn, DehtUcVennSayim, DehtDuzensizListe, DehtYuvarlakMasa, DehtGuvercinTorba } from "@/components/figures/DahilEtmeHaricTutmaFig";
+import { topicMetadata } from "@/lib/seo";
+
+export const metadata = topicMetadata("dahil-etme-haric-tutma");
+
+<Konu slug="dahil-etme-haric-tutma" />
+
+<p className="lead">Bu sayfadaki üç yöntemin ortak bir fikri var: **önce kolay sayılan büyük bir topluluğu say, sonra fazlayı ya da en kötü durumu hesaba katarak düzelt.** Dahil etme–hariç tutma, iki kez sayılan elemanları çıkarıp yanlışlıkla fazla çıkarılanları geri ekler. Düzensiz permütasyon, "kimse kendi yerinde değil" koşulunu bu düzeltmeyle sayar. Güvercin yuvası ilkesi ise en şanssız durumu kurup bir adım öteye geçerek "kesin" olanı bulur. Bölünebilme sayımları, iki yasaklı dizilişler, yuvarlak masa, mektup–zarf ve "en az kaç top çekilmeli" soruları bu sayfada bu fikirle çözülür.</p>
+
+> **Bu sayfadaki varsayımlar**
+>
+> - "$A$ **veya** $B$" ifadesi "en az biri" anlamındadır: ikisini birden sağlayanlar da sayılır. "**Yalnız** $A$" ise $A$'yı sağlayıp $B$'yi sağlamayanlardır.
+> - Bir aralıktaki sayılar sorulduğunda uçların **dahil** olup olmadığı soruda yazılıdır. "Bölünür" sözcüğü "tam bölünür" anlamındadır.
+> - Kişiler, kitaplar, şapkalar, anahtarlar ve mektuplar aksi söylenmedikçe birbirinden **farklıdır**. Torbadaki toplar yalnız **renkleriyle** ayırt edilir.
+> - Yuvarlak masada sandalyeler numarasızdır; döndürmeyle birbirine dönüşen oturuşlar **aynı** sayılır.
+> - Düzensiz permütasyonda her kişiye **tam bir** eşya verilir ve her eşya tam bir kişiye gider.
+> - Güvercin yuvasında "**kesin**" ya da "**garanti**", çekilişler en şanssız biçimde gelse bile istenen durumun oluşması demektir. Toplar torbaya bakılmadan çekilir ve geri atılmaz.
+
+> **Temel bakış:** Bu sayfa birleşim, kesişim ve tümleyen kavramlarını bilinen kabul eder; Venn şemasıyla çözülen küme problemleri [Kümeler](/konular/kumeler-tyt) sayfasındadır. Faktöriyel, $P(n,r)$ ve $C(n,r)=\dbinom{n}{r}$ gösterimleri [Permütasyon ve Faktöriyel](/konular/permutasyon-siralama) ile [Kombinasyon](/konular/kombinasyon-secme) sayfalarında, yuvarlak masa sayımı ise [Dairesel Permütasyon](/konular/dairesel-permutasyon) sayfasında anlatılır. Konunun genel haritası için [Permütasyon ve Kombinasyon](/konular/permutasyon-kombinasyon-tyt), 10. sınıf düzeyinde temel anlatım için [Sayma ve Permütasyon (10. sınıf)](/konular/sayma-permutasyon-10) sayfasına bakabilirsin. Maarif programında sayma, permütasyon ve kombinasyon 10. sınıfta işlenir.
+
+## 1. Neden Çift Sayıyoruz? Venn Şemasıyla Sezgi
+
+$1$'den $12$'ye kadar olan tam sayılardan kaç tanesi $2$ ile **veya** $3$ ile bölünür? Önce listeleyelim:
+
+- $2$'nin katları: $2,4,6,8,10,12$, yani $6$ sayı.
+- $3$'ün katları: $3,6,9,12$, yani $4$ sayı.
+
+İki sayıyı toplarsak $6+4=10$ buluruz; oysa istenen sayılar $2,3,4,6,8,9,10,12$ olup yalnızca $8$ tanedir. Aradaki fark $6$ ve $12$'den gelir: bu iki sayı **hem** $2$'nin **hem** $3$'ün katıdır, bu yüzden toplamda iki kez sayılmıştır. Her birini bir kez çıkarınca doğru sonuca ulaşırız: $6+4-2=8$.
+
+<Figur>
+
+<DehtIkiVenn />
+
+<Altyazi>Şekil 1 — $1$'den $12$'ye kadar sayılar. $6$ ve $12$ iki dairenin ortak bölgesindedir; daireleri ayrı ayrı sayınca bu iki sayı iki kez sayılır. Dairelerin dışında kalan $1, 5, 7, 11$ ise hiçbir koşulu sağlamaz.</Altyazi>
+
+</Figur>
+
+Bu düzeltmenin aslında yeni bir fikir olmadığına dikkat et. "Tümünden istenmeyeni çıkar" kuralı, yani tümleyen, tek bir küme için yapılan düzeltmedir. Dahil etme–hariç tutma bu kuralın genelleştirilmiş hâlidir: birden çok koşul olduğunda, hangi elemanın kaç kez sayıldığını izleyerek her elemanı **tam bir kez** sayacak biçimde ekleyip çıkarırız.
+
+## 2. İki Küme İçin Dahil Etme–Hariç Tutma
+
+Sonlu iki küme $A$ ve $B$ için:
+
+$$s(A\cup B)=s(A)+s(B)-s(A\cap B)$$
+
+Her iki kümede birden bulunan bir eleman $s(A)$ içinde bir kez, $s(B)$ içinde bir kez sayılır. Bu yüzden $s(A\cap B)$ bir kez çıkarılır. Aynı üç sayıyla, yani $s(A)$, $s(B)$ ve $s(A\cap B)$ ile, üç soru daha cevaplanır. Evrensel küme $E$ olmak üzere:
+
+| İstenen | Hesap | $1$–$12$ örneğinde |
+| --- | --- | --- |
+| En az biri ($A$ veya $B$) | $s(A)+s(B)-s(A\cap B)$ | $6+4-2=8$ |
+| Hiçbiri | $s(E)-s(A\cup B)$ | $12-8=4$ |
+| Yalnız $A$ | $s(A)-s(A\cap B)$ | $6-2=4$ |
+| Yalnız biri | $s(A)+s(B)-2\,s(A\cap B)$ | $6+4-4=6$ |
+
+"Yalnız biri" satırında kesişimin **iki kez** çıkarıldığına dikkat et: ortak elemanlar bu kez hiç sayılmamalıdır, oysa $s(A)+s(B)$ toplamında iki kez sayılmışlardır.
+
+> **Hiçbiri sorusu iki adımlıdır.** Önce dahil etme–hariç tutma ile en az birini sağlayanlar bulunur, sonra bu sayı tümünden çıkarılır. İlk adımın sonucu cevap değildir.
+
+## 3. Üç Küme: Ekle, Çıkar, Geri Ekle
+
+Üç kümede formül şöyledir:
+
+$$s(A\cup B\cup C)=s(A)+s(B)+s(C)-s(A\cap B)-s(A\cap C)-s(B\cap C)+s(A\cap B\cap C)$$
+
+Son terimin neden **eklendiğini** görmek için üç kümenin hepsinde bulunan bir eleman düşün. Bu eleman tek kümeler toplanırken $3$ kez sayılır, ikili kesişimler çıkarılırken $3$ kez çıkarılır; böylece hiç sayılmamış olur. Üçlü kesişim geri eklenince tam $1$ kez sayılmış olur. Yalnız iki kümede bulunan bir eleman ise $2$ kez sayılır ve $1$ kez çıkarılır. Şekil 2 her bölgenin hesabını gösteriyor.
+
+<Figur>
+
+<DehtUcVennSayim />
+
+<Altyazi>Şekil 2 — Üç kümeli formülde bir elemanın kaç kez sayıldığı. Tek kümedeki bir eleman yalnızca bir kez eklenir; iki kümedeki bir eleman iki kez eklenip bir kez çıkarılır; üç kümedeki bir eleman üç kez eklenir, üç kez çıkarılır ve bir kez geri eklenir. Formül her bölgeyi tam bir kez sayar.</Altyazi>
+
+</Figur>
+
+Aynı sayım mantığı iki kullanışlı sonuç daha verir. $T_2=s(A\cap B)+s(A\cap C)+s(B\cap C)$ ve $T_3=s(A\cap B\cap C)$ olsun:
+
+- **Tam olarak iki** kümede bulunanlar: $T_2-3\,T_3$. (Üçlü bölge $T_2$ içinde üç kez geçer, hepsi çıkarılır.)
+- **En az iki** kümede bulunanlar: $T_2-2\,T_3$. (Üçlü bölge bir kez kalmalıdır.)
+
+**Ters kullanım.** Formülde yedi sayıdan altısı biliniyorsa yedincisi bulunabilir. Örneğin $120$ öğrencinin her biri İngilizce, Almanca ve Fransızca kurslarından **en az birine** kayıtlı olsun. İngilizce kursuna $72$, Almanca kursuna $45$, Fransızca kursuna $40$ öğrenci kayıtlı; İngilizce ve Almanca kurslarının ikisine de kayıtlı $20$, İngilizce ve Fransızca kurslarının ikisine de kayıtlı $15$, Almanca ve Fransızca kurslarının ikisine de kayıtlı $12$ öğrenci var. (Bu sayılara üç kursa birden kayıtlı olanlar da dahildir.) Üç kursa birden kayıtlı öğrenci sayısı $x$ ise:
+
+$$120=(72+45+40)-(20+15+12)+x=157-47+x\ \Rightarrow\ x=10$$
+
+Bulunan değeri bölgelere yerleştirerek denetlemek iyi bir alışkanlıktır: hiçbir bölge negatif çıkmamalı ve $x$ her ikili kesişimden küçük ya da ona eşit olmalıdır. Burada yalnız iki kursa kayıtlı olanlar $10$, $5$ ve $2$; yalnız bir kursa kayıtlı olanlar $47$, $23$ ve $23$ çıkar. Hepsinin toplamı $10$ ile birlikte $120$'dir. Tam olarak iki kursa kayıtlı öğrenci sayısı da $47-3\cdot 10=17$'dir.
+
+## 4. Bölünebilme Sayımları: Tam Kısım ve EKOK
+
+$1$'den $N$'ye kadar olan tam sayılar içinde $k$'nin katlarının sayısı $\left\lfloor \dfrac{N}{k}\right\rfloor$'dir; yani $N$'nin $k$'ye bölümünün tam kısmıdır. Örneğin $1$'den $50$'ye kadar $7$'nin katları $7,14,\dots,49$ olup $\left\lfloor \dfrac{50}{7}\right\rfloor=7$ tanedir.
+
+Aralık $1$'den başlamıyorsa baştaki kısmı çıkarırız. $30$ ile $90$ arasındaki (uçlar dahil) $4$'ün katları:
+
+$$\left\lfloor \dfrac{90}{4}\right\rfloor-\left\lfloor \dfrac{29}{4}\right\rfloor=22-7=15$$
+
+Denetim: bu sayılar $32,36,\dots,88$'dir ve $\dfrac{88-32}{4}+1=15$ tane eder.
+
+**Ortak katlar EKOK'un katlarıdır, çarpımın değil.** "$a$ ile de $b$ ile de bölünen" sayılar, $\text{EKOK}(a,b)$'nin katlarıdır. $a$ ile $b$ aralarında asal değilse çarpım $a\cdot b$ yanlış sonuç verir. Örneğin $4$ ile $6$'nın ortak katları $12, 24, 36,\dots$ dizisidir; $12$ ortak kattır ama $4\cdot 6=24$'ün katı değildir. Bu örnekte çarpımla sayan biri ortak katların yarısını kaçırır; genel olarak kaçırılan pay $a$ ile $b$'ye göre değişir.
+
+| Soru | Kullanılan sayı |
+| --- | --- |
+| $a$ ile bölünenler | $\left\lfloor N/a\right\rfloor$ |
+| $a$ ile **ve** $b$ ile bölünenler | $\left\lfloor N/\text{EKOK}(a,b)\right\rfloor$ |
+| $a$ ile **veya** $b$ ile bölünenler | $\left\lfloor N/a\right\rfloor+\left\lfloor N/b\right\rfloor-\left\lfloor N/\text{EKOK}(a,b)\right\rfloor$ |
+| İkisiyle de bölünmeyenler | $N-$ (bir üst satır) |
+
+> **Uçları oku.** "$1$ ile $N$ arasında" ifadesinin tek başına uçları kapsayıp kapsamadığı belli değildir. Bu sayfadaki sorularda bu her zaman ayrıca yazılır. Uçlardan biri bir katsa, uçların dahil ya da hariç olması cevabı değiştirir (Örnek 1).
+
+## 5. Dizilişlerde İki Yasak: Kesişimi Geri Eklemek
+
+Dahil etme–hariç tutma yalnızca sayı kümelerinde değil, dizilişlerde de çalışır. $A$, $B$, $C$ harfleri bir sıraya dizilecek; **$A$ başta olmayacak ve $B$ sonda olmayacak**. Altı dizilişi listeleyip koşulları işaretleyelim:
+
+| Diziliş | $A$ başta mı? | $B$ sonda mı? | Uygun mu? |
+| --- | --- | --- | --- |
+| $ABC$ | evet | hayır | hayır |
+| $ACB$ | evet | evet | hayır |
+| $BAC$ | hayır | hayır | **evet** |
+| $BCA$ | hayır | hayır | **evet** |
+| $CAB$ | hayır | evet | hayır |
+| $CBA$ | hayır | hayır | **evet** |
+
+Uygun $3$ diziliş var. Şimdi aynı sonucu formülle kuralım. $X$: "$A$ başta" olan dizilişler, $Y$: "$B$ sonda" olan dizilişler olsun. İstenen, ikisinden de olmayanlardır:
+
+$$3!-s(X)-s(Y)+s(X\cap Y)=6-2-2+1=3$$
+
+Listede $ACB$ hem $X$'te hem $Y$'dedir. Yalnız tümleyen kullanıp $6-2-2=2$ yazan biri bu dizilişi **iki kez** çıkarmış olur. $n$ farklı nesnede aynı soru şu sonucu verir:
+
+$$n!-2\,(n-1)!+(n-2)!$$
+
+Aynı kalıp, iki farklı çiftin hiçbirinin yan yana oturmadığı sorularda da kullanılır: "birinci çift yan yana" ile "ikinci çift yan yana" kümelerinin birleşimi tümünden çıkarılır, ama önce iki çiftin **birlikte** yan yana oturduğu dizilişler geri eklenir. Yan yana olanları tek blok saymayı [Permütasyon ve Faktöriyel](/konular/permutasyon-siralama) sayfasında görmüştük.
+
+Yuvarlak masada da aynı ekle–çıkar mantığı çalışır; yalnız her küme dairesel olarak sayılır: tüm oturuşlar $(n-1)!$, belirli iki kişinin yan yana oturduğu oturuşlar $2\cdot(n-2)!$ olur. Örnek 4'te bunun bir uygulaması var.
+
+> **Ayrık olunca kesişim sıfırdır.** İki yasak aynı anda gerçekleşemiyorsa (örneğin yuvarlak masada iki kişinin hem yan yana hem karşılıklı oturması), kesişim boştur ve formül iki sayıyı çıkarmaktan ibaret kalır. Kesişimi geri eklemeden önce bunun gerçekten boş olup olmadığını düşün.
+
+Bu ekle–çıkar–geri ekle düşüncesi, örten fonksiyonları saymanın da temelidir; o sayım [Fonksiyon Sayısı](/konular/fonksiyon-sayisi) sayfasında yapılır.
+
+## 6. Düzensiz Permütasyon: Kimse Kendi Yerinde Değil (Derinleştirme)
+
+$n$ kişi kendi eşyasını bir yere bırakıyor ve eşyalar, her kişiye bir eşya düşecek biçimde geri dağıtılıyor. **Hiç kimsenin kendi eşyasını almadığı** dağıtımlara **düzensiz permütasyon** denir; sayıları $D_n$ ile gösterilir.
+
+**Önce listele.** Üç kişi $1,2,3$ ile gösterilsin; bir dağıtımı, kişilerin aldığı eşyaların sırasıyla yazalım ($231$: birinci kişi $2$'nin eşyasını, ikinci kişi $3$'ünkünü, üçüncü kişi $1$'inkini alır). $3!=6$ dağıtımdan kimsenin kendi eşyasını almadığı yalnızca iki tane vardır: $231$ ve $312$. Yani $D_3=2$.
+
+Dört kişide listeyi birinci kişinin aldığı eşyaya göre düzenlemek işi kolaylaştırır:
+
+<Figur>
+
+<DehtDuzensizListe />
+
+<Altyazi>Şekil 3 — Dört kişinin hiçbirinin kendi eşyasını almadığı dağıtımlar. $2143$, birinci kişinin $2$'nin, ikinci kişinin $1$'in, üçüncü kişinin $4$'ün, dördüncü kişinin $3$'ün eşyasını aldığını gösterir. Birinci kişinin alabileceği $3$ eşyanın her biri için $3$ dağıtım vardır; her sütunun ilk satırı iki karşılıklı takastan oluşur. Toplam $D_4=9$.</Altyazi>
+
+</Figur>
+
+**Sonra dahil etme–hariç tutma ile say.** $X_i$, "$i$. kişi kendi eşyasını alıyor" olan dağıtımlar olsun. Dört kişide:
+
+- Belirli bir kişi kendi eşyasını alırsa kalan $3$ eşya $3!$ biçimde dağılır: $s(X_i)=3!=6$. Böyle $4$ kişi var: $4\cdot 6=24$.
+- Belirli iki kişi kendi eşyasını alırsa kalanlar $2!=2$ biçimde dağılır. İki kişi $C(4,2)=6$ biçimde seçilir: $6\cdot 2=12$.
+- Belirli üç kişi: $C(4,3)\cdot 1!=4$. Dördü birden: $1$.
+
+$$D_4=4!-24+12-4+1=9$$
+
+Liste ile formül aynı sonucu verdi. Bu hesap yeni bir yöntem değildir: "kimse kendi yerinde değil" bir **hiçbiri** sorusudur. Önce en az bir kişinin kendi eşyasını aldığı dağıtımlar dahil etme–hariç tutma ile bulunur ($24-12+4-1=15$), sonra tümünden çıkarılır ($24-15=9$). Aynı hesap beş kişide $D_5=44$ verir; ayrıntısı Örnek 6'dadır. Küçük değerler doğrudan görülür: $D_1=0$, çünkü tek kişi kendi eşyasını almak zorundadır; $D_2=1$, çünkü iki kişinin tek uygun dağıtımı eşyalarını takas etmeleridir.
+
+| $n$ | $1$ | $2$ | $3$ | $4$ | $5$ |
+| --- | --- | --- | --- | --- | --- |
+| $n!$ | $1$ | $2$ | $6$ | $24$ | $120$ |
+| $D_n$ | $0$ | $1$ | $2$ | $9$ | $44$ |
+
+> **$D_n$, $n!-n$ değildir.** $n!-n$ yalnızca $n$ tane dağıtımı çıkarır; oysa en az bir kişinin kendi eşyasını aldığı dağıtımlar çok daha fazladır. En küçük karşı örnek: $3!-3=3$, ama liste $D_3=2$ veriyor. Beş kişide fark daha da büyüktür: $5!-5=115$, oysa $D_5=44$.
+
+**Tam olarak $k$ kişi kendi eşyasını alıyorsa** sayım iki adımdır: önce kendi eşyasını alacak $k$ kişi seçilir, sonra kalan $n-k$ kişinin hiçbiri kendi eşyasını almamalıdır:
+
+$$C(n,k)\cdot D_{n-k}$$
+
+İkinci adım unutulursa kalanların da kendi eşyasını aldığı dağıtımlar sayılır (Örnek 5). $D_1=0$ olduğuna dikkat et: **tam olarak $n-1$ kişinin** kendi eşyasını alması imkânsızdır, çünkü $n-1$ kişi kendi eşyasını alınca geriye kalan tek eşya son kişinin kendisine aittir.
+
+## 7. Güvercin Yuvası İlkesi: En Kötü Durumu Kurmak (Derinleştirme)
+
+$4$ güvercin $3$ yuvaya girerse en az bir yuvada en az $2$ güvercin bulunur: her yuvaya birer güvercin yerleşse bile dördüncü güvercin dolu bir yuvaya girmek zorundadır.
+
+> **Güvercin yuvası ilkesi:** $n+1$ nesne $n$ kutuya yerleştirilirse en az bir kutuda en az $2$ nesne bulunur.
+
+İlkenin sayma sorularındaki karşılığı "en az kaç tane seçilmeli ki … **kesin** olsun?" sorusudur. Bu sorular tek bir düşünceyle çözülür: **en şanssız çekilişi kur, sonra bir tane daha ekle.**
+
+Örneğin bir torbada kırmızı, mavi ve sarı toplar olsun, her renkten en az $2$ top bulunsun. Aynı renkten $2$ top kesin olarak elde etmek için en az kaç top çekilmelidir?
+
+1. **Şanslı durum cevap değildir.** İlk iki top aynı renkten gelebilir; ama "kesin" sözcüğü bunun **her zaman** olmasını ister.
+2. **En kötü durum:** İstenen durumu olabildiğince geciktiren çekiliş, her renkten birer top gelmesidir. $3$ top çekilmiştir ve aynı renkten iki top hâlâ yoktur.
+3. **Bir fazlası:** Dördüncü top hangi renkten gelirse gelsin o renkte ikinci top olur. Cevap $3+1=4$'tür.
+
+**Ters soru.** "En çok kaç top çekilebilir ki aynı renkten $2$ top henüz kesin olmasın?" sorusunun cevabı, en kötü durumdaki top sayısıdır: $3$. Kısaca, "en az kaç tane kesin" sorusunun cevabı ile "en çok kaç tane, kesin olmadan" sorusunun cevabı arasında tam $1$ fark vardır.
+
+## 8. Genelleştirilmiş Güvercin Yuvası ve Yuvaları Doğru Seçmek
+
+$n$ nesne $k$ kutuya yerleştirilirse en az bir kutuda en az $\left\lceil \dfrac{n}{k}\right\rceil$ nesne bulunur. Buradaki $\lceil\ \rceil$ işareti, sayının yukarı yuvarlandığını gösterir. Örneğin $40$ öğrenci doğdukları güne göre haftanın $7$ gününe ayrılırsa, en az bir günde en az $\left\lceil \dfrac{40}{7}\right\rceil=6$ öğrenci doğmuştur: her güne en çok $5$ öğrenci düşseydi toplam en çok $35$ öğrenci olurdu.
+
+Bu formül her kutunun **sınırsız** nesne alabildiği durum içindir. Torbadaki renk sayıları eşit değilse bazı renkler erken tükenir ve formülü körü körüne uygulamak yanlış sonuç verir. Bu durumda en kötü çekilişi **renk renk** kurarız (Örnek 8):
+
+<Figur>
+
+<DehtGuvercinTorba />
+
+<Altyazi>Şekil 4 — $7$ kırmızı, $4$ mavi, $1$ yeşil top bulunan torbada "aynı renkten $3$ top" için en kötü durum. Kırmızı ve maviden ikişer top gelebilir, ama yeşil tek toptur. En kötü durum $2+2+1=5$ top eder; altıncı top kesinlikle kırmızı ya da mavidir.</Altyazi>
+
+</Figur>
+
+Bazı sorularda kutular açıkça verilmez; ilk iş kutuları doğru seçmektir.
+
+| Soru tipi | Kutular (yuvalar) | Kutu sayısı |
+| --- | --- | --- |
+| Aynı renkten top | Renkler | Renk sayısı (tükenenlere dikkat) |
+| Aynı ayda / günde doğan | Aylar / günler | $12$ / $7$ |
+| Farkı $m$'ye bölünen iki tam sayı | $m$'ye bölümünden kalanlar | $m$ ($0$ kalanı dahil) |
+| Toplamı belli olan iki sayı | Toplamı o değer olan çiftler | Çift sayısı (eşi olmayan sayı varsa o da ayrı kutu) |
+
+Kalan sorularında iki sayının farkı $m$'ye bölünüyorsa iki sayı $m$'ye bölündüğünde aynı kalanı verir. Kalanlar $0,1,\dots,m-1$'dir; yani **$0$ kalanı da bir kutudur** ve kutu sayısı $m$'dir (Örnek 7). Toplam sorularında ise örneğin $1$'den $14$'e kadar sayılarda toplamı $15$ olan çiftler $\{1,14\},\{2,13\},\dots,\{7,8\}$ biçiminde $7$ kutu oluşturur.
+
+## Çözümlü Sorular
+
+{/* ornek-1 */}
+<Ornek>
+
+<Soru>
+
+$1$ ile $150$ arasındaki tam sayılardan ($1$ ve $150$ dahil) kaç tanesi $6$ ile veya $9$ ile bölünür?
+
+</Soru>
+
+<Ipucu>
+
+"Hem $6$ hem $9$ ile bölünen" sayılar hangi sayının katlarıdır? $6\cdot 9=54$ mü, yoksa $\text{EKOK}(6,9)$ mu?
+
+</Ipucu>
+
+<Cozum>
+
+1. $6$'nın katları: $\left\lfloor \dfrac{150}{6}\right\rfloor=25$. $9$'un katları: $\left\lfloor \dfrac{150}{9}\right\rfloor=16$.
+
+2. Her ikisiyle bölünenler $\text{EKOK}(6,9)=18$'in katlarıdır: $\left\lfloor \dfrac{150}{18}\right\rfloor=8$. Bunlar $18,36,\dots,144$ sayılarıdır.
+
+3. Dahil etme–hariç tutma: $25+16-8=33$.
+
+4. **Yaygın hata:** Ortak katları $6\cdot 9=54$ ile bulmak. $\left\lfloor \dfrac{150}{54}\right\rfloor=2$ olduğundan $25+16-2=39$ çıkar. Hata kolayca görülür: $18$ hem $6$'ya hem $9$'a bölünür ama $54$'ün katı değildir.
+
+5. **Uçlara dikkat:** $150=6\cdot 25$ olduğu için $150$ de sayılmıştır. Soru "uçlar hariç" deseydi $150$ düşer ve cevap $32$ olurdu ($1$ zaten hiçbirinin katı değildir).
+
+6. **Denetim:** $6$'nın katlarının $25$'i de sayıldı; geriye $9$'un katı olup $6$'nın katı olmayan, yani tek olan $9$ katları kalır: $9, 27, 45, \dots, 135$. Bunlar $9\cdot 1, 9\cdot 3,\dots,9\cdot 15$ olup $8$ tanedir. $25+8=33$. ✓
+
+<Cevap>$33$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-2 */}
+<Ornek>
+
+<Soru>
+
+$1$'den $600$'e kadar olan tam sayılardan ($1$ ve $600$ dahil) kaç tanesi $3$, $4$ ve $5$ sayılarının **hiçbirine** bölünmez?
+
+</Soru>
+
+<Ipucu>
+
+Önce bu sayılardan **en az birine** bölünenleri üç kümeli formülle bul; sonra tümünden çıkar. Sayılar ikişer ikişer aralarında asal olduğundan EKOK'lar çarpıma eşittir.
+
+</Ipucu>
+
+<Cozum>
+
+1. Tek kümeler: $\left\lfloor \dfrac{600}{3}\right\rfloor=200$, $\left\lfloor \dfrac{600}{4}\right\rfloor=150$, $\left\lfloor \dfrac{600}{5}\right\rfloor=120$. Toplam $470$.
+
+2. İkili kesişimler: $12$'nin katları $50$, $15$'in katları $40$, $20$'nin katları $30$. Toplam $120$.
+
+3. Üçlü kesişim: $\text{EKOK}(3,4,5)=60$'ın katları $\left\lfloor \dfrac{600}{60}\right\rfloor=10$.
+
+4. En az birine bölünenler: $470-120+10=360$.
+
+5. Hiçbirine bölünmeyenler: $600-360=240$.
+
+6. **İki yaygın hata:** Üçlü kesişimi geri eklemeyi unutan $470-120=350$ bulur ve cevabı $250$ yazar. Hesabı doğru yapıp tümleyeni almayı unutan ise $360$ yazar; bu sayı istenen kümenin değil, onun tümleyeninin eleman sayısıdır.
+
+7. **Denetim (ikinci yol):** Bölünmeme oranları çarpılarak da bulunabilir, çünkü $600$ sayısı $60$'ın katıdır ve her $60$'lık blokta durum aynıdır. $3$'e bölünmeyenler sayıların $\dfrac{2}{3}$'ü, $4$'e bölünmeyenler $\dfrac{3}{4}$'ü, $5$'e bölünmeyenler $\dfrac{4}{5}$'idir: $600\cdot\dfrac{2}{3}\cdot\dfrac{3}{4}\cdot\dfrac{4}{5}=240$. ✓
+
+<Cevap>$240$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-3 */}
+<Ornek>
+
+<Soru>
+
+Biri matematik, biri fizik kitabı olmak üzere birbirinden farklı $6$ kitap bir rafa yan yana dizilecektir. Matematik kitabı **en solda olmayacak** ve fizik kitabı **en sağda olmayacak** biçimde kaç farklı diziliş yapılabilir?
+
+</Soru>
+
+<Ipucu>
+
+İstenmeyen dizilişler "matematik en solda" veya "fizik en sağda" olanlardır. Bu iki küme ayrık mı?
+
+</Ipucu>
+
+<Cozum>
+
+1. Tüm dizilişler: $6!=720$.
+
+2. Matematik en solda: kalan $5$ kitap $5!=120$ biçimde dizilir. Fizik en sağda: yine $120$.
+
+3. İkisi birden (matematik en solda **ve** fizik en sağda): ortadaki $4$ kitap $4!=24$ biçimde dizilir. İki küme ayrık değildir.
+
+4. İstenmeyenler: $120+120-24=216$. İstenen: $720-216=504$.
+
+5. **Yaygın hata:** $720-120-120=480$ yazmak. Bu hesapta matematik kitabının en solda, fizik kitabının en sağda olduğu $24$ diziliş iki kez çıkarılmıştır. Bölüm 5'teki üç harfli listede aynı hata $ACB$ dizilişini iki kez çıkarıyordu.
+
+6. **Denetim (durumlara ayırarak):** Fizik kitabı en soldaysa matematik kitabı zaten en solda olamaz, fizik de en sağda değildir: kalan $5$ kitap $5!=120$ biçimde dizilir. Fizik kitabı $2$., $3$., $4$. ya da $5$. sıradaysa ($4$ yol), en sola matematik ve fizik dışındaki $4$ kitaptan biri gelir ($4$ yol), kalan $4$ kitap $4!=24$ biçimde dizilir: $4\cdot 4\cdot 24=384$. Toplam $120+384=504$. ✓
+
+<Cevap>$504$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-4 */}
+<Ornek>
+
+<Soru>
+
+Aralarında Aslı ile Burak'ın da bulunduğu $6$ kişi, $6$ sandalyeli yuvarlak bir masanın çevresine oturacaktır. Sandalyeler numarasızdır; döndürmeyle birbirine dönüşen oturuşlar aynı sayılır. Aslı ile Burak **ne yan yana ne de karşılıklı** oturacaksa kaç farklı oturuş vardır?
+
+</Soru>
+
+<Ipucu>
+
+Aslı'yı bir sandalyeye sabitle. Burak için kaç sandalye yasaktır?
+
+</Ipucu>
+
+<Cozum>
+
+1. **Tümleyen ve dahil etme–hariç tutma ile:** Tüm oturuşlar $(6-1)!=5!=120$.
+
+2. Aslı ile Burak yan yana: ikisi bir blok olur. Blok ve diğer $4$ kişi, yani $5$ birim, yuvarlak masaya $(5-1)!=4!$ biçimde oturur; blok kendi içinde $2$ biçimde düzenlenir: $2\cdot 4!=48$.
+
+3. Aslı ile Burak karşılıklı: Aslı sabitlenince Burak'ın yeri tek sandalyedir, kalan $4$ kişi $4!=24$ biçimde oturur.
+
+4. Kesişim: $6$ sandalyeli masada karşılıklı iki sandalye komşu olamaz, yani iki kişi aynı anda hem yan yana hem karşılıklı oturamaz. Kesişim boştur: $0$.
+
+5. İstenen: $120-(48+24-0)=48$.
+
+6. **Denetim (sabitleme yolu):** Aslı'yı sabitleyelim. Burak için kalan $5$ sandalyeden $2$'si Aslı'nın yanında, $1$'i tam karşısındadır; geriye $2$ uygun sandalye kalır. Diğer $4$ kişi kalan sandalyelere $4!$ biçimde oturur: $2\cdot 24=48$. ✓
+
+<Figur>
+
+<DehtYuvarlakMasa />
+
+<Altyazi>Şekil 5 — Aslı ($A$) sabitlendiğinde Burak ($B$) için yasak olan üç sandalye: iki komşu sandalye ve tam karşıdaki sandalye. Uygun iki sandalyenin her biri için kalan dört kişi $4!$ biçimde oturur.</Altyazi>
+
+</Figur>
+
+<Cevap>$48$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-5 */}
+<Ornek>
+
+<Soru>
+
+$5$ kişi şapkalarını vestiyere bırakıyor. Çıkışta şapkalar, her kişiye bir şapka verilecek biçimde dağıtılıyor. Tam olarak $2$ kişinin kendi şapkasını aldığı kaç farklı dağıtım vardır?
+
+</Soru>
+
+<Ipucu>
+
+İki adım: kendi şapkasını alacak iki kişiyi seç, sonra kalan üç kişinin **hiçbirinin** kendi şapkasını almadığını sağla.
+
+</Ipucu>
+
+<Cozum>
+
+1. Kendi şapkasını alacak $2$ kişi $C(5,2)=10$ biçimde seçilir.
+
+2. Kalan $3$ kişinin hiçbiri kendi şapkasını almamalıdır; aksi hâlde kendi şapkasını alan kişi sayısı $2$'den fazla olur. Bu bir düzensiz permütasyondur: $D_3=2$.
+
+3. Çarpma kuralı: $10\cdot 2=20$.
+
+4. **Yaygın hata 1:** Yalnız seçimi yapıp $10$ yazmak. Seçilen iki kişi kendi şapkasını aldıktan sonra diğer üç şapkanın dağıtılması da bir karardır.
+
+5. **Yaygın hata 2:** Kalan üç şapkayı $3!=6$ biçimde dağıtıp $10\cdot 6=60$ yazmak. Bu $6$ dağıtımın yalnız $2$'sinde kalan üç kişinin hiçbiri kendi şapkasını almaz. Birinde üçü de kendi şapkasını alır (toplam $5$ kişi), üçünde ise biri kendi şapkasını alır (toplam $3$ kişi).
+
+6. **Yaygın hata 3:** $D_3$ yerine $3!-3=3$ kullanmak. Seçilen kişiler $1$ ve $2$ ise kalanlar $3,4,5$'tir; bu üç kişinin düzensiz dağıtımları yalnız $453$ ve $534$'tür (sırasıyla $3., 4., 5.$ kişinin aldığı şapkalar).
+
+7. **Denetim:** Seçilen ikili sabitken kalan üç kişinin $3!=6$ dağıtımı kendi şapkasını alan kişi sayısına göre $2+3+0+1=6$ biçiminde ayrılır (hiç kimse: $2$, tam bir kişi: $3$, tam iki kişi: $0$, üçü: $1$). Toplam doğru: $6$. ✓
+
+<Cevap>$20$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-6 */}
+<Ornek>
+
+<Soru>
+
+$5$ öğrencinin her birinin kendine ait kilitli bir dolabı vardır. Beş dolabın anahtarları karışmış ve her öğrenciye bir anahtar verilmiştir.
+
+**a)** Hiçbir öğrencinin kendi dolabının anahtarını almadığı kaç dağıtım vardır?
+
+**b)** **En az bir** öğrencinin kendi dolabının anahtarını aldığı kaç dağıtım vardır?
+
+</Soru>
+
+<Ipucu>
+
+b) şıkkında "en az bir"in tümleyeni "hiç kimse"dir; bu da a) şıkkının cevabıdır.
+
+</Ipucu>
+
+<Cozum>
+
+1. **a)** Bölüm 6'daki dört kişilik hesabı beş kişiye taşıyalım. $X_i$: "$i$. öğrenci kendi anahtarını alıyor". Belirli $j$ öğrenci kendi anahtarını alırsa kalan $5-j$ anahtar $(5-j)!$ biçimde dağılır ve bu $j$ öğrenci $C(5,j)$ biçimde seçilir:
+
+$$D_5=120-5\cdot 24+10\cdot 6-10\cdot 2+5\cdot 1-1=120-120+60-20+5-1=44$$
+
+2. **b)** Tüm dağıtımlar $5!=120$. En az bir öğrencinin kendi anahtarını aldığı dağıtımlar: $120-44=76$.
+
+3. **Yaygın hata:** a) şıkkında $5!-5=115$ yazmak. Bu hesap, en az bir öğrencinin kendi anahtarını aldığı dağıtımların yalnızca $5$ tane olduğunu varsayar. b) şıkkının cevabı bu sayının $76$ olduğunu gösteriyor.
+
+4. **Denetim (doğrudan sayma):** "En az bir"i, tam olarak kaç öğrencinin kendi anahtarını aldığına göre ayrık durumlara bölüp $C(5,k)\cdot D_{5-k}$ ile sayalım:
+
+| Kendi anahtarını alan | Hesap | Sayı |
+| --- | --- | --- |
+| tam $1$ | $C(5,1)\cdot D_4=5\cdot 9$ | $45$ |
+| tam $2$ | $C(5,2)\cdot D_3=10\cdot 2$ | $20$ |
+| tam $3$ | $C(5,3)\cdot D_2=10\cdot 1$ | $10$ |
+| tam $4$ | $C(5,4)\cdot D_1=5\cdot 0$ | $0$ |
+| tam $5$ | $C(5,5)\cdot D_0=1$ | $1$ |
+
+Toplam $45+20+10+0+1=76$ ve $76+44=120=5!$. ✓ (Burada $D_0=1$ alınır: sıfır kişinin dağıtımı tek biçimde, hiçbir şey yapmadan olur.)
+
+<Cevap>a) $44$ &nbsp; b) $76$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-7 */}
+<Ornek>
+
+<Soru>
+
+Birbirinden farklı tam sayılardan oluşan kümeler düşünülüyor.
+
+**a)** Bir kümede en az kaç sayı bulunursa, farkı $9$'a bölünen iki sayının kümede kesinlikle bulunduğu söylenebilir?
+
+**b)** Hiçbir iki elemanının farkı $9$'a bölünmeyen bir küme **en çok** kaç elemanlı olabilir?
+
+</Soru>
+
+<Ipucu>
+
+İki sayının farkı $9$'a bölünüyorsa bu iki sayı $9$'a bölündüğünde aynı kalanı verir. Kaç farklı kalan vardır?
+
+</Ipucu>
+
+<Cozum>
+
+1. **Kutular:** Bir tam sayının $9$'a bölümünden kalan $0,1,2,\dots,8$ değerlerinden biridir. Bu $9$ kalan, $9$ kutudur.
+
+2. Farkı $9$'a bölünen iki sayı, aynı kutuya düşen iki sayıdır.
+
+3. **b) En kötü durum:** Her kutudan birer sayı alınırsa, örneğin $\{0,1,2,\dots,8\}$, hiçbir iki sayının farkı $9$'a bölünmez. Bu küme $9$ elemanlıdır. $10$ elemanlı bir kümede ise iki sayı aynı kutuya düşer. En çok $9$ eleman.
+
+4. **a) Bir fazlası:** $10$ sayı $9$ kutuya dağılınca en az bir kutuda iki sayı bulunur. Cevap $9+1=10$.
+
+5. **Yaygın hata:** Kalanları $1,\dots,8$ diye $8$ kutu sayıp a) için $9$, b) için $8$ yazmak. $0$ kalanı, yani $9$'un katları da bir kutudur: $\{9,1,2,\dots,8\}$ kümesinde $9$ ile diğer elemanlardan herhangi birinin farkı $9$'a bölünmez.
+
+6. **Denetim (küçük durum):** Aynı soruyu $3$ ile soralım: kalanlar $0,1,2$, yani $3$ kutu. $\{1,2,3\}$ kümesinde farklar $1$, $2$ ve $1$ olup hiçbiri $3$'e bölünmez; dördüncü bir sayı hangisi olursa olsun bu üç sayıdan birinin kalanını tekrarlar (örneğin $4-1=3$). Yani $3$ eleman mümkün, $4$ eleman garanti verir. ✓
+
+<Cevap>a) $10$ &nbsp; b) $9$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-8 */}
+<Ornek>
+
+<Soru>
+
+Bir torbada $7$ kırmızı, $4$ mavi ve $1$ yeşil top vardır. Toplar yalnız renkleriyle ayırt edilir; torbaya bakılmadan ve geri atılmadan birer birer çekilir.
+
+**a)** Çekilen toplar arasında aynı renkten en az $3$ top bulunmasının kesin olması için en az kaç top çekilmelidir?
+
+**b)** En az $2$ mavi top bulunmasının kesin olması için en az kaç top çekilmelidir?
+
+**c)** Her renkten en az bir top bulunmasının kesin olması için en az kaç top çekilmelidir?
+
+</Soru>
+
+<Ipucu>
+
+Her şık için istenen durumu olabildiğince geciktiren çekilişi kur. Torbada yalnız $1$ yeşil ve $4$ mavi top olduğunu unutma.
+
+</Ipucu>
+
+<Cozum>
+
+1. **a) En kötü durum:** Her renkten en çok $2$ top çekilmeli. Kırmızıdan $2$, maviden $2$ çekilebilir; yeşilden ise yalnızca $1$ top vardır. Bu, $2+2+1=5$ top eder ve hâlâ aynı renkten $3$ top yoktur. Altıncı top kırmızı ya da mavi olmak zorundadır ve o rengin üçüncü topudur. Cevap $5+1=6$.
+
+2. **Yaygın hata (formülü körü körüne uygulamak):** "$3$ renk var, her renkten $2$ top, sonra $1$ fazla" diyerek $3\cdot 2+1=7$ yazmak. Bu hesap, yeşilden $2$ top çekilebileceğini varsayar; oysa torbada tek yeşil top vardır.
+
+3. **b) En kötü durum:** Mavi olmayan bütün toplar önce gelir: $7$ kırmızı ve $1$ yeşil, yani $8$ top. Ardından $1$ mavi top gelir ve hâlâ $2$ mavi yoktur. Toplam $9$ top. Sonraki top kesinlikle mavidir. Cevap $9+1=10$.
+
+4. **Yaygın hata (şanslı durumu düşünmek):** "İlk iki top mavi gelebilir" diyerek $2$ yazmak. Bu, istenen durumun **mümkün** olduğunu gösterir, **kesin** olduğunu değil.
+
+5. **c) En kötü durum:** Bir renk hiç gelmezken diğer iki rengin bütün topları çekilir. Çekilişi en uzun tutmak için eksik kalan renk, en az topu olan renk olmalıdır: $7$ kırmızı ve $4$ mavi gelir, yeşil gelmez. $11$ top çekilmiştir. On ikinci top, torbada kalan tek top olan yeşildir. Cevap $11+1=12$.
+
+6. **Denetim:** c) şıkkının cevabı $12$, torbadaki top sayısına eşittir; gerçekten de yeşil top son top olarak gelebilir, bu yüzden her renkten top bulunması ancak bütün toplar çekilince kesinleşir. a) şıkkı için ters soruyla denetim: Şekil 4'teki $5$ topluk çekilişte aynı renkten $3$ top yoktur, yani $5$ top yetmez. ✓
+
+<Cevap>a) $6$ &nbsp; b) $10$ &nbsp; c) $12$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Pekiştirme Soruları
+
+> Konuyu pekiştirmek için hazırlanmış özgün sorular.
+
+<Sorular slug="dahil-etme-haric-tutma" />
+
+## Sık Yapılan Hatalar
+
+- **Kesişimi geri eklemeyi unutmak.** İki yasaklı dizilişlerde "ikisi birden" olan dizilişler iki kez çıkarılır; üç kümede ise üçlü kesişim geri eklenmezse o bölge hiç sayılmaz. (Örnek 2, Örnek 3)
+- **Ortak katları çarpımla bulmak.** "$a$ ile de $b$ ile de bölünen" sayılar $\text{EKOK}(a,b)$'nin katlarıdır; $6$ ile $9$ için $54$ değil, $18$. (Örnek 1)
+- **"Hiçbiri" sorusunda tümleyeni almamak.** Dahil etme–hariç tutma "en az biri"ni verir; "hiçbiri" için bu sayı tümünden çıkarılır. (Örnek 2)
+- **Aralığın uçlarını okumamak.** Uç değerlerden biri bir katsa "dahil" ile "hariç" farklı cevap verir. (Örnek 1)
+- **Düzensiz permütasyonu $n!-n$ sanmak.** $3!-3=3$ iken listede $D_3=2$ vardır; $D_4=9$, $D_5=44$. (Örnek 5, Örnek 6)
+- **"Tam $k$ kişi" sorusunda bir adımı atlamak.** Önce $C(n,k)$ ile kişiler seçilir, sonra kalanlar düzensiz dağıtılır: $C(n,k)\cdot D_{n-k}$. (Örnek 5)
+- **Güvercin yuvasında şanslı durumu düşünmek ya da $+1$'i unutmak.** "Kesin" sorusu en kötü durumla çözülür ve cevap en kötü durumun bir fazlasıdır; en kötü durumun kendisi ters sorunun cevabıdır. (Örnek 7, Örnek 8)
+- **Renk sayıları eşit değilken $\left\lceil n/k\right\rceil$ kalıbını kullanmak.** Az sayıda topu olan renk erken tükenir; en kötü durumu renk renk kur. (Örnek 8)
+- **Kalan kutularında $0$ kalanını unutmak.** $m$'ye bölümden kalanlar $0,1,\dots,m-1$ olup $m$ tanedir. (Örnek 7)
+
+## Özet
+
+| Soru | Yöntem | Kalıp |
+| --- | --- | --- |
+| $A$ veya $B$ | Ekle, kesişimi çıkar | $s(A)+s(B)-s(A\cap B)$ |
+| Üç küme | Ekle, ikilileri çıkar, üçlüyü geri ekle | Bölüm 3'teki formül |
+| Hiçbiri | Dahil etme–hariç tutma, sonra tümleyen | $s(E)-s(A\cup B\cup C)$ |
+| Ortak katlar | EKOK | $\left\lfloor N/\text{EKOK}(a,b)\right\rfloor$ |
+| İki yasak ($n$ nesne) | Tümleyen ve kesişimi geri ekleme | $n!-2(n-1)!+(n-2)!$ |
+| Kimse kendi yerinde değil | Düzensiz permütasyon | $D_3=2$, $D_4=9$, $D_5=44$ |
+| Tam $k$ kişi kendi yerinde | Seç, kalanı düzensiz dağıt | $C(n,k)\cdot D_{n-k}$ |
+| "En az kaç çekilmeli ki … kesin olsun" | En kötü durumu kur, $1$ ekle | (en kötü durumdaki sayı) $+1$ |
+| "Aynı kutuda en az kaç nesne kesin bulunur" | Genelleştirilmiş güvercin yuvası | $n$ nesne, $k$ kutu: $\left\lceil n/k\right\rceil$ |
+
+## Pratik İpucu
+
+- Soruda **veya / ve / yalnız / hiçbiri / tam olarak / en az** sözcüklerini işaretle; her biri farklı bir bölgeyi ya da farklı bir hesabı gösterir.
+- Kesişimi geri eklemeden önce iki yasağın aynı anda gerçekleşip gerçekleşemeyeceğini sor; gerçekleşemiyorsa kesişim sıfırdır.
+- Güvercin yuvası sorusunda önce kutuları adlandır (renkler, aylar, kalanlar, çiftler), sonra "kesin" sözcüğünü "en şanssız çekilişte bile" diye oku.
+
+<KonuNav slug="dahil-etme-haric-tutma" />

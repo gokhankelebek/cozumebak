@@ -1,0 +1,585 @@
+import { topicMetadata } from "@/lib/seo";
+import {
+  GadDortDurum,
+  GadAdliAdsiz,
+  GadBayrakYerleri,
+  GadCubukYildiz,
+} from "@/components/figures/GruplaraAyirmaFig";
+
+export const metadata = topicMetadata("gruplara-ayirma-dagitma");
+
+<Konu slug="gruplara-ayirma-dagitma" />
+
+<p className="lead">Bir dağıtımı saymaya başlamadan önce iki soru sorulur: **Dağıtılan nesneler farklı mı, özdeş mi? Gruplar (kutular) adlı mı, adsız mı?** Bu iki sorunun cevabı dört durum verir ve her durumun kendi sayma yolu vardır. Farklı kişileri adlı gruplara ayırırken art arda seçim yaparız; gruplar adsız ve eşit büyüklükteyse fazla sayılan durumlar için böleriz; özdeş nesneleri farklı kutulara dağıtırken çubuk–yıldız yöntemini kullanırız; özdeş nesneleri özdeş kutulara dağıtırken ise yalnızca listeleriz. $x+y+z=n$ denkleminin çözüm sayısı da bu dört durumdan birinin denklem diliyle yazılmış hâlidir.</p>
+
+> **Bu sayfadaki varsayımlar**
+>
+> - **Farklı** nesneler ve kişiler birbirinden ayırt edilir. **Özdeş** nesneler ayırt edilemez; yerleri değiştiğinde yeni bir dağıtım oluşmaz.
+> - **Adlı grup** ya da **farklı kutu** (A takımı, 2. oda, kırmızı kutu) yer değiştirince yeni bir dağıtım oluşur. **Adsız grup** ya da **özdeş kutu** için yalnız kimin kiminle birlikte olduğu önemlidir.
+> - Aksi söylenmedikçe bir grubun ya da kutunun **içinde sıra önemsizdir**. Grup içinde sıranın önemli olduğu tek model bayrak direği modelidir; bu durum soruda açıkça belirtilir.
+> - Bir kutunun **boş kalıp kalamayacağı** her soruda belirtilir: "boş kalabilir", "her kutuda en az bir", "her kutuda en az $m$".
+> - **Doğal sayı** $0$'ı da içerir: $0, 1, 2, \ldots$ **Pozitif tam sayı** $1$'den başlar.
+
+Bu konu, [Permütasyon ve Kombinasyon](/konular/permutasyon-kombinasyon-tyt) özet sayfasının bir alt başlığıdır. Burada [Kombinasyon: Seçme Problemleri](/konular/kombinasyon-secme) sayfasındaki seçim sayısını $C(n,r)=\dbinom{n}{r}$ biçiminde yazacağız ve [Tekrarlı Permütasyon](/konular/tekrarli-permutasyon) sayfasındaki özdeş nesne dizme yolunu kullanacağız. Temel bakış için [10. sınıf Kombinasyon](/konular/kombinasyon-10) dersine bakabilirsin. Maarif programında sayma, permütasyon ve kombinasyon 10. sınıfta işlenir.
+
+## 1. Dört Durum Tablosu: Nesne Özdeş mi? Kutu Farklı mı?
+
+Önce küçük bir örneği dört durumda da listeleyelim: **$3$ nesne $2$ kutuya** konacak ve kutulardan biri boş kalabilir.
+
+- Nesneler farklıysa onlara $a, b, c$ diyelim; özdeşse her birini $●$ ile gösterelim.
+- Kutular farklıysa "$1.$ kutu $|$ $2.$ kutu" diye yazalım; özdeşse yalnız hangi nesnelerin bir arada olduğuna bakalım.
+
+<Figur>
+
+<GadDortDurum />
+
+<Altyazi>Şekil 1 — Aynı soru, dört farklı cevap. Nesneler farklılaştıkça ya da kutular adlandırıldıkça sayı büyür: $8$, $4$, $4$, $2$.</Altyazi>
+
+</Figur>
+
+Listeyi okuyalım:
+
+- **Farklı nesneler, farklı kutular:** Her nesne kutusunu ayrı ayrı seçer, $2\cdot 2\cdot 2=8$. Bu "her nesne bir seçim yapar" modeli ($k^n$) [Sayma Kuralları](/konular/sayma-kurallari) sayfasında işlenmişti.
+- **Farklı nesneler, özdeş kutular:** "$ab \mid c$" ile "$c \mid ab$" artık aynı dağıtımdır; çünkü kutuların adı yoktur. $8$ dağıtım ikişer ikişer eşleşir ve $4$ kalır.
+- **Özdeş nesneler, farklı kutular:** Yalnız hangi kutuya kaç nesne düştüğü önemlidir: $(3,0), (2,1), (1,2), (0,3)$. Toplam $4$.
+- **Özdeş nesneler, özdeş kutular:** Ne nesnelerin ne kutuların adı vardır; yalnız "$3$ ve $0$" ile "$2$ ve $1$" ayrımı kalır. Toplam $2$.
+
+| | **Kutular (gruplar) farklı / adlı** | **Kutular (gruplar) özdeş / adsız** |
+| --- | --- | --- |
+| **Nesneler farklı** | Grup büyüklükleri verilmişse art arda seçim (Bölüm 2). Büyüklük serbestse $k^n$ (Sayma Kuralları). | Eşit büyüklükteki grupların sayısının faktöriyeline böl (Bölüm 3). Büyüklük serbestse desenlere ayır (Bölüm 5). |
+| **Nesneler özdeş** | Çubuk–yıldız: $C(n+k-1,\,k-1)$ (Bölüm 7–11) | Formül yok, listele (Bölüm 12) |
+
+Bu tabloya beşinci bir model eklenir: **farklı nesneler farklı kutulara konur ve her kutunun içinde sıra önemlidir.** Bu, bayrakların direklere asılmasıdır (Bölüm 6).
+
+> **Okuma alışkanlığı:** Her dağıtım sorusunda önce şu üç şeyi işaretle: nesneler farklı mı, özdeş mi; gruplar adlı mı, adsız mı; boş grup olabilir mi? Hesap ancak bundan sonra başlar.
+
+## 2. Farklı Kişileri Adlı Gruplara Ayırma
+
+Ali, Banu, Can ve Deniz ($A, B, C, D$), "Mavi" ve "Kırmızı" adlı iki takıma ikişer kişi olarak ayrılacak. Önce Mavi takımın iki oyuncusunu seçeriz: $C(4,2)=6$. Kalan iki kişi Kırmızı takıma gider: $C(2,2)=1$. Toplam $6\cdot 1=6$ ayırma vardır. Bu altı ayırma, bir sonraki bölümdeki Şekil 2'nin sol sütununda tek tek listelenmiştir.
+
+Genel kural art arda seçimdir. $n$ kişi, büyüklükleri $a, b, c$ olan adlı gruplara ($a+b+c=n$) ayrılacaksa:
+
+$$C(n,a)\cdot C(n-a,\,b)\cdot C(n-a-b,\,c)=\dfrac{n!}{a!\cdot b!\cdot c!}$$
+
+Sağdaki ifadenin ortaya çıkması rastlantı değildir. Her kişiye grubunun adını bir etiket olarak verdiğimizi düşünelim. Bu durumda ayırmayı saymak, $a$ tane "$1$", $b$ tane "$2$" ve $c$ tane "$3$" etiketinin kişilere dizilişini saymak demektir. Bu da bir [tekrarlı permütasyondur](/konular/tekrarli-permutasyon).
+
+Örneğin $10$ kişi $5$, $3$ ve $2$ kişilik üç gruba ayrılsın:
+
+$$C(10,5)\cdot C(5,3)\cdot C(2,2)=252\cdot 10\cdot 1=2520$$
+
+> **Büyüklükleri farklı gruplar zaten adlıdır.** $5$ kişilik grup ile $2$ kişilik grup hiçbir zaman karıştırılamaz. Bu yüzden gruplara ad verilmemiş olsa bile burada bölme yapılmaz.
+
+## 3. Eşit ve Adsız Gruplar: Neden Bölüyoruz?
+
+Aynı dört kişiyi bu kez **adsız** iki gruba ayıralım. Artık yalnız kimin kiminle eşleştiği önemlidir. Şekil 2'de Mavi–Kırmızı listesindeki her satırın bir eşi vardır. "$AB \mid CD$" ile "$CD \mid AB$" takım adları silinince aynı ayırma olur: $\{A,B\}$ bir grupta, $\{C,D\}$ öbür grupta.
+
+<Figur>
+
+<GadAdliAdsiz />
+
+<Altyazi>Şekil 2 — Adlı iki takımın $6$ ayırması, adlar silinince ikişer ikişer çakışır ve $3$ adsız ayırma kalır.</Altyazi>
+
+</Figur>
+
+Listeleyerek doğrulayalım: $A$'nın eşi $B$, $C$ ya da $D$ olabilir; eşi belli olunca öbür grup da belli olur. Yani $3$ ayırma vardır ve bu sayı $\dfrac{6}{2!}=3$ ile aynıdır.
+
+> **Neden bölüyoruz?** Art arda seçim gruplara gizlice "birinci grup, ikinci grup" adını verir. Eşit büyüklükteki $k$ adsız grup kendi aralarında $k!$ şekilde yer değiştirebilir ve bu yer değiştirmeler yeni bir ayırma üretmez. Her gerçek ayırma $k!$ kez sayılmış olur; bu yüzden $k!$'e böleriz.
+
+**Karışık büyüklükler.** Yalnız **eşit büyüklükteki** gruplar birbiriyle yer değiştirebilir. Bu yüzden bölme yalnız onlar için yapılır. $8$ kişi $4$, $2$ ve $2$ kişilik adsız gruplara ayrılsın:
+
+$$\dfrac{C(8,4)\cdot C(4,2)\cdot C(2,2)}{2!}=\dfrac{70\cdot 6\cdot 1}{2}=210$$
+
+Paydada $3!$ değil $2!$ vardır; çünkü $4$ kişilik grup, $2$ kişilik gruplardan biriyle yer değiştiremez.
+
+| Grup yapısı | Gruplar adlı | Gruplar adsız |
+| --- | --- | --- |
+| Büyüklüklerin hepsi farklı ($5, 3, 2$) | Art arda seçim | Aynı sonuç, bölme yok |
+| İki grup eşit ($4, 2, 2$) | Art arda seçim | $2!$'e böl |
+| Üç grup eşit ($3, 3, 3$) | Art arda seçim | $3!$'e böl |
+
+## 4. Takımlar, Odalar, Arabalar: Ek Koşullu Gruplama
+
+**Çiftlere ayırma.** $6$ kişi, adsız $3$ çifte ayrılacak (örneğin bir masa tenisi turnuvasının ilk tur eşleşmeleri; hangi maçın önce oynandığı önemsiz). Üç çift eşit büyüklükte olduğundan:
+
+$$\dfrac{C(6,2)\cdot C(4,2)\cdot C(2,2)}{3!}=\dfrac{15\cdot 6\cdot 1}{6}=15$$
+
+İkinci yol: Listede adı ilk sırada olan kişi eşini $5$ kişiden seçer. Kalanlar arasında adı ilk sırada olan kişi eşini $3$ kişiden seçer. Son iki kişi zaten bir çifttir. $5\cdot 3\cdot 1=15$. İki yol aynı sonucu verir.
+
+**Gruplar sonradan adlandırılırsa bölme geri alınır.** Adsız gruplar oluştuktan sonra her biri farklı bir odaya, farklı bir göreve ya da farklı bir masaya gönderiliyorsa gruplar artık adlıdır. Bu durumda adsız ayırma sayısı, grupların odalara dağılış sayısıyla çarpılır (Örnek 2).
+
+**Grup içinde görev.** $6$ kişi, $3$'er kişilik adsız iki gruba ayrılıp her grup kendi içinden bir başkan seçecek. Ayırma sayısı $\dfrac{C(6,3)}{2!}=10$'dur. Ardından her grup başkanını $3$ kişiden seçer: $10\cdot 3\cdot 3=90$. Görev seçimi gruplara ad vermez; çünkü her grupta aynı görev, yani bir başkanlık vardır. Bu yüzden ek bir düzeltme gerekmez.
+
+**Belirli kişiler aynı grupta ya da farklı gruplarda.** Aynı grupta olması istenen kişileri önce birlikte yerleştir, sonra grubun eksik üyelerini seç. "Farklı gruplarda" koşulu için tümleyen çoğu zaman en kısa yoldur (Örnek 3).
+
+**Araçlar ve ehliyet.** $6$ kişi, biri $4$ kişilik, diğeri $2$ kişilik iki araçla yola çıkacak. Bu kişilerden yalnız $3$'ünün ehliyeti var. Araçlar şoför dâhil tam dolu gidecek ve **her araçta en az bir ehliyetli** bulunacak. Yalnız kimin hangi araçta olduğu önemli; aracı kimin kullanacağı burada sorulmuyor.
+
+1. Koşulsuz: Büyük araca binecek $4$ kişi seçilir, kalan $2$ kişi küçük araca biner: $C(6,4)=15$ yol.
+2. Koşulu bozanlar: Büyük araçta hiç ehliyetli bulunmaması imkânsızdır; çünkü ehliyetsiz yalnız $3$ kişi vardır. Küçük araçta ehliyetli yoksa bu aracın $2$ yolcusu $3$ ehliyetsizden seçilir: $C(3,2)=3$ yol.
+3. İstenen: $15-3=12$.
+
+Burada gruplar önce kuruldu, koşul sonra tümleyenle denetlendi. Her araçta şoförün de kim olacağı soruluyorsa her geçerli gruplamada şoför seçimi ayrıca sayılır; bu durumda çoğu zaman önce şoförleri seçmek daha kısadır.
+
+## 5. Farklı Nesneleri Özdeş Kutulara Ayırma (Küçük n, Desenlerle)
+
+Kutular özdeşse ve kaçar nesne alacakları verilmemişse sorunun tek bir grup yapısı yoktur. O zaman olası **desenleri** (kutulardaki nesne sayılarını) yazar, her deseni Bölüm 3'teki gibi sayar ve sonuçları toplarız.
+
+$4$ farklı top ($a, b, c, d$), $3$ özdeş kutuya konacak; kutular boş kalabilir. Boş kutular desene yazılmaz: kutular özdeş olduğundan hangi kutunun boş kaldığı bir fark yaratmaz.
+
+| Desen | Sayım | Sonuç |
+| --- | --- | --- |
+| $4$ | Hepsi bir kutuda | $1$ |
+| $3+1$ | Yalnız kalan topu seç: $C(4,3)$ | $4$ |
+| $2+2$ | $\dfrac{C(4,2)\cdot C(2,2)}{2!}$ (iki grup eşit) | $3$ |
+| $2+1+1$ | $\dfrac{C(4,2)\cdot C(2,1)\cdot C(1,1)}{2!}$ (iki tekli grup eşit) | $6$ |
+| **Toplam** | | $\mathbf{14}$ |
+
+Bölme **yalnız eşit büyüklükte grup içeren desenlerde** yapılır. $3+1$ deseninde bölme yoktur; $2+2$ ve $2+1+1$ desenlerinde $2!$'e bölünür.
+
+> **Bağlantı:** Farklı nesneler **farklı** kutulara konuyor ve **hiçbir kutu boş kalmıyorsa** bu, örten fonksiyon sayısıdır. Bu durum [Fonksiyon Sayısı](/konular/fonksiyon-sayisi) sayfasında işlenir.
+
+## 6. Bayrak Direkleri: Her Direkte Sıra Önemli
+
+Farklı bayraklar, farklı direklere alt alta asılıyor. Bir direkteki bayrakların yukarıdan aşağı sırası değişirse görünüm değişir, yani **direk içinde sıra önemlidir.** Bir direk boş kalabilir.
+
+En küçük örneği listeleyelim: $a$ ve $b$ bayrakları $2$ direğe asılacak.
+
+| $1.$ direk | $ab$ | $ba$ | — | — | $a$ | $b$ |
+| --- | --- | --- | --- | --- | --- | --- |
+| $2.$ direk | — | — | $ab$ | $ba$ | $b$ | $a$ |
+
+Toplam $6$ asılış vardır. Yalnız "hangi bayrak hangi direkte" diye sayan biri $2^2=4$ bulur. Bu sayım, aynı direkteki $ab$ ile $ba$ asılışlarını birbirinden ayırmaz.
+
+**Bayrakları tek tek asalım.** $k$ direk ve $n$ farklı bayrak olsun.
+
+- İlk bayrak için $k$ yer vardır: her direğin tepesi.
+- Asılmış her bayrak yeni bir yer açar: kendi hemen altı. Bu yüzden ikinci bayrak için $k+1$, üçüncü için $k+2$ yer vardır ve bu böyle sürer.
+
+<Figur>
+
+<GadBayrakYerleri />
+
+<Altyazi>Şekil 3 — Üç direğe $a$, $b$ ve $c$ asılmışken dördüncü bayrak $6$ yerden birine gider. Boş yer sayısı her zaman direk sayısı ile asılmış bayrak sayısının toplamıdır.</Altyazi>
+
+</Figur>
+
+Buna göre $n$ farklı bayrak $k$ direğe
+
+$$k\cdot(k+1)\cdot(k+2)\cdots(k+n-1)=\dfrac{(n+k-1)!}{(k-1)!}$$
+
+farklı biçimde asılır. Küçük örnekte $k=2$, $n=2$ için $2\cdot 3=6$ çıkar; liste ile aynıdır. Bir sonraki bölümde bu sayının $n!\cdot C(n+k-1,\,k-1)$ biçiminde de yazılabildiğini göreceğiz.
+
+## 7. Özdeş Nesneleri Farklı Kutulara Dağıtma: Çubuk–Yıldız (Derinleştirme)
+
+$4$ özdeş şeker Ayşe, Bora ve Cem'e dağıtılacak; bir çocuk hiç şeker almayabilir. Şekerler özdeş olduğu için önemli olan tek şey kimin kaç şeker aldığıdır.
+
+Şekerleri yıldızla ($★$) gösterip bir sıraya dizelim. Araya iki çubuk ($|$) koyarak sırayı üç parçaya bölelim. Birinci çubuğun solundaki şekerler Ayşe'nin, iki çubuğun arasındakiler Bora'nın, ikinci çubuğun sağındakiler Cem'indir.
+
+<Figur>
+
+<GadCubukYildiz />
+
+<Altyazi>Şekil 4 — Her dağıtım, $4$ yıldız ve $2$ çubuktan oluşan tek bir diziye karşılık gelir. Her dizi de tek bir dağıtım verir.</Altyazi>
+
+</Figur>
+
+Bu eşleme iki yönlüdür: Her dağıtım tek bir dizi verir, her dizi de tek bir dağıtım verir. O hâlde dağıtımları saymak, $4$ özdeş yıldız ile $2$ özdeş çubuğun dizilişlerini, yani bir tekrarlı permütasyonu saymakla aynıdır:
+
+$$\dfrac{6!}{4!\cdot 2!}=C(6,2)=15$$
+
+**Listeyle sağlama.** Ayşe, Bora ve Cem'in aldığı şeker sayılarını desenlere göre gruplayalım: $4+0+0$ biçimindekiler $3$ tane, $3+1+0$ biçimindekiler $6$ tane, $2+2+0$ biçimindekiler $3$ tane, $2+1+1$ biçimindekiler $3$ tanedir. Toplam $3+6+3+3=15$.
+
+**Genel kural.** $n$ özdeş nesne $k$ farklı kutuya dağıtılacak ve kutular boş kalabilecekse $k$ kutuyu ayırmak için $k-1$ çubuk gerekir. Toplam $n+k-1$ yerden çubukların gideceği $k-1$ yer seçilir:
+
+$$C(n+k-1,\;k-1)$$
+
+> **Neden $k-1$ çubuk?** Bir çizgiyi $k$ parçaya bölmek için $k-1$ kesim yeterlidir. Çubuk sayısını kutu sayısıyla karıştırmak, $C(n+k,\,k)$ gibi yanlış sonuçlar verir.
+
+**Bayrak direklerine dönüş.** Yıldızlar özdeş değil de farklı bayraklar olsaydı, $n$ farklı bayrak ile $k-1$ özdeş çubuğun dizilişini sayardık: $\dfrac{(n+k-1)!}{(k-1)!}=n!\cdot C(n+k-1,\,k-1)$. Bu, Bölüm 6'da bulduğumuz sayının ta kendisidir. Bayrak sorusunda $n!$ çarpanını unutmak, farklı bayrakları özdeş saymak demektir.
+
+## 8. Her Kutuya En Az Bir / En Az m
+
+$7$ özdeş defter $3$ öğrenciye dağıtılacak ve **her öğrenci en az bir defter** alacak. İki yol aynı sonucu verir:
+
+- **Önce birer tane ver:** Her öğrenciye birer defter verilir, geriye $4$ defter kalır. Bu $4$ defter artık serbestçe dağıtılır: $C(4+2,\,2)=C(6,2)=15$.
+- **Boşluk seç:** $7$ defter bir sıraya dizildiğinde aralarında $6$ boşluk olur. Bu boşluklardan $2$'sine çubuk konursa her parça en az bir defter içerir: $C(6,2)=15$.
+
+Genel olarak, $n$ özdeş nesne $k$ farklı kutuya **her kutuda en az bir** olacak biçimde $C(n-1,\,k-1)$ yolla dağıtılır.
+
+**En az $m$:** Her kutuya önce $m$ nesne konur, geriye $n-km$ nesne kalır. Kalan nesneler serbestçe dağıtılır: $C(n-km+k-1,\;k-1)$. Burada $n-km\ge 0$ olmalıdır; aksi hâlde hiç dağıtım yoktur. Bu yolun bir uygulaması Örnek 6'nın b) şıkkındadır.
+
+## 9. x + y + z = n Denkleminin Doğal ve Pozitif Sayı Çözümleri
+
+$x+y+z=n$ denkleminin her doğal sayı çözümü, $n$ özdeş nesnenin $x$, $y$ ve $z$ adlı üç farklı kutuya dağıtılmasıdır. Değişkenler kutu, toplam ise nesne sayısıdır. Değişkenlerin adları olduğundan $(1,2,4)$ ile $(4,2,1)$ **farklı** çözümlerdir.
+
+| Denklem | Değişkenler | Çözüm sayısı | $n=8$ için |
+| --- | --- | --- | --- |
+| $x+y+z=n$ | doğal sayı ($\ge 0$) | $C(n+2,\,2)$ | $C(10,2)=45$ |
+| $x+y+z=n$ | pozitif tam sayı ($\ge 1$) | $C(n-1,\,2)$ | $C(7,2)=21$ |
+
+Pozitif çözümlerde önce her değişkene $1$ verilir. $x=x'+1$, $y=y'+1$, $z=z'+1$ yazılırsa $x'+y'+z'=n-3$ olur ve yeni değişkenler doğal sayıdır. $n=8$ için $x'+y'+z'=5$ denkleminin $C(7,2)=21$ doğal çözümü vardır. Değişken sayısı $k$ olduğunda tablodaki $2$ yerine $k-1$ yazılır.
+
+## 10. Alt Sınır, Üst Sınır ve Eşitsizlik
+
+**Karışık alt sınırlar: değişken kaydırma.** $x+y+z=9$ denkleminin $x\ge 2$, $y\ge 0$, $z\ge 1$ koşullarını sağlayan tam sayı çözümleri istensin. $x$'e önce $2$, $z$'ye önce $1$ verilir. $x=x'+2$ ve $z=z'+1$ yazılınca $x'+y+z'=6$ olur. Doğal çözüm sayısı $C(8,2)=28$'dir.
+
+**Eşitsizlik: yapay değişken.** $x+y+z\le 5$ eşitsizliğinin doğal sayı çözümleri istensin. Eksik kalan miktara $s$ dersek ($s\ge 0$) eşitsizlik $x+y+z+s=5$ denklemine dönüşür. Dört değişkenli bu denklemin $C(5+3,\,3)=C(8,3)=56$ doğal çözümü vardır.
+
+Sağlama: Toplamı sırayla $0, 1, \ldots, 5$ alıp her durumun çözüm sayısını topla: $C(2,2)+C(3,2)+C(4,2)+C(5,2)+C(6,2)+C(7,2)=1+3+6+10+15+21=56$.
+
+**Üst sınır: tümleyen.** Üst sınır, alt sınır gibi "önceden verilerek" karşılanamaz. Önce sınırsız çözümler sayılır, sonra sınırı **aşan** çözümler çıkarılır. $x+y+z=8$ denkleminin $x\le 2$ koşulunu sağlayan doğal sayı çözümleri:
+
+1. Sınırsız: $C(10,2)=45$.
+2. Sınırı aşanlar, yani $x\ge 3$: $x=x'+3$ yazılınca $x'+y+z=5$, çözüm sayısı $C(7,2)=21$.
+3. İstenen: $45-21=24$.
+
+Sağlama (doğrudan): $x=0$ için $y+z=8$ denkleminin $9$, $x=1$ için $8$, $x=2$ için $7$ çözümü vardır: $9+8+7=24$.
+
+> **Uyarı:** "En çok $2$" koşulu, "en az $2$" gibi işlenip her değişkene önce $2$ verilemez. Alt sınır önceden verilerek, üst sınır ise tümleyenle karşılanır (Örnek 7).
+
+## 11. Tekrarlı Seçim: Aynı Türden Birden Fazla Almak
+
+Bir fırında sade, susamlı ve peynirli olmak üzere $3$ çeşit simit var. Her çeşitten yeterince simit bulunuyor ve aynı çeşitten birden fazla alınabiliyor. $5$ simit kaç farklı biçimde alınabilir? Aynı çeşit simitler özdeştir ve alış sırası önemsizdir.
+
+Bir alışverişi belirleyen tek şey, her çeşitten kaç tane alındığıdır: sade $+$ susamlı $+$ peynirli $=5$. Çeşitler kutu, alınan simitler özdeş nesnedir:
+
+$$C(5+3-1,\;3-1)=C(7,2)=21$$
+
+> **Tekrarlı seçim $C(3,5)$ değildir.** $C(3,5)$, $3$ farklı nesneden $5$'ini tekrarsız seçmek demektir ve bu imkânsızdır. Tekrar serbest olduğunda $k$ çeşitten $n$ tane seçmek, $n$ özdeş nesneyi $k$ kutuya dağıtmakla aynıdır.
+
+## 12. Özdeş Nesneler, Özdeş Kutular: Yalnız Listeleme
+
+$5$ özdeş top, $3$ özdeş kutuya konacak; kutular boş kalabilir. Ne topların ne kutuların adı olduğundan bir dağıtımı belirleyen tek şey, dolu kutulardaki top sayılarının **büyükten küçüğe yazılmış** listesidir:
+
+$$5 \qquad 4+1 \qquad 3+2 \qquad 3+1+1 \qquad 2+2+1$$
+
+Toplam $5$ dağıtım vardır. Bu durum için TYT düzeyinde kullanılacak bir formül yoktur; en güvenli yol, terimleri büyükten küçüğe yazarak sistemli biçimde listelemektir.
+
+Kutular **farklı** olsaydı cevap $C(7,2)=21$ olurdu. Fark nereden geliyor? Çubuk–yıldız, $(1,1,3)$, $(1,3,1)$ ve $(3,1,1)$ dağıtımlarını ayrı ayrı sayar; kutular özdeşken bu üçü tek bir "$3+1+1$" dağıtımıdır. Bu yüzden özdeş kutularda çubuk–yıldız kullanılamaz (Örnek 6).
+
+## Çözümlü Sorular
+
+{/* ornek-1 */}
+<Ornek>
+
+<Soru>
+
+$6$ kişilik bir arkadaş grubu, $3$'er kişilik iki gruba ayrılacaktır.
+
+**a)** Gruplardan biri A takımı, diğeri B takımı olarak adlandırılıyorsa kaç farklı ayırma yapılabilir?
+
+**b)** Gruplar adsızsa, yani yalnız kimin kiminle aynı grupta olduğu önemliyse, kaç farklı ayırma yapılabilir?
+
+</Soru>
+
+<Ipucu>
+
+İki şıkta seçimler aynıdır; fark, takımların yer değiştirmesinin yeni bir ayırma sayılıp sayılmadığındadır.
+
+</Ipucu>
+
+<Cozum>
+
+1. **a)** A takımına girecek $3$ kişi seçilir: $C(6,3)=20$. Kalan $3$ kişi B takımına gider: $C(3,3)=1$. Toplam $20$ ayırma vardır. Burada bölme yapılmaz. Kişileri $1$'den $6$'ya numaralarsak A takımının $\{1,2,3\}$, B takımının $\{4,5,6\}$ olduğu ayırma, A takımının $\{4,5,6\}$ olduğu ayırmadan farklıdır.
+
+2. **b) Yanlış yol:** "Yine $C(6,3)=20$" demek. Aynı numaralamayla "A: $\{1,2,3\}$, B: $\{4,5,6\}$" ile "A: $\{4,5,6\}$, B: $\{1,2,3\}$" adlar silinince aynı ayırmadır. Her adsız ayırma bu listede iki kez geçer.
+
+3. **b) Doğru yol:** İki grup eşit büyüklükte ve adsız olduğundan $2!$'e bölünür: $\dfrac{20}{2!}=10$.
+
+4. **Sağlama:** $1$ numaralı kişinin grubunu düşünelim. Bu kişinin yanına kalan $5$ kişiden $2$'si seçilir: $C(5,2)=10$. Bu seçim yapılınca öbür grup da kendiliğinden belli olur. Sonuç aynıdır.
+
+<Cevap>a) $20$ &nbsp; b) $10$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-2 */}
+<Ornek>
+
+<Soru>
+
+$7$ kişilik bir gezi ekibi, $3$, $2$ ve $2$ kişilik üç gruba ayrılacaktır.
+
+**a)** Gruplar adsızsa kaç farklı ayırma yapılabilir?
+
+**b)** Oluşan üç grup, her gruba ayrı bir oda düşecek şekilde $3$ farklı odaya yerleştirilecektir. Her oda, gruplardan herhangi birini alabilecek büyüklüktedir. Kaç farklı yerleşim yapılabilir?
+
+</Soru>
+
+<Ipucu>
+
+Hangi gruplar birbiriyle yer değiştirebilir? $3$ kişilik grup, $2$ kişilik bir grupla karıştırılabilir mi?
+
+</Ipucu>
+
+<Cozum>
+
+1. **Art arda seçim:** $C(7,3)\cdot C(4,2)\cdot C(2,2)=35\cdot 6\cdot 1=210$. Bu sayım gruplara gizlice "birinci", "ikinci", "üçüncü" adını verir.
+
+2. **a)** Yalnız iki tane $2$ kişilik grup kendi aralarında yer değiştirebilir. Bu yüzden $2!$'e bölünür: $\dfrac{210}{2}=105$.
+
+3. **İki yanlış yol:** Grup sayısı $3$ diye $3!$'e bölen öğrenci $35$ bulur. Oysa $3$ kişilik grup, $2$ kişilik bir grupla yer değiştiremez. Hiç bölmeyen öğrenci ise $210$ bulur ve iki eşit grubu adlıymış gibi sayar.
+
+4. **b)** Odalar farklı olduğundan gruplar artık adlıdır. $105$ adsız ayırmanın her birinde $3$ grup, $3$ odaya $3!=6$ şekilde yerleşir: $105\cdot 6=630$.
+
+5. **Sağlama:** Önce $3$ kişilik grubun odasını seçelim: $3$ yol. Bu gruba girecek kişiler $C(7,3)=35$ yolla seçilir. Kalan iki odadan belirli birine girecek $2$ kişi, geriye kalan $4$ kişiden $C(4,2)=6$ yolla seçilir; son $2$ kişi öbür odaya gider. Sonuç $3\cdot 35\cdot 6=630$; aynı sayıya ulaştık.
+
+<Cevap>a) $105$ &nbsp; b) $630$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-3 */}
+<Ornek>
+
+<Soru>
+
+Aralarında Ece ile Mert'in de bulunduğu $9$ kişi, $3$'er kişilik adsız üç gruba ayrılacaktır. Ece ile Mert'in **farklı** gruplarda olduğu kaç ayırma vardır?
+
+</Soru>
+
+<Ipucu>
+
+"Farklı gruplarda" yerine "aynı grupta" olanları saymak daha kolaydır. Tümleyeni alırken iki sayımın da adsız gruplarla yapıldığından emin ol.
+
+</Ipucu>
+
+<Cozum>
+
+1. **Bütün ayırmalar:** $\dfrac{C(9,3)\cdot C(6,3)\cdot C(3,3)}{3!}=\dfrac{84\cdot 20\cdot 1}{6}=280$.
+
+2. **Ece ile Mert aynı grupta:** Gruplarının üçüncü üyesi kalan $7$ kişiden seçilir: $7$ yol. Geriye kalan $6$ kişi $3$'er kişilik adsız iki gruba ayrılır: $\dfrac{C(6,3)}{2!}=10$. Toplam $7\cdot 10=70$.
+
+3. **Tümleyen:** $280-70=210$.
+
+4. **Yanlış yol:** Bütün ayırmaları $3!$'e bölmeden $1680$ alıp $70$ çıkarmak $1610$ verir. Bu işlemde adlı bir sayımdan adsız bir sayım çıkarılmıştır. Tümleyende iki sayım aynı dilde yapılmalıdır.
+
+5. **Sağlama (doğrudan sayım):** Ece'nin grubuna, Mert dışındaki $7$ kişiden $2$'si seçilir: $C(7,2)=21$. Mert'in de aralarında olduğu kalan $6$ kişi, $3$'er kişilik adsız iki gruba ayrılır: $10$ yol. Sonuç $21\cdot 10=210$; tümleyenle aynıdır.
+
+<Cevap>$210$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-4 */}
+<Ornek>
+
+<Soru>
+
+$6$ farklı oyuncak, birbirinin aynısı olan $3$ poşete konacaktır. Hiçbir poşet boş kalmayacağına göre oyuncaklar poşetlere kaç farklı biçimde ayrılabilir?
+
+</Soru>
+
+<Ipucu>
+
+Poşetler özdeş olduğu için önce olası desenleri yaz: $6$ sayısı, her parça en az $1$ olmak üzere üç parçaya kaç farklı biçimde ayrılır?
+
+</Ipucu>
+
+<Cozum>
+
+1. **Desenler:** Her poşette en az bir oyuncak bulunacak biçimde $6$'yı üç parçaya ayıralım: $4+1+1$, $3+2+1$, $2+2+2$.
+
+2. **$4+1+1$:** $C(6,4)\cdot C(2,1)\cdot C(1,1)=30$. İki tekli grup eşit büyüklükte olduğundan $2!$'e bölünür: $15$.
+
+3. **$3+2+1$:** $C(6,3)\cdot C(3,2)\cdot C(1,1)=60$. Bütün grup büyüklükleri farklı olduğundan bölme yapılmaz: $60$.
+
+4. **$2+2+2$:** $C(6,2)\cdot C(4,2)\cdot C(2,2)=90$. Üç grup eşit olduğundan $3!$'e bölünür: $15$.
+
+5. **Toplam:** $15+60+15=90$.
+
+6. **Yanlış yol:** Poşetler özdeş diye **her** deseni $3!$'e bölen öğrenci $5+10+15=30$ bulur. Oysa $3+2+1$ deseninde poşetler içerdikleri oyuncak sayısıyla zaten birbirinden ayrılır. Bölme yalnız eşit büyüklükteki gruplar için yapılır.
+
+7. **Sağlama:** Poşetler $1$, $2$, $3$ diye numaralı olsaydı her ayırma, poşetlere $3!=6$ farklı biçimde dağıtılabilirdi; çünkü üç poşet de dolu ve içerikleri farklıdır. Bu da $90\cdot 6=540$ eder. Bu sayı, [Fonksiyon Sayısı](/konular/fonksiyon-sayisi) sayfasında başka bir yolla bulunan $6$ elemanlı kümeden $3$ elemanlı kümeye örten fonksiyon sayısıyla aynıdır.
+
+<Cevap>$90$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-5 */}
+<Ornek>
+
+<Soru>
+
+$4$ farklı bayrak, $3$ farklı direğe asılacaktır. Her direkte bayraklar alt alta dizilir ve bir direkteki bayrakların yukarıdan aşağı sırası önemlidir.
+
+**a)** Direklerden bazıları boş kalabiliyorsa kaç farklı asılış vardır?
+
+**b)** Hiçbir direk boş kalmayacaksa kaç farklı asılış vardır?
+
+</Soru>
+
+<Ipucu>
+
+a) şıkkında bayrakları tek tek as ve her bayrak için kaç boş yer olduğunu say. b) şıkkında önce bayrakları bir sıraya diz, sonra bu sırayı üç dolu parçaya böl.
+
+</Ipucu>
+
+<Cozum>
+
+1. **a)** Birinci bayrak $3$ yerden birine asılır. Asılan her bayrak altında yeni bir yer açar. Bu yüzden ikinci bayrak için $4$, üçüncü için $5$, dördüncü için $6$ yer vardır: $3\cdot 4\cdot 5\cdot 6=360$.
+
+2. **a) için ikinci yol:** $4$ farklı bayrak ile $2$ özdeş çubuğun dizilişi sayılır: $4!\cdot C(6,2)=24\cdot 15=360$.
+
+3. **İki yanlış yol:** Yalnız $C(6,2)=15$ yazmak, bayrakları özdeş saymaktır. $3^4=81$ yazmak ise yalnız "hangi bayrak hangi direkte" sorusunu sayar ve aynı direkteki bayrakların sırasını yok sayar.
+
+4. **b)** $4$ bayrak bir sıraya $4!=24$ şekilde dizilir. Bayrakların arasındaki $3$ boşluktan $2$'sine çubuk konur: $C(3,2)=3$. Oluşan parçalar sırayla $1.$, $2.$ ve $3.$ direğe gider. Her direkte en az bir bayrak bulunur. Toplam $24\cdot 3=72$.
+
+5. **Sağlama (b):** Direklerdeki bayrak sayıları, bir sırayla $2$, $1$ ve $1$ olmak zorundadır; iki bayrağın asıldığı direğe göre $3$ durum vardır. Örneğin $1.$ direkte iki bayrak varsa, bu direğe yukarıdan aşağı $4\cdot 3=12$ biçimde iki bayrak asılır. Kalan iki bayrak $2.$ ve $3.$ direğe $2$ biçimde gider. Her durumda $12\cdot 2=24$ asılış vardır; toplam $3\cdot 24=72$.
+
+<Cevap>a) $360$ &nbsp; b) $72$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-6 */}
+<Ornek>
+
+<Soru>
+
+$11$ özdeş bilye, biri kırmızı, biri sarı, biri yeşil olan $3$ kutuya konacaktır.
+
+**a)** Kutular boş kalabiliyorsa kaç farklı dağıtım yapılabilir?
+
+**b)** Her kutuda en az $2$ bilye olacaksa kaç farklı dağıtım yapılabilir?
+
+**c)** b) şıkkındaki koşul geçerliyken kutular renksiz ve birbirinin aynısı olsaydı kaç farklı dağıtım yapılabilirdi?
+
+</Soru>
+
+<Ipucu>
+
+Denklem diliyle: kırmızı, sarı ve yeşil kutudaki bilye sayıları $x$, $y$, $z$ ise $x+y+z=11$. c) şıkkında kutuların adı kalmaz.
+
+</Ipucu>
+
+<Cozum>
+
+1. **a)** $11$ yıldız ve $2$ çubuk, yani $13$ yer vardır. Çubukların $2$ yeri seçilir: $C(13,2)=78$.
+
+2. **a) için üç yanlış yol:** $C(11,2)=55$, yani $C(n,\,k-1)$, çubukların da yer kapladığını unutur; toplam yer sayısı $n$ değil $n+k-1$'dir. $C(14,3)=364$ ise çubuk sayısını kutu sayısıyla karıştırır. Çubukları yalnız bilyelerin arasındaki $10$ boşluğa koymak da $C(10,2)=45$ verir; bu, her kutunun dolu olduğu sayımdır ve $0$ bilyeli kutuları dışlar. Oysa $(11,0,0)$ gibi bir kutunun bütün bilyeleri aldığı dağıtımlar da geçerlidir. Doğru sayı $C(n+k-1,\,k-1)$'dir.
+
+3. **b)** Her kutuya önce $2$ bilye konur, geriye $11-6=5$ bilye kalır. Kalan bilyeler serbestçe dağıtılır: $C(5+2,\,2)=C(7,2)=21$. Önce $2$'şer bilye vermeyi unutan öğrenci, a) şıkkının cevabı olan $78$'i bulur.
+
+4. **c)** Kutular özdeşken çubuk–yıldız kullanılamaz; çünkü $(2,2,7)$, $(2,7,2)$ ve $(7,2,2)$ artık aynı dağıtımdır. Her kutuda en az $2$ bilye olacak biçimde $11$'i büyükten küçüğe üç parçaya ayıralım: $7+2+2$, $6+3+2$, $5+4+2$, $5+3+3$, $4+4+3$. Toplam $5$ dağıtım vardır.
+
+5. **Sağlama:** c) şıkkındaki $5$ dağıtımın her biri, renkli kutularda kaç sıralamaya karşılık gelir? İki parçası eşit olan $7+2+2$, $5+3+3$ ve $4+4+3$ dağıtımlarının her biri $3$ sıralama, parçaları farklı olan $6+3+2$ ve $5+4+2$ ise $6$'şar sıralama verir: $3+3+3+6+6=21$. Bu, b) şıkkının cevabıdır.
+
+<Cevap>a) $78$ &nbsp; b) $21$ &nbsp; c) $5$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-7 */}
+<Ornek>
+
+<Soru>
+
+Bir dondurmacıda çikolatalı dâhil $5$ çeşit dondurma vardır. Bir kâseye $8$ top dondurma konacaktır. Aynı çeşitten istenildiği kadar top alınabilir; aynı çeşitteki toplar özdeştir ve topların konulma sırası önemsizdir. Kâsede **en çok $2$ top** çikolatalı dondurma olacaksa kaç farklı kâse hazırlanabilir?
+
+</Soru>
+
+<Ipucu>
+
+Bu bir tekrarlı seçimdir: $5$ çeşit kutu, $8$ top özdeş nesne. "En çok" koşulunu tümleyenle karşıla.
+
+</Ipucu>
+
+<Cozum>
+
+1. **Sınırsız kâseler:** $8$ özdeş top $5$ çeşide dağıtılır: $C(8+4,\,4)=C(12,4)=495$.
+
+2. **Koşulu aşan kâseler (en az $3$ çikolatalı):** Çikolatalı çeşide önce $3$ top verilir. Kalan $5$ top $5$ çeşide serbestçe dağıtılır: $C(5+4,\,4)=C(9,4)=126$.
+
+3. **İstenen:** $495-126=369$.
+
+4. **Yanlış yol:** "En çok $2$" koşulunu "en az $2$" gibi işleyip çikolatalıya önce $2$ top veren öğrenci $C(6+4,\,4)=C(10,4)=210$ bulur. Bu sayı, en az $2$ çikolatalı top içeren kâseleri sayar; istenen kâseler bunlar değildir.
+
+5. **Sağlama (doğrudan):** Çikolatalı top sayısı $0$ ise $8$ top kalan $4$ çeşide dağıtılır: $C(11,3)=165$. Çikolatalı top sayısı $1$ ise $C(10,3)=120$, $2$ ise $C(9,3)=84$ dağıtım vardır. Toplam $165+120+84=369$.
+
+<Cevap>$369$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-8 */}
+<Ornek>
+
+<Soru>
+
+$n$ tane özdeş kalem ve $2$ farklı kitap, $3$ farklı çocuğa dağıtılacaktır. Bir çocuk hiçbir şey almayabilir. Bütün dağıtımların sayısı $189$ olduğuna göre $n$ kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+Kalemler ile kitaplar birbirinden bağımsız dağıtılır. Özdeş kalemler çubuk–yıldızla, farklı kitaplar ise "her kitap kendi çocuğunu seçer" modeliyle sayılır.
+
+</Ipucu>
+
+<Cozum>
+
+1. **Kitaplar:** Her kitap $3$ çocuktan birine gider: $3^2=9$ yol.
+
+2. **Kalemler:** $n$ özdeş kalem $3$ çocuğa dağıtılır: $C(n+2,\,2)$ yol.
+
+3. **Denklem:** İki dağıtım art arda yapıldığından çarpılır: $9\cdot C(n+2,\,2)=189$, yani $C(n+2,\,2)=21$.
+
+4. $C(7,2)=21$ olduğundan $n+2=7$, buradan $n=5$ bulunur.
+
+5. **Yanlış yol:** Kalemleri de farklı sayan öğrenci $3^{n+2}=189$ denklemini yazar. Bu denklemin tam sayı çözümü yoktur, çünkü $189=3^3\cdot 7$ bir $3$ kuvveti değildir. Denklemin çözümsüz çıkması, modelin yanlış seçildiğini gösterir.
+
+6. **Sağlama:** $n=5$ için $9\cdot C(7,2)=9\cdot 21=189$. Ayrıca $n=4$ için $9\cdot 15=135$, $n=6$ için $9\cdot 28=252$ çıkar. Dağıtım sayısı $n$ ile birlikte arttığı için başka çözüm yoktur.
+
+<Cevap>$5$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Pekiştirme Soruları
+
+> Konuyu pekiştirmek için hazırlanmış özgün sorular.
+
+<Sorular slug="gruplara-ayirma-dagitma" />
+
+## Sık Yapılan Hatalar
+
+- **Adsız eşit gruplarda bölmeyi unutmak.** Art arda seçim gruplara gizlice ad verir; eşit büyüklükteki $k$ adsız grup için $k!$'e bölünür (Örnek 1, Örnek 3).
+- **Adlı gruplarda ya da büyüklükleri farklı gruplarda da bölmek.** Takımların adı varsa ya da grupların büyüklükleri farklıysa gruplar zaten ayırt edilir. $3, 2, 2$ yapısında yalnız $2!$'e bölünür (Örnek 2).
+- **Özdeş kutularda her deseni bölmek.** Bölme yalnız eşit büyüklükte grup içeren desenlerde yapılır; $3+2+1$ deseninde bölme yoktur (Örnek 4).
+- **Bayrak direklerinde direk içi sırayı unutmak.** $C(n+k-1,\,k-1)$ tek başına bayrakları özdeş sayar, $k^n$ ise direk içi sırayı yok sayar. Doğrusu $n!\cdot C(n+k-1,\,k-1)$'dir (Örnek 5).
+- **Özdeş nesneleri farklı saymak ya da tersi.** Kalemler özdeş, kitaplar farklıysa iki dağıtım ayrı modellerle sayılıp çarpılır (Örnek 8).
+- **Çubuk–yıldızda yanlış sayı kullanmak.** Doğrusu $C(n+k-1,\,k-1)$'dir; $C(n,\,k-1)$ çubukların kapladığı $k-1$ yeri unutur, $C(n+k,\,k)$ ise çubuk sayısını kutu sayısıyla karıştırır (Örnek 6).
+- **Pozitif ya da "en az $m$" koşulunda önce dağıtmayı unutmak; doğal sayıda $0$'ı dışlamak.** Alt sınır kadar nesne önce verilir, kalan serbestçe dağıtılır. Doğal sayılar $0$'dan başlar; $(11,0,0)$ gibi çözümleri atmak $78$ yerine $45$ verir (Örnek 6).
+- **Üst sınırı alt sınır gibi işlemek.** "En çok" koşulu tümleyenle karşılanır: sınırsız sayıdan sınırı aşanlar çıkarılır (Örnek 7).
+- **Özdeş nesne–özdeş kutu sorusunda çubuk–yıldız kullanmak.** Çubuk–yıldız sıralı çözümleri ayrı sayar; kutular özdeşken parçalar büyükten küçüğe yazılarak listelenir (Örnek 6, Bölüm 12).
+
+## Özet
+
+| Durum | Ne yapılır? | Örnek |
+| --- | --- | --- |
+| Farklı kişiler, adlı gruplar | Art arda seçim: $\dfrac{n!}{a!\cdot b!\cdot c!}$ | $10$ kişi, $5,3,2$: $2520$ |
+| Farklı kişiler, adsız eşit gruplar | Art arda seçim, eşit grup sayısının faktöriyeline böl | $8$ kişi, $4,2,2$: $210$ |
+| Adsız gruplar sonra odalara | Adsız ayırma sayısı $\times$ grupların odalara dağılışı | Örnek 2: $630$ |
+| Farklı nesneler, özdeş kutular | Desenlere ayır, eşit grup varsa böl, topla | $4$ top, $3$ kutu: $14$ |
+| Bayrak direkleri | $n!\cdot C(n+k-1,\,k-1)$ | Örnek 5: $360$ |
+| Özdeş nesneler, farklı kutular | $C(n+k-1,\,k-1)$ | $4$ şeker, $3$ çocuk: $15$ |
+| Her kutuda en az bir | $C(n-1,\,k-1)$ | $7$ defter, $3$ öğrenci: $15$ |
+| $x+y+z\le n$ | Yapay değişken ekle | $x+y+z\le 5$: $56$ |
+| Üst sınır | Tümleyen | $x+y+z=8,\ x\le 2$: $24$ |
+| Tekrarlı seçim | Çeşit = kutu, alınan = özdeş nesne | $3$ çeşitten $5$ simit: $21$ |
+| Özdeş nesneler, özdeş kutular | Büyükten küçüğe listele | $5$ top, $3$ kutu: $5$ |
+
+## Pratik İpucu
+
+Soruyu okuduktan sonra, hesaba başlamadan sorunun Bölüm 1'deki dört durum tablosunda hangi hücreye düştüğünü belirle. Sonra cevabını küçük bir örnekle denetle: aynı soruyu $3$ nesne ve $2$ kutuyla kur, elle listele ve yöntemin listeyle aynı sayıyı verip vermediğine bak.
+
+<KonuNav slug="gruplara-ayirma-dagitma" />

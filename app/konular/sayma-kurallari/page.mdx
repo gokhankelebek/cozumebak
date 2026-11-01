@@ -1,0 +1,531 @@
+import { CarpmaAgaci } from "@/components/figures/SaymaAgaciFig";
+import { SkKutuDiyagrami, SkGalibiyetAgaci, SkZarTablosu, SkYolAgi, SkBayrakListesi } from "@/components/figures/SaymaKurallariFig";
+import { topicMetadata } from "@/lib/seo";
+
+export const metadata = topicMetadata("sayma-kurallari");
+
+<Konu slug="sayma-kurallari" />
+
+<p className="lead">"Kaç farklı şekilde?" sorusunun neredeyse tamamı üç kurala dayanır: **ayrık durumlar toplanır, art arda verilen kararlar çarpılır, istenmeyen durumlar tümünden çıkarılır.** Bu sayfada faktöriyel ya da ezber formül kullanmadan, yalnızca kutu diyagramı, ağaç şeması ve tabloyla bu üç kuralı adım adım kuruyoruz. Bir aralıktaki tam sayıları saymayı, tekrarlı ve tekrarsız seçimi, "kim kimi seçiyor?" sorusunu ve durumlara ayırmayı da burada öğreniyoruz; sonraki bütün sayma konuları bu temelin üzerinde yükselir.</p>
+
+> **Bu sayfadaki varsayımlar**
+>
+> - Bu sayfadaki bütün rakam dizileri **kod** ya da **şifredir**: ilk hane $0$ olabilir. İlk basamağı $0$ olamayan **sayılar** [Rakamlarla Sayı Oluşturma](/konular/rakamlarla-sayi-olusturma) konusunda ele alınır.
+> - Aksi söylenmedikçe kişiler, nesneler, yollar ve renkler birbirinden **farklıdır**.
+> - Harf dizileri **anlamlı ya da anlamsız** olabilir; bir harfin tekrar kullanılıp kullanılamayacağı her soruda ayrıca belirtilir.
+> - Bir aralıktaki sayılar sorulduğunda uçların **dahil** olup olmadığı her soruda yazılıdır.
+> - Zarlar hilesizdir ve iki zar birbirinden ayırt edilir: $(2,5)$ ile $(5,2)$ farklı sonuçlardır.
+> - Bu sayfada faktöriyel, $P(n,r)$ ya da $C(n,r)$ gösterimi kullanılmaz; her şey kutu ve ağaçla sayılır.
+
+Bu konunun daha kısa bir anlatımı için [Permütasyon ve Kombinasyon](/konular/permutasyon-kombinasyon-tyt) özet sayfasına, konuya 10. sınıf düzeyinde bakmak için [Sayma ve Permütasyon](/konular/sayma-permutasyon-10) dersine göz atabilirsin. Maarif programında sayma, permütasyon ve kombinasyon 10. sınıfta işlenir.
+
+## 1. Sayma Neden Gerekir? Listelemenin Sınırı
+
+$A$, $B$, $C$ harfleriyle, harf tekrar edebilecek şekilde yazılan **iki harfli** kodları listeleyelim:
+
+$$AA,\ AB,\ AC,\ BA,\ BB,\ BC,\ CA,\ CB,\ CC$$
+
+Toplam $9$ kod var. Listelemek burada kolaydır ve kesin sonuç verir. Peki aynı üç harfle **beş harfli** kodlar istenseydi? Bu kez $243$ kod vardır (bu sayıyı 6. bölümde listelemeden bulacağız); hepsini yazmak hem uzun sürer hem de birini atlama ya da iki kez yazma riski taşır.
+
+Sayma kuralları, listeyi **yazmadan** listenin uzunluğunu bulmanın yoludur. Yine de listeleme değerini kaybetmez: küçük bir örneği listelemek, bir kuralın doğru kurulup kurulmadığını denetlemenin en güvenilir yoludur. Bu sayfadaki her çözüm böyle bir denetimle biter.
+
+## 2. Bir Aralıkta Kaç Tam Sayı Var? (Son − İlk) / Adım + 1
+
+$3$ ile $7$ arasındaki tam sayıları, uçlar dahil, listeleyelim: $3,4,5,6,7$. Toplam $5$ sayı var; oysa $7-3=4$'tür. Fark, sayıların **arasındaki boşlukları** sayar; sayıların kendisi boşluklardan **bir fazladır**. Bu, $10$ metrelik bir çit boyunca baştan sona $2$ metrede bir direk dikildiğinde $5$ değil $6$ direk gerekmesi de aynı nedene dayanır.
+
+| Aralık ($a<b$, tam sayılar) | Kaç tam sayı? |
+| --- | --- |
+| İki uç da dahil | $b-a+1$ |
+| Yalnız bir uç dahil | $b-a$ |
+| İki uç da hariç | $b-a-1$ |
+
+Sayılar belirli bir **adımla** artıyorsa (örneğin yalnız $3$'ün katları), önce aralığa giren **ilk** ve **son** terim bulunur:
+
+$$\text{terim sayısı}=\dfrac{\text{son}-\text{ilk}}{\text{adım}}+1$$
+
+Örneğin $20$ ile $50$ arasındaki (uçlar dahil) $3$'ün katları $21,24,\dots,48$'dir: $\dfrac{48-21}{3}+1=10$. Denetim: $21=3\cdot 7$ ve $48=3\cdot 16$ olduğundan bu sayılar $7$'den $16$'ya kadar olan çarpanlara karşılık gelir, yani $16-7+1=10$ tane.
+
+> **Dikkat:** Formüle aralığın uç değerleri değil, aralığa giren **ilk ve son terim** yazılır. Bu "+1" küçük bir ayrıntı gibi görünür; ama burada yapılan hata, sayfa numaralandırmadan sayı oluşturmaya kadar sonraki her konuya taşınır.
+
+## 3. Toplama Kuralı: "Ya … Ya da" ve Ayrık Durumlar
+
+Bir okul kantininde $4$ çeşit sandviç ve $3$ çeşit meyve suyu var. Bir öğrenci **ya bir sandviç ya da bir meyve suyu** alacaksa seçenekler iki ayrı gruptan gelir ve hiçbir seçenek iki grupta birden bulunamaz; [Kümeler](/konular/kumeler-tyt) dilinde iki grup **ayrık** kümelerdir. Bu yüzden seçenekler toplanır: $4+3=7$.
+
+> **Toplama kuralı:** Bir iş, ortak elemanı olmayan (ayrık) durumlardan **yalnız biriyle** yapılıyorsa ve bu durumlar sırasıyla $a$ ve $b$ yolla gerçekleşiyorsa, işin yapılış sayısı $a+b$'dir.
+
+Toplama kuralının tek şartı **ayrıklıktır**. İki durumun ortak elemanı varsa toplamak o elemanları iki kez sayar; bunun nasıl önleneceğini 5. çözümlü örnekte göreceğiz.
+
+## 4. Çarpma Kuralı: Adım Adım Karar Vermek
+
+Aynı öğrenci bu kez **bir sandviç ve bir meyve suyu** alacak olsun. Artık iki karar art arda verilir: önce sandviç ($4$ yol), sonra meyve suyu. Seçilen her sandviçin yanına $3$ meyve suyunun her biri gelebildiği için sonuç $3+3+3+3=4\cdot 3=12$'dir.
+
+> **Çarpma kuralı:** Bir iş art arda adımlarla yapılıyorsa ve birinci adım $a$ yolla, birinci adım **nasıl yapılırsa yapılsın** ikinci adım $b$ yolla yapılabiliyorsa, iş $a\cdot b$ yolla yapılır.
+
+Kalın yazılan şart önemlidir: ikinci adımın seçenek **sayısı** birinci adımda ne seçildiğine bağlı olmamalıdır. Bağlıysa sabit bir çarpım yazılamaz; bu durumda ağaç şeması kullanılır (4. çözümlü örnek).
+
+Toplama ile çarpmayı ayıran soru şudur: **Sonuçta bir şey mi seçiliyor, yoksa birkaç şey birlikte mi?** "Bir kitap" seçmek toplamadır; "bir kitap ve bir defter" seçmek çarpmadır.
+
+## 5. Ağaç Şeması, Tablo ve Kutu Diyagramı
+
+Sayma kurallarını uygulamak için üç araç kullanırız:
+
+- **Ağaç şeması:** Her karar bir dallanmadır; dalların uçları sayılır. Dalların sayısı adımdan adıma değişse bile işe yarar; bu yüzden en güvenilir araçtır.
+- **Tablo (ızgara):** İki adımlı işlerde satırlar birinci adımı, sütunlar ikinci adımı gösterir. İki zarın sonuçları gibi durumlarda bütün sonuçlar tek bakışta görülür.
+- **Kutu diyagramı:** Her adım için bir kutu çizilir, kutuya o adımın seçenek sayısı yazılır ve kutular çarpılır. Ağacın kısaltılmış hâlidir; her dal aynı sayıda alt dala ayrıldığında kullanılır.
+
+Ağaç ile kutunun aynı şeyi söylediğini küçük bir örnekte görelim. Bir lokantada $2$ çeşit çorba ($\text{Ç}_1$, $\text{Ç}_2$) ve $3$ çeşit ana yemek ($A_1$, $A_2$, $A_3$) var; bir menü bir çorba ve bir ana yemekten oluşuyor.
+
+<Figur>
+
+<CarpmaAgaci />
+
+<Altyazi>Şekil 1 — Ağaç şeması. Her çorba dalı $3$ ana yemek dalına ayrılır. Dal uçları menülerin listesidir: $\text{Ç}_1A_1$, $\text{Ç}_1A_2$, $\text{Ç}_1A_3$, $\text{Ç}_2A_1$, $\text{Ç}_2A_2$, $\text{Ç}_2A_3$, yani $6$ menü.</Altyazi>
+
+</Figur>
+
+Ağacın her katında dallar eşit sayıda olduğu için dal uçlarını tek tek saymak yerine iki kutu çizip çarpabiliriz: $\boxed{2}\cdot\boxed{3}=6$. Dallar eşit değilse (bir dal erken bitiyorsa ya da bir adımın seçenek sayısı öncekine bağlıysa) kutuya tek bir sayı yazılamaz; o zaman ağaç çizmeye devam ederiz.
+
+## 6. Tekrara İzin Var mı?
+
+$5$ farklı sembolden üç haneli bir dizi oluşturalım. Sembol **tekrar edebiliyorsa** her haneye yine $5$ seçenek kalır. Tekrar **edemiyorsa** her hane bir sembolü tüketir; seçenek sayısı $5$, $4$, $3$ diye azalır.
+
+<Figur>
+
+<SkKutuDiyagrami />
+
+<Altyazi>Şekil 2 — Kutu diyagramı. Beş sembolle üç haneli diziler: tekrar serbestse $5\cdot 5\cdot 5=125$, tekrar yoksa $5\cdot 4\cdot 3=60$. Kutuya yazılan sayı, o haneye kaç farklı sembol gelebileceğidir.</Altyazi>
+
+</Figur>
+
+Genel olarak $n$ farklı sembolden $r$ haneli dizi sayısı:
+
+- tekrar serbestse $\underbrace{n\cdot n\cdots n}_{r\text{ tane}}=n^r$,
+- tekrar yoksa $\underbrace{n\cdot (n-1)\cdot (n-2)\cdots}_{r\text{ tane}}$.
+
+İlk bölümdeki listeye dönelim: $A$, $B$, $C$ ile tekrar serbest iki harfli kodlar $3\cdot 3=9$ taneydi; listede de tam $9$ kod vardı. Beş harfli kodlar için listeye gerek yok: $3^5=243$.
+
+Çözüme başlamadan önce "rakamları farklı", "harf tekrar edebilir" gibi ifadeleri mutlaka ara; bu tek ifade sonucu tamamen değiştirir (2. çözümlü örnek).
+
+## 7. Kim Kimi Seçiyor? Mektuplar ve Kutular ($k^n$)
+
+$n$ farklı nesnenin her biri $k$ farklı seçenekten birine gidiyorsa, her nesne için ayrı bir karar verilir ve her kararda $k$ seçenek vardır:
+
+$$\underbrace{k\cdot k\cdots k}_{n\text{ nesne}}=k^n$$
+
+Taban ile üssü karıştırmamak için şunu sor: **Karar veren kim?** Kararı her bir mektup verir ("hangi kutuya gideyim?"), kutular karar vermez. Bu yüzden **üs, karar verenlerin sayısı; taban, her birinin seçenek sayısıdır.** Bir kutuya birden çok mektup atılabilmesi ve boş kutu kalabilmesi bu modelin parçasıdır (3. çözümlü örnek).
+
+## 8. Durumlara Ayırma: Önce Ayır, Her Durumda Çarp, Sonra Topla
+
+Bir soru tek bir çarpımla çözülemiyorsa, onu **ortak elemanı olmayan** durumlara ayırırız. Her durumu kendi içinde çarpma kuralıyla sayar, sonra durumları toplama kuralıyla birleştiririz.
+
+Örneğin $1$, $2$, $3$ rakamlarıyla (tekrar serbest) yazılabilen **iki ya da üç haneli** kodlar: iki haneliler $3\cdot 3=9$, üç haneliler $3\cdot 3\cdot 3=27$, toplam $9+27=36$. Bir kod hem iki hem üç haneli olamayacağı için durumlar ayrıktır.
+
+İyi bir durum ayrımının iki şartı vardır:
+
+1. **Ayrıklık:** Hiçbir sonuç iki duruma birden girmemeli.
+2. **Eksiksizlik:** Her sonuç mutlaka bir duruma girmeli.
+
+Bu iki şartı en kolay sağlayan yol, durumları **tek bir özelliğe** göre ayırmaktır: "ilk hane kaç?", "son hane $0$ mı, değil mi?" gibi.
+
+## 9. En Kısıtlı Adımdan Başlamak
+
+Kutu diyagramında kutuları soldan sağa doldurmak zorunda değiliz. Bir hanenin özel bir koşulu varsa (örneğin son hanenin tek olması gibi) **önce o hane doldurulur.** Tekrar yasaksa, yani seçimler birbirini etkiliyorsa, koşullu haneyi sona bırakırsak oraya kaç seçenek kaldığı önceki hanelerde ne seçildiğine bağlı olur ve çarpma kuralının şartı bozulur. Kısıtlı haneyi önce doldurduğumuzda sonraki her hanenin seçenek sayısı kesinleşir. Tekrar serbestse seçimler birbirini etkilemez; o zaman hangi haneden başlandığı sonucu değiştirmez (2. çözümlü örnek).
+
+## 10. Çıkarma (Tümleyen) Kuralı ve "En Az Bir"
+
+Bazen istenen durumları saymak zor, istenmeyenleri saymak kolaydır. O zaman:
+
+$$\text{istenen}=\text{tümü}-\text{istenmeyen}$$
+
+"En az bir" ifadesi bu kuralın en sık kullanıldığı yerdir. "En az bir sesli harf içeren" dizilerin tümleyeni "**hiç** sesli harf içermeyen" dizilerdir; "en çok bir" değil.
+
+| İstenen | Tümleyeni (istenmeyen) |
+| --- | --- |
+| en az bir | hiç (sıfır tane) |
+| en çok bir | en az iki |
+| hepsi aynı değil | hepsi aynı |
+| en az bir hane tekrar ediyor | bütün haneler farklı |
+
+Tümleyeni doğru kurduğunu şöyle denetle: istenen durumlarla istenmeyen durumlar birlikte **her sonucu tam bir kez** kapsamalıdır (6. çözümlü örnek). İki ayrı koşulun birlikte dışlandığı sorular (örneğin "ne $A$ başta ne $B$ sonda") [Dahil Etme–Hariç Tutma](/konular/dahil-etme-haric-tutma) konusunda ele alınır.
+
+## 11. Yol, Güzergâh ve Boyama Problemleri
+
+**Yol ağları.** Bir kasabadan diğerine gitmek, ara kasabalardan geçen art arda adımlardan oluşur; bu yüzden aynı güzergâh üzerindeki yollar **çarpılır**. Farklı ara kasabalardan geçen güzergâhlar ise ayrık durumlardır ve **toplanır** (7. çözümlü örnek).
+
+**Bayrak ve şerit boyama.** Üç dikey şeritli bir bayrağı kırmızı (K), lacivert (L) ve gri (G) renkleriyle, **komşu şeritler farklı renkte** olacak şekilde boyayalım; komşu olmayan birinci ve üçüncü şerit aynı renk olabilir. Önce listeleyelim:
+
+<Figur>
+
+<SkBayrakListesi />
+
+<Altyazi>Şekil 3 — Komşu şeritleri farklı renkte olan üç şeritli bayraklar. Her satırda birinci şeridin rengi sabittir ve satırda $4$ bayrak vardır; toplam $3\cdot 4=12$ bayrak.</Altyazi>
+
+</Figur>
+
+Şimdi aynı sonuca kutularla ulaşalım: birinci şerit $3$ renkten biri; ikinci şerit, birinciden farklı olmak üzere $2$ renkten biri; üçüncü şerit **yalnız ikinciden** farklı olmak zorunda olduğu için yine $2$ renkten biri. $3\cdot 2\cdot 2=12$. Liste ile kural aynı sonucu veriyor.
+
+Genel olarak $n$ renkle $k$ şeritli bir bayrakta komşu şeritler farklı olacaksa sonuç $n\cdot (n-1)\cdot (n-1)\cdots$ yani $n\cdot (n-1)^{k-1}$'dir: ilk şeritten sonraki her şerit yalnızca bir önceki şeritten farklı olmak zorundadır.
+
+**Harita boyama.** Bölgeler boyanırken **en çok komşusu olan bölgeden** başlanır; çünkü bu bölge, diğerlerinin kaç seçeneği kalacağını belirler. Örneğin ortada bir bölge ve onun çevresinde, birbirine değmeyen ama ortadaki bölgeye değen üç bölge olsun. Bölgeler $4$ renk arasından seçilerek, komşu bölgeler farklı renkte olacak şekilde boyansın (renklerin hepsinin kullanılması gerekmez): önce orta bölge ($4$), sonra dış bölgelerin her biri ortadakinden farklı ($3$, $3$, $3$): $4\cdot 3\cdot 3\cdot 3=108$.
+
+## 12. Özet: Hangi Kural Ne Zaman?
+
+| Sorudaki ipucu | Kural | Araç |
+| --- | --- | --- |
+| "ya … ya da", "biri", ayrık gruplardan tek seçim | Toplama | Durumları yan yana yaz |
+| "önce … sonra", "ve", birlikte birkaç seçim | Çarpma | Kutu diyagramı |
+| Seçenek sayısı önceki adıma bağlı | Çarpma, dal dal | Ağaç şeması |
+| Tek çarpım yetmiyor | Durumlara ayır, her durumda çarp, topla | Ağaç veya tablo |
+| Kısıtlı bir hane var | O haneden başla | Kutu diyagramı |
+| "en az bir", "hepsi aynı değil" | Çıkarma (tümleyen) | Tümü − istenmeyen |
+| Her nesne $k$ seçenekten birine gidiyor | $k^n$ (üs: karar verenler) | Kutu diyagramı |
+| Bir aralıktaki sayılar | $\dfrac{\text{son}-\text{ilk}}{\text{adım}}+1$ | Uçları kontrol et |
+
+## Çözümlü Sorular
+
+{/* ornek-1 */}
+<Ornek>
+
+<Soru>
+
+$48$ ile $123$ arasındaki tam sayılar ele alınıyor.
+
+**a)** Uçlar dahil kaç tam sayı vardır? Uçlar hariç kaç tam sayı vardır?
+
+**b)** Uçlar dahil bu aralıkta $4$'ün katı olan kaç tam sayı vardır?
+
+</Soru>
+
+<Ipucu>
+
+Fark, sayılar arasındaki boşlukları sayar. Katları sayarken önce aralığa giren ilk ve son $4$ katını bul.
+
+</Ipucu>
+
+<Cozum>
+
+1. **Yaygın hata:** $123-48=75$ yazıp bırakmak. Küçük bir aralıkta dene: $3$'ten $7$'ye uçlar dahil $5$ sayı vardır, fark ise $4$'tür. Fark her zaman bir eksik verir.
+
+2. **a)** Uçlar dahil: $123-48+1=76$. Uçlar hariç tutulunca $48$ ile $123$ listeden çıkar: $76-2=74$.
+
+3. **b)** Aralığa giren ilk $4$ katı $48$'in kendisidir ($48=4\cdot 12$). $123$'ü aşmayan en büyük $4$ katı $120$'dir ($120=4\cdot 30$). Formüle aralığın ucu olan $123$ değil, son terim olan $120$ yazılır:
+
+$$\dfrac{120-48}{4}+1=18+1=19$$
+
+4. $\dfrac{123-48}{4}=18{,}75$ gibi tam olmayan bir sonuç, formüle yanlış uç yazıldığının işaretidir.
+
+5. **Denetim:** $4\cdot 12,\ 4\cdot 13,\ \dots,\ 4\cdot 30$ sayıları, $12$'den $30$'a kadar olan çarpanlara karşılık gelir: $30-12+1=19$ tane.
+
+<Cevap>a) Uçlar dahil $76$, uçlar hariç $74$; b) $19$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-2 */}
+<Ornek>
+
+<Soru>
+
+$0, 1, 2, \dots, 9$ rakamları kullanılarak üç haneli **kodlar** oluşturulacaktır (kodun ilk hanesi $0$ olabilir).
+
+**a)** Rakamları birbirinden farklı ve son hanesi tek rakam olan kaç kod vardır?
+
+**b)** Rakam tekrarı serbest olsaydı, son hanesi tek rakam olan kaç kod olurdu?
+
+</Soru>
+
+<Ipucu>
+
+Koşulu olan hane son hanedir. Kutuları soldan değil, o haneden başlayarak doldur.
+
+</Ipucu>
+
+<Cozum>
+
+1. **Yaygın hata:** Soldan başlayıp $10\cdot 9\cdot 5=450$ yazmak. Birinci ve ikinci haneye tek rakamlar konduysa son haneye $5$ değil $3$ tek rakam kalır; birine tek, diğerine çift rakam konduysa $4$, ikisine de çift rakam konduysa $5$ kalır. Son kutunun seçenek sayısı önceki seçimlere bağlı olduğu için bu çarpım yanlıştır.
+
+2. **a)** Önce en kısıtlı haneyi doldur: son hane $1,3,5,7,9$'dan biri, $5$ seçenek.
+
+3. Birinci hane, son hanede kullanılan rakam dışındaki $9$ rakamdan biri: $9$ seçenek. İkinci hane, kullanılan iki rakam dışındaki $8$ rakamdan biri: $8$ seçenek.
+
+4. Her kutunun seçenek sayısı artık kesin: $5\cdot 9\cdot 8=360$.
+
+5. **b)** Tekrar serbestse son hane yine $5$ seçenek, diğer iki hanenin her biri $10$ seçenek: $10\cdot 10\cdot 5=500$. Tekrar serbest olduğunda hiçbir seçim diğerini etkilemez, bu yüzden hangi haneden başlandığı fark etmez.
+
+6. **Denetim (a):** Son hane hangi rakam olursa olsun, kalan iki hane $9\cdot 8=72$ yolla dolar. Son haneye gelebilecek $10$ rakamın $5$'i tek olduğundan $5\cdot 72=360$ bulunur. Rakamları farklı bütün kodlar $10\cdot 72=720$ olduğundan bu, tam yarısıdır. (Yarıya bölme yalnız kodlarda doğrudur: ilk hanesi $0$ olamayan sayılarda kalan hanelerin dolma sayısı son hanenin $0$ olup olmamasına bağlıdır ve iki grup eşit çıkmaz.)
+
+<Cevap>a) $360$; b) $500$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-3 */}
+<Ornek>
+
+<Soru>
+
+**a)** $4$ farklı mektup, $3$ farklı posta kutusuna atılacaktır. Bir kutuya birden çok mektup atılabilir ve boş kutu kalabilir. Bu iş kaç farklı şekilde yapılabilir?
+
+**b)** Bir binanın $3$ farklı giriş kapısı vardır. Bir gruptaki öğrencilerin her biri bu kapılardan yalnız birini kullanarak binaya giriyor; bir kapıdan birden çok öğrenci geçebilir. Hangi öğrencinin hangi kapıdan girdiği dikkate alındığında $243$ farklı giriş biçimi olduğuna göre grupta kaç öğrenci vardır?
+
+</Soru>
+
+<Ipucu>
+
+Kararı kim veriyor? Her mektup "hangi kutuya gideyim?" diye seçer. Üs, karar verenlerin sayısıdır.
+
+</Ipucu>
+
+<Cozum>
+
+1. **Yaygın hata:** $4^3=64$ yazmak, yani kutuların mektup seçtiğini düşünmek. Küçük bir örnekte dene: $2$ mektup ($m_1$, $m_2$) ve $3$ kutu ($K_1$, $K_2$, $K_3$). Önce $m_1$'in, sonra $m_2$'nin kutusunu yazalım:
+
+$$K_1K_1,\ K_1K_2,\ K_1K_3,\ K_2K_1,\ K_2K_2,\ K_2K_3,\ K_3K_1,\ K_3K_2,\ K_3K_3$$
+
+Liste $9=3^2$ elemanlıdır; $2^3=8$ değil.
+
+2. **a)** Her mektup için ayrı bir karar verilir ve her kararda $3$ seçenek vardır: $3\cdot 3\cdot 3\cdot 3=3^4=81$.
+
+3. **b)** Bu kez karar verenler öğrencilerdir; her biri $3$ kapıdan birini seçer. Öğrenci sayısı $n$ ise giriş biçimi sayısı $3^n$'dir.
+
+4. $3^n=243=3^5$ olduğundan $n=5$.
+
+5. **Denetim:** $5$ öğrenci için $3\cdot 3\cdot 3\cdot 3\cdot 3=243$. Ters kurulsaydı $n^3=243$ olurdu; $6^3=216$, $7^3=343$ olduğundan bu denklemin tam sayı çözümü yoktur. Bu da modelin ters kurulduğunu gösterir.
+
+<Cevap>a) $81$; b) $5$ öğrenci.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-4 */}
+<Ornek>
+
+<Soru>
+
+Ece ile Mert bir masa tenisi maçı yapıyor. Setlerde beraberlik yoktur; **iki seti ilk kazanan oyuncu** maçı kazanır ve maç bitince başka set oynanmaz. Kazanılan setlerin sırası dikkate alındığında maç kaç farklı biçimde sonuçlanabilir?
+
+</Soru>
+
+<Ipucu>
+
+Bir dal, oyunculardan biri ikinci setini kazandığında biter. Dalların hepsi aynı uzunlukta değildir.
+
+</Ipucu>
+
+<Cozum>
+
+1. **Yaygın hata:** "Her set $2$ sonuçlu, $3$ set var" deyip $2\cdot 2\cdot 2=8$ yazmak. Bu çarpım, her dalın üçüncü sete kadar uzadığını varsayar. Oysa ilk iki seti aynı oyuncu kazanırsa üçüncü set oynanmaz: $EEE$ ya da $EEM$ diye bir maç yoktur.
+
+2. Setin galibini yazarak ağacı kuralım ($E$: Ece, $M$: Mert).
+
+<Figur>
+
+<SkGalibiyetAgaci />
+
+<Altyazi>Şekil 4 — Eşit olmayan dallar. İlk iki set aynı oyuncunun olursa dal ikinci sette biter ($EE$, $MM$); setler paylaşılırsa üçüncü set oynanır. Dal uçları: $6$.</Altyazi>
+
+</Figur>
+
+3. Dal uçlarını sayalım: $EE$, $EME$, $EMM$, $MEE$, $MEM$, $MM$. Toplam $6$ biçim.
+
+4. **Denetim:** Ece'nin kazandığı maçlar $EE$, $EME$, $MEE$ olmak üzere $3$ tanedir. Durum iki oyuncu için simetrik olduğundan Mert'in de $3$ kazanma biçimi vardır: $3+3=6$.
+
+<Cevap>$6$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-5 */}
+<Ornek>
+
+<Soru>
+
+Biri kırmızı, biri mavi iki zar birlikte atılıyor ve sonuç (kırmızı zar, mavi zar) biçiminde sıralı ikili olarak yazılıyor. **İki zarın aynı sayıyı gösterdiği ya da üst yüzlerdeki sayıların toplamının $8$ olduğu** kaç farklı sonuç vardır?
+
+</Soru>
+
+<Ipucu>
+
+Önce $6\times 6$ tabloyu düşün. İki koşulu birlikte sağlayan bir sonuç var mı?
+
+</Ipucu>
+
+<Cozum>
+
+1. **Birinci yaygın hata:** $(3,5)$ ile $(5,3)$'ü aynı sonuç saymak. Kırmızı zarın $3$, mavinin $5$ gelmesi ile kırmızının $5$, mavinin $3$ gelmesi farklı sonuçlardır. Toplamı $8$ olan sonuçlar $(2,6)$, $(3,5)$, $(4,4)$, $(5,3)$, $(6,2)$ olmak üzere $5$ tanedir; $3$ değil.
+
+2. **İkinci yaygın hata:** "Aynı sayı $6$ sonuç, toplam $8$ ise $5$ sonuç" deyip $6+5=11$ yazmak. Tabloda görüldüğü gibi $(4,4)$ iki gruba birden girer; toplama kuralı yalnız **ayrık** durumlar için geçerlidir.
+
+<Figur>
+
+<SkZarTablosu />
+
+<Altyazi>Şekil 5 — İki zarın $36$ sıralı sonucu. Köşegen "aynı sayı", diğer işaretli hücreler "toplam $8$" sonuçlarıdır. $(4,4)$ iki grupta birden bulunduğu için iki grup doğrudan toplanamaz.</Altyazi>
+
+</Figur>
+
+3. **Doğru durum ayrımı:** Sonuçları tek bir özelliğe göre ayıralım: zarlar aynı mı, farklı mı?
+
+    - Durum 1, iki zar aynı sayıyı gösteriyor: $(1,1),\dots,(6,6)$, yani $6$ sonuç. (Bunlardan $(4,4)$'ün toplamı da $8$'dir; burada bir kez sayıldı.)
+    - Durum 2, zarlar farklı ve toplam $8$: $(2,6)$, $(6,2)$, $(3,5)$, $(5,3)$, yani $4$ sonuç.
+
+4. İki durum ayrıktır ve istenen her sonuç bunlardan birine girer: $6+4=10$.
+
+5. **Denetim:** Şekil 5'te işaretli hücreleri tek tek say: köşegende $6$, köşegen dışında toplamı $8$ olan $4$ hücre; toplam $10$ hücre.
+
+<Cevap>$10$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-6 */}
+<Ornek>
+
+<Soru>
+
+$A$, $E$, $K$, $L$, $M$ harfleri kullanılarak, harf tekrarı serbest olmak üzere, üç harfli (anlamlı ya da anlamsız) diziler yazılacaktır. Bu dizilerden kaçı **en az bir** sesli harf içerir?
+
+</Soru>
+
+<Ipucu>
+
+Sesli harfler $A$ ve $E$'dir. "En az bir"in tümleyeni "hiç"tir.
+
+</Ipucu>
+
+<Cozum>
+
+1. Bütün diziler: her harf $5$ seçenek, $5\cdot 5\cdot 5=125$.
+
+2. İstenmeyen diziler, **hiç** sesli harf içermeyenlerdir. Her harf $K$, $L$, $M$'den biri olmalı: $3\cdot 3\cdot 3=27$.
+
+3. İstenen: $125-27=98$.
+
+4. **Yaygın hata:** Tümleyeni "en çok bir sesli harf" almak. En çok bir sesli harf içeren diziler, hiç içermeyen $27$ dizi ile tam bir sesli harf içeren dizilerin toplamıdır. Tam bir sesli harf için: sesli harfin yeri $3$, sesli harf $2$, diğer iki yerin her biri $3$ sessizden biri, yani $3\cdot 2\cdot 3\cdot 3=54$. Böylece $125-(27+54)=44$ bulunur; bu sayı "en az bir"i değil, "**en az iki** sesli harf" içeren dizileri verir.
+
+5. **Denetim (doğrudan sayma):** Tam bir sesli: $54$. Tam iki sesli: sessiz harfin yeri $3$, sessiz harf $3$, iki sesli yerin her biri $2$, yani $3\cdot 3\cdot 2\cdot 2=36$. Üçü de sesli: $2\cdot 2\cdot 2=8$. Toplam $54+36+8=98$. İki yol aynı sonucu veriyor.
+
+<Cevap>$98$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-7 */}
+<Ornek>
+
+<Soru>
+
+$A$ ile $B$ kasabaları arasında $3$, $B$ ile $C$ kasabaları arasında $4$ farklı yol vardır. Ayrıca $A$ ile $C$ arasında $B$'ye uğramayan $2$ farklı doğrudan yol vardır. Başka yol yoktur ve bütün yollar iki yönlü kullanılabilir. Bir kasabadan diğerine tek yönde giderken izlenen yollara **güzergâh** diyoruz; bir güzergâhta hiçbir kasabaya iki kez uğranmaz.
+
+**a)** $A$'dan $C$'ye kaç farklı güzergâhla gidilebilir?
+
+**b)** Bir kişi $A$'dan $C$'ye gidip $A$'ya dönecektir; gidiş de dönüş de birer güzergâhtır. Dönüşte, gidişte izlediği güzergâhın aynısını izlemeyecekse bu yolculuk kaç farklı şekilde yapılabilir?
+
+**c)** Bu kişi gidiş ve dönüşte hiçbir yolu ikinci kez kullanmayacaksa yolculuk kaç farklı şekilde yapılabilir?
+
+</Soru>
+
+<Ipucu>
+
+$B$ üzerinden gitmek ile doğrudan gitmek ayrık durumlardır. (b) ile (c)'deki yasaklar farklıdır: biri bütün güzergâhı, diğeri tek tek yolları yasaklar.
+
+</Ipucu>
+
+<Cozum>
+
+<Figur>
+
+<SkYolAgi />
+
+<Altyazi>Şekil 6 — Yol ağı. $B$ üzerinden giden bir güzergâh, bir $A$–$B$ yolu ile bir $B$–$C$ yolunun art arda seçilmesidir; doğrudan yollar ayrı bir durumdur.</Altyazi>
+
+</Figur>
+
+1. **a)** $B$ üzerinden: önce bir $A$–$B$ yolu, sonra bir $B$–$C$ yolu seçilir, $3\cdot 4=12$. Doğrudan: $2$. Bu iki durum ayrık olduğundan $12+2=14$.
+
+2. **Yaygın hatalar (a):** Bütün sayıları toplamak ($3+4+2=9$), art arda gelen adımları toplamak demektir. Bütün sayıları çarpmak ($3\cdot 4\cdot 2=24$) ise doğrudan yolu $B$ üzerinden giden güzergâhın bir adımı saymak demektir; oysa doğrudan yolu kullanan kişi $B$'ye hiç uğramaz.
+
+3. **b)** Gidiş $14$ güzergâhtan biri. Dönüşte de $14$ güzergâh vardır, ama gidişte kullanılanı yasaktır: $13$. Sonuç: $14\cdot 13=182$.
+
+4. **c)** Bu kez yasak tek tek yollar içindir, bu yüzden dönüşte kaç seçenek kaldığı gidişte hangi tür güzergâhın kullanıldığına bağlıdır. Gidişin türüne göre durumlara ayıralım:
+
+    - **Gidiş $B$ üzerinden ($12$ güzergâh):** Dönüş $B$ üzerinden olursa $C$–$B$ için kullanılmamış $3$, $B$–$A$ için kullanılmamış $2$ yol kalır: $3\cdot 2=6$. Dönüş doğrudan olursa $2$ yolun ikisi de kullanılmamıştır: $2$. Dönüş: $6+2=8$. Bu durumda $12\cdot 8=96$.
+    - **Gidiş doğrudan ($2$ güzergâh):** Dönüş $B$ üzerinden olursa hiçbir yol kullanılmamıştır: $12$. Doğrudan dönüşte kullanılmamış $1$ yol kalır. Dönüş: $12+1=13$. Bu durumda $2\cdot 13=26$.
+
+5. (c) için toplam: $96+26=122$.
+
+6. **Denetim:** (c)'deki her yolculuk, aynı güzergâhı tekrar etmediği için (b)'de de sayılır; bu yüzden (c)'nin sonucu (b)'ninkinden büyük olamaz: $122<182$. Aradaki $60$ yolculuk, güzergâhı değiştirip bir yolu yine kullananlardır: gidiş ve dönüş $B$ üzerinden olup yalnız bir parçası ortak olanlar.
+
+<Cevap>a) $14$; b) $182$; c) $122$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-8 */}
+<Ornek>
+
+<Soru>
+
+$540=2^2\cdot 3^3\cdot 5$ sayısının kaç pozitif böleni vardır?
+
+</Soru>
+
+<Ipucu>
+
+Her pozitif bölen $2^a\cdot 3^b\cdot 5^c$ biçimindedir. Bir bölen yazmak, üç üssü art arda seçmek demektir.
+
+</Ipucu>
+
+<Cozum>
+
+1. $540$'ın bir pozitif böleninin asal çarpanları ancak $2$, $3$ ve $5$ olabilir ve her asalın üssü, $540$'taki üssünü aşamaz. Bu yüzden her bölen $2^a\cdot 3^b\cdot 5^c$ biçimindedir; burada $a\in\{0,1,2\}$, $b\in\{0,1,2,3\}$, $c\in\{0,1\}$.
+
+2. Bir bölen yazmak üç kararı art arda vermektir: $a$ için $3$, $b$ için $4$, $c$ için $2$ seçenek. Farklı üs seçimleri farklı sayılar verir.
+
+3. Çarpma kuralı: $3\cdot 4\cdot 2=24$.
+
+4. **Yaygın hata:** Üslerin kendisini çarpıp $2\cdot 3\cdot 1=6$ yazmak. Bu, üs olarak $0$ seçeneğini unutmaktır; oysa örneğin $5$ çarpanını hiç içermeyen bölenler ($c=0$) de vardır.
+
+5. **Denetim (küçük örnek):** $18=2\cdot 3^2$ için kural $2\cdot 3=6$ bölen verir. Liste: $1, 2, 3, 6, 9, 18$. Tam $6$ tane.
+
+Bölen sayısı ve asal çarpanlara ayırmayla ilgili diğer sorular için [Asal Çarpanlar ve Bölen Sayısı](/konular/asal-carpanlar-bolen-sayisi) konusuna bakabilirsin.
+
+<Cevap>$24$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Pekiştirme Soruları
+
+> Konuyu pekiştirmek için hazırlanmış özgün sorular.
+
+<Sorular slug="sayma-kurallari" />
+
+## Sık Yapılan Hatalar
+
+- **Ayrık durumları çarpmak, art arda adımları toplamak.** "Ya … ya da" ile tek bir seçim yapılıyorsa topla; "önce … sonra" ile birkaç seçim birlikte yapılıyorsa çarp. (7. örnek)
+- **Aralıktaki sayıları yalnız farkla saymak.** Uçlar dahilse $\text{son}-\text{ilk}+1$; adımlı sayımda formüle aralığın ucunu değil, aralığa giren son terimi yaz. (1. örnek)
+- **$k^n$ ile $n^k$'yi ters kurmak.** Üs, karar verenlerin (mektuplar, öğrenciler) sayısıdır. (3. örnek)
+- **Tekrar izni olup olmadığını okumamak.** "Rakamları farklı" yazıyorsa seçenekler azalır; tekrar serbestse her kutu aynı sayıyı alır. (2. örnek)
+- **Kısıtlı haneyi sona bırakmak.** Son kutunun seçenek sayısı önceki seçimlere bağlı kalır; kısıtlı haneyle başla. (2. örnek)
+- **Eşit olmayan dallarda sabit çarpım yazmak.** Bir dal erken bitiyorsa ağaç çiz ve dal uçlarını say. (4. örnek)
+- **Ayrık olmayan durumları toplamak ya da bir durumu atlamak.** Durumları tek bir özelliğe göre ayır; her sonuç tam bir duruma girmeli. (5. örnek)
+- **"En az bir"in tümleyenini "en çok bir" almak.** "En az bir"in tümleyeni "hiç"tir. (6. örnek)
+- **Gidiş-dönüş yasağını yanlış yere uygulamak.** "Aynı güzergâh olmasın" ile "hiçbir yol tekrar kullanılmasın" farklı sorulardır. (7. örnek)
+- **İki zarda $(2,5)$ ile $(5,2)$'yi tek sonuç saymak.** İki zar ayrı nesnelerdir; sonuçlar sıralı ikililerdir. (5. örnek)
+
+## Pratik İpucu
+
+- Çözüme başlamadan önce soruda şu ifadeleri işaretle: **ya / ve**, **farklı / tekrar serbest**, **dahil / hariç**, **en az / en çok / tam**, **kod / sayı**.
+- Kutu diyagramında kutuları soldan sağa değil, **en kısıtlıdan en serbeste** doldur.
+- Her sonucu küçük bir örnekle denetle: iki mektup ve üç kutu, iki ya da üç haneli kısa diziler gibi. Liste ile kural aynı sonucu vermiyorsa kural yanlış kurulmuştur.
+
+<KonuNav slug="sayma-kurallari" />
