@@ -17,9 +17,9 @@ export default function Konu({ slug }: { slug: string }) {
   const crumbs = breadcrumb(slug);
   const eyebrow = unit ? `${tm.label} · ${unit.title}` : tm.label;
 
-  // Prefer the real question-bank size over the manifest estimate, so the
-  // chip is truthful on topics whose interactive quiz has shipped.
-  const questionCount = getQuizCount(slug) ?? topic.questionCount;
+  // The manifest count covers worked examples + the quiz (audited against the
+  // live pages 2026-11-01); the bank alone (~6) undercounts the page.
+  const questionCount = topic.questionCount ?? getQuizCount(slug);
 
   const examChip = weightChip(topic.unit);
   const maarifLeaving = isMaarifLeaving(slug, topic.unit);

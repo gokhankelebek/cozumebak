@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { getTopic, trackMeta, getUnit, type Track } from "@/lib/curriculum";
 import { getPost, getTag } from "@/lib/blog";
 import { getYazili, SEASON } from "@/lib/yazili";
+import { getQuizCount } from "@/lib/sorular";
 
 export const SITE_URL = "https://cozumebak.com";
 export const SITE_NAME = "çözümebak";
@@ -26,6 +27,51 @@ export function trackMetadata(track: Track): Metadata {
   };
 }
 
+// Google cuts titles at ~600px (≈65 chars) and snippets at ~160 chars.
+const TITLE_MAX = 65;
+const DESCRIPTION_MAX = 160;
+
+/** "AYT" / "TYT" for exam tracks, "12. Sınıf" for grade tracks. */
+function trackTag(track: Track): string {
+  const tm = trackMeta(track);
+  return tm.kind === "exam" ? tm.shortLabel : tm.label;
+}
+
+/**
+ * Lesson <title> (before the "| çözümebak" template suffix). Leads with the
+ * topic name, then the longest search-intent suffix that still fits — the
+ * track tag also keeps same-named lessons (9. sınıf vs TYT) distinct.
+ */
+export function lessonTitle(slug: string): string {
+  const topic = getTopic(slug);
+  if (!topic) return "Konu";
+  const t = topic.title;
+  // Avoid "(…) (AYT)" when the title already ends in a parenthetical.
+  const tag = t.endsWith(")") ? `– ${trackTag(topic.track)}` : `(${trackTag(topic.track)})`;
+  const candidates = [
+    `${t} Konu Anlatımı ve Çözümlü Sorular ${tag}`,
+    `${t} Konu Anlatımı ${tag}`,
+    `${t} ${tag}`,
+  ];
+  const room = TITLE_MAX - ` | ${SITE_NAME}`.length;
+  return candidates.find((c) => c.length <= room) ?? t;
+}
+
+/** Meta description: the topic summary plus what the page offers, ≤160 chars. */
+export function lessonDescription(slug: string): string {
+  const topic = getTopic(slug);
+  if (!topic) return "";
+  const tag = trackTag(topic.track);
+  // Manifest count = worked examples + quiz on the page; the bank alone is ~6.
+  const n = topic.questionCount ?? getQuizCount(slug);
+  const base = (topic.summary ?? `${topic.title} konu anlatımı.`).replace(/\.?\s*$/, ".");
+  const tails = n
+    ? [`${tag} için ${n} çözümlü soru ve sık yapılan hatalar.`, `${n} çözümlü soru.`]
+    : [`${tag} için konu anlatımı ve sık yapılan hatalar.`];
+  const tail = tails.find((s) => base.length + 1 + s.length <= DESCRIPTION_MAX);
+  return tail ? `${base} ${tail}` : base;
+}
+
 /**
  * Per-topic metadata, derived from the manifest. Author writes one line in MDX:
  *   export const metadata = topicMetadata("turevin-tanimi");
@@ -37,10 +83,9 @@ export function topicMetadata(slug: string): Metadata {
   }
   const tm = trackMeta(topic.track);
   const unit = getUnit(topic.unit);
-  const title = `${topic.title} — ${tm.label}`;
-  const description =
-    topic.summary ??
-    `${topic.title} konu anlatımı ve adım adım çözümlü sorular. ${tm.label}${unit ? " · " + unit.title : ""}.`;
+  const pageTitle = lessonTitle(slug);
+  const title = `${pageTitle} | ${SITE_NAME}`;
+  const description = lessonDescription(slug);
   const url = `/konular/${slug}`;
   const isSoon = topic.status === "soon";
   // Distinct per-topic share card, generated on the fly by app/api/og.
@@ -52,7 +97,7 @@ export function topicMetadata(slug: string): Metadata {
   };
 
   return {
-    title: topic.title,
+    title: pageTitle,
     description,
     keywords: [topic.title, tm.label, unit?.title, ...(topic.keywords ?? [])].filter(
       Boolean,
