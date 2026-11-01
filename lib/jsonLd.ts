@@ -7,7 +7,7 @@ import { getTopic, getUnit, trackMeta, breadcrumb } from "@/lib/curriculum";
 import { getPost, tagsOf } from "@/lib/blog";
 import { getYazili } from "@/lib/yazili";
 import { getSoruTipleri } from "@/lib/soru-tipleri";
-import { SITE_URL, SITE_NAME } from "@/lib/seo";
+import { SITE_URL, SITE_NAME, lessonDescription } from "@/lib/seo";
 
 const abs = (path: string) => (path.startsWith("http") ? path : `${SITE_URL}${path}`);
 
@@ -73,9 +73,7 @@ export function learningResourceLd(slug: string) {
   const tm = trackMeta(topic.track);
   const unit = getUnit(topic.unit);
   const url = abs(`/konular/${slug}`);
-  const description =
-    topic.summary ??
-    `${topic.title} konu anlatımı ve adım adım çözümlü sorular. ${tm.label}${unit ? " · " + unit.title : ""}.`;
+  const description = lessonDescription(slug);
 
   return {
     "@context": "https://schema.org",
