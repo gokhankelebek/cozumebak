@@ -118,7 +118,7 @@ const kb: TopicSoruTipleri = {
       id: "yuzde-06-etiket-indirim-kar",
       ad: "Etiket-indirim-kâr zinciri (esnaf sorusu)",
       aciklama:
-        "Maliyet üzerine %a eklenerek etiket yazılır, etiket üzerinden %b indirim yapılır; maliyete göre net kâr/zarar istenir. İki farklı referans (etiket ve maliyet) aynı soruda — gerçek sınav ayarı.",
+        "Maliyet üzerine %a eklenerek etiket yazılır, etiket üzerinden %b indirim yapılır; maliyete göre net kâr/zarar istenir. İki farklı referans (etiket ve maliyet) aynı soruda.",
       yontem: [
         "Maliyete M de; etiket = M⋅(1 + a/100).",
         "İndirim ETİKET üzerinden: satış = etiket⋅(1 − b/100) = M⋅(1+a/100)(1−b/100).",

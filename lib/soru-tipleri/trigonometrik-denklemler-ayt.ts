@@ -116,7 +116,7 @@ const kb: TopicSoruTipleri = {
       id: "trig-denklem-06-iki-kat-aci-denklemi",
       ad: "İki kat açı içeren denklem (sin2x=cosx tipi)",
       aciklama:
-        "sin2x=2sinxcosx açılımı yapılır, ortak çarpana alınır. Özdeşlik + çarpanlara ayırma birleşimi; gerçek sınav ayarı burasıdır.",
+        "sin2x=2sinxcosx açılımı yapılır, ortak çarpana alınır. Özdeşlik + çarpanlara ayırma birleşimi.",
       yontem: [
         "İki kat açıyı aç: sin2x=2sinxcosx (gerekirse cos2x'in soruya uyan formunu seç).",
         "Her şeyi bir tarafa topla, ortak çarpana al — ASLA sadeleştirme (bölme) yapma.",

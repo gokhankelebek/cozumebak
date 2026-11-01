@@ -122,7 +122,7 @@ const kb: TopicSoruTipleri = {
       id: "mutlak-deger-07-kritik-nokta",
       ad: "Kritik nokta tablosuyla çok parçalı denklem",
       aciklama:
-        "|x−a| + |x−b| = c tipinde denklem: kritik noktalar sayı doğrusunu üç bölgeye ayırır, her bölgede mutlak değerler ayrı açılıp çözülür. Bulunan kök kendi bölgesinde olmalı — sınav ayarındaki eleme burada.",
+        "|x−a| + |x−b| = c tipinde denklem: kritik noktalar sayı doğrusunu üç bölgeye ayırır, her bölgede mutlak değerler ayrı açılıp çözülür. Bulunan kök kendi bölgesinde olmalı.",
       yontem: [
         "Kritik noktaları bul (her mutlak değerin içini sıfır yapan değerler) ve doğruyu bölgelere ayır.",
         "Her bölgede mutlak değerleri o bölgenin işaretine göre aç, denklemi çöz.",

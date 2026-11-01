@@ -121,7 +121,7 @@ const kb: TopicSoruTipleri = {
     },
     {
       id: "oran-oranti-07-oran-degisimi",
-      ad: "Ekleme–çıkarma ile oranın değişmesi (sınav ayarı)",
+      ad: "Ekleme–çıkarma ile oranın değişmesi",
       aciklama:
         "Başlangıç oranı verilir; bir gruba ekleme, diğerinden çıkarma yapılınca yeni oran oluşur. İki durum da k cinsinden yazılıp yeni orana eşitlenir. TYT'nin ayırt edici oran sorusu.",
       yontem: [

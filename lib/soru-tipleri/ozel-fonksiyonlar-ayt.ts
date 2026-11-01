@@ -84,7 +84,7 @@ const kb: TopicSoruTipleri = {
       id: "ozel-fonksiyonlar-05-karisik-zincir",
       ad: "Özel fonksiyonlarla değer zinciri — f(g(a))",
       aciklama:
-        "Parçalı, mutlak değer, taban ve sgn aynı soruda zincirlenir: içten dışa hesap. ÖSYM'nin bu konudaki standart sınav ayarı.",
+        "Parçalı, mutlak değer, taban ve sgn aynı soruda zincirlenir: içten dışa hesap.",
       yontem: [
         "En içteki fonksiyondan başla: önce g(a) değerini bitir.",
         "Çıkan sonucu dıştaki fonksiyona taşı; parçalıysa hangi parçaya düştüğünü koşuldan kontrol et.",

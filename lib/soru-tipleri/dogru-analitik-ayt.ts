@@ -125,7 +125,7 @@ const kb: TopicSoruTipleri = {
       id: "dogru-analitik-06-kesisim-ucgen-alani",
       ad: "İki doğrunun kesişimi ve üçgen alanı",
       aciklama:
-        "Doğruların kendi aralarında veya eksenlerle sınırladığı üçgenin alanı istenir. Kesişim noktası + eksen kesimleri bulunup ½⋅taban⋅yükseklik kurulur; gerçek sınav zorluğu buradadır.",
+        "Doğruların kendi aralarında veya eksenlerle sınırladığı üçgenin alanı istenir. Kesişim noktası + eksen kesimleri bulunup ½⋅taban⋅yükseklik kurulur.",
       yontem: [
         "Kesişim için denklemleri ortak çöz (y'leri eşitle veya taraf tarafa yok et).",
         "Eksen kesimlerini bul: x=0 ve y=0 koyarak köşeleri çıkar.",

@@ -120,7 +120,7 @@ const kb: TopicSoruTipleri = {
       id: "tek-cift-06-parite-zinciri-4-bolunebilme",
       ad: "Parite zinciri (a⋅b tek ⇒ (a+1)(b+1) tipi çıkarımlar)",
       aciklama:
-        "Bir koşuldan iki bilinmeyenin paritesi çıkarılır, sonra onlardan kurulan yeni ifadenin çiftliği hatta 4'e bölünebilirliği istenir. Sınav ayarındaki iki adımlı parite sorusu.",
+        "Bir koşuldan iki bilinmeyenin paritesi çıkarılır, sonra onlardan kurulan yeni ifadenin çiftliği hatta 4'e bölünebilirliği istenir.",
       yontem: [
         "a⋅b tek ⇒ a ve b ikisi de tektir (tek çarpan varsa çarpım çift olurdu).",
         "Tek + 1 = çift: a+1 ve b+1 ikisi de çifttir.",

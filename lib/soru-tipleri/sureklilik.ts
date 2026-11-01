@@ -118,7 +118,7 @@ const kb: TopicSoruTipleri = {
     },
     {
       id: "sureklilik-06-uc-parca-iki-parametre",
-      ad: "Üç parçalı fonksiyonda iki parametre (sınav ayarı)",
+      ad: "Üç parçalı fonksiyonda iki parametre",
       aciklama:
         "Üç parçalı fonksiyon tüm gerçek sayılarda sürekli; iki birleşme noktasından iki denklem kurulup a·b veya a+b istenir. Gerçek AYT zorluğu budur.",
       yontem: [

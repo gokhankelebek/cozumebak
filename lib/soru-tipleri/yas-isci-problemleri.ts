@@ -120,7 +120,7 @@ const kb: TopicSoruTipleri = {
       id: "yas-isci-06-iki-zaman-kat",
       ad: "n yıl önce k katı, m yıl sonra p katı (iki denklemli yaş)",
       aciklama:
-        "Geçmiş ve gelecekteki iki ayrı kat ilişkisi verilir; iki bilinmeyenli sistem kurulur. Yaş sorularının sınav ayarı.",
+        "Geçmiş ve gelecekteki iki ayrı kat ilişkisi verilir; iki bilinmeyenli sistem kurulur.",
       yontem: [
         "Bugünkü yaşlara x ve y de; her koşul için HERKESE aynı kaydırmayı uygula.",
         "İki denklem yaz: (x−n) = k(y−n) ve (x+m) = p(y+m).",
@@ -142,7 +142,7 @@ const kb: TopicSoruTipleri = {
       id: "yas-isci-07-kalan-is",
       ad: "İşin bir kısmı yapıldıktan sonra kalan iş",
       aciklama:
-        "Birlikte başlanır, biri ayrılır (ya da geç katılır); kalan işi kimin kaç günde bitirdiği istenir. Aşamalı kurgu, gerçek sınav zorluğu.",
+        "Birlikte başlanır, biri ayrılır (ya da geç katılır); kalan işi kimin kaç günde bitirdiği istenir. Aşamalı kurgu.",
       yontem: [
         "Birlikte çalışılan sürede biten işi hesapla: süre ⋅ (1/a + 1/b).",
         "Kalan işi bul: 1 − biten kısım.",

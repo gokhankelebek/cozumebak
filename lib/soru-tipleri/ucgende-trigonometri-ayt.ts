@@ -126,7 +126,7 @@ const kb: TopicSoruTipleri = {
     },
     {
       id: "ucgende-trig-06-sinus-kosinus-birlesik",
-      ad: "Sinüs + kosinüs teoremi birleşik (sınav ayarı)",
+      ad: "Sinüs + kosinüs teoremi birleşik",
       aciklama:
         "İki kenar ve aralarındaki açı verilir ama çevrel çember yarıçapı ya da başka bir açı istenir: önce kosinüsle eksik kenar bulunur, sonra sinüs teoremine geçilir. Gerçek AYT zorluğu bu zincirdedir.",
       yontem: [

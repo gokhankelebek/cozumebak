@@ -1,7 +1,7 @@
 import type { TopicQuiz } from "./types";
 
 // Limit Kavramı (AYT). HARVESTED from the lesson's existing static
-// "Sınav Tarzı Sorular" section — author-written ÖSYM-style questions,
+// "Pekiştirme Soruları" section (formerly "Sınav Tarzı Sorular") — practice questions,
 // now interactive. Answers preserved verbatim from the source solutions.
 const quiz: TopicQuiz = {
   slug: "limit-kavrami",
