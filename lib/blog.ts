@@ -43,6 +43,23 @@ export const TAGS: Tag[] = [
 
 export const POSTS: BlogPost[] = [
   {
+    slug: "ara-tatil-matematik-deneme-analizi",
+    title: "Kasım Ara Tatili: 9 Günde Matematikte Teşhis ve Onarım Planı",
+    description:
+      "Ara tatil 14-22 Kasım, dönemin tam ortası. İki deneme, dört etiketli çözümleme ve üç onarım günüyle gün gün plan; yeni konu çalışmadan sadece işlem ve okuma hatalarını düzeltmenin kaç net ettiğini gösteren hesap. 9-11. sınıflar ve veliler için de ayrı not.",
+    date: "2026-11-01",
+    tags: ["yks", "calisma-teknikleri", "egitim"],
+    readingMinutes: 7,
+    relatedTopics: [
+      "temel-kavramlar",
+      "sayi-problemleri",
+      "oran-oranti-tyt",
+      "birinci-derece-denklem-tyt",
+      "fonksiyon-kavrami-tyt",
+    ],
+    status: "published",
+  },
+  {
     slug: "birinci-yazililar-matematik",
     title: "Birinci Yazılılar: Sınıf Sınıf Matematik 1. Yazılı Rehberi (2026-2027)",
     description:

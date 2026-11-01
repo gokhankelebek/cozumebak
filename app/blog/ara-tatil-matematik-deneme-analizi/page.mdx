@@ -1,0 +1,123 @@
+import { postMetadata } from "@/lib/seo";
+
+export const metadata = postMetadata("ara-tatil-matematik-deneme-analizi");
+
+<BlogPost slug="ara-tatil-matematik-deneme-analizi" />
+
+<p className="lead">Kasım ara tatili 14 Kasım cumartesi başlıyor, 22 Kasım pazar bitiyor: 9 gün. Bu 9 günü "dinlenirim" ile "her gün 8 saat" arasında savrulmadan geçirmenin yolu, onu bir teşhis ve onarım haftasına çevirmek. Gün gün plan, bir denemeyi gerçekten çözümleme yöntemi ve tek bir yanlış listesinin kaç net ettiğini gösteren hesap.</p>
+
+Okul açılalı dokuz hafta oldu. MEB'in 2026-2027 takvimine göre ara tatilin ardından okula **23 Kasım**'da dönüyorsun ve yarıyıla kadar önünde yine dokuz hafta var. Yani bu tatil, dönemin tam ortası. Arkandaki dokuz haftanın ne bıraktığını görüp öndeki dokuz haftayı ona göre kurabileceğin tek an.
+
+Ara tatilin klasik iki hatası var. Birincisi tatili tamamen boş geçirip pazartesi sabahı hiçbir şey değişmemiş olarak okula dönmek. İkincisi "dokuz gün, günde 8 saat" diye başlayıp üçüncü gün tükenmek. İkisinin ortak noktası, **ne çalışacağını bilmeden** ne kadar çalışacağına karar vermek. Bu plan önce teşhisi koyuyor, sonra sadece teşhisin gösterdiği yere saat harcıyor.
+
+## 9 günün haritası
+
+| Gün | Tarih | Ne yapıyorsun | Süre |
+| --- | --- | --- | --- |
+| Cumartesi | 14 Kasım | Gerçekten dinlen | 0 |
+| Pazar | 15 Kasım | **1. deneme:** tam TYT, gerçek koşullarda | ~3 saat |
+| Pazartesi | 16 Kasım | **Çözümleme:** her yanlışı ve boşu sınıflandır, eksik listesini çıkar | 3 saat |
+| Salı | 17 Kasım | Onarım: listedeki 1. konu | 3 saat |
+| Çarşamba | 18 Kasım | Onarım: listedeki 2. konu | 3 saat |
+| Perşembe | 19 Kasım | Onarım: listedeki 3. konu | 3 saat |
+| Cuma | 20 Kasım | **2. deneme:** tam TYT | ~3 saat |
+| Cumartesi | 21 Kasım | Çözümleme + iki denemeyi karşılaştır | 2 saat |
+| Pazar | 22 Kasım | Hafif gün: öndeki 9 haftanın listesini yaz | 1 saat |
+
+Toplam yaklaşık **21 saat**. Bu, okul döneminde [hafta içi 2 saatlik planla](/blog/okul-doneminde-yks-matematik-calisma-plani) iki haftada çalıştığın kadar. Fazlası değil, çünkü bu haftanın değeri saatten değil, **yönünden** geliyor.
+
+İlk günün sıfır olması bir taviz değil. Dokuz hafta okul, üstüne yazılılar. Dinlenmeden başlayan bir tatil haftası, perşembe günü yorgunlukla biter.
+
+## 1. deneme: sınav provası gibi çöz
+
+Pazar sabahı denemeyi gerçek sınav saatinde, saat 10:15'te başlat. TYT'de 120 soru için **165 dakikan** var; matematik bölümünü ayrı çözeceksen 40 soruya **75 dakika** ver. Telefon başka odada, cevap anahtarına bakmak yok.
+
+Bir kural daha: **emin olmadan işaretlediğin her soruyu kitapçıkta yuvarlak içine al.** Bu soruları doğru da yapsan çözümlemede yanlış gibi ele alacaksın. Şansla gelen doğru, haziranda şansla gidecek bir puandır.
+
+Deneme bitince o akşam çözümlemeye oturma. Yorgun beyin her yanlışa "dikkatsizlik" der ve geçer. Çözümleme pazartesinin işi.
+
+## Çözümleme: 3 saatin en değerli kısmı
+
+Çözümlemeye üç grup soru girer: **yanlışlar, boşlar ve yuvarlak içindeki doğrular.** Her birini cevap anahtarına bakmadan önce bir kez daha, süresiz çöz. Sonra her soruya dört etiketten birini ver:
+
+| Etiket | Nasıl anlarsın | İlacı |
+| --- | --- | --- |
+| **Bilgi eksiği** | Süresiz de çözemedin | Konuya dön, anlatım + kolaydan zora soru |
+| **İşlem hatası** | Yöntem doğru, bir yerde işaret ya da çarpım kaydı | Ara adımları yaz, sonucu yerine koyup kontrol et |
+| **Okuma hatası** | "En az" yerine "en çok" buldun, "değildir"i kaçırdın | Soru kökünün altını çiz, sonucu soruya bir kez daha oku |
+| **Süre** | Süresiz rahatça çözdün, sınavda yetişmedi ya da boş bıraktın | Süreli karışık setler, tur taktiği |
+
+Bu ayrım neden bu kadar önemli? Çünkü her etiketin ilacı farklı ve en yaygın hata, dört farklı sorunu "daha çok soru çözmem lazım" diye tek ilaçla tedavi etmek.
+
+## Hesap: bir yanlış listesi kaç net eder?
+
+TYT'de dört yanlış bir doğruyu götürür, yani net hesabı şöyle:
+
+$$\text{Net} = D - \frac{Y}{4}$$
+
+Bir örnek üzerinden gidelim. Diyelim ki matematik bölümünde **22 doğru, 8 yanlış, 10 boş** yaptın:
+
+$$22 - \frac{8}{4} = 20 \text{ net}$$
+
+Çözümlemede yanlış ve boşları etiketledin ve şu tablo çıktı:
+
+- 8 yanlışın **4'ü işlem**, **3'ü okuma**, **1'i bilgi** hatası.
+- 10 boşun **6'sı bilgi** eksiği, **4'ü süre**.
+
+Şimdi sadece işlem ve okuma hatalarını düzelttiğini düşün: hiç yeni konu öğrenmeden. O 7 soru doğruya döner. Doğru sayın 29 olur, yanlışın 1'e iner, boşların 10'da kalır:
+
+$$29 - \frac{1}{4} = 28{,}75 \text{ net}$$
+
+**Yeni konu çalışmadan neredeyse 9 net.** Bu rakamlar uydurma bir örnek, senin denemen farklı bir tablo çıkaracak. Ama ders değişmiyor: listende önce **en ucuz** kayıpları bul. İşlem ve okuma hataları bir haftada azalır; yeni bir konuyu oturtmak ise aylar alır.
+
+## Eksik listesini sıralamak
+
+Çözümlemenin sonunda elinde "bilgi eksiği" etiketli sorular kalacak. Bunları konu başlığına göre grupla ve şu soruyu sor: **bu konu kaç soru kaybettirdi ve sınavda ne sıklıkla çıkıyor?**
+
+TYT'de ilk sırayı neredeyse her zaman aynı bloklar alır: [sayı problemleri](/konular/sayi-problemleri), [oran-orantı](/konular/oran-oranti-tyt) ve temel kavramlar. Bu üç başlık TYT matematiğinin omurgası. Senin listende de bunlardan biri varsa salı gününü ona ver. Konu sırası için [TYT Matematik](/tyt) sayfasındaki ünite düzenini kullanabilirsin.
+
+Listeye en fazla **3 konu** yaz. Yedi konuluk liste üç günde bitmez, bitmeyen liste de pazartesi okula "yine yetişemedim" duygusuyla dönmene yol açar.
+
+## Onarım günlerinin 3 saati
+
+Salı, çarşamba ve perşembe aynı kalıpla geçer:
+
+| Süre | Ne yapıyorsun |
+| --- | --- |
+| **20 dk** | Dünün yanlışlarını yeniden çöz (salı: denemedeki işlem/okuma hataları) |
+| **40 dk** | Günün konusu: anlatımı baştan oku, çözümlü örnekleri kâğıtta tekrar çöz |
+| **75 dk** | O konudan 30-40 soru, kolaydan zora |
+| **15 dk** | Ara |
+| **30 dk** | Karışık 10 soru: önceki günlerin konuları + denemeden benzer tipler |
+
+Son 30 dakikadaki karışık set önemli. Salı çalıştığın konuyu perşembe yeniden görmezsen cuma denemesinde tanıyamazsın.
+
+## 2. deneme: neti değil, etiketleri karşılaştır
+
+Cuma denemesinden sonra yapılan en büyük hata iki neti yan yana koyup sevinmek ya da üzülmek. Farklı yayınların denemeleri farklı zorluktadır; 3 netlik artış ya da düşüş tek başına bir şey söylemez.
+
+Bunun yerine cumartesi aynı çözümlemeyi yap ve **etiket sayılarını** karşılaştır:
+
+- İşlem ve okuma hataları azaldı mı? Azaldıysa kontrol alışkanlığı oturuyor.
+- Onardığın üç konudan soru geldiyse doğru yaptın mı?
+- Süre etiketi değişti mi?
+
+Bir şey değişmediyse bu bir başarısızlık değil, öndeki dokuz haftanın ilk maddesi.
+
+## 9, 10 ve 11. sınıftaysan
+
+Senin için deneme şart değil; en değerli belgen elindeki **yazılı kâğıdı.** [Birinci yazılı](/blog/birinci-yazililar-matematik) kâğıtların geldiyse aynı dört etiketi o kâğıda uygula. Kaybettiğin her puanın bilgiden mi, işlemden mi, okumadan mı geldiğini bil. İkinci yazılıda aynı tip soru yine gelecek.
+
+Senin tatil planın daha hafif: kâğıt çözümlemesi bir gün, sonra her gün **1 saat**, yazılıda zorlandığın konudan soru. Tatilin son iki gününü okulun sıradaki ünitesine ayır. Dönüşte ilk dersin "ilk kez duyuyorum" değil, "bunu okumuştum" hissiyle geçmesi bütün dönemi değiştirir.
+
+## Veliysen
+
+Çocuğuna bu hafta "kaç saat çalıştın?" diye sorma. Bunun yerine cumartesi akşamı **eksik listesini** görmek iste. Üç konu ve her birinin yanında kaç soru kaybettirdiği yazıyorsa hafta iyi geçmiştir, kaç saat sürdüğünden bağımsız olarak.
+
+## Pazar akşamı elinde ne olacak?
+
+İki deneme, iki çözümleme, onarılmış üç konu ve en önemlisi kendi hatalarının sınıflandırılmış haritası. Pazartesi okula dönerken öndeki dokuz haftanın ne yapacağını biliyor olacaksın: hangi konuya döneceğini, hangi alışkanlığı düzelteceğini, hangi soru tipinde süre kaybettiğini.
+
+Takıldığın her soruda: çözüme bak. 🧡
+
+<BlogPostFooter slug="ara-tatil-matematik-deneme-analizi" />
