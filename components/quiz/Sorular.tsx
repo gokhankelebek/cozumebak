@@ -42,7 +42,11 @@ export default function Sorular({ slug }: { slug: string }) {
         Her soruyu önce kendin dene; takıldığında <strong>Çözüme Bak</strong>.
       </p>
       <Tuzaklar slug={slug} />
-      <QuizClient slug={slug} questions={questions} />
+      <QuizClient
+        slug={slug}
+        questions={questions}
+        feedback={!!process.env.FEEDBACK_WEBHOOK_URL}
+      />
     </section>
   );
 }

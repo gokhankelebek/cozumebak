@@ -609,3 +609,20 @@ section[id]{scroll-margin-top:90px}
 .yazili-ekanlatim-item p{margin:0;color:#1f2c46;font-size:1.02rem;line-height:1.62}
 .yazili-mazeret{margin:10px 0 0;color:var(--ink-soft);font-size:.96rem}
 .yazili-plan-note{margin:12px 0 0;color:var(--ink-soft);font-size:.96rem}
+
+/* Student feedback: end-of-lesson vote and per-question report */
+.fb{background:var(--paper-2);border:1.5px solid var(--line);border-radius:18px;padding:20px 24px;margin:36px 0}
+.fb h2{font-family:var(--serif);font-weight:600;font-size:1.2rem;margin:0 0 12px}
+.fb-row{display:flex;align-items:center;flex-wrap:wrap;gap:10px}
+.fb-vote,.fb-send{font:inherit;font-weight:600;background:var(--paper);color:var(--ink);border:1.5px solid var(--line);border-radius:999px;padding:9px 20px;cursor:pointer;transition:border-color .15s}
+.fb-vote:hover:not(:disabled),.fb-send:hover:not(:disabled){border-color:var(--ink)}
+.fb-vote:disabled,.fb-send:disabled{opacity:.55;cursor:default}
+.konu .fb-thanks{margin:0;font-weight:600;color:var(--solve-deep)}
+.fb-error{color:var(--coral-deep);font-size:.94rem}
+.fb-comment{margin-top:12px}
+.fb-comment label span{display:block;margin-bottom:6px;color:var(--ink-soft);font-size:.96rem}
+.fb-comment textarea{width:100%;box-sizing:border-box;font:inherit;font-size:1rem;color:var(--ink);background:var(--paper);border:1.5px solid var(--line);border-radius:12px;padding:10px 12px;resize:vertical}
+.konu .fb-hint{margin:6px 0 10px;color:var(--ink-soft);font-size:.85rem}
+.fb-report{margin-top:12px;font-size:.92rem}
+.fb-report>button{font:inherit;background:none;border:0;padding:0;color:var(--ink-soft);text-decoration:underline;cursor:pointer}
+.fb-report>button:hover:not(:disabled){color:var(--coral-deep)}

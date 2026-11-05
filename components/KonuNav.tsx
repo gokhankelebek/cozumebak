@@ -2,6 +2,7 @@ import Link from "next/link";
 import { getTopic, getUnit, trackMeta, siblings, topicsByUnit } from "@/lib/curriculum";
 import { postsForTopic } from "@/lib/blog";
 import { getSoruTipleri, relatedBySoruTipi } from "@/lib/soru-tipleri";
+import { PageFeedback } from "@/components/FeedbackForm";
 
 // Manifest-driven lesson navigation. Author writes only <KonuNav slug="..."/>
 // at the bottom of the MDX. Renders, in order: a link to this topic's
@@ -44,6 +45,8 @@ export default function KonuNav({ slug }: { slug: string }) {
 
   return (
     <>
+      {/* Hidden until the Sheet is connected, so a tap can never go nowhere. */}
+      {process.env.FEEDBACK_WEBHOOK_URL && <PageFeedback slug={slug} />}
       {kb && kb.tipler.length > 0 && (
         <section className="konu-related konu-soru-tipleri" aria-label="Soru tipleri">
           <h2>Sınavda nasıl sorulur?</h2>
