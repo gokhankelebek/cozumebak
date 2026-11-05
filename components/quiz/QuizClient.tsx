@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, type ReactNode } from "react";
+import { track } from "@/lib/track";
 
 const LETTERS = ["A", "B", "C", "D", "E"];
 
@@ -65,6 +66,18 @@ export default function QuizClient({
   }, [slug, picks, questions]);
 
   const pick = (qi: number, oi: number) => {
+    // Track from the rendered state (the button is disabled once answered, so
+    // a repeat here is a no-op); the functional update below stays the guard.
+    if (picks[qi] === null) {
+      const correct = oi === questions[qi].correct;
+      track("quiz_answer", { topic: slug, question: qi + 1, correct });
+      const answeredNow = picks.filter((p) => p !== null).length + 1;
+      if (answeredNow === questions.length) {
+        const score =
+          picks.filter((p, i) => p === questions[i].correct).length + (correct ? 1 : 0);
+        track("quiz_complete", { topic: slug, score, total: questions.length });
+      }
+    }
     setPicks((prev) =>
       prev[qi] !== null // one shot per question, ÖSYM style
         ? prev
@@ -73,6 +86,7 @@ export default function QuizClient({
   };
 
   const reset = () => {
+    track("quiz_reset", { topic: slug });
     const blank = questions.map(() => null);
     setPicks(blank);
     setOpen(questions.map(() => false));

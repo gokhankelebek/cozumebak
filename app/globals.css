@@ -501,6 +501,27 @@ section[id]{scroll-margin-top:90px}
 .durum-read .durum-note{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 .durum-privacy{font-size:.82rem;color:var(--ink-faint);border-top:1px solid var(--line);padding-top:16px;margin:0}
 
+/* ── Homepage "Kaldığın yerden devam et" (returning students only) ─────────── */
+.devam{margin-top:-20px;margin-bottom:12px}
+.devam-card{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px 32px;background:var(--paper-2);border:1px solid var(--line);border-left:4px solid var(--coral);border-radius:var(--rad);padding:22px 26px;box-shadow:var(--shadow);max-width:880px}
+.devam-main{flex:1 1 360px;min-width:0}
+.devam-eyebrow{font-family:var(--mono);font-size:.7rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--coral);margin:0 0 6px}
+.devam-title{font-family:var(--serif);font-size:1.45rem;font-weight:600;letter-spacing:-.01em;line-height:1.25;margin:0}
+.devam-meta{font-family:var(--mono);font-size:.76rem;letter-spacing:.03em;color:var(--ink-faint);margin:6px 0 16px}
+.devam-actions{display:flex;flex-wrap:wrap;align-items:center;gap:12px 22px}
+.devam-actions .btn{max-width:100%;white-space:normal;text-align:left}
+.devam-link{font-size:.92rem;font-weight:600;color:var(--ink-soft);border-bottom:1px solid var(--line)}
+.devam-link:hover{color:var(--coral);border-bottom-color:var(--coral)}
+.devam-side{display:flex;flex-direction:column;align-items:flex-start;gap:10px;padding-left:24px;border-left:1px solid var(--line)}
+.devam-count{margin:0;display:flex;align-items:baseline;gap:8px}
+.devam-count strong{font-family:var(--serif);font-size:2.2rem;font-weight:600;line-height:1;color:var(--ink)}
+.devam-count span{font-family:var(--mono);font-size:.74rem;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-faint)}
+@media (max-width:640px){
+  .devam{margin-top:-12px}
+  .devam-card{padding:18px 18px}
+  .devam-side{padding-left:0;border-left:0;border-top:1px solid var(--line);padding-top:14px;width:100%}
+}
+
 /* ── Sınavda Tuzaklar (soru-tipleri KB surface, above the quiz) ─────────────── */
 .tuzaklar{background:var(--coral-tint);border:1px solid var(--line);border-left:4px solid var(--coral);border-radius:14px;padding:18px 22px;margin:0 0 26px}
 .tuzaklar-eyebrow{font-family:var(--mono);font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--coral-deep);margin:0 0 6px}
