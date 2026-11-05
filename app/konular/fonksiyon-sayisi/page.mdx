@@ -1,0 +1,534 @@
+import { FonkSayiSecim, FonkSayiOrtenGrup, FonkSayiCiftSayim } from "@/components/figures/FonkSayiFig";
+import { topicMetadata } from "@/lib/seo";
+
+export const metadata = topicMetadata("fonksiyon-sayisi");
+
+<Konu slug="fonksiyon-sayisi" />
+
+<p className="lead">Bu sayfanın tek fikri şudur: $A$'dan $B$'ye bir fonksiyon kurmak, $A$'nın **her elemanına** $B$'den **bir** görüntü seçmek demektir. Bu yüzden fonksiyon saymak, bu seçimleri saymaktır. Bire bir, örten, artan ya da "$f(1)=2$ olsun" gibi koşullar seçimlere yeni bir kural ekler; hangi seçimin kısıtlandığını görürsek sayım kendiliğinden kurulur.</p>
+
+> **Bu sayfadaki varsayımlar**
+>
+> - $A$ ve $B$ sonlu, boş olmayan kümelerdir. $s(A)=m$ ve $s(B)=n$ yazacağız. "$A$'dan $B$'ye fonksiyon" ifadesinde tanım kümesi $A$, değer kümesi $B$'dir; yön her soruda açıkça belirtilir.
+> - Tanım kümesindeki **her** eleman **tam olarak bir** görüntüye gider. Değer kümesindeki bir eleman birden çok elemanın görüntüsü olabilir ya da hiçbir elemanın görüntüsü olmayabilir.
+> - İki fonksiyon, en az bir elemanın görüntüsü farklıysa farklı sayılır.
+> - "Artan", "azalan" ve "azalmayan" sözcükleri, elemanları sayı olan kümelerde sayıların olağan sıralamasına göre kullanılır.
+> - Bağıntı sayısı bu sayfanın konusu değildir.
+
+Fonksiyon, tanım kümesi, değer kümesi, bire bir ve örten kavramlarını [Fonksiyon Kavramı](/konular/fonksiyon-kavrami-tyt) sayfasından hatırlayabilirsin. Burada [Sayma Kuralları](/konular/sayma-kurallari) sayfasındaki çarpma kuralını ve $k^n$ modelini, [Dahil Etme–Hariç Tutma](/konular/dahil-etme-haric-tutma) ilkesini ve [Gruplara Ayırma ve Dağıtma](/konular/gruplara-ayirma-dagitma) sayfasındaki yöntemleri kullanacağız. Sayma konusuna temelden bakmak istersen [Sayma ve Permütasyon (10. sınıf)](/konular/sayma-permutasyon-10) sayfası iyi bir başlangıçtır; Maarif programında sayma, permütasyon ve kombinasyon 10. sınıfta işlenir. Bütün alt konuların haritası [Permütasyon ve Kombinasyon](/konular/permutasyon-kombinasyon-tyt) sayfasındadır.
+
+## 1. Her Eleman Bir Görüntü Seçer: s(B)^s(A)
+
+Önce küçük bir örneği eksiksiz listeleyelim. $A=\{a,b\}$ ve $B=\{1,2,3\}$ olsun. Bir fonksiyon, $f(a)$ ve $f(b)$ değerleri seçilince tamamen belirlenir:
+
+| | $f(b)=1$ | $f(b)=2$ | $f(b)=3$ |
+| --- | --- | --- | --- |
+| $f(a)=1$ | $(1,1)$ | $(1,2)$ | $(1,3)$ |
+| $f(a)=2$ | $(2,1)$ | $(2,2)$ | $(2,3)$ |
+| $f(a)=3$ | $(3,1)$ | $(3,2)$ | $(3,3)$ |
+
+Tabloda her hücre bir fonksiyondur; $(f(a), f(b))$ biçiminde yazdık. Toplam $9=3\cdot 3=3^2$ fonksiyon var. $a$ elemanı $3$ görüntüden birini seçer, $b$ elemanı da bu seçimden bağımsız olarak yine $3$ görüntüden birini seçer. Çarpma kuralı $3\cdot 3$ verir.
+
+Genel durumda $A$'nın $m$ elemanının her biri $n$ seçenekten birini seçer:
+
+$$\text{A'dan B'ye fonksiyon sayısı}=\underbrace{n\cdot n\cdots n}_{m\text{ eleman}}=n^m=s(B)^{s(A)}$$
+
+<Figur>
+
+<FonkSayiSecim />
+
+<Altyazi>Şekil 1 — $A=\{a,b,c\}$ kümesinin her elemanı $B=\{1,2,3,4\}$ kümesinden bir görüntü seçer. Gri çizgiler bütün seçenekleri, kırmızı oklar bunlardan birini ($f(a)=2$, $f(b)=2$, $f(c)=4$) gösterir. Her elemanın $4$ seçeneği olduğundan $4\cdot 4\cdot 4=4^3=64$ fonksiyon vardır.</Altyazi>
+
+</Figur>
+
+Bu sayım, [Sayma Kuralları](/konular/sayma-kurallari) sayfasındaki "mektuplar kutulara atılıyor" modelinin aynısıdır: mektuplar tanım kümesinin elemanları, kutular değer kümesinin elemanlarıdır. Orada sorduğumuz "karar veren kim?" sorusunun cevabı burada hep aynıdır: karar veren, tanım kümesinin elemanlarıdır.
+
+> **Fonksiyon olmayan eşlemeler:** Bir elemanı görüntüsüz bırakan ya da bir elemana iki görüntü veren eşleme fonksiyon değildir. Bu yüzden sayımda tanım kümesindeki **her** elemanın seçimi çarpıma girmelidir. Koşullu sorularda koşulsuz kalan elemanları unutmak bu konudaki en yaygın hatalardan biridir.
+
+## 2. Yön Tuzağı: A'dan B'ye mi, B'den A'ya mı?
+
+Üs, **seçim yapanların** sayısıdır; seçim yapanlar da tanım kümesinin elemanlarıdır. Taban, seçenek sayısı, yani değer kümesinin eleman sayısıdır.
+
+| Yön | Seçim yapan | Seçenek sayısı | Sayı |
+| --- | --- | --- | --- |
+| $A$'dan $B$'ye | $A$'nın $m$ elemanı | $n$ | $n^m$ |
+| $B$'den $A$'ya | $B$'nin $n$ elemanı | $m$ | $m^n$ |
+
+$m\neq n$ ise bu iki sayı genellikle farklıdır. Yukarıdaki listede $A=\{a,b\}$'den $B=\{1,2,3\}$'e $3^2=9$ fonksiyon vardı. Ters yönde $B$'nin üç elemanının her biri $a$ ya da $b$'yi seçer: $2^3=8$ fonksiyon. Üssü ters yazan öğrenci $A$'dan $B$'ye sayımda $8$ bulur; oysa tabloda tam $9$ hücre vardır.
+
+## 3. Sabit ve Sabit Olmayan Fonksiyonlar
+
+Tanım kümesinin bütün elemanlarını **aynı** görüntüye gönderen fonksiyona **sabit fonksiyon** denir. Sabit fonksiyonu belirlemek için yalnızca o ortak görüntüyü seçmek yeterlidir:
+
+$$\text{A'dan B'ye sabit fonksiyon sayısı}=n=s(B)$$
+
+"Sabit olmayan" fonksiyonları doğrudan saymak zordur: en az iki farklı görüntü kullanılmalıdır ve bunun pek çok biçimi vardır. Tümleyen yolu çok daha kısadır:
+
+$$\text{sabit olmayan fonksiyon sayısı}=n^m-n$$
+
+Listelediğimiz $9$ fonksiyondan sabit olanlar köşegendeki $(1,1)$, $(2,2)$, $(3,3)$'tür. Sabit olmayan $9-3=6$ fonksiyon kalır.
+
+## 4. Bire Bir Fonksiyon Sayısı: P(n, m)
+
+Bire bir fonksiyonda tanım kümesinin farklı elemanları farklı görüntülere gider. Bu kez seçimler birbirini etkiler: bir görüntü kullanıldıktan sonra sonraki elemanlar onu seçemez.
+
+Listemize dönelim: $A=\{a,b\}$, $B=\{1,2,3\}$. Bire bir olanlar köşegen dışındaki altı hücredir: $(1,2)$, $(1,3)$, $(2,1)$, $(2,3)$, $(3,1)$, $(3,2)$. Çarpma kuralıyla: $a$ için $3$ seçenek, $b$ için $a$'nın görüntüsü dışında kalan $2$ seçenek, toplam $3\cdot 2=6$.
+
+$$\text{A'dan B'ye bire bir fonksiyon sayısı}=n\cdot(n-1)\cdots(n-m+1)=P(n,m)=\dfrac{n!}{(n-m)!}\qquad (m\le n)$$
+
+**Neden kombinasyon değil?** $(1,2)$ ile $(2,1)$ aynı görüntü kümesini, yani $\{1,2\}$'yi kullanır; ama ilkinde $f(a)=1$, ikincisinde $f(a)=2$'dir. Bunlar iki ayrı fonksiyondur. Hangi elemanın hangi görüntüye gittiği önemli olduğundan sıralı seçim yaparız. $C(3,2)=3$ yazmak, bu altı fonksiyonun yarısını kaybetmek demektir.
+
+**$m>n$ ise bire bir fonksiyon yoktur.** Tanım kümesindeki $m$ elemana, $n$ görüntü arasından birbirinden farklı görüntüler verilemez; en az iki eleman aynı görüntüyü paylaşmak zorunda kalır. Bu durumda bire bir fonksiyon sayısı $0$'dır. (Bu, [Dahil Etme–Hariç Tutma](/konular/dahil-etme-haric-tutma) sayfasındaki güvercin yuvası ilkesinin en basit hâlidir.)
+
+## 5. Bire Bir ve Örten: n Elemandan n Elemana n!
+
+$s(A)=s(B)=n$ ise bire bir her fonksiyon aynı zamanda örtendir: $n$ farklı görüntü kullanılır ve değer kümesinde de tam $n$ eleman vardır. Tersine, bu durumda örten her fonksiyon da bire birdir: $n$ elemanın $n$ görüntünün hepsine ulaşması için hiçbir görüntünün iki kez kullanılmaması gerekir. $n$ elemanlı bir kümeden $n$ elemanlı bir kümeye tanımlanan bire bir ve örten fonksiyonların sayısı şudur:
+
+$$P(n,n)=n!$$
+
+Örneğin $A=\{1,2,3\}$'ten kendisine bire bir ve örten fonksiyon sayısı $3!=6$'dır. Bu fonksiyonlar, $1,2,3$ sayılarının altı farklı sıralanışına karşılık gelir.
+
+## 6. Koşullu Fonksiyonlar: Sabit Değer, f(a) ≠ a, Tek–Çift Koşulu
+
+Koşullu sorularda yöntem hep aynıdır: **her eleman için kaç seçenek kaldığını** yaz ve çarp. Koşulun bağladığı elemanları önce, serbest elemanları sonra yerleştir.
+
+| Koşul | Etkilenen elemanın seçenek sayısı | Not |
+| --- | --- | --- |
+| $f(1)=2$ | $1$ | Diğer elemanlar serbest kalır |
+| $f(1)\in K$ ($K\subseteq B$) | $s(K)$ | Görüntü bir alt kümeyle sınırlı |
+| Her $a$ için $f(a)\neq a$ ($A=B$) | $n-1$ (her eleman için) | Sonuç $(n-1)^n$ |
+| $f(1)\neq f(2)$ | $f(1)$ için $n$, $f(2)$ için $n-1$ | Tümleyen: $n^m-n^{m-1}$ |
+| $f(1)+f(2)$ çift | Tek–tek ya da çift–çift | İki durum toplanır |
+
+Tablodaki bazı satırları ve benzer bir koşulu kısaca açıklayalım:
+
+- **Her $a$ için $f(a)\neq a$:** $A=B=\{1,2,3\}$ olsun. $f(1)$, $1$ dışındaki iki değerden birini; $f(2)$, $2$ dışındaki iki değerden birini; $f(3)$ de $3$ dışındaki iki değerden birini seçer. Toplam $2\cdot 2\cdot 2=8$ fonksiyon vardır. Burada fonksiyon bire bir olmak zorunda değildir; örneğin $f(1)=2$, $f(2)=1$, $f(3)=1$ de sayılır.
+- **$f(1)\neq f(2)$:** Tümleyen olayda $f(1)=f(2)$'dir. Bu ikiliye ortak bir görüntü seçmek $n$ yolla yapılır; diğer $m-2$ elemanın her biri serbesttir. Tümleyende $n\cdot n^{m-2}=n^{m-1}$ fonksiyon olduğundan istenen sayı $n^m-n^{m-1}$ olur.
+- **$f(1)+f(2)$ çift:** İki tam sayının toplamı ancak ikisi de tek ya da ikisi de çiftse çifttir. $B=\{1,2,3,4,5,6\}$ için $(f(1),f(2))$ ikilisi tek–tek olarak $3\cdot 3=9$, çift–çift olarak $3\cdot 3=9$ yolla seçilir; toplam $18$ ikili vardır. Diğer elemanlar yine serbesttir.
+- **$f(x)\ge x$ türü koşullar:** Küçük kümelerde her eleman için uygun görüntüleri tek tek yaz. $A=B=\{1,2,3\}$ ise $f(1)\ge 1$ için $3$, $f(2)\ge 2$ için $2$, $f(3)\ge 3$ için $1$ seçenek vardır; toplam $3\cdot 2\cdot 1=6$.
+
+## 7. Kesin Artan Fonksiyonlar: C(n, m)
+
+$A=\{1,2\}$ ve $B=\{1,2,3,4\}$ olsun. $f(1)<f(2)$ olan fonksiyonları listeleyelim:
+
+$$(1,2),\ (1,3),\ (1,4),\ (2,3),\ (2,4),\ (3,4)$$
+
+Altı fonksiyon var. Bu sayı $C(4,2)=6$'ya eşittir ve bu bir rastlantı değildir. Kesin artan bir fonksiyonda görüntüler birbirinden farklıdır, üstelik sıraları da önceden bellidir: en küçük görüntü $f(1)$'e, bir sonraki $f(2)$'ye gider. Dolayısıyla yalnızca **hangi** görüntülerin kullanılacağını seçmek yeterlidir; yerleştirme tek biçimde yapılır.
+
+$$\text{A'dan B'ye kesin artan fonksiyon sayısı}=C(n,m)=\dbinom{n}{m}$$
+
+Kesin azalan fonksiyonlar için de aynı sayı geçerlidir: seçilen görüntüler bu kez büyükten küçüğe yerleştirilir, yine tek bir yol vardır. Bire bir fonksiyon sayısı $P(n,m)=C(n,m)\cdot m!$ olduğundan, her görüntü kümesinin $m!$ yerleştirmesinden yalnız biri kesin artandır.
+
+## 8. Azalmayan Fonksiyonlar: Tekrarlı Seçim (Derinleştirme)
+
+Azalmayan fonksiyonda $f(1)\le f(2)\le\cdots$ olur; yani eşit görüntülere izin verilir. Bu, kesin artandan farklı bir sayımdır. $A=\{1,2\}$, $B=\{1,2,3\}$ için listeleyelim:
+
+$$(1,1),\ (1,2),\ (1,3),\ (2,2),\ (2,3),\ (3,3)$$
+
+Altı fonksiyon var; kesin artan olanlar ise yalnızca $(1,2)$, $(1,3)$, $(2,3)$'tür.
+
+Azalmayan bir fonksiyon, $B$'nin her elemanının **kaç kez** görüntü olarak kullanıldığı bilinince tamamen belirlenir; sıralama zaten bellidir. $B$'nin elemanlarının kullanılma sayıları $x_1, x_2, \dots, x_n$ ise
+
+$$x_1+x_2+\cdots+x_n=m,\qquad x_i\ge 0$$
+
+denkleminin her doğal sayı çözümü bir azalmayan fonksiyona karşılık gelir. Bu denklemin çözüm sayısı [Gruplara Ayırma ve Dağıtma](/konular/gruplara-ayirma-dagitma) sayfasındaki çubuk–yıldız yöntemiyle bulunur:
+
+$$\text{A'dan B'ye azalmayan fonksiyon sayısı}=C(m+n-1,\ m)$$
+
+Gruplara Ayırma sayfasındaki $C(m+n-1,\ n-1)$ yazımı da aynı sayıdır, çünkü $C(r,k)=C(r,r-k)$. Listemizde $m=2$, $n=3$ için $C(4,2)=6$ çıkar.
+
+## 9. Örten Fonksiyon: Gruplayarak Say
+
+Örten fonksiyonda değer kümesinin **her** elemanı en az bir kez görüntü olur.
+
+**$s(A)<s(B)$ ise örten fonksiyon yoktur.** $m$ eleman en çok $m$ farklı görüntü üretir; $m<n$ ise değer kümesinin en az bir elemanı görüntü olmadan kalır.
+
+**İki elemanlı değer kümesi.** $B=\{x,y\}$ ise $2^m$ fonksiyondan yalnız ikisi örten değildir: hepsini $x$'e gönderen ve hepsini $y$'ye gönderen sabit fonksiyonlar. Bu yüzden örten fonksiyon sayısı $2^m-2$'dir. $m=3$ için $2^3-2=6$ olur.
+
+**Üç elemanlı değer kümesi: gruplama.** Örten bir fonksiyon, tanım kümesini **boş olmayan üç bloğa** ayırır (aynı görüntüye gidenler bir blok oluşturur) ve bu blokları $B$'nin üç elemanıyla eşler. $A=\{1,2,3,4\}$'ten $B=\{a,b,c\}$'ye dört eleman üç bloğa ancak $2$-$1$-$1$ biçiminde ayrılabilir:
+
+1. Aynı görüntüyü paylaşacak ikiliyi seç: $C(4,2)=6$.
+2. Oluşan üç bloğu (ikili ve iki tekli) $a$, $b$, $c$'ye eşle: $3!=6$.
+
+Toplam $6\cdot 6=36$ örten fonksiyon vardır.
+
+<Figur>
+
+<FonkSayiOrtenGrup />
+
+<Altyazi>Şekil 2 — Dört elemandan üç elemana örten fonksiyonun gruplanarak sayılması. Önce aynı görüntüyü paylaşacak ikili seçilir ($C(4,2)=6$ yol), sonra üç blok $a$, $b$, $c$'ye eşlenir ($3!=6$ yol). Toplam $36$.</Altyazi>
+
+</Figur>
+
+**Eşit büyüklükteki bloklar.** Aynı büyüklükte iki blok varsa, bloklar sırayla seçildiğinde sonuç bölünmelidir; çünkü hangi bloğun önce seçildiğinin bir önemi yoktur. $A=\{1,2,3,4\}$'ten $\{x,y\}$'ye örten fonksiyonları desenlere ayırarak sayalım:
+
+- $3$-$1$ deseni: üçlü blok $C(4,3)=4$ yolla seçilir, iki blok $x$ ve $y$'ye $2!$ yolla eşlenir: $4\cdot 2=8$.
+- $2$-$2$ deseni: önce bir ikili, sonra kalan ikili seçilirse $C(4,2)\cdot C(2,2)=6$ bulunur. Ama $\{1,2\},\{3,4\}$ ayrımı ile $\{3,4\},\{1,2\}$ ayrımı aynı ayrımdır; her ayrım iki kez sayılmıştır. Doğru blok sayısı $\dfrac{6}{2!}=3$'tür. Bloklar $x$ ve $y$'ye $2!$ yolla eşlenir: $3\cdot 2=6$.
+
+Toplam $8+6=14=2^4-2$. İki yöntem aynı sonucu verdi; $2!$'ye bölmeseydik $20$ bulurduk.
+
+**Aynı sayım, farklı bir dil.** "$4$ farklı topu $3$ farklı kutuya, hiçbir kutu boş kalmayacak biçimde yerleştir" sorusu da tam olarak örten fonksiyon sayısını sorar: toplar tanım kümesi, kutular değer kümesidir; "hiçbir kutu boş değil" ise "her kutu bir görüntüdür" demektir. Cevap yine $36$'dır.
+
+**"Önce her kutuya bir top koy" neden yanlış?** Sık görülen bir yol şudur: "Önce her kutuya bir top koyalım, $P(4,3)=24$ yol; kalan topu üç kutudan birine atalım, $3$ yol; toplam $72$." Bu sayı doğru cevabın tam iki katıdır. Sebep Şekil 3'te görülüyor: $K_1$'de iki top bulunan her dağılımda, o iki toptan hangisinin "ilk turda" konulduğu seçilebilir. Aynı son dağılıma iki farklı yoldan ulaşılır ve yöntem bunu iki kez sayar.
+
+<Figur>
+
+<FonkSayiCiftSayim />
+
+<Altyazi>Şekil 3 — Yol 1'de ilk turda $1$, sonra $4$ numaralı top $K_1$'e konuyor; Yol 2'de sıra tersine dönüyor. Son dağılım ($K_1=\{1,4\}$, $K_2=\{2\}$, $K_3=\{3\}$) aynıdır. Bu yüzden "önce her kutuya bir top" yöntemi her dağılımı iki kez sayar: $72=2\cdot 36$.</Altyazi>
+
+</Figur>
+
+> **Dikkat:** Özdeş toplarda "önce her kutuya bir top koy" yöntemi doğrudur; çünkü özdeş toplarda hangi topun ilk turda konduğu ayırt edilemez. Toplar farklı olduğunda bu yöntem çift sayar. Özdeş nesnelerin dağıtımı [Gruplara Ayırma ve Dağıtma](/konular/gruplara-ayirma-dagitma) sayfasındadır.
+
+## 10. Örten Fonksiyon: Dahil Etme–Hariç Tutma ile Doğrula
+
+Aynı $36$'yı tümleyen yoluyla da bulalım. $A=\{1,2,3,4\}$'ten $B=\{a,b,c\}$'ye toplam $3^4=81$ fonksiyon vardır. Örten olmayanlar, en az bir değeri hiç kullanmayanlardır.
+
+1. $a$'yı kullanmayan fonksiyonlar her elemanı $\{b,c\}$'ye gönderir: $2^4=16$. $b$ ya da $c$ için de durum aynıdır. İlk tahmin: $3\cdot 16=48$ örten olmayan fonksiyon.
+2. Ama bu sayımda bazı fonksiyonlar iki kez çıkarıldı. Örneğin her şeyi $c$'ye gönderen sabit fonksiyon hem "$a$'yı kullanmayanlar" hem "$b$'yi kullanmayanlar" arasında sayıldı. Bu türden $3$ sabit fonksiyon vardır ve her biri bir kez geri eklenmelidir.
+
+$$3^4-3\cdot 2^4+3\cdot 1^4=81-48+3=36$$
+
+Gruplama ile aynı sonuç çıktı. Düzeltme terimini ($+3$) unutan öğrenci $33$ bulur. Üç elemanlı değer kümesine örten fonksiyon sayısı genel olarak şöyledir:
+
+$$3^m-3\cdot 2^m+3$$
+
+Örneğin $m=6$ için $3^6-3\cdot 2^6+3=729-192+3=540$ bulunur.
+
+> **Kapsam notu:** Değer kümesi üçten fazla elemanlı olduğunda örten fonksiyonlar bu sayfada ele alınmaz. İki ya da üç elemanlı değer kümesinde gruplama ile dahil etme–hariç tutma birbirini denetlemek için yeterlidir.
+
+## Çözümlü Sorular
+
+{/* ornek-1 */}
+<Ornek>
+
+<Soru>
+
+$s(A)=2$ ve $s(B)=5$ olmak üzere,
+
+**a)** $A$'dan $B$'ye kaç fonksiyon tanımlanabilir?
+
+**b)** $B$'den $A$'ya kaç fonksiyon tanımlanabilir?
+
+</Soru>
+
+<Ipucu>
+
+Üs, seçim yapan elemanların sayısıdır. Seçim yapanlar her zaman tanım kümesinin elemanlarıdır.
+
+</Ipucu>
+
+<Cozum>
+
+1. **a)** Tanım kümesi $A$'dır; $A$'nın $2$ elemanının her biri $B$'nin $5$ elemanından birini seçer: $5\cdot 5=5^2=25$.
+
+2. **b)** Tanım kümesi bu kez $B$'dir; $B$'nin $5$ elemanının her biri $A$'nın $2$ elemanından birini seçer: $2\cdot 2\cdot 2\cdot 2\cdot 2=2^5=32$.
+
+3. **Yaygın hata:** a şıkkına $2^5=32$ yazmak, yani üssü ters kurmak. Daha küçük bir örnekte dene: $A=\{a,b\}$'den $B=\{1,2,3\}$'e. Bölüm 1'deki tabloda tam $9=3^2$ fonksiyon var, $2^3=8$ değil.
+
+4. **Denetim:** İki yönün sonuçları farklıdır ($25\neq 32$); yön önemlidir. a şıkkında $A$'nın birinci elemanının görüntüsü için $5$ satır, ikinci elemanının görüntüsü için $5$ sütun açan bir tablo, Bölüm 1'deki gibi $25$ hücre verir.
+
+<Cevap>a) $25$ b) $32$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-2 */}
+<Ornek>
+
+<Soru>
+
+$s(A)=3$ ve $s(B)=6$ olmak üzere,
+
+**a)** $A$'dan $B$'ye kaç bire bir fonksiyon tanımlanabilir?
+
+**b)** $B$'den $A$'ya kaç bire bir fonksiyon tanımlanabilir?
+
+</Soru>
+
+<Cozum>
+
+1. **a)** $A$'nın elemanlarına sırayla görüntü seçelim. Birinci eleman $6$ görüntüden birini, ikinci eleman kalan $5$ görüntüden birini, üçüncü eleman kalan $4$ görüntüden birini seçer: $6\cdot 5\cdot 4=P(6,3)=120$.
+
+2. **Yaygın hata:** $C(6,3)=20$ yazmak. Kombinasyon yalnızca **hangi** görüntülerin kullanıldığını sayar, **hangi elemanın** hangi görüntüye gittiğini saymaz. Küçük bir karşı örnek: $A=\{a,b\}$'den $\{1,2\}$'ye "$f(a)=1, f(b)=2$" ve "$f(a)=2, f(b)=1$" iki ayrı bire bir fonksiyondur; oysa $C(2,2)=1$'dir. Doğrusu $P(2,2)=2$'dir.
+
+3. **b)** Tanım kümesi bu kez $6$ elemanlı $B$, değer kümesi $3$ elemanlı $A$'dır. $B$'nin $6$ elemanına birbirinden farklı görüntü vermek için en az $6$ farklı görüntü gerekir; $A$'da yalnızca $3$ eleman vardır. Dördüncü eleman, ilk üçünün kullandığı bir görüntüyü tekrar kullanmak zorunda kalır. Bu yüzden bire bir fonksiyon yoktur: $0$.
+
+4. **Yaygın hata:** b şıkkına da $P(6,3)=120$ yazmak. Bire bir fonksiyon ancak $s(\text{tanım kümesi})\le s(\text{değer kümesi})$ ise vardır.
+
+5. **Denetim:** $120=C(6,3)\cdot 3!=20\cdot 6$. Her görüntü kümesi $3$ elemana $3!$ biçimde dağıtılır; kombinasyon cevabı bu yüzden $6$ kat küçük çıkar.
+
+<Cevap>a) $120$ b) $0$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-3 */}
+<Ornek>
+
+<Soru>
+
+$A=\{1,2,3,4\}$ ve $B=\{1,2,3,4,5\}$ olmak üzere, $A$'dan $B$'ye tanımlı $f$ fonksiyonlarından kaç tanesinde $f(1)=2$ ve $f(2)$ tek sayıdır?
+
+</Soru>
+
+<Ipucu>
+
+Koşul yalnız $f(1)$ ve $f(2)$'yi bağlar. $f(3)$ ve $f(4)$ da birer görüntü seçmek zorundadır.
+
+</Ipucu>
+
+<Cozum>
+
+1. $f(1)=2$ olduğundan $f(1)$ için $1$ seçenek vardır.
+
+2. $f(2)$ tek olmalı: $B$'deki tek sayılar $1$, $3$, $5$'tir. $f(2)$ için $3$ seçenek vardır.
+
+3. $f(3)$ ve $f(4)$ için koşul yoktur; her biri $5$ seçenekten birini seçer.
+
+4. Çarpma kuralı: $1\cdot 3\cdot 5\cdot 5=75$.
+
+5. **Yaygın hata:** Yalnız koşullu elemanları sayıp $1\cdot 3=3$ bulmak. Bu, $3$ ve $4$ elemanlarını görüntüsüz bırakmak demektir; görüntüsüz eleman bırakan bir eşleme fonksiyon değildir.
+
+6. **Denetim:** Koşulsuz toplam $5^4=625$'tir. Bu fonksiyonların $\dfrac15$'inde $f(1)=2$'dir; bunların da $\dfrac35$'inde $f(2)$ tektir, çünkü iki koşul farklı elemanları bağlar: $625\cdot\dfrac15\cdot\dfrac35=75$.
+
+<Cevap>$75$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-4 */}
+<Ornek>
+
+<Soru>
+
+$A=\{1,2,3\}$ ve $B=\{1,2,3,4\}$ olmak üzere, $A$'dan $B$'ye tanımlı fonksiyonlardan
+
+**a)** kaç tanesi sabit fonksiyon değildir?
+
+**b)** kaç tanesi için $f(1)\neq f(2)$ olur?
+
+</Soru>
+
+<Ipucu>
+
+İki şıkta da "olmayanı" saymak kolaydır: sabit fonksiyonları ve $f(1)=f(2)$ olanları say, toplamdan çıkar.
+
+</Ipucu>
+
+<Cozum>
+
+1. Toplam fonksiyon sayısı $4^3=64$'tür.
+
+2. **a)** Sabit fonksiyon, üç elemanı da aynı görüntüye gönderir; ortak görüntü $4$ yolla seçilir. Sabit olmayan fonksiyon sayısı $64-4=60$'tır.
+
+3. **b) Tümleyen yolu:** $f(1)=f(2)$ olanları sayalım. Ortak görüntü $4$ yolla, $f(3)$ de $4$ yolla seçilir: $4\cdot 4=16$. İstenen: $64-16=48$.
+
+4. **b) Doğrudan yol:** $f(1)$ için $4$, $f(2)$ için $f(1)$'den farklı $3$, $f(3)$ için yine serbest $4$ seçenek vardır: $4\cdot 3\cdot 4=48$. İki yol aynı sonucu verdi.
+
+5. **Dikkat:** b şıkkında fonksiyon bire bir olmak zorunda değildir; yalnızca $f(1)$ ile $f(2)$ farklıdır. $f(3)$, $f(1)$ ya da $f(2)$ ile aynı olabilir. Bu yüzden cevap $P(4,3)=24$ değildir.
+
+6. **Denetim:** $48<60<64$ olmalıdır, çünkü $f(1)\neq f(2)$ olan her fonksiyon sabit olmayan bir fonksiyondur; tersi doğru değildir. Örneğin $f(1)=f(2)=1$, $f(3)=2$ sabit değildir ama b koşulunu sağlamaz.
+
+<Cevap>a) $60$ b) $48$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-5 */}
+<Ornek>
+
+<Soru>
+
+$A=\{1,2,3\}$ ve $B=\{1,2,3,4,5,6\}$ olmak üzere, $A$'dan $B$'ye tanımlı fonksiyonlardan
+
+**a)** kaç tanesi için $f(1)<f(2)<f(3)$ olur?
+
+**b)** kaç tanesi için $f(1)\le f(2)\le f(3)$ olur?
+
+</Soru>
+
+<Ipucu>
+
+a şıkkında görüntüler farklı ve sıraları belli; yalnız hangi üç görüntünün kullanılacağını seç. b şıkkında eşitliğe izin var; her değerin kaç kez kullanıldığını düşün.
+
+</Ipucu>
+
+<Cozum>
+
+1. **a)** Kesin artan fonksiyonda üç görüntü birbirinden farklıdır. $B$'den üç sayı seçildiğinde bunları $f(1)<f(2)<f(3)$ olacak biçimde yerleştirmenin tek yolu vardır: en küçüğü $f(1)$'e, ortancayı $f(2)$'ye, en büyüğü $f(3)$'e. Sayı: $C(6,3)=20$.
+
+2. **b)** Bu kez eşit görüntülere izin var; örneğin $(2,2,5)$ ve $(4,4,4)$ de sayılır. $B$'nin altı elemanının kullanılma sayıları $x_1,\dots,x_6$ olsun. Her azalmayan fonksiyon $x_1+x_2+\cdots+x_6=3$, $x_i\ge 0$ denkleminin bir çözümüne karşılık gelir. Çubuk–yıldız ile çözüm sayısı $C(3+6-1,\ 3)=C(8,3)=56$'dır.
+
+3. **İkinci yol (durumlara ayırma):** Üç görüntünün farklı olduğu durumlar a şıkkındaki $20$ fonksiyondur. Tam iki görüntünün eşit olduğu durumlarda kullanılan iki farklı değer $C(6,2)=15$ yolla seçilir ve hangisinin iki kez kullanılacağı $2$ yolla belirlenir: $15\cdot 2=30$. Üçünün eşit olduğu durumlar sabit fonksiyonlardır: $6$. Toplam $20+30+6=56$.
+
+4. **Yaygın hata:** b şıkkına da $C(6,3)=20$ yazmak. Kesin artan ile azalmayan farklı koşullardır; azalmayanda eşit görüntülere izin verildiği için sayı daha büyüktür.
+
+5. **Denetim (küçük örnek):** $A=\{1,2\}$, $B=\{1,2,3\}$ için formül $C(4,2)=6$ verir ve Bölüm 8'deki listede tam altı fonksiyon vardır.
+
+<Cevap>a) $20$ b) $56$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-6 */}
+<Ornek>
+
+<Soru>
+
+Birbirinden farklı $5$ kitap Ayşe, Burak ve Ceren'e dağıtılacaktır. Kitapların tamamı dağıtılacak ve her öğrenci **en az bir** kitap alacaktır. Bu dağıtım kaç farklı biçimde yapılabilir?
+
+</Soru>
+
+<Ipucu>
+
+Her kitap bir öğrenci "seçer": bu, kitaplardan öğrencilere bir fonksiyondur. "Her öğrenci en az bir kitap alır" koşulu fonksiyonun örten olması demektir.
+
+</Ipucu>
+
+<Cozum>
+
+1. **Model:** Kitaplar tanım kümesi ($5$ eleman), öğrenciler değer kümesi ($3$ eleman). İstenen, $5$ elemanlı kümeden $3$ elemanlı kümeye örten fonksiyon sayısıdır.
+
+2. **Desenler:** $5$ kitap boş olmayan üç bloğa ancak $3$-$1$-$1$ ya da $2$-$2$-$1$ biçiminde ayrılır.
+
+3. **$3$-$1$-$1$ deseni:** Üçlü blok $C(5,3)=10$ yolla seçilir; kalan iki kitap zaten birer kitaplık iki blok oluşturur. Üç blok üç öğrenciye $3!=6$ yolla verilir: $10\cdot 6=60$.
+
+4. **$2$-$2$-$1$ deseni:** Tek kalacak kitap $5$ yolla seçilir. Kalan $4$ kitap iki ikiliye $\dfrac{C(4,2)\cdot C(2,2)}{2!}=\dfrac{6}{2}=3$ yolla ayrılır; iki ikili aynı büyüklükte olduğu için $2!$'ye bölünür. Bloklar öğrencilere $3!=6$ yolla verilir: $5\cdot 3\cdot 6=90$.
+
+5. Toplam: $60+90=150$.
+
+6. **Dahil etme–hariç tutma ile denetim:** Toplam $3^5=243$ dağıtım var. Bir öğrencinin kitapsız kaldığı dağıtımlar $3\cdot 2^5=96$; iki öğrencinin kitapsız kaldığı (bütün kitapların tek öğrenciye gittiği) $3$ dağıtım iki kez çıkarıldığı için geri eklenir: $243-96+3=150$. İki yöntem aynı sonucu verdi.
+
+7. **Yaygın hatalar:**
+   - $2$-$2$-$1$ deseninde $2!$'ye bölmeyi unutmak: o desen $180$, toplam $240$ çıkar.
+   - Dahil etme–hariç tutmada $+3$ düzeltmesini unutmak: $243-96=147$.
+   - "Önce her öğrenciye birer kitap ver ($P(5,3)=60$), kalan iki kitabı serbestçe dağıt ($3^2=9$)" demek: $540$. Bölüm 9'daki Şekil 3'te görüldüğü gibi aynı dağılım birden çok yoldan elde edilir ve bu yöntem onu tekrar tekrar sayar.
+
+<Cevap>$150$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-7 */}
+<Ornek>
+
+<Soru>
+
+$A=\{1,2,3,4,5\}$ ve $B=\{a,b,c\}$ olmak üzere, $A$'dan $B$'ye tanımlı **örten** fonksiyonlardan kaç tanesi için $f(1)=a$ olur?
+
+</Soru>
+
+<Ipucu>
+
+$f(1)=a$ sabitlendi. Geriye $2,3,4,5$ elemanları kalıyor. Fonksiyonun örten olması için hangi değerlerin hâlâ kullanılması gerekiyor? $a$ yeniden kullanılabilir mi?
+
+</Ipucu>
+
+<Cozum>
+
+1. $f(1)=a$ olduğundan $a$ zaten görüntü kümesindedir. Fonksiyonun örten olması için $\{2,3,4,5\}$ elemanlarının görüntüleri arasında $b$ ve $c$ mutlaka bulunmalıdır. $a$ ise bu elemanlar için de serbest bir seçenektir.
+
+2. **Tümleyen ile:** $\{2,3,4,5\}$'ten $\{a,b,c\}$'ye $3^4=81$ fonksiyon var. $b$'yi kullanmayanlar $2^4=16$, $c$'yi kullanmayanlar $2^4=16$. İkisini de kullanmayanlar (hepsini $a$'ya gönderen) $1$ tanedir ve iki kez çıkarılmıştır: $81-16-16+1=50$.
+
+3. **Durumlara ayırarak (ikinci yol):** $\{2,3,4,5\}$'in görüntü kümesi ya $\{b,c\}$ ya da $\{a,b,c\}$ olabilir.
+   - Görüntü kümesi tam olarak $\{b,c\}$: dört elemandan iki elemanlı kümeye örten fonksiyon, $2^4-2=14$.
+   - Görüntü kümesi $\{a,b,c\}$: dört elemandan üç elemanlı kümeye örten fonksiyon, Bölüm 9'daki gibi $36$.
+
+   Toplam: $14+36=50$.
+
+4. **Yaygın hatalar:**
+   - $a$'nın yeniden kullanılabileceğini unutup yalnız birinci durumu saymak: $14$.
+   - Kalan dört elemanın da $\{a,b,c\}$'ye örten olması gerektiğini sanıp yalnız ikinci durumu saymak: $36$.
+
+5. **Denetim:** $5$ elemandan $3$ elemana $150$ örten fonksiyon vardır (Örnek 6). $B$'nin elemanlarının adlarını değiştirmek örten bir fonksiyonu yine örten bir fonksiyona dönüştürdüğünden $f(1)=a$, $f(1)=b$ ve $f(1)=c$ olan örten fonksiyonların sayıları eşittir; $\dfrac{150}{3}=50$. Sonuç tutuyor.
+
+<Cevap>$50$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-8 */}
+<Ornek>
+
+<Soru>
+
+$s(A)=3$ olmak üzere, $A$'dan $B$'ye tanımlanabilen bire bir fonksiyonların sayısı $210$'dur. Buna göre $A$'dan $B$'ye tanımlanabilen sabit olmayan fonksiyonların sayısı kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+Önce $s(B)=n$ için bire bir fonksiyon sayısını $n$ cinsinden yaz ve $210$'a eşitle.
+
+</Ipucu>
+
+<Cozum>
+
+1. $s(B)=n$ olsun. $A$'nın üç elemanına farklı görüntüler seçmenin sayısı $P(n,3)=n(n-1)(n-2)$'dir.
+
+2. $n(n-1)(n-2)=210$ denkleminin sol tarafı ardışık üç tam sayının çarpımıdır. $210=2\cdot 3\cdot 5\cdot 7=7\cdot 6\cdot 5$ olduğundan $n=7$ bulunur. ($6\cdot 5\cdot 4=120$ ve $8\cdot 7\cdot 6=336$ olduğundan başka çözüm yoktur; çarpım $n$ büyüdükçe artar.)
+
+3. $A$'dan $B$'ye fonksiyon sayısı $7^3=343$, sabit fonksiyon sayısı $7$'dir.
+
+4. Sabit olmayan fonksiyon sayısı: $343-7=336$.
+
+5. **Yaygın hata:** Bire bir fonksiyon sayısını $C(n,3)$ ile kurmak. $C(10,3)=120$, $C(11,3)=165$, $C(12,3)=220$ olduğundan $C(n,3)=210$ denkleminin doğal sayı çözümü bile yoktur. Denklemin çözümsüz çıkması, modelin yanlış kurulduğunu gösterir.
+
+6. **Denetim:** $n=7$ için $7\cdot 6\cdot 5=210$. Ayrıca sonuç $343$'ten küçük olmalıdır: $336<343$.
+
+<Cevap>$336$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Pekiştirme Soruları
+
+> Konuyu pekiştirmek için hazırlanmış özgün sorular.
+
+<Sorular slug="fonksiyon-sayisi" />
+
+## Sık Yapılan Hatalar
+
+- **Fonksiyon sayısında üssü ters yazmak ($s(A)^{s(B)}$).** Üs, seçim yapan tanım kümesi elemanlarının sayısıdır: $A$'dan $B$'ye $s(B)^{s(A)}$ (Örnek 1).
+- **Bire bir fonksiyonda kombinasyon kullanmak.** Hangi elemanın hangi görüntüye gittiği önemlidir; sayı $P(n,m)$'dir, $C(n,m)$ değil (Örnek 2, Örnek 8).
+- **$s(A)>s(B)$ iken bire bir fonksiyon olduğunu sanmak.** Bu durumda en az iki eleman aynı görüntüyü paylaşır; bire bir fonksiyon sayısı $0$'dır (Örnek 2b).
+- **Koşulsuz elemanları görüntüsüz bırakmak.** Koşul yalnız birkaç elemanı bağlasa da diğer elemanların seçimleri çarpıma girer (Örnek 3).
+- **Kesin artan ile azalmayanı karıştırmak.** Kesin artan $C(n,m)$, azalmayan $C(m+n-1,\ m)$ verir; azalmayanda eşit görüntülere izin vardır (Bölüm 8, Örnek 5).
+- **Örten sayımında eşit büyüklükteki blokları bölmemek.** $2$-$2$-$1$ deseninde iki ikili için $2!$'ye bölünür (Bölüm 9, Örnek 6).
+- **Dahil etme–hariç tutmada düzeltme terimini unutmak.** Üç elemanlı değer kümesinde $3^m-3\cdot 2^m+3$; son $+3$ olmadan sonuç eksik çıkar (Bölüm 10, Örnek 6).
+- **Farklı nesnelerde "önce her kutuya birer tane koy, kalanı dağıt" demek.** Bu yöntem aynı dağılımı birden çok kez sayar (Bölüm 9, Şekil 3, Örnek 6).
+- **Bir eleman sabitlenince kalan değerlerin yeniden kullanılabileceğini unutmak.** $f(1)=a$ olsa da diğer elemanlar da $a$'ya gidebilir (Örnek 7).
+
+## Özet
+
+| Ne sayılıyor? ($s(A)=m$, $s(B)=n$) | Sayı |
+| --- | --- |
+| $A$'dan $B$'ye bütün fonksiyonlar | $n^m$ |
+| Sabit fonksiyonlar / sabit olmayanlar | $n$ / $n^m-n$ |
+| Bire bir fonksiyonlar | $P(n,m)$; $m>n$ ise $0$ |
+| $n$ elemandan $n$ elemana bire bir ve örten | $n!$ |
+| Kesin artan (ya da kesin azalan) | $C(n,m)$ |
+| Azalmayan (Derinleştirme) | $C(m+n-1,\ m)$ |
+| İki elemanlı kümeye örten | $2^m-2$ |
+| Üç elemanlı kümeye örten | $3^m-3\cdot 2^m+3$ (gruplama ile denetle) |
+| $m<n$ iken örten | $0$ |
+
+## Pratik İpucu
+
+- Her soruda önce yönü yaz: tanım kümesi kim, değer kümesi kim? Seçim yapan taraf tanım kümesidir.
+- Koşullu sorularda her eleman için bir kutu çiz, içine o elemanın seçenek sayısını yaz; koşulsuz kutuları boş bırakma.
+- Örten sayımını her zaman iki yolla yap: gruplama ve dahil etme–hariç tutma. İki sonuç uyuşmuyorsa ya bir bölme ya da düzeltme terimi eksiktir.
+
+**Sonraki adım (AYT):** Seçim sayılarının bir toplam içinde nasıl göründüğünü [Binom Açılımı](/konular/binom-acilimi) sayfasında görebilirsin.
+
+<KonuNav slug="fonksiyon-sayisi" />

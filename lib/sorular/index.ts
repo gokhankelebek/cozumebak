@@ -15,6 +15,7 @@ import belirliIntegral from "./belirli-integral";
 import belirliIntegralTeoremi from "./belirli-integral-teoremi";
 import belirsizIntegral from "./belirsiz-integral";
 import bileskeTersFonksiyonAyt from "./bileske-ters-fonksiyon-ayt";
+import binomAcilimi from "./binom-acilimi";
 import birimCemberAyt from "./birim-cember-ayt";
 import birinciDereceDenklemTyt from "./birinci-derece-denklem-tyt";
 import birinciDereceProblemler9 from "./birinci-derece-problemler-9";
@@ -25,7 +26,9 @@ import cemberAnalitikAyt from "./cember-analitik-ayt";
 import cemberDaireTyt from "./cember-daire-tyt";
 import cemberdeAcilar from "./cemberde-acilar";
 import cemberinAnalitikIncelenmesi from "./cemberin-analitik-incelenmesi";
+import dahilEtmeHaricTutma from "./dahil-etme-haric-tutma";
 import dairedeAlanCevre from "./dairede-alan-cevre";
+import daireselPermutasyon from "./dairesel-permutasyon";
 import deneyeDayaliOlasilik9 from "./deneye-dayali-olasilik-9";
 import dikUcgenPisagor from "./dik-ucgen-pisagor";
 import dikUcgenTrigonometri10 from "./dik-ucgen-trigonometri-10";
@@ -40,11 +43,15 @@ import ebobEkok10 from "./ebob-ekok-10";
 import fonksiyonCesitleriAyt from "./fonksiyon-cesitleri-ayt";
 import fonksiyonGrafikTyt from "./fonksiyon-grafik-tyt";
 import fonksiyonKavramiTyt from "./fonksiyon-kavrami-tyt";
+import fonksiyonSayisi from "./fonksiyon-sayisi";
 import fonksiyonlarinDonusumleri from "./fonksiyonlarin-donusumleri";
 import geometrikDizi from "./geometrik-dizi";
 import geometrikDiziAyt from "./geometrik-dizi-ayt";
 import geometrikDonusumler9 from "./geometrik-donusumler-9";
+import geometrikKombinasyon from "./geometrik-kombinasyon";
+import geometrikOlasilik from "./geometrik-olasilik";
 import gercekSayilar from "./gercek-sayilar";
+import gruplaraAyirmaDagitma from "./gruplara-ayirma-dagitma";
 import hareketProblemleri from "./hareket-problemleri";
 import ikiKategorikDegisken10 from "./iki-kategorik-degisken-10";
 import ikiNoktaArasiUzaklik from "./iki-nokta-arasi-uzaklik";
@@ -67,8 +74,11 @@ import katiCisimlerTyt from "./kati-cisimler-tyt";
 import kokluIfadeler from "./koklu-ifadeler";
 import kokluIfadeler9 from "./koklu-ifadeler-9";
 import kombinasyon10 from "./kombinasyon-10";
+import kombinasyonSecme from "./kombinasyon-secme";
+import kombinasyonlaOlasilik from "./kombinasyonla-olasilik";
 import koordinattaDogru10 from "./koordinatta-dogru-10";
 import kosulluOlasilik from "./kosullu-olasilik";
+import kosulluOlasilikSorulari from "./kosullu-olasilik-sorulari";
 import kumelerTyt from "./kumeler-tyt";
 import kumelerdeTemelKavramlar from "./kumelerde-temel-kavramlar";
 import limitHesaplama from "./limit-hesaplama";
@@ -82,6 +92,7 @@ import mantikTyt from "./mantik-tyt";
 import mutlakDegerFonksiyonlari9 from "./mutlak-deger-fonksiyonlari-9";
 import mutlakDegerTyt from "./mutlak-deger-tyt";
 import olasilikAkilYurutme9 from "./olasilik-akil-yurutme-9";
+import olasilikTemelKavramlar from "./olasilik-temel-kavramlar";
 import olasilikTyt from "./olasilik-tyt";
 import optimizasyon from "./optimizasyon";
 import oranOrantiTyt from "./oran-oranti-tyt";
@@ -90,12 +101,15 @@ import ozelFonksiyonlarAyt from "./ozel-fonksiyonlar-ayt";
 import parabolAyt from "./parabol-ayt";
 import paydayiRasyonelYapma from "./paydayi-rasyonel-yapma";
 import permutasyonKombinasyonTyt from "./permutasyon-kombinasyon-tyt";
+import permutasyonSiralama from "./permutasyon-siralama";
 import polinomKavramiAyt from "./polinom-kavrami-ayt";
 import polinomlardaBolmeAyt from "./polinomlarda-bolme-ayt";
 import prizmaPiramit11 from "./prizma-piramit-11";
+import rakamlarlaSayiOlusturma from "./rakamlarla-sayi-olusturma";
 import rasyonelSayilar from "./rasyonel-sayilar";
 import sayiBasamaklari from "./sayi-basamaklari";
 import sayiProblemleri from "./sayi-problemleri";
+import saymaKurallari from "./sayma-kurallari";
 import saymaPermutasyon10 from "./sayma-permutasyon-10";
 import silindirKoniKure11 from "./silindir-koni-kure-11";
 import sinusKosinusTeoremi10 from "./sinus-kosinus-teoremi-10";
@@ -105,6 +119,7 @@ import talesOklidPisagor9 from "./tales-oklid-pisagor-9";
 import tegetNormal from "./teget-normal";
 import tekCiftSayilar from "./tek-cift-sayilar";
 import tekDegiskenliVeri9 from "./tek-degiskenli-veri-9";
+import tekrarliPermutasyon from "./tekrarli-permutasyon";
 import temelKavramlar from "./temel-kavramlar";
 import tersFonksiyon from "./ters-fonksiyon";
 import tersTrigonometrik12 from "./ters-trigonometrik-12";
@@ -158,6 +173,7 @@ const BANKS: Record<string, TopicQuiz> = {
   [belirliIntegralTeoremi.slug]: belirliIntegralTeoremi,
   [belirsizIntegral.slug]: belirsizIntegral,
   [bileskeTersFonksiyonAyt.slug]: bileskeTersFonksiyonAyt,
+  [binomAcilimi.slug]: binomAcilimi,
   [birimCemberAyt.slug]: birimCemberAyt,
   [birinciDereceDenklemTyt.slug]: birinciDereceDenklemTyt,
   [birinciDereceProblemler9.slug]: birinciDereceProblemler9,
@@ -168,7 +184,9 @@ const BANKS: Record<string, TopicQuiz> = {
   [cemberDaireTyt.slug]: cemberDaireTyt,
   [cemberdeAcilar.slug]: cemberdeAcilar,
   [cemberinAnalitikIncelenmesi.slug]: cemberinAnalitikIncelenmesi,
+  [dahilEtmeHaricTutma.slug]: dahilEtmeHaricTutma,
   [dairedeAlanCevre.slug]: dairedeAlanCevre,
+  [daireselPermutasyon.slug]: daireselPermutasyon,
   [deneyeDayaliOlasilik9.slug]: deneyeDayaliOlasilik9,
   [dikUcgenPisagor.slug]: dikUcgenPisagor,
   [dikUcgenTrigonometri10.slug]: dikUcgenTrigonometri10,
@@ -183,11 +201,15 @@ const BANKS: Record<string, TopicQuiz> = {
   [fonksiyonCesitleriAyt.slug]: fonksiyonCesitleriAyt,
   [fonksiyonGrafikTyt.slug]: fonksiyonGrafikTyt,
   [fonksiyonKavramiTyt.slug]: fonksiyonKavramiTyt,
+  [fonksiyonSayisi.slug]: fonksiyonSayisi,
   [fonksiyonlarinDonusumleri.slug]: fonksiyonlarinDonusumleri,
   [geometrikDizi.slug]: geometrikDizi,
   [geometrikDiziAyt.slug]: geometrikDiziAyt,
   [geometrikDonusumler9.slug]: geometrikDonusumler9,
+  [geometrikKombinasyon.slug]: geometrikKombinasyon,
+  [geometrikOlasilik.slug]: geometrikOlasilik,
   [gercekSayilar.slug]: gercekSayilar,
+  [gruplaraAyirmaDagitma.slug]: gruplaraAyirmaDagitma,
   [hareketProblemleri.slug]: hareketProblemleri,
   [ikiKategorikDegisken10.slug]: ikiKategorikDegisken10,
   [ikiNoktaArasiUzaklik.slug]: ikiNoktaArasiUzaklik,
@@ -210,8 +232,11 @@ const BANKS: Record<string, TopicQuiz> = {
   [kokluIfadeler.slug]: kokluIfadeler,
   [kokluIfadeler9.slug]: kokluIfadeler9,
   [kombinasyon10.slug]: kombinasyon10,
+  [kombinasyonSecme.slug]: kombinasyonSecme,
+  [kombinasyonlaOlasilik.slug]: kombinasyonlaOlasilik,
   [koordinattaDogru10.slug]: koordinattaDogru10,
   [kosulluOlasilik.slug]: kosulluOlasilik,
+  [kosulluOlasilikSorulari.slug]: kosulluOlasilikSorulari,
   [kumelerTyt.slug]: kumelerTyt,
   [kumelerdeTemelKavramlar.slug]: kumelerdeTemelKavramlar,
   [limitHesaplama.slug]: limitHesaplama,
@@ -225,6 +250,7 @@ const BANKS: Record<string, TopicQuiz> = {
   [mutlakDegerFonksiyonlari9.slug]: mutlakDegerFonksiyonlari9,
   [mutlakDegerTyt.slug]: mutlakDegerTyt,
   [olasilikAkilYurutme9.slug]: olasilikAkilYurutme9,
+  [olasilikTemelKavramlar.slug]: olasilikTemelKavramlar,
   [olasilikTyt.slug]: olasilikTyt,
   [optimizasyon.slug]: optimizasyon,
   [oranOrantiTyt.slug]: oranOrantiTyt,
@@ -233,12 +259,15 @@ const BANKS: Record<string, TopicQuiz> = {
   [parabolAyt.slug]: parabolAyt,
   [paydayiRasyonelYapma.slug]: paydayiRasyonelYapma,
   [permutasyonKombinasyonTyt.slug]: permutasyonKombinasyonTyt,
+  [permutasyonSiralama.slug]: permutasyonSiralama,
   [polinomKavramiAyt.slug]: polinomKavramiAyt,
   [polinomlardaBolmeAyt.slug]: polinomlardaBolmeAyt,
   [prizmaPiramit11.slug]: prizmaPiramit11,
+  [rakamlarlaSayiOlusturma.slug]: rakamlarlaSayiOlusturma,
   [rasyonelSayilar.slug]: rasyonelSayilar,
   [sayiBasamaklari.slug]: sayiBasamaklari,
   [sayiProblemleri.slug]: sayiProblemleri,
+  [saymaKurallari.slug]: saymaKurallari,
   [saymaPermutasyon10.slug]: saymaPermutasyon10,
   [silindirKoniKure11.slug]: silindirKoniKure11,
   [sinusKosinusTeoremi10.slug]: sinusKosinusTeoremi10,
@@ -248,6 +277,7 @@ const BANKS: Record<string, TopicQuiz> = {
   [tegetNormal.slug]: tegetNormal,
   [tekCiftSayilar.slug]: tekCiftSayilar,
   [tekDegiskenliVeri9.slug]: tekDegiskenliVeri9,
+  [tekrarliPermutasyon.slug]: tekrarliPermutasyon,
   [temelKavramlar.slug]: temelKavramlar,
   [tersFonksiyon.slug]: tersFonksiyon,
   [tersTrigonometrik12.slug]: tersTrigonometrik12,

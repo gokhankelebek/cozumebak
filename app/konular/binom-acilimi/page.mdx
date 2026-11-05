@@ -1,0 +1,597 @@
+import { BinomSecim } from "@/components/figures/BinomSecimFig";
+import { BinomPascal } from "@/components/figures/BinomPascalFig";
+import { BinomTerimSirasi } from "@/components/figures/BinomTerimSirasiFig";
+import { topicMetadata } from "@/lib/seo";
+
+export const metadata = topicMetadata("binom-acilimi");
+
+<Konu slug="binom-acilimi" />
+
+<p className="lead">Binom açılımı, $(a+b)^n$ ifadesini parantezleri tek tek çarpmadan açmanın yoludur ve tek bir sayma fikrine dayanır: $n$ parantezin her birinden ya $a$ ya da $b$ seçilir. $a^{n-k}b^k$ terimi, $b$'nin alınacağı $k$ parantezi $n$ parantez arasından seçme sayısı kadar, yani $C(n,k)$ kez oluşur. Genel terim, sabit terim, katsayılar toplamı ve kombinasyon toplamları bu tek fikrin sonuçlarıdır.</p>
+
+> **Bu sayfadaki varsayımlar**
+>
+> - $(a+b)^n$ ifadesinde $n$ bir doğal sayıdır ($n=0,1,2,\dots$). Negatif ya da kesirli üslü açılımlar bu sayfanın konusu değildir.
+> - **Katsayı**, bir terimdeki sayısal çarpandır ve işaretiyle birlikte alınır: $-160x^3$ teriminin katsayısı $-160$'tır. **Binom katsayısı** ise yalnız $C(n,k)$ sayısıdır.
+> - **Sabit terim**, değişken içermeyen terimdir.
+> - Terim sayısı, benzer terimler birleştirildikten ve katsayısı $0$ olan terimler atıldıktan sonra sayılır.
+> - Terimin **sırası** önemli olduğunda soruda "terimler $x$'in azalan (ya da artan) kuvvetlerine göre sıralandığında" ifadesi bulunur. Bu ifade yoksa açılım, ifadenin yazıldığı sıraya göre yapılır.
+> - Üslü ifadeler $x>0$ için yazılır; $\sqrt{x}=x^{1/2}$, $\dfrac{1}{x^2}=x^{-2}$ gibi.
+
+Bu sayfa [Kombinasyon: Seçme Problemleri](/konular/kombinasyon-secme) sayfasındaki $C(n,r)$ hesabını ve Pascal kuralını kullanır. Kombinasyonun temel anlatımı için 10. sınıf [Kombinasyon](/konular/kombinasyon-10) dersine, sayma konularının genel haritası için [Permütasyon ve Kombinasyon](/konular/permutasyon-kombinasyon-tyt) sayfasına bakabilirsin. Üslü ifade kuralları için [Üslü İfadeler](/konular/uslu-ifadeler), terim ve derece kavramları için de [Polinom Kavramı](/konular/polinom-kavrami-ayt) sayfasına göz atabilirsin.
+
+## 1. Açılım Bir Sayma Problemidir: Her Parantezden Bir Seçim
+
+$(a+b)^3$ ifadesini üç ayrı parantezin çarpımı olarak yazalım:
+
+$$(a+b)^3=(a+b)(a+b)(a+b)$$
+
+Bu çarpımı dağıtırken her parantezden **bir** harf seçer ve seçtiklerimizi çarparız. Her parantezde $2$ seçenek olduğundan çarpma kuralına göre $2\cdot 2\cdot 2=8$ çarpım oluşur. Önce hepsini listeleyelim, sonra sayalım:
+
+<Figur>
+
+<BinomSecim />
+
+<Altyazi>Şekil 1 — $(a+b)^3$ açılımındaki $8$ çarpım, içerdikleri $b$ sayısına göre gruplandırılmıştır. Örneğin $aab$, $1.$ ve $2.$ parantezden $a$, $3.$ parantezden $b$ seçildiğini gösterir. Grupların büyüklükleri $1,3,3,1$'dir ve bunlar açılımın katsayılarıdır.</Altyazi>
+
+</Figur>
+
+$aab$, $aba$ ve $baa$ çarpımlarının hepsi $a^2b$ eder; bu yüzden açılımda $a^2b$ terimi $3$ kez oluşur ve katsayısı $3$ olur. Böylece
+
+$$(a+b)^3=a^3+3a^2b+3ab^2+b^3$$
+
+bulunur. $3$ sayısının nereden geldiğine bakalım: $a^2b$ terimini oluşturmak için üç parantezden **hangisinden** $b$ alınacağını seçmek yeterlidir, geri kalanlardan zaten $a$ alınır. Üç parantezden birini seçmenin $C(3,1)=3$ yolu vardır.
+
+Aynı düşünce her $n$ için geçerlidir. $(a+b)^n$ açılımında $a^{n-k}b^k$ terimi, $n$ parantezden $b$'nin alınacağı $k$ tanesi seçilerek oluşur. Bu seçim $C(n,k)$ yolla yapılır:
+
+$$(a+b)^n=\sum_{k=0}^{n} C(n,k)\,a^{n-k}\,b^{k}=C(n,0)a^n+C(n,1)a^{n-1}b+\dots+C(n,n)b^n$$
+
+Burada $C(n,k)=\dbinom{n}{k}=\dfrac{n!}{k!\,(n-k)!}$'dir. $C(n,k)$ sayılarına bu yüzden **binom katsayıları** da denir.
+
+> **Ana fikir:** Katsayı, aynı terimi veren seçimlerin sayısıdır. $C(n,k)$, $n$ parantezden $b$'nin geleceği $k$ parantezi seçme sayısıdır. Kombinasyonu burada sırasız seçim olarak kullanıyoruz: $b$'nin $2.$ ve $5.$ parantezden gelmesi ile $5.$ ve $2.$ parantezden gelmesi aynı seçimdir.
+
+## 2. Pascal Üçgeni ve C(n, r) + C(n, r + 1) = C(n + 1, r + 1)
+
+$(a+b)^0, (a+b)^1, (a+b)^2,\dots$ açılımlarının katsayılarını alt alta yazarsak **Pascal üçgeni** oluşur. Satırları $n$ değeriyle adlandırırız: en üstteki $1$, $n=0$ satırıdır ve $n$ satırı $C(n,0), C(n,1),\dots, C(n,n)$ sayılarından oluşur. Şekil 2'deki "$n=\dots$" etiketleri de bu adlandırmayı gösterir.
+
+<Figur>
+
+<BinomPascal />
+
+<Altyazi>Şekil 2 — Pascal üçgeninin ilk yedi satırı. Satırlar $1$ ile başlar ve $1$ ile biter; aradaki her sayı, hemen üstündeki iki sayının toplamıdır. Vurgulu üçlü: $10+10=20$. Sağdaki sütunda satır toplamları yer alır; her satırın toplamı bir öncekinin iki katıdır.</Altyazi>
+
+</Figur>
+
+Üçgeni kuran kural, [Kombinasyon: Seçme Problemleri](/konular/kombinasyon-secme) sayfasında gerekçesiyle gördüğümüz **Pascal kuralıdır**:
+
+$$C(n,r)+C(n,r+1)=C(n+1,\,r+1)$$
+
+Açılım diliyle de aynı sonucu okuyabiliriz: $(a+b)^{n+1}=(a+b)^n\cdot(a+b)$. Sağdaki son parantezden ya $a$ ya $b$ seçilir. $a^{n-r}b^{r+1}$ terimi iki ayrık yolla oluşur: son parantezden $b$ seçilirse kalan $n$ parantezden $r$ tane $b$ gerekir ($C(n,r)$ yol); son parantezden $a$ seçilirse kalan $n$ parantezden $r+1$ tane $b$ gerekir ($C(n,r+1)$ yol). İki durum toplanır.
+
+Pascal üçgeni küçük $n$ için en hızlı yoldur. Örneğin $(a+b)^6$'nın katsayıları doğrudan $n=6$ satırından okunur: $1, 6, 15, 20, 15, 6, 1$. Satırların **simetrik** olması da $C(n,k)=C(n,n-k)$ eşitliğini yansıtır.
+
+## 3. Terim Sayısı, Üslerin Düzeni ve İşaret Deseni
+
+$(a+b)^n$ açılımında $k$ değeri $0, 1, 2, \dots, n$ olabilir. Bu $n+1$ farklı değerdir:
+
+> **Terim sayısı:** $(a+b)^n$ açılımında $n+1$ terim vardır. Şekil 1'de $n=3$ için $3$ değil, $4$ grup ($k=0,1,2,3$) vardır.
+
+Açılımda üç düzenlilik vardır:
+
+- $a$'nın üssü $n$'den başlayıp birer birer azalır; $b$'nin üssü $0$'dan başlayıp birer birer artar.
+- Her terimde $a$ ile $b$'nin üsleri toplamı $n$'dir. $(a+b)^3$'te $a^3, a^2b, ab^2, b^3$ terimlerinin hepsinde üsler toplamı $3$'tür.
+- Katsayılar simetriktir: baştan ve sondan aynı uzaklıktaki terimlerin binom katsayıları eşittir.
+
+**İşaret deseni.** $(a-b)^n$ ifadesini $\big(a+(-b)\big)^n$ olarak düşünürüz. Genel terimde $(-b)^k=(-1)^k b^k$ çarpanı bulunur. Bu yüzden $b$'nin üssü çift olan terimler $+$, tek olan terimler $-$ işaretlidir ve işaretler $+,-,+,-,\dots$ diye sırayla değişir:
+
+$$(a-b)^4=a^4-4a^3b+6a^2b^2-4ab^3+b^4$$
+
+**Sadeleşen açılımlar.** Terim sayısı $n+1$ kuralı tek bir $(a+b)^n$ için geçerlidir. İki açılım toplanır ya da çarpılırsa önce sadeleştirmek gerekir. Örneğin
+
+$$(x+1)^4+(x-1)^4=2x^4+12x^2+2$$
+
+ifadesinde $x^3$ ve $x$ terimleri zıt işaretli olduğu için birbirini götürür; ifade $5+5=10$ değil, $3$ terimlidir.
+
+**Tek ve çift kuvvetli terimler.** $(x+1)^n$ açılımında $x$'in üsleri $n, n-1, \dots, 1, 0$ değerlerinin hepsini alır. Örneğin $(x+1)^6$'da üsler $6,5,4,3,2,1,0$'dır; bunlardan $1,3,5$ tek olduğundan $3$ terimde $x$'in kuvveti tektir. Terim sayısı sorulduğunda üsleri listelemek en güvenli yoldur.
+
+## 4. Genel Terim: Baştan ve Sondan k'ıncı Terim
+
+$(a+b)^n$ açılımının **baştan** $(k+1)$'inci terimi şöyle yazılır:
+
+$$T_{k+1}=C(n,k)\,a^{n-k}\,b^{k}\qquad (k=0,1,\dots,n)$$
+
+$k$ sıfırdan başladığı için **terimin sıra numarası $k$'den bir fazladır**: $1.$ terimde $k=0$, $2.$ terimde $k=1$, genel olarak $r$'inci terimde $k=r-1$'dir.
+
+Sondan sayarken iki yol vardır:
+
+- **Sırayı çevirmek:** $n+1$ terim olduğundan sondan $r$'inci terim, baştan $(n+2-r)$'inci terimdir.
+- **İfadeyi ters yazmak:** Sondan $r$'inci terim, $(b+a)^n$ açılımının baştan $r$'inci terimidir.
+
+<Figur>
+
+<BinomTerimSirasi />
+
+<Altyazi>Şekil 3 — $(a+b)^5$ açılımının $6$ terimi. Her kutunun üstünde baştan sırası ve $k$ değeri, altında sondan sırası yazılıdır. Vurgulu kutu baştan $5.$, sondan $2.$ terimdir; burada $k=4$'tür, yani terim $C(5,4)ab^4=5ab^4$'tür.</Altyazi>
+
+</Figur>
+
+Şekil 3'te iki yolu da deneyebiliriz. Sondan $2.$ terim baştan $5+2-2=5.$ terimdir: $k=4$, $T_5=C(5,4)a\,b^4=5ab^4$. İfadeyi $(b+a)^5$ diye yazarsak baştan $2.$ terim $C(5,1)b^4a=5ab^4$ olur. Sonuç aynıdır.
+
+## 5. Hangi Sıraya Göre? Azalan ve Artan Kuvvetler Tuzağı
+
+Genel terim formülü, $a$ yerine **parantezde önce yazılan** ifadeyi koyar. $(3-x)^5$ ifadesinde önce $3$ yazılmıştır; formül olduğu gibi uygulanırsa terimler $x$'in **artan** kuvvetlerine göre sıralanmış olur: $243,\ -405x,\ 270x^2,\dots$
+
+Soru "terimler $x$'in **azalan** kuvvetlerine göre sıralandığında" diyorsa önce ifadeyi bu sıraya getiririz: $(3-x)^5=(-x+3)^5$. Artık $a=-x$, $b=3$'tür ve genel terim istenen sırayı verir: $-x^5,\ 15x^4,\ -90x^3,\dots$ Aynı açılımın "$3.$ terimi", sıralamaya göre $270x^2$ ya da $-90x^3$ olabilir. Bu tuzağın ayrıntılı bir uygulaması Örnek 4'tedir.
+
+> **Kural:** Terimin sırası sorulduğunda önce parantezin içini istenen sıraya göre yeniden yaz, sonra $T_{k+1}=C(n,k)a^{n-k}b^k$ formülünü uygula. Sıra belirtilmemişse ifadenin yazıldığı sıra esas alınır.
+
+Bu tuzak yalnız **sıra** sorularında vardır. "$x^4$'lü terimin katsayısı" gibi bir soruda terimin yeri önemli değildir; hangi sırayla yazarsan yaz aynı katsayıyı bulursun.
+
+## 6. Belirli Üslü Terimin Katsayısı ve Sabit Terim
+
+"$x^m$'li terimin katsayısı" ya da "sabit terim" sorularının hepsi aynı dört adımla çözülür:
+
+1. Genel terimi yaz: $T_{k+1}=C(n,k)\,a^{n-k}\,b^{k}$.
+2. $a$ ve $b$ içindeki **sayıları** ve **$x$ kuvvetlerini** ayır. Paydadaki $x$'i negatif üsle yaz: $\dfrac{2}{x}=2x^{-1}$, $\dfrac{1}{\sqrt[3]{x}}=x^{-1/3}$.
+3. $x$'in toplam üssünü $k$ cinsinden bul ve istenen üsse eşitle. Sabit terim isteniyorsa üs $0$'dır.
+4. Bulunan $k$ değerini katsayıda yerine koy. Parantezdeki sayı katsayıya **kendi kuvvetiyle ve işaretiyle** girer: $(-3)^k$, $2^{n-k}$ gibi.
+
+> **Dikkat:** $k$ bir doğal sayı olmalı ve $0\le k\le n$ aralığında kalmalıdır. Üs denkleminden $k$ tam sayı çıkmıyorsa ya da bu aralığın dışında kalıyorsa açılımda o üslü terim **yoktur**; katsayısı $0$'dır.
+
+**Rasyonel terimler.** Üsler kesirli olduğunda "rasyonel terim" denince $x$'in üssü tam sayı olan terim anlaşılır. Örneğin $(\sqrt{x}+2)^5$ açılımında genel terim $C(5,k)\,x^{(5-k)/2}\,2^k$'dir. Üs $\dfrac{5-k}{2}$ ancak $5-k$ çift olduğunda tam sayıdır; bu da $k=1,3,5$ için olur. Açılımda $3$ rasyonel terim vardır: $10x^2$, $80x$ ve $32$.
+
+## 7. Katsayıdan Parametre Bulmak
+
+Bazı sorularda katsayı verilir, parantezdeki bir sayı sorulur. Yöntem aynıdır; tek fark, son adımda bir denklem çözmemizdir. Parametre katsayıya **$k$'ıncı kuvvetiyle** girer.
+
+Örneğin $(1+ax)^4$ açılımında $x^2$'li terimin katsayısı $54$ ise genel terim $C(4,k)\,(ax)^k$ olduğundan $k=2$ için $C(4,2)\,a^2=6a^2=54$ bulunur. Buradan $a^2=9$, yani $a=3$ ya da $a=-3$ olur. Kuvvet çift olduğunda iki değer çıkabilir; soru "$a>0$" gibi bir koşul vermiyorsa ikisi de geçerlidir. Kuvvet tek olduğunda gerçek sayılarda tek bir değer vardır (Örnek 6).
+
+## 8. Ortanca Terim ve En Büyük Katsayı
+
+$(a+b)^n$ açılımında $n+1$ terim vardır.
+
+| $n$ | Terim sayısı | Ortanca terim(ler) |
+| --- | --- | --- |
+| Çift | Tek ($n+1$) | Bir tane: $T_{\frac{n}{2}+1}$ |
+| Tek | Çift ($n+1$) | İki tane: $T_{\frac{n+1}{2}}$ ve $T_{\frac{n+3}{2}}$ |
+
+Örneğin $n=6$ için $7$ terim vardır ve ortanca terim $T_4$'tür ($k=3$). $n=5$ için $6$ terim vardır ve ortanca terimler $T_3$ ile $T_4$'tür.
+
+**En büyük binom katsayısı** her zaman ortadadır: $n$ çiftse $C\!\left(n,\tfrac n2\right)$, $n$ tekse iki ortanca katsayı eşittir ve en büyüktür. Pascal üçgeninde her satır ortaya kadar büyür, sonra küçülür.
+
+**Ardışık binom katsayılarının oranı.** Bir binom katsayısından bir sonrakine geçerken faktöriyeller sadeleşir:
+
+$$\dfrac{C(n,k+1)}{C(n,k)}=\dfrac{n!}{(k+1)!\,(n-k-1)!}\cdot\dfrac{k!\,(n-k)!}{n!}=\dfrac{n-k}{k+1}$$
+
+Bu oran $k$ küçükken $1$'den büyüktür, $k$ büyüdükçe $1$'in altına iner; satırın önce büyüyüp sonra küçülmesinin nedeni budur. Parantezde sayılar varsa terim katsayılarının oranına bu sayıların oranı da girer. Örneğin $(1+2x)^n$'de ardışık iki terimin katsayılarının oranı $2\cdot\dfrac{n-k}{k+1}$'dir.
+
+Ancak parantezde $1$'den farklı sayılar varsa **katsayıların** en büyüğü ortada olmayabilir. $(x+2)^5$ açılımını yazalım:
+
+$$(x+2)^5=x^5+10x^4+40x^3+80x^2+80x+32$$
+
+Ortanca terimler $40x^3$ ve $80x^2$'dir, ama en büyük katsayı $80$ hem $x^2$'li hem $x$'li terimde görülür; çünkü $2^k$ çarpanı katsayıları sona doğru büyütür. Oran da bunu gösterir: burada ardışık katsayıların oranı $2\cdot\dfrac{5-k}{k+1}$'dir ve $k=3$ için tam $1$ olduğundan $x^2$'li ve $x$'li terimlerin katsayıları eşittir. Küçük $n$ için en güvenli yol, katsayıları yan yana yazıp karşılaştırmaktır.
+
+## 9. Katsayılar Toplamı: x = 1, x = −1 ve x = 0
+
+Açılımı $P(x)=c_0+c_1x+c_2x^2+\dots+c_nx^n$ diye düşünelim. Bir polinomda değişkene verilen her değer bir eşitlik üretir:
+
+| Yerine koyma | Sonuç | Ne verir? |
+| --- | --- | --- |
+| $x=1$ | $P(1)=c_0+c_1+c_2+\dots+c_n$ | Katsayılar toplamı |
+| $x=0$ | $P(0)=c_0$ | Sabit terim |
+| $x=-1$ | $P(-1)=c_0-c_1+c_2-c_3+\dots$ | İşaretleri değişen toplam |
+
+$P(1)$ ve $P(-1)$ satırlarından iki pratik sonuç çıkar:
+
+Çift dereceli terimlerin katsayıları toplamı:
+
+$$c_0+c_2+c_4+\dots=\dfrac{P(1)+P(-1)}{2}$$
+
+Tek dereceli terimlerin katsayıları toplamı:
+
+$$c_1+c_3+c_5+\dots=\dfrac{P(1)-P(-1)}{2}$$
+
+Nedeni şudur: $P(1)$ ile $P(-1)$ toplandığında tek dereceli katsayılar birbirini götürür, çift dereceliler iki kez sayılır. Çıkarıldığında ise çift dereceliler gider, tek dereceliler iki kez sayılır.
+
+Sabit terimin derecesi $0$ olduğu için sabit terim, çift dereceli terimlere dahildir.
+
+**Birden çok değişken.** Katsayılar toplamı için **bütün** değişkenlere $1$ verilir. Örneğin $(x-2y)^4$ açılımının katsayılar toplamı $(1-2)^4=1$'dir. Açılımı yazarak kontrol edebiliriz: $1-8+24-32+16=1$.
+
+> **Dikkat:** "Katsayılar toplamı" ile "binom katsayıları toplamı" farklı şeylerdir. $(x-2y)^4$ açılımının katsayılar toplamı $1$'dir; binom katsayılarının ($1,4,6,4,1$) toplamı ise $16$'dır.
+
+## 10. Kombinasyon Toplamları: 2^n, İşaretleri Değişen Toplam ve Diğer Değerler
+
+$(1+x)^n=C(n,0)+C(n,1)x+C(n,2)x^2+\dots+C(n,n)x^n$ eşitliği her $x$ için doğrudur. $x$'e uygun değerler vererek kombinasyon toplamlarını hesaplarız:
+
+| Yerine koyma | Toplam |
+| --- | --- |
+| $x=1$ | $C(n,0)+C(n,1)+C(n,2)+\dots+C(n,n)=2^n$ |
+| $x=-1$ | $C(n,0)-C(n,1)+C(n,2)-\dots+(-1)^nC(n,n)=0\quad(n\ge 1)$ |
+| $x=2$ | $C(n,0)+2C(n,1)+4C(n,2)+\dots+2^nC(n,n)=3^n$ |
+| $x=-2$ | $C(n,0)-2C(n,1)+4C(n,2)-\dots=(-1)^n$ |
+
+İlk iki satırı toplayıp ikiye bölersek
+
+$$C(n,0)+C(n,2)+C(n,4)+\dots=C(n,1)+C(n,3)+C(n,5)+\dots=2^{n-1}\quad(n\ge 1)$$
+
+bulunur. Çift indisli kombinasyonların toplamı tek indislilerin toplamına eşittir ve her biri $2^n$'in yarısıdır.
+
+Bu sonuçları küçük bir $n$ ile doğrulamak her zaman iyi bir alışkanlıktır. $n=4$ için Pascal satırı $1,4,6,4,1$'dir: toplam $16=2^4$, çift indisliler $1+6+1=8$, tek indisliler $4+4=8$. $n=3$ için $1+2\cdot3+4\cdot3+8\cdot1=27=3^3$ ve $1-6+12-8=-1=(-1)^3$.
+
+$2^n$ toplamının bir sayma anlamı da vardır: $n$ elemanlı bir kümenin $0, 1, \dots, n$ elemanlı alt kümelerinin sayıları toplanınca bütün alt kümelerin sayısı, yani $2^n$ elde edilir.
+
+## 11. İki İfadenin Çarpımında Belirli Terim
+
+$(1+2x)(1+x)^5$ gibi bir çarpımda $x^3$'lü terimi arayalım. Birinci parantezden ya $1$ ya $2x$ alınır; ikinci çarpandan da eksik kalan kuvveti tamamlayan terim alınmalıdır:
+
+- Birinciden $1$ alınırsa $(1+x)^5$'ten $x^3$'lü terim gerekir: katkısı $C(5,3)=10$.
+- Birinciden $2x$ alınırsa $(1+x)^5$'ten $x^2$'li terim gerekir: katkısı $2\cdot C(5,2)=2\cdot 10=20$.
+
+İki durum ayrık olduğundan katkılar toplanır: $10+20=30$. Bu sorularda en sık hata, **yalnız bir kaynaktan** gelen katkıyı yazmaktır. Önce "$x^3$ hangi yollarla oluşur?" diye bütün durumları listele.
+
+İki çarpan da binomsa ve ortak bir biçime getirilebiliyorsa önce birleştirmek işi kısaltır: $(x+1)^n(x-1)^n=(x^2-1)^n$ gibi.
+
+## 12. Yaklaşık Hesap ve Son Basamaklar
+
+**Yaklaşık hesap.** $1$'e yakın bir sayının kuvvetini $(1+h)^n$ diye yazarsak, $h$ küçük olduğunda sonraki terimler çok hızlı küçülür. Örneğin
+
+$$(1{,}02)^5=(1+0{,}02)^5=1+5(0{,}02)+10(0{,}02)^2+10(0{,}02)^3+\dots$$
+
+$$=1+0{,}1+0{,}004+0{,}00008+\dots\approx 1{,}10408$$
+
+İlk üç terim $1{,}104$ değerini verir; dördüncü terim ancak yüz binde birler basamağını etkiler. Gerçek değer $1{,}1040808032$'dir.
+
+**Son basamaklar.** Bir sayının son iki basamağı, sayının $100$'e bölümünden kalandır. Tabanı $10$'un katına yakın yazarsak açılımdaki terimlerin çoğu $100$'ün katı olur. Örneğin $9^6=(10-1)^6$ için
+
+$$(10-1)^6=10^6-6\cdot10^5+\dots+C(6,4)\cdot10^2-C(6,5)\cdot10+1$$
+
+$10^2$ ve daha büyük kuvvetleri içeren terimlerin hepsi $100$'ün katıdır. Geriye $-60+1=-59$ kalır; $-59$'a $100$ eklersek kalan $41$ olur. Gerçekten $9^6=531441$ ve son iki basamak $41$'dir.
+
+## 13. Çok Terimli Açılım: (a + b + c)^n (Derinleştirme)
+
+Aynı seçim fikri üç terimli ifadelerde de çalışır: $(a+b+c)^n$ açılımında her parantezden $a$, $b$ ya da $c$ seçilir.
+
+**Terim sayısı.** Bir terim $a^p\,b^q\,c^r$ biçimindedir ve $p+q+r=n$ olur ($p,q,r$ doğal sayılar). Bu denklemin çözüm sayısı [Gruplara Ayırma ve Dağıtma](/konular/gruplara-ayirma-dagitma) sayfasındaki çubuk–yıldız yöntemiyle $C(n+2,2)$ bulunur. Burada terim sayısı $n+1$ **değildir**. Küçük bir örnekle görelim:
+
+$$(a+b+c)^2=a^2+b^2+c^2+2ab+2ac+2bc$$
+
+$6$ terim vardır; $n+1=3$ değil, $C(4,2)=6$.
+
+**Katsayı.** $a^p\,b^q\,c^r$ teriminin katsayısı, $n$ parantezden hangi $p$ tanesinin $a$, hangi $q$ tanesinin $b$ vereceğini seçme sayısıdır:
+
+$$C(n,p)\cdot C(n-p,q)=\dfrac{n!}{p!\,q!\,r!}$$
+
+Örneğin $(a+b+c)^4$ açılımında $a^2bc$ teriminin katsayısı: $a$ verecek $2$ parantez $C(4,2)=6$ yolla, kalan $2$ parantezden $b$ verecek olan $2$ yolla seçilir; $6\cdot 2=12=\dfrac{4!}{2!\,1!\,1!}$.
+
+## Çözümlü Sorular
+
+{/* ornek-1 */}
+<Ornek>
+
+<Soru>
+
+a) $(x-3)^4$ ifadesini Pascal üçgenini kullanarak aç. Açılımda kaç terim vardır?
+
+b) $(x+y+z)^6$ ifadesinin açılımında kaç terim vardır?
+
+</Soru>
+
+<Ipucu>
+
+$(x-3)^4=\big(x+(-3)\big)^4$ diye düşün. Katsayılar $n=4$ satırından gelir; $-3$ sayısı her terime kendi kuvvetiyle girer. (b) şıkkında üç terimli bir ifade var; terim sayısı için Bölüm 13'e bak.
+
+</Ipucu>
+
+<Cozum>
+
+1. a) Pascal üçgeninin $n=4$ satırı: $1, 4, 6, 4, 1$. Genel terim $C(4,k)\,x^{4-k}(-3)^k$'dir.
+
+2. Terimleri sırayla yazalım:
+
+| $k$ | $C(4,k)$ | $x^{4-k}$ | $(-3)^k$ | Terim |
+| --- | --- | --- | --- | --- |
+| $0$ | $1$ | $x^4$ | $1$ | $x^4$ |
+| $1$ | $4$ | $x^3$ | $-3$ | $-12x^3$ |
+| $2$ | $6$ | $x^2$ | $9$ | $54x^2$ |
+| $3$ | $4$ | $x$ | $-27$ | $-108x$ |
+| $4$ | $1$ | $1$ | $81$ | $81$ |
+
+3. Böylece $(x-3)^4=x^4-12x^3+54x^2-108x+81$. İşaretler $+,-,+,-,+$ diye değişir, çünkü $(-3)^k$ tek $k$ için negatiftir.
+
+4. Terim sayısı: $k=0,1,2,3,4$ olmak üzere $5$ terim vardır. "$n=4$ olduğu için $4$ terim" demek yanlıştır; tabloda da $5$ satır görülüyor.
+
+5. Kontrol: $x=1$ koyalım. Sol taraf $(1-3)^4=16$; sağ taraf $1-12+54-108+81=16$. İki taraf eşittir.
+
+6. b) Burada "$n=6$ olduğu için $7$ terim" demek yanlıştır; $n+1$ kuralı yalnız iki terimli ifadeler içindir. Küçük bir durumla görelim: $(a+b+c)^2=a^2+b^2+c^2+2ab+2ac+2bc$ ifadesinde $3$ değil $6$ terim vardır.
+
+7. Açılımdaki her terim $x^p\,y^q\,z^r$ biçimindedir; $p,q,r$ doğal sayılardır ve $p+q+r=6$ olur. Farklı $(p,q,r)$ üçlüleri farklı terimler verir ve hiçbir katsayı $0$ olmaz. Bu denklemin çözüm sayısı çubuk–yıldız yöntemiyle $C(6+2,2)=C(8,2)=28$'dir.
+
+<Cevap>a) $x^4-12x^3+54x^2-108x+81$; $5$ terim. b) $28$ terim</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-2 */}
+<Ornek>
+
+<Soru>
+
+$(x+2)^8$ açılımında terimler $x$'in azalan kuvvetlerine göre sıralanıyor.
+
+a) Baştan $4.$ terim nedir?
+
+b) Sondan $2.$ terim nedir?
+
+</Soru>
+
+<Ipucu>
+
+$r$'inci terimde $k=r-1$'dir. Sondan sayarken terim sayısının $n+1=9$ olduğunu kullan.
+
+</Ipucu>
+
+<Cozum>
+
+1. İfade zaten $x$'in azalan kuvvetlerine göre yazılmış: $a=x$, $b=2$. Genel terim $T_{k+1}=C(8,k)\,x^{8-k}\,2^k$.
+
+2. a) Baştan $4.$ terim $T_4$'tür, yani $k=3$: $C(8,3)\,x^5\,2^3=56\cdot 8\,x^5=448x^5$.
+
+3. Yaygın hata, "$4.$ terim" deyince $k=4$ almaktır. Bu, $C(8,4)\,x^4\,2^4=1120x^4$ terimini verir; o terim aslında $5.$ terimdir. Küçük bir kontrol hatayı gösterir: $1.$ terim $x^8$'dir ve $k=0$'a karşılık gelir, $k=1$'e değil.
+
+4. b) Açılımda $8+1=9$ terim vardır. Sondan $2.$ terim, baştan $9-2+1=8.$ terimdir; $k=7$: $C(8,7)\,x^1\,2^7=8\cdot128\,x=1024x$.
+
+5. Kontrol (ifadeyi ters yazarak): Sondan $2.$ terim, $(2+x)^8$ açılımının baştan $2.$ terimidir: $C(8,1)\,2^7\,x=1024x$. Aynı sonuç.
+
+<Cevap>a) $448x^5$; b) $1024x$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-3 */}
+<Ornek>
+
+<Soru>
+
+$(3x-2)^6$ açılımında $x^3$'lü terimin katsayısı kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. Genel terim: $T_{k+1}=C(6,k)\,(3x)^{6-k}\,(-2)^k=C(6,k)\cdot 3^{6-k}\cdot(-2)^k\cdot x^{6-k}$.
+
+2. $x$'in üssü $6-k=3$ olmalı, buradan $k=3$.
+
+3. Katsayı: $C(6,3)\cdot 3^3\cdot(-2)^3=20\cdot 27\cdot(-8)=-4320$.
+
+4. Sık yapılan iki hata vardır. Birincisi, yalnız $C(6,3)=20$ yazıp parantezlerdeki $3$ ve $-2$ sayılarının kuvvetlerini unutmaktır. İkincisi, $(-2)^3$ yerine $2^3$ yazmaktır; işaret düşer ve $4320$ bulunur. Kural: $x$'in yanındaki ya da yalnız duran her sayı, bulunduğu parantezin kuvvetiyle katsayıya girer.
+
+5. Kontrol: $x^3$'lü terim, $7$ terimli açılımın ortanca terimidir ($T_4$). İfadeyi $(-2+3x)^6$ diye ters yazsak da $k=3$ olur ve katsayı yine $C(6,3)(-2)^3\,3^3=-4320$ çıkar. İşaret de mantıklı: $-2$'nin tek kuvveti negatiftir.
+
+<Cevap>$-4320$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-4 */}
+<Ornek>
+
+<Soru>
+
+$(1-2x)^6$ açılımının terimleri $x$'in **azalan** kuvvetlerine göre sıralanıyor. Baştan $3.$ terim nedir?
+
+</Soru>
+
+<Ipucu>
+
+İfadede önce $1$ yazılmış. Genel terimi olduğu gibi uygularsan terimler $x$'in artan kuvvetlerine göre sıralanır.
+
+</Ipucu>
+
+<Cozum>
+
+1. Önce yanlış yolu görelim. $a=1$, $b=-2x$ alıp $k=2$ yazarsak $C(6,2)\cdot 1^4\cdot(-2x)^2=15\cdot 4x^2=60x^2$ buluruz. Bu terim, $x$'in **artan** kuvvetlerine göre sıralamada $3.$ terimdir; çünkü bu sıralama $1,\ -12x,\ 60x^2,\dots$ diye başlar.
+
+2. Azalan kuvvetlere göre sıralamak için ifadeyi yeniden yazalım: $(1-2x)^6=(-2x+1)^6$. Şimdi $a=-2x$, $b=1$.
+
+3. Baştan $3.$ terim $k=2$: $C(6,2)\,(-2x)^4\cdot 1^2=15\cdot 16x^4=240x^4$.
+
+4. Kontrol: Açılımın tamamı $64x^6-192x^5+240x^4-160x^3+60x^2-12x+1$'dir. Azalan sırada $3.$ terim $240x^4$, artan sırada $3.$ terim $60x^2$'dir. Katsayılar toplamı $64-192+240-160+60-12+1=1=(1-2)^6$; açılım doğru.
+
+<Cevap>$240x^4$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-5 */}
+<Ornek>
+
+<Soru>
+
+a) $\left(2x^2-\dfrac{1}{x}\right)^9$ açılımındaki sabit terim kaçtır?
+
+b) $\left(x^2+\dfrac{1}{x}\right)^7$ açılımında sabit terim var mıdır?
+
+</Soru>
+
+<Ipucu>
+
+Paydadaki $x$'i negatif üsle yaz: $\dfrac{1}{x}=x^{-1}$. Sonra $x$'in toplam üssünü $0$'a eşitle.
+
+</Ipucu>
+
+<Cozum>
+
+1. a) Genel terim: $C(9,k)\,(2x^2)^{9-k}\,(-x^{-1})^k=C(9,k)\cdot 2^{9-k}\cdot(-1)^k\cdot x^{2(9-k)-k}$.
+
+2. $x$'in üssü: $2(9-k)-k=18-3k$. Sabit terim için $18-3k=0$, yani $k=6$.
+
+3. Katsayı: $C(9,6)\cdot 2^{3}\cdot(-1)^6=84\cdot 8\cdot 1=672$.
+
+4. Yanlış yol: Paydadaki $x$ unutulup üs yalnız $2(9-k)$ diye alınırsa $2(9-k)=0$ ve $k=9$ çıkar. Bu $k$ değeri $\left(-\dfrac1x\right)^9=-\dfrac{1}{x^9}$ terimini verir; bu terim sabit değildir. Hata, $x^{-1}$'in üsse katkısını atlamaktır.
+
+5. b) Genel terim $C(7,k)\,x^{2(7-k)}\,x^{-k}=C(7,k)\,x^{14-3k}$. Sabit terim için $14-3k=0$, $k=\dfrac{14}{3}$ olur. $k$ tam sayı olmadığından açılımda sabit terim **yoktur**; sabit terim $0$'dır. Gerçekten üsler $14, 11, 8, 5, 2, -1, -4, -7$ diye $3$'er azalır ve $0$ değerini atlar.
+
+6. Kontrol (a şıkkı): $k=6$ için $(2x^2)^3\cdot\left(-\dfrac1x\right)^6=8x^6\cdot\dfrac{1}{x^6}=8$; bunu $C(9,6)=84$ ile çarpınca $672$ olur ve $x$ tamamen sadeleşir.
+
+<Cevap>a) $672$; b) Yoktur.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-6 */}
+<Ornek>
+
+<Soru>
+
+$a$ bir gerçek sayıdır. $(2+ax)^5$ açılımında $x^3$'lü terimin katsayısı $-320$ olduğuna göre $a$ kaçtır?
+
+</Soru>
+
+<Cozum>
+
+1. Genel terim: $C(5,k)\,2^{5-k}\,(ax)^k=C(5,k)\cdot 2^{5-k}\cdot a^k\cdot x^k$.
+
+2. $x^3$ için $k=3$. Katsayı: $C(5,3)\cdot 2^2\cdot a^3=10\cdot 4\cdot a^3=40a^3$.
+
+3. Denklem: $40a^3=-320$, buradan $a^3=-8$ ve $a=-2$. Kuvvet tek olduğundan tek gerçek çözüm vardır.
+
+4. Sık yapılan hata, $(ax)^3$ teriminden $a^3$ yerine $a$ ya da $3a$ almaktır. $40a=-320$ yazılırsa $a=-8$ bulunur; ama $a=-8$ için katsayı $40\cdot(-512)$ olur, $-320$ değil. $2^2$ çarpanını unutmak da $10a^3=-320$, yani $a^3=-32$ verir; buradan $a=-\sqrt[3]{32}$ bulunur ve bu sayı tam sayı değildir.
+
+5. Kontrol: $a=-2$ için $(2-2x)^5$ açılımında $x^3$'lü terim $C(5,3)\cdot2^2\cdot(-2)^3x^3=10\cdot4\cdot(-8)x^3=-320x^3$.
+
+<Cevap>$-2$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-7 */}
+<Ornek>
+
+<Soru>
+
+$(2x-3)^5$ açılımı için
+
+a) katsayılar toplamını,
+
+b) sabit terim hariç katsayılar toplamını,
+
+c) $x$'in tek kuvvetlerini içeren terimlerin katsayıları toplamını bul.
+
+</Soru>
+
+<Ipucu>
+
+$P(x)=(2x-3)^5$ olsun. Katsayılar toplamı $P(1)$, sabit terim $P(0)$'dır. Tek ve çift dereceli katsayıları ayırmak için $P(-1)$'i de hesapla.
+
+</Ipucu>
+
+<Cozum>
+
+1. a) Katsayılar toplamı: $P(1)=(2-3)^5=(-1)^5=-1$.
+
+2. Burada iki yanlış cevap çok görülür. $x=0$ koymak $P(0)=(-3)^5=-243$ verir; bu katsayılar toplamı değil, sabit terimdir. Binom katsayılarını toplamak da $2^5=32$ verir; ama terimlerin katsayıları $C(5,k)$'den ibaret değildir, $2$ ve $-3$'ün kuvvetlerini de içerir.
+
+3. b) Sabit terim $P(0)=-243$ olduğundan sabit terim hariç toplam: $P(1)-P(0)=-1-(-243)=242$.
+
+4. c) $P(-1)=(-2-3)^5=(-5)^5=-3125$. Tek dereceli terimlerin katsayıları toplamı:
+
+$$\dfrac{P(1)-P(-1)}{2}=\dfrac{-1-(-3125)}{2}=\dfrac{3124}{2}=1562$$
+
+5. Kontrol: Açılım $32x^5-240x^4+720x^3-1080x^2+810x-243$'tür. Tüm katsayıların toplamı $-1$; sabit terim hariç toplam $-1+243=242$; tek dereceliler $32+720+810=1562$. Çift dereceliler $-240-1080-243=-1563$ ve $1562+(-1563)=-1=P(1)$.
+
+<Cevap>a) $-1$; b) $242$; c) $1562$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-8 */}
+<Ornek>
+
+<Soru>
+
+$(1+x)^n$ açılımında $x^3$'lü ve $x^7$'li terimlerin katsayıları sıfırdan farklıdır ve birbirine eşittir.
+
+a) $n$ kaçtır?
+
+b) $C(n,0)+C(n,2)+C(n,4)+\dots+C(n,n)$ toplamı kaçtır?
+
+c) Açılımın ortanca terimi nedir?
+
+</Soru>
+
+<Ipucu>
+
+$C(n,a)=C(n,b)$ eşitliğinde iki durum vardır: $a=b$ ya da $a+b=n$.
+
+</Ipucu>
+
+<Cozum>
+
+1. a) Genel terim $C(n,k)\,x^k$ olduğundan $x^3$'ün katsayısı $C(n,3)$, $x^7$'nin katsayısı $C(n,7)$'dir. Soruda $x^7$'li terimin katsayısının sıfırdan farklı olduğu verildiğinden açılımda bu terim vardır, yani $n\ge 7$'dir. (Bu koşul olmasaydı $n=0,1,2$ için iki katsayı da $0$ olurdu ve eşitlik yine sağlanırdı.)
+
+2. $C(n,3)=C(n,7)$ için yalnız "indisler eşit" durumunu denersek $3=7$ gibi imkânsız bir sonuca varırız. İkinci durum simetriden gelir: $3+7=n$, yani $n=10$. Bu, [Kombinasyon: Seçme Problemleri](/konular/kombinasyon-secme) sayfasındaki kombinasyon denklemlerinde kullanılan yöntemin aynısıdır.
+
+3. b) $n=10$ için çift indisli kombinasyonların toplamı $2^{n-1}=2^9=512$'dir. Gerekçe: $x=1$ için $(1+1)^{10}=2^{10}=1024$ ve $x=-1$ için $(1-1)^{10}=0$. İki eşitlik toplanınca tek indisliler birbirini götürür: $2\big[C(10,0)+C(10,2)+\dots+C(10,10)\big]=1024$.
+
+4. c) Açılımda $10+1=11$ terim vardır; ortanca terim $T_6$'dır ($k=5$): $C(10,5)\,x^5=252x^5$. Terim sayısı tek olduğu için ortanca terim, terimler hangi sırayla dizilirse dizilsin aynıdır.
+
+5. Kontrol: $C(10,3)=\dfrac{10\cdot9\cdot8}{6}=120$ ve $C(10,7)=C(10,3)=120$; eşitlik sağlanıyor. Ayrıca $512$, tüm binom katsayılarının toplamı olan $1024$'ün tam yarısıdır.
+
+<Cevap>a) $10$; b) $512$; c) $252x^5$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Pekiştirme Soruları
+
+> Konuyu pekiştirmek için hazırlanmış özgün sorular.
+
+<Sorular slug="binom-acilimi" />
+
+## Sık Yapılan Hatalar
+
+- **Terim sayısını $n$ almak.** $(a+b)^n$ açılımında $k=0,1,\dots,n$ olduğundan $n+1$ terim vardır (Örnek 1, Bölüm 3).
+- **$r$'inci terimde $k=r$ almak.** $k$ sıfırdan başlar; $r$'inci terimde $k=r-1$'dir. Sondan $r$'inci terim, baştan $(n+2-r)$'inci terimdir. Ardışık terimlerin oranı sorulduğunda da bu kaymaya dikkat et (Örnek 2, Bölüm 4).
+- **Genel terimi istenen sıraya göre değil, ifadenin yazıldığı sıraya göre uygulamak.** "$x$'in azalan kuvvetlerine göre" deniyorsa önce parantezin içini bu sıraya göre yeniden yaz (Örnek 4, Bölüm 5).
+- **Parantezdeki sayının kuvvetini ve işaretini katsayıya katmamak.** $(3x-2)^6$'da katsayı yalnız $C(6,k)$ değildir; $3^{6-k}$ ve $(-2)^k$ çarpanları da vardır (Örnek 3).
+- **Katsayıdan parametre bulurken $a^k$ yerine $a$ ya da $k\cdot a$ yazmak.** $(ax)^k$ teriminden katsayıya $a^k$ gelir (Örnek 6, Bölüm 7).
+- **Paydadaki $x$'in negatif üssünü üs denklemine katmamak.** $\dfrac1x=x^{-1}$ yazılmadan kurulan denklem yanlış $k$ verir. $k$ tam sayı çıkmıyorsa o terim yoktur (Örnek 5).
+- **Katsayılar toplamı için $x=0$ koymak.** $x=0$ sabit terimi verir; katsayılar toplamı için $x=1$ konur (Örnek 7, Bölüm 9).
+- **"Katsayılar toplamı" ile "binom katsayıları toplamı ($2^n$)" kavramlarını karıştırmak.** İkisi genel olarak eşit değildir: katsayılar toplamı, bütün değişkenlere $1$ verildiğinde ifadenin aldığı değerdir; binom katsayılarının toplamı ise her zaman $2^n$'dir. Örneğin $(1+x)^n$'de ikisi eşittir, $(2x-3)^5$'te biri $-1$, öteki $32$'dir (Örnek 7, Bölüm 9).
+- **Eşit katsayılarda yalnız "indisler eşit" durumunu denemek.** $C(n,a)=C(n,b)$ ve $a\ne b$ ise $a+b=n$ olmalıdır (Örnek 8).
+- **Çarpımda belirli terimi tek bir kaynaktan almak.** $x^m$'nin oluştuğu bütün yolları listele ve katkıları topla (Bölüm 11).
+- **Çok terimli açılımda terim sayısını $n+1$ sanmak.** $(a+b+c)^n$ açılımında $C(n+2,2)$ terim vardır; $(a+b+c)^2$'de bile $6$ terim bulunur (Örnek 1, Bölüm 13).
+
+## Özet
+
+| Konu | Kural |
+| --- | --- |
+| Genel terim (baştan $(k+1)$'inci) | $T_{k+1}=C(n,k)\,a^{n-k}\,b^k$ |
+| Terim sayısı | $n+1$ |
+| Sondan $r$'inci terim | Baştan $(n+2-r)$'inci terim |
+| Belirli üslü terim, sabit terim | $x$'in üssünü $k$ cinsinden yaz, istenen üsse ($0$'a) eşitle |
+| Ardışık binom katsayılarının oranı | $\dfrac{C(n,k+1)}{C(n,k)}=\dfrac{n-k}{k+1}$ |
+| Ortanca terim | $n$ çiftse $T_{\frac n2+1}$; $n$ tekse $T_{\frac{n+1}{2}}$ ve $T_{\frac{n+3}{2}}$ |
+| Katsayılar toplamı / sabit terim | $P(1)$ / $P(0)$ |
+| Çift / tek dereceli katsayılar toplamı | $\dfrac{P(1)+P(-1)}{2}$ / $\dfrac{P(1)-P(-1)}{2}$ |
+| $\sum C(n,k)$ | $2^n$ |
+| Çift ya da tek indisli kombinasyonların toplamı | $2^{n-1}$ |
+| $\sum C(n,k)\,2^k$ | $3^n$ |
+| $(a+b+c)^n$ terim sayısı | $C(n+2,2)$ |
+
+## Pratik İpucu
+
+- Bir açılımı yazdığında $x=1$ koyarak kısa bir kontrol yap: bulduğun katsayıların toplamı, ifadenin $x=1$'deki değerine eşit olmalıdır.
+- Sıra soran sorularda ilk iş, parantezin içini istenen kuvvet sırasına göre yazmaktır.
+- Sabit terim ve belirli üslü terim sorularında üs denklemini çözmeden önce bütün $x$'leri tek bir $x^{(\dots)}$ biçiminde topla.
+
+<KonuNav slug="binom-acilimi" />

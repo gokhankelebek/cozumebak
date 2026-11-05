@@ -1,0 +1,646 @@
+import { topicMetadata } from "@/lib/seo";
+import { GeoKombDogrusal, GeoKombParalel, GeoKombKosegen, GeoKombBolge, GeoKombIzgara, GeoKombKiris, GeoKombAltigen, GeoKombKup, GeoKombBoyaliKup } from "@/components/figures/GeoKombFig";
+
+export const metadata = topicMetadata("geometrik-kombinasyon");
+
+<Konu slug="geometrik-kombinasyon" />
+
+<p className="lead">Bir doğru iki noktayla, bir üçgen doğrusal olmayan üç noktayla, ızgaradaki bir dikdörtgen iki yatay ve iki dikey çizgiyle belirlenir. Geometrik kombinasyonun tek fikri budur: **bir şekli saymak, onu belirleyen noktaları ya da çizgileri seçmek demektir; sonra şekil oluşturmayan seçimler çıkarılır.** Doğru, üçgen ve köşegen sayısından ızgaradaki dikdörtgenlere, küpün köşegenlerinden boyalı küpe kadar bu sayfadaki her soru bu tek fikirle çözülür.</p>
+
+> **Bu sayfadaki varsayımlar**
+>
+> - Noktalar birbirinden farklıdır. Soruda hangi noktaların aynı doğru üzerinde olduğu açıkça yazılır; yazılanlar dışında **hiçbir üç nokta doğrusal değildir**.
+> - Bir doğru **iki noktayla** belirlenir; noktaların sırası önemsizdir ($AB$ doğrusu ile $BA$ doğrusu aynıdır).
+> - Üçgenin köşeleri doğrusal olmayan üç noktadır. Dörtgen sorularında noktalar **dışbükey konumdadır** (çember üzerinde, dışbükey bir çokgenin köşelerinde ya da iki paralel doğrunun her birinden ikişer nokta olacak biçimde); böyle dört nokta tam olarak bir dörtgen belirler.
+> - Çokgenler **dışbükeydir** (konveks).
+> - "En çok kesişim noktası" sorularında, soruda paralel olduğu söylenenler dışında hiçbir iki doğru paralel değildir, hiçbir üç çizgi aynı noktadan geçmez ve her kesişim noktası ayrı bir noktadır.
+> - "$r\times c$ ızgara" ya da "$r\times c$ tahta", $r$ satır ve $c$ sütundan oluşan birim karelerdir. Kare de bir dikdörtgendir; aksi söylenmedikçe dikdörtgen sayısına kareler dahildir.
+> - Boyalı küp sorularında büyük küpün **altı yüzünün tamamı** boyanır, sonra küp eş birim küplere ayrılır.
+
+> **Ön bilgi:** Kombinasyonun anlamı ve $C(n,r)$ hesabı [Kombinasyon: Seçme Problemleri](/konular/kombinasyon-secme) sayfasında anlatılır; bu sayfa onu kullanır. Burada $C(n,r)=\dbinom{n}{r}$, $n$ farklı nesneden sırasız $r$ tanesini seçme sayısıdır. Konunun genel haritası için [Permütasyon ve Kombinasyon](/konular/permutasyon-kombinasyon-tyt), 10. sınıf düzeyindeki temel anlatım için [Kombinasyon (10. sınıf)](/konular/kombinasyon-10) sayfasına bakabilirsin. Çokgenlerin temel özellikleri [Dörtgenler ve Çokgenler](/konular/dortgenler-tyt) sayfasındadır. Maarif programında sayma, permütasyon ve kombinasyon 10. sınıfta işlenir.
+
+## 1. Geometrik Nesneyi Seçime Çevirmek
+
+Her geometrik sayma sorusunda ilk adım aynıdır: **Bu nesneyi ne belirler?** Bu sorunun cevabı bulununca problem bir seçme problemine dönüşür.
+
+| Sayılan nesne | Neyle belirlenir? | Genel durumda sayı |
+| --- | --- | --- |
+| Doğru (ya da kiriş) | $2$ nokta | $C(n,2)$ |
+| Üçgen | doğrusal olmayan $3$ nokta | $C(n,3)$ |
+| Dörtgen (dışbükey konumda) | $4$ nokta | $C(n,4)$ |
+| İki doğrunun kesişim noktası | $2$ doğru | $C(n,2)$ |
+| Izgarada dikdörtgen | $a$ yatay çizgiden $2$, $b$ dikey çizgiden $2$ çizgi | $C(a,2)\cdot C(b,2)$ |
+| Çemberde iki kirişin iç kesişimi | çember üzerindeki $4$ nokta | $C(n,4)$ |
+
+Her satırda **sıra önemsizdir**: $ABC$ üçgeni ile $BCA$ üçgeni aynı üçgendir. Bu yüzden kombinasyon kullanılır.
+
+Tabloda "genel durumda" sözü önemlidir. Bazı seçimler beklenen şekli vermez: aynı doğru üzerindeki üç nokta üçgen oluşturmaz, paralel iki doğru kesişmez. Bu yüzden bu sayfadaki hemen her hesap aynı kalıba uyar:
+
+$$\text{şekil sayısı}=\text{tüm seçimler}-\text{bozulan seçimler}\;(+\text{gerekirse geri eklenenler})$$
+
+## 2. Doğru Sayısı ve Doğrusal Noktalar
+
+Herhangi üçü doğrusal olmayan $n$ noktadan $C(n,2)$ doğru geçer, çünkü her nokta çifti ayrı bir doğru belirler. Bazı noktalar aynı doğru üzerindeyse bu sayım artık geçerli değildir. Önce küçük bir örneği listeleyelim.
+
+<Figur>
+
+<GeoKombDogrusal />
+
+<Altyazi>Şekil 1 — $A$, $B$, $C$ aynı $d$ doğrusu üzerinde; $D$ ile $E$ bu doğrunun dışında. $AB$, $AC$ ve $BC$ çiftlerinin üçü de aynı $d$ doğrusunu verir. Doğrular: $d$, $AD$, $AE$, $BD$, $BE$, $CD$, $CE$, $DE$; toplam $8$.</Altyazi>
+
+</Figur>
+
+Beş noktadan $C(5,2)=10$ nokta çifti seçilir. Ama $AB$, $AC$ ve $BC$ çiftleri aynı doğruyu üç kez saymıştır. Bu $C(3,2)=3$ çifti çıkarırız, sonra $d$ doğrusunu **bir kez** geri ekleriz: $10-3+1=8$. Liste de $8$ doğru gösteriyor.
+
+Genel kural: $n$ noktanın $k$ tanesi aynı doğru üzerindeyse (başka doğrusal üçlü yoksa)
+
+$$\text{doğru sayısı}=C(n,2)-C(k,2)+1.$$
+
+$-C(k,2)$ terimi o doğruyu oluşturan bütün çiftleri siler; $+1$ ise silinen doğrunun kendisini geri koyar. Birden çok doğrusal grup varsa her grup için ayrı ayrı $-C(k,2)+1$ yazılır.
+
+## 3. Üçgen ve Dörtgen Sayısı: Tümü − Bozulan Seçimler
+
+Üçgen sayısında da tüm üçlüler sayılır, sonra doğrusal üçlüler çıkarılır:
+
+$$\text{üçgen sayısı}=C(n,3)-C(k,3).$$
+
+Bu kez **geri ekleme yoktur**: aynı doğru üzerindeki üç nokta hiçbir üçgen oluşturmaz, geri konacak bir şey kalmaz. Şekil 1'deki beş nokta için $C(5,3)-C(3,3)=10-1=9$ üçgen vardır; yalnız $ABC$ üçlüsü düşer. Birden çok doğrusal grup varsa her grubun $C(k,3)$ üçlüsü ayrı ayrı çıkarılır (Örnek 3).
+
+**İki paralel doğru üzerindeki noktalar.** $d_1$ üzerinde $3$, $d_2$ üzerinde $4$ nokta olsun. Bir üçgen için bir doğrudan $2$, öbür doğrudan $1$ nokta gerekir; aynı doğrudan üç nokta üçgen vermez.
+
+<Figur>
+
+<GeoKombParalel />
+
+<Altyazi>Şekil 2 — $d_1$ üzerinde $3$, $d_2$ üzerinde $4$ nokta. Boyalı üçgen $d_1$'den $2$, $d_2$'den $1$ nokta kullanır. Kesikli dörtgen her doğrudan $2$ nokta kullanır; böyle dört nokta her zaman tek bir yamuk belirler.</Altyazi>
+
+</Figur>
+
+- **Durumlara ayırarak:** $C(3,2)\cdot 4+3\cdot C(4,2)=12+18=30$.
+- **Tümleyenle:** $C(7,3)-C(3,3)-C(4,3)=35-1-4=30$.
+- **Dörtgen:** Her doğrudan ikişer nokta seçilir: $C(3,2)\cdot C(4,2)=3\cdot 6=18$.
+
+> **Dörtgen sayarken dikkat:** Dört noktadan biri öbür üçünün oluşturduğu üçgenin içindeyse bu dört nokta tek bir dörtgen değil, üç farklı içbükey dörtgen oluşturur. $C(n,4)$ ile dörtgen saymak ancak noktalar dışbükey konumdaysa doğrudur: çember üzerindeki ya da dışbükey bir çokgenin köşelerindeki dört nokta böyledir; iki paralel doğrunun her birinden ikişer alınan dört nokta da böyledir. Bir paralel doğrudan üç, öbüründen bir nokta alınırsa dörtgen oluşmaz. Bu sayfadaki dörtgen soruları yalnız bu durumlarla ilgilidir.
+
+**Doğrusal üçlüleri sistemli bulmak: 3×3 nokta ızgarası.** Doğrusal noktalar her zaman tek bir doğruda toplanmaz. $3\times 3$ biçiminde dizilmiş $9$ noktada doğrusal üçlüler $3$ satır, $3$ sütun ve $2$ köşegendir; toplam $8$ tane. Başka doğrusal üçlü yoktur: eğimi bunlardan farklı olan her doğru (örneğin bir adım sağa, iki adım yukarı giden doğru) bu ızgarada en çok iki noktadan geçer. Bu yüzden üçgen sayısı $C(9,3)-8=84-8=76$'dır.
+
+## 4. Çokgenin Köşegenleri
+
+Bir çokgenin köşegeni, **komşu olmayan** iki köşeyi birleştiren doğru parçasıdır.
+
+<Figur>
+
+<GeoKombKosegen />
+
+<Altyazi>Şekil 3 — Düzgün altıgenin $A$ köşesinden $3$ köşegen çıkar: $AC$, $AD$, $AE$. $AB$ ve $AF$ kenardır. Toplam $9$ köşegen vardır.</Altyazi>
+
+</Figur>
+
+**Bir köşeden.** $n$ kenarlı bir çokgenin bir köşesi öbür $n-1$ köşeye bağlanabilir. Bunlardan ikisi komşu köşedir ve onlara giden doğru parçaları kenardır. Geriye $n-3$ köşegen kalır.
+
+**Toplam.** Her köşeden $n-3$ köşegen çıkar; $n$ köşe için $n(n-3)$ eder. Ama her köşegenin iki ucu vardır ve iki ucundan da sayılmıştır ($AC$ hem $A$'dan hem $C$'den). Bu yüzden ikiye böleriz:
+
+$$\text{köşegen sayısı}=\dfrac{n(n-3)}{2}=C(n,2)-n.$$
+
+İkinci yazılış aynı sonucu "tümü − bozulan" kalıbıyla verir: köşe çiftlerinin hepsi $C(n,2)$, bunların $n$ tanesi kenardır. Altıgende $\dfrac{6\cdot 3}{2}=9=15-6$.
+
+Bir köşeden çizilen $n-3$ köşegen çokgeni $n-2$ üçgene ayırır; iç açılar toplamının $(n-2)\cdot 180^\circ$ olması buradan gelir.
+
+## 5. Doğruların ve Çemberlerin En Çok Kesişim Noktası
+
+İki farklı doğru en çok $1$ noktada, bir doğru ile bir çember en çok $2$ noktada, iki farklı çember en çok $2$ noktada kesişir. "En çok" sorusunda her çiftin bu sayıda kesiştiğini ve kesişim noktalarının üst üste düşmediğini varsayarız. Bu durumda her çizgi çifti ayrı ayrı sayılır. Örneğin üç doğru en çok $3$ noktada kesişir: üç doğru çifti vardır ve her çift bir nokta verir (aşağıdaki Şekil 4'te bu üç nokta görülür).
+
+| Çiftler | Çift sayısı | Çift başına nokta | En çok kesişim |
+| --- | --- | --- | --- |
+| $n$ doğru | $C(n,2)$ | $1$ | $C(n,2)$ |
+| $m$ çember | $C(m,2)$ | $2$ | $2\cdot C(m,2)$ |
+| $n$ doğru ile $m$ çember | $n\cdot m$ | $2$ | $2\cdot n\cdot m$ |
+
+**Paralel doğrular.** Doğrulardan $p$ tanesi birbirine paralelse bu $C(p,2)$ çift hiç kesişmez ve çıkarılır: $C(n,2)-C(p,2)$. Örneğin $5$ doğru en çok $C(5,2)=10$ noktada kesişir; ikisi paralelse $10-1=9$ noktada. $3$ çember ise en çok $2\cdot C(3,2)=6$ noktada kesişir.
+
+## 6. Düzlemi Bölen Doğrular: Bölge Sayısı (Örüntü)
+
+Herhangi ikisi paralel olmayan ve herhangi üçü aynı noktadan geçmeyen $n$ doğru düzlemi en çok kaç bölgeye ayırır? Önce küçük durumları sayalım.
+
+<Figur>
+
+<GeoKombBolge />
+
+<Altyazi>Şekil 4 — Üç doğru düzlemi $7$ bölgeye ayırır. Üçüncü doğru, önceki iki doğruyu $2$ noktada keser; bu noktalar onu $3$ parçaya böler ve her parça bir bölgeyi ikiye ayırır.</Altyazi>
+
+</Figur>
+
+| Doğru sayısı $n$ | $0$ | $1$ | $2$ | $3$ | $4$ |
+| --- | --- | --- | --- | --- | --- |
+| Bölge sayısı | $1$ | $2$ | $4$ | $7$ | $11$ |
+| Son doğrunun eklediği bölge | – | $1$ | $2$ | $3$ | $4$ |
+
+Örüntünün nedeni şudur: $k$'ıncı doğru, önceki $k-1$ doğruyu $k-1$ farklı noktada keser. Bu noktalar doğruyu $k$ parçaya ayırır ve her parça içinden geçtiği bölgeyi ikiye böler. Yani $k$'ıncı doğru tam $k$ yeni bölge ekler:
+
+$$\text{bölge sayısı}=1+(1+2+\cdots+n)=1+\dfrac{n(n+1)}{2}=1+n+C(n,2).$$
+
+Son yazılış akılda kolay kalır: **$1$ + doğru sayısı + kesişim noktası sayısı.** Doğrular paralelse ya da üçü bir noktadan geçiyorsa kesişim sayısı azalır, bölge sayısı da azalır.
+
+## 7. Paralel Doğru Aileleri: Paralelkenar ve Dikdörtgen
+
+Birbirine paralel $m$ doğrudan oluşan bir aile ile, bunları kesen ve kendi aralarında paralel olan $n$ doğrudan oluşan ikinci bir aile düşünelim. Bir paralelkenarın karşılıklı iki kenarı birinci aileden, öbür iki kenarı ikinci aileden gelir. Yani her paralelkenar, **birinci aileden $2$ doğru ve ikinci aileden $2$ doğru** seçmekle belirlenir:
+
+$$\text{paralelkenar sayısı}=C(m,2)\cdot C(n,2).$$
+
+Örneğin $3$ ve $4$ doğrudan oluşan iki aile $C(3,2)\cdot C(4,2)=3\cdot 6=18$ paralelkenar oluşturur. İki aile birbirine dikse bu paralelkenarların hepsi dikdörtgendir; ızgara sayımı tam olarak budur.
+
+## 8. Izgarada Dikdörtgen, Kare ve Domino Sayma
+
+**Önce çizgileri say.** $r\times c$ ızgarada $r$ satır birim kare vardır, ama bu kareleri $r+1$ yatay çizgi sınırlar; benzer biçimde $c+1$ dikey çizgi vardır. Her dikdörtgen $2$ yatay ve $2$ dikey çizgi seçmekle belirlenir.
+
+<Figur>
+
+<GeoKombIzgara />
+
+<Altyazi>Şekil 5 — $2\times 3$ ızgarada $3$ yatay ve $4$ dikey çizgi vardır. $y_1$, $y_2$ ile $x_2$, $x_4$ çizgileri seçilince vurgulu dikdörtgen belirlenir. Dikdörtgen sayısı $C(3,2)\cdot C(4,2)=3\cdot 6=18$'dir.</Altyazi>
+
+</Figur>
+
+$$\text{dikdörtgen sayısı}=C(r+1,2)\cdot C(c+1,2).$$
+
+Formülü en küçük durumda denetleyelim: $1\times 2$ şeritte iki birim kare ve ikisini birlikte kaplayan bir dikdörtgen vardır, yani $3$ dikdörtgen. Formül de $C(2,2)\cdot C(3,2)=1\cdot 3=3$ verir.
+
+**Kareler: boyutlara göre topla.** Kare için iki çizgi çiftinin aralığı eşit olmalıdır; bu yüzden tek bir çarpım yetmez. $k\times k$ bir kare, $r\times c$ ızgarada $(r-k+1)(c-k+1)$ farklı konuma oturur. $2\times 3$ ızgarada $1\times 1$ kareler $2\cdot 3=6$, $2\times 2$ kareler $1\cdot 2=2$ tanedir; toplam $8$ kare. $2\times 2$ ızgarada ise $4+1=5$ kare vardır. $n\times n$ ızgarada kare sayısı $1^2+2^2+\cdots+n^2$ olur.
+
+**Belirli bir birim kareyi içeren dikdörtgenler.** Dikdörtgenin sol kenarı o karenin solundaki çizgilerden biri (karenin kendi sol kenarı dahil), sağ kenarı sağındaki çizgilerden biri olmalıdır; üst ve alt kenarlar için de aynısı geçerlidir. Bu dört seçim çarpılır. Şekil 5'te üst satırın ortasındaki kare için sol çizgi $x_1$ ya da $x_2$, sağ çizgi $x_3$ ya da $x_4$, üst çizgi yalnız $y_1$, alt çizgi $y_2$ ya da $y_3$ olabilir: $2\cdot 2\cdot 1\cdot 2=8$ dikdörtgen.
+
+**Kenarı ortak kareler ve domino.** İki birim kareyi kaplayan bir domino taşı, ortak kenarı olan iki kareyi kaplar. Yatay dominolar her satırda $c-1$, dikey dominolar her sütunda $r-1$ konuma oturur:
+
+$$\text{domino konumu}=r(c-1)+(r-1)c.$$
+
+$2\times 3$ ızgarada $2\cdot 2+1\cdot 3=7$ konum vardır. Denetim: her domino konumu, ızgaranın içindeki tek bir birim kenara karşılık gelir; $2\times 3$ ızgaranın içinde $4$ dikey ve $3$ yatay birim kenar vardır.
+
+## 9. Çemberde Kirişler ve Düzgün Altıgende Özel Üçgenler
+
+**Kirişler.** Çember üzerindeki $n$ noktadan $C(n,2)$ kiriş çizilir. Bir doğru çemberi en çok iki noktada kestiği için çember üzerindeki üç nokta asla doğrusal değildir; bu yüzden üçgen ve dörtgen sayıları da doğrudan $C(n,3)$ ve $C(n,4)$'tür.
+
+**Kirişlerin iç kesişimleri.** Çember üzerinde dört nokta seçelim. Bu dört noktanın belirlediği altı kirişten yalnız ikisi (dörtgenin köşegenleri) çemberin içinde kesişir. Tersine, içte kesişen her kiriş çifti dört farklı uç noktaya sahiptir. Yani her iç kesişim noktası bir dörtlü seçimine karşılık gelir:
+
+$$\text{kirişlerin en çok iç kesişim sayısı}=C(n,4).$$
+
+"En çok" denmesinin nedeni, üç kirişin aynı noktadan geçebilmesidir; o zaman iki kesişim üst üste düşer.
+
+<Figur>
+
+<GeoKombKiris />
+
+<Altyazi>Şekil 6 — Solda dört nokta: dörtgenin iki köşegeni içte tek bir noktada kesişir. Sağda beş nokta: $C(5,2)=10$ kiriş ve $C(5,4)=5$ iç kesişim noktası vardır.</Altyazi>
+
+</Figur>
+
+**Düzgün altıgende dik üçgenler.** Düzgün altıgenin köşeleri bir çember üzerindedir. Bir üçgenin bir kenarı çemberin çapıysa, karşısındaki köşedeki açı $90^\circ$'dir: çevre açı, gördüğü yayın ölçüsünün yarısıdır ve çap $180^\circ$'lik yayı görür. Tersine, çembere çizilmiş bir dik üçgenin hipotenüsü her zaman bir çaptır. Altıgende karşılıklı köşeleri birleştiren $3$ çap vardır ($AD$, $BE$, $CF$). Her çap, kalan $4$ köşeden herhangi biriyle dik üçgen oluşturur:
+
+$$\text{dik üçgen sayısı}=3\cdot 4=12.$$
+
+<Figur>
+
+<GeoKombAltigen />
+
+<Altyazi>Şekil 7 — Solda $AD$ çapı üzerinde kurulan $ABD$ dik üçgeni. Sağda birer köşe atlanarak çizilen $ACE$ eşkenar üçgeni; öbür eşkenar üçgen $BDF$'dir.</Altyazi>
+
+</Figur>
+
+Eşkenar üçgende üç kenar eşit olduğundan köşeler eşit aralıklı seçilmelidir: birer köşe atlayarak $ACE$ ve $BDF$ elde edilir, yani $2$ eşkenar üçgen vardır. Üçgenleri sınıflandırmanın kolay yolu, köşeler arasında kaç adım olduğuna bakmaktır: altıgende iki köşe arasında $1$, $2$ ya da $3$ adım vardır ve bunlar üç farklı uzunluk verir.
+
+Şimdi üç köşeyi çember üzerinde sırayla dolaşalım ve her kenar için, üçüncü köşeyi içermeyen yay üzerindeki adım sayısını yazalım. Bu üç sayının toplamı $6$'dır, çünkü çember bir kez dolaşılır. ($4$ adımlık bir yayın kirişi, öbür yönden $2$ adımdır; uzunluğu $2$ adımlık kenarla aynıdır.) Toplamı $6$ olan üç pozitif tam sayı, sırası önemsenmeden, yalnız üç biçimde yazılır; böylece $C(6,3)=20$ üçgenin hepsi sınıflandırılır:
+
+| Adımlar | Üçgenin türü | Sayı | Neden? |
+| --- | --- | --- | --- |
+| $1,1,4$ | geniş açılı ikizkenar | $6$ | ardışık üç köşe ($ABC$ gibi); ortadaki köşe $6$ biçimde seçilir |
+| $1,2,3$ | dik üçgen (çeşitkenar) | $12$ | $3$ adımlık kenar bir çaptır; yukarıdaki $3\cdot 4$ sayımı |
+| $2,2,2$ | eşkenar | $2$ | $ACE$ ve $BDF$ |
+
+Denetim: $6+12+2=20$. Eşkenar üçgenler de ikizkenar sayılırsa ikizkenar üçgen sayısı $6+2=8$, sayılmazsa $6$'dır. Dik üçgenlerin hiçbiri ikizkenar değildir, çünkü üç kenarı $1$, $2$ ve $3$ adımlıktır ve üç farklı uzunluktadır.
+
+Aynı tablo, üçgenin altıgenle kaç kenarı paylaştığını da söyler: $1$ adımlık her kenar altıgenin bir kenarıdır. $1,1,4$ üçgenleri altıgenle iki kenar, $1,2,3$ üçgenleri bir kenar paylaşır; hiçbir kenarı altıgenin kenarı olmayan üçgenler yalnız $2,2,2$ satırındaki $2$ eşkenar üçgendir. Daha büyük çokgenlerde de aynı yol izlenir: tüm üçgenlerden iki kenarı ortak olanlar (ardışık üç köşe) ve tam bir kenarı ortak olanlar çıkarılır.
+
+## 10. Uzayda Sayma: Küp, Prizma ve Piramit
+
+Uzayda da aynı kalıp geçerlidir: köşe çiftleri sayılır, sonra her çiftin **ne olduğu** (ayrıt, yüz köşegeni, cisim köşegeni) ayrılır.
+
+- **Ayrıt:** iki yüzün ortak kenarı.
+- **Yüz köşegeni:** aynı yüzde olup komşu olmayan iki köşeyi birleştiren doğru parçası.
+- **Cisim köşegeni:** aynı yüz üzerinde bulunmayan iki köşeyi birleştiren doğru parçası; cismin içinden geçer.
+
+<Figur>
+
+<GeoKombKup />
+
+<Altyazi>Şekil 8 — Solda ön yüzdeki $BD$ yüz köşegeni ve küpün içinden geçen $AG$ cisim köşegeni. Sağda karşılıklı $DC$ ve $EF$ ayrıtlarından geçen $DCFE$ köşegen düzlemi ile $B$ köşesinin üç komşusundan geçen $ACF$ üçgeni.</Altyazi>
+
+</Figur>
+
+**Küp.** $8$ köşe, $12$ ayrıt, $6$ yüz vardır. Köşe çiftlerinin sayısı $C(8,2)=28$'dir ve bunlar üç türe ayrılır: $12$ ayrıt, $6\cdot 2=12$ yüz köşegeni ve $4$ cisim köşegeni. Gerçekten $12+12+4=28$. Cisim köşegeni sayısı şöyle de bulunur: her köşenin tam karşısında tek bir köşe vardır; $8$ köşe çift çift eşleşir, $8\div 2=4$.
+
+**$n$-gen dik prizma ve piramit.** Prizmanın iki tabanı $n$-gendir, yan yüzleri $n$ tane dikdörtgendir. Piramidin tabanı $n$-gendir, yan yüzleri tepe noktasında birleşen $n$ üçgendir.
+
+| | Köşe | Ayrıt | Yüz | Yüz köşegeni | Cisim köşegeni |
+| --- | --- | --- | --- | --- | --- |
+| $n$-gen dik prizma | $2n$ | $3n$ | $n+2$ | $2n+2\cdot\dfrac{n(n-3)}{2}=n(n-1)$ | $n(n-3)$ |
+| $n$-gen piramit | $n+1$ | $2n$ | $n+1$ | $\dfrac{n(n-3)}{2}$ | $0$ |
+
+- **Prizmanın yüz köşegenleri:** her dikdörtgen yan yüzde $2$ köşegen vardır ($2n$), iki tabanın her birinde $\dfrac{n(n-3)}{2}$ köşegen vardır.
+- **Prizmanın cisim köşegenleri:** üst tabandaki bir köşe, alt tabanda kendi altındaki köşe ve onun iki komşusu dışındaki $n-3$ köşeyle hiçbir yüzü paylaşmaz. Her cisim köşegeninin bir ucu üstte, bir ucu altta olduğundan çift sayım yoktur: $n(n-3)$.
+- **Piramitte cisim köşegeni yoktur:** tepe noktası her taban köşesiyle bir ayrıtla bağlıdır; iki taban köşesi ise zaten taban yüzündedir.
+- **Denetim:** Küp, $n=4$ olan dik prizmadır: $n(n-1)=12$ yüz köşegeni ve $n(n-3)=4$ cisim köşegeni, yukarıdaki sayımla aynıdır. Her satırda $\text{köşe}-\text{ayrıt}+\text{yüz}=2$ eşitliği (Euler bağıntısı) de sağlanır.
+
+## 11. Boyalı Küp: Kaç Birim Küpün Kaç Yüzü Boyalı?
+
+Dış yüzeyinin tamamı boyanmış $n\times n\times n$ bir küp, $n^3$ birim küpe ayrılıyor ($n\ge 2$). Bir birim küpün kaç yüzünün boyalı olduğu, büyük küpte **nerede durduğuna** bağlıdır.
+
+<Figur>
+
+<GeoKombBoyaliKup />
+
+<Altyazi>Şekil 9 — $6\times 6\times 6$ boyalı küp. Köşelerdeki $8$ birim küpün $3$ yüzü, ayrıtların köşe olmayan kısmındaki $12\cdot 4=48$ birim küpün $2$ yüzü, yüzlerin ortasındaki $6\cdot 4^2=96$ birim küpün $1$ yüzü boyalıdır. İçteki $4^3=64$ birim küp hiç boya görmez: $8+48+96+64=216$.</Altyazi>
+
+</Figur>
+
+| Konum | Boyalı yüz | Sayı | Neden? |
+| --- | --- | --- | --- |
+| Köşe | $3$ | $8$ | Küpün $8$ köşesi vardır; $n$'ye bağlı değildir. |
+| Ayrıt (köşeler hariç) | $2$ | $12(n-2)$ | $12$ ayrıtın her birinde $n$ birim küp vardır; iki ucu köşedir. |
+| Yüz (kenarlar hariç) | $1$ | $6(n-2)^2$ | $6$ yüzün her birinde kenar şeridi atılınca $(n-2)\times(n-2)$ kare kalır. |
+| İç | $0$ | $(n-2)^3$ | Dış kabuk soyulunca $(n-2)\times(n-2)\times(n-2)$ küp kalır. |
+
+Ayrıtta $n$ değil $n-2$ yazılmasının nedeni, her ayrıtın iki ucundaki birim küplerin köşe olması ve zaten $3$ yüzü boyalı olarak sayılmasıdır.
+
+**Denetim:** Dört sayının toplamı bütün birim küpleri vermelidir. $m=n-2$ dersek $8+12m+6m^2+m^3=(m+2)^3=n^3$ olur. Her boyalı küp sorusunu bu toplamla kontrol etmek, $12n$ gibi hataları hemen yakalar.
+
+Rastgele seçilen bir birim küpün belirli sayıda boyalı yüzü olma **olasılığı** [Geometrik Olasılık](/konular/geometrik-olasilik) sayfasının konusudur; orada bu sayılar hazır olarak kullanılır.
+
+## Çözümlü Sorular
+
+{/* ornek-1 */}
+<Ornek>
+
+<Soru>
+
+Bir çemberin üzerinde $11$ farklı nokta işaretleniyor.
+
+a) Bu noktaların ikişer ikişer birleştirilmesiyle kaç farklı kiriş çizilebilir?
+
+b) Köşeleri bu noktalardan seçilen kaç farklı üçgen çizilebilir?
+
+c) Köşeleri bu noktalardan seçilen kaç farklı dörtgen çizilebilir?
+
+</Soru>
+
+<Ipucu>
+
+Önce çember üzerinde yalnız $4$ nokta alıp kirişleri, üçgenleri ve dörtgenleri tek tek listele.
+
+</Ipucu>
+
+<Cozum>
+
+1. **Listele, sonra say.** Çember üzerinde $A$, $B$, $C$, $D$ noktaları olsun. Kirişler: $AB$, $AC$, $AD$, $BC$, $BD$, $CD$; yani $6=C(4,2)$. Üçgenler: $ABC$, $ABD$, $ACD$, $BCD$; yani $4=C(4,3)$. Her üçgen bir noktayı dışarıda bırakır. Dörtgen: yalnız $ABCD$; yani $1=C(4,4)$.
+
+2. Bir kiriş iki noktayla, bir üçgen üç noktayla belirlenir ve sıra önemsizdir ($AB=BA$). Bir doğru çemberi en çok iki noktada kestiği için çember üzerindeki hiçbir üç nokta doğrusal değildir; düşülecek bozuk seçim yoktur.
+
+3. a) $C(11,2)=\dfrac{11\cdot 10}{2}=55$.
+
+4. b) $C(11,3)=\dfrac{11\cdot 10\cdot 9}{6}=165$.
+
+5. c) Çember üzerindeki dört nokta dışbükey konumdadır; çember üzerindeki sıralarıyla birleştirildiklerinde tek bir dörtgen verirler. $C(11,4)=\dfrac{11\cdot 10\cdot 9\cdot 8}{24}=330$.
+
+6. Kontrol: Her üçgene kalan $8$ noktadan biri eklenirse bir dörtgen elde edilir; bu yolla $165\cdot 8$ ekleme yapılır. Her dörtgen, dört köşesinden hangisinin sonradan eklendiğine göre $4$ kez ortaya çıkar. Dörtgen sayısı $\dfrac{165\cdot 8}{4}=330$; c) şıkkıyla aynı.
+
+<Cevap>a) $55$ &nbsp;&nbsp; b) $165$ &nbsp;&nbsp; c) $330$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-2 */}
+<Ornek>
+
+<Soru>
+
+Bir düzlemde $12$ farklı nokta veriliyor. Bu noktaların $5$'i aynı $d$ doğrusu üzerindedir; bunlar dışında hiçbir üç nokta doğrusal değildir.
+
+a) Bu noktaların en az ikisinden geçen kaç farklı doğru vardır?
+
+b) Köşeleri bu noktalardan seçilen kaç farklı üçgen vardır?
+
+</Soru>
+
+<Ipucu>
+
+$d$ üzerindeki $5$ noktadan seçilen her çift aynı doğruyu verir. Silip geri eklemen gereken bir şey var mı?
+
+</Ipucu>
+
+<Cozum>
+
+1. **Yaygın yanlış 1:** "$C(12,2)=66$ doğru." Bu sayım $d$ doğrusunu, $d$ üzerindeki $C(5,2)=10$ nokta çiftinin her biri için ayrı ayrı, yani $10$ kez saymıştır.
+
+2. **Yaygın yanlış 2:** "$66-10=56$." Bu kez $d$ tamamen silinmiştir, oysa $d$ de bu noktalardan geçen bir doğrudur.
+
+3. **Küçük karşı örnek:** $4$ noktadan $3$'ü doğrusal olsun. Doğrular: üç noktadan geçen doğru ve dördüncü noktayı öbür üçüne bağlayan $3$ doğru, toplam $4$. Formül $C(4,2)-C(3,2)+1=6-3+1=4$ verir; $+1$ olmadan $3$ bulunurdu.
+
+4. a) Doğru sayısı $C(12,2)-C(5,2)+1=66-10+1=57$.
+
+5. b) Tüm üçlüler $C(12,3)=220$. $d$ üzerindeki noktalardan seçilen $C(5,3)=10$ üçlü doğrusaldır ve üçgen oluşturmaz: $220-10=210$. Burada $+1$ yoktur, çünkü doğrusal bir üçlü hiçbir üçgen vermez.
+
+6. Kontrol (durumlara ayırarak): $d$ dışında $7$ nokta vardır. Doğrular: iki dış nokta $C(7,2)=21$, bir dış bir $d$ noktası $7\cdot 5=35$, ve $d$'nin kendisi $1$; toplam $57$. Üçgenler, $d$'den alınan nokta sayısına göre: $0$ nokta $C(7,3)=35$, $1$ nokta $5\cdot C(7,2)=105$, $2$ nokta $C(5,2)\cdot 7=70$; toplam $210$.
+
+<Cevap>a) $57$ &nbsp;&nbsp; b) $210$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-3 */}
+<Ornek>
+
+<Soru>
+
+Bir $ABC$ üçgeninin köşelerinden farklı olmak üzere $[AB]$ kenarı üzerinde $3$, $[BC]$ kenarı üzerinde $4$, $[AC]$ kenarı üzerinde $5$ nokta işaretleniyor.
+
+a) Köşeleri işaretlenen bu $12$ noktadan seçilen kaç farklı üçgen vardır?
+
+b) $A$, $B$, $C$ köşeleri de kullanılabilirse, köşeleri bu $15$ noktadan seçilen kaç farklı üçgen vardır?
+
+</Soru>
+
+<Ipucu>
+
+Üç nokta ancak aynı kenar üzerindeyse doğrusaldır. b) şıkkında her köşenin iki kenarın üzerinde olduğunu unutma.
+
+</Ipucu>
+
+<Cozum>
+
+1. Önce hangi üçlülerin bozuk olduğunu belirleyelim. Bir doğru, bir üçgenin kenarlarını (bir kenarın üzerinde uzanmıyorsa) en çok iki noktada keser. Bu yüzden farklı kenarlardaki üç nokta asla doğrusal olmaz; doğrusal üçlüler yalnız aynı kenar üzerindeki noktalardan gelir.
+
+2. a) **Tümleyenle:** Tüm üçlüler $C(12,3)=220$. Aynı kenardan gelen üçlüler $C(3,3)+C(4,3)+C(5,3)=1+4+10=15$. Üçgen sayısı $220-15=205$.
+
+3. a) **Durumlara ayırarak:** Her kenardan bir nokta: $3\cdot 4\cdot 5=60$. Bir kenardan iki, kalan noktalardan bir nokta: $C(3,2)\cdot 9+C(4,2)\cdot 8+C(5,2)\cdot 7=27+48+70=145$. Toplam $60+145=205$. İki yol aynı sonucu verdi.
+
+4. b) **Yaygın yanlış:** "$15$ nokta var: $C(15,3)-15=455-15=440$." Bu hesap köşeleri eklerken kenarlardaki doğrusal nokta sayılarını güncellememiştir. $A$ köşesi hem $[AB]$ hem $[AC]$ üzerindedir.
+
+5. b) Köşeler eklenince her kenarda iç noktalar ve iki uç köşe vardır: $[AB]$ üzerinde $3+2=5$, $[BC]$ üzerinde $4+2=6$, $[AC]$ üzerinde $5+2=7$ nokta. Doğrusal üçlüler $C(5,3)+C(6,3)+C(7,3)=10+20+35=65$. Üçgen sayısı $C(15,3)-65=455-65=390$.
+
+6. Kontrol: Kenarlardaki nokta sayılarının toplamı $5+6+7=18$'dir. Bu, $12$ iç noktaya her köşenin iki kez (iki kenarda) sayılmasıyla gelen $2\cdot 3=6$ eklenerek bulunur: $12+6=18$. Ayrıca köşeler dahil edildiğinde üçgen sayısının artması beklenir: $390\ge 205$.
+
+<Cevap>a) $205$ &nbsp;&nbsp; b) $390$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-4 */}
+<Ornek>
+
+<Soru>
+
+a) Dışbükey bir $12$-genin bir köşesinden kaç köşegen çizilebilir? Bu çokgenin toplam köşegen sayısı kaçtır?
+
+b) Köşegen sayısı kenar sayısının $4$ katı olan dışbükey çokgen kaç kenarlıdır?
+
+</Soru>
+
+<Ipucu>
+
+Bir köşe kendisine ve iki komşusuna köşegen çizemez. Her köşegenin iki ucu olduğunu unutma.
+
+</Ipucu>
+
+<Cozum>
+
+1. a) Bir köşe öbür $11$ köşeye bağlanabilir. Bunlardan ikisi komşudur ve o bağlantılar kenardır. Bir köşeden $12-3=9$ köşegen çizilir.
+
+2. a) $12$ köşenin her birinden $9$ köşegen çıkar: $12\cdot 9=108$. Her köşegen iki ucundan birer kez sayıldığı için ikiye böleriz: $\dfrac{108}{2}=54$.
+
+3. **Yaygın yanlış:** "Köşegen iki köşeyle belirlenir, $C(12,2)=66$." Bu sayıya çokgenin $12$ kenarı da girmiştir: $66-12=54$. Küçük karşı örnek: beşgende $C(5,2)=10$ köşe çifti vardır, ama köşegenler yalnız $AC$, $AD$, $BD$, $BE$, $CE$'dir; $10-5=5$ ve $\dfrac{5\cdot 2}{2}=5$.
+
+4. b) $n$ kenarlı çokgende köşegen sayısı $\dfrac{n(n-3)}{2}$'dir. Koşul: $\dfrac{n(n-3)}{2}=4n$.
+
+5. $n\neq 0$ olduğundan iki taraf $n$'ye bölünür: $\dfrac{n-3}{2}=4$, yani $n-3=8$ ve $n=11$.
+
+6. Kontrol: $11$-genin köşegen sayısı $\dfrac{11\cdot 8}{2}=44$, kenar sayısının $4$ katı da $4\cdot 11=44$.
+
+<Cevap>a) Bir köşeden $9$, toplam $54$ &nbsp;&nbsp; b) $11$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-5 */}
+<Ornek>
+
+<Soru>
+
+Bir düzlemde $7$ farklı doğru ve $4$ farklı çember çiziliyor. Doğrulardan tam $3$'ü birbirine paraleldir; başka paralel doğru yoktur. Bu doğruların ve çemberlerin kesişim noktalarının sayısı en çok kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+Çizgi çiftlerini üç türe ayır: doğru–doğru, çember–çember, doğru–çember. Her türde bir çiftin en çok kaç noktada kesiştiğini yaz.
+
+</Ipucu>
+
+<Cozum>
+
+1. **Doğru–doğru:** $7$ doğrudan $C(7,2)=21$ çift seçilir. Paralel $3$ doğrudan oluşan $C(3,2)=3$ çift kesişmez. Her kalan çift en çok $1$ noktada kesişir: $21-3=18$.
+
+2. **Çember–çember:** $C(4,2)=6$ çift vardır ve iki çember en çok $2$ noktada kesişir: $2\cdot 6=12$.
+
+3. **Doğru–çember:** Her doğru her çemberi en çok $2$ noktada keser. Paralel doğrular da çemberleri keser: $7\cdot 4\cdot 2=56$.
+
+4. Kesişim noktaları üst üste düşmediğinde toplam: $18+12+56=86$.
+
+5. **Yaygın yanlışlar:** Paralel doğruları unutmak doğru–doğru sayısını $21$ yapar ve toplam $89$ çıkar. İki çemberin tek noktada kesiştiğini sanmak çember–çember sayısını $6$ yapar ve toplam $80$ çıkar. Doğru–çember çiftlerini tek noktadan saymak ise bu terimi $56$ yerine $28$ yapar.
+
+6. Kontrol: Bu sayı gerçekten elde edilebilir. Yarıçapları birbirine yakın, merkezleri farklı ama birbirine yakın $4$ çember her çiftte $2$ noktada kesişir; bu çemberlerin ortak bölgesinden geçen her doğru, paralel olanlar dahil, her çemberi $2$ noktada keser.
+
+<Cevap>$86$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-6 */}
+<Ornek>
+
+<Soru>
+
+$4$ satır ve $6$ sütundan oluşan, birim karelerle bölünmüş bir dikdörtgen tahta veriliyor.
+
+a) Kenarları tahtanın çizgileri üzerinde olan kaç dikdörtgen vardır? (Kareler dahil.)
+
+b) Bu dikdörtgenlerden kaç tanesi karedir?
+
+c) İki birim kareyi tam kaplayan bir domino taşı, tahtanın çizgilerine oturacak biçimde kaç farklı konuma yerleştirilebilir?
+
+</Soru>
+
+<Ipucu>
+
+a) şıkkında kareleri değil çizgileri say. b) şıkkında kare boyutlarını tek tek dene. c) şıkkında yatay ve dikey konumları ayrı say.
+
+</Ipucu>
+
+<Cozum>
+
+1. a) $4$ satırı $5$ yatay çizgi, $6$ sütunu $7$ dikey çizgi sınırlar. Her dikdörtgen $2$ yatay ve $2$ dikey çizgi seçmekle belirlenir: $C(5,2)\cdot C(7,2)=10\cdot 21=210$.
+
+2. **Yaygın yanlış:** Satır ve sütun sayılarını çizgi sayısı sanıp $C(4,2)\cdot C(6,2)=6\cdot 15=90$ yazmak. Küçük karşı örnek: $1\times 2$ şeritte $3$ dikdörtgen vardır (iki birim kare ve ikisinin birleşimi). Yanlış yöntem $C(1,2)\cdot C(2,2)=0$ verir; doğru yöntem $C(2,2)\cdot C(3,2)=3$ verir.
+
+3. b) $k\times k$ bir kare $(5-k)(7-k)$ konuma oturur: $1\times 1$ için $4\cdot 6=24$, $2\times 2$ için $3\cdot 5=15$, $3\times 3$ için $2\cdot 4=8$, $4\times 4$ için $1\cdot 3=3$. Toplam $24+15+8+3=50$.
+
+4. **Yaygın yanlış:** Yalnız birim kareleri sayıp $24$ demek, ya da kareyi dikdörtgen formülüyle bulmaya çalışmak. Kare için iki çizgi çiftinin aralığı eşit olmalıdır; bu koşul tek bir çarpımla yazılamaz, bu yüzden boyutlara göre toplanır.
+
+5. c) Yatay domino bir satırda yan yana iki kareyi kaplar: her satırda $5$ konum, $4$ satırda $20$ konum. Dikey domino bir sütunda alt alta iki kareyi kaplar: her sütunda $3$ konum, $6$ sütunda $18$ konum. Toplam $20+18=38$.
+
+6. **Yaygın yanlış:** Yalnız yatay konumları sayıp $20$ demek, ya da her kare için komşularını sayıp $76$ bulmak. İkinci yöntemde her domino, kapladığı iki kareden birer kez, yani iki kez sayılır.
+
+7. Kontrol: Her domino konumu, tahtanın içindeki tek bir birim kenara (iki karenin ortak kenarına) karşılık gelir. İç dikey çizgiler $5$ tanedir ve her biri $4$ birim kenardan oluşur: $20$. İç yatay çizgiler $3$ tanedir ve her biri $6$ birim kenardan oluşur: $18$. Toplam yine $38$.
+
+<Cevap>a) $210$ &nbsp;&nbsp; b) $50$ &nbsp;&nbsp; c) $38$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-7 */}
+<Ornek>
+
+<Soru>
+
+$ABCDEFGH$ bir küptür (Şekil 8'deki gibi adlandırılmıştır).
+
+a) Küpün köşelerinden en az ikisinden geçen kaç farklı doğru vardır?
+
+b) Köşeleri küpün köşelerinden seçilen kaç farklı üçgen vardır?
+
+c) Küpün köşelerinden en az üçünden geçen kaç farklı düzlem vardır?
+
+</Soru>
+
+<Ipucu>
+
+c) şıkkında, dört köşesi aynı düzlemde olan dörtlüleri bul. Her biri, o düzlemi kaç kez saydırır?
+
+</Ipucu>
+
+<Cozum>
+
+1. a) Küpün iki köşesinden geçen her doğru, bir ayrıtın, bir yüz köşegeninin ya da bir cisim köşegeninin üzerinden geçer. Bu doğruların hiçbiri üçüncü bir köşeden geçmez: bir ayrıtın ya da yüz köşegeninin üzerindeki doğru bir yüzün düzleminde kalır; küpün bu düzlemdeki köşeleri yalnız o yüzün dört köşesidir ve doğru bunlardan ikisinden geçer. Bir cisim köşegeninin doğrusu ise küpün içinden geçer ve küpe yalnız iki uç köşesinde değer. Bu yüzden her köşe çifti farklı bir doğru verir: $C(8,2)=28$. Türlerine göre: $12$ ayrıt $+\,12$ yüz köşegeni $+\,4$ cisim köşegeni $=28$.
+
+2. b) Hiçbir üç köşe doğrusal olmadığından her üçlü bir üçgen verir: $C(8,3)=56$.
+
+3. c) **Yaygın yanlış:** "Her üçgen bir düzlem belirler, $56$ düzlem vardır." Ama bazı düzlemlerde dört köşe vardır ve bu dört köşeden seçilen her üçlü aynı düzlemi verir.
+
+4. Dört köşesi aynı düzlemde olan dörtlüler: küpün $6$ yüzü ve karşılıklı iki ayrıttan geçen köşegen düzlemleri. $12$ ayrıt, birbirine paralel olup aynı yüzde bulunmayan $6$ çift oluşturur ($DC$ ile $EF$ gibi, Şekil 8); her çiftin dört ucu bir dikdörtgenin köşeleridir ve bir düzlem belirler. Toplam $6+6=12$ düzlemde dörder köşe vardır.
+
+5. Bu $12$ düzlemin her biri, içindeki dört köşeden seçilen $C(4,3)=4$ üçgenle sayılmıştır: $12\cdot 4=48$ üçgen. Bu üçgenlerin hepsi farklıdır, çünkü iki farklı düzlem doğrusal olmayan üç noktayı birlikte içeremez.
+
+6. Şimdi bir köşenin üç komşusundan geçen üçgenlere bakalım ($B$ için $ACF$ gibi). Ayrıt uzunluğunu $1$ alıp $B$'yi başlangıç noktasına, $BA$, $BC$, $BF$ ayrıtlarını eksenlere yerleştirelim. Bu durumda $A$, $C$, $F$ noktaları $(1,0,0)$, $(0,1,0)$, $(0,0,1)$ olur ve $x+y+z=1$ düzleminde bulunur. Küpün öbür köşelerinde koordinatlar toplamı $0$ ($B$), $2$ ya da $3$'tür; bu yüzden hiçbiri bu düzlemde değildir. Demek ki $ACF$ düzleminde yalnız üç köşe vardır ve bu üçgen yukarıdaki $48$ üçgenin arasında yer almaz. Her köşe için böyle bir üçgen vardır. Üçgenin üç köşesine birden komşu olan tek köşe, onu veren köşedir; bu yüzden $8$ köşe $8$ farklı üçgen verir.
+
+7. Böylece $48+8=56$ üçgenin hepsi sınıflandırıldı: $48$'i dört köşeli $12$ düzlemde, $8$'i yalnız üç köşe içeren $8$ düzlemde. Dört köşe içeren başka bir düzlem olsaydı, onun üçgenleri bu iki gruptan hiçbirine girmezdi. Oysa $56$ üçgenin hepsi bu iki grupta yer aldı; demek ki dört köşe içeren başka düzlem yoktur.
+
+8. Farklı düzlem sayısı $12+8=20$. Bu, doğru sayısındaki "sil, sonra bir kez geri ekle" kalıbının uzaydaki karşılığıdır: $56-12\cdot 4+12=20$.
+
+9. Kontrol: Kalan üçgen sayısı ($8$) ile köşe sayısı ($8$) aynı çıktı; her köşenin üç komşusu tam bir üçgen belirlediği için beklenen de budur.
+
+<Cevap>a) $28$ &nbsp;&nbsp; b) $56$ &nbsp;&nbsp; c) $20$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-8 */}
+<Ornek>
+
+<Soru>
+
+Dış yüzeyinin tamamı boyanmış $n\times n\times n$ boyutlarındaki bir küp, $n^3$ tane eş birim küpe ayrılıyor. Yalnız bir yüzü boyalı olan birim küplerin sayısı $150$'dir.
+
+a) $n$ kaçtır?
+
+b) Tam iki yüzü boyalı kaç birim küp vardır?
+
+c) En az bir yüzü boyalı kaç birim küp vardır?
+
+</Soru>
+
+<Ipucu>
+
+Yalnız bir yüzü boyalı birim küpler, büyük küpün yüzlerinin kenar şeridi atılmış ortasındadır.
+
+</Ipucu>
+
+<Cozum>
+
+1. a) Her yüzde kenar şeridi atılınca $(n-2)\times(n-2)$ birim kare kalır; $6$ yüz için $6(n-2)^2=150$. Buradan $(n-2)^2=25$ ve $n-2\ge 0$ olduğundan $n-2=5$, yani $n=7$.
+
+2. **Yaygın yanlış:** $6n^2=150$ yazıp $n=5$ bulmak. Bu, yüzdeki bütün birim kareleri sayar; oysa kenar şeridindeki birim küplerin birden çok yüzü boyalıdır. Gerçekten $n=5$ alınırsa yalnız bir yüzü boyalı küp sayısı $6\cdot 3^2=54$ olur, $150$ değil.
+
+3. b) Tam iki yüzü boyalı birim küpler ayrıtların üzerindedir, ama ayrıtların iki ucundaki köşe küpleri hariçtir: $12(n-2)=12\cdot 5=60$.
+
+4. **Yaygın yanlış:** $12n=84$ yazmak. Bu sayım her köşe küpünü üç ayrıtta birden saymış ve $3$ yüzü boyalı küpleri $2$ yüzü boyalı gibi göstermiştir.
+
+5. c) **Tümleyenle:** Hiç boyanmamış birim küpler içteki $(n-2)^3=5^3=125$ küptür. En az bir yüzü boyalı olanlar $7^3-125=343-125=218$.
+
+6. Kontrol (doğrudan toplam): $3$ yüzü boyalı $8$, $2$ yüzü boyalı $60$, $1$ yüzü boyalı $150$; toplam $8+60+150=218$. Boyasızlarla birlikte $218+125=343=7^3$.
+
+<Cevap>a) $7$ &nbsp;&nbsp; b) $60$ &nbsp;&nbsp; c) $218$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Pekiştirme Soruları
+
+> Konuyu pekiştirmek için hazırlanmış özgün sorular.
+
+<Sorular slug="geometrik-kombinasyon" />
+
+## Sık Yapılan Hatalar
+
+- **Doğrusal noktaları düşmemek ya da düştükten sonra o doğruyu geri eklememek.** $k$ doğrusal nokta tek bir doğru verir: $C(n,2)-C(k,2)+1$ (Örnek 2).
+- **Doğrusal üçlüleri üçgen saymak.** Üçgen sayısında $C(k,3)$ çıkarılır ve geri ekleme yapılmaz (Örnek 2 b, Örnek 3).
+- **Kenar üzerindeki noktalarda köşelerin dahil olup olmadığını okumamak.** Köşeler eklenince her kenardaki doğrusal nokta sayısı $2$ artar (Örnek 3 b).
+- **Köşegen sayısına kenarları da katmak.** $C(n,2)$ köşe çiftlerinin hepsidir; köşegen sayısı $C(n,2)-n=\dfrac{n(n-3)}{2}$'dir (Örnek 4).
+- **Paralel doğruların kesişmediğini ya da iki çemberin $2$ noktada kesiştiğini unutmak.** Paralel aile için $C(p,2)$ çıkarılır, çember çiftleri $2$ ile çarpılır (Örnek 5).
+- **Izgarada satır ve sütun sayısını çizgi sayısıyla karıştırmak.** $4\times 6$ tahtada $5$ yatay ve $7$ dikey çizgi vardır (Örnek 6 a).
+- **Kare sayısında yalnız birim kareleri saymak ya da dikdörtgen formülüyle kare bulmak.** Kareler boyutlara göre toplanır (Örnek 6 b).
+- **Domino sayımında yatay ya da dikey konumlardan birini atlamak, ya da bir dominoyu iki kez saymak.** Her domino tahtanın içindeki tek bir birim kenara karşılık gelir (Örnek 6 c).
+- **Küpte aynı düzlemdeki dört köşeyi farklı düzlemler gibi saymak; yüz köşegeni ile cisim köşegenini karıştırmak.** Küpte $12$ düzlemde dörder köşe vardır; $12$ yüz köşegeni ve $4$ cisim köşegeni bulunur (Örnek 7, Bölüm 10).
+- **Boyalı küpte köşe, ayrıt ve yüz küplerini karıştırmak.** Ayrıtta $12n$ değil $12(n-2)$, yüzde $6n^2$ değil $6(n-2)^2$ yazılır (Örnek 8).
+- **Dörtgen sayısını $C(n,4)$ ile her durumda bulmak.** Bu formül yalnız noktalar dışbükey konumdaysa geçerlidir (Bölüm 3).
+
+## Özet
+
+| Durum | Sayı |
+| --- | --- |
+| $n$ nokta, $k$'sı doğrusal: doğru | $C(n,2)-C(k,2)+1$ |
+| $n$ nokta, $k$'sı doğrusal: üçgen | $C(n,3)-C(k,3)$ |
+| İki paralel doğru üzerinde $a$ ve $b$ nokta: dörtgen | $C(a,2)\cdot C(b,2)$ |
+| $n$-genin bir köşesinden / toplam köşegen | $n-3$ / $\dfrac{n(n-3)}{2}$ |
+| $n$ doğru ($p$'si paralel): en çok kesişim | $C(n,2)-C(p,2)$ |
+| $m$ çember / $n$ doğru ile $m$ çember: en çok kesişim | $2\cdot C(m,2)$ / $2nm$ |
+| $n$ doğrunun düzlemi ayırdığı en çok bölge | $1+n+C(n,2)$ |
+| $m$ ve $n$ paralel doğrudan oluşan iki aile: paralelkenar | $C(m,2)\cdot C(n,2)$ |
+| $r\times c$ ızgara: dikdörtgen | $C(r+1,2)\cdot C(c+1,2)$ |
+| $r\times c$ ızgara: domino konumu | $r(c-1)+(r-1)c$ |
+| Çemberde $n$ nokta: kirişlerin en çok iç kesişimi | $C(n,4)$ |
+| $n$-gen dik prizma: yüz / cisim köşegeni | $n(n-1)$ / $n(n-3)$ |
+| Boyalı $n\times n\times n$ küp: $3$ / $2$ / $1$ / $0$ yüzü boyalı | $8$ / $12(n-2)$ / $6(n-2)^2$ / $(n-2)^3$ |
+
+## Pratik İpucu
+
+- Her soruda önce "bu nesneyi ne belirler?" diye sor: nokta mı, doğru mu, çizgi çifti mi? Sonra bozulan seçimleri bul.
+- Doğrusal noktalar varsa doğru sayısında **sil ve bir kez geri ekle**, üçgen sayısında **yalnız sil**.
+- Izgara sorularında işe kareleri değil **çizgileri** sayarak başla.
+- Boyalı küpte bulduğun dört sayıyı topla; toplam $n^3$ etmiyorsa bir yerde köşeleri iki kez saymışsındır.
+
+<KonuNav slug="geometrik-kombinasyon" />

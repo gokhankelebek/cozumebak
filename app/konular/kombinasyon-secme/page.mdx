@@ -1,0 +1,676 @@
+import { topicMetadata } from "@/lib/seo";
+import { SiralamaGruplari } from "@/components/figures/KombSecmeGruplamaFig";
+import { BoslukYontemi } from "@/components/figures/KombSecmeBoslukFig";
+import { KaleYerlesimi } from "@/components/figures/KombSecmeKaleFig";
+
+export const metadata = topicMetadata("kombinasyon-secme");
+
+<Konu slug="kombinasyon-secme" />
+
+<p className="lead">Kombinasyon, $n$ farklı nesneden $r$ tanesini **sıra gözetmeden** seçmenin kaç yolla yapılabileceğini sayar. Sıralı sayım, aynı $r$ nesneden oluşan her seçimi $r!$ kez sayar; bu yüzden sıralı sayıyı $r!$'e böleriz. Bu sayfadaki her yöntem (belirli kişinin dahil ya da hariç olması, "en az" koşulu, maç sayısı, ardışık olmayan seçim, özdeş nesneler) bu tek fikrin farklı durumlara uygulanmasıdır.</p>
+
+> **Bu sayfadaki varsayımlar**
+>
+> - Aksi söylenmedikçe kişiler ve nesneler **farklıdır** (birbirinden ayırt edilebilir). Özdeş nesneler soruda açıkça belirtilir.
+> - Ekip, kurul, komisyon ve grupta **görev ayrımı yoktur**; görev varsa (başkan, sayman, kaleci) soruda ayrıca yazılır.
+> - Bir kişi ya da nesne **en fazla bir kez** seçilir. Aynı türden tekrar tekrar seçim, [Gruplara Ayırma ve Dağıtma](/konular/gruplara-ayirma-dagitma) sayfasının konusudur.
+> - "En az", "en çok" ve "tam olarak" ifadeleri kelimesi kelimesine okunur.
+> - "$1$'den $n$'ye kadar" denildiğinde iki uç da dahildir.
+
+Bu konunun temel anlatımı için 10. sınıf [Kombinasyon](/konular/kombinasyon-10) dersine, konunun genel haritası için [Permütasyon ve Kombinasyon](/konular/permutasyon-kombinasyon-tyt) sayfasına bakabilirsin. Sıralı seçim $P(n,r)$ ve faktöriyel bilgisi [Permütasyon ve Faktöriyel](/konular/permutasyon-siralama) sayfasında, küme ve alt küme kavramları [Kümeler](/konular/kumeler-tyt) sayfasında anlatılır. Maarif programında sayma, permütasyon ve kombinasyon 10. sınıfta işlenir.
+
+## 1. Sıra Önemsizse Neden r!'e Böleriz?
+
+$A, B, C, D$ adlı dört öğrenciden $3$'ü seçilecek olsun. İki farklı soru sorabiliriz:
+
+- **Sıralı soru:** Seçilen $3$ kişi bir sıraya dizilecekse kaç diziliş vardır? Cevap $P(4,3)=4\cdot 3\cdot 2=24$.
+- **Sırasız soru:** Seçilen $3$ kişi bir nöbetçi grubu oluşturacaksa kaç farklı grup vardır?
+
+İkinci sorunun cevabını bulmak için $24$ dizilişi, kullandıkları harflere göre gruplayalım. $ABC$, $ACB$, $BAC$, $BCA$, $CAB$, $CBA$ dizilişlerinin hepsi aynı grubu, yani $\{A,B,C\}$ grubunu verir.
+
+<Figur>
+
+<SiralamaGruplari />
+
+<Altyazi>Şekil 1 — Sıralı $24$ diziliş, kullandıkları harf kümesine göre $4$ satıra ayrılır. Her satırda aynı üç harfin $3!=6$ sıralanışı vardır. Grup sayısı $24\div 6=4$'tür.</Altyazi>
+
+</Figur>
+
+Her grup tablonun bir satırıdır ve her satırda tam $3!=6$ diziliş vardır. Bu nedenle grup sayısı
+
+$$\dfrac{24}{3!}=\dfrac{24}{6}=4$$
+
+olur. Listeyle de doğrulayabiliriz: $\{A,B,C\}$, $\{A,B,D\}$, $\{A,C,D\}$, $\{B,C,D\}$.
+
+> **Ana fikir:** Sıralı sayım, her sırasız seçimi tam $r!$ kez sayar (seçilen $r$ nesnenin kendi aralarındaki sıralanış sayısı kadar). Bu fazlalığı gidermek için sıralı sayıyı $r!$'e böleriz.
+
+## 2. C(n, r) Formülü ve P(n, r) = C(n, r) · r!
+
+$n$ farklı nesneden $r$ tanesinin sırasız seçimlerinin sayısına **$n$'nin $r$'li kombinasyonu** denir ve $C(n,r)$ ya da $\dbinom{n}{r}$ ile gösterilir. Bu sayfada çoğunlukla $C(n,r)$ yazacağız. Birinci bölümdeki düşünce genel olarak şunu verir ($0\le r\le n$):
+
+$$C(n,r)=\dbinom{n}{r}=\dfrac{P(n,r)}{r!}=\dfrac{n!}{r!\,(n-r)!}$$
+
+**Pratik hesap:** Paya $n$'den başlayıp azalarak $r$ tane çarpan, paydaya $r!$ yazılır:
+
+$$C(9,4)=\dfrac{9\cdot 8\cdot 7\cdot 6}{4\cdot 3\cdot 2\cdot 1}=\dfrac{3024}{24}=126$$
+
+Sonuç her zaman bir tam sayıdır, çünkü bir şeyin "kaç yolla" yapıldığını sayar.
+
+Formülün iki yanını $r!$ ile çarparsak sıralı seçimi iki adıma ayırmış oluruz:
+
+$$P(n,r)=C(n,r)\cdot r!$$
+
+Yani "$r$ kişiyi sıraya dizmek" = "önce kimlerin alınacağını seç" ($C(n,r)$ yol) × "sonra seçilenleri sırala" ($r!$ yol). Bu ayrım, Bölüm 9'daki görev verme sorularının temelidir.
+
+## 3. Kombinasyonun Özellikleri: Simetri ve Pascal Kuralı
+
+**Uç değerler.** $C(n,0)=C(n,n)=1$: hiç seçmemenin de hepsini seçmenin de tek bir yolu vardır ($0!=1$ tanımı bunu sağlar). $C(n,1)=n$: tek nesne $n$ yolla seçilir.
+
+**Simetri.** $C(n,r)=C(n,\,n-r)$. Neden: $r$ nesneyi **almak**, geriye kalan $n-r$ nesneyi **dışarıda bırakmakla** aynı karardır. Hesapta küçük olanı kullanırız:
+
+$$C(18,16)=C(18,2)=\dfrac{18\cdot 17}{2}=153$$
+
+**Pascal kuralı.**
+
+$$C(n,r)+C(n,r+1)=C(n+1,\,r+1)$$
+
+Neden: $n+1$ kişiden $r+1$ kişilik bir ekip seçelim ve bu kişilerden birine, Ece'ye bakalım. Her ekip ya Ece'yi içerir ya da içermez; iki durum ayrıktır.
+
+- Ece ekipteyse kalan $r$ yer diğer $n$ kişiden doldurulur: $C(n,r)$.
+- Ece ekipte değilse $r+1$ yerin tamamı diğer $n$ kişiden doldurulur: $C(n,r+1)$.
+
+İki durumun toplamı tüm ekiplerin sayısıdır. Küçük bir kontrol: $C(4,1)+C(4,2)=4+6=10=C(5,2)$. Bu kural [Binom Açılımı](/konular/binom-acilimi) sayfasında Pascal üçgenini kurmak için yeniden kullanılır.
+
+**Alt küme sayısıyla ilişkisi (yalnız kavram).** $n$ elemanlı bir kümenin her elemanı için iki seçenek vardır: alt kümeye girer ya da girmez. Bu yüzden tüm alt kümelerin sayısı $2^n$'dir. Bu sayı, $0, 1, \dots, n$ elemanlı alt kümelerin sayılarının toplamıdır. Bu toplamla ilgili hesaplar Binom Açılımı sayfasında yapılır; burada yalnız $C(n,r)$'nin, $n$ elemanlı kümenin $r$ elemanlı alt kümelerini saydığını akılda tutmak yeterlidir.
+
+## 4. Kombinasyon Denklemleri: İki Durum
+
+$n=6$ için kombinasyon değerlerini yan yana yazalım:
+
+| $r$ | $0$ | $1$ | $2$ | $3$ | $4$ | $5$ | $6$ |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| $C(6,r)$ | $1$ | $6$ | $15$ | $20$ | $15$ | $6$ | $1$ |
+
+Değerler ortaya kadar artar, sonra simetrik olarak azalır. Bu her $n$ için böyledir, çünkü ardışık iki değerin oranı
+
+$$\dfrac{C(n,r+1)}{C(n,r)}=\dfrac{n-r}{r+1}$$
+
+dir ve bu oran $r\lt \dfrac{n-1}{2}$ iken $1$'den büyüktür. Yani değerler ortaya kadar kesin olarak artar; simetri nedeniyle ortadan sonra aynı değerler ters sırayla tekrarlanır. $n$ çiftse ortadaki değer bir kez, diğer her değer **iki kez** görülür; $n$ tekse ortada birbirine eşit iki değer vardır ve her değer tam **iki kez** görülür. Bu yüzden
+
+$$C(n,a)=C(n,b)\ \Longrightarrow\ a=b\quad \text{veya}\quad a+b=n$$
+
+olur. Bir kombinasyon denkleminde **iki durumu da** çözmek gerekir. Her adayın $0\le a\le n$ ve $0\le b\le n$ koşulunu sağladığı ayrıca kontrol edilir.
+
+$C(n,2)=k$ biçimindeki denklemlerde $\dfrac{n(n-1)}{2}=k$, yani $n(n-1)=2k$ yazılır ve ardışık iki doğal sayının çarpımı aranır. Örnek 6 iki durumu birlikte gösterir.
+
+## 5. Belirli Elemanlar Dahil, Hariç veya Birlikte Olamaz
+
+$n$ kişiden $r$ kişilik bir grup seçilirken bazı kişiler için koşul verilebilir. Her satırdaki fikir aynıdır: koşulun kesinleştirdiği kişileri ayır, yer sayısını ve aday sayısını buna göre azalt.
+
+| Koşul | Seçim sayısı | Neden |
+| --- | --- | --- |
+| Belirli bir kişi kesin dahil | $C(n-1,\ r-1)$ | O kişi bir yeri aldı; kalan $r-1$ yer, kalan $n-1$ kişiden |
+| Belirli bir kişi kesin hariç | $C(n-1,\ r)$ | Aday sayısı $1$ azalır, yer sayısı aynı kalır |
+| Belirli $k$ kişi kesin dahil | $C(n-k,\ r-k)$ | $k$ yer doldu, $k$ aday kullanıldı |
+| İki kişi birlikte olamaz | $C(n,r)-C(n-2,\ r-2)$ | Tümünden, ikisinin birlikte olduğu seçimler çıkar |
+| $A$ seçilirse $B$ de seçilmeli | $C(n-1,\ r)+C(n-2,\ r-2)$ | $A$ yok **ya da** $A$ ve $B$ birlikte var |
+
+Son satırda koşul tek yönlüdür: $B$, $A$ olmadan da gruba girebilir. Örneğin Ali ve Ayşe'nin de bulunduğu $8$ kişiden $3$ kişilik bir grup seçilsin ve "Ali seçilirse Ayşe de seçilmeli" denilsin.
+
+- Ali yoksa: $3$ kişi diğer $7$ kişiden seçilir, $C(7,3)=35$. (Ayşe bu gruplarda olabilir de olmayabilir de.)
+- Ali varsa Ayşe de vardır: kalan $1$ yer diğer $6$ kişiden doldurulur, $C(6,1)=6$.
+
+Toplam $35+6=41$ grup vardır. Dahil, hariç ve birlikte olamaz koşulları Örnek 2'de çözülmüştür.
+
+## 6. İki Gruptan Seçim: Çarpma Kuralı
+
+Seçim iki ayrı gruptan **birlikte** yapılıyorsa her gruptaki seçim ayrı ayrı sayılır ve sonuçlar **çarpılır**. Örneğin $4$ farklı matematik ve $3$ farklı fizik kitabından $2$ matematik ve $1$ fizik kitabı seçmenin yolu
+
+$$C(4,2)\cdot C(3,1)=6\cdot 3=18$$
+
+dir. Çarpıyoruz, çünkü $6$ matematik ikilisinin **her biri** $3$ fizik kitabının **her biriyle** ayrı bir seçim oluşturur. Toplamak ($6+3=9$) yanlıştır; toplama ancak birbirini dışlayan durumları birleştirirken kullanılır.
+
+İki kural çoğu zaman birlikte kullanılır: farklı bileşimler ("ya $2$ matematik $1$ fizik ya da $1$ matematik $2$ fizik") **toplanır**, her bileşimin içindeki gruplar **çarpılır**.
+
+**Değer sınıflarına göre seçim.** Nesneler ağırlık, fiyat ya da renk gibi bir özelliğe göre sınıflara ayrılmışsa önce koşulu sağlayan sınıf bileşimleri listelenir, sonra her bileşim çarpma kuralıyla sayılır. Örneğin $9$ farklı paketin üçü $1$ kg, dördü $2$ kg, ikisi $5$ kg olsun ve bu paketlerden $2$'si, toplam ağırlık en az $6$ kg olacak biçimde seçilsin. Koşulu sağlayan bileşimler:
+
+| Bileşim | Toplam | Seçim sayısı |
+| --- | --- | --- |
+| $5+5$ | $10$ kg | $C(2,2)=1$ |
+| $5+2$ | $7$ kg | $2\cdot 4=8$ |
+| $5+1$ | $6$ kg | $2\cdot 3=6$ |
+
+Toplam $1+8+6=15$. Kontrol: tüm ikililer $C(9,2)=36$; koşulu sağlamayanlar $2+2$, $2+1$, $1+1$ bileşimleridir: $C(4,2)+4\cdot 3+C(3,2)=6+12+3=21$. Gerçekten $36-21=15$.
+
+## 7. 'En Az' ve 'En Çok': Durumlar mı, Tümleyen mi?
+
+"$4$ kişilik ekipte **en az $2$ kız**" ifadesi, ekipteki kız sayısının $2$, $3$ ya da $4$ olması demektir. Kız sayısının alabileceği tüm değerleri bir tabloya yazınca hangi yolun kısa olduğu hemen görülür:
+
+| Kız sayısı | $0$ | $1$ | $2$ | $3$ | $4$ |
+| --- | --- | --- | --- | --- | --- |
+| "En az $2$ kız" | hayır | hayır | evet | evet | evet |
+
+- **Durumlarla:** "evet" sütunlarını ayrı ayrı say, topla.
+- **Tümleyenle:** tüm seçimlerden "hayır" sütunlarını çıkar.
+
+"En az $2$"nin tümleyeni "en çok $1$"dir, yani **$0$ veya $1$** kız. Yalnız "hiç kız yok" durumunu çıkarmak, $1$ kızlı ekipleri yanlışlıkla uygun saymak olur. Az sütunlu taraf hangisiyse o yolu seç; iki yolu da yapabiliyorsan biri diğerinin kontrolüdür.
+
+"En çok $1$ öğretmen" de aynı biçimde okunur: $0$ öğretmen veya $1$ öğretmen. Bir yazılıda "ilk $4$ sorudan en az $3$'ünü cevaplamak zorunlu" gibi koşullar da aynı yolla çözülür: ilk gruptan kaç soru seçildiğine göre durumlara ayrılır, her durumda iki grubun seçimleri çarpılır. Örnek 3 iki yolu yan yana gösterir.
+
+## 8. Çift Sayım Tuzağı: 'Önce Birini Seç' Neden Yanlış?
+
+"En az $1$ erkek" koşulunda şu yanlış akıl yürütme çok yaygındır: "Önce koşulu garantilemek için bir erkek seçeyim, kalan yerleri herkesten doldurayım." En küçük örnekte bakalım: $E_1, E_2$ adlı iki erkek ve $K$ adlı bir kızdan, en az bir erkek içeren $2$ kişilik grup seçilecek.
+
+**Doğru sayım (listele):** $\{E_1,E_2\}$, $\{E_1,K\}$, $\{E_2,K\}$. Toplam $3$ grup.
+
+**Yanlış yöntem:** Erkek $2$ yolla seçilir, kalan $1$ yer diğer $2$ kişiden doldurulur: $2\cdot 2=4$. Yöntemin ürettiği seçimler:
+
+| "Garanti" erkek | Sonra seçilen | Ortaya çıkan grup |
+| --- | --- | --- |
+| $E_1$ | $E_2$ | $\{E_1,E_2\}$ |
+| $E_1$ | $K$ | $\{E_1,K\}$ |
+| $E_2$ | $E_1$ | $\{E_1,E_2\}$ (tekrar) |
+| $E_2$ | $K$ | $\{E_2,K\}$ |
+
+$\{E_1,E_2\}$ grubu iki kez sayılmıştır. Sorun şudur: ortaya çıkan grupta hangi erkeğin "garanti" olarak seçildiği belli değildir, yani yöntem gizlice sıra gözetmiştir. İki erkekli bir grup iki kez, üç erkekli bir grup üç kez sayılır. Doğru yol tümleyen ya da durumlara ayırmadır. Tümleyenle: tüm gruplar $C(3,2)=3$; hiç erkek içermeyen $2$ kişilik grup yoktur (yalnız $1$ kız var), yani $3-0=3$. Örnek 4 bu farkı daha büyük sayılarla gösterir.
+
+## 9. Seç, Sonra Sırala veya Görev Ver
+
+**Seç, sonra sırala.** $n$ nesneden $r$ tanesini seçip sıraya dizmek $C(n,r)\cdot r!=P(n,r)$ yolla yapılır. İki adımlı düşünmek, özellikle seçilenlerin yalnız bir kısmının sıralandığı ya da görev aldığı sorularda işe yarar.
+
+**Görevli ve görevsiz üyeler.** Bir grupta bazı kişilerin görevi varsa (başkan, sayman) bazılarının yoksa iki eşdeğer yol vardır:
+
+1. Önce grubu sırasız seç, sonra grubun içinden görevlileri sıralı ata.
+2. Önce görevlileri sıralı seç, sonra görevsiz üyeleri kalanlardan sırasız seç.
+
+İki yol aynı sonucu vermelidir; bu, iyi bir kontroldür. Örnek 5 iki yolu da uygular.
+
+**Mevkili takım.** Kaleci yalnız kalecilerden, diğer oyuncular yalnız diğer oyunculardan seçiliyorsa her mevki ayrı bir grup gibi seçilir ve sonuçlar çarpılır (Bölüm 6).
+
+**Birbirini tehdit etmeyen kaleler.** $n\times n$ kareli tahtaya $k$ özdeş kale, hiçbir ikisi aynı satırda ya da aynı sütunda olmayacak biçimde konulacak olsun. Bu da bir "seç, sonra eşle" sorusudur ve üç adımda çözülür:
+
+1. Kalelerin bulunacağı satırları seç: $C(n,k)$.
+2. Kalelerin bulunacağı sütunları seç: $C(n,k)$.
+3. Seçilen satırları seçilen sütunlarla eşle: en üstteki kalenin $k$, sonrakinin $k-1$, … sütun seçeneği vardır, yani $k!$ yol.
+
+$$\text{Yerleşim sayısı}=C(n,k)\cdot C(n,k)\cdot k!$$
+
+<Figur>
+
+<KaleYerlesimi />
+
+<Altyazi>Şekil 2 — $5\times 5$ tahtada birbirini tehdit etmeyen $3$ kale. Kalelerin satırları ($2, 4, 5$) ve sütunları ($a, c, e$) seçildikten sonra satırlar sütunlarla eşlenir. Aynı satır ve sütunlarla $3!=6$ farklı eşleme, yani $6$ farklı yerleşim vardır.</Altyazi>
+
+</Figur>
+
+Küçük bir kontrol: $3\times 3$ tahtaya $2$ özdeş kale $C(3,2)\cdot C(3,2)\cdot 2!=3\cdot 3\cdot 2=18$ yolla konur. İkinci yol: birinci kale $9$ kareden birine, ikinci kale birincinin satırı ve sütunu dışında kalan $4$ kareden birine konur; kaleler özdeş olduğu için her yerleşim $2!$ kez sayılmıştır: $\dfrac{9\cdot 4}{2}=18$. Kaleler **farklı** (örneğin numaralı) olsaydı, kalelerin bu $k$ kareye dağılışı için ayrıca $k!$ ile çarpardık. Örnek 10 bu yöntemi kullanır.
+
+## 10. Maç, Tokalaşma ve Turnuva Sayıları
+
+| Durum | Sayı | Neden |
+| --- | --- | --- |
+| Tokalaşma (herkes herkesle bir kez) | $C(n,2)$ | Her tokalaşma iki kişilik sırasız bir seçimdir |
+| Tek devreli lig (her iki takım bir kez) | $C(n,2)$ | Her maç sırasız bir takım ikilisidir |
+| Çift devreli lig (iç saha ve dış saha) | $n(n-1)=P(n,2)$ | $A$–$B$ ile $B$–$A$ ayrı maçlardır |
+| Eleme usulü (kaybeden elenir) | $n-1$ | Her maç tam bir takımı eler |
+
+Küçük kontrol, $4$ takım için: tek devrede $6$, çift devrede $12$, eleme usulünde $3$ maç oynanır.
+
+**Eleme usulü neden $n-1$?** Her maçta tam olarak bir takım elenir. Turnuva sonunda şampiyon dışındaki $n-1$ takımın hepsi elenmiş olacağından $n-1$ maç oynanır. Takım sayısının $2$'nin kuvveti olması gerekmez; bir turda tek sayıda takım varsa bir takım maç yapmadan üst tura çıkar (bay geçer) ve sonuç değişmez.
+
+**Ters sorular.** Maç sayısı verilip $n$ sorulursa $C(n,2)=N$ denklemi kurulur. "En az $N$ maç" gibi bir eşik verilirse $C(n,2)\ge N$ olan **en küçük** $n$ aranır. Bu durumda hem bulunan $n$'yi hem de $n-1$'i kontrol et: $n-1$ koşulu sağlamamalı, $n$ sağlamalıdır. Örnek 7 eşik sorusunu ve eleme usulünü birlikte gösterir.
+
+## 11. Ardışık Olmayan Seçim: C(n − k + 1, k)
+
+$1, 2, \dots, n$ sayılarından, **hiçbir ikisi ardışık olmayan** $k$ sayı seçmek isteyelim. Önce listeleyerek bakalım: $1$'den $5$'e kadar olan sayılardan ardışık olmayan $2$ sayı seçmenin yolları
+
+$$\{1,3\},\ \{1,4\},\ \{1,5\},\ \{2,4\},\ \{2,5\},\ \{3,5\}$$
+
+olmak üzere $6$ tanedir.
+
+**Boşluk yöntemi.** Seçilmeyen $n-k$ sayıyı (örneğin sönük lambaları) bir sıraya koy. Bunların arasında ve iki ucunda $n-k+1$ boşluk oluşur. Seçilen $k$ sayıyı **farklı** boşluklara koyarsak hiçbir ikisi yan yana gelmez; tersine, ardışık olmayan her seçim boşluklara tek bir biçimde karşılık gelir. Bu yüzden
+
+$$\text{Ardışık olmayan seçim sayısı}=C(n-k+1,\ k)$$
+
+dır. Liste kontrolü: $n=5$, $k=2$ için $C(4,2)=6$. Bu, [Permütasyon ve Faktöriyel](/konular/permutasyon-siralama) sayfasındaki boşluk yönteminin seçim hâlidir: seçilenler kendi aralarında sıralanmadığı için $k!$ çarpanı yoktur.
+
+<Figur>
+
+<BoslukYontemi />
+
+<Altyazi>Şekil 3 — Düz bir sırada $7$ lambadan $3$'ü yanacak ve yan yana iki lamba birlikte yanmayacak. $4$ sönük lamba $5$ boşluk oluşturur; yanık lambalar için $3$ boşluk seçilir: $C(5,3)=10$.</Altyazi>
+
+</Figur>
+
+Bu formül **düz** bir sıra içindir: ilk ve son eleman komşu sayılmaz. Örnek 8 yöntemi uygular ve sık yapılan eksik çıkarma hatasını gösterir.
+
+## 12. Özdeş Nesnelerden Seçim: Renk Desenleri
+
+Bir kutuda $3$ özdeş kırmızı ve $4$ özdeş mavi top olsun ve $3$ top seçilsin. Özdeş toplar arasında fark olmadığı için bir seçimi belirleyen tek şey **her renkten kaç top** alındığıdır. Listeleyelim (K: kırmızı, M: mavi):
+
+$$KKK,\quad KKM,\quad KMM,\quad MMM$$
+
+Yalnız $4$ farklı seçim vardır. Toplar numaralı (yani farklı) olsaydı cevap $C(7,3)=35$ olurdu. Özdeş nesnelerde $C(\text{toplam}, r)$ yazmak, birbirinden ayırt edilemeyen seçimleri ayrı saymaktır.
+
+Ters yöndeki hata da yaygındır: **aynı değerde ama farklı** nesneler özdeş değildir. Aynı fiyattaki $5$ farklı kitap ya da aynı renkteki ama numaralı toplar ayırt edilebilir; bunlardan seçim $C(n,r)$ ile sayılır. Belirleyici soru şudur: iki nesnenin yerini değiştirince seçim değişiyor mu?
+
+Özdeş ve farklı nesnelerin karıştığı bir seçim Örnek 9'da çözülmüştür. Birçok türden ve her türden istendiği kadar nesne alınabilen seçimler [Gruplara Ayırma ve Dağıtma](/konular/gruplara-ayirma-dagitma) sayfasında işlenir.
+
+## 13. Alt Küme Sayıları
+
+$n$ elemanlı bir kümenin $r$ elemanlı alt kümeleri, o kümeden yapılan $r$'li sırasız seçimlerdir; sayıları $C(n,r)$'dir. Bölüm 5'teki dahil ve hariç kuralları alt kümelere aynen uygulanır:
+
+| İstenen $r$ elemanlı alt kümeler | Sayı |
+| --- | --- |
+| $a$ elemanını içeren | $C(n-1,\ r-1)$ |
+| $b$ elemanını içermeyen | $C(n-1,\ r)$ |
+| $a$'yı içeren, $b$'yi içermeyen | $C(n-2,\ r-1)$ |
+
+Örneğin $\{a,b,c,d,e,f\}$ kümesinin $a$'yı içeren ama $b$'yi içermeyen $3$ elemanlı alt kümeleri için $a$ alınır, $b$ dışarıda bırakılır ve kalan $2$ eleman $\{c,d,e,f\}$ kümesinden seçilir: $C(4,2)=6$.
+
+**"En az bir çift eleman" gibi koşullar** tümleyenle çözülür: tüm $r$ elemanlı alt kümelerden, elemanlarının hepsi tek olanlar çıkarılır.
+
+**Toplamı çift olan alt kümeler** tek ve çift elemanların sayısına göre durumlara ayrılır. Toplamın çift olması için tek elemanların sayısı çift olmalıdır:
+
+- $2$ elemanlı: ya ikisi de tek ya da ikisi de çift.
+- $3$ elemanlı: ya üçü de çift ya da $1$ çift ve $2$ tek.
+
+Örneğin $\{1,2,3,4,5,6\}$ kümesinde $3$ tek ve $3$ çift eleman vardır; toplamı çift olan $2$ elemanlı alt kümelerin sayısı $C(3,2)+C(3,2)=6$'dır. Listeyle: $\{1,3\}$, $\{1,5\}$, $\{3,5\}$, $\{2,4\}$, $\{2,6\}$, $\{4,6\}$.
+
+## 14. Permütasyon mu, Kombinasyon mu? Karar Testi
+
+Formül seçmeden önce şu **yer değiştirme testini** uygula: Seçilen iki kişinin ya da nesnenin yerini değiştir. Ortaya **yeni bir sonuç** çıkıyorsa sıra önemlidir (permütasyon); **aynı sonuç** kalıyorsa sıra önemsizdir (kombinasyon).
+
+| Durum | Yer değiştirince | Sayım |
+| --- | --- | --- |
+| $3$ kişilik ekip, kurul, komisyon | Aynı ekip | $C(n,3)$ |
+| Başkan, yardımcı, sayman | Görevler değişir, yeni seçim | $P(n,3)$ |
+| Rafa dizilen kitaplar | Yeni diziliş | $P(n,r)$ |
+| Tokalaşma, tek devreli maç | Aynı tokalaşma, aynı maç | $C(n,2)$ |
+| Çift devreli lig maçı | İç saha ve dış saha değişir | $P(n,2)$ |
+| İçinden bir başkan seçilen $4$ kişilik kurul | Başkan değişirse yeni seçim; iki üye yer değiştirirse aynı | $C(n,4)\cdot 4$ |
+
+Son satır, en sık karşılaşılan karma durumdur: grubun bir kısmı sıralı, bir kısmı sırasızdır. Bu durumda formülü tek seferde seçmeye çalışma; seçimi adımlara ayır (Bölüm 9).
+
+## Çözümlü Sorular
+
+{/* ornek-1 */}
+<Ornek>
+
+<Soru>
+
+Bir dondurmacıda $6$ farklı çeşit dondurma vardır. Ece, birbirinden farklı $3$ çeşit seçip her birinden bir top dondurmayı bir kâseye koyduracaktır. Kâsede topların sırası önemli olmadığına göre Ece kaç farklı seçim yapabilir?
+
+</Soru>
+
+<Ipucu>
+
+Önce sırayı önemliymiş gibi say, sonra aynı kâsenin kaç kez sayıldığını bul.
+
+</Ipucu>
+
+<Cozum>
+
+1. Sıra önemli olsaydı (örneğin toplar bir külahta alttan üste dizilseydi) ilk top $6$, ikinci top $5$, üçüncü top $4$ yolla seçilirdi: $P(6,3)=6\cdot 5\cdot 4=120$ diziliş.
+
+2. Kâsede sıra önemsizdir. Aynı üç çeşidin $3!=6$ farklı sıralanışı tek bir kâse verir, yani her seçim $6$ kez sayılmıştır.
+
+3. Seçim sayısı: $\dfrac{120}{6}=20$. Bu, $C(6,3)=\dfrac{6\cdot 5\cdot 4}{3\cdot 2\cdot 1}=20$ demektir.
+
+4. Kontrol (Pascal kuralıyla): Çeşitlerden biri çikolata olsun. Çikolatayı içeren seçimler $C(5,2)=10$, içermeyenler $C(5,3)=10$; toplam $10+10=20$.
+
+<Cevap>$20$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-2 */}
+<Ornek>
+
+<Soru>
+
+Deniz, Efe, Ali ve Veli'nin de bulunduğu $12$ kişilik bir sınıftan $5$ kişilik bir temsilci kurulu seçilecektir. Kurulda görev ayrımı yoktur.
+
+a) Deniz kurulda kesin yer alacak, Efe ise kesin yer almayacaksa kaç farklı kurul oluşturulabilir?
+
+b) Bu kez Deniz ve Efe için bir koşul yoktur; ancak Ali ile Veli aynı kurulda bulunamaz. Kaç farklı kurul oluşturulabilir?
+
+</Soru>
+
+<Ipucu>
+
+a) Koşulun kesinleştirdiği kişileri ayır; hem yer sayısını hem aday sayısını güncelle. b) Tümünden "ikisi birlikte" olan kurulları çıkar.
+
+</Ipucu>
+
+<Cozum>
+
+1. a) Deniz kurulda olduğu için $1$ yer doldu, $5-1=4$ yer kaldı. Deniz zaten seçildiği ve Efe dışarıda bırakıldığı için aday olarak $12-2=10$ kişi kalır.
+
+2. a) Kurul sayısı: $C(10,4)=\dfrac{10\cdot 9\cdot 8\cdot 7}{24}=210$.
+
+3. a) Sık yapılan iki hata: Efe'yi aday listesinden çıkarmayı unutmak $C(11,4)=330$ verir; Deniz'in doldurduğu yeri düşmeyi unutmak $C(10,5)=252$ verir. İkisi de yanlıştır.
+
+4. b) Tüm kurullar: $C(12,5)=792$. İstenmeyen kurullarda Ali ve Veli birliktedir; kalan $3$ yer diğer $10$ kişiden doldurulur: $C(10,3)=120$. Uygun kurullar: $792-120=672$.
+
+5. b) Kontrol (durumlarla): İkisi de yok: $C(10,5)=252$. Yalnız Ali var: $C(10,4)=210$. Yalnız Veli var: $C(10,4)=210$. Toplam $252+210+210=672$.
+
+6. b) Yalnız "ikisi de yok" durumunu saymak ($252$) yanlıştır: Ali'nin Veli olmadan ya da Veli'nin Ali olmadan girdiği kurullar da koşulu sağlar.
+
+<Cevap>a) $210$ b) $672$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-3 */}
+<Ornek>
+
+<Soru>
+
+$6$ kız ve $5$ erkek arasından $4$ kişilik bir proje ekibi seçilecektir. Ekipte en az $2$ kız bulunacaksa kaç farklı ekip oluşturulabilir?
+
+</Soru>
+
+<Ipucu>
+
+"En az $2$ kız" ifadesi $2$, $3$ ya da $4$ kız demektir. Tümleyeni "$0$ veya $1$ kız"dır.
+
+</Ipucu>
+
+<Cozum>
+
+1. Durumlara ayıralım. Her durumda kızlar ve erkekler birlikte seçildiği için iki seçim çarpılır:
+   - $2$ kız, $2$ erkek: $C(6,2)\cdot C(5,2)=15\cdot 10=150$
+   - $3$ kız, $1$ erkek: $C(6,3)\cdot C(5,1)=20\cdot 5=100$
+   - $4$ kız: $C(6,4)=15$
+
+2. Toplam: $150+100+15=265$.
+
+3. Kontrol (tümleyenle): Tüm ekipler $C(11,4)=330$. Hiç kız yok: $C(5,4)=5$. Tam $1$ kız: $C(6,1)\cdot C(5,3)=6\cdot 10=60$. Uygun ekipler: $330-5-60=265$. İki yol aynı sonucu verdi.
+
+4. Sık yapılan hatalar: Tümleyende yalnız "hiç kız yok" durumunu çıkarmak $330-5=325$ verir; oysa $1$ kızlı ekipler de koşulu sağlamaz. Bir durumun içinde seçimleri toplamak ($15+10=25$) da yanlıştır: $15$ kız ikilisinin her biri $10$ erkek ikilisinin her biriyle ayrı bir ekip oluşturur.
+
+<Cevap>$265$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-4 */}
+<Ornek>
+
+<Soru>
+
+$4$ öğretmen ve $7$ öğrenci arasından $3$ kişilik bir kurul seçilecektir. Kurulda en az $1$ öğretmen bulunacaksa kaç farklı kurul oluşturulabilir?
+
+</Soru>
+
+<Ipucu>
+
+"Önce bir öğretmen seç, kalan yerleri herkesten doldur" yöntemini dene ve sonucu tüm kurulların sayısıyla karşılaştır.
+
+</Ipucu>
+
+<Cozum>
+
+1. Tümleyenle: Tüm kurullar $C(11,3)=165$. Hiç öğretmen olmayan kurullar $C(7,3)=35$. Uygun kurullar: $165-35=130$.
+
+2. Yaygın yanlış yol: "Önce bir öğretmen seçeyim ($4$ yol), kalan $2$ kişiyi diğer $10$ kişiden seçeyim ($C(10,2)=45$ yol)." Bu $4\cdot 45=180$ verir. $180$, kısıtsız tüm kurulların sayısından ($165$) bile büyüktür; bu kesin bir hata işaretidir.
+
+3. Hatanın nedeni: $\text{Ö}_1$, $\text{Ö}_2$ öğretmen ve $S_1$ öğrenci olsun. $\{\text{Ö}_1,\text{Ö}_2,S_1\}$ kurulu bir kez "garanti $\text{Ö}_1$, sonra $\text{Ö}_2$ ile $S_1$", bir kez de "garanti $\text{Ö}_2$, sonra $\text{Ö}_1$ ile $S_1$" olarak sayılır. İki öğretmenli her kurul $2$ kez, üç öğretmenli her kurul $3$ kez sayılır.
+
+4. Kontrol (durumlarla): $1$ öğretmenli: $4\cdot C(7,2)=84$. $2$ öğretmenli: $C(4,2)\cdot 7=42$. $3$ öğretmenli: $C(4,3)=4$. Doğru toplam $84+42+4=130$. Yanlış yöntem ise $84+2\cdot 42+3\cdot 4=180$ sayar; fark tam olarak iki kez ve üç kez sayılan kurullardan gelir.
+
+<Cevap>$130$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-5 */}
+<Ornek>
+
+<Soru>
+
+$7$ kişilik bir kulüpten $4$ kişilik bir yönetim kurulu seçilecektir. Kurul üyelerinden biri başkan, bir başkası sayman olacak; diğer iki kişi görevsiz üye olacaktır. Bu kurul kaç farklı şekilde oluşturulabilir?
+
+</Soru>
+
+<Ipucu>
+
+Grubun bir kısmı sıralı (görevliler), bir kısmı sırasızdır (üyeler). Seçimi adımlara ayır.
+
+</Ipucu>
+
+<Cozum>
+
+1. Birinci yol (önce seç, sonra görev ver): $4$ kişi sırasız seçilir, $C(7,4)=35$. Bu $4$ kişiden başkan $4$, sayman kalan $3$ kişiden $3$ yolla belirlenir: $4\cdot 3=12$. Toplam $35\cdot 12=420$.
+
+2. İkinci yol (önce görevliler): Başkan $7$, sayman $6$ yolla seçilir. Kalan $5$ kişiden $2$ görevsiz üye sırasız seçilir: $C(5,2)=10$. Toplam $7\cdot 6\cdot 10=420$. İki yol aynı sonucu verdi.
+
+3. Sık yapılan hatalar: Yalnız $C(7,4)=35$ yazmak görevleri yok sayar. $P(7,4)=840$ yazmak ise iki görevsiz üyeyi de sıralı sayar: aynı kurul, üyelerin yer değiştirmesiyle $2!=2$ kez sayılır. Gerçekten $840\div 2=420$; bu da üçüncü bir kontroldür.
+
+<Cevap>$420$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-6 */}
+<Ornek>
+
+<Soru>
+
+$C(12,\ 2x-1)=C(12,\ x+4)$ eşitliğini sağlayan $x$ doğal sayılarının toplamı kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+$C(n,a)=C(n,b)$ ise $a=b$ veya $a+b=n$ olur. İki durumu da çöz.
+
+</Ipucu>
+
+<Cozum>
+
+1. Birinci durum, $a=b$: $2x-1=x+4$ ise $x=5$. Bu durumda iki taraf da $C(12,9)$ olur; $0\le 9\le 12$ olduğundan geçerlidir.
+
+2. İkinci durum, $a+b=n$: $(2x-1)+(x+4)=12$ ise $3x+3=12$, yani $x=3$. Bu durumda eşitlik $C(12,5)=C(12,7)$ olur; simetriden doğrudur ve $5$ ile $7$, $0$ ile $12$ arasındadır.
+
+3. Çözümlerin toplamı: $5+3=8$.
+
+4. Sık yapılan hata: Yalnız birinci durumu çözüp $5$ yazmak. Başka çözüm de yoktur: $C(12,r)$ değerleri $r=6$'ya kadar artar, sonra simetrik olarak azalır; her değer en çok iki kez görülür; bu yüzden $a=b$ ve $a+b=12$ dışında bir olasılık kalmaz.
+
+<Cevap>$8$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-7 */}
+<Ornek>
+
+<Soru>
+
+Bir okul turnuvasında takımlar tek devreli lig usulüyle, yani her iki takım birbiriyle tam bir kez karşılaşacak biçimde oynayacaktır.
+
+a) Lig boyunca en az $50$ maç oynanması isteniyorsa turnuvaya en az kaç takım katılmalıdır?
+
+b) Ertesi yıl, a şıkkında bulunan sayıda takımla turnuva eleme usulüyle oynanacaktır: her maçın bir galibi vardır ve kaybeden elenir. Takım sayısı tek olan bir turda bir takım maç yapmadan üst tura çıkar (bay geçer). Şampiyon belli olana kadar kaç maç oynanır?
+
+</Soru>
+
+<Ipucu>
+
+a) $C(n,2)\ge 50$ olan en küçük $n$'yi ara; hem $n$'yi hem $n-1$'i kontrol et. b) Her maç kaç takımı eler?
+
+</Ipucu>
+
+<Cozum>
+
+1. a) Tek devreli ligde her maç sırasız bir takım ikilisidir: $n$ takımla $C(n,2)=\dfrac{n(n-1)}{2}$ maç oynanır.
+
+2. a) $n=10$ için $C(10,2)=45$; bu $50$'den küçüktür, koşul sağlanmaz. $n=11$ için $C(11,2)=55\ge 50$; koşul sağlanır. En az $11$ takım gerekir.
+
+3. a) Sık yapılan hata: $10$'u işaretlemek. $10$, koşulu **sağlamayan** son değerdir.
+
+4. b) Eleme usulünde her maçta tam bir takım elenir. $11$ takımdan şampiyon dışındaki $10$ takımın elenmesi gerektiğinden $10$ maç oynanır.
+
+5. b) Kontrol (tur tur): $11$ takım: $5$ maç, $1$ takım bay geçer, $6$ takım kalır. $6$ takım: $3$ maç, $3$ takım kalır. $3$ takım: $1$ maç, $1$ takım bay geçer, $2$ takım kalır. Final: $1$ maç. Toplam $5+3+1+1=10$.
+
+6. b) Sık yapılan hatalar: Lig sayısını ($C(11,2)=55$) ya da yalnız ilk turun maçlarını ($5$) yazmak.
+
+<Cevap>a) $11$ b) $10$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-8 */}
+<Ornek>
+
+<Soru>
+
+Bir koridorda düz bir sıra boyunca yan yana dizilmiş $10$ lamba vardır. Bu lambalardan tam $4$'ü yakılacak ve yan yana olan iki lamba birlikte yanmayacaktır. Kaç farklı yanma düzeni vardır?
+
+</Soru>
+
+<Ipucu>
+
+Önce sönük kalacak $6$ lambayı diz ve oluşan boşlukları say.
+
+</Ipucu>
+
+<Cozum>
+
+1. Sönük kalacak $6$ lamba yan yana dizilir. Aralarında $5$, iki uçta $2$ olmak üzere $7$ boşluk oluşur.
+
+2. Yanacak $4$ lamba farklı boşluklara konursa hiçbir ikisi yan yana gelmez. Bir düzeni yalnız hangi boşlukların seçildiği belirler, bu yüzden seçim sırasızdır: $C(7,4)=35$. Bu, $C(n-k+1,k)$ formülünün $n=10$, $k=4$ hâlidir.
+
+3. Sık yapılan hata: Tüm seçimlerden $9$ komşu lamba çiftini çıkarmak, yani $C(10,4)-9=201$ yazmak. $9$, komşu **çiftlerin** sayısıdır; en az bir komşu çift içeren $4$'lü seçimlerin sayısı değildir. Küçük bir örnekle görelim: $6$ lambadan ardışık olmayan $3$ lamba seçmenin yolları $\{1,3,5\}$, $\{1,3,6\}$, $\{1,4,6\}$, $\{2,4,6\}$ olmak üzere $4$ tanedir ve $C(4,3)=4$ ile uyuşur. Eksik çıkarma ise $C(6,3)-5=15$ verir.
+
+4. Kontrol (ikinci yol): Yanan lambaların numaraları $a\lt b\lt c\lt d$ olsun. Ardışıklık olmadığı için $a$, $b-1$, $c-2$, $d-3$ sayıları $1$ ile $7$ arasında farklı dört sayıdır. Tersine, $1$ ile $7$ arasındaki her dört farklı sayı bu yolla tek bir uygun düzene döner. Bu yüzden düzen sayısı $C(7,4)=35$'tir.
+
+<Cevap>$35$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-9 */}
+<Ornek>
+
+<Soru>
+
+Bir kutuda $4$ özdeş kırmızı top ile üzerlerinde $1$'den $5$'e kadar numaralar yazılı $5$ mavi top vardır; mavi toplar numaralarıyla birbirinden ayırt edilir. Kutudan $3$ top seçilecektir. Kaç farklı top grubu elde edilebilir?
+
+</Soru>
+
+<Ipucu>
+
+Kırmızılar özdeş olduğu için yalnız kaç kırmızı alındığı önemlidir. Kırmızı sayısına göre durumlara ayır.
+
+</Ipucu>
+
+<Cozum>
+
+1. Kırmızı sayısı $0$, $1$, $2$ ya da $3$ olabilir; kutuda $4$ kırmızı olduğu için hepsi mümkündür. Her durumda kırmızılar tek yolla alınır, maviler ise numaralı olduğu için kombinasyonla seçilir:
+   - $0$ kırmızı, $3$ mavi: $C(5,3)=10$
+   - $1$ kırmızı, $2$ mavi: $C(5,2)=10$
+   - $2$ kırmızı, $1$ mavi: $C(5,1)=5$
+   - $3$ kırmızı: $1$
+
+2. Toplam: $10+10+5+1=26$.
+
+3. Birinci hata: Tüm topları farklı sayıp $C(9,3)=84$ yazmak. Bu, kırmızıları da ayırt eder; örneğin "iki kırmızı ve $1$ numaralı mavi" grubu $C(4,2)=6$ kez sayılır.
+
+4. İkinci hata: Mavileri de özdeş sayıp yalnız renk desenlerine bakmak ($KKK$, $KKM$, $KMM$, $MMM$) ve $4$ yazmak. Maviler numaralı olduğu için ayırt edilebilir.
+
+5. Kontrol (fazla sayımı hesaplayarak): Kırmızıları geçici olarak numaralı sayalım. O zaman $j$ kırmızılı her grup, hangi kırmızıların alındığına göre $C(4,j)$ kez sayılır. Bu sayımların toplamı tüm topları farklı saymakla bulunan sayıya eşit olmalıdır: $10\cdot 1+10\cdot 4+5\cdot 6+1\cdot 4=10+40+30+4=84=C(9,3)$. Sayılar uyuştuğu için $26$ grubun dökümü doğrudur.
+
+<Cevap>$26$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-10 */}
+<Ornek>
+
+<Soru>
+
+$5$ satır ve $5$ sütundan oluşan kareli bir tahtanın karelerine $3$ özdeş kale konulacaktır. Hiçbir iki kale aynı satırda ya da aynı sütunda olmayacaktır (yani kaleler birbirini tehdit etmeyecektir). Kaç farklı yerleşim vardır?
+
+</Soru>
+
+<Ipucu>
+
+Önce satırları, sonra sütunları seç. Satır ve sütunları seçmek, kalelerin hangi karelerde olduğunu tek başına belirler mi?
+
+</Ipucu>
+
+<Cozum>
+
+1. Kalelerin bulunacağı $3$ satır: $C(5,3)=10$ yolla seçilir.
+
+2. Kalelerin bulunacağı $3$ sütun: $C(5,3)=10$ yolla seçilir.
+
+3. Seçilen satırlar seçilen sütunlarla eşlenir: en üstteki kale $3$ sütundan birine, sonraki kalan $2$ sütundan birine, sonuncusu kalan sütuna gider: $3!=6$ yol (Şekil 2).
+
+4. Toplam: $10\cdot 10\cdot 6=600$.
+
+5. Sık yapılan hata: $3!$ çarpanını unutup $100$ yazmak. Satırları ve sütunları seçmek yerleşimi belirlemez: örneğin $1, 2, 3$. satırlar ile $a, b, c$ sütunları için $6$ farklı yerleşim vardır (biri $1a$, $2b$, $3c$; bir diğeri $1c$, $2b$, $3a$ gibi).
+
+6. Kontrol (sıralı koyup bölerek): Kaleler numaralı olsaydı birinci kale $25$ kareden birine, ikinci kale birincinin satırı ve sütunu dışındaki $16$ kareden birine, üçüncü kale kalan $9$ kareden birine konurdu: $25\cdot 16\cdot 9=3600$. Kaleler özdeş olduğundan her yerleşim $3!=6$ kez sayılmıştır: $3600\div 6=600$.
+
+<Cevap>$600$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Pekiştirme Soruları
+
+> Konuyu pekiştirmek için hazırlanmış özgün sorular.
+
+<Sorular slug="kombinasyon-secme" />
+
+## Sık Yapılan Hatalar
+
+- **Görevli seçimi kombinasyonla, görevsiz seçimi permütasyonla saymak.** Yer değiştirme testini uygula; karma durumlarda seçimi adımlara ayır (Örnek 5, Bölüm 14).
+- **"En az $1$" için "önce birini kesin seç, kalanlardan seç" yazmak.** Bu yöntem aynı grubu birden çok kez sayar. Cevabın tüm seçimlerden büyük çıkması bunun işaretidir (Örnek 4, Bölüm 8).
+- **"En az"ın tümleyenini yalnız "hiç" almak.** "En az $2$"nin tümleyeni "$0$ veya $1$"dir; bir durumu atlamak cevabı büyütür (Örnek 3, Bölüm 7).
+- **İki gruptan gelen seçimleri toplamak.** Birlikte yapılan seçimler çarpılır; yalnız ayrık durumlar toplanır (Örnek 3, Bölüm 6).
+- **Kombinasyon denkleminde yalnız $a=b$ durumunu denemek.** $a+b=n$ durumunu da çöz ve her adayı kontrol et (Örnek 6).
+- **Belirli kişi dahil ya da hariçken $n$'yi veya $r$'yi azaltmayı unutmak.** Dahil olan kişi hem bir yeri hem bir adaylığı kullanır (Örnek 2a).
+- **"İkisi birlikte olamaz" sorusunda yalnız "ikisi de yok" durumunu saymak.** Yalnız birinin bulunduğu seçimler de uygundur (Örnek 2b).
+- **Özdeş nesnelerden seçimde $C(\text{toplam}, r)$ yazmak; ayırt edilebilir nesneleri özdeş saymak.** Özdeşlerde yalnız "kaç tane" önemlidir; numaralı ya da farklı nesneler ise ayrı sayılır (Örnek 9, Bölüm 12).
+- **Eleme usulü turnuvada $C(n,2)$ ya da $\dfrac{n}{2}$ yazmak.** Her maç bir takımı eler; maç sayısı $n-1$'dir (Örnek 7b).
+- **Ardışık olmayan seçimde komşu çiftleri çıkarıp geçmek.** $C(n,k)-(n-1)$ yalnız $k=2$ için tutar; boşluk yöntemini kur ve $C(n-k+1,k)$ kullan (Örnek 8).
+- **Kale yerleştirmede $k!$ çarpanını unutmak.** Satır ve sütunları seçtikten sonra onları eşlemek gerekir (Örnek 10).
+- **Eşik sorusunda koşulu sağlamayan son değeri işaretlemek.** $n-1$ koşulu sağlamamalı, $n$ sağlamalıdır (Örnek 7a).
+
+## Özet
+
+| Durum | Sayım |
+| --- | --- |
+| $n$ farklı nesneden $r$'li sırasız seçim | $C(n,r)=\dfrac{n!}{r!\,(n-r)!}$ |
+| Seç, sonra sırala | $C(n,r)\cdot r!=P(n,r)$ |
+| Belirli $k$ kişi dahil | $C(n-k,\ r-k)$ |
+| İki kişi birlikte olamaz | $C(n,r)-C(n-2,\ r-2)$ |
+| Tek devre, tokalaşma / çift devre / eleme | $C(n,2)$ / $n(n-1)$ / $n-1$ |
+| $1,\dots,n$'den ardışık olmayan $k$ sayı | $C(n-k+1,\ k)$ |
+| $n\times n$ tahtada tehdit etmeyen $k$ özdeş kale | $C(n,k)^2\cdot k!$ |
+| Özdeş nesnelerden seçim | Her türden kaç tane alındığını listele |
+
+## Pratik İpucu
+
+- Cevabın, kısıtsız tüm seçimlerin sayısından büyük çıkıyorsa bir yerde çift sayım vardır.
+- "En az" ve "en çok" sorularında olası değerlerin tablosunu çiz; az sütunlu tarafı say, diğer yolu kontrol için kullan.
+- Bir sonucu her zaman ikinci bir yolla doğrula: tümleyen, durumlar, Pascal kuralı ya da küçük bir listeleme.
+
+**Sonraki adım (AYT):** Kombinasyon sayılarının $(a+b)^n$ açılımında katsayı olarak nasıl ortaya çıktığını [Binom Açılımı](/konular/binom-acilimi) sayfasında görebilirsin.
+
+<KonuNav slug="kombinasyon-secme" />

@@ -1,0 +1,591 @@
+import { PermSiralamaAgac, PermSiralamaKutu, PermSiralamaBlok, PermSiralamaBosluk, PermSiralamaArasinda } from "@/components/figures/PermSiralamaFig";
+import { topicMetadata } from "@/lib/seo";
+
+export const metadata = topicMetadata("permutasyon-siralama");
+
+<Konu slug="permutasyon-siralama" />
+
+<p className="lead">**Birbirinden farklı** kişi ya da nesneleri bir sıraya dizerken her yer için kaç seçenek kaldığını sayar, bu sayıları çarparız. Faktöriyel ($n!$) ve $P(n,r)$ bu çarpımın kısa yazılışından ibarettir. "Uçta olsun", "yan yana olsun", "yan yana olmasın", "arasında tam iki kişi olsun" gibi koşullar ise sayımın yalnızca bir adımını değiştirir. Bu sayfadaki her sorunun anahtarı, hangi adımın değiştiğini görmektir.</p>
+
+> **Bu sayfadaki varsayımlar**
+>
+> - Kişiler ve nesneler **birbirinden farklıdır**. Özdeş nesneler ve tekrar eden harfler [Tekrarlı Permütasyon](/konular/tekrarli-permutasyon) sayfasındadır.
+> - Dizilişler **tek sıra** (düz bir sıra) üzerindedir. Sıradaki yerler soldan sağa birbirinden ayırt edilir; sandalyeler numaralı kabul edilir. Yuvarlak masa [Dairesel Permütasyon](/konular/dairesel-permutasyon) sayfasındadır.
+> - "Yan yana" bitişik demektir. "A, B'nin **solunda**" ifadesi bitişikliği gerektirmez; "A, B'nin **hemen solunda**" ise bitişik demektir.
+> - Bir kişi aynı anda yalnızca bir yerde oturur ve en çok bir görev alır.
+> - Faktöriyel yalnızca doğal sayılar için tanımlıdır.
+
+Konuya temelden bakmak istersen [Sayma ve Permütasyon (10. sınıf)](/konular/sayma-permutasyon-10) sayfası iyi bir başlangıçtır; Maarif programında sayma ve permütasyon 10. sınıfta işlenir. Bütün alt konuların haritası [Permütasyon ve Kombinasyon](/konular/permutasyon-kombinasyon-tyt) sayfasındadır. Burada [Sayma Kuralları](/konular/sayma-kurallari) sayfasındaki çarpma ve toplama kurallarını kullanacağız.
+
+## 1. Faktöriyel: Tanım, 0! = 1 ve Sadeleştirme
+
+$n$ bir pozitif tam sayı olmak üzere, $1$'den $n$'ye kadar olan tam sayıların çarpımına **$n$ faktöriyel** denir:
+
+$$n!=n\cdot(n-1)\cdot(n-2)\cdots 2\cdot 1$$
+
+| $n$ | $0$ | $1$ | $2$ | $3$ | $4$ | $5$ | $6$ | $7$ |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| $n!$ | $1$ | $1$ | $2$ | $6$ | $24$ | $120$ | $720$ | $5040$ |
+
+Tablodaki her değer bir öncekinden elde edilir: $n!=n\cdot (n-1)!$. Örneğin $6!=6\cdot 5!=6\cdot 120=720$. Tablonun başındaki $0!=1$ değeri tanımın dışında kalır; neden $1$ alındığını hemen aşağıda göreceğiz.
+
+**Neden $0!=1$?** Bu eşitlik keyfî bir anlaşma değildir. $n!=n\cdot(n-1)!$ bağıntısı $n=1$ için de geçerli olsun istersek $1!=1\cdot 0!$ olur; $1!=1$ olduğundan $0!=1$ çıkar. Sayma diliyle de aynı sonuca varırız: hiç nesne yokken "dizmenin" tek bir yolu vardır, o da hiçbir şey yapmamaktır.
+
+**Sadeleştirme.** Faktöriyelli kesirlerde büyük faktöriyeli, küçük olana ulaşana kadar açarız:
+
+$$\dfrac{10!}{8!}=\dfrac{10\cdot 9\cdot 8!}{8!}=10\cdot 9=90$$
+
+> **Dikkat:** Faktöriyel, toplama ve çarpmayla "dağılmaz". $(n+1)!$ ile $n!+1$ farklıdır; $(2n)!$ ile $2\cdot n!$ de farklıdır. Örneğin $n=2$ için $(2n)!=4!=24$ iken $2\cdot 2!=4$'tür. Aynı biçimde $\dfrac{6!}{3!}=120$ olur, $2!$ olmaz.
+
+## 2. Faktöriyelli Denklemler ve Ortak Çarpan
+
+**Ortak çarpan.** Faktöriyellerin toplamı ya da farkı varsa en küçük faktöriyeli ortak çarpan parantezine alırız. $12!=12\cdot 11!$ olduğundan
+
+$$\dfrac{12!-11!}{10!}=\dfrac{11!\,(12-1)}{10!}=\dfrac{11\cdot 10!\cdot 11}{10!}=121.$$
+
+**Denklemler.** Bilinmeyenli faktöriyelleri de aynı yolla sadeleştiririz. Örneğin
+
+$$\dfrac{(n+2)!}{n!}=72\;\Rightarrow\;(n+2)(n+1)=72\;\Rightarrow\;n^2+3n-70=0\;\Rightarrow\;(n+10)(n-7)=0.$$
+
+Kökler $-10$ ve $7$'dir. Faktöriyel yalnızca doğal sayılar için tanımlı olduğundan $n=-10$ atılır ve $n=7$ bulunur. Kontrol: $9\cdot 8=72$.
+
+## 3. Faktöriyelin Sonundaki Sıfırlar (Kısa Not)
+
+Bir sayının sonundaki her sıfır, çarpanlarındaki bir $10=2\cdot 5$ çarpanından gelir. $n!$ içindeki $2$ çarpanlarının sayısı $5$ çarpanlarının sayısından hiçbir zaman az değildir; bu yüzden **$5$ çarpanlarını saymak yeter**. Burada sık yapılan hata $25$ ve $125$'in katlarını gözden kaçırmaktır. $25=5^2$ iki tane, $125=5^3$ üç tane $5$ çarpanı taşır. Bu yüzden önce $5$'in, sonra $25$'in, sonra $125$'in katları sayılır ve sonuçlar toplanır. Örneğin $60!$ için $5$'in katları $12$ tanedir, $25$'in katları ($25$ ve $50$) $2$ tanedir; sondaki sıfır sayısı $12+2=14$ olur. Asal çarpan sayımının ayrıntısı [Asal Çarpanlar ve Bölen Sayısı](/konular/asal-carpanlar-bolen-sayisi) sayfasındadır.
+
+## 4. Permütasyon: Sıranın Önemli Olduğu Dizilişler
+
+Önce listeleyelim, sonra sayalım. $A$, $B$, $C$ harflerini bir sıraya kaç türlü dizebiliriz? Birinci yere $3$ harften biri gelir. İkinci yere kalan $2$ harften biri, son yere de kalan tek harf gelir. Ağaç şeması bütün dizilişleri tek tek gösterir:
+
+<Figur>
+
+<PermSiralamaAgac />
+
+<Altyazi>Şekil 1 — $A$, $B$, $C$ harflerinin bütün dizilişleri. Her düzeyde bir seçenek eksilir ($3$, $2$, $1$). Ağacın uçları tam olarak $3\cdot 2\cdot 1=6$ dizilişi verir.</Altyazi>
+
+</Figur>
+
+$n$ farklı nesnenin bir sıraya her dizilişine bir **permütasyon** denir. Aynı akıl yürütmeyle $n$ farklı nesne
+
+$$n\cdot(n-1)\cdots 2\cdot 1=n!$$
+
+farklı biçimde sıralanır. $ABC$ ile $BAC$ aynı harflerden oluşur ama farklı dizilişlerdir: permütasyonda **sıra önemlidir**.
+
+## 5. P(n, r): Kutu Yönteminden Formüle
+
+Çoğu zaman nesnelerin hepsi değil, yalnızca bir kısmı dizilir. Örneğin $5$ kişiden $3$'ü numaralı $3$ sandalyeye oturacak olsun. Her sandalyeyi bir kutu gibi düşünür ve kutuya kaç seçenek kaldığını yazarız:
+
+<Figur>
+
+<PermSiralamaKutu />
+
+<Altyazi>Şekil 2 — Kutu yöntemi. Her sandalye dolduğunda bir kişi eksilir. Çarpım $5\cdot 4\cdot 3=60$'tır ve $P(5,3)$ ile gösterilir.</Altyazi>
+
+</Figur>
+
+Genel olarak $n$ farklı nesneden $r$ tanesinin bir sıraya diziliş sayısı, $n$'den başlayarak azalan $r$ tane çarpanın çarpımıdır:
+
+$$P(n,r)=n\cdot(n-1)\cdots(n-r+1)=\dfrac{n!}{(n-r)!}\qquad (0\le r\le n)$$
+
+**Neden $(n-r)!$'e bölüyoruz?** $n!$, $n$ nesnenin tamamını dizer. Biz yalnızca ilk $r$ yeri önemsiyoruz; dışarıda kalan $n-r$ nesnenin kendi aralarındaki $(n-r)!$ sıralanışı bizim için tek bir sonuç sayılır. Bu yüzden $n!$ sayısı, ilgilenmediğimiz bu sıralanışların sayısına bölünür. Örnekte $\dfrac{5!}{2!}=\dfrac{120}{2}=60$ olur.
+
+Özel durumlar: $P(n,n)=n!$, $P(n,1)=n$, $P(n,0)=1$.
+
+**Denklem kurma.** $P(n,3)=210$ ise $n(n-1)(n-2)=210$ olur. Ardışık üç tam sayının çarpımı $210=7\cdot 6\cdot 5$ olduğundan $n=7$ bulunur.
+
+## 6. Görevler ve Roller: Farklı Görev = Sıra
+
+$A$, $B$, $C$ arasından bir **başkan** ve bir **başkan yardımcısı** seçelim. "Başkan $A$, yardımcı $B$" ile "başkan $B$, yardımcı $A$" farklı sonuçlardır. Listeleyelim: $AB$, $BA$, $AC$, $CA$, $BC$, $CB$. Toplam $6=P(3,2)$ seçim vardır.
+
+İki kişi görevsiz bir kurula seçilseydi $\{A,B\}$ ile $\{B,A\}$ aynı kurul olurdu ve yalnızca $3$ sonuç kalırdı. Kural kısadır: **görevler farklıysa, görev dağıtımı bir sıralamadır.** Görevsiz seçimler [Kombinasyon: Seçme Problemleri](/konular/kombinasyon-secme) sayfasının konusudur.
+
+## 7. Belirli Yer Kısıtları: Önce Kısıtlı Kişiyi Yerleştir
+
+Bir kişiye ya da bir yere koşul konmuşsa **önce koşullu olanı yerleştir, sonra kalanları serbestçe diz.** Böylece en az seçeneği olan adım en başta biter ve sonraki adımlarda "bu kişi kullanıldı mı?" diye ayrıca takip etmek gerekmez.
+
+- $6$ kişi bir sıraya dizilecek; Deniz en başta, Ece en sonda olacak. Bu iki yer birer yolla dolar. Kalan $4$ kişi ortadaki $4$ yere $4!=24$ biçimde dizilir.
+
+Kısıtlar aynı yerleri paylaşıyorsa birbirini etkiler. $7$ kişi bir sıraya dizilecek; Burak tam ortada ($4.$ yerde) olacak, Ayşe ise uçlarda olmayacak:
+
+1. Burak'ın yeri belli: $1$ yol.
+2. Ayşe için $1.$ ve $7.$ yerler yasak, $4.$ yer de Burak'ındır. Geriye $2.$, $3.$, $5.$, $6.$ yerler kalır: $4$ yol.
+3. Kalan $5$ kişi kalan $5$ yere $5!=120$ biçimde dizilir.
+
+Sonuç $1\cdot 4\cdot 120=480$'dir. Ayşe için "uç olmayan $5$ yer" deyip $5\cdot 5!=600$ bulan, Burak'ın oturduğu orta yeri Ayşe'ye de vermiş olur.
+
+## 8. Yan Yana Olma: Blok (Paket) Yöntemi
+
+Yan yana olması istenen kişileri **tek bir blok** gibi düşünürüz. Önce bloğu diğer kişilerle birlikte dizeriz, sonra blok içini ayrıca sıralarız. $7$ kişi ($A$, $B$, $C$, $D$, Ece, Fırat, $G$) bir sıraya dizilecek ve Ece ile Fırat yan yana olacak:
+
+<Figur>
+
+<PermSiralamaBlok />
+
+<Altyazi>Şekil 3 — Blok yöntemi. Ece ($E$) ile Fırat ($F$) tek blok sayılınca dizilecek $6$ birim kalır ($6!$). Blok içinde $EF$ ve $FE$ olmak üzere $2!$ sıralanış vardır. Toplam $6!\cdot 2!=1440$'tır.</Altyazi>
+
+</Figur>
+
+Üç kişi bir arada olacaksa blok içi $3!$ biçimde sıralanır. Birden fazla blok varsa her blok bir birim sayılır ve **her bloğun iç sıralanışı ayrıca çarpılır** (bkz. Örnek 5). Blok içini unutmak bu konudaki en sık hatadır.
+
+## 9. Evli Çiftler Sırada: $k!\cdot 2^k$
+
+$k$ evli çift tek sıraya, **her çift yan yana** olacak biçimde dizilsin. Her çift bir bloktur:
+
+- $k$ blok kendi aralarında $k!$ biçimde dizilir.
+- Her blokta karı ile koca yer değiştirebilir: her çift için $2$, toplam $2^k$.
+
+$$\text{Sırada her çift yan yana: } k!\cdot 2^k$$
+
+Küçük bir durumla kontrol edelim. İki çift olsun: $A_1A_2$ ve $B_1B_2$. $A$ çifti solda olan dizilişler $A_1A_2B_1B_2$, $A_2A_1B_1B_2$, $A_1A_2B_2B_1$, $A_2A_1B_2B_1$'dir. $B$ çifti solda olan $4$ diziliş daha vardır. Toplam $8=2!\cdot 2^2$ olur.
+
+> **Karıştırma:** Aynı çiftler **yuvarlak masaya** oturursa sayı $(k-1)!\cdot 2^k$ olur, çünkü yuvarlak masada döndürmeler aynı oturuş sayılır. Düz sırada uçlar belli olduğundan döndürme söz konusu değildir ve $k!$ kullanılır. Yuvarlak masanın ayrıntısı [Dairesel Permütasyon](/konular/dairesel-permutasyon) sayfasındadır.
+
+## 10. Yan Yana Olmama: Tümleyen mi, Boşluk Yöntemi mi?
+
+**İki belirli kişi yan yana olmasın.** En kısa yol tümleyendir: bütün dizilişlerden yan yana oldukları dizilişleri çıkarırız. Bölüm 8'deki $7$ kişilik örnekte Ece ile Fırat'ın yan yana **olmadığı** diziliş sayısı
+
+$$7!-6!\cdot 2!=5040-1440=3600$$
+
+olur.
+
+**Üç veya daha fazla kişi** söz konusu olunca iki farklı soru ortaya çıkar ve bunlar farklı yöntemlerle çözülür:
+
+- **"Hiçbir ikisi yan yana olmasın"** için **boşluk yöntemi** kullanılır. Önce kısıtsız kişileri dizeriz. $m$ kişi dizilince aralarında $m-1$, iki uçta da $2$ boşluk oluşur; toplam **$m+1$ boşluk** vardır. Kısıtlı kişileri farklı boşluklara birer birer yerleştiririz. Böylece hiçbir ikisi yan yana gelemez.
+- **"Hepsi birden yan yana olmasın"** için **tümleyen** kullanılır: bütün dizilişlerden, hepsinin tek blok olduğu dizilişler çıkarılır.
+
+<Figur>
+
+<PermSiralamaBosluk />
+
+<Altyazi>Şekil 4 — Boşluk yöntemi. $5$ erkek dizilince $4$'ü arada, $2$'si uçlarda olmak üzere $6$ boşluk oluşur. Kızlar farklı boşluklara konursa hiçbir iki kız yan yana gelmez.</Altyazi>
+
+</Figur>
+
+| İstenen | Yöntem | Hesap ($n$ kişi, $k$ kısıtlı, $m=n-k$) |
+| --- | --- | --- |
+| İki belirli kişi yan yana değil | Tümleyen | $n!-(n-1)!\cdot 2!$ |
+| $k$ kişiden hiçbir ikisi yan yana değil | Boşluk | $m!\cdot P(m+1,k)$ |
+| $k$ kişinin hepsi birden yan yana değil | Tümleyen | $n!-(n-k+1)!\cdot k!$ |
+
+$k=2$ iken son iki satır aynı soruyu sorar. $k\ge 3$ iken ikisi farklı sorulardır (bkz. Örnek 7).
+
+## 11. Arasında Tam $k$ Kişi
+
+$A$ ile $B$'nin arasında **tam** $k$ kişi olsun. İki yoldan sayabiliriz.
+
+**1. yol (konum çifti):** $A$ ile $B$'nin oturabileceği, aralarında tam $k$ yer olan konum çiftlerini sayarız. Sonra $A$–$B$ yer değişimi için $2$ ile, diğer kişilerin dizilişleri için de faktöriyelle çarparız.
+
+**2. yol (blok):** Aradaki $k$ kişiyi seçip **sıralarız**. $A\,\_\,\cdots\,\_\,B$ grubunu tek blok sayarız, $A$–$B$ yer değişimi için $2$ ile çarparız ve bloğu kalan kişilerle birlikte dizeriz.
+
+$6$ kişilik bir sırada $A$ ile $B$ arasında tam $1$ kişi olsun:
+
+<Figur>
+
+<PermSiralamaArasinda />
+
+<Altyazi>Şekil 5 — $6$ yerlik sırada $A$ ile $B$ arasında tam bir yer bırakan konum çiftleri: $(1,3)$, $(2,4)$, $(3,5)$, $(4,6)$. Her çiftte $A$ ile $B$ yer değiştirebilir ve kalan $4$ kişi $4!$ biçimde dizilir.</Altyazi>
+
+</Figur>
+
+- 1. yol: $4$ konum çifti $\cdot\, 2\cdot 4!=192$.
+- 2. yol: Aradaki kişi $4$ kişiden biridir ($4$ yol), $A$–$B$ yer değişimi $2$ yoldur. Blok ve kalan $3$ kişi $4$ birim eder ($4!$). Toplam $4\cdot 2\cdot 24=192$.
+
+"Arasında **en az** $1$ kişi olsun" koşulu ise "yan yana olmasınlar" demektir; tümleyenle çözülür.
+
+## 12. Dönüşümlü Dizilişler
+
+Kızlarla erkeklerin dönüşümlü (hiçbir iki kız, hiçbir iki erkek yan yana gelmeden) dizildiğini düşünelim. Önce **kalıbı**, yani hangi yere kızın hangi yere erkeğin geleceğini belirleriz. Sonra kızları kız yerlerine, erkekleri erkek yerlerine dizeriz.
+
+- **Sayılar eşitse** iki kalıp vardır. $2$ kız, $2$ erkek için $KEKE$ ve $EKEK$ kalıpları olur. Diziliş sayısı $2\cdot 2!\cdot 2!=8$'dir. Kızlar $K_1$, $K_2$, erkekler $E_1$, $E_2$ ise bu $8$ diziliş şunlardır: $K_1E_1K_2E_2$, $K_1E_2K_2E_1$, $K_2E_1K_1E_2$, $K_2E_2K_1E_1$, $E_1K_1E_2K_2$, $E_1K_2E_2K_1$, $E_2K_1E_1K_2$, $E_2K_2E_1K_1$.
+- **Biri bir fazlaysa** tek kalıp vardır: kalabalık grup iki uçta olmak zorundadır. $2$ kız, $3$ erkek için yalnızca $EKEKE$ kalıbı olur. Diziliş sayısı $2!\cdot 3!=12$'dir.
+- **Fark $2$ veya daha fazlaysa** dönüşümlü diziliş yoktur.
+
+Buna benzeyen ama farklı bir koşul, "kızlar bir arada ve erkekler bir arada" koşuludur. Bu durumda iki blok vardır (Bölüm 8): blokların sırası $2!$, blok içleri ayrı ayrı sayılır. $2$ kız ve $3$ erkek için diziliş sayısı $2!\cdot 2!\cdot 3!=24$ olur.
+
+## 13. Simetri: "A, B'nin Solunda" Neden Yarısıdır?
+
+$A$, $B$, $C$'nin $6$ dizilişinde $A$'nın $B$'nin solunda olduğu (bitişik olmak zorunda değil) dizilişler $ABC$, $ACB$, $CAB$'dir; yani tam yarısı.
+
+Bunun nedeni şudur: Herhangi bir dizilişte $A$ ile $B$'nin yerlerini değiştirirsek "$A$ solda" olan her diziliş, "$B$ solda" olan tam bir dizilişe dönüşür. İki grup birebir eşleştiği için eşit büyüklüktedir:
+
+$$\text{A, B'nin solunda: } \dfrac{n!}{2}$$
+
+"$A$, $B$'nin **hemen** solunda" ise $AB$ bitişik ve iç sırası sabit bir bloktur: $(n-1)!$. Üç kişi için bu dizilişler $ABC$ ve $CAB$'dir; $2!=2$ tane. Üç veya daha fazla kişinin sırasının sabit olduğu genel durum ($n!/k!$) [Tekrarlı Permütasyon](/konular/tekrarli-permutasyon) sayfasında işlenir.
+
+## Çözümlü Sorular
+
+{/* ornek-1 */}
+<Ornek>
+
+<Soru>
+
+$A=\dfrac{5!+4!}{4!-3!}$ ve $B=\dfrac{0!+1!}{2!}$ olduğuna göre $A+B$ kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+Pay ve paydada en küçük faktöriyeli ortak çarpan parantezine al. $0!$'in değerini tanımdan hatırla.
+
+</Ipucu>
+
+<Cozum>
+
+1. Önce yaygın bir yanlışı ayıklayalım: "$5!+4!=9!$" yazmak. Faktöriyeller toplanarak birleştirilemez. Küçük bir karşı örnek: $2!+2!=4$, oysa $4!=24$.
+
+2. $5!=5\cdot 4!$ olduğundan pay $4!\,(5+1)=6\cdot 4!$ olur. $4!=4\cdot 3!$ olduğundan payda $3!\,(4-1)=3\cdot 3!$ olur.
+
+3. $A=\dfrac{6\cdot 4!}{3\cdot 3!}=\dfrac{6\cdot 4\cdot 3!}{3\cdot 3!}=8$.
+
+4. $0!=1$, $1!=1$ ve $2!=2$ olduğundan $B=\dfrac{1+1}{2}=1$ olur. $0!$ yanlışlıkla $0$ alınsaydı $B=\dfrac12$ bulunurdu.
+
+5. $A+B=8+1=9$.
+
+6. Kontrol: Doğrudan hesaplayalım. $5!+4!=120+24=144$, $4!-3!=24-6=18$ ve $\dfrac{144}{18}=8$ olur. Sonuç tutuyor.
+
+<Cevap>$9$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-2 */}
+<Ornek>
+
+<Soru>
+
+$130!$ sayısının sonunda kaç tane sıfır vardır?
+
+</Soru>
+
+<Ipucu>
+
+Sondaki her sıfır bir $2\cdot 5$ çarpanından gelir. $5$ çarpanlarını sayarken $25$ ve $125$'in katlarını unutma.
+
+</Ipucu>
+
+<Cozum>
+
+1. $130!$ içinde $2$ çarpanı $5$ çarpanından çok olduğundan $5$ çarpanlarını saymak yeter.
+
+2. $1$'den $130$'a kadar $5$'in katı olan sayılar: $\left\lfloor \dfrac{130}{5}\right\rfloor=26$ tane. Her biri en az bir $5$ verir.
+
+3. $25$'in katları ($25$, $50$, $75$, $100$, $125$): $\left\lfloor \dfrac{130}{25}\right\rfloor=5$ tane. Her biri ikinci bir $5$ verir.
+
+4. $125=5^3$ sayısı üçüncü bir $5$ daha verir: $\left\lfloor \dfrac{130}{125}\right\rfloor=1$. $625>130$ olduğundan burada durulur.
+
+5. Toplam $5$ çarpanı: $26+5+1=32$. Yalnızca $5$'in katlarını sayan öğrenci $26$ bulur; $25$ ve $125$'ten gelen ek çarpanları atlamış olur.
+
+6. Kontrol: $125$ sayısı $5^3$ içerir ve $2.$, $3.$, $4.$ adımların her birinde bir kez sayıldı. Böylece tam $3$ kez sayılmış oldu; bu doğrudur.
+
+<Cevap>$32$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-3 */}
+<Ornek>
+
+<Soru>
+
+Bir okul tiyatrosu için $9$ aday öğrenci arasından oyundaki kral, vezir ve soytarı rollerini oynayacak üç öğrenci seçilecektir. Bir öğrenci en çok bir rol alabildiğine göre bu seçim kaç farklı şekilde yapılabilir?
+
+</Soru>
+
+<Ipucu>
+
+Aynı üç öğrenci rollerini değiştirirse yeni bir seçim mi olur?
+
+</Ipucu>
+
+<Cozum>
+
+1. Roller farklıdır. "Ali kral, Banu vezir" ile "Banu kral, Ali vezir" farklı sonuçlardır. Sıra önemlidir.
+
+2. Kutu yöntemi: Kral için $9$, vezir için kalan $8$, soytarı için kalan $7$ seçenek vardır. Toplam $9\cdot 8\cdot 7=504=P(9,3)$.
+
+3. Rolleri yok sayıp yalnızca "hangi üç öğrenci seçildi" diye sayan öğrenci, aynı üç öğrencinin $3!=6$ farklı rol dağılımını tek sonuç saymış olur ve $\dfrac{504}{6}=84$ bulur. Bu sayım [Kombinasyon: Seçme Problemleri](/konular/kombinasyon-secme) sayfasının konusudur; rollerin farklı olduğu bu soruda eksik kalır.
+
+4. Kontrol: Küçük bir durumla deneyelim. $3$ kişiden ($A$, $B$, $C$) kral ve vezir seçimleri $AB$, $BA$, $AC$, $CA$, $BC$, $CB$'dir; $6=3\cdot 2=P(3,2)$ tane. Yöntem küçük durumda da doğru sonuç veriyor.
+
+<Cevap>$504$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-4 */}
+<Ornek>
+
+<Soru>
+
+Aralarında Ayşe ve Burak'ın da bulunduğu $8$ kişilik bir gruptan $5$ kişi seçilip yan yana duran, $1$'den $5$'e kadar numaralı $5$ sandalyeye oturtulacaktır. Ayşe seçilecek ama uçlardaki sandalyelere ($1$ ve $5$ numaralı) oturmayacak, Burak ise seçilmeyecektir. Bu koşullarda kaç farklı oturuş vardır?
+
+</Soru>
+
+<Ipucu>
+
+Önce koşullu kişiyi yerleştir. Seçilmeyecek kişiyi aday listesinden baştan çıkar.
+
+</Ipucu>
+
+<Cozum>
+
+1. Burak seçilmeyeceği için adaylar Ayşe ve diğer $6$ kişidir.
+
+2. Önce Ayşe: $2$, $3$ veya $4$ numaralı sandalyeye oturur. $3$ yol vardır.
+
+3. Kalan $4$ sandalyeye diğer $6$ kişiden $4$'ü sırayla oturur: $P(6,4)=6\cdot 5\cdot 4\cdot 3=360$.
+
+4. Çarpma kuralıyla: $3\cdot 360=1080$.
+
+5. Kısıtı sona bırakmak işi zorlaştırır. Örneğin $1.$ sandalyeden başlayıp "Ayşe hariç $6$ kişi" yazarsak, sonraki sandalyelerde Ayşe'nin seçilip seçilmediğini ayrıca takip etmemiz gerekir. Önce kısıtlı kişiyi yerleştirmek bu takibi ortadan kaldırır.
+
+6. Kontrol (tümleyen): Ayşe'nin oturduğu ve Burak'ın seçilmediği bütün oturuşlar $5\cdot 360=1800$'dür. Bunlardan Ayşe'nin uçta oturduğu $2\cdot 360=720$ oturuşu çıkarırsak $1800-720=1080$ kalır. Sonuç tutuyor.
+
+<Cevap>$1080$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-5 */}
+<Ornek>
+
+<Soru>
+
+$4$ farklı matematik, $3$ farklı fizik ve $2$ farklı kimya kitabı bir rafa yan yana dizilecektir. Aynı derse ait kitaplar bir arada olacağına göre kaç farklı diziliş vardır?
+
+</Soru>
+
+<Ipucu>
+
+Her dersin kitaplarını bir blok say. Blokların sırası ve her bloğun kendi içi ayrı ayrı sayılır.
+
+</Ipucu>
+
+<Cozum>
+
+1. Matematik, fizik ve kimya kitapları üç blok oluşturur. Bloklar kendi aralarında $3!=6$ biçimde dizilir.
+
+2. Blok içleri: matematik kitapları $4!=24$, fizik kitapları $3!=6$, kimya kitapları $2!=2$ biçimde sıralanır.
+
+3. Çarpma kuralıyla: $6\cdot 24\cdot 6\cdot 2=1728$.
+
+4. Yalnızca $3!=6$ yazmak blok içlerini unutmak demektir. Küçük bir durumla görelim: $2$ farklı matematik kitabı ($M_1$, $M_2$) ve $1$ fizik kitabı olsun. Yalnızca blokları sayarsak $2!=2$ buluruz. Oysa dizilişler $M_1M_2F$, $M_2M_1F$, $FM_1M_2$, $FM_2M_1$'dir; $4=2!\cdot 2!$ tane.
+
+5. Kontrol (kalıp yoluyla): Önce rafın hangi bölümünün hangi derse ait olacağını belirleyelim. $MMMMFFFKK$, $MMMMKKFFF$, $FFFMMMMKK$, $FFFKKMMMM$, $KKMMMMFFF$, $KKFFFMMMM$ olmak üzere $6$ kalıp vardır. Her kalıpta kitaplar kendi yerlerine $4!\cdot 3!\cdot 2!=288$ biçimde konur: $6\cdot 288=1728$. Sonuç, kısıtsız diziliş sayısı $9!=362880$'den de küçüktür; olması gerektiği gibi.
+
+<Cevap>$1728$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-6 */}
+<Ornek>
+
+<Soru>
+
+$4$ evli çift, $8$ kişilik düz bir banka her çift yan yana olacak biçimde oturacaktır. Kaç farklı oturuş vardır?
+
+</Soru>
+
+<Ipucu>
+
+Her çift bir bloktur. Blokların sırasını ve her bloğun içini ayrı ayrı say.
+
+</Ipucu>
+
+<Cozum>
+
+1. $4$ çift bloğu bank üzerinde $4!=24$ biçimde dizilir.
+
+2. Her blokta karı ile koca yer değiştirebilir: $2\cdot 2\cdot 2\cdot 2=2^4=16$.
+
+3. Toplam $4!\cdot 2^4=24\cdot 16=384$.
+
+4. İki yaygın yanlış: Yalnızca bir kez $2$ ile çarpıp $4!\cdot 2=48$ bulmak (her çiftin kendi $2$'si vardır). Ya da yuvarlak masa formülünü kullanıp $3!\cdot 2^4=96$ bulmak. Bank düz bir sıradır ve iki ucu bellidir; döndürme olmadığından blokların sırası $4!$'dir, $(4-1)!$ değil.
+
+5. Kontrol: $k=2$ için formül $2!\cdot 2^2=8$ verir. Bölüm 9'da iki çiftin oturuşlarını tek tek listelemiş ve $8$ bulmuştuk.
+
+<Cevap>$384$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-7 */}
+<Ornek>
+
+<Soru>
+
+$6$ erkek ve $3$ kız bir sıraya dizilecektir.
+
+a) Hiçbir iki kızın yan yana olmadığı kaç diziliş vardır?
+
+b) Üç kızın üçünün birden yan yana olmadığı kaç diziliş vardır?
+
+</Soru>
+
+<Ipucu>
+
+İki soru farklı şeyler sorar: (a) için boşluk yöntemini, (b) için tümleyeni kullan.
+
+</Ipucu>
+
+<Cozum>
+
+1. (a) Önce $6$ erkeği dizeriz: $6!=720$. Erkekler dizilince $5$'i arada, $2$'si uçta olmak üzere $6+1=7$ boşluk oluşur (Şekil 4'teki gibi). Kızları farklı boşluklara yerleştiririz: $P(7,3)=7\cdot 6\cdot 5=210$. Toplam $720\cdot 210=151200$.
+
+2. Boşluk sayısındaki hata: Yalnızca aradaki $5$ boşluğu alan öğrenci $6!\cdot P(5,3)=720\cdot 60=43200$ bulur; uçlara kız konabileceğini unutmuştur. $m$ kişi dizilince $m+1$ boşluk oluşur.
+
+3. (b) Tümleyen: Bütün dizilişler $9!=362880$'dir. Üç kızın tek blok olduğu dizilişlerde blok ve $6$ erkek $7$ birim eder: $7!\cdot 3!=5040\cdot 6=30240$. Fark $362880-30240=332640$.
+
+4. Neden farklı? (b), $KKEKEEEEE$ gibi iki kızın yan yana olduğu ama üçünün birlikte olmadığı dizilişleri de sayar; (a) bunları dışarıda bırakır. (a)'nın tümleyeni "en az iki kız yan yana", (b)'nin tümleyeni ise "üç kız birden yan yana" olayıdır. (a) için (b)'deki gibi tümleyen kurup $332640$ yazmak bu yüzden yanlıştır.
+
+5. Kontrol: (a)'daki her diziliş (b)'de de sayılır, bu yüzden $151200<332640$ olmalıdır; öyle. Küçük bir durum da deneyelim: $2$ erkek, $3$ kız için tek kalıp $KEKEK$'tir ve $3!\cdot 2!=12$ diziliş verir. Boşluk formülü de $2!\cdot P(3,3)=12$ verir.
+
+<Cevap>a) $151200$, b) $332640$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-8 */}
+<Ornek>
+
+<Soru>
+
+Ali ve Can'ın da aralarında bulunduğu $7$ kişi bir sıraya dizilecektir. Ali ile Can arasında tam $2$ kişi bulunan kaç diziliş vardır?
+
+</Soru>
+
+<Ipucu>
+
+Aradaki iki kişiyi seçip sırala. "Ali, ?, ?, Can" grubunu tek blok say ve Ali ile Can'ın yer değiştirebileceğini unutma.
+
+</Ipucu>
+
+<Cozum>
+
+1. Aradaki iki kişi diğer $5$ kişiden seçilir ve sıralanır, çünkü "Ali–Deniz–Ece–Can" ile "Ali–Ece–Deniz–Can" farklı dizilişlerdir: $P(5,2)=5\cdot 4=20$.
+
+2. Ali ile Can uçlarda yer değiştirebilir: $2$ yol.
+
+3. Dört kişilik blok ve kalan $3$ kişi toplam $4$ birim eder: $4!=24$.
+
+4. Toplam $20\cdot 2\cdot 24=960$.
+
+5. Kontrol (konum çifti): $7$ yerlik sırada aralarında tam $2$ yer bulunan konum çiftleri $(1,4)$, $(2,5)$, $(3,6)$, $(4,7)$'dir; $4$ tane. Ali–Can sırası $2$ yoldur, diğer $5$ kişi $5!=120$ biçimde dizilir: $4\cdot 2\cdot 120=960$. İki yol aynı sonucu verdi. $2$ ile çarpmayı ya da aradakilerin sıralanmasını unutan öğrenci $480$ bulur.
+
+<Cevap>$960$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-9 */}
+<Ornek>
+
+<Soru>
+
+$4$ kız ve $4$ erkek bir sıraya kızlarla erkekler dönüşümlü olacak biçimde (hiçbir iki kız ve hiçbir iki erkek yan yana gelmeyecek) dizilecektir. Bu diziliş sayısı, $3$ kız ve $4$ erkeğin aynı koşulla dizilme sayısının kaç katıdır?
+
+</Soru>
+
+<Ipucu>
+
+Önce kaç farklı kalıp ($K$ ve $E$ yerleşimi) olduğunu belirle, sonra kalıbın içini doldur.
+
+</Ipucu>
+
+<Cozum>
+
+1. $4$ kız, $4$ erkek: $KEKEKEKE$ ve $EKEKEKEK$ olmak üzere $2$ kalıp vardır. Her kalıpta kızlar $4!$, erkekler $4!$ biçimde dizilir. Toplam $2\cdot 24\cdot 24=1152$.
+
+2. $3$ kız, $4$ erkek: $7$ yerin $4$'ü erkeklere ayrılmalıdır ve bu ancak $EKEKEKE$ kalıbıyla olur. Kızla başlayan dönüşümlü kalıp $KEKEKEK$ olurdu; bu kalıp $4$ kız yeri ve yalnızca $3$ erkek yeri ister. Elimizde $3$ kız ve $4$ erkek olduğundan bu kalıp kullanılamaz. Tek kalıp vardır: $4!\cdot 3!=24\cdot 6=144$.
+
+3. Oran $\dfrac{1152}{144}=8$.
+
+4. İki tipik hata da aynı yanlış sonuca, $4$'e götürür. Birinci durumda $2$ ile çarpmayı unutan $\dfrac{576}{144}=4$ bulur. İkinci durumda gereksiz yere $2$ ile çarpan da $\dfrac{1152}{288}=4$ bulur.
+
+5. Kontrol: Oranı hesap yapmadan da görebiliriz. Kalıp sayısı $2$ kat, kızların dizilişi $\dfrac{4!}{3!}=4$ kat artar, erkeklerin dizilişi ($4!$) iki durumda da aynıdır: $2\cdot 4=8$. Ayrıca Bölüm 12'de $2$ kız, $2$ erkek için kalıp kuralının verdiği $8$ dizilişi tek tek listelemiştik.
+
+<Cevap>$8$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-10 */}
+<Ornek>
+
+<Soru>
+
+Aralarında Ali ve Berk'in de bulunduğu $n$ kişi bir sıraya dizilecektir. Ali'nin Berk'in solunda olduğu (yan yana olmaları gerekmez) dizilişlerin sayısı $2520$'dir. Buna göre Ali'nin Berk'in solunda olduğu ancak ikisinin yan yana olmadığı kaç diziliş vardır?
+
+</Soru>
+
+<Ipucu>
+
+"Solunda" bitişiklik gerektirmez; simetriyle bütün dizilişlerin yarısıdır. Önce $n$'yi bul, sonra "hemen solunda" olan dizilişleri çıkar.
+
+</Ipucu>
+
+<Cozum>
+
+1. Simetri: Ali ile Berk'in yerleri değiştirilince "Ali solda" ve "Berk solda" olan dizilişler birebir eşleşir. Bu yüzden $\dfrac{n!}{2}=2520$, yani $n!=5040$ ve $n=7$ olur.
+
+2. "Solunda" ifadesini "hemen solunda" diye okuyan öğrenci $(n-1)!=2520$ denklemini kurar. Oysa $6!=720$ ve $7!=5040$'tır; bu denklemi sağlayan doğal sayı yoktur. Bu, yanlış okumanın açık bir işaretidir.
+
+3. Ali'nin Berk'in **hemen** solunda olduğu dizilişler: $AB$ iç sırası sabit tek bir bloktur. Blok ve kalan $5$ kişi $6$ birim eder: $6!=720$.
+
+4. İstenen: $2520-720=1800$.
+
+5. Kontrol (başka yol): Ali ile Berk'in yan yana olmadığı bütün dizilişler $7!-6!\cdot 2!=5040-1440=3600$'dür. Simetriden bunların yarısında Ali soldadır: $\dfrac{3600}{2}=1800$. İki yol aynı sonucu verdi.
+
+<Cevap>$1800$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Pekiştirme Soruları
+
+> Konuyu pekiştirmek için hazırlanmış özgün sorular.
+
+<Sorular slug="permutasyon-siralama" />
+
+## Sık Yapılan Hatalar
+
+- **$0!$'i $0$ sanmak, faktöriyelleri toplamak.** $0!=1$'dir. $(n+1)!$ ile $n!+1$, $(2n)!$ ile $2\cdot n!$ farklıdır; $5!+4!$ de $9!$ değildir. Ortak çarpan parantezine al (Örnek 1).
+- **Sondaki sıfırlarda yalnızca $5$'in katlarını saymak.** $25$'in ve $125$'in katları ek $5$ çarpanı verir (Örnek 2).
+- **Görevli seçimi görevsiz seçim gibi saymak.** Farklı roller ya da görevler (kral–vezir–soytarı, başkan–yardımcı) dağıtmak bir sıralamadır; seçilen her üç kişi rollere $3!$ biçimde dağıtılır (Örnek 3).
+- **Kısıtları birbirinden bağımsızmış gibi uygulamak.** İki kısıt aynı yeri paylaşıyorsa önce birini yerleştir, ötekinin seçeneklerini buna göre güncelle (Bölüm 7, Örnek 4).
+- **Blok yönteminde blok içini unutmak.** $k$ kişilik bir bloğun içi $k!$ biçimde sıralanır; birden fazla blok varsa her biri ayrıca çarpılır (Örnek 5).
+- **Sıradaki çiftlerle yuvarlak masadaki çiftleri karıştırmak.** Düz sırada $k!\cdot 2^k$, yuvarlak masada $(k-1)!\cdot 2^k$ (Örnek 6).
+- **Boşluk sayısını yanlış almak.** $m$ kişi dizilince $m+1$ boşluk oluşur; uçlar da boşluktur (Örnek 7).
+- **"Hiçbiri yan yana değil" ile "hepsi birden yan yana değil"i karıştırmak.** Birincisi boşluk yöntemiyle, ikincisi tümleyenle çözülür; üç ve daha fazla kişide sonuçları farklıdır (Örnek 7).
+- **"Arasında tam $k$ kişi"de bir çarpanı unutmak.** Aradaki kişilerin sıralanışı da $A$–$B$ yer değişimi de sayılmalıdır (Örnek 8).
+- **Dönüşümlü dizilişte $2$ ile çarpmayı yanlış yerde kullanmak.** Sayılar eşitse $2$ kalıp, biri bir fazlaysa tek kalıp vardır (Örnek 9).
+- **"Solunda" ifadesini "hemen solunda" sanmak.** "Solunda" $\dfrac{n!}{2}$, "hemen solunda" $(n-1)!$ verir (Örnek 10).
+
+## Özet
+
+| Durum | Yöntem | Sayı |
+| --- | --- | --- |
+| $n$ farklı nesnenin tamamı | Kutu yöntemi | $n!$ |
+| $n$ farklı nesneden $r$'si sıraya ya da farklı görevlere | Kutu yöntemi | $P(n,r)=\dfrac{n!}{(n-r)!}$ |
+| Belirli yer kısıtı | Önce kısıtlıyı yerleştir | durum durum çarp |
+| $k$ kişi yan yana | Blok | $(n-k+1)!\cdot k!$ |
+| $k$ evli çift sırada, her çift yan yana | Blok | $k!\cdot 2^k$ |
+| İki kişi yan yana değil | Tümleyen | $n!-(n-1)!\cdot 2!$ |
+| $k$ kişiden hiçbir ikisi yan yana değil | Boşluk ($m=n-k$) | $m!\cdot P(m+1,k)$ |
+| A ile B arasında tam $k$ kişi | Seç-diz + blok | $P(n-2,k)\cdot 2\cdot (n-k-1)!$ |
+| Eşit sayıda kız ve erkek dönüşümlü ($k$ kız, $k$ erkek) | Kalıp | $2\cdot k!\cdot k!$ |
+| Dönüşümlü, biri bir fazla ($k+1$ ve $k$ kişi) | Tek kalıp | $(k+1)!\cdot k!$ |
+| A, B'nin solunda / hemen solunda | Simetri / blok | $\dfrac{n!}{2}$ / $(n-1)!$ |
+
+<KonuNav slug="permutasyon-siralama" />

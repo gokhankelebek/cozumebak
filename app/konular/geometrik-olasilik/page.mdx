@@ -1,0 +1,562 @@
+import { GeoOlDogruParcasi, GeoOlKareDaire, GeoOlBenzerUcgen, GeoOlBolgeler, GeoOlCark, GeoOlBoyaliKup, GeoOlPrizma, GeoOlKareBolge, GeoOlBulusma } from "@/components/figures/GeoOlasilikFig";
+import { topicMetadata } from "@/lib/seo";
+
+export const metadata = topicMetadata("geometrik-olasilik");
+
+<Konu slug="geometrik-olasilik" />
+
+<p className="lead">Bir doğru parçasındaki noktalar, bir karenin içi ya da bir çarkın ibresinin durabileceği yerler sayılamayacak kadar çoktur. Böyle durumlarda olasılığı sayarak değil **ölçerek** buluruz: **olasılık, istenen bölgenin ölçüsünün tüm bölgenin ölçüsüne oranıdır.** Bu ölçü bir uzunluk, bir alan ya da bir açı olabilir. Bu sayfada önce bu tek fikri kuruyor, sonra onu sayı doğrusunda, şekillerin taralı bölgelerinde, çarklarda, boyalı küplerde, çokgenlerin ve cisimlerin köşelerinde kullanıyoruz; en sonda iki rastgele sayıyı bir karenin içindeki nokta olarak ele alıyoruz.</p>
+
+> **Bu sayfadaki varsayımlar**
+>
+> - "Rastgele seçilen nokta", bölgenin her yerine eşit şansla düşebilen nokta demektir: uzunlukları (ya da alanları) eşit iki parçaya düşme olasılıkları eşittir.
+> - Tek bir noktanın, bir çizginin ya da bir sınırın olasılığı $0$'dır. Bu yüzden "$<$" yerine "$\le$" yazmak sonucu değiştirmez; ibrenin tam bir dilim sınırında durması da hesaba katılmaz.
+> - Hedef tahtası sorularında ok her zaman tahtaya isabet eder ve tahtanın her noktasına eşit şansla gelir.
+> - Çark sorularında ibre çevrenin her noktasında eşit şansla durur.
+> - Çokgen ve cisimlerde köşeler **aynı anda** seçilir; seçimlerde sıra önemli değildir.
+> - Bir sorudaki bütün uzunluklar aynı birimdedir. Sonuçlar sadeleştirilmiş kesir olarak verilir; $\pi$ sembol olarak bırakılır.
+
+Olasılığın genel çerçevesi için [Olasılık](/konular/olasilik-tyt) özet sayfasına, konunun temelleri için 9. sınıf [Deneye Dayalı Olasılık ve Tahmin](/konular/deneye-dayali-olasilik-9) ve [Olasılıkta Tümevarımsal Akıl Yürütme](/konular/olasilik-akil-yurutme-9) derslerine bakabilirsin. Bu sayfa [Olasılıkta Temel Kavramlar](/konular/olasilik-temel-kavramlar), [Kombinasyonla Olasılık](/konular/kombinasyonla-olasilik) ve [Geometrik Kombinasyon](/konular/geometrik-kombinasyon) konularının üzerine kurulur.
+
+## 1. Saymak Yerine Ölçmek: Sürekli Örnek Uzay
+
+Klasik olasılıkta çıktıları tek tek sayarız: $P(A)=\dfrac{s(A)}{s(S)}$ ([Olasılıkta Temel Kavramlar](/konular/olasilik-temel-kavramlar)). Bu formül, örnek uzayın **sonlu** ve çıktıların **eş olasılıklı** olmasına dayanır. Şimdi şu duruma bakalım:
+
+Bir otobüs durağa $12$ dakikada bir geliyor. Durağa rastgele bir anda gelen bir yolcunun $3$ dakikadan az bekleme olasılığı kaçtır?
+
+Yolcunun bekleme süresi $0$ ile $12$ dakika arasındaki **herhangi bir gerçek sayı** olabilir: $2$ dakika, $2{,}5$ dakika, $2{,}51$ dakika… Olası değerler sonsuz çoktur; $s(S)$ diye bir sayı yoktur. Buna karşın yolcunun $3$ dakikadan az beklemesi için otobüsün gelişinden önceki son $3$ dakikalık dilimde durağa varması gerekir. Yolcunun varış anı $12$ dakikalık sürenin her yerine eşit şansla düşebildiğine göre bu dilime düşme olasılığı dilimin uzunluğuyla orantılıdır:
+
+$$P=\dfrac{3}{12}=\dfrac{1}{4}$$
+
+Sayma yerini **ölçmeye** bıraktı. Genel kural şudur:
+
+$$P(A)=\dfrac{A\text{ bölgesinin ölçüsü}}{\text{örnek uzayın ölçüsü}}$$
+
+| Örnek uzay | Ölçü | Tipik durum |
+| --- | --- | --- |
+| Bir aralık, bir doğru parçası, bir zaman dilimi | Uzunluk | Sayı doğrusundan sayı seçmek, bir doğru parçasından nokta seçmek, bekleme süresi |
+| Düzlemde bir şekil | Alan | Şekil içinden nokta seçmek, hedef tahtası |
+| Bir dairenin çevresi ya da açısı | Açı | Çark, daire dilimi |
+
+> **Bir noktanın olasılığı sıfırdır.** Yolcunun tam olarak $3{,}000\ldots$ dakika beklemesi, uzunluğu $0$ olan bir "bölgedir"; olasılığı $0$'dır. Bu durum imkânsız değildir, yalnızca ölçüsü sıfırdır. Bu yüzden sürekli örnek uzayda sınırın dahil olup olmaması sonucu değiştirmez.
+
+## 2. Uzunluk Oranı: Sayı Doğrusu ve Doğru Parçası
+
+Bir $[a,b]$ aralığından rastgele bir gerçek sayı seçildiğinde, bu sayının bir alt aralığa düşme olasılığı **alt aralığın uzunluğunun $b-a$'ya oranıdır**. Koşul bir eşitsizlikle verilmişse önce eşitsizlik çözülür, sonra çözüm kümesinin $[a,b]$ içinde kalan kısmı alınır. Bu kısım birkaç parçadan oluşuyorsa uzunluklar toplanır.
+
+Doğru parçasında da aynı fikir geçerlidir. $|AB|=12$ birim olan bir doğru parçası üzerinde rastgele bir $C$ noktası seçilsin. $C$'nin hem $A$'ya hem $B$'ye uzaklığının en az $3$ birim olması için $C$, $A$'dan $3$ birim ile $9$ birim uzaklıktaki noktalar arasında kalmalıdır:
+
+<Figur>
+
+<GeoOlDogruParcasi />
+
+<Altyazi>Şekil 1 — $|AB|=12$ birim. $C$'nin iki uca da en az $3$ birim uzak olması için ortadaki $6$ birimlik kısma düşmesi gerekir: $P=\dfrac{6}{12}=\dfrac{1}{2}$.</Altyazi>
+
+</Figur>
+
+**Bir çubuğu rastgele bir noktadan kesmek.** Çubuğu kesen nokta da doğru parçası üzerinde rastgele seçilen bir noktadır. "Kısa parça en çok şu kadar olsun" gibi bir koşulu sağlayan kesim noktaları genellikle çubuğun **iki ucunda** birer bölge oluşturur; çünkü kısa parça çubuğun sol ucunda da sağ ucunda da kalabilir. Bu iki bölgenin uzunlukları toplanır.
+
+> **Tam sayı mı, gerçek sayı mı?** "Rastgele bir **tam sayı**" seçiliyorsa örnek uzay sonludur ve sayma kullanılır. "Rastgele bir **gerçek sayı**" ya da "rastgele bir nokta" seçiliyorsa uzunluk kullanılır. Bu iki yol çoğu zaman farklı sonuç verir (1. örnek).
+
+## 3. Alan Oranı: Kare, Daire, Hedef Tahtası
+
+Düzlemde bir şeklin içinden rastgele bir nokta seçildiğinde, noktanın şeklin bir parçasına düşme olasılığı **parçanın alanının şeklin alanına oranıdır**.
+
+**Karenin içine çizilen daire.** Kenarı $2r$ olan bir kareye içten teğet dairenin yarıçapı $r$'dir. Karenin içinden seçilen bir noktanın dairenin içinde olma olasılığı
+
+$$\dfrac{\pi r^2}{(2r)^2}=\dfrac{\pi r^2}{4r^2}=\dfrac{\pi}{4}$$
+
+olur. $r$ sadeleştiği için sonuç karenin büyüklüğüne bağlı değildir: kenar $2$ cm de olsa $2$ km de olsa oran aynıdır. Alan oranları **ölçekten bağımsızdır**.
+
+**Hedef tahtası.** Eş merkezli dairelerden oluşan bir tahtada iki daire arasındaki bölgeye **halka** denir. Halkanın alanı, büyük dairenin alanından küçük dairenin alanı çıkarılarak bulunur:
+
+$$\text{halka alanı}=\pi r_2^{\,2}-\pi r_1^{\,2}=\pi\left(r_2^{\,2}-r_1^{\,2}\right)$$
+
+En dıştaki dairenin yarıçapı $R$ ise bu halkaya isabet etme olasılığı $\dfrac{r_2^{\,2}-r_1^{\,2}}{R^2}$'dir.
+
+<Figur>
+
+<GeoOlKareDaire />
+
+<Altyazi>Şekil 2 — Solda: kareye içten teğet daire, alan oranı $\dfrac{\pi}{4}$. Sağda: hedef tahtası; taralı halkanın alanı $\pi\left(r_2^{\,2}-r_1^{\,2}\right)$'dir.</Altyazi>
+
+</Figur>
+
+> **Dikkat:** Halkanın alanı $\pi(r_2-r_1)^2$ **değildir**. Kareler ayrı ayrı alınıp çıkarılır. Aynı genişlikteki halkalar dışa doğru gittikçe büyür (2. örnek).
+
+> **Hangi şekil hangisinin içinde?** $\dfrac{\pi}{4}$ oranı, noktanın **karenin** içinden seçildiği ve içteki **dairede** olmasının sorulduğu durum içindir. Nokta dairenin içinden seçilir ve köşeleri çember üzerinde olan karenin içinde olması sorulursa payda dairenin alanı olur ve oran değişir. Her soruda önce örnek uzayın, yani paydanın hangi şekil olduğunu yaz.
+
+**Ters soru.** Olasılık verilip bir uzunluk sorulduğunda aynı oran bir denklem olarak kurulur. Örneğin noktanın içteki dairede olma olasılığı verilirse $\dfrac{r^2}{R^2}$ bu değere eşitlenir ve karekök alınır. Verilen olasılığın iç bölgeye mi dış bölgeye mi ait olduğuna dikkat et (6. örnekte aynı fikir boyalı küpte kullanılıyor).
+
+## 4. Şekillerde Taralı Bölgeler: Benzerlik ve Uzaklık Koşulları
+
+Taralı bölgenin alanını bulmanın iki temel yolu vardır: **benzerlik** ve **uzaklık koşulunu bölgeye çevirmek**.
+
+**Benzerlik: uzunluk oranı $k$ ise alan oranı $k^2$'dir.** Bir $ABC$ üçgeninde $DE\parallel BC$ ise $ADE$ üçgeni $ABC$'ye benzerdir. $|AD|=k\cdot|AB|$ ise üçgenin bütün uzunlukları $k$ ile, alanı ise $k\cdot k=k^2$ ile çarpılır. Örneğin $D$ ve $E$ kenarların orta noktalarıysa $k=\dfrac12$'dir ve $ADE$ üçgeninin alanı $ABC$'nin alanının yarısı değil, dörtte biridir.
+
+<Figur>
+
+<GeoOlBenzerUcgen />
+
+<Altyazi>Şekil 3 — $DE\parallel BC$ ve $|AD|=k\cdot|AB|$ ise $\text{Alan}(ADE)=k^2\cdot\text{Alan}(ABC)$ olur. Geriye kalan $DBCE$ yamuğunun payı $1-k^2$'dir.</Altyazi>
+
+</Figur>
+
+**Uzaklık koşulları.** Soruda "uzaklık" geçiyorsa önce koşulu sağlayan noktaların oluşturduğu bölge çizilir:
+
+| Koşul | Oluşan bölge |
+| --- | --- |
+| Bir $O$ noktasına uzaklığı $r$'den az | Merkezi $O$, yarıçapı $r$ olan dairenin içi |
+| Dik açılı bir köşeye uzaklığı $r$'den az | O köşede yarıçapı $r$ olan çeyrek daire |
+| Bir kenara uzaklığı $d$'den az | O kenar boyunca genişliği $d$ olan şerit |
+| $P$ noktasına $Q$ noktasından daha yakın | $[PQ]$'nun orta dikmesinin $P$ tarafı |
+
+Son satırın bir uygulaması (Şekil 4, sağdaki kare): kenarı $2$ birim olan bir karenin merkezi $O$ olsun. Karenin içinden seçilen bir noktanın $O$'ya, karenin **dört köşesinin her birinden** daha yakın olması için $O$ ile her köşeyi birleştiren doğru parçasının orta dikmesinin $O$ tarafında kalması gerekir. Bu dört orta dikme, karenin kenarlarının orta noktalarından geçer ve ortada, köşeleri bu orta noktalar olan bir kare oluşturur. Bu iç karenin köşegenleri $2$ birim olduğundan alanı $\dfrac{2\cdot 2}{2}=2$'dir. Büyük karenin alanı $4$ olduğundan olasılık $\dfrac{2}{4}=\dfrac12$'dir.
+
+<Figur>
+
+<GeoOlBolgeler />
+
+<Altyazi>Şekil 4 — Uzaklık koşullarının bölgeleri: köşede çeyrek daire, kenar boyunca şerit ve merkeze köşelerden daha yakın noktaların oluşturduğu iç kare.</Altyazi>
+
+</Figur>
+
+> **Tümleyen yolu:** Taralı bölge düzensizse çoğu zaman taranmamış kısmın alanı daha kolay bulunur. O zaman $P(A)=1-P(A')$ kullanılır. Bu yolda en sık yapılan hata, tümleyenin olasılığını bulup $1$'den çıkarmayı unutmaktır (4. örnek).
+
+## 5. Açı Oranı: Çarklar ve Daire Dilimleri
+
+Bir çarkın ibresi dairenin çevresindeki her noktada eşit şansla durabiliyorsa, ibrenin merkez açısı $\theta$ olan bir dilimde durma olasılığı
+
+$$P=\dfrac{\theta}{360^\circ}$$
+
+olur. Örneğin merkez açısı $72^\circ$ olan dilimin olasılığı $\dfrac{72}{360}=\dfrac15$'dir. Aynı oran, bir daire içinden seçilen noktanın merkez açısı $\theta$ olan daire diliminde olma olasılığını da verir; çünkü dilimin alanının dairenin alanına oranı da $\dfrac{\theta}{360^\circ}$'dır.
+
+<Figur>
+
+<GeoOlCark />
+
+<Altyazi>Şekil 5 — Üç dilimli bir çark. Dilimlerin olasılıkları dilim sayısına göre değil, merkez açılarına göre belirlenir: $\dfrac12,\ \dfrac13,\ \dfrac16$.</Altyazi>
+
+</Figur>
+
+> **Çark bir zar değildir.** Üç dilimli bir çarkta her dilimin olasılığı $\dfrac13$ olmak zorunda değildir. Dilimler ancak merkez açıları eşitse eş olasılıklıdır.
+
+Çark iki kez çevrildiğinde ikinci çevirmenin sonucu birincisinden etkilenmez: iki çevirme **bağımsızdır** (bağımsızlığın temelleri için [Bağımlı ve Bağımsız Olaylar](/konular/bagimli-bagimsiz-olaylar-10)). Bu yüzden "önce 1, sonra 3" gibi bir sıralı sonucun olasılığı iki olasılığın çarpımıdır. Toplam gibi bir koşul sorulduğunda koşulu sağlayan sıralı ikililer listelenir, her birinin olasılığı çarpımla bulunur ve sonuçlar toplanır (5. örnek).
+
+## 6. Boyalı Küp Olasılıkları
+
+Dış yüzeyi boyanmış ve her ayrıtı $n$ birim olan bir küp, ayrıtları $1$ birim olan $n^3$ eş birim küpe ayrılsın ($n\ge 2$). Birim küplerin kaçının kaç yüzünün boyalı olduğu [Geometrik Kombinasyon](/konular/geometrik-kombinasyon) konusunda sayılır; burada yalnızca sonuçları kullanıyoruz:
+
+| Boyalı yüz sayısı | Bulunduğu yer | Birim küp sayısı |
+| --- | --- | --- |
+| $3$ | Köşeler | $8$ |
+| $2$ | Ayrıtlar (köşeler hariç) | $12(n-2)$ |
+| $1$ | Yüzler (kenar şeridi hariç) | $6(n-2)^2$ |
+| $0$ | İç kısım | $(n-2)^3$ |
+
+$n=3$ için denetim: $8+12+6+1=27=3^3$.
+
+<Figur>
+
+<GeoOlBoyaliKup />
+
+<Altyazi>Şekil 6 — $3\times3\times3$ boyalı küp: köşe küpünün $3$, ayrıt küpünün $2$, yüz ortasındaki küpün $1$ yüzü boyalıdır; en içteki tek küp boyasızdır.</Altyazi>
+
+</Figur>
+
+Bu küplerden rastgele biri seçildiğinde her birim küp eş olasılıklıdır; bu yüzden olasılık, ilgili satırdaki sayının $n^3$'e oranıdır.
+
+**İki aşamalı deney.** Seçilen birim küp bir zar gibi atılırsa üst yüzün boyalı gelme olasılığı nedir? Küp eşit şansla seçilir, sonra altı yüzünden biri eşit şansla üste gelir. Böylece birim küplerin toplam $6n^3$ yüzünden her biri eşit şansla üste gelir. Boyalı küçük yüzler, büyük küpün dış yüzeyini oluşturan $6n^2$ yüzdür. Buna göre
+
+$$P(\text{üst yüz boyalı})=\dfrac{6n^2}{6n^3}=\dfrac{1}{n}$$
+
+olur. $n=3$ için denetleyelim: dış yüzeyde $6\cdot 9=54$ boyalı yüz, toplamda $6\cdot 27=162$ yüz vardır ve $\dfrac{54}{162}=\dfrac13$'dir.
+
+Aynı "küçük yüzleri say" fikri, "üst yüz boyalı geldiğine göre…" diye başlayan koşullu sorularda da işe yarar: örnek uzay bu kez yalnız boyalı küçük yüzlerden oluşur. Koşullu olasılığın kendisi [Koşullu Olasılık Soruları](/konular/kosullu-olasilik-sorulari) konusundadır.
+
+## 7. Çokgen ve Cisim Köşelerinden Rastgele Seçim
+
+Bir çokgenin ya da cismin köşelerinden rastgele seçim yapıldığında örnek uzay yeniden **sonludur**; olasılık sayarak bulunur. Burada geometri, olumlu durumları belirler: hangi köşe çiftleri bir kenarla birleşir, hangi köşe üçlüleri aynı yüzdedir?
+
+**Yol:**
+
+1. Tüm seçimleri say: $V$ köşeden aynı anda $2$ köşe için $C(V,2)$, $3$ köşe için $C(V,3)$.
+2. Şeklin yapısından olumlu seçimleri say: bir ayrıt (kenar) bir çifte, bir yüz ise üzerindeki köşelerden seçilen bütün üçlülere karşılık gelir.
+3. Bir seçimin iki kez sayılıp sayılmadığını denetle.
+
+Örneğin bir kare piramidin $5$ köşesi ve $8$ ayrıtı vardır ($4$ taban ayrıtı, $4$ yan ayrıt). Rastgele seçilen iki köşenin bir ayrıtla birleşik olma olasılığı $\dfrac{8}{C(5,2)}=\dfrac{8}{10}=\dfrac45$'tür. Ayrıtla birleşmeyen iki çift, tabanın iki köşegeninin uçlarıdır. Çokgenlerde de aynı mantık geçerlidir: iki köşeyi birleştiren doğru parçası ya bir **kenar** ya da bir **köşegendir**. İki köşe aynı yüzde olsa bile aralarında bir ayrıt bulunmayabilir; bir dörtgen yüzün karşılıklı iki köşesi o yüzün köşegeniyle birleşir (7. örnek, b şıkkı).
+
+<Figur>
+
+<GeoOlPrizma />
+
+<Altyazi>Şekil 7 — Üçgen prizmanın $2$ üçgen ve $3$ dikdörtgen yüzü vardır. Bir dikdörtgen yüzün $4$ köşesi olduğundan bu yüz üzerinde $C(4,3)=4$ farklı köşe üçlüsü bulunur; örneğin $ABED$ yüzünde $A$, $B$, $E$ üçlüsü.</Altyazi>
+
+</Figur>
+
+## 8. İki Rastgele Sayı: Kareyi Örnek Uzay Yapmak (Derinleştirme)
+
+Bu bölüm konuyu derinleştirmek isteyenler içindir. İki sayı birbirinden bağımsız olarak rastgele seçildiğinde, örneğin $x$ ve $y$ her biri $[0,2]$ aralığından seçildiğinde, sonuç tek bir sayı değil bir $(x,y)$ **ikilisidir**. Bu ikiliyi koordinat düzleminde bir nokta olarak düşünürsek örnek uzay, kenarı $2$ olan bir **kare** olur ve olasılık yine alan oranıyla bulunur.
+
+**Yol:**
+
+1. Örnek uzay karesini çiz ve kenarlarını adlandır.
+2. Koşuldaki eşitsizliği önce eşitlik olarak yaz ve bu doğruyu çiz.
+3. Doğrunun hangi tarafının istendiğini bir deneme noktasıyla belirle. $(0,0)$ noktası çoğu zaman en kolay denemedir.
+4. İstenen bölgenin alanını karenin alanına böl.
+
+Örneğin $x+y<1$ için $x+y=1$ doğrusu $(1,0)$ ve $(0,1)$ noktalarından geçer. $(0,0)$ için $0+0<1$ doğru olduğundan istenen bölge doğrunun orijin tarafındaki küçük üçgendir. Üçgenin alanı $\dfrac{1\cdot 1}{2}=\dfrac12$, karenin alanı $4$ olduğundan $P=\dfrac{1/2}{4}=\dfrac18$'dir. Doğrunun öbür tarafını alan biri $1-\dfrac18=\dfrac78$ bulur; oysa o bölgede $(0,0)$ yoktur ve $x+y<1$ koşulu sağlanmaz.
+
+<Figur>
+
+<GeoOlKareBolge />
+
+<Altyazi>Şekil 8 — $x,y\in[0,2]$ için örnek uzay kenarı $2$ olan karedir. $x+y<1$ bölgesi orijindeki küçük üçgendir: $P=\dfrac{1/2}{4}=\dfrac18$.</Altyazi>
+
+</Figur>
+
+> **Dikkat:** Koşulu iki sayıya ayrı ayrı bölüp olasılıkları çarpmak ya da bölgeyi doğrunun yanlış tarafında almak bu tür soruların en sık hatasıdır. Örneğin $x+y<1$ için "$x<1$ ve $y<1$ olmalı" deyip $\dfrac12\cdot\dfrac12=\dfrac14$ bulmak yanlıştır: $x=0{,}8$ ve $y=0{,}8$ bu iki koşulu sağlar ama $x+y<1$ koşulunu sağlamaz. Deneme noktası bu hatayı önler. Buluşma problemi (8. örnek) ve bir çubuğun iki noktadan kırılması da aynı yöntemle çözülür.
+
+## Çözümlü Sorular
+
+{/* ornek-1 */}
+<Ornek>
+
+<Soru>
+
+$[-2,\ 8]$ aralığından rastgele bir gerçek sayı $x$ seçiliyor. $x^2<9$ olma olasılığı kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+Önce eşitsizliği çöz, sonra çözüm kümesinin $[-2,\ 8]$ aralığında kalan kısmının uzunluğunu bul.
+
+</Ipucu>
+
+<Cozum>
+
+1. Örnek uzay $[-2,\ 8]$ aralığıdır; uzunluğu $8-(-2)=10$'dur. Bu aralıkta sonsuz sayıda gerçek sayı vardır; onları sayamayız, aralığın uzunluğunu ölçeriz.
+
+2. $x^2<9 \iff -3<x<3$. Bu aralığın $[-2,\ 8]$ içinde kalan kısmı $[-2,\ 3)$'tür ve uzunluğu $3-(-2)=5$'tir.
+
+3. $P=\dfrac{5}{10}=\dfrac12$.
+
+4. **Yaygın hata:** Aralıktaki tam sayıları sayıp oran kurmak. $-2$'den $8$'e kadar $11$ tam sayı vardır ve bunlardan $-2,-1,0,1,2$ koşulu sağlar; bu yol $\dfrac{5}{11}$ verir. Soru "rastgele bir **tam sayı**" deseydi bu cevap doğru olurdu. Oysa $x$ bir gerçek sayıdır: $2{,}5$ ya da $\sqrt{2}$ gibi değerler de seçilebilir ve bu değerlerin hepsi tam sayılar arasındaki boşluklarda yer alır. Sürekli bir aralıkta tek tek değerleri değil, uzunluğu kullanırız.
+
+5. **Denetim:** Tümleyen bölge $[3,\ 8]$'dir ve uzunluğu $5$'tir; olasılığı $\dfrac12$'dir. $\dfrac12+\dfrac12=1$. ($x=3$ değeri tümleyene aittir, ama tek bir noktanın olasılığı $0$ olduğundan sonuç değişmez.)
+
+<Cevap>$\dfrac12$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-2 */}
+<Ornek>
+
+<Soru>
+
+Bir hedef tahtası, yarıçapları $2$ cm, $4$ cm ve $6$ cm olan eş merkezli üç daireden oluşuyor. Tahtaya atılan bir ok tahtaya isabet ediyor ve tahtanın her noktasına eşit şansla gelebiliyor.
+
+**a)** Okun, yarıçapı $2$ cm olan dairenin dışında ve yarıçapı $4$ cm olan dairenin içinde kalan halkaya isabet etme olasılığı kaçtır?
+
+**b)** Okun en dıştaki halkaya (yarıçapı $4$ cm olan dairenin dışına) isabet etme olasılığı kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+Bir halkanın alanı, büyük dairenin alanından küçük dairenin alanı çıkarılarak bulunur.
+
+</Ipucu>
+
+<Cozum>
+
+1. Tahtanın tamamı yarıçapı $6$ cm olan dairedir: alanı $36\pi$.
+
+2. **a)** Ortadaki halkanın alanı $16\pi-4\pi=12\pi$'dir. $P=\dfrac{12\pi}{36\pi}=\dfrac13$.
+
+3. **b)** Dıştaki halkanın alanı $36\pi-16\pi=20\pi$'dir. $P=\dfrac{20\pi}{36\pi}=\dfrac59$.
+
+4. **Yaygın hata:** Halkanın genişliği $4-2=2$ cm olduğu için alanını $\pi\cdot 2^2=4\pi$ almak ve a) için $\dfrac19$ bulmak. Bu hata kolayca yakalanır: içteki dairenin yarıçapı da $2$ cm'dir ve alanı $4\pi$'dir. Genişliği $2$ cm olan iki halkanın da alanı $4\pi$ olsaydı üç bölgenin toplam alanı $12\pi$ ederdi; oysa tahtanın alanı $36\pi$'dir. Halkanın alanı $\pi(r_2-r_1)^2$ değil, $\pi\left(r_2^{\,2}-r_1^{\,2}\right)$'dir.
+
+5. **Denetim:** Üç bölgenin alanları $4\pi$, $12\pi$ ve $20\pi$'dir; toplamları $36\pi$'dir. Olasılıklar da $\dfrac19+\dfrac13+\dfrac59=\dfrac{1+3+5}{9}=1$ eder. Genişlikleri eşit olduğu hâlde dışa doğru her halka bir öncekinden büyüktür.
+
+<Cevap>a) $\dfrac13$; b) $\dfrac59$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-3 */}
+<Ornek>
+
+<Soru>
+
+Bir $ABC$ üçgeninde $D$ noktası $[AB]$ üzerinde, $E$ noktası $[AC]$ üzerindedir ve $DE\parallel BC$'dir. $|AD|=4$ cm ve $|DB|=2$ cm'dir. Üçgenin içinden rastgele seçilen bir noktanın $DBCE$ yamuğunun içinde olma olasılığı kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+$ADE$ üçgeni $ABC$'ye benzerdir (Şekil 3). Önce bu küçük üçgenin alan payını bul.
+
+</Ipucu>
+
+<Cozum>
+
+1. $DE\parallel BC$ olduğundan $ADE$ üçgeni $ABC$ üçgenine benzerdir. Benzerlik oranı $k=\dfrac{|AD|}{|AB|}=\dfrac{4}{4+2}=\dfrac23$'dir.
+
+2. Alanlar oranı benzerlik oranının karesidir: $\dfrac{\text{Alan}(ADE)}{\text{Alan}(ABC)}=\left(\dfrac23\right)^2=\dfrac49$.
+
+3. Yamuk, üçgenden $ADE$ çıkarıldığında kalan kısımdır: payı $1-\dfrac49=\dfrac59$'tir. $P=\dfrac59$.
+
+4. **Yaygın hata 1:** Alan oranı yerine uzunluk oranını kullanmak, yani $ADE$'nin payını $\dfrac23$, yamuğun payını $\dfrac13$ almak. Kenar orta noktalarıyla bir karşı örnek: $k=\dfrac12$ iken orta noktalar üçgeni, $ABC$'yi dört eş üçgene ayırır. Bu yüzden küçük üçgenin payı $\dfrac12$ değil $\dfrac14$'tür. Uzunluklar $k$ ile çarpılırsa alan $k^2$ ile çarpılır.
+
+5. **Yaygın hata 2:** $\dfrac49$'ü bulup orada durmak. Bu, noktanın **küçük üçgende** olma olasılığıdır; soru yamuğu soruyor.
+
+6. **Denetim:** $\dfrac49+\dfrac59=1$. Yamuk üçgenin geniş alt kısmıdır; payının yarıdan büyük çıkması ($\dfrac59>\dfrac12$) beklenen bir sonuçtur.
+
+<Cevap>$\dfrac59$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-4 */}
+<Ornek>
+
+<Soru>
+
+$ABCD$ dikdörtgeninde $|AB|=4$ birim ve $|BC|=3$ birimdir. Dikdörtgenin içinden rastgele seçilen bir noktanın dört köşenin **her birine** uzaklığının $1$ birimden büyük olma olasılığı kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+İstenen bölge düzensizdir. Önce istenmeyen bölgeyi çiz: en az bir köşeye uzaklığı $1$ birim ya da daha az olan noktalar.
+
+</Ipucu>
+
+<Cozum>
+
+1. İstenmeyen noktalar, köşelerden en az birine uzaklığı $1$ birimi aşmayan noktalardır. Dikdörtgenin her köşesi dik açı olduğundan bu noktalar her köşede yarıçapı $1$ olan bir **çeyrek daire** oluşturur (Şekil 4'teki ilk kare).
+
+2. Çeyrek daireler birbiriyle çakışmaz, çünkü dikdörtgenin kısa kenarı bile $3$ birimdir; iki çeyrek dairenin çakışması için kenarın $2$ birimden kısa olması gerekirdi. Dört çeyrek dairenin toplam alanı bir tam dairenin alanına eşittir: $4\cdot\dfrac{\pi\cdot 1^2}{4}=\pi$.
+
+3. Dikdörtgenin alanı $4\cdot 3=12$'dir. İstenen bölgenin alanı $12-\pi$'dir.
+
+4. $P=\dfrac{12-\pi}{12}=1-\dfrac{\pi}{12}$.
+
+5. **Yaygın hata:** $\dfrac{\pi}{12}$'yi bulup cevap olarak vermek. $\dfrac{\pi}{12}$, istenmeyen olayın, yani noktanın bir köşeye yakın olmasının olasılığıdır. Tümleyen yolunda son adım **$1$'den çıkarmaktır**. Bir tahmin de hatayı gösterir: $\dfrac{\pi}{12}\approx 0{,}26$'dır, oysa dikdörtgenin büyük kısmı köşelerden uzaktır; cevabın yarıdan büyük olması gerekir.
+
+6. **Denetim:** $\dfrac{12-\pi}{12}\approx 0{,}74$ ve $0<0{,}74<1$. Ayrıca $\dfrac{\pi}{12}+\dfrac{12-\pi}{12}=1$.
+
+<Cevap>$\dfrac{12-\pi}{12}$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-5 */}
+<Ornek>
+
+<Soru>
+
+Şekil 5'teki çarkta $1$, $2$ ve $3$ yazan dilimlerin merkez açıları sırasıyla $180^\circ$, $120^\circ$ ve $60^\circ$'dir. İbre çevrenin her noktasında eşit şansla durabiliyor. Çark iki kez çevriliyor ve her seferinde ibrenin gösterdiği sayı yazılıyor. Yazılan iki sayının toplamının $4$ olma olasılığı kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+Önce her dilimin olasılığını açısından bul. Sonra toplamı $4$ eden sıralı ikilileri listele.
+
+</Ipucu>
+
+<Cozum>
+
+1. Bir çevirmede olasılıklar: $P(1)=\dfrac{180}{360}=\dfrac12$, $P(2)=\dfrac{120}{360}=\dfrac13$, $P(3)=\dfrac{60}{360}=\dfrac16$.
+
+2. Toplamı $4$ eden sıralı ikililer (birinci çevirme, ikinci çevirme): $(1,3)$, $(2,2)$, $(3,1)$. $(1,3)$ ile $(3,1)$ farklı sonuçlardır.
+
+3. İki çevirme bağımsız olduğundan her ikilinin olasılığı çarpımla bulunur:
+   $P(1,3)=\dfrac12\cdot\dfrac16=\dfrac{1}{12}$, $P(3,1)=\dfrac{1}{12}$, $P(2,2)=\dfrac13\cdot\dfrac13=\dfrac19$.
+
+4. Bu üç sonuç ayrık olduğundan toplanır: $\dfrac{1}{12}+\dfrac{1}{12}+\dfrac19=\dfrac{3}{36}+\dfrac{3}{36}+\dfrac{4}{36}=\dfrac{10}{36}=\dfrac{5}{18}$.
+
+5. **Yaygın hata:** Üç dilim olduğu için her dilime $\dfrac13$ vermek; böylece $9$ eş olasılıklı ikiliden $3$'ü uygun sayılır ve $\dfrac39=\dfrac13$ bulunur. Oysa $1$ yazan dilim çarkın yarısını kaplar ve ibre orada, $3$ yazan dilimde durduğundan üç kat daha sık durur. Dilim sayısı eş olasılık anlamına gelmez; olasılığı merkez açısı belirler.
+
+6. **Denetim:** Bütün toplamların olasılıkları aynı yolla bulunursa:
+
+   | Toplam | $2$ | $3$ | $4$ | $5$ | $6$ |
+   | --- | --- | --- | --- | --- | --- |
+   | Olasılık | $\dfrac{9}{36}$ | $\dfrac{12}{36}$ | $\dfrac{10}{36}$ | $\dfrac{4}{36}$ | $\dfrac{1}{36}$ |
+
+   Payların toplamı $9+12+10+4+1=36$ olduğundan olasılıkların toplamı $1$'dir.
+
+<Cevap>$\dfrac{5}{18}$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-6 */}
+<Ornek>
+
+<Soru>
+
+Dış yüzeyinin tamamı boyanmış ve her ayrıtı $n$ birim olan bir küp, ayrıtları $1$ birim olan $n^3$ tane eş birim küpe ayrılıyor ($n\ge 2$). Bu birim küplerden rastgele seçilen birinin **hiçbir yüzünün** boyalı olmama olasılığı $\dfrac18$ ise $n$ kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+Boyasız küpler, büyük küpün dış tabakası soyulunca kalan iç küpü oluşturur. Bu iç küpün bir ayrıtında kaç birim küp vardır?
+
+</Ipucu>
+
+<Cozum>
+
+1. Büyük küpün her ayrıtı boyunca dizilen $n$ birim küpten iki uçtakiler dış yüzeydedir. Dış tabaka soyulunca ayrıtı $n-2$ birim olan bir iç küp kalır. Boyasız birim küp sayısı $(n-2)^3$'tür.
+
+2. Olasılık koşulu: $\dfrac{(n-2)^3}{n^3}=\dfrac18$, yani $\left(\dfrac{n-2}{n}\right)^3=\left(\dfrac12\right)^3$.
+
+3. Küp kökü alınırsa $\dfrac{n-2}{n}=\dfrac12$, buradan $2n-4=n$ ve $n=4$ bulunur.
+
+4. **Yaygın hata:** İç küpün ayrıtını $n-1$ almak, yani her ayrıtta yalnız bir uçtaki küpü çıkarmak. Bu durumda $\dfrac{n-1}{n}=\dfrac12$'den $n=2$ bulunur; oysa $2\times2\times2$ bir küpün $8$ birim küpünün hepsi köşe küpüdür ve hiçbiri boyasız değildir. $3\times3\times3$ küple denetleyelim: boyasız olan yalnız en içteki küptür. Bu sayı $(3-2)^3=1$ ile uyuşur, $(3-1)^3=8$ ile uyuşmaz.
+
+5. **Denetim:** $n=4$ için birim küp sayıları köşe $8$, ayrıt $12\cdot 2=24$, yüz $6\cdot 4=24$, iç $8$'dir; toplam $8+24+24+8=64=4^3$. Boyasız küp olasılığı $\dfrac{8}{64}=\dfrac18$ olur.
+
+<Cevap>$4$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-7 */}
+<Ornek>
+
+<Soru>
+
+Şekil 7'deki üçgen prizmanın $6$ köşesi verilmiştir.
+
+**a)** Prizmanın köşelerinden rastgele $3$'ü aynı anda seçiliyor. Seçilen üç köşenin prizmanın **aynı yüzü** üzerinde bulunma olasılığı kaçtır?
+
+**b)** Bu kez prizmanın köşelerinden rastgele $2$'si aynı anda seçiliyor. Seçilen iki köşenin prizmanın bir **ayrıtıyla** birleşik olma olasılığı kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+Prizmanın her yüzünde kaç köşe olduğunu yaz. Dört köşeli bir yüzde birden fazla köşe üçlüsü bulunur. b) şıkkında prizmanın ayrıtlarını tek tek say.
+
+</Ipucu>
+
+<Cozum>
+
+1. **a)** Köşeler aynı anda seçildiği için sıra önemli değildir. Tüm seçimler: $C(6,3)=\dbinom{6}{3}=20$.
+
+2. İki üçgen yüzün her birinde yalnız $3$ köşe vardır; her biri $1$ üçlü verir. Bu yüzlerden toplam $2$ üçlü gelir.
+
+3. Üç dikdörtgen yüzün her birinde $4$ köşe vardır; her biri $C(4,3)=4$ üçlü verir. Örneğin $ABED$ yüzünde $ABE$, $ABD$, $AED$, $BED$ üçlüleri bulunur. Bu yüzlerden toplam $3\cdot 4=12$ üçlü gelir.
+
+4. Aynı üçlü iki kez sayılmış mı? İki farklı yüzün ortak köşesi en çok $2$'dir (ortak bir ayrıt), bu yüzden hiçbir üçlü iki yüzde birden bulunamaz. Olumlu seçimler $2+12=14$'tür.
+
+5. $P=\dfrac{14}{20}=\dfrac{7}{10}$.
+
+6. **Yaygın hata:** Yalnız üçgen yüzleri saymak ("üç köşe bir üçgen yüz demektir") ve $\dfrac{2}{20}=\dfrac{1}{10}$ bulmak ya da her dikdörtgen yüzden tek bir üçlü sayıp $\dfrac{5}{20}=\dfrac14$ bulmak. Dört köşeli bir yüzün her üç köşesi o yüzün üzerindedir; bu yüzden her dikdörtgen yüz $4$ üçlü verir.
+
+7. **Denetim (tümleyen):** Aynı yüzde olmayan üçlüleri doğrudan sayalım. Böyle bir üçlü, bir tabandan $2$ köşe ve diğer tabandan $1$ köşe içerir. Alt tabandan seçilen bir çift, örneğin $A$ ile $B$, üst tabandaki $D$ ya da $E$ ile aynı dikdörtgen yüzdedir; yalnız $F$ ile bir yüz oluşturmaz. Böylece alt tabandaki $3$ çiftin her biri $1$ üçlü verir. Üst tabandan da aynı şekilde $3$ üçlü gelir. Aynı yüzde olmayan $3+3=6$ üçlü vardır ve $20-6=14$ ile aynı sonuç bulunur.
+
+8. **b)** Tüm seçimler: $C(6,2)=\dbinom{6}{2}=15$. Prizmanın ayrıtları alt tabanda $3$ ($AB$, $BC$, $CA$), üst tabanda $3$ ($DE$, $EF$, $FD$) ve yan yüzlerde $3$'tür ($AD$, $BE$, $CF$); toplam $9$ ayrıt. $P=\dfrac{9}{15}=\dfrac35$.
+
+9. **Yaygın hata:** "Aynı yüzdeki iki köşe bir ayrıtla birleşir" diye düşünüp yüz köşegenlerini de ayrıt saymak. Prizmada her köşe çifti en az bir yüzde ortaktır; bu yanlış düşünce bütün $15$ çifti uygun sayar ve $\dfrac{15}{15}=1$ verir. Oysa $ABED$ yüzünde $A$ ile $E$ yüzün köşegeniyle birleşir, ayrıtla değil. Ayrıt olmayan çiftler $AE$, $AF$, $BD$, $BF$, $CD$, $CE$'dir; her biri bir dikdörtgen yüzün köşegenidir ve $9+6=15$ ile sayım tamamlanır.
+
+<Cevap>a) $\dfrac{7}{10}$; b) $\dfrac35$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-8 */}
+<Ornek>
+
+<Soru>
+
+Ali ile Bora bir kafede buluşmak için anlaşıyor. Her biri $14.00$ ile $14.40$ arasında, bu aralığın her anına eşit şansla ve birbirinden bağımsız olarak kafeye gelecek. Önce gelen, diğerini en çok $10$ dakika bekleyip ayrılacak. İkisinin buluşma olasılığı kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+8. bölümdeki gibi iki geliş zamanını bir karenin içindeki $(x,y)$ noktası olarak düşün. Kare kenarı ile bekleme süresini aynı birimle yaz.
+
+</Ipucu>
+
+<Cozum>
+
+1. $x$, Ali'nin $14.00$'ten kaç dakika sonra geldiğini; $y$ ise Bora'nın kaç dakika sonra geldiğini göstersin. $0\le x\le 40$ ve $0\le y\le 40$ olduğundan örnek uzay kenarı $40$ olan bir karedir; alanı $1600$'dür.
+
+2. İkisi, gelişleri arasındaki fark en çok $10$ dakika ise buluşur: $|x-y|\le 10$, yani $x-10\le y\le x+10$. Bu bölge, köşegen boyunca uzanan bir şerittir.
+
+<Figur>
+
+<GeoOlBulusma />
+
+<Altyazi>Şekil 9 — Buluşma bölgesi $|x-y|\le 10$ şerididir. Sağ alttaki üçgen "Bora en az $10$ dakika önce geldi" ($x-y>10$), sol üstteki üçgen "Ali en az $10$ dakika önce geldi" ($y-x>10$) durumlarıdır; iki üçgenin de dik kenarları $40-10=30$'dur.</Altyazi>
+
+</Figur>
+
+3. Buluşamadıkları bölge, dik kenarları $30$ olan iki üçgendir: her birinin alanı $\dfrac{30\cdot 30}{2}=450$, toplamı $900$'dür.
+
+4. $P=\dfrac{1600-900}{1600}=\dfrac{700}{1600}=\dfrac{7}{16}$.
+
+5. **Yaygın hata 1:** Yalnız bir köşe üçgenini çıkarmak, yani yalnız "Ali erken gelir, Bora geç kalır" durumunu düşünmek. Bu yol $1-\dfrac{450}{1600}=\dfrac{23}{32}$ verir. Oysa iki kişiden hangisi önce gelirse gelsin, aradaki fark $10$ dakikadan fazlaysa buluşma olmaz; iki üçgen de çıkarılmalıdır.
+
+6. **Yaygın hata 2:** Birimleri karıştırmak. Örneğin aralığı alışkanlıkla $1$ saat, yani $60$ dakika alırsak $1-\left(\dfrac{50}{60}\right)^2=\dfrac{11}{36}$ bulunur. Bekleme süresini saat, kareyi dakika cinsinden yazmak da ($10$ yerine $\dfrac16$) bölgeyi tamamen bozar. Kare kenarı ve bekleme süresi aynı birimde olmalıdır.
+
+7. **Yaygın hata 3:** Bölgeyi ters almak, yani köşedeki iki üçgeni buluşma bölgesi sanmak. Bu yol $\dfrac{900}{1600}=\dfrac{9}{16}$ verir. Bir deneme noktası hatayı hemen gösterir: $(0,0)$ noktasında ikisi de tam $14.00$'te gelir ve kesinlikle buluşur. $|0-0|=0\le 10$ olduğundan bu nokta şeridin içindedir, üçgenlerin içinde değildir. Demek ki buluşma bölgesi şerittir.
+
+8. **Denetim (saat cinsinden):** Kare kenarı $\dfrac{40}{60}=\dfrac23$ saat, bekleme $\dfrac{10}{60}=\dfrac16$ saattir; üçgenlerin dik kenarları $\dfrac23-\dfrac16=\dfrac12$ olur. $P=1-\dfrac{(1/2)^2}{(2/3)^2}=1-\dfrac{1/4}{4/9}=1-\dfrac{9}{16}=\dfrac{7}{16}$. Birim değişse de oran değişmez.
+
+<Cevap>$\dfrac{7}{16}$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Pekiştirme Soruları
+
+> Konuyu pekiştirmek için hazırlanmış özgün sorular.
+
+<Sorular slug="geometrik-olasilik" />
+
+## Sık Yapılan Hatalar
+
+- **Sürekli bir aralıkta nokta sayar gibi düşünmek.** "Gerçek sayı" ya da "nokta" seçiliyorsa tam sayıları sayma; uzunlukları ya da alanları oranla. (1. örnek)
+- **Çubuk kesme sorularında yalnız bir ucu almak.** Kısa parça çubuğun iki ucundan birinde olabilir; iki uçtaki uygun uzunluklar toplanır. (2. bölüm)
+- **Halkanın alanını $\pi(r_2-r_1)^2$ almak.** Halkanın alanı büyük daireden küçük dairenin çıkarılmasıyla bulunur: $\pi\left(r_2^{\,2}-r_1^{\,2}\right)$. (2. örnek)
+- **Örnek uzayın hangi şekil olduğunu karıştırmak.** Kareden seçilen noktanın içteki dairede olması $\dfrac{\pi}{4}$'dir; daireden seçilen noktanın içteki karede olması bambaşka bir orandır. Payda her zaman noktanın seçildiği şeklin alanıdır. (3. bölüm)
+- **Benzer şekillerde alan oranı yerine uzunluk oranı kullanmak.** Benzerlik oranı $k$ ise alan oranı $k^2$'dir; orta noktalar üçgeni alanın dörtte biridir. (3. örnek)
+- **Tümleyeni bulup $1$'den çıkarmayı unutmak.** İstenmeyen bölgenin olasılığı bulunduysa son adım $1-P(A')$'dır; cevabın büyüklüğünü kaba bir tahminle denetle. (4. örnek)
+- **Çarkın dilimlerini eş olasılıklı saymak.** Dilimin olasılığı $\dfrac{\theta}{360^\circ}$'dır; dilim sayısı olasılığı belirlemez. (5. örnek)
+- **Boyalı küpte köşe, ayrıt, yüz ve iç sayılarını karıştırmak.** Her ayrıtta iki uçtaki küp dıştadır: iç küpün ayrıtı $n-2$, boyasız küp sayısı $(n-2)^3$'tür. Sonucu $n=3$ ile denetle. (6. örnek)
+- **Köşe seçiminde aynı yüzdeki üçlüleri eksik saymak; kenarları köşegen saymak.** Dört köşeli bir yüz $C(4,3)=4$ üçlü verir. Bir çokgende iki köşeyi birleştiren doğru parçası ya kenar ya köşegendir; cisimlerde de aynı yüzdeki iki köşe yüz köşegeniyle birleşebilir. Ayrıtları tek tek say. (7. örnek)
+- **İki değişkenli koşulda kare örnek uzayı kurmamak ya da eşitsizlik bölgesini ters çizmek.** Doğruyu çiz, tarafı $(0,0)$ gibi bir deneme noktasıyla belirle. (8. örnek, 7. adım)
+- **Buluşma probleminde birimleri karıştırmak ya da yalnız bir köşe üçgenini çıkarmak.** Kare kenarı ile bekleme süresini aynı birimde yaz; iki kişiden hangisi erken gelirse gelsin, iki köşe üçgeni de buluşmanın olmadığı bölgedir. (8. örnek)
+
+## Özet
+
+| Durum | Ölçü | Anahtar ilişki |
+| --- | --- | --- |
+| Aralıktan gerçek sayı, parçadan nokta | Uzunluk | $\dfrac{\text{uygun uzunluk}}{\text{tüm uzunluk}}$ |
+| Kareye içten teğet daire | Alan | $\dfrac{\pi}{4}$ (ölçekten bağımsız) |
+| Hedef tahtasında halka | Alan | $\dfrac{r_2^{\,2}-r_1^{\,2}}{R^2}$ |
+| Benzer şekiller | Alan | uzunluk oranı $k$ ise alan oranı $k^2$ |
+| Çark, daire dilimi | Açı | $\dfrac{\theta}{360^\circ}$; iki çevirme bağımsızdır |
+| Boyalı $n\times n\times n$ küp | Sayma | $8,\ 12(n-2),\ 6(n-2)^2,\ (n-2)^3$; atılan küpte üst yüz boyalı: $\dfrac1n$ |
+| Çokgen ve cisim köşeleri | Sayma | $\dfrac{\text{olumlu seçim}}{C(V,k)}$; yüzleri ve ayrıtları tek tek say |
+| İki rastgele sayı (8. bölüm) | Alan | kare örnek uzay, doğru ve deneme noktası |
+
+<KonuNav slug="geometrik-olasilik" />

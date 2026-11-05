@@ -1,0 +1,656 @@
+import { topicMetadata } from "@/lib/seo";
+import { OtkParaAgaci, OtkVennBolgeleri, OtkZarTablosu, OtkHileliZarCubuk } from "@/components/figures/OlasilikTemelKavramlarFig";
+
+export const metadata = topicMetadata("olasilik-temel-kavramlar");
+
+<Konu slug="olasilik-temel-kavramlar" />
+
+<p className="lead">Olasılık hesabının ilk adımı **doğru örnek uzayı kurmak ve çıktıların eşit şansa sahip olup olmadığını sormaktır.** Olaylar bu örnek uzayın alt kümeleridir; olasılık ise her olaya $0$ ile $1$ arasında bir değer veren ve kesin olaya $1$ değerini veren bir ölçüdür. Bu sayfada zar ve para deneyleriyle örnek uzayı yazmayı, olay türlerini ve olaylarla işlemleri öğreniyor; tümleyen, birleşim ve fark kurallarını kuruyoruz. Çıktıların eşit şansa sahip olmadığı hileli zarlarda hesabın nasıl değiştiğini de görüyoruz.</p>
+
+> **Bu sayfadaki varsayımlar**
+>
+> - Aksi söylenmedikçe zarlar ve madenî paralar **hilesizdir**. Hileli bir zar ya da para kullanıldığında bu, soruda açıkça yazılır.
+> - İki zar birlikte atıldığında, renkleri aynı olsa bile zarlar birbirinden **ayırt edilir**: $(2,5)$ ile $(5,2)$ farklı çıktılardır.
+> - Madenî parada yazı $Y$, tura $T$ ile gösterilir.
+> - "Rastgele seçiliyor" ifadesi, her elemanın seçilme şansının eşit olduğu anlamına gelir.
+> - Bir aralıktaki sayılar sorulduğunda uçların **dahil** olup olmadığı soruda yazılıdır.
+> - Sonuçlar en sade kesir biçiminde verilir.
+> - Torbadan birden çok top çekme gibi sayma gerektiren sorular [Kombinasyonla Olasılık](/konular/kombinasyonla-olasilik) sayfasında, koşullu olasılık ve bağımsız olaylar [Koşullu Olasılık Soruları](/konular/kosullu-olasilik-sorulari) sayfasında ele alınır.
+
+Konunun kısa bir özeti için [Olasılık](/konular/olasilik-tyt) özet sayfasına, temel bakış için 9. sınıf [Deneye Dayalı Olasılık](/konular/deneye-dayali-olasilik-9) ve [Olasılıkta Akıl Yürütme](/konular/olasilik-akil-yurutme-9) derslerine bakabilirsin. Bu sayfada [Sayma Kuralları](/konular/sayma-kurallari) ve [Kümeler](/konular/kumeler-tyt) konularındaki bilgileri kullanıyoruz.
+
+## 1. Deney, Çıktı ve Örnek Uzay
+
+Sonucu önceden kesin olarak bilinemeyen ama olası sonuçları bilinen işleme **deney** denir: bir zar atmak, bir para atmak, bir torbadan top çekmek birer deneydir. Deneyin her bir olası sonucuna **çıktı**, bütün çıktıların kümesine **örnek uzay** denir. Örnek uzay $S$ ile, eleman sayısı $s(S)$ ile gösterilir.
+
+Örnek uzayı yazarken iki kural vardır: **hiçbir çıktı atlanmaz** ve **hiçbir çıktı iki kez yazılmaz.** Bunu güvenle yapmanın yolu, deneyi adımlara ayırıp bir ağaç şeması çizmektir. Üç madenî para art arda atıldığında her para iki biçimde düşer:
+
+<Figur>
+
+<OtkParaAgaci />
+
+<Altyazi>Şekil 1 — Üç madenî para için ağaç şeması. Her dal bir paranın sonucudur; dalların uçlarındaki $8$ çıktı, örnek uzayın tamamıdır.</Altyazi>
+
+</Figur>
+
+$$S=\{YYY,\ YYT,\ YTY,\ YTT,\ TYY,\ TYT,\ TTY,\ TTT\},\qquad s(S)=2\cdot 2\cdot 2=8$$
+
+Listeyi saydıktan sonra aynı sonucu çarpma kuralıyla da bulabiliriz: her para $2$ seçenekli bir adım olduğundan $n$ para için $s(S)=2^n$, $n$ zar için $s(S)=6^n$ olur. Farklı türden deneyler birlikte yapıldığında da çıktı sayıları çarpılır:
+
+| Deney | Örnek uzayın elemanları | $s(S)$ |
+| --- | --- | --- |
+| Bir zar | $1, 2, 3, 4, 5, 6$ | $6$ |
+| $n$ madenî para | $Y$ ve $T$ harflerinden oluşan $n$ harfli diziler | $2^n$ |
+| Bir para ve bir zar | $Y1, Y2, \dots, Y6, T1, \dots, T6$ | $2\cdot 6=12$ |
+| İki zar | $(1,1), (1,2), \dots, (6,6)$ sıralı ikilileri | $6\cdot 6=36$ |
+
+> **Dikkat:** $YYT$ ile $TYY$ aynı çıktı değildir. İlkinde tura üçüncü parada, ikincisinde birinci paradadır. Çıktıları "kaç yazı geldi" diye gruplamak, 6. bölümde göreceğimiz gibi eş olasılığı bozar.
+
+## 2. Bir Örnek Uzayın Kaç Olayı Vardır? $2^{s(S)}$
+
+Örnek uzayın her alt kümesine **olay** denir. Bir olay, deneyin sonucunun belirli bir kümeye düşmesidir: zar atıldığında "çift sayı gelmesi" olayı $\{2,4,6\}$ kümesidir.
+
+Olaylar alt küme olduğundan, bir örnek uzayın kaç olayı olduğu sorusu "bu kümenin kaç alt kümesi vardır?" sorusuyla aynıdır ([Kümeler](/konular/kumeler-tyt) konusundaki alt küme sayısı). Küçük bir örnekte listeleyelim. Üç eş dilime ayrılmış ve dilimleri $1$, $2$, $3$ ile numaralandırılmış bir çark çevriliyor, $S=\{1, 2, 3\}$:
+
+| Eleman sayısı | Olaylar | Kaç tane? |
+| --- | --- | --- |
+| $0$ | $\varnothing$ | $1$ |
+| $1$ | $\{1\},\ \{2\},\ \{3\}$ | $3$ |
+| $2$ | $\{1,2\},\ \{1,3\},\ \{2,3\}$ | $3$ |
+| $3$ | $\{1,2,3\}=S$ | $1$ |
+
+Toplam $8=2^3$ olay vardır. Bunun nedeni şudur: bir olay kurarken her çıktı için "olaya girsin mi, girmesin mi?" diye iki seçenekli bir karar verilir. $s(S)$ tane çıktı için bu kararların sayısı
+
+$$\text{olay sayısı}=2^{s(S)}$$
+
+olur. Boş küme ($\varnothing$) ve örnek uzayın kendisi ($S$) de bu sayının içindedir; ikisi de birer olaydır.
+
+## 3. Olay Türleri: Kesin, İmkânsız, Ayrık, Tümleyen
+
+Bir zar atma deneyinde aşağıdaki olaylara bakalım.
+
+| Tür | Tanım | Örnek (bir zar) |
+| --- | --- | --- |
+| Kesin olay | Her durumda gerçekleşen olay; $S$'nin kendisi | "$7$'den küçük sayı gelmesi" $=S$ |
+| İmkânsız olay | Hiçbir durumda gerçekleşmeyen olay; $\varnothing$ | "$7$ gelmesi" $=\varnothing$ |
+| Ayrık olaylar | Ortak çıktısı olmayan olaylar: $A\cap B=\varnothing$ | "$1$ gelmesi" ve "çift gelmesi" |
+| Tümleyen olay | $A$ gerçekleşmediğinde gerçekleşen olay: $A'=S\setminus A$ | "çift gelmesi"nin tümleyeni "tek gelmesi" |
+
+Ayrık olaylar **aynı anda gerçekleşemez.** Bir olay ile tümleyeni her zaman ayrıktır, ayrıca birleşimleri örnek uzayın tamamıdır: $A\cup A'=S$. Ayrık olmak tümleyen olmak için yetmez: "$1$ gelmesi" ile "çift gelmesi" ayrıktır ama birleşimleri $\{1,2,4,6\}$ olduğundan $S$ değildir.
+
+## 4. Olaylarla İşlemler ve Venn Şeması
+
+Olaylar küme olduğu için kümelerle yapılan işlemler olaylarla da yapılır. Her işlemin günlük dildeki karşılığını bilmek, soruyu doğru kümeye çevirmenin yoludur.
+
+| İşlem | Okunuşu | Gerçekleşmesi için |
+| --- | --- | --- |
+| $A\cup B$ | $A$ veya $B$ | En az biri gerçekleşir |
+| $A\cap B$ | $A$ ve $B$ | İkisi birlikte gerçekleşir |
+| $A\setminus B$ | $A$ fark $B$ | $A$ gerçekleşir, $B$ gerçekleşmez ("yalnız $A$") |
+| $A'$ | $A$'nın tümleyeni | $A$ gerçekleşmez |
+| $A'\cap B'$ | ne $A$ ne $B$ | Hiçbiri gerçekleşmez |
+
+<Figur>
+
+<OtkVennBolgeleri />
+
+<Altyazi>Şekil 2 — İki olay örnek uzayı dört ayrık bölgeye ayırır: yalnız $A$, $A\cap B$, yalnız $B$ ve hiçbiri. Her çıktı bu bölgelerden tam birine düşer.</Altyazi>
+
+</Figur>
+
+Venn şemasında "veya" iki dairenin kapladığı bölgenin tamamıdır; kesişim bölgesi de buna dahildir. Türkçede "ya … ya da" bazen "ikisinden yalnız biri" anlamında kullanılır; matematikte "$A$ veya $B$" ifadesi, aksi söylenmedikçe ikisinin birlikte gerçekleştiği durumu da kapsar. "İkisinden yalnız biri" istendiğinde soruda ayrıca belirtilir.
+
+"Hiçbiri" bölgesi, birleşimin dışında kalan bölgedir. Bu yüzden
+
+$$A'\cap B'=(A\cup B)'$$
+
+eşitliği vardır: "ne $A$ ne $B$" ile "$A$ veya $B$ değil" aynı bölgeyi anlatır.
+
+## 5. Olasılığın Temel Özellikleri
+
+Bir olasılık, örnek uzayın her $A$ olayına bir $P(A)$ sayısı karşılık getirir ve şu üç özelliği sağlar:
+
+1. Her olay için $P(A)\ge 0$.
+2. Kesin olayın olasılığı $1$'dir: $P(S)=1$.
+3. $A$ ile $B$ ayrık ise $P(A\cup B)=P(A)+P(B)$.
+
+Bu sayfadaki temel kuralların hepsi bu üç özellikten çıkar:
+
+- $A$ ile $A'$ ayrıktır ve birleşimleri $S$'dir. Öyleyse $P(A)+P(A')=1$, yani $P(A')=1-P(A)$.
+- $\varnothing$, $S$'nin tümleyenidir: $P(\varnothing)=1-1=0$.
+- $P(A')\ge 0$ olduğundan $P(A)\le 1$. Her olasılık $0\le P(A)\le 1$ aralığındadır.
+- $A\subseteq B$ ise $B$, $A$ ile $B\setminus A$ ayrık olaylarının birleşimidir; bu yüzden $P(A)\le P(B)$.
+
+Son madde, verilen olasılıkların tutarlı olup olmadığını denetlemeye yarar. Örneğin $A\cap B$, $A$'nın bir alt kümesi olduğundan $P(A\cap B)$ hiçbir zaman $P(A)$'dan büyük olamaz.
+
+> **İpucu:** Bulduğun her olasılığın $0$ ile $1$ arasında olduğunu denetle. Negatif ya da $1$'den büyük bir sonuç, kurulumda bir hata olduğunu gösterir.
+
+## 6. Eş Olasılıklı Örnek Uzay: $P(A)=\dfrac{s(A)}{s(S)}$
+
+Hilesiz bir zarda altı yüzün hiçbiri diğerine üstün değildir; bu yüzden her yüzün olasılığı $\dfrac{1}{6}$'dir ve "çift gelmesi" olayı üç yüz içerdiğinden olasılığı $\dfrac{3}{6}=\dfrac{1}{2}$'dir. Bu düşünceyi genelleştirelim.
+
+Örnek uzaydaki bütün çıktıların gerçekleşme şansı eşitse örnek uzaya **eş olasılıklı** denir. Bu durumda $s(S)$ tane çıktının her birinin olasılığı $\dfrac{1}{s(S)}$'dir. Bir olayın olasılığı da içerdiği çıktıların olasılıklarının toplamıdır:
+
+$$P(A)=\dfrac{s(A)}{s(S)}=\dfrac{\text{olaydaki çıktı sayısı}}{\text{örnek uzaydaki çıktı sayısı}}$$
+
+Bu formülün tek ve kesin bir şartı vardır: **çıktılar eş olasılıklı olmalıdır.** Şartın neden önemli olduğunu iki para atışında görelim. Gelen yazı sayısı $0$, $1$ ya da $2$ olabilir. Bu üç sonucu örnek uzay sayıp "bir yazı gelme olasılığı $\dfrac{1}{3}$'dir" demek yanlıştır, çünkü bu üç sonuç eşit şansa sahip değildir. Eş olasılıklı örnek uzay $\{YY,\ YT,\ TY,\ TT\}$'dir ve "bir yazı" olayı iki çıktı içerir:
+
+$$P(\text{tam bir yazı})=\dfrac{2}{4}=\dfrac{1}{2}$$
+
+İki para çok kez atıldığında da tam bir yazı, atışların üçte birinde değil, yaklaşık yarısında gelir (deneysel olasılık için 12. bölüm).
+
+## 7. İki Zar ve Para Deneylerinde Tablo
+
+İki zar birlikte atıldığında örnek uzayın $36$ sıralı ikiliden oluştuğunu en iyi bir tablo gösterir. Satırlar birinci zarı, sütunlar ikinci zarı, hücreler de istenen büyüklüğü (burada toplamı) gösterir.
+
+<Figur>
+
+<OtkZarTablosu />
+
+<Altyazi>Şekil 3 — İki zarın $36$ eş olasılıklı çıktısı ve her hücrede iki zarın toplamı. Toplamı $10$ olan üç hücre vurgulanmıştır. Aynı toplam, sağ üstten sol alta inen bir çapraz boyunca tekrar eder.</Altyazi>
+
+</Figur>
+
+Tablodaki çaprazları sayınca her toplamın kaç çıktıyla elde edildiği ortaya çıkar:
+
+| Toplam | $2$ | $3$ | $4$ | $5$ | $6$ | $7$ | $8$ | $9$ | $10$ | $11$ | $12$ |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Çıktı sayısı | $1$ | $2$ | $3$ | $4$ | $5$ | $6$ | $5$ | $4$ | $3$ | $2$ | $1$ |
+
+Çıktı sayılarının toplamı $36$'dır. Toplamlar eş olasılıklı değildir: toplamın $7$ olma şansı, $2$ olma şansının altı katıdır. Bu yüzden iki zarda örnek uzay $11$ toplamdan oluşan bir küme olarak alınamaz. Zarları sırasız düşünüp $21$ çıktı saymak da yanlıştır; çünkü örneğin $\{1,2\}$ sırasız çıktısı $(1,2)$ ve $(2,1)$ olmak üzere iki ayrı biçimde gelirken $\{1,1\}$ yalnız bir biçimde gelir.
+
+Bir madenî para ile bir zar birlikte atıldığında da aynı yolu izleriz: satırlar paranın, sütunlar zarın sonucudur. Tablo $2$ satır ve $6$ sütundan oluşur, yani $12$ eş olasılıklı çıktı vardır.
+
+| Para / Zar | $1$ | $2$ | $3$ | $4$ | $5$ | $6$ |
+| --- | --- | --- | --- | --- | --- | --- |
+| $Y$ | $Y1$ | $Y2$ | $Y3$ | $Y4$ | $Y5$ | $Y6$ |
+| $T$ | $T1$ | $T2$ | $T3$ | $T4$ | $T5$ | $T6$ |
+
+Örneğin "paranın tura, zarın $4$'ten büyük gelmesi" olayı yalnız $T5$ ve $T6$ hücrelerinden oluşur; olasılığı $\dfrac{2}{12}=\dfrac{1}{6}$'dir. Tablo, hiçbir çıktının atlanmadığını ve hiçbirinin iki kez yazılmadığını tek bakışta gösterir.
+
+## 8. Tümleyen Olay ve "En Az Bir"
+
+$P(A')=1-P(A)$ kuralı, bir olayı doğrudan saymak zor olduğunda tersini saymaya izin verir. En sık kullanıldığı yer "en az bir" ifadesidir:
+
+| Olay | Tümleyeni |
+| --- | --- |
+| En az biri gerçekleşir | Hiçbiri gerçekleşmez |
+| Hepsi gerçekleşir | En az biri gerçekleşmez |
+| En az ikisi gerçekleşir | En çok biri gerçekleşir (hiçbiri ya da tam biri) |
+
+"En az bir"in tümleyeni **"hiç"**tir, "en çok bir" değil. "En çok bir" olayı "tam bir" durumunu da içerir; bu durum aynı zamanda "en az bir" olayının içindedir. Ortak bir durumu paylaşan iki olay birbirinin tümleyeni olamaz.
+
+Kural olay dilinde şöyle yazılır: iki zar atıldığında $A$ olayı "en az bir zarda $5$ gelmesi" ise $A'$ olayı "hiçbir zarda $5$ gelmemesi"dir ve
+
+$$P(\text{en az bir})=1-P(\text{hiç})$$
+
+Hiçbir zarda $5$ gelmemesi için her zarda $5$ dışındaki $5$ sayıdan biri gelmelidir: $5\cdot 5=25$ çıktı. Buradan $P(A)=1-\dfrac{25}{36}=\dfrac{11}{36}$ bulunur. Doğrudan $\dfrac{1}{6}+\dfrac{1}{6}=\dfrac{12}{36}$ yazmak ise $(5,5)$ çıktısını iki kez sayar; bunun nedenini 9. bölümde göreceğiz.
+
+## 9. Birleşim Kuralı: $P(A\cup B)$ ve $P(A\setminus B)$
+
+Ayrık olmayan iki olayın olasılıkları toplanırsa kesişimdeki çıktılar **iki kez** sayılır. Bir zar atılsın, $A=\{2,4,6\}$ "çift gelmesi", $B=\{3,6\}$ "$3$'ün katı gelmesi" olsun. Listelersek $A\cup B=\{2,3,4,6\}$ olur, yani $P(A\cup B)=\dfrac{4}{6}$'dır. Oysa $P(A)+P(B)=\dfrac{3}{6}+\dfrac{2}{6}=\dfrac{5}{6}$ olur; fazladan gelen $\dfrac{1}{6}$, iki olayda da bulunan $6$'nın ikinci kez sayılmasıdır. Kesişim bir kez çıkarılır:
+
+$$P(A\cup B)=P(A)+P(B)-P(A\cap B)$$
+
+Denetim: $\dfrac{3}{6}+\dfrac{2}{6}-\dfrac{1}{6}=\dfrac{4}{6}=\dfrac{2}{3}$; listeyle aynı sonuç. Olaylar ayrık ise $P(A\cap B)=0$ olur ve kural, ayrık olaylar için toplama özelliğine döner.
+
+Şekil 2'deki bölgelerden diğer kurallar da hemen okunur:
+
+| İstenen | Bölge | Kural |
+| --- | --- | --- |
+| Yalnız $A$ | $A\setminus B$ | $P(A\setminus B)=P(A)-P(A\cap B)$ |
+| Hiçbiri | $A'\cap B'$ | $P(A'\cap B')=1-P(A\cup B)$ |
+| İkisinden yalnız biri | $(A\setminus B)\cup(B\setminus A)$ | $P(A\cup B)-P(A\cap B)$ |
+
+> **Dikkat:** $P(A\setminus B)$, $P(A)-P(B)$ değildir. $A$'dan çıkarılan, $B$'nin tamamı değil, yalnızca $A$ ile ortak olan kısmıdır.
+
+## 10. Eş Olasılıklı Olmayan Örnek Uzaylar (Hileli Zar)
+
+Bir zar hileli ise yüzlerin gelme olasılıkları farklı olabilir. Bu durumda $\dfrac{s(A)}{s(S)}$ formülü kullanılamaz; ama olasılığın temel özellikleri yine geçerlidir. Çözüm her zaman aynı iki adımdan oluşur:
+
+1. Çıktıların olasılıklarını tek bir bilinmeyenle yaz ve **toplamlarını $1$'e eşitle.**
+2. İstenen olaydaki çıktıların olasılıklarını **topla.**
+
+Örneğin bir hileli zarda $6$ gelme olasılığı diğer yüzlerin her birinin gelme olasılığının $5$ katı olsun. $1$, $2$, $3$, $4$, $5$ yüzlerinin her birinin olasılığına $p$ dersek $6$'nın olasılığı $5p$ olur:
+
+$$5p+5p=1\quad\Rightarrow\quad p=\dfrac{1}{10},\qquad P(6)=\dfrac{5}{10}=\dfrac{1}{2}$$
+
+<Figur>
+
+<OtkHileliZarCubuk />
+
+<Altyazi>Şekil 4 — Hileli zarda yüzlerin olasılıkları. Çubukların toplamı yine $1$'dir; ama çıktılar eş olasılıklı değildir. Kesik çizgi, hilesiz zarda her yüzün olasılığını ($\frac{1}{6}$) gösterir.</Altyazi>
+
+</Figur>
+
+Bu zarda çift sayı gelme olasılığı $P(2)+P(4)+P(6)=\dfrac{1}{10}+\dfrac{1}{10}+\dfrac{5}{10}=\dfrac{7}{10}$'dir. "Altı yüzün üçü çift" diye düşünüp $\dfrac{3}{6}$ yazmak, çıktıları eşit şanslı sayma hatasıdır.
+
+## 11. Ayrık Olay Bağımsız Olay Değildir (Kavram Notu)
+
+**Ayrık** olmak, iki olayın aynı anda gerçekleşememesi demektir. **Bağımsız** olmak ise bir olayın gerçekleştiğini bilmenin diğerinin olasılığını değiştirmemesi demektir. Bu ikisi aynı şey değildir; hatta olasılıkları sıfırdan büyük iki ayrık olay **bağımsız olamaz**: $A$'nın gerçekleştiğini bilen biri, $B$'nin gerçekleşmediğini kesin olarak bilir. Yani $A$ hakkındaki bilgi, $B$ hakkında çok şey söyler.
+
+Bağımsızlığın tanımı ve hesabı [Koşullu Olasılık Soruları](/konular/kosullu-olasilik-sorulari) sayfasında yapılır; temel bakış için 10. sınıf [Bağımlı ve Bağımsız Olaylar](/konular/bagimli-bagimsiz-olaylar-10) dersine bakabilirsin. Maarif programında koşullu olasılık, bağımlı–bağımsız olaylar ve Bayes teoremi 10. sınıfta işlenir.
+
+## 12. Deneysel ve Teorik Olasılık (Kısa Not)
+
+Bu sayfadaki olasılıkların hepsi **teorik** olasılıktır: deneyi yapmadan, örnek uzayın yapısından hesaplanır. **Deneysel** olasılık ise deney tekrarlanarak ölçülür: olayın gözlenme sayısı toplam deneme sayısına bölünür. Örneğin bir zar $450$ kez atılıp $5$ sayısı $84$ kez gelmişse deneysel olasılık $\dfrac{84}{450}=\dfrac{14}{75}\approx 0{,}187$'dir; teorik olasılık ise $\dfrac{1}{6}\approx 0{,}167$'dir. Deneme sayısı arttıkça deneysel olasılık teorik olasılığa yaklaşır ama ona tam eşit olmak zorunda değildir. Bu konunun ayrıntısı [Deneye Dayalı Olasılık](/konular/deneye-dayali-olasilik-9) dersindedir.
+
+## Çözümlü Sorular
+
+Örnekler örnek uzayı yazmakla başlıyor; olay sayısı, eş olasılık tuzağı, birleşim ve tümleyen kurallarıyla devam ediyor; hileli zar, verilen olasılıklardan geriye gitme ve tablodan olasılık okumayla bitiyor.
+
+{/* ornek-1 */}
+<Ornek>
+
+<Soru>
+
+Bir madenî para ve bir zar birlikte atılıyor.
+
+**a)** Örnek uzayı yaz ve $s(S)$'yi bul.
+
+**b)** $A$: "paranın yazı, zarın tek sayı gelmesi", $B$: "zarın $5$'ten büyük sayı gelmesi", $C$: "zarın $3$'ten küçük sayı gelmesi" olaylarıdır. $A$ ile $B$ ayrık mıdır? $A$ ile $C$ ayrık mıdır?
+
+**c)** $P(A\cup B)$ ve $P(A\cup C)$ olasılıklarını bul.
+
+</Soru>
+
+<Ipucu>
+
+Her olayı çıktılarıyla küme olarak yaz. İki küme ortak eleman içermiyorsa olaylar ayrıktır.
+
+</Ipucu>
+
+<Cozum>
+
+1. **a)** Para $2$, zar $6$ biçimde düşer. Her para sonucu her zar sonucuyla eşleşir:
+
+$$S=\{Y1,\ Y2,\ Y3,\ Y4,\ Y5,\ Y6,\ T1,\ T2,\ T3,\ T4,\ T5,\ T6\},\qquad s(S)=2\cdot 6=12$$
+
+Para ve zar hilesiz olduğundan bu $12$ çıktı eş olasılıklıdır.
+
+2. **b)** Olayları küme olarak yazalım:
+
+$$A=\{Y1,\ Y3,\ Y5\},\qquad B=\{Y6,\ T6\},\qquad C=\{Y1,\ Y2,\ T1,\ T2\}$$
+
+$A\cap B=\varnothing$ olduğundan $A$ ile $B$ ayrıktır. $A\cap C=\{Y1\}$ olduğundan $A$ ile $C$ ayrık değildir.
+
+3. **c)** $A$ ile $B$ ayrık olduğu için olasılıklar doğrudan toplanır:
+
+$$P(A\cup B)=\dfrac{3}{12}+\dfrac{2}{12}=\dfrac{5}{12}$$
+
+4. $A$ ile $C$ ayrık değildir; $Y1$ çıktısı iki olayda da vardır ve doğrudan toplamada iki kez sayılır. Kesişimi bir kez çıkarırız:
+
+$$P(A\cup C)=\dfrac{3}{12}+\dfrac{4}{12}-\dfrac{1}{12}=\dfrac{6}{12}=\dfrac{1}{2}$$
+
+5. **Denetim:** $A\cup C=\{Y1,\ Y2,\ Y3,\ Y5,\ T1,\ T2\}$ kümesinde $6$ çıktı vardır, $\dfrac{6}{12}=\dfrac{1}{2}$. Ayrıca $A\cup B$ kümesinde $3+2=5$ çıktı vardır.
+
+6. **Not:** $A$ ile $B$'nin ayrık olması, bağımsız oldukları anlamına gelmez (11. bölüm).
+
+<Cevap>a) $s(S)=12$; b) $A$ ile $B$ ayrıktır, $A$ ile $C$ ayrık değildir; c) $P(A\cup B)=\dfrac{5}{12}$, $P(A\cup C)=\dfrac{1}{2}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-2 */}
+<Ornek>
+
+<Soru>
+
+İki madenî para atılıyor.
+
+**a)** Bu deneyin örnek uzayının kaç olayı vardır?
+
+**b)** Bu olaylardan kaçı ne imkânsız ne de kesin olaydır?
+
+**c)** Bu olaylardan kaçı $YY$ çıktısını içerir?
+
+</Soru>
+
+<Ipucu>
+
+Olay, örnek uzayın bir alt kümesidir. Boş küme ve örnek uzayın kendisi de birer olaydır.
+
+</Ipucu>
+
+<Cozum>
+
+1. **Yaygın hata:** Olay sayısını çıktı sayısıyla karıştırıp $4$ demek ya da boş kümeyi unutup $2^4-1=15$ demek. Çıktılar olayın yapı taşlarıdır; olay ise bu çıktılardan oluşan herhangi bir kümedir.
+
+2. Örnek uzay $S=\{YY,\ YT,\ TY,\ TT\}$, $s(S)=4$.
+
+3. **a)** Önce eleman sayısına göre listeleyip sayalım:
+
+| Eleman sayısı | Olaylar | Kaç tane? |
+| --- | --- | --- |
+| $0$ | $\varnothing$ | $1$ |
+| $1$ | $\{YY\},\ \{YT\},\ \{TY\},\ \{TT\}$ | $4$ |
+| $2$ | $\{YY,YT\},\ \{YY,TY\},\ \{YY,TT\},\ \{YT,TY\},\ \{YT,TT\},\ \{TY,TT\}$ | $6$ |
+| $3$ | $\{YY,YT,TY\},\ \{YY,YT,TT\},\ \{YY,TY,TT\},\ \{YT,TY,TT\}$ | $4$ |
+| $4$ | $S$ | $1$ |
+
+Toplam $1+4+6+4+1=16$ olay vardır. Formülle: $2^{s(S)}=2^4=16$.
+
+4. **b)** İmkânsız olay yalnız $\varnothing$, kesin olay yalnız $S$'dir. Bu ikisi dışındaki olaylar: $16-2=14$.
+
+5. **c)** $YY$ çıktısı olayda mutlaka bulunacaksa "olaya girsin mi, girmesin mi?" kararı yalnız kalan $3$ çıktı ($YT$, $TY$, $TT$) için verilir: $2^3=8$ olay.
+
+6. **Denetim:** Tablodan $YY$ içeren olayları sayalım: $1$ elemanlılarda $1$, $2$ elemanlılarda $3$, $3$ elemanlılarda $3$, ayrıca $S$. Toplam $1+3+3+1=8$.
+
+<Cevap>a) $16$; b) $14$; c) $8$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-3 */}
+<Ornek>
+
+<Soru>
+
+Aynı renkte iki zar birlikte atılıyor. Bir öğrenci şöyle düşünüyor:
+
+- "İki zarın toplamı $2$'den $12$'ye kadar $11$ değer alabilir; toplamın $10$ olma olasılığı $\dfrac{1}{11}$'dir."
+- "Zarlar aynı renkte olduğundan sırasız düşünmeliyim. $21$ farklı sonuç var; toplamı $10$ yapanlar $\{4,6\}$ ve $\{5,5\}$ olduğundan olasılık $\dfrac{2}{21}$'dir."
+
+Toplamın $10$ olma olasılığı gerçekte kaçtır? Öğrencinin iki düşüncesindeki hatayı açıkla.
+
+</Soru>
+
+<Ipucu>
+
+$P(A)=\dfrac{s(A)}{s(S)}$ formülü yalnızca çıktıları eş olasılıklı bir örnek uzayda kullanılabilir. Zarlara ayrı adlar verip ($1.$ zar, $2.$ zar) örnek uzayı yeniden kur.
+
+</Ipucu>
+
+<Cozum>
+
+1. Zarların rengi aynı olsa da iki ayrı nesnedir. Birine "birinci", diğerine "ikinci" dersek eş olasılıklı örnek uzay $36$ sıralı ikiliden oluşur (Şekil 3).
+
+2. Toplamı $10$ olan sıralı ikililer: $(4,6)$, $(5,5)$, $(6,4)$. Yani $s(A)=3$ ve
+
+$$P(\text{toplam }10)=\dfrac{3}{36}=\dfrac{1}{12}$$
+
+3. **Birinci düşüncedeki hata:** $11$ toplam eş olasılıklı değildir. Küçük bir karşı örnek: toplamın $2$ olması yalnızca $(1,1)$ ile, toplamın $7$ olması ise altı farklı çıktıyla gerçekleşir. İkisine de $\dfrac{1}{11}$ vermek, $\dfrac{1}{36}$ ile $\dfrac{6}{36}$ gibi çok farklı iki olasılığı eşit saymaktır.
+
+4. **İkinci düşüncedeki hata:** $21$ sırasız sonuç da eş olasılıklı değildir. $\{4,6\}$ sonucu $(4,6)$ ve $(6,4)$ olmak üzere iki çıktıyla gelir; $\{5,5\}$ ise yalnızca $(5,5)$ ile gelir. Sırasız sayımda bu iki sonuç eşit ağırlıkta görünür; oysa birinin şansı diğerinin iki katıdır.
+
+5. **Denetim:** Toplamlara göre çıktı sayıları $1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1$'dir; bunların toplamı $36$'dır ve toplam $10$ için çıktı sayısı $3$'tür. Ayrıca $\dfrac{1}{12}$, $0$ ile $1$ arasındadır.
+
+<Cevap>$\dfrac{1}{12}$. Toplamlar da sırasız sonuçlar da eş olasılıklı değildir; eş olasılıklı örnek uzay $36$ sıralı ikiliden oluşur.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-4 */}
+<Ornek>
+
+<Soru>
+
+$1$'den $50$'ye kadar (uçlar dahil) numaralandırılmış $50$ karttan biri rastgele çekiliyor. Çekilen kartın numarasının $4$'ün katı **veya** $10$'un katı olma olasılığı kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+İki olay ayrık mı? Hem $4$'ün hem $10$'un katı olan sayıları bul ve doğrudan toplamada kaç kez sayıldıklarına bak.
+
+</Ipucu>
+
+<Cozum>
+
+1. $A$: "$4$'ün katı", $B$: "$10$'un katı" olsun. $s(S)=50$ ve her kartın çekilme şansı eşittir.
+
+2. $s(A)$: $4, 8, \dots, 48$ sayıları $4\cdot 1$'den $4\cdot 12$'ye kadardır, $12$ tane. $s(B)$: $10, 20, 30, 40, 50$, yani $5$ tane.
+
+3. **Yaygın hata:** $\dfrac{12+5}{50}=\dfrac{17}{50}$ yazmak. $20$ ve $40$ hem $4$'ün hem $10$'un katıdır; doğrudan toplamada iki kez sayılırlar. Olaylar ayrık olmadığı için kesişim çıkarılmalıdır.
+
+4. Hem $4$'ün hem $10$'un katı olan sayılar $\text{EKOK}(4,10)=20$'nin katlarıdır (ortak katların bulunuşu için bkz. [Dahil Etme–Hariç Tutma](/konular/dahil-etme-haric-tutma)): $20, 40$, yani $s(A\cap B)=2$.
+
+5. Birleşim kuralı:
+
+$$P(A\cup B)=\dfrac{12}{50}+\dfrac{5}{50}-\dfrac{2}{50}=\dfrac{15}{50}=\dfrac{3}{10}$$
+
+6. **Denetim (listele, sonra say):** $4, 8, 10, 12, 16, 20, 24, 28, 30, 32, 36, 40, 44, 48, 50$ sayıları $15$ tanedir.
+
+<Cevap>$\dfrac{3}{10}$</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-5 */}
+<Ornek>
+
+<Soru>
+
+Dört madenî para birlikte atılıyor. Aşağıdaki olasılıkları bul.
+
+**a)** En az bir tura gelmesi
+
+**b)** Tam olarak iki tura gelmesi
+
+**c)** En az iki tura gelmesi
+
+</Soru>
+
+<Ipucu>
+
+"En az bir"in tümleyeni "hiç"tir. "Tam iki" ile "en az iki" farklı olaylardır; ikincisi "iki, üç ya da dört" demektir.
+
+</Ipucu>
+
+<Cozum>
+
+1. Paraları birinci, ikinci, üçüncü, dördüncü diye adlandıralım. Örnek uzay $Y$ ve $T$ harflerinden oluşan dört harfli dizilerdir: $s(S)=2^4=16$ ve bu çıktılar eş olasılıklıdır.
+
+2. **a)** "En az bir tura"nın tümleyeni "hiç tura gelmemesi", yani yalnız $YYYY$ çıktısıdır:
+
+$$P(\text{en az bir }T)=1-\dfrac{1}{16}=\dfrac{15}{16}$$
+
+3. **Yaygın hata:** Tümleyeni "en çok bir tura" almak. "En çok bir tura" olayında $YYYY$ ile tek turalı $4$ çıktı vardır: $\dfrac{5}{16}$. Buradan $1-\dfrac{5}{16}=\dfrac{11}{16}$ bulunur; ama bu sayı "en az bir tura"nın değil, "en az iki tura"nın olasılığıdır. "Tam bir tura" çıktıları hem "en az bir" hem "en çok bir" olayında bulunduğundan bu iki olay birbirinin tümleyeni değildir.
+
+4. **b)** Tam iki tura içeren çıktıları listeleyelim: $TTYY$, $TYTY$, $TYYT$, $YTTY$, $YTYT$, $YYTT$. Toplam $6$ çıktı vardır:
+
+$$P(\text{tam iki }T)=\dfrac{6}{16}=\dfrac{3}{8}$$
+
+5. **c)** "En az iki tura"nın tümleyeni "en çok bir tura"dır; bunun $\dfrac{5}{16}$ olduğunu 3. adımda bulduk:
+
+$$P(\text{en az iki }T)=1-\dfrac{5}{16}=\dfrac{11}{16}$$
+
+6. **Denetim:** Tura sayısına göre çıktı sayıları $0$ tura için $1$, $1$ tura için $4$, $2$ tura için $6$, $3$ tura için $4$, $4$ tura için $1$'dir; toplam $16$. "En az iki" için $6+4+1=11$, yani $\dfrac{11}{16}$. Ayrıca $\dfrac{3}{8}=\dfrac{6}{16}<\dfrac{11}{16}$ olması beklenir; çünkü "tam iki" olayı "en az iki" olayının bir alt kümesidir.
+
+<Cevap>a) $\dfrac{15}{16}$; b) $\dfrac{3}{8}$; c) $\dfrac{11}{16}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-6 */}
+<Ornek>
+
+<Soru>
+
+Hileli bir zarda çift sayıların her birinin gelme olasılığı, tek sayıların her birinin gelme olasılığının $2$ katıdır. Bu zar bir kez atılıyor.
+
+**a)** Üst yüze $6$ gelme olasılığı kaçtır?
+
+**b)** Üst yüze asal sayı gelme olasılığı kaçtır?
+
+</Soru>
+
+<Ipucu>
+
+Tek yüzlerin her birinin olasılığına $p$ de. Bütün yüzlerin olasılıkları toplamı $1$'dir.
+
+</Ipucu>
+
+<Cozum>
+
+1. $1$, $3$, $5$ yüzlerinin her birinin olasılığı $p$ ise $2$, $4$, $6$ yüzlerinin her birinin olasılığı $2p$'dir.
+
+2. Olasılıklar toplamı $1$ olmalıdır:
+
+$$3\cdot p+3\cdot 2p=1\quad\Rightarrow\quad 9p=1\quad\Rightarrow\quad p=\dfrac{1}{9}$$
+
+3. **a)** $P(6)=2p=\dfrac{2}{9}$.
+
+4. **b)** Asal sayılar $2$, $3$, $5$'tir. Bunlardan $2$ çift, $3$ ve $5$ tektir:
+
+$$P(\text{asal})=P(2)+P(3)+P(5)=\dfrac{2}{9}+\dfrac{1}{9}+\dfrac{1}{9}=\dfrac{4}{9}$$
+
+5. **Yaygın hata:** "Altı yüzün üçü asal" diye düşünüp $\dfrac{3}{6}=\dfrac{1}{2}$ yazmak. Bu zarda yüzler eş olasılıklı değildir; $\dfrac{s(A)}{s(S)}$ formülü kullanılamaz. Olasılıklar toplamının $1$ olduğunu kullanmadan $p$ bulunamaz.
+
+6. **Denetim:** $3\cdot\dfrac{1}{9}+3\cdot\dfrac{2}{9}=\dfrac{3}{9}+\dfrac{6}{9}=1$. Asal olmayan yüzler $1$, $4$, $6$'dır: $\dfrac{1}{9}+\dfrac{2}{9}+\dfrac{2}{9}=\dfrac{5}{9}$ ve $\dfrac{4}{9}+\dfrac{5}{9}=1$.
+
+<Cevap>a) $\dfrac{2}{9}$; b) $\dfrac{4}{9}$.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-7 */}
+<Ornek>
+
+<Soru>
+
+Aynı örnek uzayda tanımlı $A$ ve $B$ olayları için
+
+$$P(A)=\dfrac{3}{5},\qquad P(B)=\dfrac{1}{2},\qquad P(A'\cap B')=\dfrac{3}{20}$$
+
+veriliyor.
+
+**a)** $P(A\cap B)$, $P(A\setminus B)$ ve "$A$ ile $B$'den yalnız birinin gerçekleşmesi" olasılığını bul.
+
+**b)** Aynı $P(A)$ ve $P(B)$ değerleri için bir öğrenci $P(A\cap B)=\dfrac{1}{20}$ bulduğunu söylüyor. Bu mümkün müdür?
+
+</Soru>
+
+<Ipucu>
+
+"Ne $A$ ne $B$" bölgesi, birleşimin dışında kalan bölgedir. Önce $P(A\cup B)$'yi bul, sonra birleşim kuralını tersten kullan.
+
+</Ipucu>
+
+<Cozum>
+
+1. $A'\cap B'=(A\cup B)'$ olduğundan
+
+$$P(A\cup B)=1-\dfrac{3}{20}=\dfrac{17}{20}$$
+
+2. Birleşim kuralını kesişim için çözelim:
+
+$$P(A\cap B)=P(A)+P(B)-P(A\cup B)=\dfrac{12}{20}+\dfrac{10}{20}-\dfrac{17}{20}=\dfrac{5}{20}=\dfrac{1}{4}$$
+
+3. "Yalnız $A$" bölgesi: $P(A\setminus B)=P(A)-P(A\cap B)=\dfrac{12}{20}-\dfrac{5}{20}=\dfrac{7}{20}$.
+
+4. **Yaygın hata:** $P(A\setminus B)$ yerine $P(A)-P(B)=\dfrac{1}{10}$ yazmak. $A$'dan $B$'nin tamamı değil, yalnızca $A\cap B$ kısmı çıkarılır.
+
+5. "Yalnız biri" bölgesi, birleşimden kesişimin çıkarılmasıyla kalır:
+
+$$P(A\cup B)-P(A\cap B)=\dfrac{17}{20}-\dfrac{5}{20}=\dfrac{12}{20}=\dfrac{3}{5}$$
+
+6. **b)** $P(A\cap B)=\dfrac{1}{20}$ olsaydı $P(A\cup B)=\dfrac{12}{20}+\dfrac{10}{20}-\dfrac{1}{20}=\dfrac{21}{20}$ olurdu. Bir olasılık $1$'den büyük olamaz; bu veri tutarsızdır. Genel olarak $P(A\cup B)\le 1$ koşulu $P(A\cap B)\ge P(A)+P(B)-1=\dfrac{1}{10}$ verir; $A\cap B\subseteq B$ olduğundan da $P(A\cap B)\le\dfrac{1}{2}$ olur. Kesişimin olasılığı bu aralığın dışında olamaz. Aynı nedenle bu iki olay ayrık da olamaz: $\dfrac{3}{5}+\dfrac{1}{2}>1$.
+
+7. **Denetim:** Dört bölgeyi toplayalım: yalnız $A$ $\dfrac{7}{20}$, kesişim $\dfrac{5}{20}$, yalnız $B$ $\dfrac{10}{20}-\dfrac{5}{20}=\dfrac{5}{20}$, hiçbiri $\dfrac{3}{20}$. Toplam $\dfrac{20}{20}=1$.
+
+<Cevap>a) $P(A\cap B)=\dfrac{1}{4}$, $P(A\setminus B)=\dfrac{7}{20}$, yalnız birinin gerçekleşme olasılığı $\dfrac{3}{5}$; b) mümkün değildir, çünkü $P(A\cup B)$ $1$'den büyük çıkar.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+{/* ornek-8 */}
+<Ornek>
+
+<Soru>
+
+Bir spor kulübündeki $40$ öğrencinin her biri basketbol, voleybol ve yüzme branşlarından **yalnız birine** katılmaktadır. Öğrencilerin sınıflarına ve branşlarına göre dağılımı tabloda verilmiştir.
+
+| Sınıf | Basketbol | Voleybol | Yüzme |
+| --- | --- | --- | --- |
+| $10.$ sınıf | $5$ | $4$ | $3$ |
+| $11.$ sınıf | $6$ | $5$ | $4$ |
+| $12.$ sınıf | $3$ | $7$ | $3$ |
+
+Kulüpten rastgele bir öğrenci seçiliyor.
+
+**a)** Seçilen öğrencinin $11.$ sınıf öğrencisi **veya** yüzmeci olma olasılığı kaçtır?
+
+**b)** Seçilen öğrencinin **ne** $12.$ sınıf öğrencisi **ne de** voleybolcu olma olasılığı kaçtır?
+
+**c)** "$10.$ sınıf öğrencisi olma" ile "$11.$ sınıf öğrencisi olma" olayları ayrık mıdır? "$11.$ sınıf öğrencisi olma" ile "yüzmeci olma" olayları ayrık mıdır?
+
+</Soru>
+
+<Ipucu>
+
+Önce satır ve sütun toplamlarını yaz. Bir öğrenci hem bir satırda hem bir sütunda yer alır; "veya" sorusunda iki listede de bulunan öğrencileri bir kez say.
+
+</Ipucu>
+
+<Cozum>
+
+1. Satır toplamları: $10.$ sınıf $12$, $11.$ sınıf $15$, $12.$ sınıf $13$. Sütun toplamları: basketbol $14$, voleybol $16$, yüzme $10$. Her ikisinin toplamı da $40$'tır. Her öğrencinin seçilme şansı eşit olduğundan $s(S)=40$.
+
+2. **a)** $A$: "$11.$ sınıf", $B$: "yüzmeci" olsun. $s(A)=15$, $s(B)=10$. Yüzme yapan $11.$ sınıf öğrencileri ($4$ kişi) iki olayda da vardır:
+
+$$P(A\cup B)=\dfrac{15}{40}+\dfrac{10}{40}-\dfrac{4}{40}=\dfrac{21}{40}$$
+
+3. **b)** "Ne $12.$ sınıf ne voleybolcu" olayı, "$12.$ sınıf veya voleybolcu" olayının tümleyenidir. $12.$ sınıf $13$, voleybolcu $16$ ve voleybol oynayan $12.$ sınıf öğrencisi $7$ kişi olduğundan:
+
+$$P(12.\text{ sınıf veya voleybol})=\dfrac{13+16-7}{40}=\dfrac{22}{40},\qquad P(\text{hiçbiri})=1-\dfrac{22}{40}=\dfrac{18}{40}=\dfrac{9}{20}$$
+
+4. **İkinci yol (doğrudan):** $12.$ sınıf satırını ve voleybol sütununu silince kalan hücreler $5$, $3$, $6$, $4$'tür. Toplam $18$ öğrenci, yani $\dfrac{18}{40}=\dfrac{9}{20}$. İki yol aynı sonucu verir.
+
+5. **c)** Her öğrencinin tek bir sınıfı vardır; hem $10.$ hem $11.$ sınıf öğrencisi olan kimse yoktur. Bu iki olay ayrıktır. Yüzme yapan $4$ tane $11.$ sınıf öğrencisi olduğundan "$11.$ sınıf" ile "yüzmeci" olayları ayrık değildir; a şıkkında kesişimin çıkarılması bu yüzden gereklidir.
+
+6. **Denetim:** a şıkkı için doğrudan sayım: $11.$ sınıfın $15$ öğrencisine diğer sınıflardaki yüzmeciler ($3+3=6$) eklenir, $21$ öğrenci. Bulunan olasılıkların hepsi $0$ ile $1$ arasındadır.
+
+<Cevap>a) $\dfrac{21}{40}$; b) $\dfrac{9}{20}$; c) $10.$ ve $11.$ sınıf olayları ayrıktır; $11.$ sınıf ve yüzmeci olayları ayrık değildir.</Cevap>
+
+</Cozum>
+
+</Ornek>
+
+## Pekiştirme Soruları
+
+> Konuyu pekiştirmek için hazırlanmış özgün sorular.
+
+<Sorular slug="olasilik-temel-kavramlar" />
+
+## Sık Yapılan Hatalar
+
+- **İki zarda örnek uzayı $36$ yerine $11$ ya da $21$ almak.** Toplamlar da sırasız sonuçlar da eş olasılıklı değildir; zarlar aynı renkte olsa bile çıktılar sıralı ikililerdir. (3. örnek)
+- **Olay sayısını çıktı sayısıyla karıştırmak ya da boş kümeyi unutmak.** $s(S)=n$ ise olay sayısı $2^n$'dir; $\varnothing$ ve $S$ de birer olaydır. (2. örnek)
+- **Eş olasılıklı olmayan çıktıları eşit saymak.** $\dfrac{s(A)}{s(S)}$ formülü yalnızca eş olasılıklı örnek uzayda geçerlidir. "Kaç yazı geldi" gruplamaları, toplamlar ve hileli zarın yüzleri eş olasılıklı değildir. (3. ve 6. örnek)
+- **Ayrık olmayan olayların olasılıklarını doğrudan toplamak.** "Veya" sorusunda önce kesişimi kontrol et; kesişim boş değilse bir kez çıkar. (1. ve 4. örnek)
+- **$P(A\setminus B)$ ile $P(A)-P(B)$'yi karıştırmak.** $A$'dan yalnızca $A\cap B$ kısmı çıkarılır: $P(A\setminus B)=P(A)-P(A\cap B)$. (7. örnek)
+- **"En az bir"in tümleyenini "en çok bir" almak ya da $1$'den çıkarmayı unutmak.** "En az bir"in tümleyeni "hiç"tir ve sonuç $1-P(\text{hiç})$'tir. (5. örnek)
+- **"Tam iki" ile "en az iki"yi karıştırmak.** "En az iki", "tam iki" olayına üç ve dört turalı çıktıları da ekler. (5. örnek)
+- **Hileli zarda olasılıklar toplamının $1$ olduğunu kullanmamak.** Bilinmeyeni bulmanın tek denklemi budur. (6. örnek)
+- **Ayrık olayları bağımsız sanmak.** Olasılıkları sıfırdan büyük iki ayrık olaydan biri gerçekleşince diğerinin gerçekleşmediği kesinleşir; bu tür olaylar bağımsız olamaz. (11. bölüm)
+- **Tutarsız veriyi fark etmemek.** $P(A\cap B)$ ne $P(A)$'dan ne $P(B)$'den büyük olabilir; $P(A\cup B)$ de $1$'i aşamaz. (7. örnek)
+
+## Özet
+
+| Kavram | Kural |
+| --- | --- |
+| Örnek uzay | $n$ para için $2^n$, $n$ zar için $6^n$ çıktı; çarpma kuralıyla bulunur |
+| Olay sayısı | $2^{s(S)}$; $\varnothing$ ve $S$ dahil |
+| Eş olasılıklı örnek uzay | $P(A)=\dfrac{s(A)}{s(S)}$ |
+| Temel özellikler | $0\le P(A)\le 1$, $P(S)=1$, $P(\varnothing)=0$ |
+| Tümleyen | $P(A')=1-P(A)$; "en az bir" $=1-P(\text{hiç})$ |
+| Birleşim | $P(A\cup B)=P(A)+P(B)-P(A\cap B)$ |
+| Fark | $P(A\setminus B)=P(A)-P(A\cap B)$ |
+| Hiçbiri | $P(A'\cap B')=1-P(A\cup B)$ |
+| Eş olasılıklı olmayan uzay | Olasılıklar toplamı $1$; olaydaki çıktıların olasılıkları toplanır |
+
+## Pratik İpucu
+
+- Her soruya örnek uzayı yazarak başla ve kendine sor: **Bu çıktılar eşit şansa sahip mi?** Değilse çıktıları daha ayrıntılı yaz (zarlara ad ver, paraları sırala) ya da olasılıkları bilinmeyenle kur.
+- "Veya" gördüğünde kesişimi, "en az bir" gördüğünde tümleyeni, "yalnız" gördüğünde farkı düşün.
+- Bulduğun sonucu iki yolla denetle: küçük bir listeyle, tümleyenle ya da bölgelerin toplamının $1$ olmasıyla.
+
+<KonuNav slug="olasilik-temel-kavramlar" />
