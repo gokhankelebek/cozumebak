@@ -36,6 +36,13 @@ export default function GizlilikPage() {
         telefon vb.) bizimle paylaşman istenmez. Yalnızca bize e-posta gönderdiğinde,
         paylaştığın bilgiler yazışma süresince işlenir.
       </p>
+      <p>
+        Ders sayfalarındaki geri bildirim düğmelerini ve isteğe bağlı yorum kutusunu
+        kullandığında cevabın, yorumun, sayfa ve soru bilgisiyle ve tarihle birlikte
+        Google E-Tablolar&apos;da saklanır. Bu kayıtlarda adın ya da IP adresin yer almaz;
+        lütfen yorumlara kişisel bilgi yazma. Aynı cevabın tekrar sayılmaması için
+        seçimin yalnızca kendi tarayıcında tutulur.
+      </p>
 
       <h2>Çerezler ve analitik</h2>
       <p>

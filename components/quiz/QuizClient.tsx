@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, type ReactNode } from "react";
+import { QuestionReport } from "@/components/FeedbackForm";
 
 const LETTERS = ["A", "B", "C", "D", "E"];
 
@@ -20,9 +21,11 @@ interface ClientQuestion {
 export default function QuizClient({
   slug,
   questions,
+  feedback,
 }: {
   slug: string;
   questions: ClientQuestion[];
+  feedback: boolean;
 }) {
   const [picks, setPicks] = useState<(number | null)[]>(() =>
     questions.map(() => null),
@@ -157,6 +160,9 @@ export default function QuizClient({
                 <div className="inner">{q.solution}</div>
               </div>
             </div>
+            {feedback && (picked !== null || open[qi]) && (
+              <QuestionReport slug={slug} questionId={q.id} />
+            )}
           </article>
         );
       })}
