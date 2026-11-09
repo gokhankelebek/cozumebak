@@ -43,6 +43,24 @@ export const TAGS: Tag[] = [
 
 export const POSTS: BlogPost[] = [
   {
+    slug: "ayt-logaritma-soru-tipleri",
+    title: "AYT'de Logaritma Soruları: 4 Soru Tipi ve Her Birinin Tuzağı",
+    description:
+      "12. sınıflar şu an okulda üstel ve logaritmik fonksiyonları işliyor; konuyu sınav gözüyle oturtmanın en ucuz anı. Tanım kümesinde üç koşul, taban değiştirme, kök kontrolü gerektiren denklemler ve tabanı 1'den küçük eşitsizlikler — elle çözülmüş örnekler ve 2 haftalık plan.",
+    date: "2026-11-09",
+    tags: ["yks", "calisma-teknikleri", "egitim"],
+    readingMinutes: 8,
+    relatedTopics: [
+      "logaritma-kavrami-ayt",
+      "logaritmik-denklem-ayt",
+      "ustel-fonksiyon-ayt",
+      "logaritma-fonksiyonu",
+      "logaritmali-denklemler",
+      "ustel-fonksiyon",
+    ],
+    status: "published",
+  },
+  {
     slug: "ara-tatil-matematik-deneme-analizi",
     title: "Kasım Ara Tatili: 9 Günde Matematikte Teşhis ve Onarım Planı",
     description:
