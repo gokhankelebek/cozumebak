@@ -14,6 +14,7 @@ import {
   type PuanTuru,
   type TestKey,
 } from "@/lib/yksPuan";
+import { KAYNAK_URL, PUAN_PAYI, VERI_YILI, siralamaTahmini, yuvarlaSira } from "@/lib/yksSiralama";
 
 // ─────────────────────────────────────────────────────────────────────────────
 // YKS puan hesaplama island. Everything runs on the device: the answers are
@@ -47,6 +48,7 @@ const fmt = (n: number) =>
   n.toLocaleString("tr-TR", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 const fmtNet = (n: number) =>
   n.toLocaleString("tr-TR", { minimumFractionDigits: 0, maximumFractionDigits: 2 });
+const fmtSira = (n: number) => yuvarlaSira(n).toLocaleString("tr-TR");
 
 function toNum(s: string | undefined): number {
   const n = parseInt(s ?? "", 10);
@@ -100,6 +102,19 @@ export default function PuanHesaplama() {
   }, [sonuclar]);
   const odak = secili ?? enIyi;
   const odakSonuc = sonuclar.find((s) => s.tur === odak);
+
+  // Rank from ÖSYM's published distribution: placement scores when OBP is
+  // given, otherwise exam (ham) scores — both rank the same candidates.
+  const obpli = diploma != null && diplomaGecerli;
+  const siralar = useMemo(() => {
+    const out: Partial<Record<PuanTuru, ReturnType<typeof siralamaTahmini>>> = {};
+    for (const s of sonuclar) {
+      if (s.ham == null) continue;
+      out[s.tur] = siralamaTahmini(s.tur, obpli ? s.yerlestirme! : s.ham, obpli);
+    }
+    return out;
+  }, [sonuclar, obpli]);
+  const odakSira = siralar[odak];
 
   // Where the next nets are worth the most: unanswered/lost questions × points per net.
   const firsatlar = useMemo(() => {
@@ -255,13 +270,38 @@ export default function PuanHesaplama() {
                 ) : (
                   <span className="ph-kart-puan">
                     <span className="ph-yer">{fmt(s.yerlestirme!)}</span>
-                    {diploma != null && diplomaGecerli && <span className="ph-ham">Ham: {fmt(s.ham)}</span>}
+                    {siralar[s.tur] && (
+                      <span className="ph-sira">≈ {fmtSira(siralar[s.tur]!.sira)}. sıra</span>
+                    )}
                   </span>
                 )}
               </button>
             );
           })}
         </div>
+        {odakSonuc?.ham != null && odakSira && (
+          <div className="ph-siralama">
+            <p className="ph-siralama-bas">
+              Tahmini {PUAN_TURLERI.find((p) => p.key === odak)!.label} sıralaman
+            </p>
+            <p className="ph-siralama-deger">{fmtSira(odakSira.sira)}</p>
+            <p className="ph-siralama-aralik">
+              Muhtemel aralık: {fmtSira(odakSira.enIyi)} – {fmtSira(odakSira.enKotu)}
+              <br />
+              {VERI_YILI} YKS&apos;de bu puan türünde {odakSira.toplam.toLocaleString("tr-TR")} aday vardı.
+            </p>
+            {obpli && (
+              <p className="ph-siralama-ham">
+                Ham puan: {fmt(odakSonuc.ham)} · OBP katkısı: {fmt(odakSonuc.yerlestirme! - odakSonuc.ham)}
+              </p>
+            )}
+            {!obpli && (
+              <p className="ph-siralama-ipucu">
+                Diploma notunu da girersen sıralama, ÖSYM&apos;nin yerleştirme puanı dağılımına göre hesaplanır.
+              </p>
+            )}
+          </div>
+        )}
         {odakSonuc?.ham == null && odakSonuc?.neden && doluMu && (
           <p className="ph-neden">{odakSonuc.neden}</p>
         )}
@@ -293,8 +333,12 @@ export default function PuanHesaplama() {
           </div>
         )}
         <p className="ph-not">
-          Tahmindir: ÖSYM puanı, o yılki tüm adayların ortalamasına göre hesaplar. Gerçek puanın birkaç
-          puan farklı çıkabilir.
+          Tahmindir: ÖSYM puanı, o yılki tüm adayların ortalamasına göre hesaplar; gerçek puanın birkaç
+          puan farklı çıkabilir. Sıralama, ÖSYM&apos;nin{" "}
+          <a href={KAYNAK_URL} target="_blank" rel="noopener noreferrer">
+            {VERI_YILI} YKS sayısal bilgilerindeki
+          </a>{" "}
+          puan dağılımından, ±{PUAN_PAYI} puan payıyla hesaplanır; aday sayısı ve zorluk her yıl değişir.
         </p>
       </aside>
 
@@ -303,6 +347,7 @@ export default function PuanHesaplama() {
         <a className="ph-mini" href="#ph-sonuc">
           <span>{PUAN_TURLERI.find((p) => p.key === odak)!.label}</span>
           <strong>{fmt(odakSonuc.yerlestirme)}</strong>
+          {odakSira && <span className="ph-mini-sira">≈ {fmtSira(odakSira.sira)}. sıra</span>}
           <span className="ph-mini-ok">Detay ↓</span>
         </a>
       )}
