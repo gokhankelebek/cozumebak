@@ -45,6 +45,10 @@ interface Kayit {
   temel?: Temel;
   diploma: string;
   oncekiYil: boolean;
+  /** true: deneme netleri bu sayfada elle değiştirildi (hesaplayıcıdan gelen değil). */
+  elle?: boolean;
+  /** Netlerin alındığı puan hesaplama kaydının kendisi; değişince yeni deneme var demektir. */
+  hesapImza?: string;
 }
 
 const BOS: Kayit = { mevcut: {}, diploma: "", oncekiYil: false };
@@ -80,7 +84,8 @@ function sayi(s: string | undefined): number | null {
 }
 
 /** Puan hesaplama aracındaki son deneme (doğru/yanlış → net). */
-function hesaplayicidanOku(): Kayit | null {
+/** Puan hesaplama aracındaki son deneme; `hesapImza` o kaydın ham hâlidir. */
+function hesaplayicidanOku(): (Kayit & { hesapImza: string }) | null {
   try {
     const raw = localStorage.getItem(PUAN_ANAHTARI);
     if (!raw) return null;
@@ -90,10 +95,22 @@ function hesaplayicidanOku(): Kayit | null {
       const n = net(key as TestKey, { dogru: parseInt(c.d, 10) || 0, yanlis: parseInt(c.y, 10) || 0 });
       if (n > 0) mevcut[key] = String(n).replace(".", ",");
     }
-    return { mevcut, diploma: k.diploma ?? "", oncekiYil: !!k.oncekiYil };
+    return { mevcut, diploma: k.diploma ?? "", oncekiYil: !!k.oncekiYil, hesapImza: raw };
   } catch {
     return null;
   }
+}
+
+/** Take the calculator's deneme (nets + OBP info), keeping this page's own settings. */
+function denemeyiAl(o: Kayit, h: Kayit & { hesapImza: string }): Kayit {
+  return {
+    ...o,
+    mevcut: h.mevcut,
+    diploma: h.diploma || o.diploma,
+    oncekiYil: h.oncekiYil,
+    elle: false,
+    hesapImza: h.hesapImza,
+  };
 }
 
 export default function HedefNet() {
@@ -108,7 +125,10 @@ export default function HedefNet() {
   const [puanGirdi, setPuanGirdi] = useState("");
   const [puanTipi, setPuanTipi] = useState<PuanTipi>("yerlestirme");
   const [kayit, setKayit] = useState<Kayit>(BOS);
-  const [kaynak, setKaynak] = useState<"kendi" | "hesaplayici" | "yok">("yok");
+  /** Hesaplayıcıda bu sayfanın bilmediği yeni bir deneme bulunduysa gösterilen kısa not. */
+  const [yeniDeneme, setYeniDeneme] = useState(false);
+  /** Hesaplayıcıdaki deneme (elle değişiklikten sonra "geri al" düğmesi için). */
+  const [hesapDenemesi, setHesapDenemesi] = useState<(Kayit & { hesapImza: string }) | null>(null);
   const [ayar, setAyar] = useState<Ayar>({});
   const [vurgu, setVurgu] = useState<Set<TestKey>>(new Set());
   const [robotSonuc, setRobotSonuc] = useState<RobotSonuc | null>(null);
@@ -150,25 +170,41 @@ export default function HedefNet() {
       const raw = localStorage.getItem(ANAHTAR);
       if (raw) k = { ...BOS, ...JSON.parse(raw) };
     } catch {}
-    if (k) {
+    const h = hesaplayicidanOku();
+    setHesapDenemesi(h);
+    if (h && (!k || h.hesapImza !== k.hesapImza)) {
+      // The calculator holds a deneme this page hasn't seen yet → it wins, even over
+      // nets typed here earlier (they describe an older deneme).
+      setKayit(denemeyiAl(k ?? BOS, h));
+      if (k) setYeniDeneme(true);
+    } else if (k) {
       setKayit(k);
-      setKaynak("kendi");
-    } else {
-      const h = hesaplayicidanOku();
-      if (h) {
-        setKayit(h);
-        setKaynak("hesaplayici");
-      }
     }
     setYuklendi(true);
   }, []);
 
+  // A deneme saved in the calculator in another tab shows up here too.
   useEffect(() => {
-    if (!yuklendi || kaynak === "yok") return;
+    const dinle = (e: StorageEvent) => {
+      if (e.key !== PUAN_ANAHTARI) return;
+      const h = hesaplayicidanOku();
+      setHesapDenemesi(h);
+      if (h) {
+        setKayit((o) => denemeyiAl(o, h));
+        setYeniDeneme(true);
+        setAyar({});
+      }
+    };
+    window.addEventListener("storage", dinle);
+    return () => window.removeEventListener("storage", dinle);
+  }, []);
+
+  useEffect(() => {
+    if (!yuklendi) return;
     try {
       localStorage.setItem(ANAHTAR, JSON.stringify(kayit));
     } catch {}
-  }, [kayit, kaynak, yuklendi]);
+  }, [kayit, yuklendi]);
 
   useEffect(() => {
     if (programlar[tur]) return;
@@ -315,7 +351,6 @@ export default function HedefNet() {
   }, [programAnahtari, yuklendi, temel]);
 
   const temelSec = (t: Temel) => {
-    setKaynak("kendi");
     setKayit((o) => ({ ...o, temel: t }));
   };
 
@@ -326,8 +361,16 @@ export default function HedefNet() {
   }, [vurgu]);
 
   const setMevcut = (k: TestKey, v: string) => {
-    setKaynak("kendi");
-    setKayit((o) => ({ ...o, mevcut: { ...o.mevcut, [k]: v } }));
+    setYeniDeneme(false);
+    setKayit((o) => ({ ...o, elle: true, mevcut: { ...o.mevcut, [k]: v } }));
+  };
+  const hesaplayicidanYenile = () => {
+    const h = hesaplayicidanOku();
+    setHesapDenemesi(h);
+    if (!h) return;
+    setKayit((o) => denemeyiAl(o, h));
+    setYeniDeneme(false);
+    if (denemeli) setAyar({});
   };
   const kaydir = (k: TestKey, v: number) => {
     setAyar((o) => ({ ...o, [k]: { net: v, kim: "sen" } }));
@@ -763,13 +806,24 @@ export default function HedefNet() {
 
             {temel && kutuGorunur && !cubukGorunur && hedefCubugu(true)}
 
-            {kaynak === "hesaplayici" && (
+            {hesapDenemesi && !kayit.elle && (
               <p className="tr-ipucu">
-                Şu anki netlerin <Link href="/yks-puan-hesaplama">puan hesaplama</Link> aracına girdiğin son denemeden
-                alındı.
+                {yeniDeneme ? <b>Yeni denemen alındı. </b> : null}
+                Son deneme netlerin <Link href="/yks-puan-hesaplama">puan hesaplama</Link> aracına girdiğin denemeden
+                geliyor; orada güncellediğinde burası da güncellenir.
               </p>
             )}
-            {kaynak === "yok" && (
+            {kayit.elle && (
+              <p className="tr-ipucu">
+                Son deneme netlerini bu sayfada elle değiştirdin.{" "}
+                {hesapDenemesi && (
+                  <button type="button" className="tr-temizle" onClick={hesaplayicidanYenile}>
+                    Puan hesaplamadaki denemeyi geri al
+                  </button>
+                )}
+              </p>
+            )}
+            {!hesapDenemesi && !kayit.elle && !mevcutVar && (
               <p className="tr-ipucu">
                 Netlerini bilmiyorsan önce <Link href="/yks-puan-hesaplama">puan hesaplama</Link> aracına son denemeni
                 gir; netler buraya otomatik gelir.
@@ -784,7 +838,6 @@ export default function HedefNet() {
                   placeholder="ör. 85"
                   value={kayit.diploma}
                   onChange={(e) => {
-                    setKaynak("kendi");
                     setKayit((o) => ({ ...o, diploma: e.target.value }));
                   }}
                 />
@@ -794,7 +847,6 @@ export default function HedefNet() {
                   type="checkbox"
                   checked={kayit.oncekiYil}
                   onChange={(e) => {
-                    setKaynak("kendi");
                     setKayit((o) => ({ ...o, oncekiYil: e.target.checked }));
                   }}
                 />
