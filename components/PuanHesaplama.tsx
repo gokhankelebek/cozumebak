@@ -300,6 +300,12 @@ export default function PuanHesaplama() {
                 Diploma notunu da girersen sıralama, ÖSYM&apos;nin yerleştirme puanı dağılımına göre hesaplanır.
               </p>
             )}
+            <Link
+              className="ph-siralama-link"
+              href={`/tercih-robotu?tur=${encodeURIComponent(odak)}&sira=${odakSira.sira}`}
+            >
+              Bu sıralamayla girebileceğin bölümler →
+            </Link>
           </div>
         )}
         {odakSonuc?.ham == null && odakSonuc?.neden && doluMu && (
