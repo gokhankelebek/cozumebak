@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
   NET_ADIMI,
   agirlikliToplam,
@@ -84,6 +84,11 @@ export default function HedefNet() {
   const [kaynak, setKaynak] = useState<"kendi" | "hesaplayici" | "yok">("yok");
   const [kilitli, setKilitli] = useState<Netler>({});
   const [yuklendi, setYuklendi] = useState(false);
+  // Floating copy of the plan bar while the student drags sliders far above it.
+  const kutuRef = useRef<HTMLElement>(null);
+  const cubukRef = useRef<HTMLDivElement>(null);
+  const [kutuGorunur, setKutuGorunur] = useState(false);
+  const [cubukGorunur, setCubukGorunur] = useState(true);
 
   useEffect(() => {
     const q = new URLSearchParams(window.location.search);
@@ -137,6 +142,21 @@ export default function HedefNet() {
     window.history.replaceState(null, "", `${window.location.pathname}?${q}`);
   }, [tur, kod, yuklendi]);
 
+  useEffect(() => {
+    const kutu = kutuRef.current;
+    const cubuk = cubukRef.current;
+    if (!kutu || !cubuk || typeof IntersectionObserver === "undefined") return;
+    const io = new IntersectionObserver((girdiler) => {
+      for (const g of girdiler) {
+        if (g.target === kutu) setKutuGorunur(g.isIntersecting);
+        else setCubukGorunur(g.isIntersecting);
+      }
+    });
+    io.observe(kutu);
+    io.observe(cubuk);
+    return () => io.disconnect();
+  });
+
   const liste = programlar[tur];
   const program = useMemo(() => liste?.find((p) => p.kod === kod) ?? null, [liste, kod]);
 
@@ -172,6 +192,14 @@ export default function HedefNet() {
   const mevcutPuan = hedef?.obpli ? mevcutHam + hedef.obpKatki : mevcutHam;
   const mevcutSira = mevcutVar ? siralamaTahmini(tur, mevcutPuan, !!hedef?.obpli).sira : null;
   const mevcutSinif = program && mevcutSira ? siniflandir(program, mevcutSira) : null;
+
+  // The plan = the nets on the sliders. Unlocked tests re-balance to keep the plan
+  // at the target, so it only moves off target when the locks over- or undershoot.
+  const planToplam = dagitim ? agirlikliToplam(tur, dagitim.hedef) : 0;
+  const planPuan = 100 + planToplam + (hedef?.obpli ? hedef.obpKatki : 0);
+  const planSira = dagitim ? siralamaTahmini(tur, planPuan, !!hedef?.obpli).sira : null;
+  const planSinif = program && planSira ? siniflandir(program, planSira) : null;
+  const planTamam = !!hedef && planToplam + 1e-6 >= hedef.gerekenToplam;
 
   const setMevcut = (k: TestKey, v: string) => {
     setKaynak("kendi");
@@ -288,12 +316,14 @@ export default function HedefNet() {
                 <dd>≈ {fmtPuan(hedef.obpli ? hedef.gerekenHam + hedef.obpKatki : hedef.gerekenHam)}</dd>
               </div>
               <div>
-                <dt>Şu anki puanın</dt>
+                <dt>Son denemenle</dt>
                 <dd>{mevcutVar ? `≈ ${fmtPuan(mevcutPuan)}` : "—"}</dd>
+                {mevcutSira && <small>≈ {fmtSira(mevcutSira)}. sıra</small>}
               </div>
-              <div>
-                <dt>Şu anki sıran</dt>
-                <dd>{mevcutSira ? `≈ ${fmtSira(mevcutSira)}` : "—"}</dd>
+              <div className="hn-plan-kutu">
+                <dt>Kaydırıcılardaki planla</dt>
+                <dd>≈ {fmtPuan(planPuan)}</dd>
+                {planSira && <small>≈ {fmtSira(planSira)}. sıra</small>}
               </div>
             </dl>
             <p className="hn-aciklama">
@@ -334,7 +364,7 @@ export default function HedefNet() {
             </div>
           </section>
 
-          <section className="tr-giris hn-tablo-kutu">
+          <section className="tr-giris hn-tablo-kutu" ref={kutuRef}>
             <div className="hn-tablo-baslik">
               <h2>Ders ders hedef netler</h2>
               {Object.keys(kilitli).length > 0 && (
@@ -344,8 +374,10 @@ export default function HedefNet() {
               )}
             </div>
             <p className="tr-ipucu" style={{ marginTop: 0 }}>
-              Bir testin kaydırıcısını oynatınca o test <b>kilitlenir</b>; robot gereken puanı diğer testlere yeniden
-              dağıtır. &ldquo;Şu an&rdquo; sütununa son deneme netlerini yaz.
+              <b>Şu an</b> sütunu son denemendir; onu değiştirirsen &ldquo;son denemenle&rdquo; puanın değişir.{" "}
+              <b>Kaydırıcılar</b> ise hedef planındır: bir kaydırıcıyı oynatınca o test kilitlenir ve robot, planı
+              hedefte tutmak için kilitsiz testleri yeniden ayarlar. Tüm testleri kilitlersen plan puanı serbestçe
+              değişir.
             </p>
             <div className="hn-satirlar">
               <div className="hn-satir hn-satir-baslik" aria-hidden="true">
@@ -408,6 +440,33 @@ export default function HedefNet() {
                 );
               })}
             </div>
+
+            <div ref={cubukRef} className={`hn-plan-cubuk${planTamam ? " tamam" : " eksik"}`} aria-live="polite">
+              <span>
+                Bu planla <b>≈ {fmtPuan(planPuan)}</b> puan
+                {planSira ? (
+                  <>
+                    {" "}
+                    · <b>≈ {fmtSira(planSira)}.</b> sıra
+                  </>
+                ) : null}
+              </span>
+              {planSinif && <span className={`tr-rozet tr-sinif-${planSinif}`}>{SINIF_ETIKET[planSinif].ad}</span>}
+            </div>
+            {kutuGorunur && !cubukGorunur && (
+              <div className={`hn-plan-cubuk hn-plan-yuzen${planTamam ? " tamam" : " eksik"}`} aria-hidden="true">
+              <span>
+                Bu planla <b>≈ {fmtPuan(planPuan)}</b> puan
+                {planSira ? (
+                  <>
+                    {" "}
+                    · <b>≈ {fmtSira(planSira)}.</b> sıra
+                  </>
+                ) : null}
+              </span>
+              {planSinif && <span className={`tr-rozet tr-sinif-${planSinif}`}>{SINIF_ETIKET[planSinif].ad}</span>}
+            </div>
+            )}
 
             {kaynak === "hesaplayici" && (
               <p className="tr-ipucu">
