@@ -453,6 +453,7 @@ export default function TercihRobotu() {
                   <ProgramKarti
                     key={p.kod}
                     p={p}
+                    tur={tur}
                     sinif={sira != null ? siniflandir(p, sira) : null}
                     uyg={uygunluklar.get(p.kod)}
                     listeSirasi={listedeki.get(`${tur}:${p.kod}`) ?? null}
@@ -486,6 +487,7 @@ export default function TercihRobotu() {
 
 function ProgramKarti({
   p,
+  tur,
   sinif,
   uyg,
   listeSirasi,
@@ -493,6 +495,7 @@ function ProgramKarti({
   onListe,
 }: {
   p: Program;
+  tur: PuanTuru;
   sinif: Sinif | null;
   uyg?: Uygunluk;
   listeSirasi: number | null;
@@ -545,6 +548,9 @@ function ProgramKarti({
           {p.puanSarti != null && <span className="tr-sart">Şart: en az {p.puanSarti} puan</span>}
           <span className="tr-kod">Kod {p.kod}</span>
         </p>
+        <Link className="tr-net-link" href={`/hedef-net?tur=${tur}&kod=${p.kod}`}>
+          Kaç net lazım?
+        </Link>
         <button
           type="button"
           className={`tr-ekle${listeSirasi ? " eklendi" : ""}`}
@@ -622,7 +628,10 @@ function TercihListem({
               <div className="tr-listem-bilgi">
                 <strong>{p?.ad ?? "Yükleniyor…"}</strong>
                 <span>
-                  {p ? `${p.uni.ad} · ${p.uni.sehir}` : ""} · {s.tur} · Kod {s.kod}
+                  {p ? `${p.uni.ad} · ${p.uni.sehir}` : ""} · {s.tur} · Kod {s.kod} ·{" "}
+                  <Link className="tr-net-link" href={`/hedef-net?tur=${s.tur}&kod=${s.kod}`}>
+                    Kaç net lazım?
+                  </Link>
                 </span>
               </div>
               {uygunsuz ? (

@@ -102,6 +102,7 @@ gtag('config', 'G-G30880NL87');`}
                 <Link href="/yazili-sinavlar">Yazılı Sınavlar</Link>
                 <Link href="/yks-puan-hesaplama">YKS Puan Hesaplama</Link>
                 <Link href="/tercih-robotu">Tercih Robotu</Link>
+                <Link href="/hedef-net">Hedef Net Hesaplama</Link>
                 <Link href="/konular">Tüm Konular</Link>
                 <Link href="/blog">Blog</Link>
                 <Link href="/ara">Konu Ara</Link>
