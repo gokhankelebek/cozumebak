@@ -65,7 +65,7 @@ export default function SiteHeader() {
         </button>
 
         <nav className="nav" id="site-nav">
-          <Link href="/" onClick={close}>
+          <Link className="nav-ev" href="/" onClick={close}>
             Anasayfa
           </Link>
           <Link href="/konular" onClick={close}>
