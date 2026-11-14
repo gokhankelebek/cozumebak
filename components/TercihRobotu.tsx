@@ -13,6 +13,8 @@ import {
   aramaMetni,
   programlariYukle,
   siniflandir,
+  uygunluk,
+  type Uygunluk,
   type Program,
   type Sinif,
   type Ucret,
@@ -83,6 +85,7 @@ export default function TercihRobotu() {
   const [ucret, setUcret] = useState<Set<Ucret>>(new Set());
   const [sinif, setSinif] = useState<Sinif>("hedef");
   const [goster, setGoster] = useState(SAYFA);
+  const [uygunsuzlariGoster, setUygunsuzlariGoster] = useState(false);
   const [hesapSiralari, setHesapSiralari] = useState<Partial<Record<PuanTuru, number>> | null>(null);
 
   // URL params first (links from the calculator), then the saved calculator state.
@@ -107,7 +110,7 @@ export default function TercihRobotu() {
     };
   }, [tur]);
 
-  useEffect(() => setGoster(SAYFA), [tur, siraGirdi, arama, sehir, uniGrup, ucret, sinif]);
+  useEffect(() => setGoster(SAYFA), [tur, siraGirdi, arama, sehir, uniGrup, ucret, sinif, uygunsuzlariGoster]);
 
   const sira = useMemo(() => {
     const n = parseInt(siraGirdi.replace(/\D/g, ""), 10);
@@ -132,14 +135,31 @@ export default function TercihRobotu() {
     });
   }, [programlar, arama, sehir, uniGrup, ucret]);
 
+  // Kılavuzdaki başarı sırası / puan şartı: sağlanmıyorsa öğrenci o programı tercih edemez.
+  const uygunluklar = useMemo(() => {
+    const out = new Map<string, Uygunluk>();
+    if (sira == null || !programlar) return out;
+    for (const p of programlar) {
+      if (p.siraSarti != null || p.puanSarti != null) out.set(p.kod, uygunluk(p, sira, tur));
+    }
+    return out;
+  }, [programlar, sira, tur]);
+  const uygunsuzSayisi = useMemo(
+    () => filtreli.filter((p) => uygunluklar.get(p.kod)?.uygun === false).length,
+    [filtreli, uygunluklar],
+  );
+
   const siniflar = useMemo(() => {
     const out: Record<Sinif, Program[]> = { guvenli: [], hedef: [], hayal: [], zor: [] };
     if (sira == null) return out;
-    for (const p of filtreli) out[siniflandir(p, sira)].push(p);
+    for (const p of filtreli) {
+      if (!uygunsuzlariGoster && uygunluklar.get(p.kod)?.uygun === false) continue;
+      out[siniflandir(p, sira)].push(p);
+    }
     // Hardest (most competitive) first inside each band.
     for (const k of SINIFLAR) out[k].sort((a, b) => (a.esasSira ?? Infinity) - (b.esasSira ?? Infinity));
     return out;
-  }, [filtreli, sira]);
+  }, [filtreli, sira, uygunluklar, uygunsuzlariGoster]);
 
   const liste = useMemo(() => {
     if (sira != null) return siniflar[sinif];
@@ -273,10 +293,28 @@ export default function TercihRobotu() {
             </p>
           )}
           {sira != null && <p className="tr-sinif-aciklama">{SINIF_ETIKET[sinif].aciklama}</p>}
+          {sira != null && uygunsuzSayisi > 0 && (
+            <label className="tr-uygunsuz">
+              <input
+                type="checkbox"
+                checked={uygunsuzlariGoster}
+                onChange={(e) => setUygunsuzlariGoster(e.target.checked)}
+              />
+              <span>
+                Başarı sırası şartını karşılamadığın <b>{fmtSayi(uygunsuzSayisi)} program</b> gizlendi (ör. Tıp için
+                ilk 50.000, Hukuk için ilk 100.000). Yine de göster
+              </span>
+            </label>
+          )}
 
           <ol className="tr-liste">
             {liste.slice(0, goster).map((p) => (
-              <ProgramKarti key={p.kod} p={p} sinif={sira != null ? siniflandir(p, sira) : null} />
+              <ProgramKarti
+                key={p.kod}
+                p={p}
+                sinif={sira != null ? siniflandir(p, sira) : null}
+                uyg={uygunluklar.get(p.kod)}
+              />
             ))}
           </ol>
           {liste.length === 0 && <p className="tr-bos">Bu filtrelerle program bulunamadı.</p>}
@@ -292,9 +330,10 @@ export default function TercihRobotu() {
   );
 }
 
-function ProgramKarti({ p, sinif }: { p: Program; sinif: Sinif | null }) {
+function ProgramKarti({ p, sinif, uyg }: { p: Program; sinif: Sinif | null; uyg?: Uygunluk }) {
+  const uygunsuz = uyg?.uygun === false;
   return (
-    <li className="tr-kart">
+    <li className={`tr-kart${uygunsuz ? " tr-kart-uygunsuz" : ""}`}>
       <div className="tr-kart-ust">
         <div>
           <h3>{p.ad}</h3>
@@ -302,8 +341,13 @@ function ProgramKarti({ p, sinif }: { p: Program; sinif: Sinif | null }) {
             {p.uni.ad} · {p.uni.sehir}
           </p>
         </div>
-        {sinif && <span className={`tr-rozet tr-sinif-${sinif}`}>{SINIF_ETIKET[sinif].ad}</span>}
+        {uygunsuz ? (
+          <span className="tr-rozet tr-rozet-uygunsuz">Tercih edemezsin</span>
+        ) : (
+          sinif && <span className={`tr-rozet tr-sinif-${sinif}`}>{SINIF_ETIKET[sinif].ad}</span>
+        )}
       </div>
+      {uygunsuz && <p className="tr-uyari">{uyg!.neden}</p>}
       <dl className="tr-veri">
         <div>
           <dt>Taban sıra {TERCIH_VERI_YILI}</dt>
@@ -328,6 +372,8 @@ function ProgramKarti({ p, sinif }: { p: Program; sinif: Sinif | null }) {
         <span>{UNI_TURU_ETIKET[p.uni.tur]}</span>
         <span>{UCRET_ETIKET[p.ucret]}</span>
         {p.sure && <span>{p.sure} yıl</span>}
+        {p.siraSarti != null && <span className="tr-sart">Şart: ilk {fmtSayi(p.siraSarti)}</span>}
+        {p.puanSarti != null && <span className="tr-sart">Şart: en az {p.puanSarti} puan</span>}
         <span className="tr-kod">Kod {p.kod}</span>
       </p>
     </li>

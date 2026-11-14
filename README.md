@@ -143,10 +143,10 @@ Vercel proje ayarlarından bağla. `sitemap.xml` ve `robots.txt` otomatik üreti
 
 1. **Puan katsayıları:** `lib/yksPuan.ts` içindeki `AGIRLIK` ve `KILAVUZ_YILI` değerlerini yeni kılavuzla karşılaştır.
 2. **Puan dağılımı (sıralama):** "YKS Sayısal Bilgiler" PDF'indeki yığınsal dağılım tablolarını (sınav ve yerleştirme puanları) `lib/yksSiralama.ts` dosyasına aktar, `VERI_YILI` ve `KAYNAK_URL` değerlerini güncelle.
-3. **Tercih robotu programları:** ÖSYM'den 4 dosyayı indirip aynı klasöre koy (`puanlar-tablo3.xlsx`, `puanlar-tablo4.xlsx`, `kilavuz-tablo3.xls`, `kilavuz-tablo4.xls`; ayrıntılar `scripts/tercih-veri.py` başında). Sonra:
+3. **Tercih robotu programları:** ÖSYM'den 5 dosyayı indirip aynı klasöre koy (`puanlar-tablo3.xlsx`, `puanlar-tablo4.xlsx`, `kilavuz-tablo3.xls`, `kilavuz-tablo4.xls`, `kilavuz.pdf`; ayrıntılar `scripts/tercih-veri.py` başında). Başarı sırası şartları (Tıp 50.000 vb.) kılavuz PDF'indeki "Bk." maddelerinden otomatik okunur; betiğin yazdırdığı madde listesini kılavuzdaki Tablo 1B ile karşılaştır. Sonra:
 
 ```bash
-python3 -m venv /tmp/tv && /tmp/tv/bin/pip install openpyxl==3.1.5 xlrd==2.0.1
+python3 -m venv /tmp/tv && /tmp/tv/bin/pip install openpyxl==3.1.5 xlrd==2.0.1 pypdf==5.1.0
 /tmp/tv/bin/python scripts/tercih-veri.py --girdi ~/Downloads/osym --yil 2027
 ```
 

@@ -46,7 +46,7 @@ const SSS: FaqItem[] = [
   {
     question: "Robotun gösterdiği her programı tercih edebilir miyim?",
     answer:
-      "Hayır, mutlaka kılavuzu kontrol et. Tıp, hukuk, mühendislik, mimarlık, öğretmenlik gibi bazı programlar belirli bir başarı sırası şartı arar; bazılarında yaş, sağlık, cinsiyet veya özel yetenek koşulları vardır. Bu koşullar ÖSYM'nin Yükseköğretim Programları ve Kontenjanları Kılavuzu'nda programın açıklama maddelerinde yazar.",
+      "Başarı sırası şartlarını robot senin yerine kontrol eder: Tıp (ilk 50.000), Diş Hekimliği (80.000), Eczacılık ve Hukuk (100.000), Mimarlık (250.000), Mühendislik ve Öğretmenlik (300.000) ile üniversitelerin koyduğu daha sıkı şartlar ÖSYM kılavuzundan okunur; sağlamadığın programlar varsayılan olarak gizlenir. Yaş, sağlık, cinsiyet, yabancı dil veya özel yetenek gibi diğer koşullar ise kontrol edilmez; bunlar için kılavuzdaki program açıklamalarını mutlaka oku.",
   },
 ];
 
