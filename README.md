@@ -136,3 +136,18 @@ vercel --prod     # üretim
 Vercel proje ayarlarından bağla. `sitemap.xml` ve `robots.txt` otomatik üretilir.
 **Not:** `output: "export"` (statik export) eklenmedi — metadata route'ları ve OG görsel
 üretimi (`next/og`) için Vercel Node runtime gerekiyor; sayfalar zaten SSG olarak statiktir.
+
+## YKS araçları: yıllık veri güncellemesi
+
+`/yks-puan-hesaplama` ve `/tercih-robotu` ÖSYM'nin resmî verilerini kullanır. Her yıl ÖSYM yeni verileri yayınlayınca (genelde Temmuz sonu):
+
+1. **Puan katsayıları:** `lib/yksPuan.ts` içindeki `AGIRLIK` ve `KILAVUZ_YILI` değerlerini yeni kılavuzla karşılaştır.
+2. **Puan dağılımı (sıralama):** "YKS Sayısal Bilgiler" PDF'indeki yığınsal dağılım tablolarını (sınav ve yerleştirme puanları) `lib/yksSiralama.ts` dosyasına aktar, `VERI_YILI` ve `KAYNAK_URL` değerlerini güncelle.
+3. **Tercih robotu programları:** ÖSYM'den 4 dosyayı indirip aynı klasöre koy (`puanlar-tablo3.xlsx`, `puanlar-tablo4.xlsx`, `kilavuz-tablo3.xls`, `kilavuz-tablo4.xls`; ayrıntılar `scripts/tercih-veri.py` başında). Sonra:
+
+```bash
+python3 -m venv /tmp/tv && /tmp/tv/bin/pip install openpyxl==3.1.5 xlrd==2.0.1
+/tmp/tv/bin/python scripts/tercih-veri.py --girdi ~/Downloads/osym --yil 2027
+```
+
+Ardından `lib/tercih.ts` içindeki `TERCIH_VERI_YILI` değerini yeni yıl yap.

@@ -26,6 +26,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const tools: MetadataRoute.Sitemap = [
     { url: `${SITE_URL}/yks-puan-hesaplama`, lastModified: buildDate, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${SITE_URL}/tercih-robotu`, lastModified: buildDate, changeFrequency: "monthly", priority: 0.8 },
   ];
 
   const corporate: MetadataRoute.Sitemap = [
