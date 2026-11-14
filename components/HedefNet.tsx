@@ -34,8 +34,12 @@ const ANAHTAR = "cb-hedef:v1";
 const PUAN_ANAHTARI = "cb-puan:v1";
 const TURLER: PuanTuru[] = ["SAY", "EA", "SÖZ", "DİL", "TYT"];
 
+type Temel = "deneme" | "sifir";
+
 interface Kayit {
   mevcut: Record<string, string>;
+  /** Plan nereden başlasın: son deneme netlerinden mi, sıfırdan mı? Yoksa sorulur. */
+  temel?: Temel;
   diploma: string;
   oncekiYil: boolean;
 }
@@ -200,10 +204,17 @@ export default function HedefNet() {
   const mevcutSira = mevcutVar ? siralamaTahmini(tur, mevcutPuan, !!hedef?.obpli).sira : null;
   const mevcutSinif = program && mevcutSira ? siniflandir(program, mevcutSira) : null;
 
+  // Starting point. With a saved deneme we ask once (and remember); without one
+  // there is nothing to build on, so the plan starts from scratch.
+  const temel: Temel | null = kayit.temel ?? (mevcutVar ? null : "sifir");
+  const denemeli = temel === "deneme";
+  /** Untouched sliders sit here; the robot fills from here up. */
+  const taban: Netler = denemeli ? mevcut : {};
+
   // The plan is exactly what is on the sliders: nothing moves unless the student
   // moves it or presses the robot button.
   const plan = {} as Record<TestKey, number>;
-  for (const k of testler) plan[k] = ayar[k]?.net ?? mevcut[k] ?? 0;
+  for (const k of testler) plan[k] = ayar[k]?.net ?? taban[k] ?? 0;
   const planToplam = agirlikliToplam(tur, plan);
   const planPuan = 100 + planToplam + obpEk;
   const planSira = hedef ? siralamaTahmini(tur, planPuan, hedef.obpli).sira : null;
@@ -215,19 +226,19 @@ export default function HedefNet() {
   const ayarVar = Object.keys(ayar).length > 0;
 
   /** Fill every test the student has not moved; their own sliders stay put. */
-  const robotDagit = (taban: Ayar) => {
+  const robotDagit = (onceki: Ayar) => {
     if (!hedef) return;
     const sabit: Netler = {};
-    for (const k of testler) if (taban[k]?.kim === "sen") sabit[k] = taban[k]!.net;
-    const d = dagit(tur, mevcut, sabit, hedef.gerekenToplam);
+    for (const k of testler) if (onceki[k]?.kim === "sen") sabit[k] = onceki[k]!.net;
+    const d = dagit(tur, taban, sabit, hedef.gerekenToplam);
     const yeni: Ayar = {};
     const degisen = new Set<TestKey>();
     for (const k of testler) {
       if (sabit[k] != null) {
-        yeni[k] = taban[k];
+        yeni[k] = onceki[k];
         continue;
       }
-      if (d.hedef[k] !== (mevcut[k] ?? 0)) yeni[k] = { net: d.hedef[k], kim: "robot" };
+      if (d.hedef[k] !== (taban[k] ?? 0)) yeni[k] = { net: d.hedef[k], kim: "robot" };
       if (d.hedef[k] !== plan[k]) degisen.add(k);
     }
     setAyar(yeni);
@@ -235,15 +246,21 @@ export default function HedefNet() {
     setRobotSonuc({ durum: d.durum, eksikPuan: d.eksikPuan });
   };
 
-  // New program → start from the last deneme; with no deneme, let the robot draft a plan.
+  // New program or starting point → from the deneme: sliders sit on it;
+  // from scratch: the robot drafts a balanced plan to edit.
   const programAnahtari = program ? `${tur}:${program.kod}` : null;
   useEffect(() => {
-    if (!programAnahtari || !yuklendi) return;
+    if (!programAnahtari || !yuklendi || !temel) return;
     setRobotSonuc(null);
-    if (mevcutVar) setAyar({});
+    if (denemeli) setAyar({});
     else robotDagit({});
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [programAnahtari, yuklendi]);
+  }, [programAnahtari, yuklendi, temel]);
+
+  const temelSec = (t: Temel) => {
+    setKaynak("kendi");
+    setKayit((o) => ({ ...o, temel: t }));
+  };
 
   useEffect(() => {
     if (vurgu.size === 0) return;
@@ -267,9 +284,10 @@ export default function HedefNet() {
     });
     setRobotSonuc(null);
   };
-  const denemeyeDon = () => {
-    setAyar({});
+  const bastanBasla = () => {
     setRobotSonuc(null);
+    if (denemeli) setAyar({});
+    else robotDagit({});
   };
 
   const programSec = (p: Program) => {
@@ -285,11 +303,11 @@ export default function HedefNet() {
   };
 
   const artanMatematik = (Object.keys(DERS_LINKI) as TestKey[]).filter(
-    (k) => testler.includes(k) && plan[k] - (mevcut[k] ?? 0) >= 1,
+    (k) => testler.includes(k) && plan[k] - (taban[k] ?? 0) >= 1,
   );
 
   // Target bar scale (placement-score space when OBP is known).
-  const olcekDegerleri = [planPuan, gerekenGoster, ...(mevcutVar ? [mevcutPuan] : [])];
+  const olcekDegerleri = [planPuan, gerekenGoster, ...(mevcutVar && denemeli ? [mevcutPuan] : [])];
   const olcekAlt = Math.max(100, Math.min(...olcekDegerleri) - 25);
   const olcekUst = Math.max(...olcekDegerleri) + 15;
   const yuzde = (v: number) => `${Math.min(100, Math.max(0, ((v - olcekAlt) / (olcekUst - olcekAlt)) * 100))}%`;
@@ -318,13 +336,13 @@ export default function HedefNet() {
         {!yuzen && (
           <div className="hn-ray" aria-hidden="true">
             <div className="hn-ray-dolu" style={{ width: yuzde(planPuan) }} />
-            {mevcutVar && <div className="hn-ray-deneme" style={{ left: yuzde(mevcutPuan) }} title="Son deneme" />}
+            {mevcutVar && denemeli && <div className="hn-ray-deneme" style={{ left: yuzde(mevcutPuan) }} title="Son deneme" />}
             <div className="hn-ray-hedef" style={{ left: yuzde(gerekenGoster) }}>
               <span>Hedef {fmtPuan(gerekenGoster)}</span>
             </div>
           </div>
         )}
-        {!yuzen && mevcutVar && (
+        {!yuzen && mevcutVar && denemeli && (
           <p className="hn-ray-not">
             Gri çizgi son denemen ({fmtPuan(mevcutPuan)}), siyah çizgi hedef.
           </p>
@@ -424,8 +442,8 @@ export default function HedefNet() {
               </div>
               <div className="hn-plan-kutu">
                 <dt>Planınla</dt>
-                <dd>≈ {fmtPuan(planPuan)}</dd>
-                {planSira && <small>≈ {fmtSira(planSira)}. sıra</small>}
+                <dd>{temel ? `≈ ${fmtPuan(planPuan)}` : "—"}</dd>
+                {temel && planSira && <small>≈ {fmtSira(planSira)}. sıra</small>}
               </div>
             </dl>
             <p className="hn-aciklama">
@@ -450,12 +468,49 @@ export default function HedefNet() {
           <section className="tr-giris hn-tablo-kutu" ref={kutuRef}>
             <div className="hn-tablo-baslik">
               <h2>Planın: ders ders netler</h2>
+              {temel && (
+                <div className="hn-temel" role="group" aria-label="Plan nereden başlasın">
+                  <span>Başlangıç:</span>
+                  <button type="button" className={denemeli ? "aktif" : ""} aria-pressed={denemeli} onClick={() => temelSec("deneme")}>
+                    Son denemem
+                  </button>
+                  <button type="button" className={!denemeli ? "aktif" : ""} aria-pressed={!denemeli} onClick={() => temelSec("sifir")}>
+                    Sıfırdan
+                  </button>
+                </div>
+              )}
             </div>
+
+            {temel == null ? (
+              <div className="hn-secim">
+                <p className="hn-secim-soru">Planı nereden başlatalım?</p>
+                <div className="hn-secim-kartlar">
+                  <button type="button" onClick={() => temelSec("deneme")}>
+                    <strong>Son denememden</strong>
+                    <span>
+                      Kaydırıcılar son deneme netlerinden (≈ {fmtPuan(mevcutPuan)} puan) başlar; hedefe ne kadar
+                      kaldığını ve hangi derse yüklenmen gerektiğini görürsün.
+                    </span>
+                  </button>
+                  <button type="button" onClick={() => temelSec("sifir")}>
+                    <strong>Sıfırdan</strong>
+                    <span>
+                      Denemeni hesaba katmadan robot hedefe ulaşan dengeli bir plan önerir; istediğin gibi
+                      değiştirirsin.
+                    </span>
+                  </button>
+                </div>
+                <p className="tr-ipucu">Seçimini hatırlarız; istediğin zaman üstten değiştirebilirsin.</p>
+              </div>
+            ) : (
+              <>
             <p className="tr-ipucu" style={{ marginTop: 0 }}>
               Kaydırıcılar <b>senin planın</b>: oynattığın ders değişir, diğerleri yerinde kalır. Hangi derse
               yüklenmen gerektiğini satırlardaki <b>&ldquo;tek başına&rdquo;</b> ipucundan gör ya da kalanı robota
-              dağıttır. Robot yalnızca dokunmadığın derslere, son denemenle tam net arasındaki boşluğun aynı oranını
-              ekler.
+              dağıttır.{" "}
+              {denemeli
+                ? "Robot yalnızca dokunmadığın derslere, son denemenle tam net arasındaki boşluğun aynı oranını ekler."
+                : "Robot dokunmadığın her derste soruların aynı oranını hedefler."}
             </p>
 
             {hedefCubugu(false)}
@@ -464,9 +519,9 @@ export default function HedefNet() {
               <button type="button" className="tr-hesap" onClick={() => robotDagit(ayar)} disabled={hedef.ulasilamaz}>
                 {Object.values(ayar).some((a) => a?.kim === "sen") ? "Kalanı robot dağıtsın" : "Robot bir plan önersin"}
               </button>
-              {ayarVar && mevcutVar && (
-                <button type="button" className="tr-temizle" onClick={denemeyeDon}>
-                  Son denemeye dön
+              {ayarVar && (
+                <button type="button" className="tr-temizle" onClick={bastanBasla}>
+                  {denemeli ? "Son denemeye dön" : "Robotun planına dön"}
                 </button>
               )}
             </div>
@@ -483,17 +538,17 @@ export default function HedefNet() {
               <p className="hn-robot-not">Robot vurgulanan dersleri ayarladı. Beğenmediğin kaydırıcıyı oynatabilirsin.</p>
             )}
 
-            <div className="hn-satirlar">
+            <div className={`hn-satirlar${denemeli ? "" : " sifir"}`}>
               <div className="hn-satir hn-satir-baslik" aria-hidden="true">
                 <span>Test</span>
-                <span>Son deneme</span>
+                {denemeli && <span>Son deneme</span>}
                 <span>Plan</span>
-                <span>Fark</span>
+                {denemeli && <span>Fark</span>}
               </div>
               {testler.map((k) => {
                 const t = testBilgisi(k);
                 const h = plan[k];
-                const m = mevcut[k] ?? 0;
+                const m = taban[k] ?? 0;
                 const fark = h - m;
                 const kim = ayar[k]?.kim;
                 const tek = !planTamam && !hedef.ulasilamaz ? tekBasina(tur, k, eksik, h) : 0;
@@ -510,14 +565,16 @@ export default function HedefNet() {
                         {t.soru} soru · 1 net ≈ {fmtPuan(katsayi(tur, k))} puan
                       </small>
                     </div>
-                    <input
-                      className="hn-mevcut"
-                      inputMode="decimal"
-                      aria-label={`${t.label} son deneme neti`}
-                      placeholder="0"
-                      value={kayit.mevcut[k] ?? ""}
-                      onChange={(e) => setMevcut(k, e.target.value)}
-                    />
+                    {denemeli && (
+                      <input
+                        className="hn-mevcut"
+                        inputMode="decimal"
+                        aria-label={`${t.label} son deneme neti`}
+                        placeholder="0"
+                        value={kayit.mevcut[k] ?? ""}
+                        onChange={(e) => setMevcut(k, e.target.value)}
+                      />
+                    )}
                     <div className="hn-hedef">
                       <input
                         type="range"
@@ -534,16 +591,18 @@ export default function HedefNet() {
                         className="hn-sifirla"
                         onClick={() => satiriSifirla(k)}
                         disabled={!kim}
-                        aria-label={`${t.label} netini son denemeye döndür`}
-                        title="Son denemeye döndür"
+                        aria-label={denemeli ? `${t.label} netini son denemeye döndür` : `${t.label} netini sıfırla`}
+                        title={denemeli ? "Son denemeye döndür" : "Sıfırla"}
                       >
                         ↺
                       </button>
                     </div>
-                    <span className={`hn-fark${fark > 0 ? " arti" : fark < 0 ? " eksi" : ""}`}>
-                      {fark > 0 ? "+" : ""}
-                      {fark === 0 ? "—" : fmtNet(fark)}
-                    </span>
+                    {denemeli && (
+                      <span className={`hn-fark${fark > 0 ? " arti" : fark < 0 ? " eksi" : ""}`}>
+                        {fark > 0 ? "+" : ""}
+                        {fark === 0 ? "—" : fmtNet(fark)}
+                      </span>
+                    )}
                     {tek !== 0 && (
                       <small className={`hn-tek${tek == null ? " yetmez" : ""}`}>
                         {tek == null
@@ -560,7 +619,10 @@ export default function HedefNet() {
               })}
             </div>
 
-            {kutuGorunur && !cubukGorunur && hedefCubugu(true)}
+              </>
+            )}
+
+            {temel && kutuGorunur && !cubukGorunur && hedefCubugu(true)}
 
             {kaynak === "hesaplayici" && (
               <p className="tr-ipucu">
@@ -608,7 +670,7 @@ export default function HedefNet() {
               <div className="hn-dersler">
                 {artanMatematik.map((k) => (
                   <Link key={k} href={DERS_LINKI[k]!.href}>
-                    {testBilgisi(k).oturum} Matematik&apos;te +{fmtNet(plan[k] - (mevcut[k] ?? 0))} net için:{" "}
+                    {testBilgisi(k).oturum} Matematik&apos;te +{fmtNet(plan[k] - (taban[k] ?? 0))} net için:{" "}
                     {DERS_LINKI[k]!.label} →
                   </Link>
                 ))}

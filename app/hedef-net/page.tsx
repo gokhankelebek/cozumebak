@@ -31,7 +31,7 @@ const SSS: FaqItem[] = [
   {
     question: "Aynı puan için bir sürü net kombinasyonu yok mu?",
     answer:
-      "Var. Bu yüzden araç önce dengeli bir örnek önerir: her testte şu anki netinle tam net arasındaki farkın aynı oranını kapatırsın. Sonra emin olduğun dersleri kaydırıcıyla sabitleyebilirsin (ör. Türkçe 32 net); robot gereken puanı kalan testlere yeniden dağıtır.",
+      "Var. Bu yüzden kaydırıcılar senin planın: planı son deneme netlerinden ya da sıfırdan başlatırsın, istediğin dersi istediğin nete çekersin ve hedefe ne kadar kaldığını anında görürsün. Her dersin yanında o dersten tek başına kaç net daha yapsan hedefin kapanacağı yazar. İstersen 'Kalanı robot dağıtsın' düğmesiyle robot, dokunmadığın derslere dengeli bir öneri ekler.",
   },
   {
     question: "Hangi dersteki net daha çok puan getirir?",
@@ -55,8 +55,8 @@ export default function HedefNetPage() {
           Hedef <em>net</em>
         </h1>
         <p className="hero-sub">
-          Hayalindeki bölümü seç; o bölüme girmek için hangi derste kaç net yapman gerektiğini gör. Emin olduğun
-          dersleri sabitle, gerisini robot dağıtsın. Netlerin{" "}
+          Hayalindeki bölümü seç; o bölüme girmek için hangi derste kaç net yapman gerektiğini gör. Planını kendin
+          kur ya da robottan dengeli bir öneri al. Netlerin{" "}
           <Link href="/yks-puan-hesaplama" style={{ color: "var(--solve-deep)", fontWeight: 600 }}>
             puan hesaplama
           </Link>{" "}
