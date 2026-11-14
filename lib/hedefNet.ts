@@ -9,11 +9,11 @@
 //   3. Gereken ham puan = yerleştirme puanı − OBP katkısı.
 //   4. Gereken ağırlıklı net: Σ katsayı × net = ham − 100.
 //
-// Sonsuz kombinasyonu öğrenciye anlamlı tek bir öneriye indirmek için "dengeli
-// dağıtım" kullanılır: kilitlenmemiş her testte, şu anki netten testin tavanına
-// kalan boşluğun AYNI ORANI kapatılır. Bu hem soru sayısı sınırını otomatik
-// gözetir hem de zayıf derse yüklenmeyi dengeler. Öğrenci bir testi kilitlerse
-// (ör. "Türkçe'de 32 yaparım") geri kalan testler buna göre yeniden dağıtılır.
+// Kaydırıcılar öğrencinin kendi planıdır; robot yalnızca istenince ("Kalanı
+// robot dağıtsın") devreye girer ve "dengeli dağıtım" yapar: öğrencinin
+// dokunmadığı her testte, son deneme netinden testin tavanına kalan boşluğun
+// AYNI ORANI kapatılır. Bu hem soru sınırını gözetir hem de yükü dengeler;
+// öğrencinin elle ayarladığı testler olduğu gibi kalır (dagit → kilitli).
 // ─────────────────────────────────────────────────────────────────────────────
 
 import { siralamaTahmini } from "@/lib/yksSiralama";
@@ -169,4 +169,15 @@ export function dagit(tur: PuanTuru, mevcut: Netler, kilitli: Netler, gerekenTop
     hedef[k] = Math.min(soru, yukariYuvarla(hedef[k] + oran * (soru - hedef[k])));
   }
   return { hedef, durum: "mumkun", oran, eksikPuan: 0 };
+}
+
+/**
+ * "Bu testten tek başına kaç net daha yapsan eksik kapanır?" Testin kalan
+ * boşluğu yetmiyorsa null. Sonuç 0,25'e yukarı yuvarlanır.
+ */
+export function tekBasina(tur: PuanTuru, test: TestKey, eksikToplam: number, simdikiNet: number): number | null {
+  const c = katsayi(tur, test);
+  if (eksikToplam <= 0 || c <= 0) return 0;
+  const gereken = yukariYuvarla(eksikToplam / c);
+  return simdikiNet + gereken <= testBilgisi(test).soru + 1e-9 ? gereken : null;
 }
