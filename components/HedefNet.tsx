@@ -359,9 +359,9 @@ export default function HedefNet() {
     setAyar({});
   };
 
-  const artanMatematik = (Object.keys(DERS_LINKI) as TestKey[]).filter(
-    (k) => testler.includes(k) && plan[k] - (taban[k] ?? 0) >= 1,
-  );
+  // Math lesson links are always shown for the score type's math tests (stable layout);
+  // the "+n net" wording appears only when the plan asks for more math.
+  const matematikTestleri = (Object.keys(DERS_LINKI) as TestKey[]).filter((k) => testler.includes(k));
 
   // Target bar scale (placement-score space when OBP is known).
   const olcekDegerleri = [planPuan, gerekenGoster, ...(mevcutVar && denemeli ? [mevcutPuan] : [])];
@@ -648,24 +648,28 @@ export default function HedefNet() {
               <button type="button" className="tr-hesap" onClick={() => robotDagit(ayar)} disabled={hedef.ulasilamaz}>
                 {Object.values(ayar).some((a) => a?.kim === "sen") ? "Kalanı robot dağıtsın" : "Robot bir plan önersin"}
               </button>
-              {ayarVar && (
-                <button type="button" className="tr-temizle" onClick={bastanBasla}>
-                  {denemeli ? "Son denemeye dön" : "Robotun planına dön"}
-                </button>
-              )}
+              {/* Kept in the layout (hidden) so it can't wrap a new line in when it appears. */}
+              <button
+                type="button"
+                className="tr-temizle"
+                onClick={bastanBasla}
+                style={ayarVar ? undefined : { visibility: "hidden" }}
+                aria-hidden={!ayarVar || undefined}
+                tabIndex={ayarVar ? undefined : -1}
+              >
+                {denemeli ? "Son denemeye dön" : "Robotun planına dön"}
+              </button>
             </div>
-            {robotSonuc && robotSonuc.durum === "imkansiz" && (
-              <p className="hn-robot-not eksik">
-                Elle ayarladığın netlerle, dokunmadığın dersler tam net olsa bile ≈ {fmtPuan(robotSonuc.eksikPuan)} puan
-                eksik kalıyor. Elle ayarladığın bir dersi artır ya da ↺ ile robota bırak.
-              </p>
-            )}
-            {robotSonuc && robotSonuc.durum === "yetiyor" && (
-              <p className="hn-robot-not">Planın zaten hedefe yetiyor; robotun ekleyecek bir şeyi yok.</p>
-            )}
-            {robotSonuc && robotSonuc.durum === "mumkun" && vurgu.size > 0 && (
-              <p className="hn-robot-not">Robot vurgulanan dersleri ayarladı. Beğenmediğin kaydırıcıyı oynatabilirsin.</p>
-            )}
+            {/* Always rendered with a fixed height so messages never push the rows around. */}
+            <p className={`hn-robot-not${robotSonuc?.durum === "imkansiz" ? " eksik" : ""}`} aria-live="polite">
+              {robotSonuc?.durum === "imkansiz"
+                ? `Elle ayarladıklarınla ≈ ${fmtPuan(robotSonuc.eksikPuan)} puan eksik kalıyor; bir dersi artır ya da ↺ ile robota bırak.`
+                : robotSonuc?.durum === "yetiyor"
+                  ? "Planın zaten hedefe yetiyor; robotun ekleyecek bir şeyi yok."
+                  : robotSonuc?.durum === "mumkun" && vurgu.size > 0
+                    ? "Robot vurgulanan dersleri ayarladı; beğenmediğini değiştirebilirsin."
+                    : "\u00a0"}
+            </p>
 
             <div className={`hn-satirlar${denemeli ? "" : " sifir"}`}>
               <div className="hn-satir hn-satir-baslik" aria-hidden="true">
@@ -681,6 +685,19 @@ export default function HedefNet() {
                 const fark = h - m;
                 const kim = ayar[k]?.kim;
                 const tek = !planTamam && !hedef.ulasilamaz ? tekBasina(tur, k, eksik, h) : 0;
+                const ipucu = [
+                  tek == null
+                    ? t.soru - h > 0
+                      ? `Tek başına yetmez · tam net: +${fmtNet(t.soru - h)} ≈ ${fmtPuan((t.soru - h) * katsayi(tur, k))} puan`
+                      : "Tam net"
+                    : tek > 0
+                      ? `Tek başına +${fmtNet(tek)} net hedefi kapatır`
+                      : "",
+                  kim === "robot" ? "robot önerisi" : "",
+                ]
+                  .filter(Boolean)
+                  .join(" · ")
+                  .replace(/^r/, "R");
                 return (
                   <div
                     key={k}
@@ -732,17 +749,10 @@ export default function HedefNet() {
                         {fark === 0 ? "—" : fmtNet(fark)}
                       </span>
                     )}
-                    {tek !== 0 && (
-                      <small className={`hn-tek${tek == null ? " yetmez" : ""}`}>
-                        {tek == null
-                          ? t.soru - h > 0
-                            ? `Tek başına yetmez: tam nete kadar +${fmtNet(t.soru - h)} net ≈ ${fmtPuan((t.soru - h) * katsayi(tur, k))} puan`
-                            : "Tam net"
-                          : `Tek başına +${fmtNet(tek)} net hedefi kapatır`}
-                        {kim === "robot" && " · robot önerisi"}
-                      </small>
-                    )}
-                    {tek === 0 && kim === "robot" && <small className="hn-tek">Robot önerisi</small>}
+                    {/* One fixed-height line in every row, even when empty, so sliding never resizes rows. */}
+                    <small className={`hn-tek${tek == null ? " yetmez" : ""}`} title={ipucu || undefined}>
+                      {ipucu || "\u00a0"}
+                    </small>
                   </div>
                 );
               })}
@@ -795,14 +805,18 @@ export default function HedefNet() {
               )}
             </div>
 
-            {artanMatematik.length > 0 && (
+            {matematikTestleri.length > 0 && (
               <div className="hn-dersler">
-                {artanMatematik.map((k) => (
-                  <Link key={k} href={DERS_LINKI[k]!.href}>
-                    {testBilgisi(k).oturum} Matematik&apos;te +{fmtNet(plan[k] - (taban[k] ?? 0))} net için:{" "}
-                    {DERS_LINKI[k]!.label} →
-                  </Link>
-                ))}
+                {matematikTestleri.map((k) => {
+                  const artis = plan[k] - (taban[k] ?? 0);
+                  return (
+                    <Link key={k} href={DERS_LINKI[k]!.href}>
+                      {artis >= 1
+                        ? `${testBilgisi(k).oturum} Matematik'te +${fmtNet(artis)} net için: ${DERS_LINKI[k]!.label} →`
+                        : `${DERS_LINKI[k]!.label}: konu anlatımı ve çözümlü sorular →`}
+                    </Link>
+                  );
+                })}
               </div>
             )}
           </section>

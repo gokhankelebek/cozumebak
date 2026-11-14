@@ -938,3 +938,8 @@ section[id]{scroll-margin-top:90px}
 }
 .hn-mod{margin-bottom:14px;flex-wrap:wrap}
 .hn-hedef-girdi{margin-bottom:12px}
+/* Fixed-height text slots: sliding must never change row or panel heights. */
+.hn-tek{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.35;height:1.35em;min-width:0}
+.hn-robot-not{line-height:1.35;min-height:2.7em}
+.hn-hedef-mesaj b{white-space:nowrap}
+.hn-dersler a{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
