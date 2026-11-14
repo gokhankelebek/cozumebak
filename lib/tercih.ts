@@ -74,13 +74,30 @@ export interface Program {
   doldu: boolean;
   /** Sınıflandırmada esas alınan (zor olan) taban sırası. */
   esasSira: number | null;
+  /** ÖSYM kılavuzundaki başarı sırası şartı (ör. Tıp 50.000): bu sıranın altındakiler tercih edemez. */
+  siraSarti: number | null;
+  /** Kılavuzdaki en düşük yerleştirme puanı şartı (birkaç programda). */
+  puanSarti: number | null;
 }
 
 interface HamVeri {
   yil: number;
   puanTuru: PuanTuru;
   unis: [string, string, UniTuru][];
-  p: [string, number, string, number, number, number | null, number | null, number | null, number | null, number | null][];
+  p: [
+    kod: string,
+    uni: number,
+    ad: string,
+    kontenjan: number,
+    yerlesen: number,
+    enKucuk: number | null,
+    enBuyuk: number | null,
+    oncekiSira: number | null,
+    oncekiPuan: number | null,
+    sure: number | null,
+    siraSarti: number | null,
+    puanSarti: number | null,
+  ][];
 }
 
 export function ucretTuru(programAdi: string, uniTuru: UniTuru): Ucret {
@@ -96,7 +113,7 @@ export function ucretTuru(programAdi: string, uniTuru: UniTuru): Ucret {
 export function parse(ham: HamVeri): Program[] {
   const unis: Uni[] = ham.unis.map(([ad, sehir, tur]) => ({ ad, sehir, tur }));
   const tur = ham.puanTuru;
-  return ham.p.map(([kod, u, ad, kontenjan, yerlesen, enKucuk, enBuyuk, oncekiSira, oncekiPuan, sure]) => {
+  return ham.p.map(([kod, u, ad, kontenjan, yerlesen, enKucuk, enBuyuk, oncekiSira, oncekiPuan, sure, siraSarti, puanSarti]) => {
     const uni = unis[u];
     const doldu = enKucuk != null && yerlesen >= kontenjan;
     const sira = enKucuk != null ? siralamaTahmini(tur, enKucuk, true).sira : null;
@@ -116,8 +133,36 @@ export function parse(ham: HamVeri): Program[] {
       ucret: ucretTuru(ad, uni.tur),
       doldu,
       esasSira: adaylar.length ? Math.min(...adaylar) : null,
+      siraSarti: siraSarti ?? null,
+      puanSarti: puanSarti ?? null,
     };
   });
+}
+
+export interface Uygunluk {
+  uygun: boolean;
+  /** Uygun değilse kısa açıklama. */
+  neden?: string;
+}
+
+/**
+ * Kılavuzdaki başarı sırası / puan şartını sağlıyor mu? Puan şartı (ör. en az 350)
+ * sıraya çevrilir; öğrencinin puanını değil sırasını bildiğimiz için yaklaşıktır.
+ */
+export function uygunluk(p: Program, ogrenciSira: number, tur: PuanTuru): Uygunluk {
+  if (p.siraSarti != null && ogrenciSira > p.siraSarti) {
+    return { uygun: false, neden: `Bu programı tercih etmek için en az ${p.siraSarti.toLocaleString("tr-TR")}. sıra gerekir.` };
+  }
+  if (p.puanSarti != null) {
+    const gerekenSira = siralamaTahmini(tur, p.puanSarti, true).sira;
+    if (ogrenciSira > gerekenSira) {
+      return {
+        uygun: false,
+        neden: `Bu program en az ${p.puanSarti} yerleştirme puanı ister (yaklaşık ${gerekenSira.toLocaleString("tr-TR")}. sıra).`,
+      };
+    }
+  }
+  return { uygun: true };
 }
 
 export async function programlariYukle(tur: PuanTuru): Promise<Program[]> {

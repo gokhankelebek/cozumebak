@@ -763,6 +763,12 @@ section[id]{scroll-margin-top:90px}
 .tr-etiketler{display:flex;flex-wrap:wrap;gap:6px;margin:0;font-size:.78rem}
 .tr-etiketler span{background:var(--paper-3);border-radius:6px;padding:2px 8px;color:var(--ink-soft)}
 .tr-etiketler .tr-kod{font-family:var(--mono)}
+.tr-etiketler .tr-sart{background:#eef0f6;color:var(--ink);font-weight:600}
+.tr-uygunsuz{display:flex;gap:10px;align-items:flex-start;font-size:.9rem;color:var(--ink-soft);background:var(--paper-2);border:1.5px dashed var(--line);border-radius:12px;padding:10px 14px;margin:0 0 12px;cursor:pointer}
+.tr-uygunsuz input{margin-top:4px;accent-color:var(--coral)}
+.tr-kart-uygunsuz{opacity:.72;border-style:dashed}
+.tr-rozet-uygunsuz{color:#fff;background:var(--ink-soft);border-color:var(--ink-soft)}
+.tr-uyari{margin:8px 0 0;font-size:.88rem;font-weight:600;color:var(--coral-deep)}
 .tr-daha{font:inherit;font-weight:600;display:block;margin:16px auto 0;background:var(--paper-2);border:1.5px solid var(--line);border-radius:999px;padding:10px 22px;cursor:pointer}
 .tr-daha:hover{border-color:var(--ink)}
 .tr-bos,.tr-yukleniyor,.tr-hata{color:var(--ink-soft);padding:18px 0}

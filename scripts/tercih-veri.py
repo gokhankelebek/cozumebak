@@ -8,11 +8,14 @@ Girdi (ÖSYM'den indir, aynı klasöre koy; dosya adları aşağıdaki gibi olma
       → osym.gov.tr › "<yıl>-YKS Yerleştirme Sonuçlarına İlişkin Sayısal Bilgiler"
   kilavuz-tablo4.xls   Programlar ve Kontenjanlar Kılavuzu, Tablo-4 (lisans)
   kilavuz-tablo3.xls   Programlar ve Kontenjanlar Kılavuzu, Tablo-3 (ön lisans)
+  kilavuz.pdf          Kılavuzun kendisi (PDF) — "Bk." açıklama maddelerinin metni
       → osym.gov.tr › "<yıl> YKS Yükseköğretim Programları ve Kontenjanları Kılavuzu"
-      (bir önceki yılın resmî başarı sırasını ve süreyi buradan alıyoruz)
+      (bir önceki yılın resmî başarı sırasını, süreyi ve programın açıklama madde
+      numaralarını tablolardan; maddelerdeki başarı sırası / puan şartlarını PDF'ten
+      alıyoruz)
 
 Kullanım:
-  python3 -m venv /tmp/tv && /tmp/tv/bin/pip install openpyxl==3.1.5 xlrd==2.0.1
+  python3 -m venv /tmp/tv && /tmp/tv/bin/pip install openpyxl==3.1.5 xlrd==2.0.1 pypdf==5.1.0
   /tmp/tv/bin/python scripts/tercih-veri.py --girdi ~/indirilenler/osym --yil 2026
 
 Her yıl Temmuz sonunda yeni sonuçlar ve kılavuz çıkınca yeniden çalıştır; ayrıca
@@ -25,6 +28,7 @@ import re
 from pathlib import Path
 
 import openpyxl
+import pypdf
 import xlrd
 
 PUAN_TURU_DOSYA = {"SAY": "say", "EA": "ea", "SÖZ": "soz", "DİL": "dil", "TYT": "tyt"}
@@ -105,8 +109,8 @@ def sayi(v):
         return None
 
 
-def kilavuz_oku(yol: Path, sira_sutun: int, puan_sutun: int) -> dict:
-    """Program kodu → (süre, önceki yıl başarı sırası, önceki yıl en küçük puan)."""
+def kilavuz_oku(yol: Path, madde_sutun: int, sira_sutun: int, puan_sutun: int) -> dict:
+    """Program kodu → (süre, önceki yıl başarı sırası, önceki yıl en küçük puan, madde numaraları)."""
     sh = xlrd.open_workbook(str(yol)).sheet_by_index(0)
     out = {}
     for i in range(sh.nrows):
@@ -116,8 +120,43 @@ def kilavuz_oku(yol: Path, sira_sutun: int, puan_sutun: int) -> dict:
         sure = sayi(sh.cell_value(i, 2))
         sira = sayi(sh.cell_value(i, sira_sutun))
         puan = sayi(sh.cell_value(i, puan_sutun))
-        out[kod] = (int(sure) if sure else None, int(sira) if sira else None, round(puan, 3) if puan else None)
+        ham_madde = sh.cell_value(i, madde_sutun)
+        if isinstance(ham_madde, float):
+            ham_madde = str(int(ham_madde))
+        maddeler = {int(m) for m in re.findall(r"\d+", str(ham_madde))}
+        out[kod] = (
+            int(sure) if sure else None,
+            int(sira) if sira else None,
+            round(puan, 3) if puan else None,
+            maddeler,
+        )
     return out
+
+
+def madde_sartlari(pdf: Path) -> tuple[dict[int, int], dict[int, int]]:
+    """
+    Kılavuzdaki "Bk. N …" açıklama maddelerinden başarı sırası ve puan şartlarını çıkarır:
+      "…başarı sırası 300 bininci sırada olan adayın…"        → sira_sarti[N] = 300000
+      "…ilgili yerleştirme puanının en az 350 olması gerekmektedir" → puan_sarti[N] = 350
+    Bir madde iki farklı eşik verirse güvenli tarafta kalmak için hata verir.
+    """
+    metin = "\n".join((s.extract_text() or "") for s in pypdf.PdfReader(str(pdf)).pages)
+    duz = re.sub(r"\s+", " ", metin)
+    sira_sarti: dict[int, set] = {}
+    puan_sarti: dict[int, set] = {}
+    for no, govde in re.findall(r"Bk\. ?(\d{1,3}) (.*?)(?=Bk\. ?\d{1,3} |$)", duz):
+        n = int(no)
+        for m in re.finditer(r"başarı ?sırası (\d+) ?bininci", govde):
+            sira_sarti.setdefault(n, set()).add(int(m.group(1)) * 1000)
+        for m in re.finditer(r"yerleştirme pu ?anının en az (\d{3})", govde):
+            puan_sarti.setdefault(n, set()).add(int(m.group(1)))
+    for ad, d in (("başarı sırası", sira_sarti), ("puan", puan_sarti)):
+        for n, v in d.items():
+            if len(v) > 1:
+                raise SystemExit(f"Bk. {n} maddesinde birden çok {ad} şartı var: {sorted(v)} — elle kontrol et.")
+    if not sira_sarti:
+        raise SystemExit("Kılavuzda hiç başarı sırası şartı bulunamadı — PDF metni değişmiş olabilir.")
+    return {n: v.pop() for n, v in sira_sarti.items()}, {n: v.pop() for n, v in puan_sarti.items()}
 
 
 def sonuc_oku(yol: Path):
@@ -151,8 +190,11 @@ def main():
     cikti.mkdir(parents=True, exist_ok=True)
 
     kilavuz = {}
-    kilavuz.update(kilavuz_oku(girdi / "kilavuz-tablo4.xls", 10, 11))
-    kilavuz.update(kilavuz_oku(girdi / "kilavuz-tablo3.xls", 9, 10))
+    kilavuz.update(kilavuz_oku(girdi / "kilavuz-tablo4.xls", 9, 10, 11))
+    kilavuz.update(kilavuz_oku(girdi / "kilavuz-tablo3.xls", 8, 9, 10))
+    sira_sarti, puan_sarti = madde_sartlari(girdi / "kilavuz.pdf")
+    print("Başarı sırası şartı olan maddeler:", dict(sorted(sira_sarti.items())))
+    print("Puan şartı olan maddeler:", dict(sorted(puan_sarti.items())))
 
     gruplar: dict[str, list] = {k: [] for k in PUAN_TURU_DOSYA}
     atlanan = 0
@@ -175,7 +217,10 @@ def main():
                 ad, sehir = uni_ve_sehir(p["uni"])
                 uni_index[p["uni"]] = len(unis)
                 unis.append([ad, sehir, UNI_TURU[p["tur"]]])
-            sure, onceki_sira, onceki_puan = kilavuz.get(p["kod"], (None, None, None))
+            sure, onceki_sira, onceki_puan, maddeler = kilavuz.get(p["kod"], (None, None, None, set()))
+            # Birden çok şart varsa en sıkı olanı (en küçük sıra, en yüksek puan) geçerlidir.
+            siralar = [sira_sarti[m] for m in maddeler if m in sira_sarti]
+            puanlar = [puan_sarti[m] for m in maddeler if m in puan_sarti]
             satirlar.append([
                 p["kod"],
                 uni_index[p["uni"]],
@@ -187,13 +232,15 @@ def main():
                 onceki_sira,
                 onceki_puan,
                 sure,
+                min(siralar) if siralar else None,
+                max(puanlar) if puanlar else None,
             ])
         veri = {
             "yil": a.yil,
             "puanTuru": puan_turu,
             "kaynak": "ÖSYM — En Küçük ve En Büyük Puanlar (Tablo 3/4) ve Programlar ve Kontenjanlar Kılavuzu",
             "alanlar": ["kod", "uni", "program", "kontenjan", "yerlesen", "enKucuk", "enBuyuk",
-                        "oncekiSira", "oncekiPuan", "sure"],
+                        "oncekiSira", "oncekiPuan", "sure", "siraSarti", "puanSarti"],
             "unis": unis,
             "p": satirlar,
         }
