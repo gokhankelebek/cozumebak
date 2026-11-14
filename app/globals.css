@@ -888,3 +888,10 @@ section[id]{scroll-margin-top:90px}
   .hn-program{flex-direction:column}
 }
 .tr-kart-alt .tr-net-link{margin-left:auto}
+.hn-rakamlar small{display:block;font-size:.8rem;color:var(--ink-soft);margin-top:2px}
+.hn-rakamlar .hn-plan-kutu{border-color:var(--solve);background:var(--solve-tint)}
+.hn-plan-cubuk{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-top:12px;padding:10px 14px;border-radius:12px;border:1.5px solid;background:var(--paper-2);box-shadow:var(--shadow)}
+.hn-plan-cubuk.tamam{border-color:var(--solve)}
+.hn-plan-cubuk.eksik{border-color:var(--coral)}
+.hn-plan-cubuk b{font-family:var(--mono)}
+.hn-plan-yuzen{position:fixed;z-index:40;left:50%;transform:translateX(-50%);bottom:16px;width:min(calc(100% - 32px),720px);margin:0}
