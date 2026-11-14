@@ -24,6 +24,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
   ];
 
+  const tools: MetadataRoute.Sitemap = [
+    { url: `${SITE_URL}/yks-puan-hesaplama`, lastModified: buildDate, changeFrequency: "monthly", priority: 0.8 },
+  ];
+
   const corporate: MetadataRoute.Sitemap = [
     "/hakkimizda",
     "/iletisim",
@@ -103,6 +107,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [
     ...staticRoutes,
+    ...tools,
     ...corporate,
     ...blogIndex,
     ...blogPosts,
