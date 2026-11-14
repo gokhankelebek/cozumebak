@@ -136,8 +136,8 @@ const yukariYuvarla = (n: number) => Math.ceil(n / NET_ADIMI - 1e-9) * NET_ADIMI
 
 /**
  * Gereken toplamı, kilitsiz testlere dengeli dağıtır: her testte
- * hedef = mevcut + oran × (soru − mevcut). Sonuç 0,25'e yukarı yuvarlanır,
- * böylece önerilen netler hedefin altında kalmaz.
+ * hedef = mevcut + oran × (soru − mevcut). Netler 0,25'lik adımlara oturtulur;
+ * toplam hedefin altında kalmaz ve hedefi en fazla bir adım (≈ 1 puandan az) aşar.
  */
 export function dagit(tur: PuanTuru, mevcut: Netler, kilitli: Netler, gerekenToplam: number): Dagitim {
   const testler = turTestleri(tur);
@@ -164,9 +164,34 @@ export function dagit(tur: PuanTuru, mevcut: Netler, kilitli: Netler, gerekenTop
     return { hedef, durum: "imkansiz", oran: 1, eksikPuan: kalan - kapasite };
   }
   const oran = kalan / kapasite;
+
+  // 1) Round every test DOWN to the 0,25 grid (never below its starting net).
+  const ideal = {} as Record<TestKey, number>;
   for (const k of kilitsiz) {
     const soru = testBilgisi(k).soru;
-    hedef[k] = Math.min(soru, yukariYuvarla(hedef[k] + oran * (soru - hedef[k])));
+    const m = hedef[k];
+    ideal[k] = m + oran * (soru - m);
+    hedef[k] = Math.min(soru, m + Math.floor((ideal[k] - m) / NET_ADIMI + 1e-9) * NET_ADIMI);
+  }
+  // 2) Add 0,25-net steps until the target is met. Each step goes to the test
+  //    furthest behind its ideal share (keeps the plan balanced); the final step
+  //    goes to the test whose step overshoots the least. Overshoot stays below one
+  //    step (≈0,3–0,8 puan) instead of up to one step per test.
+  let eksik = gerekenToplam - testler.reduce((t, k) => t + katsayi(tur, k) * hedef[k], 0);
+  while (eksik > 1e-9) {
+    const adaylar = kilitsiz
+      .filter((k) => hedef[k] < testBilgisi(k).soru - 1e-9)
+      .map((k) => {
+        const adim = Math.min(NET_ADIMI, testBilgisi(k).soru - hedef[k]);
+        return { k, adim, puan: katsayi(tur, k) * adim, geride: ideal[k] - hedef[k] };
+      });
+    if (adaylar.length === 0) break;
+    const bitirenler = adaylar.filter((a) => a.puan >= eksik - 1e-9);
+    const sec = bitirenler.length
+      ? bitirenler.reduce((x, y) => (y.puan < x.puan ? y : x))
+      : adaylar.reduce((x, y) => (y.geride > x.geride ? y : x));
+    hedef[sec.k] += sec.adim;
+    eksik -= sec.puan;
   }
   return { hedef, durum: "mumkun", oran, eksikPuan: 0 };
 }
