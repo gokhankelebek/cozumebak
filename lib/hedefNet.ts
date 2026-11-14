@@ -60,8 +60,8 @@ export interface Hedef {
   gerekenToplam: number;
   obpli: boolean;
   obpKatki: number;
-  /** Hedefi neyin belirlediği: taban, kılavuz şartı veya ikisi de değil. */
-  belirleyen: "taban" | "sira-sarti" | "puan-sarti" | "serbest";
+  /** Hedefi neyin belirlediği: taban, kılavuz şartı, öğrencinin yazdığı sıra/puan veya hiçbiri. */
+  belirleyen: "taban" | "sira-sarti" | "puan-sarti" | "serbest" | "sira" | "puan";
   /** Ham puan 500'ü geçiyorsa: tam netle bile ulaşılamaz. */
   ulasilamaz: boolean;
 }
@@ -180,4 +180,44 @@ export function tekBasina(tur: PuanTuru, test: TestKey, eksikToplam: number, sim
   if (eksikToplam <= 0 || c <= 0) return 0;
   const gereken = yukariYuvarla(eksikToplam / c);
   return simdikiNet + gereken <= testBilgisi(test).soru + 1e-9 ? gereken : null;
+}
+
+/** "İlk 1000'e girmek için": hedef doğrudan bir başarı sırası. */
+export function siraHedefi(tur: PuanTuru, sira: number, o: OgrenciBilgisi): Hedef {
+  const obpli = o.diploma != null;
+  const obpKatki = obpli ? obp(o.diploma!) * obpCarpani(o.oncekiYil) : 0;
+  const puan = gerekenPuan(tur, Math.max(1, Math.floor(sira)), obpli);
+  const ham = Math.max(100, obpli ? puan - obpKatki : puan);
+  return {
+    hedefSira: Math.max(1, Math.floor(sira)),
+    gerekenPuan: puan,
+    gerekenHam: ham,
+    gerekenToplam: ham - 100,
+    obpli,
+    obpKatki,
+    belirleyen: "sira",
+    ulasilamaz: ham > 500,
+  };
+}
+
+export type PuanTipi = "yerlestirme" | "ham";
+
+/**
+ * "400 puan için": hedef doğrudan bir puan. Yerleştirme puanında OBP katkısı
+ * düşülür (diploma notu yoksa 0 sayılır); ham puan olduğu gibi kullanılır.
+ */
+export function puanHedefi(tur: PuanTuru, puan: number, tip: PuanTipi, o: OgrenciBilgisi): Hedef {
+  const obpli = tip === "yerlestirme" && o.diploma != null;
+  const obpKatki = obpli ? obp(o.diploma!) * obpCarpani(o.oncekiYil) : 0;
+  const ham = Math.max(100, puan - obpKatki);
+  return {
+    hedefSira: siralamaTahmini(tur, obpli ? puan : ham, obpli).sira,
+    gerekenPuan: puan,
+    gerekenHam: ham,
+    gerekenToplam: ham - 100,
+    obpli,
+    obpKatki,
+    belirleyen: "puan",
+    ulasilamaz: ham > 500,
+  };
 }

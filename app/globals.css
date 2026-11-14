@@ -936,3 +936,5 @@ section[id]{scroll-margin-top:90px}
   .hn-satirlar.sifir .hn-satir{grid-template-columns:1fr}
   .hn-satirlar.sifir .hn-tek{grid-column:1 / -1}
 }
+.hn-mod{margin-bottom:14px;flex-wrap:wrap}
+.hn-hedef-girdi{margin-bottom:12px}

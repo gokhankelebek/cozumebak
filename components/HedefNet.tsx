@@ -7,9 +7,12 @@ import {
   agirlikliToplam,
   dagit,
   hedefHesapla,
+  puanHedefi,
+  siraHedefi,
   tekBasina,
   turTestleri,
   type HedefTipi,
+  type PuanTipi,
   type Netler,
 } from "@/lib/hedefNet";
 import {
@@ -58,6 +61,17 @@ const fmtSira = (n: number) => yuvarlaSira(n).toLocaleString("tr-TR");
 /** A slider the student moved ("sen") or the robot filled ("robot"); untouched tests follow the last deneme. */
 type Ayar = Partial<Record<TestKey, { net: number; kim: "sen" | "robot" }>>;
 type RobotSonuc = { durum: "yetiyor" | "mumkun" | "imkansiz"; eksikPuan: number };
+/** What the student is aiming for: a program, a rank ("ilk 1000") or a score ("400 puan"). */
+type Mod = "bolum" | "sira" | "puan";
+const MODLAR: { key: Mod; label: string }[] = [
+  { key: "bolum", label: "Bir bölüm" },
+  { key: "sira", label: "Bir sıralama" },
+  { key: "puan", label: "Bir puan" },
+];
+const fmtGirdi = (s: string) => {
+  const n = parseInt(s.replace(/\D/g, ""), 10);
+  return Number.isFinite(n) ? n.toLocaleString("tr-TR") : "";
+};
 
 function sayi(s: string | undefined): number | null {
   if (s == null || s.trim() === "") return null;
@@ -89,6 +103,10 @@ export default function HedefNet() {
   const [kod, setKod] = useState<string | null>(null);
   const [arama, setArama] = useState("");
   const [tip, setTip] = useState<HedefTipi>("taban");
+  const [mod, setMod] = useState<Mod>("bolum");
+  const [siraGirdi, setSiraGirdi] = useState("");
+  const [puanGirdi, setPuanGirdi] = useState("");
+  const [puanTipi, setPuanTipi] = useState<PuanTipi>("yerlestirme");
   const [kayit, setKayit] = useState<Kayit>(BOS);
   const [kaynak, setKaynak] = useState<"kendi" | "hesaplayici" | "yok">("yok");
   const [ayar, setAyar] = useState<Ayar>({});
@@ -101,12 +119,31 @@ export default function HedefNet() {
   const [kutuGorunur, setKutuGorunur] = useState(false);
   const [cubukGorunur, setCubukGorunur] = useState(true);
 
+  const siraNum = (() => {
+    const n = parseInt(siraGirdi.replace(/\D/g, ""), 10);
+    return Number.isFinite(n) && n >= 1 ? n : null;
+  })();
+  const puanNum = (() => {
+    const n = sayi(puanGirdi);
+    return n != null && n >= 100 && n <= (puanTipi === "ham" ? 500 : 560) ? n : null;
+  })();
+
   useEffect(() => {
     const q = new URLSearchParams(window.location.search);
     const qTur = q.get("tur") as PuanTuru | null;
     if (qTur && TURLER.includes(qTur)) setTur(qTur);
     const qKod = q.get("kod");
+    const qSira = q.get("sira");
+    const qPuan = q.get("puan");
     if (qKod && /^\d+$/.test(qKod)) setKod(qKod);
+    else if (qSira && /^\d+$/.test(qSira)) {
+      setMod("sira");
+      setSiraGirdi(qSira);
+    } else if (qPuan && /^\d+([.,]\d+)?$/.test(qPuan)) {
+      setMod("puan");
+      setPuanGirdi(qPuan.replace(".", ","));
+      if (q.get("tip") === "ham") setPuanTipi("ham");
+    }
 
     let k: Kayit | null = null;
     try {
@@ -149,9 +186,14 @@ export default function HedefNet() {
     if (!yuklendi) return;
     const q = new URLSearchParams();
     q.set("tur", tur);
-    if (kod) q.set("kod", kod);
+    if (mod === "bolum" && kod) q.set("kod", kod);
+    if (mod === "sira" && siraNum) q.set("sira", String(siraNum));
+    if (mod === "puan" && puanNum) {
+      q.set("puan", String(puanNum));
+      if (puanTipi === "ham") q.set("tip", "ham");
+    }
     window.history.replaceState(null, "", `${window.location.pathname}?${q}`);
-  }, [tur, kod, yuklendi]);
+  }, [tur, kod, yuklendi, mod, siraNum, puanNum, puanTipi]);
 
   useEffect(() => {
     const kutu = kutuRef.current;
@@ -195,14 +237,28 @@ export default function HedefNet() {
 
   const diplomaSayi = sayi(kayit.diploma);
   const diploma = diplomaSayi != null && diplomaSayi >= 50 && diplomaSayi <= 100 ? diplomaSayi : null;
-  const hedef = program ? hedefHesapla(program, tur, tip, { diploma, oncekiYil: kayit.oncekiYil }) : null;
+  const ogrenci = { diploma, oncekiYil: kayit.oncekiYil };
+  const hedef =
+    mod === "bolum"
+      ? program
+        ? hedefHesapla(program, tur, tip, ogrenci)
+        : null
+      : mod === "sira"
+        ? siraNum
+          ? siraHedefi(tur, siraNum, ogrenci)
+          : null
+        : puanNum
+          ? puanHedefi(tur, puanNum, puanTipi, ogrenci)
+          : null;
+  /** Program-only extras (Güvenli/Hedef badges) need a program in "bolum" mode. */
+  const sinifProgrami = mod === "bolum" ? program : null;
 
   const mevcutHam = 100 + agirlikliToplam(tur, mevcut);
   const mevcutVar = Object.values(mevcut).some((n) => (n ?? 0) > 0);
   const obpEk = hedef?.obpli ? hedef.obpKatki : 0;
   const mevcutPuan = mevcutHam + obpEk;
   const mevcutSira = mevcutVar ? siralamaTahmini(tur, mevcutPuan, !!hedef?.obpli).sira : null;
-  const mevcutSinif = program && mevcutSira ? siniflandir(program, mevcutSira) : null;
+  const mevcutSinif = sinifProgrami && mevcutSira ? siniflandir(sinifProgrami, mevcutSira) : null;
 
   // Starting point. With a saved deneme we ask once (and remember); without one
   // there is nothing to build on, so the plan starts from scratch.
@@ -218,7 +274,7 @@ export default function HedefNet() {
   const planToplam = agirlikliToplam(tur, plan);
   const planPuan = 100 + planToplam + obpEk;
   const planSira = hedef ? siralamaTahmini(tur, planPuan, hedef.obpli).sira : null;
-  const planSinif = program && planSira ? siniflandir(program, planSira) : null;
+  const planSinif = sinifProgrami && planSira ? siniflandir(sinifProgrami, planSira) : null;
   /** Ağırlıklı puan cinsinden eksik (>0) ya da fazla (<0). */
   const eksik = hedef ? hedef.gerekenToplam - planToplam : 0;
   const planTamam = !!hedef && eksik <= 1e-6;
@@ -248,7 +304,8 @@ export default function HedefNet() {
 
   // New program or starting point → from the deneme: sliders sit on it;
   // from scratch: the robot drafts a balanced plan to edit.
-  const programAnahtari = program ? `${tur}:${program.kod}` : null;
+  // Re-draft when the kind of target changes or a target first appears, not on every keystroke.
+  const programAnahtari = hedef ? `${mod}:${tur}:${mod === "bolum" ? program?.kod : ""}` : null;
   useEffect(() => {
     if (!programAnahtari || !yuklendi || !temel) return;
     setRobotSonuc(null);
@@ -360,6 +417,67 @@ export default function HedefNet() {
             </button>
           ))}
         </div>
+        <div className="hn-temel hn-mod" role="group" aria-label="Neyi hedefliyorsun">
+          <span>Hedefim:</span>
+          {MODLAR.map((m) => (
+            <button key={m.key} type="button" className={mod === m.key ? "aktif" : ""} aria-pressed={mod === m.key} onClick={() => setMod(m.key)}>
+              {m.label}
+            </button>
+          ))}
+        </div>
+
+        {mod === "sira" && (
+          <div className="tr-sira hn-hedef-girdi">
+            <label htmlFor="hn-sira">
+              Hedef başarı sıram
+              <small>Örneğin ilk 1.000 için 1000 yaz. {PUAN_TURLERI.find((x) => x.key === tur)!.label} puan türünde.</small>
+            </label>
+            <input
+              id="hn-sira"
+              inputMode="numeric"
+              placeholder="ör. 1.000"
+              value={fmtGirdi(siraGirdi)}
+              onChange={(e) => setSiraGirdi(e.target.value.replace(/\D/g, ""))}
+            />
+          </div>
+        )}
+
+        {mod === "puan" && (
+          <>
+            <div className="tr-sira hn-hedef-girdi">
+              <label htmlFor="hn-puan">
+                Hedef puanım
+                <small>
+                  {puanTipi === "yerlestirme"
+                    ? "OBP dahil yerleştirme puanı (100–560)."
+                    : "OBP'siz sınav puanı (100–500)."}
+                </small>
+              </label>
+              <input
+                id="hn-puan"
+                inputMode="decimal"
+                placeholder="ör. 400"
+                value={puanGirdi}
+                onChange={(e) => setPuanGirdi(e.target.value.replace(/[^\d.,]/g, ""))}
+              />
+            </div>
+            <div className="hn-temel" role="group" aria-label="Puan türü">
+              <span>Bu puan:</span>
+              <button type="button" className={puanTipi === "yerlestirme" ? "aktif" : ""} aria-pressed={puanTipi === "yerlestirme"} onClick={() => setPuanTipi("yerlestirme")}>
+                Yerleştirme (OBP&apos;li)
+              </button>
+              <button type="button" className={puanTipi === "ham" ? "aktif" : ""} aria-pressed={puanTipi === "ham"} onClick={() => setPuanTipi("ham")}>
+                Sınav (OBP&apos;siz)
+              </button>
+            </div>
+            {puanGirdi && !puanNum && (
+              <p className="tr-uyari">Puan {puanTipi === "ham" ? "100 ile 500" : "100 ile 560"} arasında olmalı.</p>
+            )}
+          </>
+        )}
+
+        {mod === "bolum" && (
+          <>
         <label className="hn-etiket" htmlFor="hn-ara">
           Hedef program
         </label>
@@ -407,17 +525,20 @@ export default function HedefNet() {
             )}
           </div>
         )}
+          </>
+        )}
       </section>
 
-      {!program && kod && liste && (
+      {mod === "bolum" && !program && kod && liste && (
         <p className="tr-ipucu-kutu">
           {kod} kodlu programı {tur} puan türünde bulamadık. Yukarıdan arayarak seçebilirsin.
         </p>
       )}
 
-      {program && hedef && (
+      {hedef && (
         <>
           <section className="tr-giris hn-ozet">
+            {mod === "bolum" && (
             <div className="tr-turler" role="group" aria-label="Hedef">
               <button type="button" className={tip === "taban" ? "aktif" : ""} onClick={() => setTip("taban")} aria-pressed={tip === "taban"}>
                 Tabana ulaş
@@ -426,6 +547,7 @@ export default function HedefNet() {
                 Güvenli bölgeye gir
               </button>
             </div>
+            )}
             <dl className="hn-rakamlar">
               <div>
                 <dt>Hedef sıra</dt>
@@ -452,8 +574,15 @@ export default function HedefNet() {
                   ? `Hedef, programın son iki yıldaki taban sıralarından zor olanı (${TERCIH_VERI_YILI - 1}–${TERCIH_VERI_YILI}).`
                   : "Güvenli bölge: tercih robotunun Güvenli dediği sıra, yani tabanın %80'i.")}
               {hedef.belirleyen === "sira-sarti" &&
-                `ÖSYM bu programı tercih etmek için ilk ${program.siraSarti!.toLocaleString("tr-TR")} içinde olmayı şart koşuyor; hedef bu şart.`}
-              {hedef.belirleyen === "puan-sarti" && `Bu program en az ${program.puanSarti} yerleştirme puanı şartı koyuyor; hedef bu şart.`}
+                `ÖSYM bu programı tercih etmek için ilk ${program?.siraSarti?.toLocaleString("tr-TR")} içinde olmayı şart koşuyor; hedef bu şart.`}
+              {hedef.belirleyen === "puan-sarti" && `Bu program en az ${program?.puanSarti} yerleştirme puanı şartı koyuyor; hedef bu şart.`}
+              {hedef.belirleyen === "sira" &&
+                `${tur} puan türünde ilk ${hedef.hedefSira!.toLocaleString("tr-TR")} içine girmek için; ÖSYM'nin ${TERCIH_VERI_YILI} puan dağılımına göre.`}
+              {hedef.belirleyen === "puan" &&
+                `${TERCIH_VERI_YILI} puan dağılımına göre bu puan ${tur} türünde yaklaşık ${fmtSira(hedef.hedefSira!)}. sıraya denk geliyor.` +
+                  (puanTipi === "yerlestirme" && diploma == null
+                    ? " Diploma notunu girmediğin için OBP katkısı 0 sayıldı; aşağıdan girersen gereken net azalır."
+                    : "")}
               {hedef.belirleyen === "serbest" &&
                 "Bu programın kontenjanı geçen yıl dolmadı ve sıra şartı yok: puanının hesaplanması yeterli oldu. Yine de kontenjanlar her yıl değişebilir."}
             </p>
@@ -686,7 +815,15 @@ export default function HedefNet() {
         </>
       )}
 
-      {!program && !kod && (
+      {mod !== "bolum" && !hedef && (
+        <p className="tr-ipucu-kutu">
+          {mod === "sira"
+            ? "Hedeflediğin başarı sırasını yaz; o sıraya girmek için ders ders kaç net gerektiğini gösterelim."
+            : "Hedeflediğin puanı yaz; o puan için ders ders kaç net gerektiğini gösterelim."}
+        </p>
+      )}
+
+      {mod === "bolum" && !program && !kod && (
         <p className="tr-ipucu-kutu">
           Hedeflediğin programı ara ve seç. Ya da <Link href="/tercih-robotu">tercih robotunda</Link> bir programın altındaki{" "}
           <b>Kaç net lazım?</b> bağlantısına bas.

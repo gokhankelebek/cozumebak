@@ -7,7 +7,7 @@ import { TERCIH_VERI_YILI } from "@/lib/tercih";
 import { SITE_NAME } from "@/lib/seo";
 
 const TITLE = `Hedef Net Hesaplama ${TERCIH_VERI_YILI + 1} — Bölüm İçin Kaç Net Gerekir?`;
-const DESCRIPTION = `Hedeflediğin üniversite ve bölümü seç; ${TERCIH_VERI_YILI} ÖSYM taban sıralarına göre TYT ve AYT'de ders ders kaç net yapman gerektiğini gör. Emin olduğun dersleri sabitle, gerisini robot dağıtsın.`;
+const DESCRIPTION = `Hedeflediğin bölümü, sıralamayı (ilk 1.000 gibi) ya da puanı seç; ${TERCIH_VERI_YILI} ÖSYM verilerine göre TYT ve AYT'de ders ders kaç net yapman gerektiğini gör. Planını kendin kur ya da robottan dengeli bir öneri al.`;
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -34,6 +34,10 @@ const SSS: FaqItem[] = [
       "Var. Bu yüzden kaydırıcılar senin planın: planı son deneme netlerinden ya da sıfırdan başlatırsın, istediğin dersi istediğin nete çekersin ve hedefe ne kadar kaldığını anında görürsün. Her dersin yanında o dersten tek başına kaç net daha yapsan hedefin kapanacağı yazar. İstersen 'Kalanı robot dağıtsın' düğmesiyle robot, dokunmadığın derslere dengeli bir öneri ekler.",
   },
   {
+    question: "İlk 1.000'e girmek ya da 400 puan almak için kaç net gerekir?",
+    answer: `'Hedefim' seçiminden 'Bir sıralama' ya da 'Bir puan'ı seç ve hedefini yaz. Sıralama, ÖSYM'nin ${TERCIH_VERI_YILI} puan dağılımıyla puana çevrilir; puan hedefinde OBP'li yerleştirme puanı mı yoksa OBP'siz sınav puanı mı kastettiğini seçebilirsin. Gereken puan, bölüm hedefindeki gibi ders ders netlere dağıtılır.`,
+  },
+  {
     question: "Hangi dersteki net daha çok puan getirir?",
     answer:
       "Her testin yanında 1 netin yaklaşık kaç puan ettiği yazar. Sayısalda AYT Matematik ve Fen testleri, TYT testlerinden daha değerlidir; ama 40 soruluk bir testte 35'ten 40'a çıkmak, 15'ten 20'ye çıkmaktan çok daha zordur. En verimli plan genellikle henüz boşluğu çok olan derslere yüklenmektir.",
@@ -55,7 +59,7 @@ export default function HedefNetPage() {
           Hedef <em>net</em>
         </h1>
         <p className="hero-sub">
-          Hayalindeki bölümü seç; o bölüme girmek için hangi derste kaç net yapman gerektiğini gör. Planını kendin
+          Hayalindeki bölümü, bir sıralamayı (ilk 1.000 gibi) ya da bir puanı hedef seç; hangi derste kaç net yapman gerektiğini gör. Planını kendin
           kur ya da robottan dengeli bir öneri al. Netlerin{" "}
           <Link href="/yks-puan-hesaplama" style={{ color: "var(--solve-deep)", fontWeight: 600 }}>
             puan hesaplama
