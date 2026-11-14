@@ -4,11 +4,12 @@ import JsonLd from "@/components/JsonLd";
 import PuanHesaplama from "@/components/PuanHesaplama";
 import { faqLd, type FaqItem } from "@/lib/jsonLd";
 import { AGIRLIK, KILAVUZ_YILI, PUAN_TURLERI, TESTS, katsayi, type PuanTuru } from "@/lib/yksPuan";
+import { PUAN_PAYI, VERI_YILI } from "@/lib/yksSiralama";
 import { SITE_NAME } from "@/lib/seo";
 
-const TITLE = `YKS Puan Hesaplama ${KILAVUZ_YILI + 1} — TYT, SAY, EA, SÖZ, DİL`;
+const TITLE = `YKS Puan ve Sıralama Hesaplama ${KILAVUZ_YILI + 1}`;
 const DESCRIPTION =
-  "Doğru ve yanlışlarını gir; TYT, Sayısal, Eşit Ağırlık, Sözel ve Dil puanını OBP dahil anında hesapla. Hangi dersteki netin daha çok puan getirdiğini de gör.";
+  "Doğru ve yanlışlarını gir; TYT, Sayısal, Eşit Ağırlık, Sözel ve Dil puanını OBP dahil hesapla, ÖSYM verisine göre tahmini sıralamanı gör.";
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -42,6 +43,10 @@ const SSS: FaqItem[] = [
       "Hayır, tahmindir. ÖSYM puanları o yılki tüm adayların ortalama ve standart sapmasına göre standart puan olarak hesaplar; bu yüzden aynı net farklı yıllarda farklı puan getirebilir. Araç, ÖSYM'nin yayımladığı test ağırlıklarını kullanarak yakın bir tahmin verir.",
   },
   {
+    question: "YKS sıralamam nasıl tahmin ediliyor?",
+    answer: `ÖSYM her yıl, her puan türünde belirli bir puanın üstünde kaç aday olduğunu yayımlar. Başarı sıran yaklaşık olarak senin puanın ve üstündeki aday sayısıdır; araç bu sayıyı ÖSYM'nin ${VERI_YILI} YKS verisinden okur. Diploma notunu girersen yerleştirme puanı (OBP dahil), girmezsen sınav puanı dağılımı kullanılır. Puan tahmini olduğu için sıralamayı ±${PUAN_PAYI} puanlık bir aralıkla da gösteririz.`,
+  },
+  {
     question: "YKS'de baraj puanı var mı?",
     answer:
       "Eskiden uygulanan 150 ve 180 puanlık genel barajlar kaldırıldı. Bugün TYT puanının hesaplanması için Türkçe veya Temel Matematik testinden en az 0,5 net, bir lisans puan türünün hesaplanması için o türün AYT (veya YDT) testlerinden en az birinde 0,5 net gerekir. Bazı lisans programlarında ayrıca başarı sırası şartı vardır.",
@@ -66,11 +71,11 @@ export default function YksPuanHesaplamaPage() {
       <section className="hero" style={{ paddingBottom: 24 }}>
         <p className="eyebrow">Araç · YKS {KILAVUZ_YILI + 1}</p>
         <h1 className="hero-title">
-          YKS <em>puan</em> hesaplama
+          YKS <em>puan</em> ve sıralama hesaplama
         </h1>
         <p className="hero-sub">
           Deneme ya da sınav sonrası doğru ve yanlışlarını gir; TYT, Sayısal, Eşit Ağırlık, Sözel ve Dil
-          puanını OBP dahil anında gör. Hangi dersteki bir netin daha çok puan getirdiğini de gösteriyoruz.
+          puanını OBP dahil anında, tahmini sıralamanı da ÖSYM&apos;nin {VERI_YILI} verisiyle gör.
         </p>
       </section>
 

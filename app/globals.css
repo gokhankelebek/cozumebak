@@ -665,6 +665,14 @@ section[id]{scroll-margin-top:90px}
 .ph-yer{display:block;font-family:var(--mono);font-weight:700;font-size:1.25rem}
 .ph-ham{display:block;font-size:.76rem;color:var(--ink-soft)}
 .ph-kart-yok{font-family:var(--mono);color:var(--ink-faint)}
+.ph-sira{display:block;font-size:.76rem;color:var(--solve-deep);font-weight:600}
+.ph-siralama{margin-top:14px;padding:14px 16px;border-radius:12px;background:var(--solve-tint);border:1.5px solid rgba(15,138,95,.25)}
+.ph-siralama p{margin:0}
+.ph-siralama-bas{font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--solve-deep)}
+.ph-siralama-deger{font-family:var(--serif);font-weight:600;font-size:2rem;line-height:1.15;margin:4px 0 6px!important}
+.ph-siralama-aralik,.ph-siralama-ham,.ph-siralama-ipucu{font-size:.84rem;color:var(--ink-soft);line-height:1.45}
+.ph-siralama-ham,.ph-siralama-ipucu{margin-top:6px!important}
+.ph-not a{text-decoration:underline}
 .ph-neden{font-size:.9rem;color:var(--ink-soft);margin:12px 0 0}
 .ph-firsat{margin-top:18px;padding-top:14px;border-top:1px solid var(--line)}
 .ph-firsat h3{font-size:1rem;margin:0 0 8px}
@@ -698,6 +706,7 @@ section[id]{scroll-margin-top:90px}
   .ph-mini{display:flex;align-items:center;gap:10px;position:fixed;left:16px;right:16px;bottom:16px;z-index:40;background:var(--ink);color:#fff;border-radius:14px;padding:12px 16px;box-shadow:0 14px 30px -12px rgba(14,27,51,.6)}
   .ph-mini strong{font-family:var(--mono);font-size:1.15rem}
   .ph-mini-ok{margin-left:auto;font-size:.86rem;opacity:.8}
+  .ph-mini-sira{font-size:.82rem;opacity:.85}
   body:has(.ph-mini){padding-bottom:84px}
 }
 @media (max-width:520px){
