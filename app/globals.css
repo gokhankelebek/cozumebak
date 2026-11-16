@@ -74,7 +74,7 @@ a{color:inherit;text-decoration:none;cursor:pointer}
 .brand-mark{display:grid;place-items:center;flex:0 0 auto}
 .brand-word{font-family:"Quicksand",var(--sans);font-weight:600;letter-spacing:-.005em}
 .brand-word .brand-accent{color:var(--coral)}
-.nav{display:flex;align-items:center;gap:30px}
+.nav{display:flex;align-items:center;gap:24px}
 .nav a{font-size:.95rem;font-weight:500;color:var(--ink-soft);transition:color .18s;white-space:nowrap}
 /* Between the hamburger breakpoint and full width, 10 items don't fit: tighten the
    spacing and drop the two links that exist elsewhere (logo → home, sample lesson). */
