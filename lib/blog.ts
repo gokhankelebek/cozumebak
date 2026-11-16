@@ -43,6 +43,23 @@ export const TAGS: Tag[] = [
 
 export const POSTS: BlogPost[] = [
   {
+    slug: "maarif-turev-integral-logaritma-var-mi",
+    title: "Maarif Modelinde Türev, İntegral ve Logaritma Var mı? (YKS 2027 ve 2028)",
+    description:
+      "Kısa cevap: Türev var ve genişledi, integral Maarif programından çıkarıldı, logaritma 12'den 11. sınıfa indi. Ama 2027'de sınava giriyorsan hiçbir şey değişmedi; integral hâlâ AYT'de. Hangi kuşağın hangi programdan sorumlu olduğu ve kalkan-yer değiştiren tüm konular tek tabloda.",
+    date: "2026-11-16",
+    tags: ["maarif-modeli", "mufredat", "yks"],
+    readingMinutes: 5,
+    relatedTopics: [
+      "turevin-tanimi",
+      "integral-kavrami",
+      "belirsiz-integral",
+      "logaritma-fonksiyonu",
+      "limit-kavrami",
+    ],
+    status: "published",
+  },
+  {
     slug: "ara-tatil-matematik-deneme-analizi",
     title: "Kasım Ara Tatili: 9 Günde Matematikte Teşhis ve Onarım Planı",
     description:
