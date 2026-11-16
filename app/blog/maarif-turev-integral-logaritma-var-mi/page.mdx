@@ -1,0 +1,129 @@
+import { postMetadata } from "@/lib/seo";
+import JsonLd from "@/components/JsonLd";
+import { faqLd } from "@/lib/jsonLd";
+
+export const metadata = postMetadata("maarif-turev-integral-logaritma-var-mi");
+
+export const SSS = [
+  {
+    question: "2027 YKS'de integral var mı?",
+    answer:
+      "Evet. 2026-2027'de 12. sınıfta olan öğrenciler ve 2027'de sınava girecek mezunlar eski programdan sorumlu; integral bu kuşak için kapsamda. Son yıllarda AYT'de ortalama 4 kadar integral sorusu çıktı.",
+  },
+  {
+    question: "Maarif Modelinde integral var mı?",
+    answer:
+      "Hayır. Maarif Modeli lise matematik programında integrale yer verilmedi; programdan tamamen çıkarılan tek başlık integral. Onun yerine limit ve türev 12. sınıfta 'Değişimin Matematiği' teması altında daha geniş işleniyor.",
+  },
+  {
+    question: "Maarif Modelinde türev var mı?",
+    answer:
+      "Evet, hem de genişleyerek. Türev 12. sınıfta iki tema hâlinde toplam 56 ders saati. Diferansiyel, Ortalama Değer Teoremi ve Rolle Teoremi gibi önceki programda olmayan kavramlar eklendi.",
+  },
+  {
+    question: "Maarif Modelinde logaritma var mı?",
+    answer:
+      "Evet. Üstel ve logaritmik fonksiyonlar kalkmadı; 12. sınıftan 11. sınıfa indi. Logaritmik denklem ve eşitsizlikler 11. sınıf programında.",
+  },
+  {
+    question: "Maarif Modeli ile hangi matematik konuları kalktı?",
+    answer:
+      "Tamamen çıkarılan tek başlık integral. Trigonometrinin bir bölümü çıkarıldı; diğer konuların çoğu kalkmadı, sınıf değiştirdi. Örneğin logaritma 12'den 11'e indi; çember ve katı cisimler 11'den 12'ye, polinomlar 10'dan 12'ye taşındı.",
+  },
+  {
+    question: "Maarif Modeline göre YKS'ye ilk hangi yıl girilecek?",
+    answer:
+      "2028. Maarif Modeli 2024-2025'te 9. sınıfta başladı ve her yıl bir üst sınıfa geçiyor. 2026-2027'de 11. sınıfta olan öğrenciler, 11 ve 12'yi yeni programla okuyup Haziran 2028'de sınava girecek ilk kuşak. ÖSYM, YKS 2028'in kapsamını henüz açıklamadı.",
+  },
+];
+
+<JsonLd data={faqLd(SSS)} />
+
+<BlogPost slug="maarif-turev-integral-logaritma-var-mi" />
+
+<p className="lead">Maarif Modeli geldiğinden beri en çok sorulan üç soru aynı: türev var mı, integral kalktı mı, logaritma ne oldu? Cevap hangi yıl sınava girdiğine göre değişiyor. Önce kısa cevap, sonra ayrıntılar.</p>
+
+## Kısa cevap
+
+| | YKS 2027 (bu yıl 12. sınıf ve mezunlar) | Maarif Modeli (YKS 2028 ve sonrası) |
+| --- | --- | --- |
+| **Türev** | Var | **Var**, genişledi (12. sınıf, 56 saat) |
+| **İntegral** | **Var**, AYT'de ~4 soru | **Yok**, programdan çıkarıldı |
+| **Logaritma** | Var (eski programda 12. sınıf) | **Var**, 11. sınıfa indi |
+| **Limit** | Var | Var (12. sınıf) |
+
+> **2027'de sınava giriyorsan hiçbir şey değişmedi: türev de integral de logaritma da kapsamda.** Maarif Modeli seni değil, bu yıl 11. sınıfta olanları ve sonrasını etkiliyor.
+
+## Hangi kuşak hangi programdan sorumlu?
+
+Maarif Modeli liseye tek seferde gelmedi, her yıl bir sınıf ilerledi:
+
+| Eğitim öğretim yılı | Maarif Modeli'nin uygulandığı sınıflar |
+| --- | --- |
+| 2024-2025 | 9 |
+| 2025-2026 | 9 · 10 |
+| **2026-2027** | **9 · 10 · 11** |
+| 2027-2028 | 9 · 10 · 11 · 12 (geçiş tamamlanır) |
+
+Buna göre:
+
+- **2026-2027'de 12. sınıftaysan** (ya da 2027'de mezun olarak gireceksen): eski programdan sorumlusun. Sınavın **YKS 2027**.
+- **2026-2027'de 11. sınıftaysan**: 11'i ve 12'yi yeni programla okuyacak ilk kuşaksın. Sınavın **Haziran 2028**.
+- **9 ya da 10. sınıftaysan**: baştan sona Maarif Modeli ile okuyorsun.
+
+## İntegral: Maarif'te yok, 2027'de var
+
+Maarif Modeli lise programında **integrale yer verilmedi**. Konular arasında programdan tümüyle çıkarılan tek başlık bu. MEB'in program metnindeki gerekçesi, integralin büyük ölçüde işlem odaklı kaldığı ve anlamlı bir öğrenme sağlamadığı yönünde. Ayrıntılı tartışmayı [Maarif Modeli müfredat yazımızda](/blog/maarif-modeli-matematik-mufredati) yaptık.
+
+Ama bu karar **2027 sınavını etkilemiyor.** Bu yıl 12. sınıfta olan öğrenci hâlâ eski programı okuyor ve integral, son yıllarda AYT'de ortalama **4 kadar soruyla** yüksek ağırlıklı bir blok. "İntegral kalktı" haberine bakıp konuyu atlamak, dört soruyu baştan vermek demek. Neyi hangi sırayla çalışacağını [YKS 2027 yazımızda](/blog/yks-2027-matematik-hangi-konudan-baslamali) anlattık; konuya [integral kavramı](/konular/integral-kavrami) ve [belirsiz integral](/konular/belirsiz-integral) sayfalarından başlayabilirsin.
+
+## Türev: kalkmadı, büyüdü
+
+Türev Maarif Modeli'nde **kalkmadı; tersine genişledi.** 12. sınıfta *Değişimin Matematiği* başlığı altında limitle birlikte işleniyor: limit 28, türev iki tema hâlinde toplam **56 ders saati**. Önceki programda olmayan birkaç kavram da eklendi:
+
+- diferansiyel,
+- Ortalama Değer Teoremi,
+- Rolle Teoremi.
+
+Yani hangi kuşaktan olursan ol, türev AYT matematiğin ağır bloklarından biri olmaya devam ediyor. Temeli [türevin tanımı](/konular/turevin-tanimi) ve [limit kavramı](/konular/limit-kavrami) sayfalarında kurabilirsin.
+
+## Logaritma: kalkmadı, bir yıl erkene geldi
+
+Üstel ve logaritmik fonksiyonlar Maarif Modeli'nde **12. sınıftan 11. sınıfa indi.** 11. sınıf programında üstel ve logaritmik fonksiyonlar, denklemler ve eşitsizlikler 42 ders saati tutuyor.
+
+Bu değişiklik iyi haber: 12'de karşına çıkacak $\ln x$ ve $e^{x}$ türevleri için logaritma dilini önceden bilmiş oluyorsun. 11. sınıftaysan okul bu konuya genelde ikinci dönemde geliyor; erken başlamak istersen [logaritma fonksiyonu](/konular/logaritma-fonksiyonu) ve [logaritmalı denklemler](/konular/logaritmali-denklemler) sayfaları hazır. 11. sınıfın tüm yeni haritasını [11. sınıf Maarif yazımızda](/blog/11-sinif-matematik-maarif-modeli) çıkardık.
+
+## Başka neler kalktı, neler yer değiştirdi?
+
+Değişikliklerin çoğu "kalktı" değil, **sınıf değiştirdi**:
+
+| Konu | Eski programda | Maarif'te |
+| --- | --- | --- |
+| İntegral | 12. sınıf | **Programda yok** |
+| Üstel ve logaritmik fonksiyonlar | 12. sınıf | 11. sınıf |
+| Polinomlar | 10. sınıf | 12. sınıf |
+| Çember ve daire | 11. sınıf | 12. sınıf |
+| Katı cisimler | 11. sınıf | 12. sınıf |
+| Dörtgenler ve çokgenler | 10. sınıf | 11. sınıf |
+| Doğrunun analitiği | 11. sınıf | 10. sınıf |
+
+Bunlara ek olarak **trigonometrinin bir bölümü** programdan çıkarıldı.
+
+## Kesin olan ve olmayan
+
+Kesin olan **müfredat**: MEB'in programları temaları ve ders saatleriyle yayımlandı; yukarıdaki tablolar oradan.
+
+Kesin olmayan **sınav**: ÖSYM, YKS 2028'in kapsamını ve soru dağılımını henüz açıklamadı. "2028'de integralden kesin soru gelmeyecek" ya da "türevden şu kadar soru çıkacak" diyen kaynaklara temkinli yaklaş. Açıklama geldiğinde bu yazıyı güncelleyeceğiz.
+
+## Sıkça sorulan sorular
+
+<div className="ph-sss">
+  {SSS.map((s) => (
+    <details key={s.question}>
+      <summary>{s.question}</summary>
+      <p>{s.answer}</p>
+    </details>
+  ))}
+</div>
+
+<BlogPostFooter slug="maarif-turev-integral-logaritma-var-mi" />
