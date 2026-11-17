@@ -9,9 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@next/mdx": "^15.0.0",
     "@mdx-js/loader": "^3.0.0",
     "@mdx-js/react": "^3.0.0",
+    "@next/mdx": "^15.0.0",
+    "@vercel/analytics": "^2.0.1",
     "hast-util-from-html-isomorphic": "^2.0.0",
     "katex": "^0.16.9",
     "next": "^15.0.0",
