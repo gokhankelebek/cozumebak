@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import Link from "next/link";
 import Script from "next/script";
+import { Analytics } from "@vercel/analytics/next";
 import SiteHeader from "@/components/SiteHeader";
 import JsonLd from "@/components/JsonLd";
 import { organizationLd, websiteLd } from "@/lib/jsonLd";
@@ -121,6 +122,7 @@ gtag('config', 'G-G30880NL87');`}
             </div>
           </div>
         </footer>
+        <Analytics />
       </body>
     </html>
   );

@@ -53,13 +53,18 @@ export default function GizlilikPage() {
         kişiyi tanımlamayı amaçlamayız.
       </p>
       <p>
+        Ayrıca barındırma sağlayıcımız Vercel'in <strong>Web Analytics</strong> aracıyla
+        sayfa görüntüleme sayılarını ölçüyoruz. Bu araç çerez kullanmaz; ziyaretleri tek
+        bir kişiyle eşleştirmeden, toplu sayılar olarak raporlar.
+      </p>
+      <p>
         Çerezleri tarayıcı ayarlarından dilediğin zaman engelleyebilir veya
         silebilirsin; bu, sitenin temel işlevlerini etkilemez.
       </p>
 
       <h2>Üçüncü taraf hizmetler</h2>
       <p>
-        Site; Google Analytics ve yazı tiplerinin sunulması gibi üçüncü taraf hizmetlerini
+        Site; Google Analytics, Vercel Web Analytics ve yazı tiplerinin sunulması gibi üçüncü taraf hizmetlerini
         kullanır. Bu hizmetlerin kendi gizlilik politikaları geçerlidir.
       </p>
 
