@@ -43,6 +43,24 @@ export const TAGS: Tag[] = [
 
 export const POSTS: BlogPost[] = [
   {
+    slug: "tyt-matematik-sure-yonetimi",
+    title: "TYT Matematikte Süre Yetmiyor mu? 40 Soru, 70 Dakika ve Üç Tur Yöntemi",
+    description:
+      "TYT matematikte neti çoğu zaman bilgi değil süre düşürür. 165 dakikayı testlere paylaştıran tablo, 90 saniye kuralı, dakikalarıyla üç turlu çözme düzeni ve \"boş mu bırakmalı, işaretlemeli mi?\" sorusunun olasılık hesabı. Dört denemede alışkanlığa çevirme planıyla.",
+    date: "2026-11-19",
+    tags: ["yks", "calisma-teknikleri", "egitim"],
+    readingMinutes: 7,
+    relatedTopics: [
+      "temel-kavramlar",
+      "sayi-problemleri",
+      "oran-oranti-tyt",
+      "hareket-problemleri",
+      "birinci-derece-denklem-tyt",
+      "ucgenler-tyt",
+    ],
+    status: "published",
+  },
+  {
     slug: "maarif-turev-integral-logaritma-var-mi",
     title: "Maarif Modelinde Türev, İntegral ve Logaritma Var mı? (YKS 2027 ve 2028)",
     description:

@@ -1,0 +1,110 @@
+import { postMetadata } from "@/lib/seo";
+
+export const metadata = postMetadata("tyt-matematik-sure-yonetimi");
+
+<BlogPost slug="tyt-matematik-sure-yonetimi" />
+
+<p className="lead">TYT matematikte neti düşüren şey çoğu zaman bilgi eksiği değil, süredir: son on soruya hiç bakamadan biten bir sınav. Bu yazıda 40 soruya ne kadar süre ayıracağını hesaplıyor, üç turlu çözme düzenini dakikalarıyla kuruyor ve "boş mu bıraksam, işaretlesem mi?" sorusunu olasılık hesabıyla cevaplıyoruz.</p>
+
+Ara tatilde deneme çözdüysen şu cümleyi büyük ihtimalle kurdun: "Süre yetseydi yapardım." Evde, süresiz çözünce yapabildiğin soruları sınavda kaçırıyorsan eksiğin konu değil, **sınavı çözme düzeni**. Bu eksik yeni konu çalışarak kapanmaz; ama iyi haber şu ki kapatmaya bir sonraki denemede başlayabilirsin.
+
+## Önce hesap: soru başına kaç saniyen var?
+
+TYT'de 120 soru için 165 dakika veriliyor (son açıklanan kılavuzdaki biçim bu; 2027 kılavuzu yayımlanınca süreyi oradan bir kez daha kontrol et). Düz hesapla soru başına
+
+$$\frac{165 \cdot 60}{120} = 82{,}5 \text{ saniye}$$
+
+düşüyor. Ama testler eşit değil: bir sosyal sorusu ile bir problem sorusu aynı sürede çözülmez. Bu yüzden süreyi testlere **sınavdan önce** paylaştırman gerekir. Başlangıç için şu dağılımı kullanabilirsin:
+
+| Test | Soru | Süre | Soru başına |
+| --- | --- | --- | --- |
+| Türkçe | 40 | 45 dk | ~68 sn |
+| Sosyal Bilimler | 20 | 20 dk | 60 sn |
+| Temel Matematik | 40 | 70 dk | 105 sn |
+| Fen Bilimleri | 20 | 25 dk | 75 sn |
+| Yedek (kodlama kontrolü) | | 5 dk | |
+
+Toplam 165 dakika. Bu tablo bir kural değil, başlangıç noktası: matematiğe 60 dakika ayıran da var, 75 dakika ayıran da. Hangisinin sana uyduğunu denemelerde ölçerek bulacaksın. Önemli olan sayının kendisi değil, **sınav başlamadan karar verilmiş olması**. Süreyi sınavın içinde paylaştırmaya çalışan öğrenci, hep o an çözdüğü testin lehine karar verir.
+
+## Asıl sorun: zor soruyla inatlaşmak
+
+Matematikte soru başına ortalama 105 saniyen var. Şimdi tanıdık bir sahneyi hesaplayalım: 14. soruda takıldın, "az kaldı" diyerek 5 dakika uğraştın.
+
+$$\frac{300 \text{ sn}}{105 \text{ sn}} \approx 2{,}9$$
+
+Yani o tek soruya **yaklaşık üç soruluk** süre harcadın. Karşılığında alabileceğin en fazla 1 net. Üstelik TYT'de her soru aynı değerde: 5 dakikada çözdüğün zor soru da 1 net, 40 saniyede çözdüğün kolay soru da 1 net. Süre biterken bakamadığın son sorular arasında o 40 saniyelik sorulardan birkaçı mutlaka vardır.
+
+Bunun için tek bir kurala ihtiyacın var:
+
+> **90 saniye kuralı:** Bir soruda 90 saniye geçti ve hâlâ çözüm yoluna giremediysen (denklemi kuramadıysan, şekilde ne arayacağını göremediysen) soruyu işaretle ve geç.
+
+Bu vazgeçmek değil, ertelemek. O soruya döneceksin; ama önce kolay netleri toplamış olarak.
+
+## Üç turda 40 soru
+
+Sırayla çözüp takıldığın yerde beklemek yerine testi üç kez dolaş. 70 dakikalık bir matematik süresi için düzen şöyle:
+
+| Tur | Süre | Ne yapıyorsun? |
+| --- | --- | --- |
+| 1. tur | 35 dk | 40 sorunun hepsine bak. Yolunu hemen gördüklerini çöz, diğerlerini işaretleyip geç. |
+| 2. tur | 25 dk | "Yolunu biliyorum ama uzun" dediklerine dön. Soru başına en çok 2,5 dakika. |
+| 3. tur | 10 dk | Kalan sorular, şık eleme ve kodlama kontrolü. |
+
+Birinci turda geçtiğin soruları iki ayrı işaretle ayır: yolunu bildiğin ama uzun süreceğini gördüğün sorunun yanına **tek çizgi**, hiç fikrinin olmadığı sorunun yanına **çift çizgi** koy. İkinci turda sadece tek çizgililere dönersin.
+
+Dakikaların gerçekçi olup olmadığını bir örnekle sınayalım. Birinci turda 24 soruyu ortalama 70 saniyede çözdüğünü, 16 soruyu da 25 saniye bakıp geçtiğini düşün:
+
+$$24 \cdot 70 + 16 \cdot 25 = 1680 + 400 = 2080 \text{ sn} \approx 35 \text{ dk}$$
+
+İkinci turda 16 sorunun tek çizgili 10 tanesine 2,5'ar dakika: 25 dakika. Geriye çift çizgili 6 soru ve 10 dakika kalır. Bu senaryoda 34 soruyu gerçekten çözmüş, kalan 6'sına da bakmış olarak testi bitirirsin. Sırayla gidip 14. soruda 5 dakika kaybeden öğrenci ise çoğu zaman 30. sorudan sonrasını hiç görmez.
+
+Üç turun en büyük kazancı da burada: **40 sorunun hepsini görmüş olursun.** Testin son bölümünde genellikle geometri soruları yer alır ve aralarında bir açı ya da alan bilgisiyle bir dakikada çözülenler olur. Onlara süre kalmadığı için değil, sıra gelmediği için bakamamak en pahalı hatadır.
+
+Bir de kodlama: her turun sonunda o turda çözdüklerini optik forma geçir. Kodlamayı en sona bırakırsan son 5 dakikanın telaşında kaydırma hatası yaparsın ve bu hata tek soruya değil, bütün teste mal olur.
+
+## Boş mu bırakmalı, işaretlemeli mi?
+
+TYT'de dört yanlış bir doğruyu götürür; her yanlış sana $\frac{1}{4}$ net kaybettirir. Soruların beş şıkkı var. Hiçbir şıkkı eleyemeden rastgele işaretlersen beklenen kazancın
+
+$$\frac{1}{5} \cdot 1 - \frac{4}{5} \cdot \frac{1}{4} = 0$$
+
+olur. Yani tamamen rastgele işaretlemek uzun vadede ne kazandırır ne kaybettirir; sadece sonucu şansa bırakır. Şık eledikçe hesap değişir:
+
+| Elediğin şık | Kalan şık | Soru başına beklenen net |
+| --- | --- | --- |
+| 0 | 5 | $0$ |
+| 1 | 4 | $\frac{1}{4} - \frac{3}{4}\cdot\frac{1}{4} = \frac{1}{16} \approx 0{,}06$ |
+| 2 | 3 | $\frac{1}{3} - \frac{2}{3}\cdot\frac{1}{4} = \frac{1}{6} \approx 0{,}17$ |
+| 3 | 2 | $\frac{1}{2} - \frac{1}{2}\cdot\frac{1}{4} = \frac{3}{8} \approx 0{,}38$ |
+
+İki şıkkı **emin olarak** eleyebildiğin altı soruda işaretleme yaparsan beklenen kazancın $6 \cdot \frac{1}{6} = 1$ net. Buradan çıkan kural:
+
+- Hiçbir şık eleyemiyorsan boş bırak ve süreni başka soruya ver.
+- En az iki şıkkı gerekçesiyle eleyebiliyorsan işaretle.
+
+İki uyarı. Birincisi, bu bir ortalama hesabı; tek bir sınavda garanti vermez. İkincisi ve daha önemlisi, hesap ancak elemen gerçekse tutar. ÖSYM'nin yanlış şıkları rastgele sayılar değildir; çoğu, [yarıda bırakılmış doğru işlemlerin sonucudur](/blog/osym-nasil-soru-kurar). "Bu şık gözüme yakın geldi" bir eleme gerekçesi değildir; "sonuç çift olmak zorunda, bu şık tek" bir gerekçedir.
+
+## Bunu 4 denemede alışkanlığa çevir
+
+Okuyup hak vermek yetmez; sınav anında eski alışkanlığına dönersin. Düzeni denemelerde adım adım kur:
+
+1. **1. deneme: sadece ölç.** Hiçbir şeyi değiştirme. 10., 20., 30. ve 40. soruda saate bak ve dakikayı kitapçığın kenarına yaz. Deneme bitince 3 dakikadan uzun süren soruları say. Çoğu öğrenci burada 4-5 sorunun sürenin üçte birini yediğini görür.
+2. **2. deneme: 90 saniye kuralı.** Tek değişiklik bu. Takıldığın soruyu işaretle, geç, sona kalan sürede dön.
+3. **3. deneme: üç tur.** Tek ve çift çizgiyle, tablodaki dakikalarla.
+4. **4. deneme: kendi dakikalarını yaz.** Birinci tur sana 35 değil 40 dakika sürüyorsa tabloyu buna göre düzelt. Süre planı senin hızına göre yazılmış olmalı.
+
+Her denemeden sonra yanlışlarını da ayır: "bilmiyordum" ile "süre yetmedi" aynı yanlış değildir ve çaresi aynı değildir. Bunun nasıl yapılacağını [deneme çözümleme yazısında](/blog/ara-tatil-matematik-deneme-analizi) dört etiketle anlattık. Birinci turda problemlerde yavaş kalıyorsan sorun süre değil, cümleyi denkleme çevirme hızındır; onun için [denklem kurma yazısına](/blog/tyt-matematik-problemleri-denklem-kurma) bak.
+
+## AYT'de de geçerli mi?
+
+Evet, düzen aynı; sadece dakikalar değişir. AYT'de 180 dakikan var ve yalnızca kendi puan türünün testlerini çözersin: sayısalda matematik ve fen, eşit ağırlıkta matematik ve edebiyat-sosyal bilimler-1, yani toplam 80 soru. Soru başına ortalama 135 saniye eder. AYT matematik soruları daha uzun olduğu için 90 saniye kuralını orada 2 dakikaya çıkarabilirsin; üç tur ve eleme hesabı aynen geçerli.
+
+## Bugün ne yapacaksın?
+
+TYT 19 Haziran 2027'de; önünde bu düzeni oturtmak için fazlasıyla deneme var. Bugün yapacağın tek şey şu: son denemenin matematik testini aç ve 3 dakikadan uzun uğraştığını hatırladığın soruları işaretle. Kaç tane olduğunu gör. Sonra [Hedef Net](/hedef-net) aracında hedefin için matematikte kaç nete ihtiyacın olduğuna bak; aradaki farkın ne kadarının konu, ne kadarının süre olduğunu ayırmak bundan sonra daha kolay olacak. Konu eksiklerin için [TYT Matematik](/tyt) sayfasındaki ünite sırası hazır.
+
+Süre yönetimi bir yetenek değil, alışkanlık. Dört denemede kurulur, haziranda kendiliğinden çalışır.
+
+Takıldığın her soruda: çözüme bak. 🧡
+
+<BlogPostFooter slug="tyt-matematik-sure-yonetimi" />
