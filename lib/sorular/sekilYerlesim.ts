@@ -181,7 +181,8 @@ export function sekilYerlesim(girdi: Sekil): Yerlesim {
   const maxX = Math.max(...xs);
   const minY = Math.min(...ys);
   const maxY = Math.max(...ys);
-  const olcek = Math.min(MAKS_G / (maxX - minX || 1), MAKS_Y / (maxY - minY || 1));
+  const [maksG, maksY] = sekil.boyut ?? [MAKS_G, MAKS_Y];
+  const olcek = Math.min(maksG / (maxX - minX || 1), maksY / (maxY - minY || 1));
   const N: Record<string, P> = {};
   for (const k of adlar) {
     const [x, y] = sekil.noktalar[k];
