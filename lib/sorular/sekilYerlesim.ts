@@ -42,6 +42,16 @@ export interface Yay {
   /** "aci" (thin angle mark, default), "ana" (part of the figure), "kalin" (highlighted arc) */
   tur?: "aci" | "ana" | "kalin";
 }
+export interface Elips {
+  cx: number;
+  cy: number;
+  rx: number;
+  ry: number;
+  arkaKesik: boolean;
+  /** Visible (front) part runs from t0 to t1 (screen parameter, radians, t1 > t0). */
+  t0: number;
+  t1: number;
+}
 export interface Dilim {
   merkez: P;
   r: number;
@@ -56,6 +66,9 @@ export interface Yerlesim {
   boyali: P[][];
   cemberler: { merkez: P; r: number }[];
   dilimler: Dilim[];
+  elipsler: Elips[];
+  /** Sampled outlines of curved parts, used only for collision checks. */
+  engeller: Cizgi[];
   cizgiler: Cizgi[];
   yaylar: Yay[];
   etiketler: Etiket[];
@@ -113,10 +126,31 @@ const kutuYariYuk = (k: Kutu) => (k.y1 - k.y0) / 2;
 /** Distance from the box centre, along unit u, at which a box of half-size (hw,hh) clears its anchor by `bosluk`. */
 const uzaklik = (u: P, hw: number, hh: number, bosluk: number) => bosluk + Math.abs(u.x) * hw + Math.abs(u.y) * hh;
 
-export function sekilYerlesim(sekil: Sekil): Yerlesim {
+/** Textbook oblique projection: depth drawn at 40°, foreshortened by half. */
+export function egikIzdusum([x, y, z]: [number, number, number]): [number, number] {
+  const k = 0.5;
+  const t = (40 * Math.PI) / 180;
+  return [x + k * z * Math.cos(t), y + k * z * Math.sin(t)];
+}
+
+export function sekilYerlesim(girdi: Sekil): Yerlesim {
+  const sekil: Sekil = girdi.noktalar3d
+    ? {
+        ...girdi,
+        noktalar: {
+          ...girdi.noktalar,
+          ...Object.fromEntries(Object.entries(girdi.noktalar3d).map(([k, v]) => [k, egikIzdusum(v)])),
+        },
+      }
+    : girdi;
   const adlar = Object.keys(sekil.noktalar);
   const xs = adlar.map((k) => sekil.noktalar[k][0]);
   const ys = adlar.map((k) => sekil.noktalar[k][1]);
+  for (const e of sekil.elipsler ?? []) {
+    const [mx, my] = sekil.noktalar[e.merkez];
+    xs.push(mx - e.rx, mx + e.rx);
+    ys.push(my - e.ry, my + e.ry);
+  }
   // Circles widen the drawing's extent.
   for (const c of sekil.cemberler ?? []) {
     const [mx, my] = sekil.noktalar[c.merkez];
@@ -203,6 +237,45 @@ export function sekilYerlesim(sekil: Sekil): Yerlesim {
     return { merkez: C, r, t1, d: -sweep };
   };
   const dilimler: Dilim[] = (sekil.dilimler ?? []).map((d) => ({ ...ekranYayi(d.merkez, d.bas, d.son), kesme: !!d.kesme }));
+  const elipsler: Elips[] = (sekil.elipsler ?? []).map((e) => {
+    const m = nokta(e.merkez);
+    const rx = e.rx * olcek;
+    const ry = e.ry * olcek;
+    let t0 = 0;
+    let t1 = Math.PI; // default: lower (front) half visible
+    if (e.tepe) {
+      // Tangent points from the apex: work on the unit circle, map back.
+      const T = nokta(e.tepe);
+      const px = (T.x - m.x) / rx;
+      const py = (T.y - m.y) / ry;
+      const d = Math.hypot(px, py);
+      if (d > 1) {
+        const phi = Math.atan2(py, px);
+        const a = Math.acos(1 / d);
+        // apex above (py < 0): visible rim runs from the right tangent, through the front, to the left one
+        t0 = phi + a;
+        t1 = phi - a + 2 * Math.PI;
+        if (t1 < t0) t1 += 2 * Math.PI;
+        for (const t of [phi + a, phi - a]) {
+          cizgiler.push({ a: T, b: { x: m.x + rx * Math.cos(t), y: m.y + ry * Math.sin(t) }, tur: "ana" });
+        }
+      }
+    }
+    return { cx: m.x, cy: m.y, rx, ry, arkaKesik: !!e.arkaKesik, t0, t1 };
+  });
+  const engeller: Cizgi[] = [];
+  for (const e of elipsler) {
+    const n = 48;
+    for (let i = 0; i < n; i++) {
+      const t1 = (i / n) * 2 * Math.PI;
+      const t2 = ((i + 1) / n) * 2 * Math.PI;
+      engeller.push({
+        a: { x: e.cx + e.rx * Math.cos(t1), y: e.cy + e.ry * Math.sin(t1) },
+        b: { x: e.cx + e.rx * Math.cos(t2), y: e.cy + e.ry * Math.sin(t2) },
+        tur: "ana",
+      });
+    }
+  }
   // Circles that points may sit on (full circles and arcs), for label placement.
   const cevreler = [...cemberler];
 
@@ -419,7 +492,7 @@ export function sekilYerlesim(sekil: Sekil): Yerlesim {
 
   // ── Nudge: push any label that touches a line or arc outward, 2 px at a time ──
   for (const e of etiketler) {
-    for (let adim = 0; adim < 8 && (cizimeDegiyor(e.kutu, cizgiler, yaylar) || cemberler.some((c) => kutuCemberMesafesi(e.kutu, c) < BOSLUK_MIN)); adim++) {
+    for (let adim = 0; adim < 8 && (cizimeDegiyor(e.kutu, [...cizgiler, ...engeller], yaylar) || cemberler.some((c) => kutuCemberMesafesi(e.kutu, c) < BOSLUK_MIN)); adim++) {
       e.x += e.yon.x * 2;
       e.y += e.yon.y * 2;
       e.kutu = { x0: e.kutu.x0 + e.yon.x * 2, y0: e.kutu.y0 + e.yon.y * 2, x1: e.kutu.x1 + e.yon.x * 2, y1: e.kutu.y1 + e.yon.y * 2 };
@@ -442,6 +515,10 @@ export function sekilYerlesim(sekil: Sekil): Yerlesim {
     ekle(c.b.x, c.b.y);
   }
   for (const k of Object.values(N)) ekle(k.x, k.y);
+  for (const e of elipsler) {
+    ekle(e.cx - e.rx, e.cy - e.ry);
+    ekle(e.cx + e.rx, e.cy + e.ry);
+  }
   for (const y of yaylar) {
     if (y.tur !== "ana" && y.tur !== "kalin") continue;
     for (let i = 0; i <= 48; i++) {
@@ -459,6 +536,8 @@ export function sekilYerlesim(sekil: Sekil): Yerlesim {
     boyali: (sekil.boyali ?? []).map((b) => b.map(nokta)),
     cemberler,
     dilimler,
+    elipsler,
+    engeller,
     noktalar: (sekil.isaretli ?? []).map(nokta),
     cokgenler,
     cizgiler,
@@ -537,6 +616,12 @@ export function sekilKontrol(y: Yerlesim): string[] {
     }
   }
   for (const e of y.etiketler) {
+    for (const c of y.engeller) {
+      if (kutuCizgiMesafesi(e.kutu, c.a, c.b) < BOSLUK_MIN) {
+        sorunlar.push(`${e.kaynak} ("${e.metin}") bir elipse değiyor`);
+        break;
+      }
+    }
     for (const c of y.cemberler) {
       if (kutuCemberMesafesi(e.kutu, c) < BOSLUK_MIN) sorunlar.push(`${e.kaynak} ("${e.metin}") çembere değiyor`);
     }
