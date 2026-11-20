@@ -7,6 +7,21 @@ const quiz: TopicQuiz = {
   questions: [
     {
       id: "ucgende-kenar-aci-bagintilari-01",
+      sekil: {
+        aciklama: "ABC üçgeninde A açısı 45, B açısı 95, C açısı 40 derece; kenarlar a, b ve c.",
+        noktalar: { A: [-0.56, 6.403], B: [0, 0], C: [7.071067811865475, 0] },
+        cokgenler: [["A", "B", "C"]],
+        acilar: [
+          { p: ["B", "A", "C"], metin: "45°" },
+          { p: ["C", "B", "A"], metin: "95°" },
+          { p: ["A", "C", "B"], metin: "40°" },
+        ],
+        kenarlar: [
+          { p: ["B", "C"], metin: "a" },
+          { p: ["C", "A"], metin: "b" },
+          { p: ["A", "B"], metin: "c" },
+        ],
+      },
       difficulty: "Orta",
       prompt: "Bir $ABC$ üçgeninde $\\widehat{A}=45°$, $\\widehat{B}=95°$, $\\widehat{C}=40°$ olduğuna göre, kenarların büyükten küçüğe doğru sıralaması aşağıdakilerden hangisidir?",
       options: ["$a>b>c$", "$b>a>c$", "$c>a>b$", "$b>c>a$", "$a>c>b$"],
@@ -25,6 +40,17 @@ const quiz: TopicQuiz = {
     },
     {
       id: "ucgende-kenar-aci-bagintilari-03",
+      sekil: {
+        aciklama: "İki kenarı 12 ve 5 olan üçgen; üçüncü kenar x.",
+        noktalar: { A: [2.0, 4.583], B: [0, 0], C: [12, 0] },
+        cokgenler: [["A", "B", "C"]],
+        kenarlar: [
+          { p: ["B", "C"], metin: "12" },
+          { p: ["A", "B"], metin: "5" },
+          { p: ["C", "A"], metin: "x", vurgu: true },
+        ],
+        gizli: ["A", "B", "C"],
+      },
       difficulty: "Orta",
       prompt: "Bir üçgenin iki kenarı $12$ ve $5$ birimdir. Üçüncü kenarın uzunluğu bir tam sayı ise alabileceği tüm değerlerin toplamı kaçtır?",
       options: ["$96$", "$108$", "$117$", "$119$", "$132$"],
@@ -34,6 +60,17 @@ const quiz: TopicQuiz = {
     },
     {
       id: "ucgende-kenar-aci-bagintilari-04",
+      sekil: {
+        aciklama: "Çevresi 24 olan üçgen; iki kenarı 6 ve 11, üçüncü kenar bilinmiyor.",
+        noktalar: { A: [4.909, 3.45], B: [0, 0], C: [11, 0] },
+        cokgenler: [["A", "B", "C"]],
+        kenarlar: [
+          { p: ["B", "C"], metin: "11" },
+          { p: ["A", "B"], metin: "6" },
+          { p: ["C", "A"], metin: "?", vurgu: true },
+        ],
+        gizli: ["A", "B", "C"],
+      },
       difficulty: "Orta",
       prompt: "Çevresi $24$ birim olan bir üçgenin iki kenarı $6$ ve $11$ birimdir. Bu üçgenin üçüncü kenarı ile ilgili aşağıdakilerden hangisi doğrudur?",
       options: ["Üçüncü kenar $7$'dir ve üçgen eşitsizliği sağlanır.", "Üçüncü kenar $7$'dir fakat üçgen eşitsizliği sağlanmaz.", "Üçüncü kenar $13$'tür ve üçgen eşitsizliği sağlanır.", "Üçüncü kenar $6$'dır ve üçgen eşitsizliği sağlanmaz.", "Üçüncü kenar $5$'tir ve üçgen eşitsizliği sağlanır."],
@@ -43,6 +80,17 @@ const quiz: TopicQuiz = {
     },
     {
       id: "ucgende-kenar-aci-bagintilari-05",
+      sekil: {
+        aciklama: "Kenarları x − 1, x + 2 ve x + 5 olan üçgen.",
+        noktalar: { A: [3.35, 2.186], B: [0, 0], C: [10, 0] },
+        cokgenler: [["A", "B", "C"]],
+        kenarlar: [
+          { p: ["B", "C"], metin: "x + 5" },
+          { p: ["C", "A"], metin: "x + 2" },
+          { p: ["A", "B"], metin: "x − 1" },
+        ],
+        gizli: ["A", "B", "C"],
+      },
       difficulty: "Zor",
       prompt: "Kenar uzunlukları $x-1$, $x+2$ ve $x+5$ birim olan bir üçgende $x$ bir tam sayıdır. Buna göre $x$ en az kaç olabilir?",
       options: ["$2$", "$3$", "$4$", "$5$", "$6$"],

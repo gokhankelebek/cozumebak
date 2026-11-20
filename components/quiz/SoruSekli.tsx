@@ -34,7 +34,12 @@ function Yazi({ e }: { e: Etiket }) {
       textAnchor="middle"
     >
       {parcalar.map((p, i) =>
-        /[A-Za-zÇĞİÖŞÜçğıöşü]/.test(p) ? (
+        // Point names like "d1": the trailing digits become a subscript (d₁).
+        e.tur === "nokta" && i > 0 && /^[0-9]+$/.test(p) ? (
+          <tspan key={i} fontFamily="KaTeX_Main, 'Times New Roman', serif" fontSize={boyut * 0.7} dy={boyut * 0.25}>
+            {p}
+          </tspan>
+        ) : /[A-Za-zÇĞİÖŞÜçğıöşü]/.test(p) ? (
           <tspan key={i} fontFamily="KaTeX_Math, 'Times New Roman', serif" fontStyle="italic">
             {p}
           </tspan>

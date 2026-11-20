@@ -7,6 +7,19 @@ const quiz: TopicQuiz = {
   questions: [
     {
       id: "dortgenler-tyt-01",
+      sekil: {
+        aciklama: "Tabanları 8 ve 12, yüksekliği 5 olan yamuk.",
+        noktalar: { A: [2, 5], B: [10, 5], C: [12, 0], D: [0, 0], H: [2, 0] },
+        cokgenler: [["A", "B", "C", "D"]],
+        dogrular: [{ p: ["A", "H"], kesik: true }],
+        dikler: [["A", "H", "C"]],
+        kenarlar: [
+          { p: ["A", "B"], metin: "8" },
+          { p: ["D", "C"], metin: "12" },
+          { p: ["A", "H"], metin: "5", ic: true },
+        ],
+        gizli: ["A", "B", "C", "D", "H"],
+      },
       difficulty: "Kolay",
       prompt: "Tabanları $8$ ve $12$ birim, yüksekliği $5$ birim olan bir yamuğun alanı kaç birim karedir?",
       options: ["$40$", "$45$", "$48$", "$50$", "$60$"],
@@ -16,6 +29,19 @@ const quiz: TopicQuiz = {
     },
     {
       id: "dortgenler-tyt-02",
+      sekil: {
+        aciklama: "Bir kenarı 5, köşegeni 13 olan dikdörtgen; diğer kenar bilinmiyor.",
+        noktalar: { A: [0, 5], B: [12, 5], C: [12, 0], D: [0, 0] },
+        cokgenler: [["A", "B", "C", "D"]],
+        dogrular: [{ p: ["A", "C"] }],
+        dikler: [["A", "D", "C"]],
+        kenarlar: [
+          { p: ["A", "D"], metin: "5" },
+          { p: ["D", "C"], metin: "?", vurgu: true },
+          { p: ["A", "C"], metin: "13" },
+        ],
+        gizli: ["A", "B", "C", "D"],
+      },
       difficulty: "Kolay",
       prompt: "Bir dikdörtgenin bir kenarı $5$ birim, köşegen uzunluğu $13$ birimdir. Buna göre diğer kenar kaç birimdir?",
       options: ["$10$", "$11$", "$12$", "$13$", "$14$"],
@@ -34,6 +60,19 @@ const quiz: TopicQuiz = {
     },
     {
       id: "dortgenler-tyt-04",
+      sekil: {
+        aciklama: "Paralel kenarları 30 m ve 50 m, aralarındaki dik uzaklık 24 m olan yamuk biçimli park.",
+        noktalar: { A: [10, 24], B: [40, 24], C: [50, 0], D: [0, 0], H: [10, 0] },
+        cokgenler: [["A", "B", "C", "D"]],
+        dogrular: [{ p: ["A", "H"], kesik: true }],
+        dikler: [["A", "H", "C"]],
+        kenarlar: [
+          { p: ["A", "B"], metin: "30" },
+          { p: ["D", "C"], metin: "50" },
+          { p: ["A", "H"], metin: "24", ic: true },
+        ],
+        gizli: ["A", "B", "C", "D", "H"],
+      },
       difficulty: "Orta",
       prompt: "Bir park, paralel iki kenarı $30$ m ve $50$ m, bu kenarlar arası dik uzaklığı $24$ m olan yamuk biçiminde bir çim alandır. Çim ekimi metrekare başına $3$ TL'dir. Buna göre tüm alanın çimlendirilmesi kaç TL tutar?",
       options: ["$960$", "$1440$", "$2160$", "$2880$", "$3600$"],
@@ -43,6 +82,19 @@ const quiz: TopicQuiz = {
     },
     {
       id: "dortgenler-tyt-05",
+      sekil: {
+        aciklama: "Köşegenleri 16 m ve 12 m olan eşkenar dörtgen; köşegenler dik kesişiyor.",
+        noktalar: { A: [-8, 0], B: [0, 6], C: [8, 0], D: [0, -6], O: [0, 0] },
+        cokgenler: [["A", "B", "C", "D"]],
+        dogrular: [{ p: ["A", "C"] }, { p: ["B", "D"] }],
+        dikler: [["C", "O", "B"]],
+        esitler: [{ p: ["A", "B"] }, { p: ["B", "C"] }, { p: ["C", "D"] }, { p: ["D", "A"] }],
+        kenarlar: [
+          { p: ["A", "C"], metin: "16", konum: 0.25 },
+          { p: ["B", "D"], metin: "12", konum: 0.25 },
+        ],
+        gizli: ["A", "B", "C", "D", "O"],
+      },
       difficulty: "Orta",
       prompt: "Bir bahçıvan, köşegenleri $16$ m ve $12$ m olan eşkenar dörtgen biçimli bir tarhın **çevresine** çit çekecektir. Buna göre gereken çit uzunluğu kaç metredir?",
       options: ["$20$", "$28$", "$40$", "$48$", "$56$"],

@@ -7,6 +7,18 @@ const quiz: TopicQuiz = {
   questions: [
     {
       id: "tales-oklid-pisagor-9-01",
+      sekil: {
+        aciklama: "ABC üçgeninde DE, BC'ye paralel; AD = 8, DB = 12, EC = 15; AE bilinmiyor.",
+        noktalar: { A: [7.312, 18.615], B: [0, 0], C: [24, 0], D: [4.387, 11.169], E: [13.987, 11.169] },
+        cokgenler: [["A", "B", "C"]],
+        dogrular: [{ p: ["D", "E"] }],
+        kenarlar: [
+          { p: ["A", "D"], metin: "8" },
+          { p: ["D", "B"], metin: "12" },
+          { p: ["A", "E"], metin: "?", vurgu: true },
+          { p: ["E", "C"], metin: "15" },
+        ],
+      },
       difficulty: "Kolay",
       prompt: "Bir $ABC$ üçgeninde $BC$ kenarına paralel $DE$ doğrusu çiziliyor ($D\\in[AB]$, $E\\in[AC]$). $|AD|=8$, $|DB|=12$ ve $|AE|=?$ sorulmaktadır. $|EC|=15$ ise $|AE|$ kaç birimdir?",
       options: ["$8$", "$10$", "$12$", "$18$", "$22{,}5$"],
@@ -16,6 +28,19 @@ const quiz: TopicQuiz = {
     },
     {
       id: "tales-oklid-pisagor-9-02",
+      sekil: {
+        aciklama: "ABC üçgeninde DE, BC'ye paralel; AD = 5, DB = 3, AC = 24; AE bilinmiyor.",
+        noktalar: { A: [-2.8, 7.494], B: [0, 0], C: [20, 0], D: [-1.05, 2.81], E: [11.45, 2.81] },
+        cokgenler: [["A", "B", "C"]],
+        dogrular: [{ p: ["D", "E"] }],
+        kenarlar: [
+          { p: ["A", "D"], metin: "5" },
+          { p: ["D", "B"], metin: "3" },
+          { p: ["A", "E"], metin: "?", vurgu: true, ic: true },
+        ],
+        olculer: [{ p: ["A", "C"], metin: "24" }],
+        etiketYonu: { E: -95 },
+      },
       difficulty: "Orta",
       prompt: "Bir $ABC$ üçgeninde $[BC]$ kenarına paralel $DE$ doğrusu çiziliyor. $|AD|=5$, $|DB|=3$ ve $|AC|=24$ ise $|AE|$ kaç birimdir?",
       options: ["$9$", "$12$", "$15$", "$16$", "$40$"],
@@ -25,6 +50,19 @@ const quiz: TopicQuiz = {
     },
     {
       id: "tales-oklid-pisagor-9-03",
+      sekil: {
+        aciklama: "Dik üçgende dik açıdan inen yükseklik hipotenüsü 6 ve 24 birimlik parçalara ayırıyor; yükseklik bilinmiyor.",
+        noktalar: { A: [0, 0], B: [6, 12], C: [30, 0], H: [6, 0] },
+        cokgenler: [["A", "B", "C"]],
+        dogrular: [{ p: ["B", "H"] }],
+        dikler: [["A", "B", "C"], ["B", "H", "C"]],
+        kenarlar: [
+          { p: ["A", "H"], metin: "6" },
+          { p: ["H", "C"], metin: "24" },
+          { p: ["B", "H"], metin: "?", vurgu: true },
+        ],
+        gizli: ["A", "B", "C", "H"],
+      },
       difficulty: "Kolay",
       prompt: "Bir dik üçgende, dik açıdan hipotenüse inen yüksekliğin hipotenüsü ayırdığı parçalar $6$ ve $24$ birimdir. Bu yüksekliğin uzunluğu kaç birimdir?",
       options: ["$12$", "$15$", "$18$", "$30$", "$144$"],
@@ -34,6 +72,19 @@ const quiz: TopicQuiz = {
     },
     {
       id: "tales-oklid-pisagor-9-04",
+      sekil: {
+        aciklama: "Dik üçgende yükseklik hipotenüsü 9 ve 16 birimlik parçalara ayırıyor; izdüşümü 9 olan dik kenar bilinmiyor.",
+        noktalar: { A: [0, 0], B: [9, 12], C: [25, 0], H: [9, 0] },
+        cokgenler: [["A", "B", "C"]],
+        dogrular: [{ p: ["B", "H"], kesik: true }],
+        dikler: [["A", "B", "C"], ["B", "H", "C"]],
+        kenarlar: [
+          { p: ["A", "H"], metin: "9" },
+          { p: ["H", "C"], metin: "16" },
+          { p: ["A", "B"], metin: "?", vurgu: true },
+        ],
+        gizli: ["A", "B", "C", "H"],
+      },
       difficulty: "Orta",
       prompt: "Bir dik üçgende dik açıdan inen yükseklik, hipotenüsü $9$ ve $16$ birimlik iki parçaya ayırıyor. İzdüşümü $9$ olan dik kenarın uzunluğu kaç birimdir?",
       options: ["$12$", "$13$", "$15$", "$20$", "$25$"],
@@ -43,6 +94,20 @@ const quiz: TopicQuiz = {
     },
     {
       id: "tales-oklid-pisagor-9-05",
+      sekil: {
+        aciklama: "Yere dik bayrak direği 12 m yükseklikten gergi teliyle direğin dibinden 5 m uzaktaki bir noktaya bağlı; telin boyu bilinmiyor.",
+        noktalar: { O: [0, 0], T: [0, 12], G: [5, 0], L: [-2, 0], R: [7, 0] },
+        dogrular: [{ p: ["L", "R"] }, { p: ["O", "T"] }, { p: ["T", "G"] }],
+        taralar: [{ p: ["L", "R"] }],
+        dikler: [["T", "O", "G"]],
+        isaretli: ["T", "G"],
+        kenarlar: [
+          { p: ["O", "T"], metin: "12" },
+          { p: ["O", "G"], metin: "5", ic: true },
+          { p: ["T", "G"], metin: "?", vurgu: true },
+        ],
+        gizli: ["O", "T", "G", "L", "R"],
+      },
       difficulty: "Orta",
       prompt: "Bir bayrak direği, yerden çekilen bir gergi teli ile sabitleniyor. Telin direğe bağlandığı nokta yerden $12$ m yüksekte, telin yere değdiği nokta ise direğin dibinden $5$ m uzaktadır. Direk ile yer birbirine dik olduğuna göre gergi telinin boyu kaç metredir?",
       options: ["$7$", "$13$", "$17$", "$60$", "$\\sqrt{7}$"],
@@ -52,6 +117,19 @@ const quiz: TopicQuiz = {
     },
     {
       id: "tales-oklid-pisagor-9-06",
+      sekil: {
+        aciklama: "Dik kenarları 15 ve 20 olan dik üçgende dik açıdan hipotenüse inen yükseklik; uzunluğu bilinmiyor.",
+        noktalar: { A: [0, 0], B: [9, 12], C: [25, 0], H: [9, 0] },
+        cokgenler: [["A", "B", "C"]],
+        dogrular: [{ p: ["B", "H"] }],
+        dikler: [["A", "B", "C"], ["B", "H", "C"]],
+        kenarlar: [
+          { p: ["A", "B"], metin: "15" },
+          { p: ["B", "C"], metin: "20" },
+          { p: ["B", "H"], metin: "?", vurgu: true },
+        ],
+        gizli: ["A", "B", "C", "H"],
+      },
       difficulty: "Zor",
       prompt: "Dik kenarları $15$ ve $20$ birim olan bir dik üçgende, dik açıdan hipotenüse inen yüksekliğin uzunluğu kaç birimdir?",
       options: ["$10$", "$12$", "$17{,}5$", "$24$", "$25$"],
