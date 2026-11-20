@@ -79,6 +79,7 @@ function karakterGenisligi(c: string): number {
   if (/[A-ZÇĞİÖŞÜ]/.test(c)) return 0.72;
   if (/[a-zçğıöşü]/.test(c)) return 0.52;
   if (c === "√") return 0.83;
+  if (/[α-ω]/.test(c)) return 0.5;
   return 0.6;
 }
 export function metinGenisligi(metin: string, boyut: number): number {
@@ -166,11 +167,19 @@ export function sekilYerlesim(sekil: Sekil): Yerlesim {
     x: merkezNoktalar.reduce((s, p) => s + p.x, 0) / merkezNoktalar.length,
     y: merkezNoktalar.reduce((s, p) => s + p.y, 0) / merkezNoktalar.length,
   };
+  // "Outside" is judged against the shape the segment belongs to: with two
+  // separate triangles, each side looks away from its own triangle's centre.
+  const sekleAit = (a: P, b: P): P => {
+    const c = cokgenler.find((poly) => poly.includes(a) && poly.includes(b)) ?? cokgenler.find((poly) => poly.includes(a) || poly.includes(b));
+    if (!c || cokgenler.length < 2) return merkez;
+    return { x: c.reduce((s, p) => s + p.x, 0) / c.length, y: c.reduce((s, p) => s + p.y, 0) / c.length };
+  };
   const disNormal = (a: P, b: P, ic = false): P => {
     const t = birim(fark(b, a));
     let n = { x: -t.y, y: t.x };
     const m = { x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 };
-    const disa = n.x * (m.x - merkez.x) + n.y * (m.y - merkez.y) >= 0;
+    const o = sekleAit(a, b);
+    const disa = n.x * (m.x - o.x) + n.y * (m.y - o.y) >= 0;
     if (disa === ic) n = { x: -n.x, y: -n.y };
     return n;
   };

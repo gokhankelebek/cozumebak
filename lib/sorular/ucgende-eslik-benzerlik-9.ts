@@ -7,6 +7,17 @@ const quiz: TopicQuiz = {
   questions: [
     {
       id: "ucgende-eslik-benzerlik-9-01",
+      sekil: {
+        aciklama: "ABC ve DEF üçgenlerinde A ile D açıları 40 derece, B ile E açıları 70 derece.",
+        noktalar: { A: [0, 0], B: [8, 0], C: [6.128, 5.142], D: [10.5, 0], E: [16.74, 0], F: [15.28, 4.011] },
+        cokgenler: [["A", "B", "C"], ["D", "E", "F"]],
+        acilar: [
+          { p: ["B", "A", "C"], metin: "40°" },
+          { p: ["C", "B", "A"], metin: "70°" },
+          { p: ["E", "D", "F"], metin: "40°" },
+          { p: ["F", "E", "D"], metin: "70°" },
+        ],
+      },
       difficulty: "Kolay",
       prompt: "$ABC$ ve $DEF$ üçgenlerinde $\\widehat{A}=\\widehat{D}=40^\\circ$ ve $\\widehat{B}=\\widehat{E}=70^\\circ$ veriliyor. Bu iki üçgen için aşağıdakilerden hangisi doğrudur?",
       options: ["İki açıları karşılıklı eşit olduğundan A.A kuralına göre benzerdir.", "Üç kenarı eşit olduğundan K.K.K kuralına göre eştir.", "İki kenar ve bir açı eşit olduğundan K.A.K kuralına göre eştir.", "Yalnızca bir açıları eşit olduğundan ne eş ne benzerdir.", "Açıları eşit olsa da kenar bilgisi verilmediğinden benzer olduğu söylenemez."],
@@ -25,6 +36,20 @@ const quiz: TopicQuiz = {
     },
     {
       id: "ucgende-eslik-benzerlik-9-03",
+      sekil: {
+        aciklama: "Benzer iki dik üçgen: küçüğünün kenarları 5, 12, 13; büyüğünün en uzun kenarı 39, en kısa kenarı bilinmiyor. Şekil ölçekli değildir.",
+        noktalar: { A: [0, 5], B: [12, 0], C: [0, 0], D: [15, 8], E: [34.2, 0], F: [15, 0] },
+        cokgenler: [["A", "B", "C"], ["D", "E", "F"]],
+        dikler: [["A", "C", "B"], ["D", "F", "E"]],
+        kenarlar: [
+          { p: ["A", "C"], metin: "5" },
+          { p: ["C", "B"], metin: "12" },
+          { p: ["A", "B"], metin: "13" },
+          { p: ["D", "E"], metin: "39" },
+          { p: ["D", "F"], metin: "?", vurgu: true },
+        ],
+        gizli: ["A", "B", "C", "D", "E", "F"],
+      },
       difficulty: "Orta",
       prompt: "Benzer iki üçgenden küçüğünün kenar uzunlukları $5,\\ 12,\\ 13$ tür. Büyük üçgenin en uzun kenarı $39$ olduğuna göre, büyük üçgenin en kısa kenarı kaçtır?",
       options: ["$10$", "$15$", "$18$", "$36$", "$60$"],

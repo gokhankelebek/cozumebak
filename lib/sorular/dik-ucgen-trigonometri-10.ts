@@ -7,6 +7,19 @@ const quiz: TopicQuiz = {
   questions: [
     {
       id: "dik-ucgen-trigonometri-10-01",
+      sekil: {
+        aciklama: "Dik kenarları 5 ve 12, hipotenüsü 13 olan dik üçgen; 5 birimlik kenarın karşısındaki açı θ.",
+        noktalar: { A: [0, 5], B: [12, 0], C: [0, 0] },
+        cokgenler: [["A", "B", "C"]],
+        dikler: [["A", "C", "B"]],
+        acilar: [{ p: ["C", "B", "A"], metin: "θ", vurgu: true, yaricap: 30 }],
+        kenarlar: [
+          { p: ["A", "C"], metin: "5" },
+          { p: ["C", "B"], metin: "12" },
+          { p: ["A", "B"], metin: "13" },
+        ],
+        gizli: ["A", "B", "C"],
+      },
       difficulty: "Kolay",
       prompt: "Dik kenarları $5$ ve $12$, hipotenüsü $13$ olan bir dik üçgende, $5$ birimlik kenarın karşısındaki dar açı $\\theta$ olduğuna göre $\\sin\\theta$ kaçtır?",
       options: ["$\\dfrac{5}{13}$", "$\\dfrac{12}{13}$", "$\\dfrac{5}{12}$", "$\\dfrac{12}{5}$", "$\\dfrac{13}{12}$"],
@@ -43,6 +56,19 @@ const quiz: TopicQuiz = {
     },
     {
       id: "dik-ucgen-trigonometri-10-05",
+      sekil: {
+        aciklama: "Yatayla 30 derece açı yapan 18 metrelik rampa; en yüksek noktanın yerden yüksekliği bilinmiyor.",
+        noktalar: { P: [0, 0], T: [15.588, 9], H: [15.588, 0], L: [-2, 0], R: [17.588, 0] },
+        dogrular: [{ p: ["L", "R"] }, { p: ["P", "T"] }, { p: ["T", "H"] }],
+        taralar: [{ p: ["L", "R"] }],
+        dikler: [["T", "H", "P"]],
+        acilar: [{ p: ["H", "P", "T"], metin: "30°", yaricap: 34 }],
+        kenarlar: [
+          { p: ["P", "T"], metin: "18" },
+          { p: ["T", "H"], metin: "?", vurgu: true },
+        ],
+        gizli: ["P", "T", "H", "L", "R"],
+      },
       difficulty: "Orta",
       prompt: "Yatayla $30°$ açı yapan doğrusal bir rampanın uzunluğu (eğik yüzeyi) $18$ metredir. Buna göre rampanın en yüksek noktasının yerden yüksekliği kaç metredir?",
       options: ["$9$", "$9\\sqrt3$", "$18$", "$6\\sqrt3$", "$\\dfrac{18}{\\sqrt3}$"],

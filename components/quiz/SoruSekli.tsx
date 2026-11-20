@@ -16,7 +16,7 @@ const f = (n: number) => Math.round(n * 10) / 10;
 // the same faces the question text uses.
 function Yazi({ e }: { e: Etiket }) {
   const boyut = e.tur === "nokta" ? YAZI.nokta : YAZI.sayi;
-  const parcalar = e.metin.match(/[A-Za-zÇĞİÖŞÜçğıöşü]+|[^A-Za-zÇĞİÖŞÜçğıöşü]+/g) ?? [e.metin];
+  const parcalar = e.metin.match(/[A-Za-zÇĞİÖŞÜçğıöşüα-ω]+|[^A-Za-zÇĞİÖŞÜçğıöşüα-ω]+/g) ?? [e.metin];
   // Radicals: draw the vinculum over the radicand, as KaTeX does in the text.
   const taban = e.y + boyut * 0.34;
   const bas = e.x - metinGenisligi(e.metin, boyut) / 2;
@@ -39,7 +39,7 @@ function Yazi({ e }: { e: Etiket }) {
           <tspan key={i} fontFamily="KaTeX_Main, 'Times New Roman', serif" fontSize={boyut * 0.7} dy={boyut * 0.25}>
             {p}
           </tspan>
-        ) : /[A-Za-zÇĞİÖŞÜçğıöşü]/.test(p) ? (
+        ) : /[A-Za-zÇĞİÖŞÜçğıöşüα-ω]/.test(p) ? (
           <tspan key={i} fontFamily="KaTeX_Math, 'Times New Roman', serif" fontStyle="italic">
             {p}
           </tspan>

@@ -7,6 +7,18 @@ const quiz: TopicQuiz = {
   questions: [
     {
       id: "ucgende-alan-10-01",
+      sekil: {
+        aciklama: "Tabanı 16, bu tabana ait yüksekliği 7 olan üçgen.",
+        noktalar: { A: [5, 7], B: [0, 0], C: [16, 0], H: [5, 0] },
+        cokgenler: [["A", "B", "C"]],
+        dogrular: [{ p: ["A", "H"], kesik: true }],
+        dikler: [["A", "H", "C"]],
+        kenarlar: [
+          { p: ["B", "C"], metin: "16" },
+          { p: ["A", "H"], metin: "7", ic: true },
+        ],
+        gizli: ["A", "B", "C", "H"],
+      },
       difficulty: "Kolay",
       prompt: "Tabanı $16$ birim, bu tabana ait yüksekliği $7$ birim olan bir üçgenin alanı kaç birimkaredir?",
       options: ["$56$", "$112$", "$28$", "$23$", "$8$"],
@@ -16,6 +28,17 @@ const quiz: TopicQuiz = {
     },
     {
       id: "ucgende-alan-10-02",
+      sekil: {
+        aciklama: "Dik kenarları 8 ve 15 olan dik üçgen.",
+        noktalar: { A: [0, 8], B: [15, 0], C: [0, 0] },
+        cokgenler: [["A", "B", "C"]],
+        dikler: [["A", "C", "B"]],
+        kenarlar: [
+          { p: ["A", "C"], metin: "8" },
+          { p: ["C", "B"], metin: "15" },
+        ],
+        gizli: ["A", "B", "C"],
+      },
       difficulty: "Kolay",
       prompt: "Dik kenarları $8$ birim ve $15$ birim olan bir dik üçgenin alanı kaç birimkaredir?",
       options: ["$120$", "$60$", "$30$", "$23$", "$17$"],
@@ -34,6 +57,15 @@ const quiz: TopicQuiz = {
     },
     {
       id: "ucgende-alan-10-04",
+      sekil: {
+        aciklama: "Alanı 36 kök 3 olan eşkenar üçgen; kenar uzunluğu bilinmiyor.",
+        noktalar: { A: [6, 10.392], B: [0, 0], C: [12, 0], M: [6, 3.464] },
+        cokgenler: [["A", "B", "C"]],
+        esitler: [{ p: ["A", "B"] }, { p: ["A", "C"] }, { p: ["B", "C"] }],
+        kenarlar: [{ p: ["B", "C"], metin: "?", vurgu: true }],
+        yazilar: [{ nokta: "M", metin: "36√3" }],
+        gizli: ["A", "B", "C", "M"],
+      },
       difficulty: "Orta",
       prompt: "Bir eşkenar üçgenin alanı $36\\sqrt3$ birimkaredir. Bu üçgenin bir kenarının uzunluğu kaç birimdir?",
       options: ["$6$", "$18$", "$9$", "$12$", "$24$"],
@@ -43,6 +75,18 @@ const quiz: TopicQuiz = {
     },
     {
       id: "ucgende-alan-10-05",
+      sekil: {
+        aciklama: "Alanı 54 olan üçgenin tabanı 12; bu tabana ait yükseklik bilinmiyor.",
+        noktalar: { A: [4, 9], B: [0, 0], C: [12, 0], H: [4, 0] },
+        cokgenler: [["A", "B", "C"]],
+        dogrular: [{ p: ["A", "H"], kesik: true }],
+        dikler: [["A", "H", "C"]],
+        kenarlar: [
+          { p: ["B", "C"], metin: "12" },
+          { p: ["A", "H"], metin: "?", vurgu: true, ic: true },
+        ],
+        gizli: ["A", "B", "C", "H"],
+      },
       difficulty: "Orta",
       prompt: "Alanı $54$ birimkare olan bir üçgenin bir tabanı $12$ birimdir. Bu tabana ait yükseklik kaç birimdir?",
       options: ["$4{,}5$", "$324$", "$6$", "$18$", "$9$"],
