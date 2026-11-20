@@ -65,6 +65,7 @@ function karakterGenisligi(c: string): number {
   if (c === "+" || c === "−" || c === "-" || c === "=") return 0.78;
   if (c === "?") return 0.47;
   if (c === "," || c === ".") return 0.28;
+  if (c === "(" || c === ")") return 0.39;
   if (/[A-ZÇĞİÖŞÜ]/.test(c)) return 0.72;
   if (/[a-zçğıöşü]/.test(c)) return 0.52;
   if (c === "√") return 0.83;
@@ -208,7 +209,7 @@ export function sekilYerlesim(sekil: Sekil): Yerlesim {
     while (d <= -Math.PI) d += 2 * Math.PI;
     while (d > Math.PI) d -= 2 * Math.PI;
     const th = Math.abs(d);
-    const r = th < 0.55 ? 26 : th < 1.2 ? 20 : 17;
+    const r = a.yaricap ?? (th < 0.55 ? 26 : th < 1.2 ? 20 : 17);
     yaylar.push({ merkez: B, r, t1, d, vurgu: !!a.vurgu });
     if (a.cift) yaylar.push({ merkez: B, r: r + 4, t1, d, vurgu: !!a.vurgu });
     if (a.metin) {
@@ -260,6 +261,25 @@ export function sekilYerlesim(sekil: Sekil): Yerlesim {
     });
   }
 
+  // ── Dimension lines ──
+  for (const o of sekil.olculer ?? []) {
+    const A = nokta(o.p[0]);
+    const B = nokta(o.p[1]);
+    const n = disNormal(A, B, o.ic);
+    const t = birim(fark(B, A));
+    const ofs = 16;
+    const a = { x: A.x + n.x * ofs + t.x * 3, y: A.y + n.y * ofs + t.y * 3 };
+    const b = { x: B.x + n.x * ofs - t.x * 3, y: B.y + n.y * ofs - t.y * 3 };
+    cizgiler.push({ a, b, tur: "ince" });
+    for (const u of [a, b]) cizgiler.push({ a: { x: u.x - n.x * 4, y: u.y - n.y * 4 }, b: { x: u.x + n.x * 4, y: u.y + n.y * 4 }, tur: "ince" });
+    const m = { x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 };
+    const k0 = kutuOlustur(0, 0, o.metin, YAZI.sayi);
+    const dist = uzaklik(n, kutuYariGen(k0), kutuYariYuk(k0), 5);
+    const cx = m.x + n.x * dist;
+    const cy = m.y + n.y * dist;
+    etiketler.push({ x: cx, y: cy, metin: o.metin, tur: "kenar", vurgu: !!o.vurgu, kutu: kutuOlustur(cx, cy, o.metin, YAZI.sayi), kaynak: `ölçü ${o.p.join("")}`, yon: n });
+  }
+
   // ── Point labels: centre of the widest free gap around the point ──
   const gizli = new Set(sekil.gizli ?? []);
   for (const ad of adlar) {
@@ -288,7 +308,11 @@ export function sekilYerlesim(sekil: Sekil): Yerlesim {
       }
     }
     let yon: P;
-    if (yonler.length === 0) {
+    const elle = sekil.etiketYonu?.[ad];
+    if (elle != null) {
+      const t = (elle * Math.PI) / 180;
+      yon = { x: Math.cos(t), y: -Math.sin(t) };
+    } else if (yonler.length === 0) {
       yon = birim(fark(p, merkez));
     } else {
       const s = yonler.map(normal).sort((a, b) => a - b);
@@ -411,7 +435,7 @@ function kutuCizgiMesafesi(k: Kutu, a: P, b: P): number {
   return enAz;
 }
 
-const BOSLUK_MIN = 2.5;
+const BOSLUK_MIN = 3.5;
 
 /** Human-readable problems; empty means the figure passed. */
 export function sekilKontrol(y: Yerlesim): string[] {

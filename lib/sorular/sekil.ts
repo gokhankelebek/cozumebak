@@ -32,8 +32,14 @@ export interface Sekil {
    * the inner side; `konum` (0–1) slides it along the segment.
    */
   kenarlar?: { p: [string, string]; metin: string; vurgu?: boolean; ic?: boolean; konum?: number }[];
+  /**
+   * Dimension lines: a thin line parallel to the segment, offset to the outer
+   * side (or inner with `ic`), with end ticks and the label beside it. Use when
+   * the measured length spans other points (e.g. |AC| with E on it).
+   */
+  olculer?: { p: [string, string]; metin: string; vurgu?: boolean; ic?: boolean }[];
   /** Angle arcs at the middle point p[1], between rays to p[0] and p[2]. */
-  acilar?: { p: [string, string, string]; metin?: string; vurgu?: boolean; cift?: boolean }[];
+  acilar?: { p: [string, string, string]; metin?: string; vurgu?: boolean; cift?: boolean; yaricap?: number }[];
   /** Right-angle squares at the middle point. */
   dikler?: [string, string, string][];
   /** Equal-length ticks on a segment (1, 2 or 3 strokes). */
@@ -46,6 +52,8 @@ export interface Sekil {
   boyali?: string[][];
   /** Points drawn as small filled dots (points on a line, marked positions). */
   isaretli?: string[];
+  /** Override a point label's direction, in degrees (math convention: 0 = right, 90 = up). */
+  etiketYonu?: Record<string, number>;
   /** Point names that get no letter label (helper points). */
   gizli?: string[];
 }

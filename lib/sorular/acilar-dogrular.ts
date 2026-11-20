@@ -16,6 +16,16 @@ const quiz: TopicQuiz = {
     },
     {
       id: "acilar-dogrular-02",
+      sekil: {
+        aciklama: "Kesişen iki doğru; komşu iki açı (5a − 12) ve (3a + 48) derece.",
+        noktalar: { L: [-6, 0], R: [6, 0], O: [0, 0], P: [-1.247, -5.869], Q: [1.247, 5.869] },
+        dogrular: [{ p: ["L", "R"] }, { p: ["P", "Q"] }],
+        acilar: [
+          { p: ["R", "O", "Q"], metin: "(5a − 12)°", yaricap: 30 },
+          { p: ["Q", "O", "L"], metin: "(3a + 48)°", yaricap: 24 },
+        ],
+        gizli: ["L", "R", "O", "P", "Q"],
+      },
       difficulty: "Kolay",
       prompt: "Kesişen iki doğru oluşturuyor. Bir ters açının ölçüsü $(5a-12)°$, bu açıya komşu (bütünler) açının ölçüsü $(3a+48)°$'dir. Buna göre $a$ kaçtır?",
       options: ["$12$", "$15$", "$18$", "$21$", "$24$"],
@@ -34,6 +44,17 @@ const quiz: TopicQuiz = {
     },
     {
       id: "acilar-dogrular-04",
+      sekil: {
+        aciklama: "Dik açının içinden geçen bir ışın, dik açıyı x ve 4x ölçülü iki açıya ayırıyor.",
+        noktalar: { O: [0, 0], A: [10, 0], B: [0, 10], R: [9.511, 3.09] },
+        dogrular: [{ p: ["O", "A"] }, { p: ["O", "B"] }, { p: ["O", "R"] }],
+        dikler: [["A", "O", "B"]],
+        acilar: [
+          { p: ["A", "O", "R"], metin: "x", yaricap: 52 },
+          { p: ["R", "O", "B"], metin: "4x", yaricap: 34 },
+        ],
+        gizli: ["O", "A", "B", "R"],
+      },
       difficulty: "Orta",
       prompt: "Bir tasarımcı, masaüstüne L şeklinde (dik açılı) iki çubuk yapıştırıyor. Bu dik açının içine üçüncü bir çubuk yerleştirip dik açıyı iki parçaya ayırıyor; oluşan iki açıdan biri diğerinin $4$ katı oluyor. Buna göre büyük olan açının ölçüsü kaç derecedir?",
       options: ["$18$", "$36$", "$54$", "$60$", "$72$"],
@@ -43,6 +64,13 @@ const quiz: TopicQuiz = {
     },
     {
       id: "acilar-dogrular-05",
+      sekil: {
+        aciklama: "Paralel d1 ve d2 doğrularını eğik bir kesen kesiyor; kesenin d1 ile yaptığı açı x.",
+        noktalar: { L1: [-4, 4], d1: [8, 4], L2: [-4, 0], d2: [8, 0], P1: [2, 4], P2: [0.544, 0], Tu: [2.889, 6.443], Ta: [-0.345, -2.443] },
+        dogrular: [{ p: ["L1", "d1"] }, { p: ["L2", "d2"] }, { p: ["Ta", "Tu"] }],
+        acilar: [{ p: ["d1", "P1", "Tu"], metin: "x", vurgu: true }],
+        gizli: ["L1", "L2", "P1", "P2", "Tu", "Ta"],
+      },
       difficulty: "Orta",
       prompt: "Bir yol kavşağında düz giden bir cadde ($d_1$) ile ona paralel uzanan bir yaya yolu ($d_2$), eğik bir ara sokakla (kesen) kesiliyor. Ara sokağın cadde ile yaptığı yöndeş açı, kendisinin bütünlerinden $40°$ küçüktür. Buna göre bu yöndeş açının ölçüsü kaç derecedir?",
       options: ["$60$", "$70$", "$80$", "$100$", "$110$"],
