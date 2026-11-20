@@ -93,4 +93,10 @@ export interface Sekil {
   etiketMetni?: Record<string, string>;
   /** Point names that get no letter label (helper points). */
   gizli?: string[];
+  /**
+   * Drawing area for the points in px, [width, height] (default [270, 230],
+   * the quiz size). Lesson figures use a larger box; type and line weights
+   * stay the same.
+   */
+  boyut?: [number, number];
 }

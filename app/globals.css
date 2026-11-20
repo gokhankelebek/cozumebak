@@ -232,6 +232,7 @@ body.nav-locked{overflow:hidden}
 /* figure */
 .fig{margin:30px 0;background:var(--paper-2);border:1.5px solid var(--line);border-radius:16px;padding:24px 20px 16px;box-shadow:var(--shadow)}
 .fig svg{display:block;width:100%;height:auto}
+.fig svg.soru-sekil{width:auto;max-width:100%;margin:0 auto}
 .fig figcaption{font-family:var(--mono);font-size:.8rem;color:var(--ink-faint);text-align:center;margin-top:10px;letter-spacing:.01em}
 .fig figcaption p{display:inline;margin:0}
 .curve{fill:none;stroke:var(--ink);stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
