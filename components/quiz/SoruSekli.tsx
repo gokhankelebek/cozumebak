@@ -1,5 +1,5 @@
 import type { Sekil } from "@/lib/sorular/sekil";
-import { sekilYerlesim, YAZI, type Etiket } from "@/lib/sorular/sekilYerlesim";
+import { metinGenisligi, sekilYerlesim, YAZI, type Etiket } from "@/lib/sorular/sekilYerlesim";
 
 // Draws a quiz figure (server component). All placement happens in
 // lib/sorular/sekilYerlesim.ts; this file only paints it. The SVG is drawn
@@ -17,7 +17,15 @@ const f = (n: number) => Math.round(n * 10) / 10;
 function Yazi({ e }: { e: Etiket }) {
   const boyut = e.tur === "nokta" ? YAZI.nokta : YAZI.sayi;
   const parcalar = e.metin.match(/[A-Za-zÇĞİÖŞÜçğıöşü]+|[^A-Za-zÇĞİÖŞÜçğıöşü]+/g) ?? [e.metin];
+  // Radicals: draw the vinculum over the radicand, as KaTeX does in the text.
+  const taban = e.y + boyut * 0.34;
+  const bas = e.x - metinGenisligi(e.metin, boyut) / 2;
+  const kokler = [...e.metin.matchAll(/√([0-9A-Za-z]+)/g)].map((m) => {
+    const x1 = bas + metinGenisligi(e.metin.slice(0, m.index! + 1), boyut);
+    return { x1: x1 - boyut * 0.04, x2: x1 + metinGenisligi(m[1], boyut) + boyut * 0.04 };
+  });
   return (
+    <>
     <text
       x={f(e.x)}
       y={f(e.y + boyut * 0.34)}
@@ -37,6 +45,10 @@ function Yazi({ e }: { e: Etiket }) {
         ),
       )}
     </text>
+    {kokler.map((k, i) => (
+      <line key={i} x1={f(k.x1)} x2={f(k.x2)} y1={f(taban - boyut * 0.79)} y2={f(taban - boyut * 0.79)} stroke={e.vurgu ? VURGU : KOYU} strokeWidth={boyut * 0.045} />
+    ))}
+    </>
   );
 }
 
@@ -53,6 +65,12 @@ export default function SoruSekli({ sekil }: { sekil: Sekil }) {
       role="img"
       aria-label={sekil.aciklama}
     >
+      {y.boyali.map((b, i) => (
+        <polygon key={`b${i}`} points={b.map((p) => `${f(p.x)},${f(p.y)}`).join(" ")} fill="#e6e1d5" stroke="none" />
+      ))}
+      {y.cemberler.map((c, i) => (
+        <circle key={`o${i}`} cx={f(c.merkez.x)} cy={f(c.merkez.y)} r={f(c.r)} fill="none" stroke={KOYU} strokeWidth={1.6} />
+      ))}
       {y.cizgiler.map((c, i) => (
         <line
           key={`c${i}`}

@@ -25,6 +25,18 @@ const quiz: TopicQuiz = {
     },
     {
       id: "ucgende-benzerlik-alan-03",
+      sekil: {
+        aciklama: "ABC üçgeninde D noktası AB üzerinde, E noktası AC üzerinde ve DE, BC'ye paralel; AD = 4, DB = 6, AE = 6; EC bilinmiyor.",
+        noktalar: { A: [2.536, 9.673], B: [0, 0], C: [14, 0], D: [1.522, 5.804], E: [7.122, 5.804] },
+        cokgenler: [["A", "B", "C"]],
+        dogrular: [{ p: ["D", "E"] }],
+        kenarlar: [
+          { p: ["A", "D"], metin: "4" },
+          { p: ["D", "B"], metin: "6" },
+          { p: ["A", "E"], metin: "6" },
+          { p: ["E", "C"], metin: "?", vurgu: true },
+        ],
+      },
       difficulty: "Orta",
       prompt: "$\\triangle ABC$'de $D\\in[AB]$, $E\\in[AC]$ ve $[DE]\\parallel[BC]$. $AD=4$, $DB=6$, $AE=6$ birimdir. Buna göre $EC$ kaç birimdir?",
       options: ["$4$", "$6$", "$8$", "$9$", "$12$"],
@@ -43,6 +55,18 @@ const quiz: TopicQuiz = {
     },
     {
       id: "ucgende-benzerlik-alan-05",
+      sekil: {
+        aciklama: "Üçgen bahçe; tabana paralel çit, tepeden inen kenarı tepe tarafında 2, taban tarafında 3 birim olacak şekilde bölüyor; tepedeki küçük üçgen boyalı.",
+        noktalar: { T: [4, 8], B: [0, 0], C: [10, 0], P: [2.4, 4.8], Q: [6.4, 4.8] },
+        boyali: [["T", "P", "Q"]],
+        cokgenler: [["T", "B", "C"]],
+        dogrular: [{ p: ["P", "Q"] }],
+        kenarlar: [
+          { p: ["T", "P"], metin: "2" },
+          { p: ["P", "B"], metin: "3" },
+        ],
+        gizli: ["T", "B", "C", "P", "Q"],
+      },
       difficulty: "Orta",
       prompt: "Bir üçgen bahçenin tabanına paralel bir çit çekilerek bahçe, tepe tarafında küçük bir üçgen ile altta bir yamuğa ayrılıyor. Çit, tepeden inen kenarı tepeden itibaren $\\dfrac{2}{5}$ oranında bölüyor (tepe tarafı $2$ birim, taban tarafı $3$ birim). Buna göre tepedeki küçük üçgenin alanının, tüm bahçenin alanına oranı kaçtır?",
       options: ["$\\dfrac{2}{5}$", "$\\dfrac{4}{25}$", "$\\dfrac{2}{25}$", "$\\dfrac{4}{9}$", "$\\dfrac{9}{25}$"],

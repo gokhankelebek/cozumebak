@@ -40,6 +40,10 @@ export interface Sekil {
   esitler?: { p: [string, string]; adet?: 1 | 2 | 3 }[];
   /** Hatching along a segment (ground, wall), on the outer side unless `ic`. */
   taralar?: { p: [string, string]; ic?: boolean }[];
+  /** Circles through a point: centre `merkez`, radius = distance to `nokta`. */
+  cemberler?: { merkez: string; nokta: string }[];
+  /** Shaded regions (filled light grey, under the lines), e.g. an area asked for. */
+  boyali?: string[][];
   /** Points drawn as small filled dots (points on a line, marked positions). */
   isaretli?: string[];
   /** Point names that get no letter label (helper points). */
