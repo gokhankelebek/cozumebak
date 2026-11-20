@@ -7,6 +7,15 @@ const quiz: TopicQuiz = {
   questions: [
     {
       id: "iki-nokta-arasi-uzaklik-01",
+      sekil: {
+        aciklama: "A(−1, −3) ve B(3, 0) noktaları; aralarındaki uzaklık bilinmiyor.",
+        eksen: { x: [-2.4, 4.4], y: [-4.4, 1.4] },
+        noktalar: { A: [-1, -3], B: [3, 0] },
+        dogrular: [{ p: ["A", "B"] }],
+        isaretli: ["A", "B"],
+        kenarlar: [{ p: ["A", "B"], metin: "?", vurgu: true }],
+        etiketMetni: { A: "A(−1, −3)", B: "B(3, 0)" },
+      },
       difficulty: "Kolay",
       prompt: "$A(-1,-3)$ ve $B(3,0)$ noktaları arasındaki uzaklık kaç birimdir?",
       options: ["$5$", "$7$", "$\\sqrt{7}$", "$25$", "$\\sqrt{13}$"],
@@ -16,6 +25,16 @@ const quiz: TopicQuiz = {
     },
     {
       id: "iki-nokta-arasi-uzaklik-02",
+      sekil: {
+        aciklama: "Bir ucu A(−4, 2), orta noktası M(1, −1) olan doğru parçası; diğer uç B bilinmiyor.",
+        eksen: { x: [-5.4, 7.4], y: [-5.4, 3.4] },
+        noktalar: { A: [-4, 2], M: [1, -1], B: [6, -4] },
+        dogrular: [{ p: ["A", "B"] }],
+        isaretli: ["A", "M", "B"],
+        esitler: [{ p: ["A", "M"] }, { p: ["M", "B"] }],
+        etiketMetni: { A: "A(−4, 2)", M: "M(1, −1)", B: "B" },
+        vurguluNoktalar: ["B"],
+      },
       difficulty: "Orta",
       prompt: "Bir doğru parçasının bir ucu $A(-4,2)$, orta noktası ise $M(1,-1)$'dir. Diğer uç $B$ noktasının koordinatları nedir?",
       options: ["$(6,-4)$", "$(-2,4)$", "$(5,-3)$", "$(6,4)$", "$\\left(-\\dfrac{3}{2},\\dfrac{1}{2}\\right)$"],
@@ -25,6 +44,15 @@ const quiz: TopicQuiz = {
     },
     {
       id: "iki-nokta-arasi-uzaklik-05",
+      sekil: {
+        aciklama: "Orijindeki üs ve A(8, 15) noktasındaki uçak; uzaklık bilinmiyor.",
+        eksen: { x: [-1.4, 9.4], y: [-1.4, 16.4] },
+        noktalar: { A: [8, 15], O: [0, 0] },
+        dogrular: [{ p: ["O", "A"] }],
+        isaretli: ["A"],
+        kenarlar: [{ p: ["O", "A"], metin: "?", vurgu: true }],
+        etiketMetni: { A: "A(8, 15)" },
+      },
       difficulty: "Orta",
       prompt: "Bir keşif uçağı, radar ekranında orijine yerleştirilen üste göre $A(8,15)$ noktasında görünmektedir. Ekrandaki her birim $1$ km'yi temsil ettiğine göre, uçağın üsse olan uzaklığı kaç km'dir?",
       options: ["$23$", "$\\sqrt{23}$", "$17$", "$289$", "$\\sqrt{161}$"],

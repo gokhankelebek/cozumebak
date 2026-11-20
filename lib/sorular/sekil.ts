@@ -81,6 +81,16 @@ export interface Sekil {
   isaretli?: string[];
   /** Override a point label's direction, in degrees (math convention: 0 = right, 90 = up). */
   etiketYonu?: Record<string, number>;
+  /**
+   * Coordinate axes over the given window (in the same units as the points,
+   * which are then real coordinates): arrows, x / y / O labels, no grid — a
+   * grid would let the figure give the answer away.
+   */
+  eksen?: { x: [number, number]; y: [number, number]; adlar?: [string, string] };
+  /** Point labels drawn in the accent colour (the unknown point). */
+  vurguluNoktalar?: string[];
+  /** Label text for a point instead of its name, e.g. { D: "D(2, 3)", Y: "12" }. */
+  etiketMetni?: Record<string, string>;
   /** Point names that get no letter label (helper points). */
   gizli?: string[];
 }

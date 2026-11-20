@@ -7,6 +7,15 @@ const quiz: TopicQuiz = {
   questions: [
     {
       id: "koordinatta-dogru-10-01",
+      sekil: {
+        aciklama: "A(−2, 3) ve B(4, −9) noktalarından geçen doğru.",
+        eksen: { x: [-4.15, 6.15], y: [-11.9, 5.9] },
+        noktalar: { A: [-2, 3], B: [4, -9], U1: [-2.75, 4.5], U2: [4.75, -10.5] },
+        dogrular: [{ p: ["U1", "U2"] }],
+        isaretli: ["A", "B"],
+        etiketMetni: { A: "A(−2, 3)", B: "B(4, −9)" },
+        gizli: ["U1", "U2"],
+      },
       difficulty: "Kolay",
       prompt: "$A(-2,\\ 3)$ ve $B(4,\\ -9)$ noktalarından geçen doğrunun eğimi kaçtır?",
       options: ["$-6$", "$\\dfrac{1}{2}$", "$-2$", "$2$", "$-\\dfrac{1}{2}$"],
@@ -25,6 +34,15 @@ const quiz: TopicQuiz = {
     },
     {
       id: "koordinatta-dogru-10-03",
+      sekil: {
+        aciklama: "A(−3, −1) ve B(1, 7) noktalarından geçen doğru.",
+        eksen: { x: [-5.4, 3.4], y: [-4.4, 10.4] },
+        noktalar: { A: [-3, -1], B: [1, 7], U1: [-4, -3], U2: [2, 9] },
+        dogrular: [{ p: ["U1", "U2"] }],
+        isaretli: ["A", "B"],
+        etiketMetni: { A: "A(−3, −1)", B: "B(1, 7)" },
+        gizli: ["U1", "U2"],
+      },
       difficulty: "Orta",
       prompt: "$A(-3,\\ -1)$ ve $B(1,\\ 7)$ noktalarından geçen doğrunun denklemi aşağıdakilerden hangisidir?",
       options: ["$y=2x-5$", "$y=\\dfrac{1}{2}x+5$", "$y=2x+9$", "$y=2x+5$", "$y=2x+1$"],
@@ -43,6 +61,16 @@ const quiz: TopicQuiz = {
     },
     {
       id: "koordinatta-dogru-10-05",
+      sekil: {
+        aciklama: "Mumun boyunun zamana göre grafiği: t = 0'da 20 cm, t = 4 saatte 12 cm; boyun sıfır olduğu an bilinmiyor.",
+        eksen: { x: [-1.4, 11.4], y: [-1.4, 11.4], adlar: ["t", "h"] },
+        noktalar: { H0: [0, 10], K: [4, 6], Q: [10, 0], K1: [4, 0], K2: [0, 6] },
+        dogrular: [{ p: ["H0", "Q"] }, { p: ["K", "K1"], kesik: true }, { p: ["K", "K2"], kesik: true }],
+        isaretli: ["H0", "K", "Q"],
+        etiketMetni: { H0: "20", K1: "4", K2: "12", Q: "?" },
+        vurguluNoktalar: ["Q"],
+        gizli: ["K"],
+      },
       difficulty: "Orta",
       prompt: "Bir mumun boyu ile yanma süresi arasında doğrusal bir ilişki vardır. Mum yakılmadan önce (t=0) boyu $20$ cm iken, $4$ saat sonra boyu $12$ cm olmuştur. Bu mum tamamen bittiğinde ($h=0$) kaç saat geçmiş olur?",
       options: ["$6$", "$8$", "$12$", "$16$", "$10$"],

@@ -173,6 +173,10 @@ export function sekilYerlesim(girdi: Sekil): Yerlesim {
       ys.push(my + r * Math.sin(t));
     }
   }
+  if (sekil.eksen) {
+    xs.push(sekil.eksen.x[0], sekil.eksen.x[1], 0);
+    ys.push(sekil.eksen.y[0], sekil.eksen.y[1], 0);
+  }
   const minX = Math.min(...xs);
   const maxX = Math.max(...xs);
   const minY = Math.min(...ys);
@@ -193,7 +197,28 @@ export function sekilYerlesim(girdi: Sekil): Yerlesim {
   const cizgiler: Cizgi[] = [];
   for (const c of cokgenler) for (let i = 0; i < c.length; i++) cizgiler.push({ a: c[i], b: c[(i + 1) % c.length], tur: "ana" });
   for (const d of sekil.dogrular ?? []) cizgiler.push({ a: nokta(d.p[0]), b: nokta(d.p[1]), tur: d.kesik ? "yardimci" : "ana" });
+  const ekranda = (x: number, y: number): P => ({ x: (x - minX) * olcek, y: (maxY - y) * olcek });
+  const eksenEtiketleri: { p: P; metin: string; dx: number; dy: number }[] = [];
+  const oklar: Cizgi[] = [];
+  if (sekil.eksen) {
+    const [x0, x1] = sekil.eksen.x;
+    const [y0, y1] = sekil.eksen.y;
+    const xa = ekranda(x0, 0);
+    const xb = ekranda(x1, 0);
+    const ya = ekranda(0, y0);
+    const yb = ekranda(0, y1);
+    cizgiler.push({ a: xa, b: xb, tur: "ince" }, { a: ya, b: yb, tur: "ince" });
+    oklar.push(
+      { a: xb, b: { x: xb.x - 8, y: xb.y - 3.5 }, tur: "ince" },
+      { a: xb, b: { x: xb.x - 8, y: xb.y + 3.5 }, tur: "ince" },
+      { a: yb, b: { x: yb.x - 3.5, y: yb.y + 8 }, tur: "ince" },
+      { a: yb, b: { x: yb.x + 3.5, y: yb.y + 8 }, tur: "ince" },
+    );
+    const [ax, ay] = sekil.eksen.adlar ?? ["x", "y"];
+    eksenEtiketleri.push({ p: xb, metin: ax, dx: 2, dy: 13 }, { p: yb, metin: ay, dx: -12, dy: 4 });
+  }
   const anaCizgiler = cizgiler.slice(); // structural lines, before marks
+  cizgiler.push(...oklar);
 
   // Centroid of the closed shapes (or all points): "outside" is away from it.
   const merkezNoktalar = cokgenler.length ? cokgenler.flat() : adlar.map(nokta);
@@ -425,8 +450,75 @@ export function sekilYerlesim(girdi: Sekil): Yerlesim {
     etiketler.push({ x: cx, y: cy, metin: o.metin, tur: "kenar", vurgu: !!o.vurgu, kutu: kutuOlustur(cx, cy, o.metin, YAZI.sayi), kaynak: `ölçü ${o.p.join("")}`, yon: n });
   }
 
-  // ── Point labels: centre of the widest free gap around the point ──
+  // ── Axis labels ──
+  for (const e of eksenEtiketleri) {
+    const cx = e.p.x + e.dx;
+    const cy = e.p.y + e.dy;
+    etiketler.push({ x: cx, y: cy, metin: e.metin, tur: "nokta", vurgu: false, kutu: kutuOlustur(cx, cy, e.metin, YAZI.nokta), kaynak: `eksen ${e.metin}`, yon: { x: 0, y: 0 } });
+  }
+
   const gizli = new Set(sekil.gizli ?? []);
+  // ── Label search: try 16 directions around a point, keep the one with the
+  //    most room from every line, curve, dot and earlier label. The widest-gap
+  //    direction is tried first and wins ties.
+  const noktaIsaretleri = (sekil.isaretli ?? []).map(nokta);
+  const bosluk = (k: Kutu, sahibi?: P): number => {
+    let m = Infinity;
+    for (const c of cizgiler) m = Math.min(m, kutuCizgiMesafesi(k, c.a, c.b));
+    for (const c of engeller) m = Math.min(m, kutuCizgiMesafesi(k, c.a, c.b));
+    for (const y of yaylar) m = Math.min(m, kutuYayMesafesi(k, y));
+    for (const c of cemberler) m = Math.min(m, kutuCemberMesafesi(k, c));
+    for (const d of noktaIsaretleri) if (!sahibi || uz(fark(d, sahibi)) > 0.5) m = Math.min(m, Math.hypot(Math.max(k.x0 - d.x, 0, d.x - k.x1), Math.max(k.y0 - d.y, 0, d.y - k.y1)) - 2.6);
+    for (const e of etiketler) {
+      const dx = Math.max(e.kutu.x0 - k.x1, k.x0 - e.kutu.x1, 0);
+      const dy = Math.max(e.kutu.y0 - k.y1, k.y0 - e.kutu.y1, 0);
+      m = Math.min(m, Math.hypot(dx, dy));
+    }
+    return m;
+  };
+  const konumla = (p: P, yazi: string, yon: P, ara = 5) => {
+    const k0 = kutuOlustur(0, 0, yazi, YAZI.nokta);
+    const dist = uzaklik(yon, kutuYariGen(k0), kutuYariYuk(k0), ara);
+    const x = p.x + yon.x * dist;
+    const y = p.y + yon.y * dist;
+    return { x, y, kutu: kutuOlustur(x, y, yazi, YAZI.nokta), yon };
+  };
+  const enIyiKonum = (p: P, yazi: string, yon0: P) => {
+    const t0 = Math.atan2(yon0.y, yon0.x);
+    let enIyi = konumla(p, yazi, yon0);
+    let enIyiPuan = -Infinity;
+    // The first candidate with enough room wins, so a label that already fits
+    // stays exactly where the widest-gap rule puts it.
+    arama: for (const ara of [5, 10]) {
+      for (let i = 0; i < 16; i++) {
+        const adim = Math.ceil(i / 2) * (i % 2 ? 1 : -1); // 0, +1, -1, +2, -2, ...
+        const t = t0 + (adim * Math.PI) / 8;
+        const aday = konumla(p, yazi, { x: Math.cos(t), y: Math.sin(t) }, ara);
+        const b = bosluk(aday.kutu, p);
+        if (b >= BOSLUK_MIN) {
+          enIyi = aday;
+          break arama;
+        }
+        if (b > enIyiPuan) {
+          enIyiPuan = b;
+          enIyi = aday;
+        }
+      }
+    }
+    // Already placed with care: the later nudge pass must not move it.
+    return { ...enIyi, yon: { x: 0, y: 0 } };
+  };
+  if (sekil.eksen) {
+    // Skip "O" only when a labelled point already sits on the origin.
+    const origindeNokta = Object.entries(sekil.noktalar).some(([ad, [x, y]]) => !gizli.has(ad) && Math.abs(x) < 1e-9 && Math.abs(y) < 1e-9);
+    if (!origindeNokta) {
+      const o = ekranda(0, 0);
+      const yer = enIyiKonum(o, "O", birim({ x: -1, y: 1 }));
+      etiketler.push({ x: yer.x, y: yer.y, metin: "O", tur: "nokta", vurgu: false, kutu: yer.kutu, kaynak: "eksen O", yon: yer.yon });
+    }
+  }
+
+  // ── Point labels: centre of the widest free gap around the point ──
   for (const ad of adlar) {
     if (gizli.has(ad)) continue;
     const p = N[ad];
@@ -474,19 +566,17 @@ export function sekilYerlesim(girdi: Sekil): Yerlesim {
       const o = bas + enIyi / 2;
       yon = { x: Math.cos(o), y: Math.sin(o) };
     }
-    const k0 = kutuOlustur(0, 0, ad, YAZI.nokta);
-    const dist = uzaklik(yon, kutuYariGen(k0), kutuYariYuk(k0), 5);
-    const cx = p.x + yon.x * dist;
-    const cy = p.y + yon.y * dist;
+    const yazi = sekil.etiketMetni?.[ad] ?? ad;
+    const yer = elle != null ? konumla(p, yazi, yon) : enIyiKonum(p, yazi, yon);
     etiketler.push({
-      x: cx,
-      y: cy,
-      metin: ad,
+      x: yer.x,
+      y: yer.y,
+      metin: yazi,
       tur: "nokta",
-      vurgu: false,
-      kutu: kutuOlustur(cx, cy, ad, YAZI.nokta),
+      vurgu: !!sekil.vurguluNoktalar?.includes(ad),
+      kutu: yer.kutu,
       kaynak: `nokta ${ad}`,
-      yon,
+      yon: yer.yon,
     });
   }
 
