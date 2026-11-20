@@ -82,6 +82,8 @@ const quiz: TopicQuiz = {
           { p: ["T2", "F2"], kesik: true },
         ],
         dikler: [["W", "O", "G"]],
+        taralar: [{ p: ["O", "G"] }],
+        isaretli: ["T1", "T2"],
         kenarlar: [
           { p: ["T1", "F1"], metin: "25" },
           { p: ["T2", "F2"], metin: "25" },

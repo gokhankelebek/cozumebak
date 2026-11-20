@@ -458,7 +458,7 @@ section[id]{scroll-margin-top:90px}
 .quiz-diff.zor{background:var(--coral-tint);color:var(--coral-deep);border-color:rgba(229,73,43,.3)}
 .quiz-q-prompt{font-size:1.06rem;margin-bottom:16px}
 .quiz-sekil{margin:0 0 18px;padding:10px 12px;background:var(--paper-2);border:1.5px solid var(--line);border-radius:14px;display:flex;justify-content:center}
-.quiz-sekil svg{display:block;width:100%;max-width:360px;height:auto}
+.quiz-sekil svg{display:block;max-width:100%;height:auto}
 .quiz-opts{display:grid;gap:10px}
 .quiz-opt{display:flex;align-items:center;gap:12px;text-align:left;background:var(--paper);border:1.5px solid var(--line);border-radius:12px;padding:12px 16px;font:inherit;font-size:1rem;color:var(--ink);cursor:pointer;transition:border-color .15s,background .15s}
 .quiz-opt:hover:not(:disabled){border-color:var(--ink)}

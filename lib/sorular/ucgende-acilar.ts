@@ -52,6 +52,7 @@ const quiz: TopicQuiz = {
         aciklama: "Tepe açısı 44 derece olan ikizkenar üçgen; taban açıları x.",
         noktalar: { A: [5, 12.38], B: [0, 0], C: [10, 0] },
         cokgenler: [["A", "B", "C"]],
+        esitler: [{ p: ["A", "B"] }, { p: ["A", "C"] }],
         acilar: [
           { p: ["B", "A", "C"], metin: "44°" },
           { p: ["C", "B", "A"], metin: "x", vurgu: true },
@@ -96,6 +97,7 @@ const quiz: TopicQuiz = {
         aciklama: "İkizkenar üçgen; taban açıları x, tepe açısı x artı 30 derece.",
         noktalar: { A: [5, 5.96], B: [0, 0], C: [10, 0] },
         cokgenler: [["A", "B", "C"]],
+        esitler: [{ p: ["A", "B"] }, { p: ["A", "C"] }],
         acilar: [
           { p: ["B", "A", "C"], metin: "x + 30°" },
           { p: ["C", "B", "A"], metin: "x", vurgu: true },
