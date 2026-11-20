@@ -7,11 +7,21 @@ const quiz: TopicQuiz = {
   questions: [
     {
       id: "acilar-dogrular-01",
+      sekil: {
+        aciklama: "Paralel d1 ve d2 doğrularını bir kesen kesiyor; iç ters iki açı (4x − 5) ve (2x + 35) derece.",
+        noktalar: { L1: [-4, 5.5], d1: [8, 5.5], L2: [-4, 0], d2: [8, 0], P1: [2, 5.5], P2: [0.526, 0], Tu: [2.621, 7.818], Ta: [-0.095, -2.318] },
+        dogrular: [{ p: ["L1", "d1"] }, { p: ["L2", "d2"] }, { p: ["Ta", "Tu"] }],
+        acilar: [
+          { p: ["L1", "P1", "P2"], metin: "(4x − 5)°", yaricap: 24 },
+          { p: ["d2", "P2", "P1"], metin: "(2x + 35)°", yaricap: 24 },
+        ],
+        gizli: ["L1", "L2", "P1", "P2", "Tu", "Ta"],
+      },
       difficulty: "Kolay",
-      prompt: "$d_1 \\parallel d_2$ paralel doğruları bir kesenle kesiliyor. Bir iç ters açının ölçüsü $(4x-5)°$, karşısındaki yöndeş açının ölçüsü $(2x+35)°$'dir. Buna göre $x$ kaçtır?",
+      prompt: "$d_1 \\parallel d_2$ paralel doğruları bir kesenle kesiliyor. Oluşan iç ters iki açının ölçüleri $(4x-5)°$ ve $(2x+35)°$'dir. Buna göre $x$ kaçtır?",
       options: ["$15$", "$18$", "$20$", "$22$", "$25$"],
       correct: 2,
-      solution: ["Paralel doğrularda iç ters açı ile yöndeş açı **eşittir** ($Z$ ve $F$ kuralı).", "$(4x-5)=(2x+35)\\Rightarrow 2x=40\\Rightarrow x=20$.", "Kontrol: $4\\cdot 20-5=75°$ ve $2\\cdot 20+35=75°$; eşitlik sağlanır."],
+      solution: ["Paralel doğrularda iç ters açılar **eşittir** ($Z$ kuralı).", "$(4x-5)=(2x+35)\\Rightarrow 2x=40\\Rightarrow x=20$.", "Kontrol: $4\\cdot 20-5=75°$ ve $2\\cdot 20+35=75°$; eşitlik sağlanır."],
       answer: "$20$",
     },
     {
