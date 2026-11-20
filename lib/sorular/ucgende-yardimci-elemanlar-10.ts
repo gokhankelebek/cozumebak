@@ -7,6 +7,15 @@ const quiz: TopicQuiz = {
   questions: [
     {
       id: "ucgende-yardimci-elemanlar-10-01",
+      sekil: {
+        aciklama: "ABC üçgeninde A köşesinden çizilen kenarortay BC'yi D noktasında kesiyor; BC = 26; BD bilinmiyor.",
+        noktalar: { A: [9, 12], B: [0, 0], C: [26, 0], D: [13, 0] },
+        cokgenler: [["A", "B", "C"]],
+        dogrular: [{ p: ["A", "D"] }],
+        kenarlar: [{ p: ["B", "D"], metin: "?", vurgu: true, ic: true }],
+        olculer: [{ p: ["B", "C"], metin: "26" }],
+        etiketYonu: { D: 45 },
+      },
       difficulty: "Kolay",
       prompt: "$ABC$ üçgeninde $A$ köşesinden çizilen kenarortay $BC$ kenarını $D$ noktasında kesmektedir. $|BC|=26$ br ise $|BD|$ kaç br'dir?",
       options: ["$6{,}5$", "$12$", "$13$", "$13{,}5$", "$26$"],
@@ -16,6 +25,14 @@ const quiz: TopicQuiz = {
     },
     {
       id: "ucgende-yardimci-elemanlar-10-03",
+      sekil: {
+        aciklama: "Üçgende A köşesinden çizilen kenarortay AD = 21; G ağırlık merkezi; AG bilinmiyor.",
+        noktalar: { A: [4, 11], B: [0, 0], C: [14, 0], D: [7, 0], G: [6.0, 3.667] },
+        cokgenler: [["A", "B", "C"]],
+        dogrular: [{ p: ["A", "D"] }],
+        isaretli: ["G"],
+        kenarlar: [{ p: ["A", "G"], metin: "?", vurgu: true }],
+      },
       difficulty: "Orta",
       prompt: "Bir üçgende $A$ köşesinden çizilen kenarortayın uzunluğu $|AD|=21$ br'dir. Kenarortayların kesim noktası (ağırlık merkezi) $G$ ise $|AG|$ kaç br'dir?",
       options: ["$7$", "$10{,}5$", "$14$", "$16$", "$42$"],
@@ -25,6 +42,20 @@ const quiz: TopicQuiz = {
     },
     {
       id: "ucgende-yardimci-elemanlar-10-04",
+      sekil: {
+        aciklama: "Dik açısı C'de olan ABC üçgeninde CA = 9, CB = 12; C'den hipotenüsün orta noktasına çizilen kenarortay bilinmiyor.",
+        noktalar: { A: [0, 9], B: [12, 0], C: [0, 0], M: [6, 4.5] },
+        cokgenler: [["A", "B", "C"]],
+        dogrular: [{ p: ["C", "M"] }],
+        dikler: [["A", "C", "B"]],
+        esitler: [{ p: ["A", "M"] }, { p: ["M", "B"] }],
+        kenarlar: [
+          { p: ["C", "A"], metin: "9" },
+          { p: ["C", "B"], metin: "12" },
+          { p: ["C", "M"], metin: "?", vurgu: true },
+        ],
+        gizli: ["M"],
+      },
       difficulty: "Zor",
       prompt: "Bir marangoz, dik açısı $C$ köşesinde olan dik üçgen biçiminde bir tahta parçası kesiyor. Dik kenarlar $|CA|=9$ cm ve $|CB|=12$ cm'dir. Marangoz, dik açının bulunduğu $C$ köşesinden hipotenüs $AB$'nin orta noktasına bir çita çakacaktır. Bu çita (hipotenüse ait kenarortay) kaç cm olur?",
       options: ["$4{,}5$", "$6$", "$7{,}5$", "$10{,}5$", "$15$"],
@@ -43,6 +74,23 @@ const quiz: TopicQuiz = {
     },
     {
       id: "ucgende-yardimci-elemanlar-10-06",
+      sekil: {
+        aciklama: "ABC üçgeninde A açısının açıortayı BC'yi D'de kesiyor; AB = 15, AC = 10, DC = 8; BC bilinmiyor.",
+        noktalar: { A: [13.125, 7.262], B: [0, 0], C: [20, 0], D: [12, 0] },
+        cokgenler: [["A", "B", "C"]],
+        dogrular: [{ p: ["A", "D"] }],
+        acilar: [
+          { p: ["B", "A", "D"], yaricap: 24 },
+          { p: ["D", "A", "C"], yaricap: 24 },
+        ],
+        kenarlar: [
+          { p: ["A", "B"], metin: "15" },
+          { p: ["A", "C"], metin: "10" },
+          { p: ["D", "C"], metin: "8", ic: true },
+        ],
+        olculer: [{ p: ["B", "C"], metin: "?", vurgu: true }],
+        etiketYonu: { D: 125 },
+      },
       difficulty: "Orta",
       prompt: "$ABC$ üçgeninde $A$ açısının açıortayı $BC$'yi $D$'de kesiyor. $|AB|=15$, $|AC|=10$ ve $|DC|=8$ br ise $|BC|$ kaç br'dir?",
       options: ["$13{,}5$", "$18$", "$20$", "$21$", "$24$"],
