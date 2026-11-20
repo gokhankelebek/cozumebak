@@ -73,6 +73,17 @@ export default function SoruSekli({ sekil }: { sekil: Sekil }) {
       {y.boyali.map((b, i) => (
         <polygon key={`b${i}`} points={b.map((p) => `${f(p.x)},${f(p.y)}`).join(" ")} fill="#e6e1d5" stroke="none" />
       ))}
+      {y.dilimler.map((d, i) => {
+        const x1 = d.merkez.x + d.r * Math.cos(d.t1);
+        const y1 = d.merkez.y + d.r * Math.sin(d.t1);
+        const x2 = d.merkez.x + d.r * Math.cos(d.t1 + d.d);
+        const y2 = d.merkez.y + d.r * Math.sin(d.t1 + d.d);
+        const buyuk = Math.abs(d.d) > Math.PI ? 1 : 0;
+        const yon = d.d > 0 ? 1 : 0;
+        const yay = `A ${f(d.r)} ${f(d.r)} 0 ${buyuk} ${yon} ${f(x2)} ${f(y2)}`;
+        const yol = d.kesme ? `M ${f(x1)} ${f(y1)} ${yay} Z` : `M ${f(d.merkez.x)} ${f(d.merkez.y)} L ${f(x1)} ${f(y1)} ${yay} Z`;
+        return <path key={`s${i}`} d={yol} fill="#e6e1d5" stroke="none" />;
+      })}
       {y.cemberler.map((c, i) => (
         <circle key={`o${i}`} cx={f(c.merkez.x)} cy={f(c.merkez.y)} r={f(c.r)} fill="none" stroke={KOYU} strokeWidth={1.6} />
       ))}
@@ -97,10 +108,11 @@ export default function SoruSekli({ sekil }: { sekil: Sekil }) {
         return (
           <path
             key={`a${i}`}
-            d={`M ${f(x1)} ${f(y1)} A ${a.r} ${a.r} 0 0 ${a.d > 0 ? 1 : 0} ${f(x2)} ${f(y2)}`}
+            d={`M ${f(x1)} ${f(y1)} A ${f(a.r)} ${f(a.r)} 0 ${Math.abs(a.d) > Math.PI ? 1 : 0} ${a.d > 0 ? 1 : 0} ${f(x2)} ${f(y2)}`}
             fill="none"
             stroke={a.vurgu ? VURGU : KOYU}
-            strokeWidth={1.1}
+            strokeWidth={a.tur === "kalin" ? 2.8 : a.tur === "ana" ? 1.6 : 1.1}
+            strokeLinecap="round"
           />
         );
       })}
