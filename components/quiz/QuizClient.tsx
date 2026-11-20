@@ -10,6 +10,7 @@ interface ClientQuestion {
   correct: number;
   difficulty: string | null;
   prompt: ReactNode;
+  figure: ReactNode;
   options: ReactNode[];
   solution: ReactNode;
 }
@@ -104,6 +105,7 @@ export default function QuizClient({
               )}
             </div>
             <div className="quiz-q-prompt">{q.prompt}</div>
+            {q.figure && <figure className="quiz-sekil">{q.figure}</figure>}
             <div className="quiz-opts" role="group" aria-label={`Soru ${qi + 1} şıkları`}>
               {q.options.map((opt, oi) => {
                 const state =
