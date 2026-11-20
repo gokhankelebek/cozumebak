@@ -319,6 +319,11 @@ export function getQuiz(slug: string): TopicQuiz | undefined {
   return BANKS[slug];
 }
 
+/** Every question bank (used by the /dev/sekiller figure review page). */
+export function allQuizzes(): TopicQuiz[] {
+  return Object.values(BANKS);
+}
+
 /** Real question count for a topic, or undefined if it has no bank yet. */
 export function getQuizCount(slug: string): number | undefined {
   return BANKS[slug]?.questions.length;

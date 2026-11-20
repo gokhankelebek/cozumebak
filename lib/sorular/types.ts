@@ -6,6 +6,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import type { Difficulty } from "@/lib/curriculum";
+import type { Sekil } from "./sekil";
 
 export interface QuizQuestion {
   /** Stable id, e.g. "turevin-tanimi-01" — used as React key + analytics. */
@@ -20,6 +21,8 @@ export interface QuizQuestion {
   /** Final result line, shown in the green answer box. */
   answer: string;
   difficulty?: Difficulty;
+  /** Optional schematic figure shown under the prompt (see ./sekil.ts). */
+  sekil?: Sekil;
 }
 
 export interface TopicQuiz {

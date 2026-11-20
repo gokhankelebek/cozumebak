@@ -1,5 +1,6 @@
 import { getQuiz } from "@/lib/sorular";
 import MathText from "./MathText";
+import SoruSekli from "./SoruSekli";
 import QuizClient from "./QuizClient";
 import Tuzaklar from "./Tuzaklar";
 
@@ -18,6 +19,7 @@ export default function Sorular({ slug }: { slug: string }) {
     correct: q.correct,
     difficulty: q.difficulty ?? null,
     prompt: <MathText text={q.prompt} />,
+    figure: q.sekil ? <SoruSekli sekil={q.sekil} /> : null,
     options: q.options.map((opt, i) => <MathText key={i} text={opt} />),
     solution: (
       <>
