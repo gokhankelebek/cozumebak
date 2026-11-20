@@ -7,6 +7,17 @@ const quiz: TopicQuiz = {
   questions: [
     {
       id: "sinus-kosinus-teoremi-10-01",
+      sekil: {
+        aciklama: "C açısı dik olan ABC üçgeni; A açısı 45 derece, BC = 6; AB kenarı c bilinmiyor.",
+        noktalar: { A: [6, 0], B: [0, 6], C: [0, 0] },
+        cokgenler: [["A", "B", "C"]],
+        dikler: [["A", "C", "B"]],
+        acilar: [{ p: ["C", "A", "B"], metin: "45°" }],
+        kenarlar: [
+          { p: ["B", "C"], metin: "6" },
+          { p: ["A", "B"], metin: "?", vurgu: true },
+        ],
+      },
       difficulty: "Kolay",
       prompt: "Bir üçgende $\\widehat{A}=45°$, $a=6$ ve $\\widehat{C}=90°$ ise $c$ kenarı kaçtır? ($\\sin 45°=\\dfrac{\\sqrt2}{2}$, $\\sin 90°=1$.)",
       options: ["$3\\sqrt2$", "$6$", "$6\\sqrt2$", "$12$", "$3$"],
@@ -16,6 +27,17 @@ const quiz: TopicQuiz = {
     },
     {
       id: "sinus-kosinus-teoremi-10-02",
+      sekil: {
+        aciklama: "A açısı dik olan ABC üçgeni; AC = 9, AB = 12; BC kenarı bilinmiyor.",
+        noktalar: { A: [0, 0], B: [12, 0], C: [0, 9] },
+        cokgenler: [["A", "B", "C"]],
+        dikler: [["B", "A", "C"]],
+        kenarlar: [
+          { p: ["A", "B"], metin: "12" },
+          { p: ["A", "C"], metin: "9" },
+          { p: ["B", "C"], metin: "?", vurgu: true },
+        ],
+      },
       difficulty: "Kolay",
       prompt: "Bir üçgende $b=9$, $c=12$ ve aralarındaki açı $\\widehat{A}=90°$ ise kosinüs teoremiyle $a$ kenarı kaçtır? ($\\cos 90°=0$.)",
       options: ["$225$", "$21$", "$15$", "$\\sqrt{63}$", "$\\sqrt{105}$"],
@@ -25,6 +47,18 @@ const quiz: TopicQuiz = {
     },
     {
       id: "sinus-kosinus-teoremi-10-03",
+      sekil: {
+        aciklama: "İki kenarı 6 ve 10, aralarındaki açı 120 derece olan üçgen; üçüncü kenar bilinmiyor.",
+        noktalar: { A: [0, 0], B: [10, 0], C: [-3.0, 5.196] },
+        cokgenler: [["A", "B", "C"]],
+        acilar: [{ p: ["B", "A", "C"], metin: "120°" }],
+        kenarlar: [
+          { p: ["A", "B"], metin: "10" },
+          { p: ["A", "C"], metin: "6" },
+          { p: ["B", "C"], metin: "?", vurgu: true },
+        ],
+        gizli: ["A", "B", "C"],
+      },
       difficulty: "Orta",
       prompt: "İki kenarı $6$ ve $10$, aralarındaki açısı $120°$ olan bir üçgenin üçüncü kenarı kaçtır? ($\\cos 120°=-\\dfrac12$.)",
       options: ["$14$", "$\\sqrt{76}$", "$196$", "$2\\sqrt{34}$", "$16$"],
@@ -34,6 +68,17 @@ const quiz: TopicQuiz = {
     },
     {
       id: "sinus-kosinus-teoremi-10-04",
+      sekil: {
+        aciklama: "Kenarları a = 6, b = 4, c = 5 olan ABC üçgeni; A açısı işaretli.",
+        noktalar: { A: [3.75, 3.307], B: [0, 0], C: [6, 0] },
+        cokgenler: [["A", "B", "C"]],
+        acilar: [{ p: ["B", "A", "C"], vurgu: true }],
+        kenarlar: [
+          { p: ["B", "C"], metin: "6" },
+          { p: ["C", "A"], metin: "4" },
+          { p: ["A", "B"], metin: "5" },
+        ],
+      },
       difficulty: "Orta",
       prompt: "Kenarları $a=6$, $b=4$, $c=5$ olan bir üçgende $a$ kenarının karşısındaki $\\widehat{A}$ açısının kosinüsü kaçtır?",
       options: ["$-\\dfrac18$", "$\\dfrac16$", "$\\dfrac18$", "$\\dfrac14$", "$\\dfrac{5}{41}$"],
@@ -52,6 +97,19 @@ const quiz: TopicQuiz = {
     },
     {
       id: "sinus-kosinus-teoremi-10-06",
+      sekil: {
+        aciklama: "Kavşaktan aralarında 60 derece açı olan iki yol; birinde 8 km, diğerinde 5 km gidiliyor; iki nokta arasındaki uzaklık bilinmiyor.",
+        noktalar: { K: [0, 0], P: [8, 0], Q: [2.5, 4.33] },
+        dogrular: [{ p: ["K", "P"] }, { p: ["K", "Q"] }, { p: ["P", "Q"], kesik: true }],
+        isaretli: ["K", "P", "Q"],
+        acilar: [{ p: ["P", "K", "Q"], metin: "60°" }],
+        kenarlar: [
+          { p: ["K", "P"], metin: "8" },
+          { p: ["K", "Q"], metin: "5" },
+          { p: ["P", "Q"], metin: "?", vurgu: true },
+        ],
+        gizli: ["K", "P", "Q"],
+      },
       difficulty: "Zor",
       prompt: "Bir kavşaktan çıkan iki düz yol aralarında $60°$ açı yapmaktadır. Bir araç birinci yolda $8$ km, ikinci yolda ise $5$ km ilerlemiştir. Araçların vardığı iki nokta arasındaki kuş uçuşu uzaklık kaç km'dir? ($\\cos 60°=\\dfrac12$.)",
       options: ["$13$", "$\\sqrt{129}$", "$\\sqrt{89}$", "$7$", "$\\sqrt{39}$"],

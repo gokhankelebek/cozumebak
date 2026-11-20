@@ -7,6 +7,16 @@ const quiz: TopicQuiz = {
   questions: [
     {
       id: "ucgende-trigonometri-ayt-01",
+      sekil: {
+        aciklama: "Kenarları a = 7, b = 8 ve c = 13 olan ABC üçgeni.",
+        noktalar: { A: [11.0, 6.928], B: [0, 0], C: [7, 0] },
+        cokgenler: [["A", "B", "C"]],
+        kenarlar: [
+          { p: ["B", "C"], metin: "7" },
+          { p: ["C", "A"], metin: "8" },
+          { p: ["A", "B"], metin: "13" },
+        ],
+      },
       difficulty: "Orta",
       prompt: "Kenar uzunlukları $a=7$, $b=8$ ve $c=13$ birim olan bir üçgen veriliyor. Buna göre, bu üçgenin alanı kaç birimkaredir?",
       options: ["$10\\sqrt{3}$", "$12\\sqrt{3}$", "$14\\sqrt{3}$", "$14\\sqrt{2}$", "$28$"],
@@ -16,6 +26,20 @@ const quiz: TopicQuiz = {
     },
     {
       id: "ucgende-trigonometri-ayt-02",
+      sekil: {
+        aciklama: "ABC üçgeni ve çevrel çemberi; b = 5, c = 8, A açısı 60 derece; yarıçap R bilinmiyor.",
+        noktalar: { A: [6.286, 4.949], B: [0, 0], C: [7, 0], O: [3.5, 2.021] },
+        cokgenler: [["A", "B", "C"]],
+        cemberler: [{ merkez: "O", nokta: "A" }],
+        dogrular: [{ p: ["O", "B"], kesik: true }],
+        isaretli: ["O"],
+        acilar: [{ p: ["B", "A", "C"], metin: "60°" }],
+        kenarlar: [
+          { p: ["C", "A"], metin: "5" },
+          { p: ["A", "B"], metin: "8" },
+          { p: ["O", "B"], metin: "R", vurgu: true, ic: true },
+        ],
+      },
       difficulty: "Orta",
       prompt: "Bir $ABC$ üçgeninde $b=5$, $c=8$ birim ve bu iki kenar arasındaki $A$ açısı $60^{\\circ}$'dir. Buna göre, bu üçgenin çevrel çemberinin yarıçapı $R$ kaç birimdir?",
       options: ["$\\dfrac{7\\sqrt{3}}{3}$", "$\\dfrac{7}{3}$", "$\\dfrac{7\\sqrt{3}}{2}$", "$7$", "$\\dfrac{14\\sqrt{3}}{3}$"],
@@ -25,6 +49,20 @@ const quiz: TopicQuiz = {
     },
     {
       id: "ucgende-trigonometri-ayt-03",
+      sekil: {
+        aciklama: "Kenarları 13, 14 ve 15 olan ABC üçgeni ve çevrel çemberi; yarıçap R bilinmiyor.",
+        noktalar: { A: [7.615, 12.923], B: [0, 0], C: [13, 0], O: [6.5, 4.875] },
+        cokgenler: [["A", "B", "C"]],
+        cemberler: [{ merkez: "O", nokta: "A" }],
+        dogrular: [{ p: ["O", "C"], kesik: true }],
+        isaretli: ["O"],
+        kenarlar: [
+          { p: ["B", "C"], metin: "13" },
+          { p: ["C", "A"], metin: "14" },
+          { p: ["A", "B"], metin: "15" },
+          { p: ["O", "C"], metin: "R", vurgu: true, ic: true },
+        ],
+      },
       difficulty: "Orta",
       prompt: "Kenar uzunlukları $a=13$, $b=14$ ve $c=15$ birim olan bir üçgen veriliyor. Buna göre, bu üçgenin çevrel çemberinin yarıçapı $R$ kaç birimdir?",
       options: ["$\\dfrac{63}{8}$", "$\\dfrac{65}{8}$", "$8$", "$\\dfrac{65}{4}$", "$\\dfrac{33}{4}$"],
@@ -34,6 +72,19 @@ const quiz: TopicQuiz = {
     },
     {
       id: "ucgende-trigonometri-ayt-04",
+      sekil: {
+        aciklama: "ABC üçgeninde AB = 2, AC = 2 kök 3 ve A açısı 30 derece; B açısı bilinmiyor.",
+        noktalar: { A: [-1.0, 1.732], B: [0, 0], C: [2, 0] },
+        cokgenler: [["A", "B", "C"]],
+        acilar: [
+          { p: ["B", "A", "C"], metin: "30°" },
+          { p: ["A", "B", "C"], metin: "?", vurgu: true },
+        ],
+        kenarlar: [
+          { p: ["A", "B"], metin: "2" },
+          { p: ["C", "A"], metin: "2√3" },
+        ],
+      },
       difficulty: "Zor",
       prompt: "Bir $ABC$ üçgeninde $b=2\\sqrt{3}$ birim, $c=2$ birim ve bu iki kenar arasındaki açı $A=30^{\\circ}$'dir. Buna göre, $a$ kenarının karşısındaki $A$ açısı dışında kalan, $b$ kenarının karşısındaki $B$ açısı kaç derecedir?",
       options: ["$30$", "$45$", "$60$", "$90$", "$120$"],
@@ -52,6 +103,17 @@ const quiz: TopicQuiz = {
     },
     {
       id: "ucgende-trigonometri-ayt-06",
+      sekil: {
+        aciklama: "ABC üçgeninde AB = 10, AC = 6 ve aralarında A açısı; BC kenarı a.",
+        noktalar: { A: [0, 0], B: [10, 0], C: [4.8, 3.6] },
+        cokgenler: [["A", "B", "C"]],
+        acilar: [{ p: ["B", "A", "C"] }],
+        kenarlar: [
+          { p: ["A", "B"], metin: "10" },
+          { p: ["A", "C"], metin: "6" },
+          { p: ["B", "C"], metin: "a", vurgu: true },
+        ],
+      },
       difficulty: "Zor",
       prompt: "Bir $ABC$ üçgeninde $b=6$, $c=10$ birim ve bu iki kenar arasındaki $A$ açısı için $\\cos A=\\dfrac{4}{5}$ veriliyor ($A$ dar açı). Buna göre, $a$ kenarının uzunluğunun karesi ($a^{2}$) ile üçgenin alanının ($S$) toplamı $a^{2}+S$ kaçtır?",
       options: ["$40$", "$48$", "$54$", "$58$", "$76$"],

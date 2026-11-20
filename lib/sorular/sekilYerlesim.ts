@@ -44,6 +44,8 @@ export interface Yerlesim {
   vb: Kutu; // viewBox
   noktalar: P[]; // dot markers
   cokgenler: P[][];
+  boyali: P[][];
+  cemberler: { merkez: P; r: number }[];
   cizgiler: Cizgi[];
   yaylar: Yay[];
   etiketler: Etiket[];
@@ -103,6 +105,14 @@ export function sekilYerlesim(sekil: Sekil): Yerlesim {
   const adlar = Object.keys(sekil.noktalar);
   const xs = adlar.map((k) => sekil.noktalar[k][0]);
   const ys = adlar.map((k) => sekil.noktalar[k][1]);
+  // Circles widen the drawing's extent.
+  for (const c of sekil.cemberler ?? []) {
+    const [mx, my] = sekil.noktalar[c.merkez];
+    const [px, py] = sekil.noktalar[c.nokta];
+    const r = Math.hypot(px - mx, py - my);
+    xs.push(mx - r, mx + r);
+    ys.push(my - r, my + r);
+  }
   const minX = Math.min(...xs);
   const maxX = Math.max(...xs);
   const minY = Math.min(...ys);
@@ -142,6 +152,10 @@ export function sekilYerlesim(sekil: Sekil): Yerlesim {
 
   const yaylar: Yay[] = [];
   const etiketler: Etiket[] = [];
+  const cemberler = (sekil.cemberler ?? []).map((c) => {
+    const m = nokta(c.merkez);
+    return { merkez: m, r: uz(fark(nokta(c.nokta), m)) };
+  });
 
   // ── Right-angle squares ──
   for (const [a, b, c] of sekil.dikler ?? []) {
@@ -266,6 +280,13 @@ export function sekilYerlesim(sekil: Sekil): Yerlesim {
     for (const y of yaylar) {
       if (uz(fark(y.merkez, p)) < 0.5) yonler.push(y.t1 + y.d / 2); // keep clear of angle labels
     }
+    for (const c of cemberler) {
+      // a point on a circle: block the inward direction and both tangents
+      if (Math.abs(uz(fark(p, c.merkez)) - c.r) < 0.8) {
+        const ic = aciOf(fark(c.merkez, p));
+        yonler.push(ic, ic + Math.PI / 2, ic - Math.PI / 2);
+      }
+    }
     let yon: P;
     if (yonler.length === 0) {
       yon = birim(fark(p, merkez));
@@ -302,7 +323,7 @@ export function sekilYerlesim(sekil: Sekil): Yerlesim {
 
   // ── Nudge: push any label that touches a line or arc outward, 2 px at a time ──
   for (const e of etiketler) {
-    for (let adim = 0; adim < 8 && cizimeDegiyor(e.kutu, cizgiler, yaylar); adim++) {
+    for (let adim = 0; adim < 8 && (cizimeDegiyor(e.kutu, cizgiler, yaylar) || cemberler.some((c) => kutuCemberMesafesi(e.kutu, c) < BOSLUK_MIN)); adim++) {
       e.x += e.yon.x * 2;
       e.y += e.yon.y * 2;
       e.kutu = { x0: e.kutu.x0 + e.yon.x * 2, y0: e.kutu.y0 + e.yon.y * 2, x1: e.kutu.x1 + e.yon.x * 2, y1: e.kutu.y1 + e.yon.y * 2 };
@@ -331,7 +352,9 @@ export function sekilYerlesim(sekil: Sekil): Yerlesim {
   }
   const pay = 8;
   return {
-    vb: { x0: x0 - pay, y0: y0 - pay, x1: x1 + pay, y1: y1 + pay },
+    vb: { x0: Math.min(x0, ...cemberler.map((c) => c.merkez.x - c.r)) - pay, y0: Math.min(y0, ...cemberler.map((c) => c.merkez.y - c.r)) - pay, x1: Math.max(x1, ...cemberler.map((c) => c.merkez.x + c.r)) + pay, y1: Math.max(y1, ...cemberler.map((c) => c.merkez.y + c.r)) + pay },
+    boyali: (sekil.boyali ?? []).map((b) => b.map(nokta)),
+    cemberler,
     noktalar: (sekil.isaretli ?? []).map(nokta),
     cokgenler,
     cizgiler,
@@ -349,6 +372,19 @@ function kutuYayMesafesi(k: Kutu, yay: Yay): number {
     const t = yay.t1 + (yay.d * i) / n;
     const x = yay.merkez.x + yay.r * Math.cos(t);
     const y = yay.merkez.y + yay.r * Math.sin(t);
+    const dx = Math.max(k.x0 - x, 0, x - k.x1);
+    const dy = Math.max(k.y0 - y, 0, y - k.y1);
+    enAz = Math.min(enAz, Math.hypot(dx, dy));
+  }
+  return enAz;
+}
+
+function kutuCemberMesafesi(k: Kutu, c: { merkez: P; r: number }): number {
+  let enAz = Infinity;
+  for (let i = 0; i < 72; i++) {
+    const t = (i / 72) * 2 * Math.PI;
+    const x = c.merkez.x + c.r * Math.cos(t);
+    const y = c.merkez.y + c.r * Math.sin(t);
     const dx = Math.max(k.x0 - x, 0, x - k.x1);
     const dy = Math.max(k.y0 - y, 0, y - k.y1);
     enAz = Math.min(enAz, Math.hypot(dx, dy));
@@ -394,6 +430,11 @@ export function sekilKontrol(y: Yerlesim): string[] {
         sorunlar.push(`${e.kaynak} ("${e.metin}") bir açı yayına ${enAz < 0.01 ? "değiyor" : "çok yakın"}`);
         break;
       }
+    }
+  }
+  for (const e of y.etiketler) {
+    for (const c of y.cemberler) {
+      if (kutuCemberMesafesi(e.kutu, c) < BOSLUK_MIN) sorunlar.push(`${e.kaynak} ("${e.metin}") çembere değiyor`);
     }
   }
   for (let i = 0; i < y.etiketler.length; i++) {
