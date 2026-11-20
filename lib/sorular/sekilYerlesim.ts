@@ -39,6 +39,15 @@ export interface Yay {
   t1: number; // start angle (screen radians)
   d: number; // signed sweep
   vurgu: boolean;
+  /** "aci" (thin angle mark, default), "ana" (part of the figure), "kalin" (highlighted arc) */
+  tur?: "aci" | "ana" | "kalin";
+}
+export interface Dilim {
+  merkez: P;
+  r: number;
+  t1: number;
+  d: number;
+  kesme: boolean;
 }
 export interface Yerlesim {
   vb: Kutu; // viewBox
@@ -46,6 +55,7 @@ export interface Yerlesim {
   cokgenler: P[][];
   boyali: P[][];
   cemberler: { merkez: P; r: number }[];
+  dilimler: Dilim[];
   cizgiler: Cizgi[];
   yaylar: Yay[];
   etiketler: Etiket[];
@@ -114,6 +124,20 @@ export function sekilYerlesim(sekil: Sekil): Yerlesim {
     xs.push(mx - r, mx + r);
     ys.push(my - r, my + r);
   }
+  for (const y of [...(sekil.cemberYaylari ?? []), ...(sekil.dilimler ?? [])]) {
+    const [mx, my] = sekil.noktalar[y.merkez];
+    const [bx, by] = sekil.noktalar[y.bas];
+    const [sx, sy] = sekil.noktalar[y.son];
+    const r = Math.hypot(bx - mx, by - my);
+    const a0 = Math.atan2(by - my, bx - mx);
+    let sweep = Math.atan2(sy - my, sx - mx) - a0;
+    while (sweep <= 0) sweep += 2 * Math.PI;
+    for (let i = 0; i <= 48; i++) {
+      const t = a0 + (sweep * i) / 48;
+      xs.push(mx + r * Math.cos(t));
+      ys.push(my + r * Math.sin(t));
+    }
+  }
   const minX = Math.min(...xs);
   const maxX = Math.max(...xs);
   const minY = Math.min(...ys);
@@ -157,6 +181,21 @@ export function sekilYerlesim(sekil: Sekil): Yerlesim {
     const m = nokta(c.merkez);
     return { merkez: m, r: uz(fark(nokta(c.nokta), m)) };
   });
+  // CCW-in-math arc from bas to son → screen arc (screen angles run clockwise).
+  const ekranYayi = (merkez: string, bas: string, son: string) => {
+    const C = nokta(merkez);
+    const B0 = nokta(bas);
+    const S0 = nokta(son);
+    const r = uz(fark(B0, C));
+    const t1 = aciOf(fark(B0, C));
+    let sweep = -(aciOf(fark(S0, C)) - t1); // math-CCW sweep, positive
+    while (sweep <= 1e-9) sweep += 2 * Math.PI;
+    while (sweep > 2 * Math.PI) sweep -= 2 * Math.PI;
+    return { merkez: C, r, t1, d: -sweep };
+  };
+  const dilimler: Dilim[] = (sekil.dilimler ?? []).map((d) => ({ ...ekranYayi(d.merkez, d.bas, d.son), kesme: !!d.kesme }));
+  // Circles that points may sit on (full circles and arcs), for label placement.
+  const cevreler = [...cemberler];
 
   // ── Right-angle squares ──
   for (const [a, b, c] of sekil.dikler ?? []) {
@@ -238,6 +277,30 @@ export function sekilYerlesim(sekil: Sekil): Yerlesim {
     }
   }
 
+  // ── Circle arcs (and their labels) ──
+  for (const ya of sekil.cemberYaylari ?? []) {
+    const y = ekranYayi(ya.merkez, ya.bas, ya.son);
+    yaylar.push({ ...y, vurgu: !!ya.vurgu, tur: ya.vurgu && !ya.ince ? "kalin" : "ana" });
+    cevreler.push({ merkez: y.merkez, r: y.r });
+    if (ya.metin) {
+      const orta = y.t1 + y.d / 2;
+      const dis = { x: Math.cos(orta), y: Math.sin(orta) };
+      const yon = ya.ic ? { x: -dis.x, y: -dis.y } : dis;
+      const k0 = kutuOlustur(0, 0, ya.metin, YAZI.sayi);
+      const ara = uzaklik(dis, kutuYariGen(k0), kutuYariYuk(k0), 6);
+      const dist = ya.ic ? y.r - ara : y.r + ara;
+      const cx = y.merkez.x + dis.x * dist;
+      const cy = y.merkez.y + dis.y * dist;
+      etiketler.push({ x: cx, y: cy, metin: ya.metin, tur: "kenar", vurgu: !!ya.vurgu, kutu: kutuOlustur(cx, cy, ya.metin, YAZI.sayi), kaynak: `yay ${ya.bas}${ya.son}`, yon });
+    }
+  }
+
+  // ── Free text ──
+  for (const yz of sekil.yazilar ?? []) {
+    const p = nokta(yz.nokta);
+    etiketler.push({ x: p.x, y: p.y, metin: yz.metin, tur: "kenar", vurgu: !!yz.vurgu, kutu: kutuOlustur(p.x, p.y, yz.metin, YAZI.sayi), kaynak: `yazı "${yz.metin}"`, yon: { x: 0, y: 0 } });
+  }
+
   // ── Side labels ──
   for (const k of sekil.kenarlar ?? []) {
     const A = nokta(k.p[0]);
@@ -300,7 +363,7 @@ export function sekilYerlesim(sekil: Sekil): Yerlesim {
     for (const y of yaylar) {
       if (uz(fark(y.merkez, p)) < 0.5) yonler.push(y.t1 + y.d / 2); // keep clear of angle labels
     }
-    for (const c of cemberler) {
+    for (const c of cevreler) {
       // a point on a circle: block the inward direction and both tangents
       if (Math.abs(uz(fark(p, c.merkez)) - c.r) < 0.8) {
         const ic = aciOf(fark(c.merkez, p));
@@ -370,6 +433,13 @@ export function sekilYerlesim(sekil: Sekil): Yerlesim {
     ekle(c.b.x, c.b.y);
   }
   for (const k of Object.values(N)) ekle(k.x, k.y);
+  for (const y of yaylar) {
+    if (y.tur !== "ana" && y.tur !== "kalin") continue;
+    for (let i = 0; i <= 48; i++) {
+      const t = y.t1 + (y.d * i) / 48;
+      ekle(y.merkez.x + y.r * Math.cos(t), y.merkez.y + y.r * Math.sin(t));
+    }
+  }
   for (const e of etiketler) {
     ekle(e.kutu.x0, e.kutu.y0);
     ekle(e.kutu.x1, e.kutu.y1);
@@ -379,6 +449,7 @@ export function sekilYerlesim(sekil: Sekil): Yerlesim {
     vb: { x0: Math.min(x0, ...cemberler.map((c) => c.merkez.x - c.r)) - pay, y0: Math.min(y0, ...cemberler.map((c) => c.merkez.y - c.r)) - pay, x1: Math.max(x1, ...cemberler.map((c) => c.merkez.x + c.r)) + pay, y1: Math.max(y1, ...cemberler.map((c) => c.merkez.y + c.r)) + pay },
     boyali: (sekil.boyali ?? []).map((b) => b.map(nokta)),
     cemberler,
+    dilimler,
     noktalar: (sekil.isaretli ?? []).map(nokta),
     cokgenler,
     cizgiler,

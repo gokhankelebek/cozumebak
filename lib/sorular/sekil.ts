@@ -48,6 +48,18 @@ export interface Sekil {
   taralar?: { p: [string, string]; ic?: boolean }[];
   /** Circles through a point: centre `merkez`, radius = distance to `nokta`. */
   cemberler?: { merkez: string; nokta: string }[];
+  /**
+   * Circle arcs, counter-clockwise (math sense) from `bas` to `son` around
+   * `merkez`. Plain arcs draw a partial circle (semicircles); `vurgu` draws the
+   * arc thick in the accent colour (the arc a question is about); add `ince`
+   * to keep it at normal width (for long arcs). `metin`
+   * labels the arc outside its midpoint ("64°", "3x").
+   */
+  cemberYaylari?: { merkez: string; bas: string; son: string; vurgu?: boolean; ince?: boolean; metin?: string; ic?: boolean }[];
+  /** Shaded circle pieces, CCW from `bas` to `son`: a sector, or with `kesme` the segment cut off by the chord. */
+  dilimler?: { merkez: string; bas: string; son: string; kesme?: boolean }[];
+  /** Free text centred on a (usually hidden) point, e.g. an area written inside a region. */
+  yazilar?: { nokta: string; metin: string; vurgu?: boolean }[];
   /** Shaded regions (filled light grey, under the lines), e.g. an area asked for. */
   boyali?: string[][];
   /** Points drawn as small filled dots (points on a line, marked positions). */

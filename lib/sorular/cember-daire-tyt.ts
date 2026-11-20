@@ -7,6 +7,17 @@ const quiz: TopicQuiz = {
   questions: [
     {
       id: "cember-daire-tyt-01",
+      sekil: {
+        aciklama: "Yarıçapı 5 olan çemberde 90 derecelik merkez açı ve gördüğü yay; yay uzunluğu bilinmiyor.",
+        noktalar: { O: [0, 0], A: [3.536, 3.536], B: [-3.536, 3.536] },
+        cemberler: [{ merkez: "O", nokta: "A" }],
+        dogrular: [{ p: ["O", "A"] }, { p: ["O", "B"] }],
+        cemberYaylari: [{ merkez: "O", bas: "A", son: "B", vurgu: true, metin: "?" }],
+        acilar: [{ p: ["A", "O", "B"], metin: "90°" }],
+        kenarlar: [{ p: ["O", "A"], metin: "5" }],
+        isaretli: ["O"],
+        gizli: ["A", "B"],
+      },
       difficulty: "Kolay",
       prompt: "Yarıçapı $5$ birim olan bir çemberde merkez açısı $90°$ olan bir yayın uzunluğu kaç birimdir?",
       options: ["$\\pi$", "$2\\pi$", "$\\dfrac{5\\pi}{2}$", "$5\\pi$", "$10\\pi$"],
@@ -16,6 +27,18 @@ const quiz: TopicQuiz = {
     },
     {
       id: "cember-daire-tyt-02",
+      sekil: {
+        aciklama: "Çemberde aynı yayı gören 80 derecelik merkez açı ve çevre açı; çevre açı bilinmiyor.",
+        noktalar: { O: [0, 0], A: [-3.214, -3.83], B: [3.214, -3.83], C: [0.0, 5.0] },
+        cemberler: [{ merkez: "O", nokta: "A" }],
+        dogrular: [{ p: ["O", "A"] }, { p: ["O", "B"] }, { p: ["C", "A"] }, { p: ["C", "B"] }],
+        acilar: [
+          { p: ["A", "O", "B"], metin: "80°" },
+          { p: ["A", "C", "B"], metin: "?", vurgu: true, yaricap: 28 },
+        ],
+        isaretli: ["O"],
+        gizli: ["A", "B", "C"],
+      },
       difficulty: "Kolay",
       prompt: "Bir çemberde aynı yayı gören merkez açı $80°$ ise, bu yayı gören çevre açı kaç derecedir?",
       options: ["$20$", "$40$", "$80$", "$100$", "$160$"],
@@ -25,6 +48,19 @@ const quiz: TopicQuiz = {
     },
     {
       id: "cember-daire-tyt-03",
+      sekil: {
+        aciklama: "Yarıçapı 10 olan çemberde merkezden kirişe inen dikme 6; kirişin uzunluğu bilinmiyor.",
+        noktalar: { O: [0, 0], A: [-8, -6], B: [8, -6], H: [0, -6] },
+        cemberler: [{ merkez: "O", nokta: "A" }],
+        dogrular: [{ p: ["A", "B"] }, { p: ["O", "A"] }, { p: ["O", "H"] }],
+        dikler: [["O", "H", "B"]],
+        isaretli: ["O"],
+        kenarlar: [
+          { p: ["O", "A"], metin: "10" },
+          { p: ["O", "H"], metin: "6" },
+          { p: ["A", "B"], metin: "?", vurgu: true, ic: true, konum: 0.72 },
+        ],
+      },
       difficulty: "Orta",
       prompt: "Yarıçapı $10$ birim olan bir çemberde, merkezden bir kirişe inilen dikmenin uzunluğu $6$ birimdir. Buna göre kirişin uzunluğu kaç birimdir?",
       options: ["$12$", "$14$", "$16$", "$18$", "$20$"],
@@ -34,6 +70,15 @@ const quiz: TopicQuiz = {
     },
     {
       id: "cember-daire-tyt-04",
+      sekil: {
+        aciklama: "Yarıçapı 20 cm olan pizza 8 eşit dilime bölünmüş; 3 dilim boyalı.",
+        noktalar: { O: [0, 0], P0: [20.0, 0.0], P1: [14.142, 14.142], P2: [0.0, 20.0], P3: [-14.142, 14.142], P4: [-20.0, 0.0], P5: [-14.142, -14.142], P6: [-0.0, -20.0], P7: [14.142, -14.142] },
+        cemberler: [{ merkez: "O", nokta: "P0" }],
+        dilimler: [{ merkez: "O", bas: "P2", son: "P5" }],
+        dogrular: [{ p: ["O", "P0"] }, { p: ["O", "P1"] }, { p: ["O", "P2"] }, { p: ["O", "P3"] }, { p: ["O", "P4"] }, { p: ["O", "P5"] }, { p: ["O", "P6"] }, { p: ["O", "P7"] }],
+        kenarlar: [{ p: ["O", "P0"], metin: "20", ic: true }],
+        gizli: ["O", "P0", "P1", "P2", "P3", "P4", "P5", "P6", "P7"],
+      },
       difficulty: "Orta",
       prompt: "Bir pizza, yarıçapı $20$ cm olan tam bir daire şeklindedir ve merkezden $8$ eşit dilime kesilmiştir. Bir kişi $3$ dilim yiyor. Buna göre yenen pizzanın alanı kaç cm$^2$'dir?",
       options: ["$100\\pi$", "$120\\pi$", "$150\\pi$", "$160\\pi$", "$400\\pi$"],
@@ -43,6 +88,20 @@ const quiz: TopicQuiz = {
     },
     {
       id: "cember-daire-tyt-05",
+      sekil: {
+        aciklama: "Fener merkezli 5 km yarıçaplı daire; gemi fenerden 13 km uzakta ve rotası daireye teğet; gemi ile değme noktası arası bilinmiyor.",
+        noktalar: { F: [0, 0], T: [1.923, 4.615], G: [13, 0], R: [-1.954, 6.23] },
+        cemberler: [{ merkez: "F", nokta: "T" }],
+        dogrular: [{ p: ["F", "T"] }, { p: ["F", "G"], kesik: true }, { p: ["G", "R"] }],
+        dikler: [["F", "T", "G"]],
+        isaretli: ["F", "T", "G"],
+        kenarlar: [
+          { p: ["F", "T"], metin: "5" },
+          { p: ["F", "G"], metin: "13" },
+          { p: ["T", "G"], metin: "?", vurgu: true },
+        ],
+        gizli: ["F", "T", "G", "R"],
+      },
       difficulty: "Zor",
       prompt: "Bir gemi, deniz fenerinden tam $13$ km uzaktadır. Fenerin etrafındaki sığ (tehlikeli) bölge, fener merkezli yarıçapı $5$ km olan bir dairedir. Gemi, bu daireye **teğet** olacak şekilde düz bir rotada ilerleyip tehlikeli bölgeyi sıyırarak geçiyor. Buna göre geminin, teğet değme noktasına olan uzaklığı kaç km'dir?",
       options: ["$8$", "$10$", "$12$", "$14$", "$18$"],
