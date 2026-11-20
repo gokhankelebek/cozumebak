@@ -7,6 +7,14 @@ const quiz: TopicQuiz = {
   questions: [
     {
       id: "analitik-geometri-tyt-01",
+      sekil: {
+        aciklama: "Koordinat düzleminde D(2, 3), M(6, 6) ve N(6, 1) noktaları; kurye D'den M'ye, oradan N'ye gidiyor.",
+        eksen: { x: [-1.4, 7.4], y: [-1.4, 7.4] },
+        noktalar: { D: [2, 3], M: [6, 6], N: [6, 1] },
+        dogrular: [{ p: ["D", "M"] }, { p: ["M", "N"] }],
+        isaretli: ["D", "M", "N"],
+        etiketMetni: { D: "D(2, 3)", M: "M(6, 6)", N: "N(6, 1)" },
+      },
       difficulty: "Orta",
       prompt: "Bir harita uygulamasında konumlar birim kareli bir ızgaraya yerleştiriliyor. Bir kurye, $D(2,3)$ konumundaki depodan çıkıp $M(6,6)$ konumundaki ilk müşteriye, oradan da $N(6,1)$ konumundaki ikinci müşteriye uğruyor. Kurye bu iki bacağı **kuş uçuşu** (doğru parçası) kat ettiğine göre, toplam yol kaç birimdir?",
       options: ["$9$", "$10$", "$11$", "$12$", "$13$"],
@@ -16,6 +24,14 @@ const quiz: TopicQuiz = {
     },
     {
       id: "analitik-geometri-tyt-02",
+      sekil: {
+        aciklama: "A(−2, 1) ve B(6, 7) noktalarını birleştiren kablo ve tam ortasındaki M noktası.",
+        eksen: { x: [-3.4, 7.4], y: [-1.4, 8.4] },
+        noktalar: { A: [-2, 1], B: [6, 7], M: [2, 4] },
+        dogrular: [{ p: ["A", "B"] }],
+        isaretli: ["A", "B", "M"],
+        etiketMetni: { A: "A(−2, 1)", B: "B(6, 7)" },
+      },
       difficulty: "Kolay",
       prompt: "Bir mühendis, $A(-2,1)$ ve $B(6,7)$ noktalarındaki iki direği bir kabloyla birleştiriyor. Kablonun tam ortasına bir yalıtkan takılacaktır. Yalıtkanın takılacağı noktanın koordinatları toplamı ($x+y$) kaçtır?",
       options: ["$5$", "$6$", "$7$", "$8$", "$9$"],
@@ -25,6 +41,15 @@ const quiz: TopicQuiz = {
     },
     {
       id: "analitik-geometri-tyt-03",
+      sekil: {
+        aciklama: "Tepe noktası (0, 12) olan, yatayda 4 birimde 3 birim alçalan pist doğrusu; x eksenini kestiği nokta bilinmiyor.",
+        eksen: { x: [-1.4, 17.4], y: [-1.4, 13.4] },
+        noktalar: { T: [0, 12], Q: [16, 0] },
+        dogrular: [{ p: ["T", "Q"] }],
+        isaretli: ["T", "Q"],
+        etiketMetni: { T: "12", Q: "?" },
+        vurguluNoktalar: ["Q"],
+      },
       difficulty: "Orta",
       prompt: "Bir kayak pistinin profili düz bir doğru olarak modellenmiştir. Pist, yatayda her $4$ birim ilerlendiğinde dikeyde $3$ birim alçalmaktadır. Pistin en tepe noktası $y$ ekseni üzerinde $(0,12)$'dedir. Pistin tabanı $y=0$ düzlemine ($x$ ekseni) ulaştığında yatayda kaç birim ilerlenmiş olur?",
       options: ["$9$", "$12$", "$15$", "$16$", "$20$"],
@@ -34,6 +59,16 @@ const quiz: TopicQuiz = {
     },
     {
       id: "analitik-geometri-tyt-04",
+      sekil: {
+        aciklama: "H(5, −2) noktasından geçen, eğimi −1 olan patika; y eksenini kestiği nokta bilinmiyor.",
+        eksen: { x: [-2.4, 8.4], y: [-5.4, 5.4] },
+        noktalar: { H: [5, -2], K: [0, 3], U1: [-1, 4], U2: [7, -4] },
+        dogrular: [{ p: ["U1", "U2"] }],
+        isaretli: ["H", "K"],
+        etiketMetni: { H: "H(5, −2)", K: "?" },
+        vurguluNoktalar: ["K"],
+        gizli: ["U1", "U2"],
+      },
       difficulty: "Kolay",
       prompt: "Bir oyun haritasında bir hazine $H(5,-2)$ noktasındadır. Oyuncu, eğimi $-1$ olan düz bir patikada ilerlemekte ve patika $H$ noktasından geçmektedir. Bu patika $y$ eksenini hangi noktada keser?",
       options: ["$(0,2)$", "$(0,3)$", "$(0,5)$", "$(0,-3)$", "$(0,7)$"],
@@ -43,6 +78,13 @@ const quiz: TopicQuiz = {
     },
     {
       id: "analitik-geometri-tyt-05",
+      sekil: {
+        aciklama: "Köşeleri A(1, 1), B(7, 1) ve C(7, 9) olan dik üçgen biçimli tarla.",
+        eksen: { x: [-1.4, 8.4], y: [-1.4, 10.4] },
+        noktalar: { A: [1, 1], B: [7, 1], C: [7, 9] },
+        cokgenler: [["A", "B", "C"]],
+        dikler: [["A", "B", "C"]],
+      },
       difficulty: "Orta",
       prompt: "Bir tarımcı, köşeleri $A(1,1)$, $B(7,1)$ ve $C(7,9)$ olan dik üçgen biçimli bir tarlanın çevresini tel çitle çevirecektir. Metre başına çit $2$ TL olduğuna göre (birim $=$ metre), toplam çit maliyeti kaç TL'dir?",
       options: ["$24$", "$36$", "$48$", "$52$", "$60$"],
@@ -52,6 +94,15 @@ const quiz: TopicQuiz = {
     },
     {
       id: "analitik-geometri-tyt-06",
+      sekil: {
+        aciklama: "2x + 3y − 12 = 0 doğrusu ile koordinat eksenlerinin sınırladığı boyalı üçgen.",
+        eksen: { x: [-2.4, 8.9], y: [-2.4, 6.067] },
+        noktalar: { P: [6, 0], R: [0, 4], Z: [0, 0], U1: [-1, 4.667], U2: [7.5, -1], Y: [5.2, 3.6] },
+        boyali: [["Z", "P", "R"]],
+        dogrular: [{ p: ["U1", "U2"] }],
+        yazilar: [{ nokta: "Y", metin: "2x + 3y − 12 = 0" }],
+        gizli: ["P", "R", "Z", "U1", "U2", "Y"],
+      },
       difficulty: "Orta",
       prompt: "Bir doğrunun denklemi $2x+3y-12=0$'dır. Bu doğru ile koordinat eksenlerinin sınırladığı üçgenin alanı kaç birim karedir?",
       options: ["$6$", "$8$", "$12$", "$18$", "$24$"],

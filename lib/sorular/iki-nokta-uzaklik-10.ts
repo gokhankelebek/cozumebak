@@ -7,6 +7,15 @@ const quiz: TopicQuiz = {
   questions: [
     {
       id: "iki-nokta-uzaklik-10-01",
+      sekil: {
+        aciklama: "A(−4, 1) ve B(2, 9) noktaları; aralarındaki uzaklık bilinmiyor.",
+        eksen: { x: [-5.4, 3.4], y: [-1.4, 10.4] },
+        noktalar: { A: [-4, 1], B: [2, 9] },
+        dogrular: [{ p: ["A", "B"] }],
+        isaretli: ["A", "B"],
+        kenarlar: [{ p: ["A", "B"], metin: "?", vurgu: true }],
+        etiketMetni: { A: "A(−4, 1)", B: "B(2, 9)" },
+      },
       difficulty: "Kolay",
       prompt: "$A(-4,\\ 1)$ ve $B(2,\\ 9)$ noktaları arasındaki uzaklık kaç birimdir?",
       options: ["$10$", "$14$", "$\\sqrt{28}$", "$2\\sqrt{7}$", "$8$"],
@@ -16,6 +25,15 @@ const quiz: TopicQuiz = {
     },
     {
       id: "iki-nokta-uzaklik-10-02",
+      sekil: {
+        aciklama: "P(−6, 8) noktası ve orijin; uzaklık bilinmiyor.",
+        eksen: { x: [-7.4, 1.4], y: [-1.4, 9.4] },
+        noktalar: { P: [-6, 8], O: [0, 0] },
+        dogrular: [{ p: ["O", "P"] }],
+        isaretli: ["P"],
+        kenarlar: [{ p: ["O", "P"], metin: "?", vurgu: true }],
+        etiketMetni: { P: "P(−6, 8)" },
+      },
       difficulty: "Kolay",
       prompt: "$P(-6,\\ 8)$ noktasının orijine uzaklığı kaç birimdir?",
       options: ["$2$", "$\\sqrt{2}$", "$10$", "$14$", "$\\sqrt{28}$"],
@@ -25,6 +43,13 @@ const quiz: TopicQuiz = {
     },
     {
       id: "iki-nokta-uzaklik-10-04",
+      sekil: {
+        aciklama: "Köşeleri A(−1, 2), B(4, 2) ve C(4, 14) olan üçgen.",
+        eksen: { x: [-2.4, 5.4], y: [-1.4, 15.4] },
+        noktalar: { A: [-1, 2], B: [4, 2], C: [4, 14] },
+        cokgenler: [["A", "B", "C"]],
+        etiketMetni: { A: "A(−1, 2)", B: "B(4, 2)", C: "C(4, 14)" },
+      },
       difficulty: "Orta",
       prompt: "Köşeleri $A(-1,\\ 2)$, $B(4,\\ 2)$ ve $C(4,\\ 14)$ olan üçgenin çevresi kaç birimdir?",
       options: ["$30$", "$25$", "$17$", "$29$", "$34$"],
