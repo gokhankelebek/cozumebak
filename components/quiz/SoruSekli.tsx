@@ -87,6 +87,29 @@ export default function SoruSekli({ sekil }: { sekil: Sekil }) {
       {y.cemberler.map((c, i) => (
         <circle key={`o${i}`} cx={f(c.merkez.x)} cy={f(c.merkez.y)} r={f(c.r)} fill="none" stroke={KOYU} strokeWidth={1.6} />
       ))}
+      {y.elipsler.map((e, i) => {
+        // Sampled paths: front part [t0, t1] solid, the rest (back) solid or dashed.
+        const yol = (a: number, b: number) => {
+          const n = Math.max(8, Math.ceil(((b - a) / (2 * Math.PI)) * 96));
+          let d = "";
+          for (let k = 0; k <= n; k++) {
+            const t = a + ((b - a) * k) / n;
+            d += `${k ? "L" : "M"} ${f(e.cx + e.rx * Math.cos(t))} ${f(e.cy + e.ry * Math.sin(t))} `;
+          }
+          return d;
+        };
+        return (
+          <g key={`e${i}`} fill="none" strokeLinecap="round" strokeLinejoin="round">
+            <path d={yol(e.t0, e.t1)} stroke={KOYU} strokeWidth={1.6} />
+            <path
+              d={yol(e.t1, e.t0 + 2 * Math.PI)}
+              stroke={e.arkaKesik ? YARDIMCI : KOYU}
+              strokeWidth={e.arkaKesik ? 1.2 : 1.6}
+              strokeDasharray={e.arkaKesik ? "4 3" : undefined}
+            />
+          </g>
+        );
+      })}
       {y.cizgiler.map((c, i) => (
         <line
           key={`c${i}`}

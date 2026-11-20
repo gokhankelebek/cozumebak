@@ -23,6 +23,21 @@ export interface Sekil {
   aciklama: string;
   /** Named points, math coordinates (y grows upward). */
   noktalar: Record<string, Nokta>;
+  /**
+   * Solids: named 3-D points [x, y, z] (x right, y up, z into the page),
+   * drawn in the textbook oblique projection (depth at 40°, halved). They join
+   * `noktalar` and can be used everywhere a point name is expected; mark
+   * hidden edges with `kesik`.
+   */
+  noktalar3d?: Record<string, [number, number, number]>;
+  /**
+   * Ellipses (circular bases of cylinders and cones, a sphere's equator),
+   * radii in the same units as the points. `arkaKesik` dashes the back
+   * (upper) half, as for a base seen from above. `tepe` (a cone's apex above
+   * the base) draws the cone's sides tangent to the ellipse and splits the
+   * visible and hidden parts of the rim at the tangent points.
+   */
+  elipsler?: { merkez: string; rx: number; ry: number; arkaKesik?: boolean; tepe?: string }[];
   /** Closed shapes, each a list of point names in order. */
   cokgenler?: string[][];
   /** Extra segments (diagonals, heights, extensions). */

@@ -7,6 +7,18 @@ const quiz: TopicQuiz = {
   questions: [
     {
       id: "silindir-koni-kure-11-01",
+      sekil: {
+        aciklama: "Taban yarıçapı 4 cm, yüksekliği 6 cm olan dik dairesel silindir.",
+        noktalar: { O: [0, 0], O2: [0, 6], L: [-4, 0], R: [4, 0], L2: [-4, 6], R2: [4, 6] },
+        elipsler: [{ merkez: "O", rx: 4, ry: 1.44, arkaKesik: true }, { merkez: "O2", rx: 4, ry: 1.44 }],
+        dogrular: [{ p: ["L", "L2"] }, { p: ["R", "R2"] }, { p: ["O2", "R2"] }],
+        isaretli: ["O2"],
+        kenarlar: [
+          { p: ["O2", "R2"], metin: "4" },
+          { p: ["R", "R2"], metin: "6" },
+        ],
+        gizli: ["O", "O2", "L", "R", "L2", "R2"],
+      },
       difficulty: "Kolay",
       prompt: "Taban yarıçapı $4\\,\\text{cm}$, yüksekliği $6\\,\\text{cm}$ olan dik dairesel silindirin hacmi kaç $\\text{cm}^3$'tür? ($\\pi$ cinsinden)",
       options: ["$24\\pi$", "$48\\pi$", "$96\\pi$", "$144\\pi$", "$192\\pi$"],
@@ -16,6 +28,19 @@ const quiz: TopicQuiz = {
     },
     {
       id: "silindir-koni-kure-11-02",
+      sekil: {
+        aciklama: "Taban yarıçapı 8 cm, yüksekliği 6 cm olan dik koni.",
+        noktalar: { O: [0, 0], T: [0, 6], L: [-8, 0], R: [8, 0] },
+        elipsler: [{ merkez: "O", rx: 8, ry: 2.4, arkaKesik: true, tepe: "T" }],
+        dogrular: [{ p: ["T", "O"], kesik: true }, { p: ["O", "R"], kesik: true }],
+        dikler: [["T", "O", "R"]],
+        isaretli: ["O"],
+        kenarlar: [
+          { p: ["O", "R"], metin: "8" },
+          { p: ["T", "O"], metin: "6", ic: true },
+        ],
+        gizli: ["O", "T", "L", "R"],
+      },
       difficulty: "Orta",
       prompt: "Taban yarıçapı $8\\,\\text{cm}$, yüksekliği $6\\,\\text{cm}$ olan dik koninin yüzey alanı kaç $\\text{cm}^2$'dir? ($\\pi$ cinsinden)",
       options: ["$112\\pi$", "$128\\pi$", "$144\\pi$", "$160\\pi$", "$208\\pi$"],
@@ -34,6 +59,19 @@ const quiz: TopicQuiz = {
     },
     {
       id: "silindir-koni-kure-11-04",
+      sekil: {
+        aciklama: "Eğik yüksekliği 10 cm, taban yarıçapı 6 cm olan dik koni.",
+        noktalar: { O: [0, 0], T: [0, 8], L: [-6, 0], R: [6, 0] },
+        elipsler: [{ merkez: "O", rx: 6, ry: 1.8, arkaKesik: true, tepe: "T" }],
+        dogrular: [{ p: ["T", "O"], kesik: true }, { p: ["O", "R"], kesik: true }],
+        dikler: [["T", "O", "R"]],
+        isaretli: ["O"],
+        kenarlar: [
+          { p: ["O", "R"], metin: "6" },
+          { p: ["T", "R"], metin: "10" },
+        ],
+        gizli: ["O", "T", "L", "R"],
+      },
       difficulty: "Orta",
       prompt: "Eğik yüksekliği $10\\,\\text{cm}$, taban yarıçapı $6\\,\\text{cm}$ olan dik koninin hacmi kaç $\\text{cm}^3$'tür? ($\\pi$ cinsinden)",
       options: ["$96\\pi$", "$120\\pi$", "$288\\pi$", "$360\\pi$", "$400\\pi$"],
@@ -52,6 +90,20 @@ const quiz: TopicQuiz = {
     },
     {
       id: "silindir-koni-kure-11-06",
+      sekil: {
+        aciklama: "Taban yarıçapı 6 cm, yüksekliği 15 cm olan silindir mum ve taban yarıçapı 3 cm, yüksekliği 5 cm olan koni mum.",
+        noktalar: { O: [0, 0], O2: [0, 15], L: [-6, 0], R: [6, 0], L2: [-6, 15], R2: [6, 15], K: [13, 0], T: [13, 5], KL: [10, 0], KR: [16, 0] },
+        elipsler: [{ merkez: "O", rx: 6, ry: 2.16, arkaKesik: true }, { merkez: "O2", rx: 6, ry: 2.16 }, { merkez: "K", rx: 3, ry: 0.9, arkaKesik: true, tepe: "T" }],
+        dogrular: [{ p: ["L", "L2"] }, { p: ["R", "R2"] }, { p: ["O2", "R2"] }, { p: ["T", "K"], kesik: true }, { p: ["K", "KR"], kesik: true }],
+        isaretli: ["O2", "K"],
+        kenarlar: [
+          { p: ["O2", "R2"], metin: "6" },
+          { p: ["R", "R2"], metin: "15" },
+          { p: ["K", "KR"], metin: "3" },
+          { p: ["T", "K"], metin: "5", konum: 0.3 },
+        ],
+        gizli: ["O", "O2", "L", "R", "L2", "R2", "K", "T", "KL", "KR"],
+      },
       difficulty: "Zor",
       prompt: "Taban yarıçapı $6\\,\\text{cm}$, yüksekliği $15\\,\\text{cm}$ olan dik silindir biçimindeki bir mum eritiliyor. Elde edilen mumdan, taban yarıçapı $3\\,\\text{cm}$ ve yüksekliği $5\\,\\text{cm}$ olan eş koni biçimli mumlar dökülüyor. Malzeme kaybı olmadığına göre en çok kaç koni mum elde edilir?",
       options: ["$9$", "$12$", "$18$", "$27$", "$36$"],
