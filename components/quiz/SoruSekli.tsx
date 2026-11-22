@@ -13,7 +13,8 @@ const YARDIMCI = "#6b7385";
 const f = (n: number) => Math.round(n * 10) / 10;
 
 // Letters in KaTeX_Math italic, everything else (digits, °, ?, +) in KaTeX_Main —
-// the same faces the question text uses.
+// the same faces the question text uses. Function names (sin, log, rad) stay
+// upright, as in KaTeX.
 function Yazi({ e }: { e: Etiket }) {
   const boyut = e.tur === "nokta" ? YAZI.nokta : YAZI.sayi;
   const parcalar = e.metin.match(/[A-Za-zÇĞİÖŞÜçğıöşüα-ω]+|[^A-Za-zÇĞİÖŞÜçğıöşüα-ω]+/g) ?? [e.metin];
@@ -35,11 +36,15 @@ function Yazi({ e }: { e: Etiket }) {
     >
       {parcalar.map((p, i) =>
         // Point names like "d1": the trailing digits become a subscript (d₁).
-        e.tur === "nokta" && i > 0 && /^[0-9]+$/.test(p) ? (
+        e.duz ? (
+          <tspan key={i} fontFamily="KaTeX_Main, 'Times New Roman', serif">
+            {p}
+          </tspan>
+        ) : e.tur === "nokta" && i > 0 && /^[0-9]+$/.test(p) ? (
           <tspan key={i} fontFamily="KaTeX_Main, 'Times New Roman', serif" fontSize={boyut * 0.7} dy={boyut * 0.25}>
             {p}
           </tspan>
-        ) : /[A-Za-zÇĞİÖŞÜçğıöşüα-ω]/.test(p) ? (
+        ) : /[A-Za-zÇĞİÖŞÜçğıöşüα-ω]/.test(p) && !/^(sin|cos|tan|cot|log|ln|rad)$/.test(p) ? (
           <tspan key={i} fontFamily="KaTeX_Math, 'Times New Roman', serif" fontStyle="italic">
             {p}
           </tspan>

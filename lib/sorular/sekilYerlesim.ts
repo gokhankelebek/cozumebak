@@ -27,6 +27,8 @@ export interface Etiket {
   kaynak: string; // human-readable origin, for checker messages
   /** Direction the label may be pushed in if it touches a line. */
   yon: P;
+  /** Upright text (no math italics). */
+  duz?: boolean;
 }
 export interface Cizgi {
   a: P;
@@ -406,7 +408,7 @@ export function sekilYerlesim(girdi: Sekil): Yerlesim {
   // ── Free text ──
   for (const yz of sekil.yazilar ?? []) {
     const p = nokta(yz.nokta);
-    etiketler.push({ x: p.x, y: p.y, metin: yz.metin, tur: "kenar", vurgu: !!yz.vurgu, kutu: kutuOlustur(p.x, p.y, yz.metin, YAZI.sayi), kaynak: `yazı "${yz.metin}"`, yon: { x: 0, y: 0 } });
+    etiketler.push({ x: p.x, y: p.y, metin: yz.metin, tur: "kenar", vurgu: !!yz.vurgu, kutu: kutuOlustur(p.x, p.y, yz.metin, YAZI.sayi), kaynak: `yazı "${yz.metin}"`, yon: { x: 0, y: 0 }, duz: yz.duz });
   }
 
   // ── Side labels ──
