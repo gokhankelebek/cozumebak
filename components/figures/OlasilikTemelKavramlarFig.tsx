@@ -1,74 +1,15 @@
+import SoruSekli from "@/components/quiz/SoruSekli";
+import { DERS_SEKILLERI } from "@/lib/dersSekilleri";
+
 // Figures for the "Olasılıkta Temel Kavramlar" (olasilik-temel-kavramlar) page.
 // All exports carry the page-unique prefix "Otk".
 // Conventions: dark #0e1b33, accent #e5492b, axis/grey #8a93a6, light fill #fbf9f4.
 // Coordinates hand-computed (see the comment above each figure).
 
 // (1) Ağaç şeması: üç madenî para art arda atılıyor → 2·2·2 = 8 çıktı.
-// Root (30,145). Level 1 (x=110): Y (110,85), T (110,205).
-// Level 2 (x=200): YY (200,55), YT (200,115), TY (200,175), TT (200,235).
-// Leaves (x=290): y = 40,70 | 100,130 | 160,190 | 220,250 (each level-2 node ±15).
+// Drawn from lib/dersSekilleri.ts by the quiz figure engine.
 export function OtkParaAgaci() {
-  const l1 = [
-    { y: 85, t: "Y" },
-    { y: 205, t: "T" },
-  ];
-  const l2 = [
-    { y: 55, p: 85, t: "Y" },
-    { y: 115, p: 85, t: "T" },
-    { y: 175, p: 205, t: "Y" },
-    { y: 235, p: 205, t: "T" },
-  ];
-  const leaves = [
-    { y: 40, p: 55, t: "Y", s: "YYY" },
-    { y: 70, p: 55, t: "T", s: "YYT" },
-    { y: 100, p: 115, t: "Y", s: "YTY" },
-    { y: 130, p: 115, t: "T", s: "YTT" },
-    { y: 160, p: 175, t: "Y", s: "TYY" },
-    { y: 190, p: 175, t: "T", s: "TYT" },
-    { y: 220, p: 235, t: "Y", s: "TTY" },
-    { y: 250, p: 235, t: "T", s: "TTT" },
-  ];
-  return (
-    <svg viewBox="0 0 380 265" role="img" aria-label="Üç madenî paranın art arda atılması için ağaç şeması: her para yazı ya da tura gelir, dalların uçlarında YYY'den TTT'ye kadar 8 çıktı vardır">
-      {/* column headers */}
-      <text x="88" y="16" fontSize="11" fill="#8a93a6">1. para</text>
-      <text x="178" y="16" fontSize="11" fill="#8a93a6">2. para</text>
-      <text x="268" y="16" fontSize="11" fill="#8a93a6">3. para</text>
-
-      {/* branches */}
-      {l1.map((n, i) => (
-        <line key={`a${i}`} x1="30" y1="145" x2="110" y2={n.y} stroke="#0e1b33" strokeWidth="1.5" />
-      ))}
-      {l2.map((n, i) => (
-        <line key={`b${i}`} x1="110" y1={n.p} x2="200" y2={n.y} stroke="#0e1b33" strokeWidth="1.4" />
-      ))}
-      {leaves.map((n, i) => (
-        <line key={`c${i}`} x1="200" y1={n.p} x2="290" y2={n.y} stroke="#e5492b" strokeWidth="1.3" />
-      ))}
-
-      {/* nodes and their letters */}
-      <circle cx="30" cy="145" r="3.5" fill="#0e1b33" />
-      {l1.map((n, i) => (
-        <g key={`na${i}`}>
-          <circle cx="110" cy={n.y} r="3.5" fill="#0e1b33" />
-          <text x="104" y={n.y - 8} fontSize="12" fontWeight="700" fill="#0e1b33">{n.t}</text>
-        </g>
-      ))}
-      {l2.map((n, i) => (
-        <g key={`nb${i}`}>
-          <circle cx="200" cy={n.y} r="3.5" fill="#0e1b33" />
-          <text x="194" y={n.y - 8} fontSize="12" fontWeight="700" fill="#0e1b33">{n.t}</text>
-        </g>
-      ))}
-      {leaves.map((n, i) => (
-        <g key={`nc${i}`}>
-          <circle cx="290" cy={n.y} r="3.5" fill="#e5492b" />
-          <text x="300" y={n.y + 4} fontSize="12" fill="#e5492b">{n.s}</text>
-        </g>
-      ))}
-      <text x="340" y="149" fontSize="11" fill="#8a93a6">8 çıktı</text>
-    </svg>
-  );
+  return <SoruSekli sekil={DERS_SEKILLERI.OtkParaAgaci} />;
 }
 
 // (2) Venn şeması: örnek uzay S içinde A ve B olayları, dört bölge.

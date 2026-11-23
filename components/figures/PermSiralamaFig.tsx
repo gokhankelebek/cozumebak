@@ -1,70 +1,14 @@
+import SoruSekli from "@/components/quiz/SoruSekli";
+import { DERS_SEKILLERI } from "@/lib/dersSekilleri";
+
 // Figures for the TYT "Permütasyon ve Faktöriyel" (permutasyon-siralama) page.
 // Conventions: text/lines dark #0e1b33, accent #e5492b, secondary #8a93a6.
 // All coordinates are hand-computed; no external libraries.
 
 // 1) Listing tree for the 3! = 6 orderings of A, B, C.
-// Root (24,130). Level-1 nodes at x=110, y = 45 / 130 / 215.
-// Level-2 nodes at x=200, two per level-1 node (y0 − 20, y0 + 20).
-// Level-3 (leaf) nodes at x=280 on the same rows; the finished words at x=300.
+// Drawn from lib/dersSekilleri.ts by the quiz figure engine.
 export function PermSiralamaAgac() {
-  const l1 = [
-    { y: 45, t: "A" },
-    { y: 130, t: "B" },
-    { y: 215, t: "C" },
-  ];
-  // [level-2 letter, level-3 letter, y] for each child of a level-1 node
-  const l2 = [
-    [["B", "C", 25], ["C", "B", 65]],
-    [["A", "C", 110], ["C", "A", 150]],
-    [["A", "B", 195], ["B", "A", 235]],
-  ] as const;
-  return (
-    <svg viewBox="0 0 380 280" role="img" aria-label="A, B, C harflerinin bütün dizilişlerini gösteren ağaç şeması: ilk yer için 3, ikinci yer için 2, son yer için 1 seçenek var; toplam 6 diziliş">
-      {/* branches root -> level 1 */}
-      {l1.map((n) => (
-        <line key={`r${n.t}`} x1="24" y1="130" x2="110" y2={n.y} stroke="#0e1b33" strokeWidth="1.4" />
-      ))}
-      {/* branches level 1 -> level 2 -> level 3 */}
-      {l1.map((n, i) =>
-        l2[i].map(([, , y]) => (
-          <g key={`b${i}-${y}`}>
-            <line x1="110" y1={n.y} x2="200" y2={y} stroke="#0e1b33" strokeWidth="1.4" />
-            <line x1="200" y1={y} x2="280" y2={y} stroke="#e5492b" strokeWidth="1.4" />
-          </g>
-        ))
-      )}
-
-      {/* root */}
-      <circle cx="24" cy="130" r="4" fill="#0e1b33" />
-
-      {/* level-1 nodes */}
-      {l1.map((n) => (
-        <g key={`n1${n.t}`}>
-          <circle cx="110" cy={n.y} r="11" fill="#ffffff" stroke="#0e1b33" strokeWidth="1.6" />
-          <text x="110" y={n.y + 4.5} fontSize="13" fontWeight="700" fill="#0e1b33" textAnchor="middle">{n.t}</text>
-        </g>
-      ))}
-
-      {/* level-2 and level-3 nodes, finished words */}
-      {l1.map((n, i) =>
-        l2[i].map(([a, b, y]) => (
-          <g key={`n2${i}-${y}`}>
-            <circle cx="200" cy={y} r="10" fill="#ffffff" stroke="#0e1b33" strokeWidth="1.4" />
-            <text x="200" y={y + 4.5} fontSize="12" fontWeight="700" fill="#0e1b33" textAnchor="middle">{a}</text>
-            <circle cx="280" cy={y} r="10" fill="#ffffff" stroke="#e5492b" strokeWidth="1.4" />
-            <text x="280" y={y + 4.5} fontSize="12" fontWeight="700" fill="#e5492b" textAnchor="middle">{b}</text>
-            <text x="302" y={y + 4.5} fontSize="13" fontWeight="700" fill="#0e1b33">{`${n.t}${a}${b}`}</text>
-          </g>
-        ))
-      )}
-
-      {/* headers and level counts */}
-      <text x="322" y="10" fontSize="11" fill="#e5492b" textAnchor="middle">6 diziliş</text>
-      <text x="110" y="268" fontSize="11" fill="#8a93a6" textAnchor="middle">1. yer: 3 seçenek</text>
-      <text x="200" y="268" fontSize="11" fill="#8a93a6" textAnchor="middle">2. yer: 2</text>
-      <text x="280" y="268" fontSize="11" fill="#8a93a6" textAnchor="middle">3. yer: 1</text>
-    </svg>
-  );
+  return <SoruSekli sekil={DERS_SEKILLERI.PermSiralamaAgac} />;
 }
 
 // 2) Slot (kutu) diagram: 5 kişiden 3'ü numaralı 3 sandalyeye → 5·4·3 = 60.

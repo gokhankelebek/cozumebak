@@ -1,3 +1,6 @@
+import SoruSekli from "@/components/quiz/SoruSekli";
+import { DERS_SEKILLERI } from "@/lib/dersSekilleri";
+
 // Figures for the TYT "Sayma Kuralları" page (slug: sayma-kurallari).
 // Conventions: text/lines dark #0e1b33, accent #e5492b, muted #8a93a6.
 // All coordinates hand-computed; no external libraries.
@@ -37,52 +40,9 @@ export function SkKutuDiyagrami() {
 }
 
 // --- Şekil: iki galibiyete ulaşan kazanır (eşit olmayan dallar) --------------
-// Root (20,130). Set 1: E (100,65), M (100,195).
-// E -> E (180,30) [leaf EE], E -> M (180,100).
-// (180,100) -> E (260,76) [EME], M (260,116) [EMM].
-// M -> E (180,160), M -> M (180,230) [leaf MM].
-// (180,160) -> E (260,144) [MEE], M (260,184) [MEM].
+// Drawn from lib/dersSekilleri.ts by the quiz figure engine.
 export function SkGalibiyetAgaci() {
-  const edges: [number, number, number, number][] = [
-    [20, 130, 100, 65], [20, 130, 100, 195],
-    [100, 65, 180, 30], [100, 65, 180, 100],
-    [180, 100, 260, 76], [180, 100, 260, 116],
-    [100, 195, 180, 160], [100, 195, 180, 230],
-    [180, 160, 260, 144], [180, 160, 260, 184],
-  ];
-  const inner: [number, number, string][] = [
-    [100, 65, "E"], [100, 195, "M"], [180, 100, "M"], [180, 160, "E"],
-  ];
-  const leaves: [number, number, string, string][] = [
-    [180, 30, "E", "EE"], [180, 230, "M", "MM"],
-    [260, 76, "E", "EME"], [260, 116, "M", "EMM"],
-    [260, 144, "E", "MEE"], [260, 184, "M", "MEM"],
-  ];
-  return (
-    <svg viewBox="0 0 360 260" role="img" aria-label="Ağaç şeması: ilk iki seti kazananın maçı aldığı bir maçta set dizileri. EE ve MM iki sette biter, EME, EMM, MEE ve MEM üç sette biter; toplam 6 dal ucu">
-      <text x="100" y="12" fontSize="10" fill="#8a93a6" textAnchor="middle">1. set</text>
-      <text x="180" y="12" fontSize="10" fill="#8a93a6" textAnchor="middle">2. set</text>
-      <text x="260" y="12" fontSize="10" fill="#8a93a6" textAnchor="middle">3. set</text>
-      {edges.map(([x1, y1, x2, y2], i) => (
-        <line key={`e${i}`} x1={x1} y1={y1} x2={x2} y2={y2} stroke="#0e1b33" strokeWidth="1.4" />
-      ))}
-      <circle cx="20" cy="130" r="4" fill="#0e1b33" />
-      {inner.map(([x, y, t], i) => (
-        <g key={`n${i}`}>
-          <circle cx={x} cy={y} r="10" fill="#0e1b33" />
-          <text x={x} y={y + 4} fontSize="11" fill="#ffffff" fontWeight="700" textAnchor="middle">{t}</text>
-        </g>
-      ))}
-      {leaves.map(([x, y, t, s], i) => (
-        <g key={`l${i}`}>
-          <circle cx={x} cy={y} r="10" fill="#e5492b" />
-          <text x={x} y={y + 4} fontSize="11" fill="#ffffff" fontWeight="700" textAnchor="middle">{t}</text>
-          <text x={x + 16} y={y + 4} fontSize="11" fill="#e5492b" fontWeight="700">{s}</text>
-        </g>
-      ))}
-      <text x="20" y="252" fontSize="10" fill="#8a93a6">Kırmızı uç: maç biter, dal uzamaz.</text>
-    </svg>
-  );
+  return <SoruSekli sekil={DERS_SEKILLERI.SkGalibiyetAgaci} />;
 }
 
 // --- Şekil: iki zar sonuç tablosu ------------------------------------------
