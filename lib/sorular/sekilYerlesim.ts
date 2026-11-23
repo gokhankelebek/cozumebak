@@ -292,7 +292,8 @@ export function sekilYerlesim(girdi: Sekil): Yerlesim {
       { a: yb, b: { x: yb.x + 3.5, y: yb.y + 8 }, tur: "ince" },
     );
     const [ax, ay] = sekil.eksen.adlar ?? ["x", "y"];
-    eksenEtiketleri.push({ p: xb, metin: ax, dx: 2, dy: 13 }, { p: yb, metin: ay, dx: -12, dy: 4 });
+    // The y name sits left of the arrowhead; a wide letter (P) moves further left.
+    eksenEtiketleri.push({ p: xb, metin: ax, dx: 2, dy: 13 }, { p: yb, metin: ay, dx: -Math.max(12, 7.5 + metinGenisligi(ay, YAZI.nokta) / 2), dy: 4 });
   }
   const egriler: Egri[] = (sekil.egriler ?? []).flatMap((e, i) =>
     egriKosulari[i].map((r) => ({ yol: r.map(([x, y]) => ekranda(x, y)), vurgu: !!e.vurgu, kesik: !!e.kesik })),
