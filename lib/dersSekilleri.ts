@@ -10,6 +10,25 @@ import type { Sekil } from "@/lib/sorular/sekil";
 // ─────────────────────────────────────────────────────────────────────────────
 
 const DERS: [number, number] = [320, 230];
+const EKSENLI: [number, number] = [290, 270];
+
+// Shared by the TYT and AYT line lessons: the slope triangle of A(1, 2)–B(4, 8).
+const EGIM: Sekil = {
+  aciklama: "A(1, 2) ve B(4, 8) noktalarından geçen doğru; kesik çizgili eğim üçgeninde Δx = 3 ve Δy = 6",
+  boyut: EKSENLI,
+  eksen: { x: [-0.9, 5.6], y: [-0.9, 9.4] },
+  noktalar: { A: [1, 2], B: [4, 8], C: [4, 2], P1: [0.4, 0.8], P2: [4.5, 9] },
+  dogrular: [{ p: ["P1", "P2"] }, { p: ["A", "C"], kesik: true }, { p: ["C", "B"], kesik: true }],
+  dikler: [["A", "C", "B"]],
+  kenarlar: [
+    { p: ["A", "C"], metin: "Δx", vurgu: true, ic: true },
+    { p: ["C", "B"], metin: "Δy", vurgu: true },
+  ],
+  isaretli: ["A", "B"],
+  etiketMetni: { A: "A(1, 2)", B: "B(4, 8)" },
+  etiketYonu: { A: 305 },
+  gizli: ["C", "P1", "P2"],
+};
 
 export const DERS_SEKILLERI = {
   // ── UcgenFig ──────────────────────────────────────────────────────────────
@@ -340,6 +359,176 @@ export const DERS_SEKILLERI = {
       { p: ["A", "B"], metin: "c", vurgu: true },
       { p: ["A", "C"], metin: "b", vurgu: true },
     ],
+  },
+  // ── AnalitikFig / DogruAnalitikFig / UzaklikFig ──────────────────────────
+  IkiNokta: {
+    aciklama: "Koordinat düzleminde A(1, 2) ve B(4, 6) noktaları ve aralarındaki doğru parçası",
+    boyut: EKSENLI,
+    eksen: { x: [-0.9, 5.6], y: [-0.9, 7.2] },
+    noktalar: { A: [1, 2], B: [4, 6] },
+    dogrular: [{ p: ["A", "B"] }],
+    isaretli: ["A", "B"],
+    etiketMetni: { A: "A(1, 2)", B: "B(4, 6)" },
+  },
+  Egim: EGIM,
+  DogruEgim: EGIM,
+  UzaklikPisagor: {
+    aciklama: "A(1, 2) ve B(4, 6) arasındaki uzaklık: dik kenarları Δx = 3 ve Δy = 4 olan dik üçgenin hipotenüsü, |AB| = 5; dik köşe C(4, 2)",
+    boyut: EKSENLI,
+    eksen: { x: [-0.9, 5.8], y: [-0.9, 7.2] },
+    noktalar: { A: [1, 2], B: [4, 6], C: [4, 2] },
+    dogrular: [{ p: ["A", "B"] }, { p: ["A", "C"], kesik: true }, { p: ["C", "B"], kesik: true }],
+    dikler: [["A", "C", "B"]],
+    kenarlar: [
+      { p: ["A", "C"], metin: "Δx = 3", ic: true },
+      { p: ["C", "B"], metin: "Δy = 4" },
+      { p: ["A", "B"], metin: "|AB| = 5", vurgu: true },
+    ],
+    isaretli: ["A", "B", "C"],
+    etiketMetni: { A: "A(1, 2)", B: "B(4, 6)", C: "C(4, 2)" },
+    etiketYonu: { A: 305 },
+  },
+
+  // ── CemberAnalitikFig ─────────────────────────────────────────────────────
+  CemberMerkez: {
+    aciklama: "Koordinat düzleminde merkezi M(a, b), yarıçapı r olan çember ve merkezden çembere çizilen r yarıçapı",
+    boyut: EKSENLI,
+    eksen: { x: [-1.8, 6], y: [-4.6, 3] },
+    noktalar: { M: [2, -1], R: [4.298, 0.928] },
+    cemberler: [{ merkez: "M", nokta: "R" }],
+    dogrular: [{ p: ["M", "R"] }],
+    kenarlar: [{ p: ["M", "R"], metin: "r", vurgu: true }],
+    isaretli: ["M"],
+    etiketMetni: { M: "M(a, b)" },
+    gizli: ["R"],
+  },
+
+  // ── BirimCemberFig / TrigonometriFig ──────────────────────────────────────
+  BirimCember: {
+    aciklama: "Merkezi orijinde olan birim çember; I, II, III, IV bölgeleri ve α açısının bitim kenarının çemberi kestiği P noktası",
+    boyut: [280, 280],
+    eksen: { x: [-1.45, 1.45], y: [-1.45, 1.45] },
+    noktalar: { O: [0, 0], E: [1, 0], P: [0.5, 0.866], Y1: [1.08, 1.08], Y2: [-1.08, 1.08], Y3: [-1.08, -1.08], Y4: [1.08, -1.08] },
+    cemberler: [{ merkez: "O", nokta: "E" }],
+    dogrular: [{ p: ["O", "P"] }],
+    acilar: [{ p: ["E", "O", "P"], metin: "α", vurgu: true }],
+    yazilar: [
+      { nokta: "Y1", metin: "I", duz: true },
+      { nokta: "Y2", metin: "II", duz: true },
+      { nokta: "Y3", metin: "III", duz: true },
+      { nokta: "Y4", metin: "IV", duz: true },
+    ],
+    isaretli: ["P"],
+    gizli: ["O", "E", "Y1", "Y2", "Y3", "Y4"],
+  },
+  BolgeIsaret: {
+    aciklama: "Birim çemberin dört bölgesinde pozitif olan trigonometrik fonksiyonlar: I'de hepsi, II'de sin, III'te tan, IV'te cos",
+    boyut: [280, 280],
+    eksen: { x: [-1.45, 1.45], y: [-1.45, 1.45] },
+    noktalar: {
+      O: [0, 0], E: [1, 0],
+      N1: [0.5, 0.62], N2: [-0.5, 0.62], N3: [-0.5, -0.62], N4: [0.5, -0.62],
+      S1: [0.5, 0.36], S2: [-0.5, 0.36], S3: [-0.5, -0.36], S4: [0.5, -0.36],
+    },
+    cemberler: [{ merkez: "O", nokta: "E" }],
+    yazilar: [
+      { nokta: "N1", metin: "I", duz: true },
+      { nokta: "N2", metin: "II", duz: true },
+      { nokta: "N3", metin: "III", duz: true },
+      { nokta: "N4", metin: "IV", duz: true },
+      { nokta: "S1", metin: "hepsi +", duz: true, vurgu: true },
+      { nokta: "S2", metin: "sin +", duz: true, vurgu: true },
+      { nokta: "S3", metin: "tan +", duz: true, vurgu: true },
+      { nokta: "S4", metin: "cos +", duz: true, vurgu: true },
+    ],
+    gizli: ["O", "E", "N1", "N2", "N3", "N4", "S1", "S2", "S3", "S4"],
+  },
+  RadyanTanim: {
+    aciklama: "O merkezli, r yarıçaplı çemberde uzunluğu r olan AB yayı merkezde 1 radyanlık açı görür",
+    boyut: DERS,
+    noktalar: { O: [0, 0], A: [3, 0], B: [1.621, 2.524] },
+    cemberler: [{ merkez: "O", nokta: "A" }],
+    cemberYaylari: [{ merkez: "O", bas: "A", son: "B", vurgu: true, metin: "r" }],
+    dogrular: [{ p: ["O", "A"] }, { p: ["O", "B"] }],
+    acilar: [{ p: ["A", "O", "B"], metin: "1 rad", yaricap: 30 }],
+    kenarlar: [
+      { p: ["O", "A"], metin: "r" },
+    ],
+    isaretli: ["O"],
+  },
+
+  // ── KatiCisimFig / KatiCisim2Fig ──────────────────────────────────────────
+  Prizma: {
+    aciklama: "Dikdörtgenler prizması: ayrıtları a, b ve c",
+    boyut: DERS,
+    noktalar: {},
+    noktalar3d: { A: [0, 0, 0], B: [6, 0, 0], C: [6, 0, 4], D: [0, 0, 4], E: [0, 3.5, 0], F: [6, 3.5, 0], G: [6, 3.5, 4], H: [0, 3.5, 4] },
+    dogrular: [
+      { p: ["A", "B"] }, { p: ["B", "F"] }, { p: ["F", "E"] }, { p: ["E", "A"] }, { p: ["E", "H"] }, { p: ["H", "G"] },
+      { p: ["G", "F"] }, { p: ["B", "C"] }, { p: ["C", "G"] },
+      { p: ["A", "D"], kesik: true }, { p: ["D", "C"], kesik: true }, { p: ["D", "H"], kesik: true },
+    ],
+    kenarlar: [
+      { p: ["A", "B"], metin: "a" },
+      { p: ["A", "E"], metin: "b" },
+      { p: ["B", "C"], metin: "c" },
+    ],
+    gizli: ["A", "B", "C", "D", "E", "F", "G", "H"],
+  },
+  Silindir: {
+    aciklama: "Dik dairesel silindir: taban yarıçapı r, yüksekliği h",
+    boyut: DERS,
+    noktalar: { O: [0, 0], O2: [0, 5], L: [-3, 0], R: [3, 0], L2: [-3, 5], R2: [3, 5] },
+    elipsler: [{ merkez: "O", rx: 3, ry: 1.08, arkaKesik: true }, { merkez: "O2", rx: 3, ry: 1.08 }],
+    dogrular: [{ p: ["L", "L2"] }, { p: ["R", "R2"] }, { p: ["O2", "R2"] }],
+    isaretli: ["O2"],
+    kenarlar: [
+      { p: ["O2", "R2"], metin: "r" },
+      { p: ["R", "R2"], metin: "h" },
+    ],
+    gizli: ["O", "O2", "L", "R", "L2", "R2"],
+  },
+  Koni: {
+    aciklama: "Dik koni: taban yarıçapı r, yüksekliği h",
+    boyut: DERS,
+    noktalar: { O: [0, 0], T: [0, 5.5], L: [-3.5, 0], R: [3.5, 0] },
+    elipsler: [{ merkez: "O", rx: 3.5, ry: 1.05, arkaKesik: true, tepe: "T" }],
+    dogrular: [{ p: ["T", "O"], kesik: true }, { p: ["O", "R"], kesik: true }],
+    dikler: [["T", "O", "R"]],
+    isaretli: ["O"],
+    kenarlar: [
+      { p: ["O", "R"], metin: "r" },
+      { p: ["T", "O"], metin: "h", ic: true },
+    ],
+    gizli: ["O", "T", "L", "R"],
+  },
+  Piramit: {
+    aciklama: "Kare tabanlı dik piramit: taban ayrıtı a, tepeden taban merkezine inen yükseklik h",
+    boyut: DERS,
+    noktalar: {},
+    noktalar3d: { A: [0, 0, 0], B: [6, 0, 0], C: [6, 0, 6], D: [0, 0, 6], T: [3, 7, 3], O: [3, 0, 3], M: [3, 0, 0] },
+    dogrular: [
+      { p: ["A", "B"] }, { p: ["B", "C"] }, { p: ["T", "A"] }, { p: ["T", "B"] }, { p: ["T", "C"] },
+      { p: ["A", "D"], kesik: true }, { p: ["D", "C"], kesik: true }, { p: ["T", "D"], kesik: true },
+      { p: ["T", "O"], kesik: true }, { p: ["O", "M"], kesik: true },
+    ],
+    dikler: [["T", "O", "M"]],
+    kenarlar: [
+      { p: ["A", "B"], metin: "a" },
+      { p: ["T", "O"], metin: "h" },
+    ],
+    gizli: ["A", "B", "C", "D", "T", "O", "M"],
+  },
+  Kure: {
+    aciklama: "Yarıçapı r olan küre; ekvator çemberi ve merkezden çizilen yarıçap",
+    boyut: DERS,
+    noktalar: { O: [0, 0], R: [3, 0] },
+    cemberler: [{ merkez: "O", nokta: "R" }],
+    elipsler: [{ merkez: "O", rx: 3, ry: 0.9, arkaKesik: true }],
+    dogrular: [{ p: ["O", "R"] }],
+    kenarlar: [{ p: ["O", "R"], metin: "r" }],
+    isaretli: ["O"],
+    gizli: ["O", "R"],
   },
 } satisfies Record<string, Sekil>;
 

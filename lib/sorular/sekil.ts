@@ -73,8 +73,11 @@ export interface Sekil {
   cemberYaylari?: { merkez: string; bas: string; son: string; vurgu?: boolean; ince?: boolean; metin?: string; ic?: boolean }[];
   /** Shaded circle pieces, CCW from `bas` to `son`: a sector, or with `kesme` the segment cut off by the chord. */
   dilimler?: { merkez: string; bas: string; son: string; kesme?: boolean }[];
-  /** Free text centred on a (usually hidden) point, e.g. an area written inside a region. */
-  yazilar?: { nokta: string; metin: string; vurgu?: boolean }[];
+  /**
+   * Free text centred on a (usually hidden) point, e.g. an area written inside a region.
+   * `duz` sets it upright in KaTeX_Main (Roman numerals, "sin +"), not as math italics.
+   */
+  yazilar?: { nokta: string; metin: string; vurgu?: boolean; duz?: boolean }[];
   /** Shaded regions (filled light grey, under the lines), e.g. an area asked for. */
   boyali?: string[][];
   /** Points drawn as small filled dots (points on a line, marked positions). */
