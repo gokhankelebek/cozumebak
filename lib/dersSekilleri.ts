@@ -505,6 +505,138 @@ function kutuSekli(a: { aciklama: string; satirlar: KutuSatiri[]; W?: number; H?
 }
 const harfKutulari = (h: string[], v = false): Kutu[] => h.map((m) => ({ m, v }));
 
+// ── Bar charts ──────────────────────────────────────────────────────────────
+// A bar chart laid out in pixels (drawn 1:1): an arrowed value axis with
+// ticks, a baseline, grouped bars (series 0 shaded, series 1 open, `vurgu`
+// bars outlined in the accent colour), values over the bars, category labels
+// under each group, optional dashed reference lines and a legend.
+function sutunSekli(a: {
+  on?: string;
+  x0?: number;
+  kategoriler: string[];
+  seriler: { degerler: number[]; ad?: string; vurgu?: (i: number) => boolean }[];
+  taban?: number; // value at the baseline (a truncated axis starts above 0)
+  maks: number;
+  tikler: (number | [number, string])[];
+  yuk?: number;
+  barW?: number;
+  ara?: number;
+  degerYaz?: (v: number) => string;
+  eksenAdi?: string;
+  referans?: { deger: number; metin: string }[];
+  kategoriDuz?: boolean;
+}) {
+  const on = a.on ?? "";
+  const x0 = a.x0 ?? 0;
+  const taban = a.taban ?? 0;
+  const yuk = a.yuk ?? 150;
+  const barW = a.barW ?? 30;
+  const ara = a.ara ?? 18;
+  const S = a.seriler.length;
+  const grupW = S * barW;
+  const Y = (v: number) => ((v - taban) / (a.maks - taban)) * yuk;
+  const genislik = 14 + a.kategoriler.length * (grupW + ara);
+  const noktalar: Record<string, Nk> = {};
+  const gizli: string[] = [];
+  let sayac = 0;
+  const ekle = (p: Nk) => {
+    const ad = `${on}c${sayac++}`;
+    noktalar[ad] = [p[0] + x0, p[1]];
+    gizli.push(ad);
+    return ad;
+  };
+  const dogrular: { p: [string, string]; vurgu?: boolean; kesik?: boolean; ince?: boolean; ok?: boolean }[] = [];
+  const yazilar: { nokta: string; metin: string; vurgu?: boolean; duz?: boolean }[] = [];
+  const boyali: string[][] = [];
+  const gen = (m: string) => metinGenisligi(m, YAZI.sayi);
+  dogrular.push({ p: [ekle([0, 0]), ekle([0, yuk + 22])], ince: true, ok: true });
+  dogrular.push({ p: [ekle([0, 0]), ekle([genislik, 0])], ince: true });
+  for (const t of a.tikler) {
+    const [v, m] = typeof t === "number" ? [t, String(t)] : t;
+    const y = Y(v);
+    dogrular.push({ p: [ekle([-4, y]), ekle([0, y])], ince: true });
+    yazilar.push({ nokta: ekle([-9 - gen(m) / 2, y]), metin: m });
+  }
+  if (a.eksenAdi) yazilar.push({ nokta: ekle([gen(a.eksenAdi) / 2 + 8, yuk + 22]), metin: a.eksenAdi, duz: true });
+  a.kategoriler.forEach((k, i) => {
+    const gx = 14 + i * (grupW + ara);
+    a.seriler.forEach((sr, j) => {
+      const v = sr.degerler[i];
+      const bx = gx + j * barW;
+      const h = Y(v);
+      const vurgu = sr.vurgu?.(i);
+      const c = [ekle([bx, 0]), ekle([bx + barW, 0]), ekle([bx + barW, h]), ekle([bx, h])];
+      dogrular.push({ p: [c[0], c[3]], vurgu }, { p: [c[3], c[2]], vurgu }, { p: [c[2], c[1]], vurgu });
+      if (j === 0) boyali.push(c);
+      if (a.degerYaz) yazilar.push({ nokta: ekle([bx + barW / 2, h + 12]), metin: a.degerYaz(v), vurgu });
+    });
+    yazilar.push({ nokta: ekle([gx + grupW / 2, -14]), metin: k, duz: a.kategoriDuz });
+  });
+  for (const r of a.referans ?? []) {
+    const y = Y(r.deger);
+    dogrular.push({ p: [ekle([0, y]), ekle([genislik, y])], kesik: true });
+    yazilar.push({ nokta: ekle([genislik + 8 + gen(r.metin) / 2, y]), metin: r.metin });
+  }
+  // Legend for two series: a shaded and an open square.
+  if (S > 1) {
+    a.seriler.forEach((sr, j) => {
+      const ly = yuk + 8 - j * 22;
+      const lx = genislik + 10;
+      const c = [ekle([lx, ly]), ekle([lx + 12, ly]), ekle([lx + 12, ly + 12]), ekle([lx, ly + 12])];
+      for (let q = 0; q < 4; q++) dogrular.push({ p: [c[q], c[(q + 1) % 4]], ince: true });
+      if (j === 0) boyali.push(c);
+      yazilar.push({ nokta: ekle([lx + 20 + gen(sr.ad ?? "") / 2, ly + 6]), metin: sr.ad ?? "", duz: true });
+    });
+  }
+  return { noktalar, dogrular, yazilar, boyali, gizli };
+}
+type SekilParcasi = ReturnType<typeof sutunSekli>;
+const parcadanSekil = (aciklama: string, ...p: SekilParcasi[]): Sekil => {
+  const noktalar = Object.assign({}, ...p.map((q) => q.noktalar)) as Record<string, Nk>;
+  const xs = Object.values(noktalar).map((q) => q[0]);
+  const ys = Object.values(noktalar).map((q) => q[1]);
+  return {
+    aciklama,
+    boyut: [Math.max(...xs) - Math.min(...xs), Math.max(...ys) - Math.min(...ys)],
+    noktalar,
+    dogrular: p.flatMap((q) => q.dogrular),
+    yazilar: p.flatMap((q) => q.yazilar),
+    boyali: p.flatMap((q) => q.boyali),
+    gizli: p.flatMap((q) => q.gizli),
+  };
+};
+// Pie chart: slices in order from the top, clockwise; percent inside, name outside.
+function daireGrafigi(aciklama: string, dilimler: { ad: string; yuzde: number; vurgu?: boolean }[]): Sekil {
+  const r = 3;
+  const noktalar: Record<string, Nk> = { O: [0, 0] };
+  const dogrular: { p: [string, string] }[] = [];
+  const yazilar: { nokta: string; metin: string; vurgu?: boolean }[] = [];
+  const boyalar: { merkez: string; bas: string; son: string }[] = [];
+  let aci = 90;
+  dilimler.forEach((d, i) => {
+    const son = aci - (d.yuzde / 100) * 360;
+    noktalar[`D${i}`] = kutupsal(0, 0, r, aci);
+    noktalar[`E${i}`] = kutupsal(0, 0, r, son);
+    dogrular.push({ p: ["O", `D${i}`] });
+    const orta = (aci + son) / 2;
+    noktalar[`Y${i}`] = kutupsal(0, 0, r * 0.58, orta);
+    noktalar[`A${i}`] = kutupsal(0, 0, r * 1.22, orta);
+    yazilar.push({ nokta: `Y${i}`, metin: `%${d.yuzde}`, vurgu: d.vurgu }, { nokta: `A${i}`, metin: d.ad, vurgu: d.vurgu });
+    if (d.vurgu) boyalar.push({ merkez: "O", bas: `E${i}`, son: `D${i}` });
+    aci = son;
+  });
+  return {
+    aciklama,
+    boyut: [230, 230],
+    noktalar,
+    cemberler: [{ merkez: "O", nokta: "D0" }],
+    dilimler: boyalar,
+    dogrular,
+    yazilar,
+    gizli: Object.keys(noktalar),
+  };
+}
+
 export const DERS_SEKILLERI = {
   // ── UcgenFig ──────────────────────────────────────────────────────────────
   IcAcilar: {
@@ -2047,6 +2179,138 @@ export const DERS_SEKILLERI = {
       },
     ],
   }),
+  // ── Charts ────────────────────────────────────────────────────────────────
+  SutunGrafik: parcadanSekil(
+    "Günlere göre satılan kitap sayısının sütun grafiği: Pazartesi 4, Salı 8, Çarşamba 6, Perşembe 10",
+    sutunSekli({
+      kategoriler: ["Pzt", "Sal", "Çar", "Per"],
+      kategoriDuz: true,
+      seriler: [{ degerler: [4, 8, 6, 10] }],
+      maks: 10,
+      tikler: [2, 4, 6, 8, 10],
+      barW: 36,
+      ara: 22,
+      eksenAdi: "kitap",
+      degerYaz: String,
+    }),
+  ),
+  UsluBuyume: parcadanSekil(
+    "2'nin kuvvetlerinin sütun grafiği: 2⁰'dan 2⁵'e değerler 1, 2, 4, 8, 16, 32; her adımda sütun iki katına çıkıyor",
+    sutunSekli({
+      kategoriler: ["2^0", "2^1", "2^2", "2^3", "2^4", "2^5"],
+      seriler: [{ degerler: [1, 2, 4, 8, 16, 32] }],
+      maks: 32,
+      tikler: [8, 16, 24, 32],
+      yuk: 160,
+      barW: 28,
+      ara: 12,
+      degerYaz: String,
+    }),
+  ),
+  KumelenmisSutun: parcadanSekil(
+    "Cinsiyete göre kümelenmiş sütun grafiği: kızlarda futbol 20, basketbol 30; erkeklerde futbol 35, basketbol 15",
+    sutunSekli({
+      kategoriler: ["Kız", "Erkek"],
+      kategoriDuz: true,
+      seriler: [
+        { degerler: [20, 35], ad: "Futbol" },
+        { degerler: [30, 15], ad: "Basketbol" },
+      ],
+      maks: 40,
+      tikler: [10, 20, 30, 40],
+      barW: 36,
+      ara: 34,
+      degerYaz: String,
+    }),
+  ),
+  OtkHileliZarCubuk: parcadanSekil(
+    "Hileli zar çubuk grafiği: 1'den 5'e her yüzün olasılığı 1/10, 6'nın olasılığı 5/10; kesik çizgi hilesiz zardaki 1/6",
+    sutunSekli({
+      kategoriler: ["1", "2", "3", "4", "5", "6"],
+      seriler: [{ degerler: [0.1, 0.1, 0.1, 0.1, 0.1, 0.5], vurgu: (i) => i === 5 }],
+      maks: 0.5,
+      tikler: [[0.1, "1/10"], [0.3, "3/10"], [0.5, "5/10"]],
+      barW: 24,
+      ara: 16,
+      referans: [{ deger: 1 / 6, metin: "1/6" }],
+    }),
+  ),
+  KesikEksen: parcadanSekil(
+    "Aynı A = 24 ve B = 22 değerlerinin iki sütun grafiği: solda eksen 20'den başladığı için A, B'nin iki katı görünür; sağda eksen 0'dan başlayınca sütunlar neredeyse eşit",
+    sutunSekli({
+      on: "s",
+      kategoriler: ["A", "B"],
+      seriler: [{ degerler: [24, 22], vurgu: () => true }],
+      taban: 20,
+      maks: 24.5,
+      tikler: [20, 22, 24],
+      yuk: 130,
+      barW: 32,
+      ara: 20,
+      degerYaz: String,
+    }),
+    sutunSekli({
+      on: "d",
+      x0: 190,
+      kategoriler: ["A", "B"],
+      seriler: [{ degerler: [24, 22] }],
+      maks: 24.5,
+      tikler: [0, 10, 20],
+      yuk: 130,
+      barW: 32,
+      ara: 20,
+      degerYaz: String,
+    }),
+  ),
+  DaireGrafik: daireGrafigi("40 kişinin seçimlerini gösteren daire grafiği: A %25, B %25, C %30, D %20; A dilimi taralı", [
+    { ad: "A", yuzde: 25, vurgu: true },
+    { ad: "B", yuzde: 25 },
+    { ad: "C", yuzde: 30 },
+    { ad: "D", yuzde: 20 },
+  ]),
+  MerkeziEgilim: {
+    aciklama: "Sıralı 3, 4, 6, 7, 9, 10 verisinin sayı doğrusunda nokta grafiği; medyan 6 ile 7'nin tam ortasında, 6,5'te",
+    boyut: [320, 90],
+    noktalar: { ...Object.fromEntries([3, 4, 6, 7, 9, 10].map((v) => [`v${v}`, [v, 0]])), M: [6.5, 0], Y: [6.5, 0.75] } as Record<string, Nk>,
+    sayiDogrusu: { x: [1.8, 11.4], tikler: [3, 4, 6, 7, 9, 10] },
+    isaretli: ["v3", "v4", "v6", "v7", "v9", "v10"],
+    bosNoktalar: ["M"],
+    yazilar: [{ nokta: "Y", metin: "medyan 6,5", vurgu: true, duz: true }],
+    gizli: ["v3", "v4", "v6", "v7", "v9", "v10", "M", "Y"],
+  },
+  OlasilikSkalasi: {
+    aciklama: "Olasılık skalası: 0 (imkânsız) ile 1 (kesin) arasında bir sayı doğrusu; ortada 1/2 eşit şans",
+    boyut: [330, 90],
+    noktalar: { P0: [0, 0], P1: [0.5, 0], P2: [1, 0], Y0: [0, 0.16], Y1: [0.5, 0.16], Y2: [1, 0.16] },
+    sayiDogrusu: { x: [-0.12, 1.12], tikler: [[0, "0"], [0.25, "1/4"], [0.5, "1/2"], [0.75, "3/4"], [1, "1"]] },
+    isaretli: ["P0", "P1", "P2"],
+    yazilar: [
+      { nokta: "Y0", metin: "imkânsız", duz: true },
+      { nokta: "Y1", metin: "eşit şans", duz: true, vurgu: true },
+      { nokta: "Y2", metin: "kesin", duz: true },
+    ],
+    gizli: ["P0", "P1", "P2", "Y0", "Y1", "Y2"],
+  },
+  OlasilikYakinsama: (() => {
+    // P is drawn ×5 so the plot is not flat; tick labels give the true values.
+    const P = [0.8, 0.2, 0.65, 0.4, 0.58, 0.46, 0.53, 0.49, 0.51, 0.5];
+    const noktalar: Record<string, Nk> = { T0: [0, 2.5], T1: [10.6, 2.5], K1: [0, 5], K5: [0, 2.5] };
+    P.forEach((p, i) => (noktalar[`p${i}`] = [i + 1, p * 5]));
+    return {
+      aciklama: "Deneme sayısı arttıkça deneysel olasılığın teorik değer 0,5'e (kesik çizgi) yakınsaması",
+      boyut: [300, 200],
+      eksen: { x: [-0.4, 11.2], y: [-0.4, 6.4], adlar: ["n", "P"] as [string, string] },
+      noktalar,
+      dogrular: [
+        { p: ["T0", "T1"] as [string, string], kesik: true },
+        ...P.slice(1).map((_, i) => ({ p: [`p${i}`, `p${i + 1}`] as [string, string], vurgu: true })),
+      ],
+      isaretli: P.map((_, i) => `p${i}`),
+      etiketMetni: { K1: "1", K5: "0,5" },
+      etiketYonu: { K1: 180, K5: 180 },
+      gizli: ["T0", "T1", ...P.map((_, i) => `p${i}`)],
+    } satisfies Sekil;
+  })(),
 } satisfies Record<string, Sekil>;
 
 export type DersSekliAdi = keyof typeof DERS_SEKILLERI;

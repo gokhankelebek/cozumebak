@@ -45,43 +45,7 @@ export function OtkZarTablosu() {
   return <SoruSekli sekil={DERS_SEKILLERI.OtkZarTablosu} />;
 }
 
-// (4) Hileli zar çubuk grafiği: 6 gelme olasılığı diğer her yüzün 3 katı.
-// 3p + 5p = 1 → p = 1/8. Scale: 1/8 ↔ 40 px, baseline y = 170.
-// Bars (width 26) centered at x = 70, 110, ..., 270 → left edge x = center − 13.
-// Faces 1–5: height 40 (top y=130). Face 6: height 120 (top y=50).
-// Fair-die reference 1/6 → 40·(8/6) = 53.3 px → y = 116.7 (dashed).
+// Drawn from lib/dersSekilleri.ts by the quiz figure engine.
 export function OtkHileliZarCubuk() {
-  const faces = [1, 2, 3, 4, 5, 6];
-  // 1/10 olasılık = 28 birim; eksen y=170
-  return (
-    <svg viewBox="0 0 310 200" role="img" aria-label="Hileli zar çubuk grafiği: 1'den 5'e kadar her yüzün olasılığı 1 bölü 10, 6'nın olasılığı 5 bölü 10; kesik çizgi hilesiz zardaki 1 bölü 6 değerini gösterir">
-      {/* axes */}
-      <line x1="45" y1="170" x2="295" y2="170" stroke="#8a93a6" strokeWidth="1.5" />
-      <line x1="45" y1="20" x2="45" y2="170" stroke="#8a93a6" strokeWidth="1.5" />
-      {/* y ticks 1/10, 3/10, 5/10 */}
-      {[142, 86, 30].map((y) => (
-        <line key={`t${y}`} x1="41" y1={y} x2="45" y2={y} stroke="#8a93a6" strokeWidth="1.5" />
-      ))}
-      <text x="10" y="146" fontSize="11" fill="#0e1b33">1/10</text>
-      <text x="10" y="90" fontSize="11" fill="#0e1b33">3/10</text>
-      <text x="10" y="34" fontSize="11" fill="#0e1b33">5/10</text>
-
-      {/* bars */}
-      {faces.map((f, i) => {
-        const cx = 70 + 40 * i;
-        const h = f === 6 ? 140 : 28;
-        return (
-          <g key={`b${f}`}>
-            <rect x={cx - 13} y={170 - h} width="26" height={h} fill={f === 6 ? "#e5492b" : "#0e1b33"} fillOpacity={f === 6 ? 0.85 : 0.75} />
-            <text x={cx - 4} y="186" fontSize="12" fill="#0e1b33">{f}</text>
-          </g>
-        );
-      })}
-
-      {/* fair-die reference: 1/6 -> 170 - 280/6 */}
-      <line x1="45" y1="123.3" x2="295" y2="123.3" stroke="#8a93a6" strokeWidth="1.3" strokeDasharray="5 4" />
-      <text x="150" y="117" fontSize="10" fill="#8a93a6">hilesiz zar: 1/6</text>
-      <text x="230" y="198" fontSize="10" fill="#8a93a6">zarın yüzü</text>
-    </svg>
-  );
+  return <SoruSekli sekil={DERS_SEKILLERI.OtkHileliZarCubuk} />;
 }
