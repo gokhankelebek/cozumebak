@@ -74,10 +74,18 @@ function Yazi({ e }: { e: Etiket }) {
   );
 }
 
+// Stable per-figure id prefix for clip paths and masks (no hooks in a server component).
+function kimlik(s: string): string {
+  let h = 0;
+  for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) | 0;
+  return "sk" + (h >>> 0).toString(36);
+}
+
 export default function SoruSekli({ sekil }: { sekil: Sekil }) {
   const y = sekilYerlesim(sekil);
   const w = y.vb.x1 - y.vb.x0;
   const h = y.vb.y1 - y.vb.y0;
+  const id = kimlik(sekil.aciklama + JSON.stringify(sekil.bolgeler ?? []));
   return (
     <svg
       className="soru-sekil"
@@ -90,6 +98,43 @@ export default function SoruSekli({ sekil }: { sekil: Sekil }) {
       {y.boyali.map((b, i) => (
         <polygon key={`b${i}`} points={b.map((p) => `${f(p.x)},${f(p.y)}`).join(" ")} fill="#e6e1d5" stroke="none" />
       ))}
+      {y.bolgeler.map((b, i) => {
+        // Inside every `ic` circle (nested clips), outside every `dis` circle (mask).
+        const zemin = (
+          <rect
+            x={f(y.vb.x0)}
+            y={f(y.vb.y0)}
+            width={f(w)}
+            height={f(h)}
+            fill="#e6e1d5"
+            mask={b.dis.length ? `url(#${id}m${i})` : undefined}
+          />
+        );
+        const kirp = b.ic.reduceRight<React.ReactNode>(
+          (ic, _c, j) => <g clipPath={`url(#${id}c${i}_${j})`}>{ic}</g>,
+          zemin,
+        );
+        return (
+          <g key={`v${i}`}>
+            <defs>
+              {b.ic.map((c, j) => (
+                <clipPath key={j} id={`${id}c${i}_${j}`}>
+                  <circle cx={f(c.merkez.x)} cy={f(c.merkez.y)} r={f(c.r)} />
+                </clipPath>
+              ))}
+              {b.dis.length > 0 && (
+                <mask id={`${id}m${i}`}>
+                  <rect x={f(y.vb.x0)} y={f(y.vb.y0)} width={f(w)} height={f(h)} fill="#fff" />
+                  {b.dis.map((c, j) => (
+                    <circle key={j} cx={f(c.merkez.x)} cy={f(c.merkez.y)} r={f(c.r)} fill="#000" />
+                  ))}
+                </mask>
+              )}
+            </defs>
+            {kirp}
+          </g>
+        );
+      })}
       {y.dilimler.map((d, i) => {
         const x1 = d.merkez.x + d.r * Math.cos(d.t1);
         const y1 = d.merkez.y + d.r * Math.sin(d.t1);

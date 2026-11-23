@@ -150,6 +150,24 @@ const kupIskelet = (dx: number, son: string) => ({
 const KUP_SOL = kupIskelet(0, "");
 const KUP_SAG = kupIskelet(9, "2");
 
+// ── Venn helpers ────────────────────────────────────────────────────────────
+// Two sets A, B: centres 1.8 apart, radius 2; set names outside, upper left/right.
+const IKI_KUME = {
+  boyut: [300, 200] as [number, number],
+  noktalar: { A: [0, 0], B: [1.8, 0], RA: [2, 0], RB: [3.8, 0], YA: [-1.85, 1.75], YB: [3.65, 1.75] } as Record<string, Nk>,
+  cemberler: [{ merkez: "A", nokta: "RA" }, { merkez: "B", nokta: "RB" }],
+  gizli: ["A", "B", "RA", "RB", "YA", "YB"],
+};
+const ikiKume = (aciklama: string, bolgeler: { ic: string[]; dis?: string[] }[], adlar: [string, string] = ["A", "B"]): Sekil => ({
+  aciklama,
+  ...IKI_KUME,
+  bolgeler,
+  yazilar: [
+    { nokta: "YA", metin: adlar[0] },
+    { nokta: "YB", metin: adlar[1] },
+  ],
+});
+
 export const DERS_SEKILLERI = {
   // ── UcgenFig ──────────────────────────────────────────────────────────────
   IcAcilar: {
@@ -1245,6 +1263,132 @@ export const DERS_SEKILLERI = {
     etiketMetni: { ...KUP_SOL.etiketMetni, ...KUP_SAG.etiketMetni },
   },
   GeoKombBoyaliKup: { ...KUP6, aciklama: "Dış yüzeyi boyanmış 6×6×6 küp: köşedeki birim küplerin 3, ayrıttakilerin 2, yüz ortasındakilerin 1 yüzü boyalı" },
+  // ── KumelerFig / KumelerUcVennFig / MantikVennFig / EbobEkokVennFig ───────
+  Birlesim: ikiKume("A birleşim B taranmış: her iki dairenin tamamı", [{ ic: ["A"] }, { ic: ["B"] }]),
+  Kesisim: ikiKume("A kesişim B taranmış: yalnız ortak bölge", [{ ic: ["A", "B"] }]),
+  Fark: ikiKume("A fark B taranmış: A'nın B dışında kalan kısmı", [{ ic: ["A"], dis: ["B"] }]),
+  UcVenn: {
+    aciklama: "Üç kümeli Venn şeması: A, B ve C dairelerinin yedi ayrık bölgesi; en içteki A∩B∩C taranmış",
+    boyut: [260, 250],
+    noktalar: {
+      A: [0, 0.577], B: [-0.5, -0.289], C: [0.5, -0.289], RA: [1, 0.577], RB: [0.5, -0.289], RC: [1.5, -0.289],
+      YA: [0, 1.82], YB: [-1.55, -1.2], YC: [1.55, -1.2],
+    },
+    cemberler: [{ merkez: "A", nokta: "RA" }, { merkez: "B", nokta: "RB" }, { merkez: "C", nokta: "RC" }],
+    bolgeler: [{ ic: ["A", "B", "C"] }],
+    yazilar: [
+      { nokta: "YA", metin: "A" },
+      { nokta: "YB", metin: "B" },
+      { nokta: "YC", metin: "C" },
+    ],
+    gizli: ["A", "B", "C", "RA", "RB", "RC", "YA", "YB", "YC"],
+  },
+  VeVenn: {
+    ...ikiKume("p ve q bağlacının Venn şeması: yalnız iki dairenin ortak bölgesi taranmış", [{ ic: ["A", "B"] }], ["p", "q"]),
+    noktalar: { ...IKI_KUME.noktalar, U0: [-2.6, -2.5], U1: [4.4, -2.5], U2: [4.4, 2.5], U3: [-2.6, 2.5] },
+    cokgenler: [["U0", "U1", "U2", "U3"]],
+    gizli: [...IKI_KUME.gizli, "U0", "U1", "U2", "U3"],
+  },
+  VeyaVenn: {
+    ...ikiKume("p veya q bağlacının Venn şeması: iki dairenin birleşimi taranmış", [{ ic: ["A"] }, { ic: ["B"] }], ["p", "q"]),
+    noktalar: { ...IKI_KUME.noktalar, U0: [-2.6, -2.5], U1: [4.4, -2.5], U2: [4.4, 2.5], U3: [-2.6, 2.5] },
+    cokgenler: [["U0", "U1", "U2", "U3"]],
+    gizli: [...IKI_KUME.gizli, "U0", "U1", "U2", "U3"],
+  },
+  EbobEkokVenn: {
+    aciklama: "48 ve 72'nin asal çarpanlarının Venn şeması: yalnız 48'de 2, ortak kısımda 2³·3 (EBOB), yalnız 72'de 3",
+    boyut: [340, 220],
+    noktalar: {
+      A: [0, 0], B: [2.2, 0], RA: [2.2, 0], RB: [4.4, 0],
+      YA: [-1.2, 2.55], YB: [3.4, 2.55], T1: [-1.15, 0], T2: [1.1, 0], T3: [3.35, 0],
+    },
+    cemberler: [{ merkez: "A", nokta: "RA" }, { merkez: "B", nokta: "RB" }],
+    bolgeler: [{ ic: ["A", "B"] }],
+    yazilar: [
+      { nokta: "YA", metin: "48 = 2^4·3" },
+      { nokta: "YB", metin: "72 = 2^3·3^2" },
+      { nokta: "T1", metin: "2" },
+      { nokta: "T2", metin: "2^3·3", vurgu: true },
+      { nokta: "T3", metin: "3" },
+    ],
+    gizli: ["A", "B", "RA", "RB", "YA", "YB", "T1", "T2", "T3"],
+  },
+
+  // ── AralikFig / EsitsizlikCozumFig / DiziSayiDogrusuFig / KokSayiDogrusuFig / RasyonelSiralamaFig ──
+  YariAcikAralik: {
+    aciklama: "Sayı doğrusunda [−2, 5) yarı açık aralığı: −2 dolu nokta (dahil), 5 boş nokta (hariç)",
+    boyut: [320, 80],
+    noktalar: { P: [-2, 0], Q: [5, 0] },
+    sayiDogrusu: { x: [-4.5, 7.5], tikler: [-2, 0, 5] },
+    dogrular: [{ p: ["P", "Q"], vurgu: true }],
+    isaretli: ["P"],
+    bosNoktalar: ["Q"],
+    gizli: ["P", "Q"],
+  },
+  AralikKesisim: {
+    aciklama: "A = [1, 6] ve B = (4, 9] aralıkları; kesişimleri (4, 6] sayı doğrusunda taralı",
+    boyut: [320, 150],
+    noktalar: {
+      A1: [1, 2.2], A2: [6, 2.2], B1: [4, 1.2], B2: [9, 1.2], K1: [4, 0], K2: [6, 0],
+      YA: [-0.2, 2.2], YB: [-0.2, 1.2],
+    },
+    sayiDogrusu: { x: [-0.8, 10.6], tikler: [1, 4, 6, 9] },
+    dogrular: [{ p: ["A1", "A2"] }, { p: ["B1", "B2"] }, { p: ["K1", "K2"], vurgu: true }],
+    isaretli: ["A1", "A2", "B2", "K2"],
+    bosNoktalar: ["B1", "K1"],
+    yazilar: [
+      { nokta: "YA", metin: "A" },
+      { nokta: "YB", metin: "B" },
+    ],
+    gizli: ["A1", "A2", "B1", "B2", "K1", "K2", "YA", "YB"],
+  },
+  EsitsizlikCozum: {
+    aciklama: "x < −2 eşitsizliğinin çözüm kümesi: −2 boş nokta, sol tarafa doğru işaretli ışın",
+    boyut: [320, 80],
+    noktalar: { P: [-2, 0], L: [-5.6, 0] },
+    sayiDogrusu: { x: [-6, 3.2], tikler: [-4, -2, 0, 2] },
+    dogrular: [{ p: ["P", "L"], vurgu: true, ok: true }],
+    bosNoktalar: ["P"],
+    gizli: ["P", "L"],
+  },
+  DiziSayiDogrusu: {
+    aciklama: "Sayı doğrusunda 2, 5, 8, 11, 14 aritmetik dizisinin terimleri; ardışık terimler arası fark 3",
+    boyut: [330, 120],
+    noktalar: Object.fromEntries([2, 5, 8, 11, 14].flatMap((v, i) => [[`a${i + 1}`, [v, 0]], [`m${i}`, [v + 1.5, 0]]])) as Record<string, Nk>,
+    sayiDogrusu: { x: [0, 16], tikler: [2, 5, 8, 11, 14] },
+    cemberYaylari: [0, 1, 2, 3].map((i) => ({ merkez: `m${i}`, bas: `a${i + 2}`, son: `a${i + 1}`, vurgu: true, ince: true, metin: "+3" })),
+    isaretli: ["a1", "a2", "a3", "a4", "a5"],
+    gizli: ["a1", "a2", "a3", "a4", "a5", "m0", "m1", "m2", "m3", "m4"],
+  },
+  KokSayiDogrusu: {
+    aciklama: "Kök 2'nin sayı doğrusunda inşası: dik kenarları 1 olan dik üçgenin hipotenüsü kök 2, pergelle eksene yatırılıyor",
+    boyut: [280, 190],
+    noktalar: { O: [0, 0], K: [1, 0], T: [1, 1], S: [Math.SQRT2, 0] },
+    sayiDogrusu: { x: [-0.5, 2.5], tikler: [0, 1, 2] },
+    cokgenler: [["O", "K", "T"]],
+    dikler: [["O", "K", "T"]],
+    dogrular: [{ p: ["O", "T"], vurgu: true }],
+    cemberYaylari: [{ merkez: "O", bas: "S", son: "T" }],
+    kenarlar: [
+      { p: ["K", "T"], metin: "1" },
+      { p: ["O", "T"], metin: "√2", vurgu: true },
+    ],
+    isaretli: ["S"],
+    etiketMetni: { S: "√2" },
+    vurguluNoktalar: ["S"],
+    etiketYonu: { S: 60 },
+    gizli: ["O", "K", "T"],
+  },
+  RasyonelSiralama: {
+    aciklama: "0 ile 1 arasındaki sayı doğrusunda 2/3, 3/4 ve 5/6 kesirleri; soldan sağa 2/3 < 3/4 < 5/6",
+    boyut: [330, 100],
+    noktalar: { P: [2 / 3, 0], Q: [3 / 4, 0], R: [5 / 6, 0] },
+    sayiDogrusu: { x: [-0.12, 1.14], tikler: [0, 1] },
+    isaretli: ["P", "Q", "R"],
+    etiketMetni: { P: "2/3", Q: "3/4", R: "5/6" },
+    vurguluNoktalar: ["P", "Q", "R"],
+    etiketYonu: { P: 120, Q: 270, R: 60 },
+  },
 } satisfies Record<string, Sekil>;
 
 export type DersSekliAdi = keyof typeof DERS_SEKILLERI;

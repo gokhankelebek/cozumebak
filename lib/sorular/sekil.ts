@@ -42,7 +42,7 @@ export interface Sekil {
   cokgenler?: string[][];
   /** Extra segments (diagonals, heights, extensions). */
   /** `vurgu` draws the segment thick in the accent colour (the line a question is about). */
-  dogrular?: { p: [string, string]; kesik?: boolean; vurgu?: boolean }[];
+  dogrular?: { p: [string, string]; kesik?: boolean; vurgu?: boolean; /** arrowhead at p[1] (a ray) */ ok?: boolean }[];
   /**
    * Side labels at the segment's midpoint, on the outer side. `ic` puts it on
    * the inner side; `konum` (0–1) slides it along the segment.
@@ -110,6 +110,18 @@ export interface Sekil {
   }[];
   /** Shaded regions between two graphs on [x0, x1]: `ust` above, `alt` below (default the x-axis). */
   alanlar?: { ust: (x: number) => number; alt?: (x: number) => number; x: [number, number] }[];
+  /**
+   * Venn shading: each region is the part inside every circle in `ic` and
+   * outside every circle in `dis`; circles are named by their centre point
+   * (as in `cemberler`). A union is several regions.
+   */
+  bolgeler?: { ic: string[]; dis?: string[] }[];
+  /**
+   * A number line along y = `y` (default 0) over [x0, x1], arrows at both
+   * ends, with tick marks and labels below at `tikler` (a value, or a value
+   * and its label text).
+   */
+  sayiDogrusu?: { x: [number, number]; y?: number; tikler: (number | [number, string])[] };
   /** Points drawn as open circles (a value the function does not take). */
   bosNoktalar?: string[];
   /** Point labels drawn in the accent colour (the unknown point). */
