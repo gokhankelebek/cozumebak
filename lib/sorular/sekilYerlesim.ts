@@ -71,6 +71,7 @@ export interface Yerlesim {
   noktalar: P[]; // dot markers
   bosNoktalar: P[]; // open circles
   egriler: Egri[];
+  bolgeler: { ic: { merkez: P; r: number }[]; dis: { merkez: P; r: number }[] }[];
   cokgenler: P[][];
   boyali: P[][];
   cemberler: { merkez: P; r: number }[];
@@ -232,6 +233,10 @@ export function sekilYerlesim(girdi: Sekil): Yerlesim {
     xs.push(sekil.eksen.x[0], sekil.eksen.x[1], 0);
     ys.push(sekil.eksen.y[0], sekil.eksen.y[1], 0);
   }
+  if (sekil.sayiDogrusu) {
+    xs.push(...sekil.sayiDogrusu.x);
+    ys.push(sekil.sayiDogrusu.y ?? 0);
+  }
   const [pencereAlt, pencereUst] = sekil.eksen?.y ?? [-Infinity, Infinity];
   const egriKosulari = (sekil.egriler ?? []).map((e) => egriOrnekle(e.f, e.x[0], e.x[1], pencereAlt, pencereUst));
   for (const runs of egriKosulari) for (const r of runs) for (const [x, y] of r) {
@@ -243,7 +248,8 @@ export function sekilYerlesim(girdi: Sekil): Yerlesim {
   const minY = Math.min(...ys);
   const maxY = Math.max(...ys);
   const [maksG, maksY] = sekil.boyut ?? [MAKS_G, MAKS_Y];
-  const olcek = Math.min(maksG / (maxX - minX || 1), maksY / (maxY - minY || 1));
+  // A flat figure (a number line) is fitted by its width alone.
+  const olcek = Math.min(maxX > minX ? maksG / (maxX - minX) : Infinity, maxY > minY ? maksY / (maxY - minY) : Infinity, 1e6);
   const N: Record<string, P> = {};
   for (const k of adlar) {
     const [x, y] = sekil.noktalar[k];
@@ -258,7 +264,16 @@ export function sekilYerlesim(girdi: Sekil): Yerlesim {
   const cokgenler = (sekil.cokgenler ?? []).map((c) => c.map(nokta));
   const cizgiler: Cizgi[] = [];
   for (const c of cokgenler) for (let i = 0; i < c.length; i++) cizgiler.push({ a: c[i], b: c[(i + 1) % c.length], tur: "ana" });
-  for (const d of sekil.dogrular ?? []) cizgiler.push({ a: nokta(d.p[0]), b: nokta(d.p[1]), tur: d.kesik ? "yardimci" : d.vurgu ? "vurgu" : "ana" });
+  const okUcu = (a: P, b: P, tur: Cizgi["tur"]): Cizgi[] => {
+    const t = aciOf(fark(a, b));
+    return [-0.42, 0.42].map((d) => ({ a: b, b: { x: b.x + 8 * Math.cos(t + d), y: b.y + 8 * Math.sin(t + d) }, tur }));
+  };
+  const okCizgileri: Cizgi[] = [];
+  for (const d of sekil.dogrular ?? []) {
+    const tur = d.kesik ? "yardimci" : d.vurgu ? "vurgu" : "ana";
+    cizgiler.push({ a: nokta(d.p[0]), b: nokta(d.p[1]), tur });
+    if (d.ok) okCizgileri.push(...okUcu(nokta(d.p[0]), nokta(d.p[1]), tur));
+  }
   const ekranda = (x: number, y: number): P => ({ x: (x - minX) * olcek, y: (maxY - y) * olcek });
   const eksenEtiketleri: { p: P; metin: string; dx: number; dy: number }[] = [];
   const oklar: Cizgi[] = [];
@@ -294,8 +309,23 @@ export function sekilYerlesim(girdi: Sekil): Yerlesim {
     }
     return [...ust, ...alt.reverse()];
   });
+  const tikEtiketleri: { p: P; metin: string }[] = [];
+  if (sekil.sayiDogrusu) {
+    const { x: [a, b], tikler } = sekil.sayiDogrusu;
+    const y = sekil.sayiDogrusu.y ?? 0;
+    const A = ekranda(a, y);
+    const B = ekranda(b, y);
+    cizgiler.push({ a: A, b: B, tur: "ince" });
+    oklar.push(...okUcu(A, B, "ince"), ...okUcu(B, A, "ince"));
+    for (const t of tikler) {
+      const [v, metin] = typeof t === "number" ? [t, String(t).replace("-", "−")] : t;
+      const p = ekranda(v, y);
+      oklar.push({ a: { x: p.x, y: p.y - 4 }, b: { x: p.x, y: p.y + 4 }, tur: "ince" });
+      if (metin) tikEtiketleri.push({ p, metin });
+    }
+  }
   const anaCizgiler = cizgiler.slice(); // structural lines, before marks
-  cizgiler.push(...oklar);
+  cizgiler.push(...oklar, ...okCizgileri);
 
   // Centroid of the closed shapes (or all points): "outside" is away from it.
   const merkezNoktalar = cokgenler.length ? cokgenler.flat() : adlar.map(nokta);
@@ -528,6 +558,13 @@ export function sekilYerlesim(girdi: Sekil): Yerlesim {
     etiketler.push({ x: cx, y: cy, metin: o.metin, tur: "kenar", vurgu: !!o.vurgu, kutu: kutuOlustur(cx, cy, o.metin, YAZI.sayi), kaynak: `ölçü ${o.p.join("")}`, yon: n });
   }
 
+  // ── Number-line tick labels (below the line) ──
+  for (const t of tikEtiketleri) {
+    const k0 = kutuOlustur(0, 0, t.metin, YAZI.sayi);
+    const cy = t.p.y + 6 + kutuYariYuk(k0);
+    etiketler.push({ x: t.p.x, y: cy, metin: t.metin, tur: "kenar", vurgu: false, kutu: kutuOlustur(t.p.x, cy, t.metin, YAZI.sayi), kaynak: `tik ${t.metin}`, yon: { x: 0, y: 1 } });
+  }
+
   // ── Axis labels ──
   for (const e of eksenEtiketleri) {
     const cx = e.p.x + e.dx;
@@ -728,6 +765,14 @@ export function sekilYerlesim(girdi: Sekil): Yerlesim {
     boyali: [...(sekil.boyali ?? []).map((b) => b.map(nokta)), ...boyaliAlanlar],
     bosNoktalar: (sekil.bosNoktalar ?? []).map(nokta),
     egriler,
+    bolgeler: (sekil.bolgeler ?? []).map((b) => {
+      const cember = (ad: string) => {
+        const c = cemberler.find((c) => c.merkez === N[ad]);
+        if (!c) throw new Error(`Bölge için çember yok: ${ad}`);
+        return c;
+      };
+      return { ic: b.ic.map(cember), dis: (b.dis ?? []).map(cember) };
+    }),
     cemberler,
     dilimler,
     elipsler,
