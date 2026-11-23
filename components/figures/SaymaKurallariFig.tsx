@@ -45,49 +45,9 @@ export function SkGalibiyetAgaci() {
   return <SoruSekli sekil={DERS_SEKILLERI.SkGalibiyetAgaci} />;
 }
 
-// --- Şekil: iki zar sonuç tablosu ------------------------------------------
-// Grid origin (70,40), cell 30 → columns x = 70..250, rows y = 40..220.
-// Row = kırmızı zar (r), column = mavi zar (b).
-// Navy overlay: r = b (6 cells). Red overlay: r + b = 8 (5 cells). (4,4) gets both.
+// Drawn from lib/dersSekilleri.ts by the quiz figure engine.
 export function SkZarTablosu() {
-  const n = [1, 2, 3, 4, 5, 6];
-  const cells: ReactElement[] = [];
-  for (const r of n) {
-    for (const b of n) {
-      const x = 70 + (b - 1) * 30;
-      const y = 40 + (r - 1) * 30;
-      const same = r === b;
-      const eight = r + b === 8;
-      cells.push(
-        <g key={`c${r}${b}`}>
-          <rect x={x} y={y} width="30" height="30" fill="#ffffff" stroke="#8a93a6" strokeWidth="0.8" />
-          {same && <rect x={x} y={y} width="30" height="30" fill="#0e1b33" fillOpacity="0.18" />}
-          {eight && <rect x={x} y={y} width="30" height="30" fill="#e5492b" fillOpacity="0.3" />}
-          {(same || eight) && (
-            <text x={x + 15} y={y + 19} fontSize="10" fill="#0e1b33" textAnchor="middle">{`${r},${b}`}</text>
-          )}
-        </g>
-      );
-    }
-  }
-  return (
-    <svg viewBox="0 0 300 270" role="img" aria-label="İki zarın 36 sıralı sonucunu gösteren 6'ya 6 tablo. Köşegendeki 6 hücrede iki zar aynı sayıyı gösteriyor; toplamı 8 olan 5 hücre ayrıca işaretli; 4,4 hücresi iki gruba da giriyor">
-      <text x="160" y="14" fontSize="11" fill="#0e1b33" fontWeight="700" textAnchor="middle">mavi zar</text>
-      <text x="22" y="130" fontSize="11" fill="#0e1b33" fontWeight="700" textAnchor="middle" transform="rotate(-90 22 130)">kırmızı zar</text>
-      {n.map((v) => (
-        <text key={`ch${v}`} x={70 + (v - 1) * 30 + 15} y="33" fontSize="11" fill="#8a93a6" textAnchor="middle">{v}</text>
-      ))}
-      {n.map((v) => (
-        <text key={`rh${v}`} x="56" y={40 + (v - 1) * 30 + 19} fontSize="11" fill="#8a93a6" textAnchor="middle">{v}</text>
-      ))}
-      {cells}
-      <rect x="40" y="236" width="12" height="12" fill="#0e1b33" fillOpacity="0.18" stroke="#8a93a6" strokeWidth="0.8" />
-      <text x="58" y="246" fontSize="10" fill="#0e1b33">aynı sayı (6)</text>
-      <rect x="150" y="236" width="12" height="12" fill="#e5492b" fillOpacity="0.3" stroke="#8a93a6" strokeWidth="0.8" />
-      <text x="168" y="246" fontSize="10" fill="#0e1b33">toplam 8 (5)</text>
-      <text x="40" y="264" fontSize="10" fill="#8a93a6">4,4 hücresi iki grupta da var.</text>
-    </svg>
-  );
+  return <SoruSekli sekil={DERS_SEKILLERI.SkZarTablosu} />;
 }
 
 // --- Şekil: yol ağı -------------------------------------------------------

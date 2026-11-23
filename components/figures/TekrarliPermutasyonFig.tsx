@@ -1,3 +1,6 @@
+import SoruSekli from "@/components/quiz/SoruSekli";
+import { DERS_SEKILLERI } from "@/lib/dersSekilleri";
+
 // Figures for the TYT "Tekrarlı Permütasyon" lesson.
 // Conventions: text/lines dark #0e1b33, accent #e5492b, grid/axis grey #8a93a6.
 // All coordinates are hand-computed; no external libraries.
@@ -123,44 +126,9 @@ export function TekrarliPermutasyonBosluk() {
   );
 }
 
-// ---------------------------------------------------------------------------
-// 3) Izgarada en kısa yol: 4 birim sağa, 3 birim yukarı.
-// Unit 45, origin A=(40,170). Point (i,j) -> (40+45i, 170-45j).
-// Red path S S Y S Y Y S: (0,0)(1,0)(2,0)(2,1)(3,1)(3,2)(3,3)(4,3).
-// C=(1,2) -> (85,80). B=(4,3) -> (220,35).
+// Drawn from lib/dersSekilleri.ts by the quiz figure engine.
 export function TekrarliPermutasyonIzgara() {
-  const dikey = [40, 85, 130, 175, 220];
-  const yatay = [170, 125, 80, 35];
-  return (
-    <svg
-      viewBox="0 0 270 210"
-      role="img"
-      aria-label="4 birim genişliğinde ve 3 birim yüksekliğinde sokak ızgarası; A sol altta, B sağ üstte. Kırmızı yol sağ, sağ, yukarı, sağ, yukarı, yukarı, sağ adımlarından oluşuyor. C noktası A'nın 1 birim sağında ve 2 birim yukarısında"
-    >
-      {dikey.map((x) => (
-        <line key={`v${x}`} x1={x} y1="35" x2={x} y2="170" stroke="#8a93a6" strokeWidth="1" />
-      ))}
-      {yatay.map((y) => (
-        <line key={`h${y}`} x1="40" y1={y} x2="220" y2={y} stroke="#8a93a6" strokeWidth="1" />
-      ))}
-      <polyline
-        points="40,170 85,170 130,170 130,125 175,125 175,80 175,35 220,35"
-        fill="none"
-        stroke="#e5492b"
-        strokeWidth="3"
-        strokeLinejoin="round"
-      />
-      <circle cx="40" cy="170" r="4" fill="#0e1b33" />
-      <circle cx="220" cy="35" r="4" fill="#0e1b33" />
-      <circle cx="85" cy="80" r="3.5" fill="#0e1b33" />
-      <text x="24" y="188" fontSize="13" fill="#0e1b33" fontWeight="700">A</text>
-      <text x="226" y="28" fontSize="13" fill="#0e1b33" fontWeight="700">B</text>
-      <text x="70" y="74" fontSize="12" fill="#0e1b33" fontWeight="700">C</text>
-      <text x="130" y="202" fontSize="12" textAnchor="middle" fill="#e5492b" fontWeight="700">
-        S S Y S Y Y S
-      </text>
-    </svg>
-  );
+  return <SoruSekli sekil={DERS_SEKILLERI.TekrarliPermutasyonIzgara} />;
 }
 
 // ---------------------------------------------------------------------------

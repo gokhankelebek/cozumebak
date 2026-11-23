@@ -40,57 +40,9 @@ export function OtkVennBolgeleri() {
   );
 }
 
-// (3) İki zar tablosu: satır = 1. zar (a), sütun = 2. zar (b), hücrede a+b.
-// Grid origin (60,60), cell 36 px → grid spans 60..276.
-// Cell (a,b) top-left: x = 60 + 36(b−1), y = 60 + 36(a−1); text at center (+18, +23).
-// Highlighted: the three cells with sum 10 → (4,6), (5,5), (6,4).
+// Drawn from lib/dersSekilleri.ts by the quiz figure engine.
 export function OtkZarTablosu() {
-  const n = [1, 2, 3, 4, 5, 6];
-  return (
-    <svg viewBox="0 0 300 290" role="img" aria-label="İki zarın 6'ya 6 tablosu: 36 hücrenin her birinde iki zarın toplamı yazılı; toplamı 10 olan üç hücre vurgulanmış">
-      <text x="140" y="24" fontSize="11" fill="#8a93a6">2. zar →</text>
-      <text x="6" y="54" fontSize="11" fill="#8a93a6">1. zar ↓</text>
-
-      {/* column headers */}
-      {n.map((b) => (
-        <text key={`h${b}`} x={60 + 36 * (b - 1) + 14} y="50" fontSize="12" fontWeight="700" fill="#0e1b33">{b}</text>
-      ))}
-      {/* row headers */}
-      {n.map((a) => (
-        <text key={`r${a}`} x="42" y={60 + 36 * (a - 1) + 23} fontSize="12" fontWeight="700" fill="#0e1b33">{a}</text>
-      ))}
-
-      {/* cells */}
-      {n.map((a) =>
-        n.map((b) => {
-          const hot = a + b === 10;
-          return (
-            <g key={`c${a}${b}`}>
-              <rect
-                x={60 + 36 * (b - 1)}
-                y={60 + 36 * (a - 1)}
-                width="36"
-                height="36"
-                fill={hot ? "#e5492b" : "#fbf9f4"}
-                fillOpacity={hot ? 0.2 : 1}
-                stroke="#8a93a6"
-                strokeWidth="1"
-              />
-              <text
-                x={60 + 36 * (b - 1) + (a + b >= 10 ? 11 : 14)}
-                y={60 + 36 * (a - 1) + 23}
-                fontSize="12"
-                fontWeight={hot ? 700 : 400}
-                fill={hot ? "#e5492b" : "#0e1b33"}
-              >
-                {a + b}
-              </text>
-            </g>
-          );
-        })
-      )}
-    </svg>
-  );
+  return <SoruSekli sekil={DERS_SEKILLERI.OtkZarTablosu} />;
 }
 
 // (4) Hileli zar çubuk grafiği: 6 gelme olasılığı diğer her yüzün 3 katı.

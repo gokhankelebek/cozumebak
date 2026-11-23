@@ -42,7 +42,7 @@ export interface Sekil {
   cokgenler?: string[][];
   /** Extra segments (diagonals, heights, extensions). */
   /** `vurgu` draws the segment thick in the accent colour (the line a question is about). */
-  dogrular?: { p: [string, string]; kesik?: boolean; vurgu?: boolean; /** arrowhead at p[1] (a ray) */ ok?: boolean }[];
+  dogrular?: { p: [string, string]; kesik?: boolean; vurgu?: boolean; /** thin rule (table grids) */ ince?: boolean; /** arrowhead at p[1] (a ray) */ ok?: boolean }[];
   /**
    * Side labels at the segment's midpoint, on the outer side. `ic` puts it on
    * the inner side; `konum` (0–1) slides it along the segment.
