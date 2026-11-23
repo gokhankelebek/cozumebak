@@ -30,6 +30,36 @@ const EGIM: Sekil = {
   gizli: ["C", "P1", "P2"],
 };
 
+// ── Graph helpers ───────────────────────────────────────────────────────────
+const parabol = (x: number) => x * x - 4 * x + 3;
+const kubik = (x: number) => x ** 3 - 6 * x ** 2 + 9 * x + 1;
+const alanF = (x: number) => 0.15 * x * x + 1;
+// Left-endpoint Riemann strips under alanF on [1.2, 4.6]: corner points and edges.
+const SERIT = { a: 1.2, b: 4.6, n: 4 };
+const seritNoktalari: Record<string, [number, number]> = {};
+const seritKenarlari: { p: [string, string]; kesik: true }[] = [];
+for (let i = 0; i < SERIT.n; i++) {
+  const w = (SERIT.b - SERIT.a) / SERIT.n;
+  const x0 = SERIT.a + i * w;
+  const h = alanF(x0);
+  seritNoktalari[`R${i}a`] = [x0, h];
+  seritNoktalari[`R${i}b`] = [x0 + w, h];
+  seritNoktalari[`R${i}c`] = [x0 + w, 0];
+  seritKenarlari.push({ p: [`R${i}a`, `R${i}b`], kesik: true }, { p: [`R${i}b`, `R${i}c`], kesik: true });
+}
+// Trig graphs are drawn with y stretched by 1.6 so the wave is legible; the
+// tick labels still read 1 and −1.
+const TRIG_K = 1.6;
+const trigTikler = {
+  noktalar: {
+    X1: [Math.PI / 2, 0], X2: [Math.PI, 0], X3: [(3 * Math.PI) / 2, 0], X4: [2 * Math.PI, 0],
+    Y1: [0, TRIG_K], Y2: [0, -TRIG_K], Y1b: [2 * Math.PI, TRIG_K], Y2b: [2 * Math.PI, -TRIG_K],
+  } as Record<string, [number, number]>,
+  etiketMetni: { X1: "π/2", X2: "π", X3: "3π/2", X4: "2π", Y1: "1", Y2: "−1" },
+  dogrular: [{ p: ["Y1", "Y1b"] as [string, string], kesik: true }, { p: ["Y2", "Y2b"] as [string, string], kesik: true }],
+  gizli: ["Y1b", "Y2b"],
+};
+
 export const DERS_SEKILLERI = {
   // ── UcgenFig ──────────────────────────────────────────────────────────────
   IcAcilar: {
@@ -529,6 +559,272 @@ export const DERS_SEKILLERI = {
     kenarlar: [{ p: ["O", "R"], metin: "r" }],
     isaretli: ["O"],
     gizli: ["O", "R"],
+  },
+  // ── ParabolFig ────────────────────────────────────────────────────────────
+  Parabol: {
+    aciklama: "y = x² − 4x + 3 parabolü: kökleri x = 1 ve x = 3, tepe noktası T(2, −1), y eksenini 3'te kesiyor, simetri ekseni x = 2 kesik çizgi",
+    boyut: EKSENLI,
+    eksen: { x: [-0.9, 5.3], y: [-1.9, 5.8] },
+    noktalar: { T: [2, -1], K1: [1, 0], K3: [3, 0], Y: [0, 3], S1: [2, -1.7], S2: [2, 5.4] },
+    egriler: [{ f: parabol, x: [-0.45, 4.45] }],
+    dogrular: [{ p: ["S1", "S2"], kesik: true }],
+    isaretli: ["T", "K1", "K3", "Y"],
+    etiketMetni: { T: "T(2, −1)", K1: "1", K3: "3", Y: "3", S2: "x = 2" },
+    vurguluNoktalar: ["T"],
+    etiketYonu: { K1: 135, K3: 45, S2: 90 },
+    gizli: ["S1"],
+  },
+
+  // ── UstelLogFig ───────────────────────────────────────────────────────────
+  UstelGrafik: {
+    aciklama: "y = 2 üzeri x grafiği: artan, y eksenini 1'de kesiyor, solda x eksenine yaklaşıyor",
+    boyut: EKSENLI,
+    eksen: { x: [-3.6, 3.4], y: [-0.9, 6.8] },
+    noktalar: { Y: [0, 1] },
+    egriler: [{ f: (x) => 2 ** x, x: [-3.5, 2.7], vurgu: true, metin: "y = 2^x", metinX: 2.3, metinYonu: 0 }],
+    isaretli: ["Y"],
+    etiketMetni: { Y: "1" },
+    etiketYonu: { Y: 145 },
+  },
+  UstelAzalan: {
+    aciklama: "y = (1/2) üzeri x grafiği: azalan, y eksenini 1'de kesiyor, sağda x eksenine yaklaşıyor",
+    boyut: EKSENLI,
+    eksen: { x: [-3.4, 3.6], y: [-0.9, 6.8] },
+    noktalar: { Y: [0, 1] },
+    egriler: [{ f: (x) => 0.5 ** x, x: [-2.7, 3.5], vurgu: true, metin: "y = (1/2)^x", metinX: -2.3, metinYonu: 180 }],
+    isaretli: ["Y"],
+    etiketMetni: { Y: "1" },
+    etiketYonu: { Y: 35 },
+  },
+  UstelLogSimetri: {
+    aciklama: "y = 2 üzeri x ile y = log tabanı 2 x eğrileri y = x doğrusuna göre simetrik; (0, 1) ve (1, 0) noktaları",
+    boyut: [290, 290],
+    eksen: { x: [-3, 6.6], y: [-3, 6.6], o: false },
+    noktalar: { A: [0, 1], B: [1, 0] },
+    egriler: [
+      { f: (x) => 2 ** x, x: [-3, 2.7], vurgu: true, metin: "y = 2^x", metinX: 2.4, metinYonu: 180 },
+      { f: (x) => Math.log2(x), x: [0.125, 6.4], metin: "y = log_2 x", metinX: 5.6, metinYonu: 270 },
+      { f: (x) => x, x: [-2.6, 6.2], kesik: true, metin: "y = x", metinX: 5.6, metinYonu: 180 },
+    ],
+    isaretli: ["A", "B"],
+    etiketMetni: { A: "(0, 1)", B: "(1, 0)" },
+    etiketYonu: { A: 160, B: 290 },
+  },
+
+  // ── TurevGrafik / TurevTanimFig ───────────────────────────────────────────
+  TurevGrafik: {
+    aciklama: "f(x) = x³ − 6x² + 9x + 1 eğrisi ve yerel maksimumu (1, 5) noktasındaki yatay teğet",
+    boyut: EKSENLI,
+    eksen: { x: [-0.8, 4.9], y: [-1.2, 7] },
+    noktalar: { M: [1, 5], K: [1, 0] },
+    egriler: [
+      { f: kubik, x: [-0.4, 4.4], metin: "y = f(x)", metinX: 4.15, metinYonu: 0 },
+      { f: () => 5, x: [0.05, 2.1], vurgu: true },
+    ],
+    dogrular: [{ p: ["M", "K"], kesik: true }],
+    isaretli: ["M"],
+    etiketMetni: { M: "(1, 5)", K: "1" },
+    etiketYonu: { M: 90 },
+  },
+  TurevTanimFig: {
+    aciklama: "f(x) = x² eğrisinde A(1, 1) ve B(3, 9) noktalarından geçen kesen ve A noktasındaki teğet",
+    boyut: EKSENLI,
+    // y is drawn at 0.4 scale so the parabola fits; labels give the true values.
+    eksen: { x: [-0.9, 3.9], y: [-0.6, 4.5] },
+    noktalar: { A: [1, 0.4], B: [3, 3.6] },
+    egriler: [
+      { f: (x) => 0.4 * x * x, x: [-0.7, 3.3], metin: "y = x^2", metinX: -0.5, metinYonu: 90 },
+      { f: (x) => 0.4 * (4 * x - 3), x: [0.65, 3.5], vurgu: true, metin: "kesen", duz: true, metinX: 3.45, metinYonu: 0 },
+      { f: (x) => 0.4 * (2 * x - 1), x: [0.3, 2.6], metin: "teğet", duz: true, metinX: 2.5, metinYonu: 0 },
+    ],
+    isaretli: ["A", "B"],
+    etiketMetni: { A: "A(1, 1)", B: "B(3, 9)" },
+    etiketYonu: { B: 160 },
+  },
+
+  // ── IntegralAlanFig / IntegralIkiEgriFig ──────────────────────────────────
+  IntegralAlan: {
+    aciklama: "y = f(x) eğrisi ile x ekseni arasında, x = a ile x = b arasındaki taranmış A alanı ve alanı yaklaşık veren dört dikdörtgen şerit",
+    boyut: EKSENLI,
+    eksen: { x: [-0.6, 6.2], y: [-0.6, 6.2] },
+    noktalar: { Ka: [SERIT.a, 0], Kb: [SERIT.b, 0], Fa: [SERIT.a, alanF(SERIT.a)], Fb: [SERIT.b, alanF(SERIT.b)], Y: [2.475, 0.9], ...seritNoktalari },
+    alanlar: [{ ust: alanF, x: [SERIT.a, SERIT.b] }],
+    egriler: [{ f: alanF, x: [0, 5.6], vurgu: true, metin: "y = f(x)", metinX: 5.3, metinYonu: 180 }],
+    dogrular: [{ p: ["Ka", "Fa"] }, { p: ["Kb", "Fb"] }, ...seritKenarlari],
+    yazilar: [{ nokta: "Y", metin: "A", vurgu: true }],
+    etiketMetni: { Ka: "a", Kb: "b" },
+    etiketYonu: { Ka: 270, Kb: 270 },
+    gizli: ["Fa", "Fb", "Y", ...Object.keys(seritNoktalari)],
+  },
+  IntegralIkiEgri: {
+    aciklama: "y = x doğrusu üstte, y = x² parabolü altta; x = 0 ile x = 1 arasında aralarında kalan taranmış bölge",
+    boyut: EKSENLI,
+    eksen: { x: [-0.25, 1.5], y: [-0.25, 1.55] },
+    noktalar: { K: [1, 1], K1: [1, 0], Y: [0.5, 0.375] },
+    alanlar: [{ ust: (x) => x, alt: (x) => x * x, x: [0, 1] }],
+    egriler: [
+      { f: (x) => x, x: [-0.15, 1.4], metin: "y = x", metinX: 1.35, metinYonu: 180 },
+      { f: (x) => x * x, x: [-0.2, 1.22], vurgu: true, metin: "y = x^2", metinX: 1.2, metinYonu: 0 },
+    ],
+    dogrular: [{ p: ["K", "K1"], kesik: true }],
+    yazilar: [{ nokta: "Y", metin: "A", vurgu: true }],
+    isaretli: ["K"],
+    etiketMetni: { K1: "1" },
+    etiketYonu: { K1: 270 },
+    gizli: ["K", "Y"],
+  },
+
+  // ── LimitFig ──────────────────────────────────────────────────────────────
+  SicramaFig: {
+    aciklama: "x = 3'te sıçrayan parçalı fonksiyon: soldan limit 1 (dolu nokta), sağdan limit 5 (içi boş nokta)",
+    boyut: EKSENLI,
+    eksen: { x: [-0.6, 6.2], y: [-0.6, 7] },
+    noktalar: { D: [3, 1], B: [3, 5], K: [3, 0], Y1: [0, 1], Y5: [0, 5] },
+    egriler: [
+      { f: (x) => 0.5 + x / 6, x: [0, 3] },
+      { f: (x) => 5 + 0.4 * (x - 3), x: [3, 5.8] },
+    ],
+    dogrular: [{ p: ["K", "B"], kesik: true }, { p: ["Y1", "D"], kesik: true }, { p: ["Y5", "B"], kesik: true }],
+    isaretli: ["D"],
+    bosNoktalar: ["B"],
+    etiketMetni: { K: "3", Y1: "1", Y5: "5" },
+    etiketYonu: { K: 270, Y1: 180, Y5: 180 },
+    gizli: ["D", "B"],
+  },
+  DelikFig: {
+    aciklama: "y = x + 2 doğrusu; x = 2 noktasında içi boş daireyle gösterilen delik, limit 4",
+    boyut: EKSENLI,
+    eksen: { x: [-2.4, 4.6], y: [-0.8, 6.8] },
+    noktalar: { H: [2, 4], K: [2, 0], Y: [0, 4] },
+    egriler: [{ f: (x) => x + 2, x: [-2.2, 4.4], vurgu: true, metin: "y = x + 2", metinX: 4, metinYonu: 0 }],
+    dogrular: [{ p: ["K", "H"], kesik: true }, { p: ["Y", "H"], kesik: true }],
+    bosNoktalar: ["H"],
+    etiketMetni: { K: "2", Y: "4" },
+    etiketYonu: { K: 270, Y: 180 },
+    gizli: ["H"],
+  },
+  AsimptotFig: {
+    aciklama: "Düşey asimptotu x = a, yatay asimptotu y = L olan iki kollu rasyonel fonksiyon grafiği",
+    boyut: EKSENLI,
+    eksen: { x: [-3.6, 10], y: [-4.6, 9.4] },
+    noktalar: { V1: [3, -4.4], V2: [3, 9.2], H1: [-3.4, 2], H2: [9.8, 2] },
+    egriler: [
+      { f: (x) => (2 * x + 1) / (x - 3), x: [-3.4, 2.99], vurgu: true },
+      { f: (x) => (2 * x + 1) / (x - 3), x: [3.01, 9.8], vurgu: true },
+    ],
+    dogrular: [{ p: ["V1", "V2"], kesik: true }, { p: ["H1", "H2"], kesik: true }],
+    etiketMetni: { V1: "x = a", H2: "y = L" },
+    etiketYonu: { V1: 0, H2: 270 },
+    gizli: ["V2", "H1"],
+  },
+
+  // ── FonksiyonFig ──────────────────────────────────────────────────────────
+  DogruGrafik: {
+    aciklama: "y = 2x + 1 doğrusal fonksiyon grafiği, y eksenini (0, 1) noktasında kesiyor",
+    boyut: EKSENLI,
+    eksen: { x: [-2.2, 3.4], y: [-2.4, 6.8] },
+    noktalar: { Y: [0, 1] },
+    egriler: [{ f: (x) => 2 * x + 1, x: [-1.6, 2.7], vurgu: true, metin: "y = 2x + 1", metinX: 2.5, metinYonu: 0 }],
+    isaretli: ["Y"],
+    etiketMetni: { Y: "(0, 1)" },
+    etiketYonu: { Y: 0 },
+  },
+  GrafikOkuma: {
+    aciklama: "y = 2x + 1 doğrusunda x = 2'den dikey, oradan yatay gidilerek f(2) = 5 değerinin okunması",
+    boyut: EKSENLI,
+    eksen: { x: [-2.2, 3.4], y: [-2.4, 6.8] },
+    noktalar: { P: [2, 5], K: [2, 0], Y: [0, 5] },
+    egriler: [{ f: (x) => 2 * x + 1, x: [-1.6, 2.7] }],
+    dogrular: [{ p: ["K", "P"], kesik: true }, { p: ["P", "Y"], kesik: true }],
+    isaretli: ["P"],
+    etiketMetni: { P: "f(2) = 5", K: "2", Y: "5" },
+    vurguluNoktalar: ["P"],
+    etiketYonu: { P: 0, K: 270, Y: 180 },
+  },
+
+  // ── TersFonksiyonFig ──────────────────────────────────────────────────────
+  TersSimetri: {
+    aciklama: "f(x) = 2x − 1 ve tersi f⁻¹(x) = (x + 1)/2 doğruları y = x doğrusuna göre simetrik; (2, 3) noktası (3, 2) noktasına yansıyor",
+    boyut: [290, 290],
+    eksen: { x: [-1.6, 7.6], y: [-1.6, 7.6], o: false },
+    noktalar: { P: [2, 3], Q: [3, 2] },
+    egriler: [
+      { f: (x) => 2 * x - 1, x: [-0.3, 4.2], vurgu: true, metin: "f", metinX: 4, metinYonu: 180 },
+      { f: (x) => (x + 1) / 2, x: [-1.4, 7.4], metin: "f^{−1}", metinX: 7, metinYonu: 90 },
+      { f: (x) => x, x: [-1.3, 7], kesik: true, metin: "y = x", metinX: 6.8, metinYonu: 180 },
+    ],
+    dogrular: [{ p: ["P", "Q"], kesik: true }],
+    isaretli: ["P", "Q"],
+    etiketMetni: { P: "(2, 3)", Q: "(3, 2)" },
+    etiketYonu: { P: 160, Q: 300 },
+  },
+
+  // ── MutlakDegerFig ────────────────────────────────────────────────────────
+  TemelV: {
+    aciklama: "y = |x| grafiği, tepe noktası orijin",
+    boyut: EKSENLI,
+    eksen: { x: [-4.6, 4.8], y: [-1, 4.8] },
+    noktalar: {},
+    egriler: [{ f: Math.abs, x: [-4.2, 4.2], vurgu: true, metin: "y = |x|", metinX: 3.6, metinYonu: 0 }],
+  },
+  OtelenmisV: {
+    aciklama: "y = |x − 2| − 1 grafiği, tepe noktası (2, −1)",
+    boyut: EKSENLI,
+    eksen: { x: [-2, 6.4], y: [-1.9, 4.6] },
+    noktalar: { T: [2, -1] },
+    egriler: [{ f: (x) => Math.abs(x - 2) - 1, x: [-1.4, 5.5], vurgu: true, metin: "y = |x − 2| − 1", metinX: 5.3, metinYonu: 0 }],
+    isaretli: ["T"],
+    etiketMetni: { T: "(2, −1)" },
+    etiketYonu: { T: 270 },
+  },
+
+  // ── DonusumGrafikFig ──────────────────────────────────────────────────────
+  DikeyOteleme: {
+    aciklama: "y = x² grafiği ile 2 birim yukarı ötelenmiş y = x² + 2 grafiği",
+    boyut: EKSENLI,
+    eksen: { x: [-3, 3.2], y: [-0.8, 7.4] },
+    noktalar: { T: [0, 2] },
+    egriler: [
+      { f: (x) => x * x, x: [-2.5, 2.5], metin: "y = x^2", metinX: 2.4, metinYonu: 0 },
+      { f: (x) => x * x + 2, x: [-2.2, 2.2], vurgu: true, metin: "y = x^2 + 2", metinX: -2.1, metinYonu: 180 },
+    ],
+    isaretli: ["T"],
+    etiketMetni: { T: "2" },
+    etiketYonu: { T: 0 },
+  },
+  YansimaXEkseni: {
+    aciklama: "y = x² grafiği ve x eksenine göre yansıması y = −x² grafiği",
+    boyut: EKSENLI,
+    eksen: { x: [-3, 3.2], y: [-4.8, 4.8], o: false },
+    noktalar: {},
+    egriler: [
+      { f: (x) => x * x, x: [-2.1, 2.1], metin: "y = x^2", metinX: 2, metinYonu: 0 },
+      { f: (x) => -x * x, x: [-2.1, 2.1], vurgu: true, metin: "y = −x^2", metinX: 2, metinYonu: 0 },
+    ],
+  },
+
+  // ── TrigonometriFig ───────────────────────────────────────────────────────
+  SinusGrafik: {
+    aciklama: "y = sin x grafiği, 0'dan 2π'ye bir tam periyot; en büyük değer 1, en küçük değer −1",
+    boyut: [340, 200],
+    eksen: { x: [-0.7, 7.3], y: [-2.5, 2.5] },
+    noktalar: trigTikler.noktalar,
+    egriler: [{ f: (x) => TRIG_K * Math.sin(x), x: [0, 2 * Math.PI], vurgu: true, metin: "y = sin x", metinX: 0.9, metinYonu: 120 }],
+    dogrular: trigTikler.dogrular,
+    etiketMetni: trigTikler.etiketMetni,
+    etiketYonu: { X1: 270, X2: 90, X3: 90, X4: 270, Y1: 180, Y2: 180 },
+    gizli: trigTikler.gizli,
+  },
+  KosinusGrafik: {
+    aciklama: "y = cos x grafiği, 0'dan 2π'ye bir tam periyot; 1'den başlıyor",
+    boyut: [340, 200],
+    eksen: { x: [-0.7, 7.3], y: [-2.5, 2.5] },
+    noktalar: trigTikler.noktalar,
+    egriler: [{ f: (x) => TRIG_K * Math.cos(x), x: [0, 2 * Math.PI], vurgu: true, metin: "y = cos x", metinX: 2.4, metinYonu: 0 }],
+    dogrular: trigTikler.dogrular,
+    etiketMetni: trigTikler.etiketMetni,
+    etiketYonu: { X2: 270, X4: 90, Y1: 180, Y2: 180 },
+    gizli: trigTikler.gizli,
   },
 } satisfies Record<string, Sekil>;
 

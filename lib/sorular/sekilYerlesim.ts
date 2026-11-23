@@ -61,9 +61,16 @@ export interface Dilim {
   d: number;
   kesme: boolean;
 }
+export interface Egri {
+  yol: P[];
+  vurgu: boolean;
+  kesik: boolean;
+}
 export interface Yerlesim {
   vb: Kutu; // viewBox
   noktalar: P[]; // dot markers
+  bosNoktalar: P[]; // open circles
+  egriler: Egri[];
   cokgenler: P[][];
   boyali: P[][];
   cemberler: { merkez: P; r: number }[];
@@ -97,9 +104,21 @@ function karakterGenisligi(c: string): number {
   if (/[α-ω]/.test(c)) return 0.5;
   return 0.6;
 }
+/** Splits "2^x", "f^{-1}", "log_2" into plain, superscript and subscript runs. */
+export function parcala(metin: string): { t: string; ust: boolean; alt: boolean }[] {
+  const out: { t: string; ust: boolean; alt: boolean }[] = [];
+  let son = 0;
+  for (const m of metin.matchAll(/([\^_])(?:\{([^}]*)\}|(.))/g)) {
+    if (m.index! > son) out.push({ t: metin.slice(son, m.index), ust: false, alt: false });
+    out.push({ t: m[2] ?? m[3], ust: m[1] === "^", alt: m[1] === "_" });
+    son = m.index! + m[0].length;
+  }
+  if (son < metin.length) out.push({ t: metin.slice(son), ust: false, alt: false });
+  return out;
+}
 export function metinGenisligi(metin: string, boyut: number): number {
   let w = 0;
-  for (const c of metin) w += karakterGenisligi(c);
+  for (const p of parcala(metin)) for (const c of p.t) w += karakterGenisligi(c) * (p.ust || p.alt ? 0.7 : 1);
   return w * boyut;
 }
 
@@ -133,6 +152,40 @@ export function egikIzdusum([x, y, z]: [number, number, number]): [number, numbe
   const k = 0.5;
   const t = (40 * Math.PI) / 180;
   return [x + k * z * Math.cos(t), y + k * z * Math.sin(t)];
+}
+
+/**
+ * Samples y = f(x) on [a, b] and splits it into runs inside the y-window
+ * [lo, hi]; a run ends at the window edge (interpolated) or at a jump such as
+ * a vertical asymptote.
+ */
+function egriOrnekle(f: (x: number) => number, a: number, b: number, lo: number, hi: number): [number, number][][] {
+  const n = 240;
+  const runs: [number, number][][] = [];
+  let run: [number, number][] = [];
+  let onceki: [number, number] | null = null;
+  const icinde = (y: number) => Number.isFinite(y) && y >= lo && y <= hi;
+  for (let i = 0; i <= n; i++) {
+    const x = a + ((b - a) * i) / n;
+    const y = f(x);
+    if (icinde(y)) {
+      if (!run.length && onceki && Number.isFinite(onceki[1]) && Math.abs(onceki[1] - y) < (hi - lo)) {
+        const kenar = onceki[1] > hi ? hi : lo;
+        run.push([onceki[0] + ((x - onceki[0]) * (kenar - onceki[1])) / (y - onceki[1]), kenar]);
+      }
+      run.push([x, y]);
+    } else if (run.length) {
+      if (Number.isFinite(y) && Math.abs(y - onceki![1]) < (hi - lo)) {
+        const kenar = y > hi ? hi : lo;
+        run.push([onceki![0] + ((x - onceki![0]) * (kenar - onceki![1])) / (y - onceki![1]), kenar]);
+      }
+      runs.push(run);
+      run = [];
+    }
+    onceki = [x, y];
+  }
+  if (run.length) runs.push(run);
+  return runs.filter((r) => r.length > 1);
 }
 
 export function sekilYerlesim(girdi: Sekil): Yerlesim {
@@ -179,6 +232,12 @@ export function sekilYerlesim(girdi: Sekil): Yerlesim {
     xs.push(sekil.eksen.x[0], sekil.eksen.x[1], 0);
     ys.push(sekil.eksen.y[0], sekil.eksen.y[1], 0);
   }
+  const [pencereAlt, pencereUst] = sekil.eksen?.y ?? [-Infinity, Infinity];
+  const egriKosulari = (sekil.egriler ?? []).map((e) => egriOrnekle(e.f, e.x[0], e.x[1], pencereAlt, pencereUst));
+  for (const runs of egriKosulari) for (const r of runs) for (const [x, y] of r) {
+    xs.push(x);
+    ys.push(y);
+  }
   const minX = Math.min(...xs);
   const maxX = Math.max(...xs);
   const minY = Math.min(...ys);
@@ -220,6 +279,21 @@ export function sekilYerlesim(girdi: Sekil): Yerlesim {
     const [ax, ay] = sekil.eksen.adlar ?? ["x", "y"];
     eksenEtiketleri.push({ p: xb, metin: ax, dx: 2, dy: 13 }, { p: yb, metin: ay, dx: -12, dy: 4 });
   }
+  const egriler: Egri[] = (sekil.egriler ?? []).flatMap((e, i) =>
+    egriKosulari[i].map((r) => ({ yol: r.map(([x, y]) => ekranda(x, y)), vurgu: !!e.vurgu, kesik: !!e.kesik })),
+  );
+  const boyaliAlanlar: P[][] = (sekil.alanlar ?? []).map((a) => {
+    const n = 120;
+    const sinirla = (y: number) => Math.min(Math.max(y, pencereAlt), pencereUst);
+    const ust: P[] = [];
+    const alt: P[] = [];
+    for (let i = 0; i <= n; i++) {
+      const x = a.x[0] + ((a.x[1] - a.x[0]) * i) / n;
+      ust.push(ekranda(x, sinirla(a.ust(x))));
+      alt.push(ekranda(x, sinirla(a.alt ? a.alt(x) : 0)));
+    }
+    return [...ust, ...alt.reverse()];
+  });
   const anaCizgiler = cizgiler.slice(); // structural lines, before marks
   cizgiler.push(...oklar);
 
@@ -304,6 +378,7 @@ export function sekilYerlesim(girdi: Sekil): Yerlesim {
       });
     }
   }
+  for (const e of egriler) for (let i = 0; i + 1 < e.yol.length; i++) engeller.push({ a: e.yol[i], b: e.yol[i + 1], tur: "ana" });
   // Circles that points may sit on (full circles and arcs), for label placement.
   const cevreler = [...cemberler];
 
@@ -464,7 +539,7 @@ export function sekilYerlesim(girdi: Sekil): Yerlesim {
   // ── Label search: try 16 directions around a point, keep the one with the
   //    most room from every line, curve, dot and earlier label. The widest-gap
   //    direction is tried first and wins ties.
-  const noktaIsaretleri = (sekil.isaretli ?? []).map(nokta);
+  const noktaIsaretleri = [...(sekil.isaretli ?? []), ...(sekil.bosNoktalar ?? [])].map(nokta);
   const bosluk = (k: Kutu, sahibi?: P): number => {
     let m = Infinity;
     for (const c of cizgiler) m = Math.min(m, kutuCizgiMesafesi(k, c.a, c.b));
@@ -511,7 +586,7 @@ export function sekilYerlesim(girdi: Sekil): Yerlesim {
     // Already placed with care: the later nudge pass must not move it.
     return { ...enIyi, yon: { x: 0, y: 0 } };
   };
-  if (sekil.eksen) {
+  if (sekil.eksen && sekil.eksen.o !== false) {
     // Skip "O" only when a labelled point already sits on the origin.
     const origindeNokta = Object.entries(sekil.noktalar).some(([ad, [x, y]]) => !gizli.has(ad) && Math.abs(x) < 1e-9 && Math.abs(y) < 1e-9);
     if (!origindeNokta) {
@@ -520,6 +595,19 @@ export function sekilYerlesim(girdi: Sekil): Yerlesim {
       etiketler.push({ x: yer.x, y: yer.y, metin: "O", tur: "nokta", vurgu: false, kutu: yer.kutu, kaynak: "eksen O", yon: yer.yon });
     }
   }
+
+  // ── Curve labels: beside the curve near metinX, in the freest direction ──
+  (sekil.egriler ?? []).forEach((e, i) => {
+    if (!e.metin) return;
+    const runs = egriKosulari[i];
+    const hepsi = runs.flat();
+    if (!hepsi.length) return;
+    const hedef = e.metinX ?? e.x[0] + (e.x[1] - e.x[0]) * 0.8;
+    const [mx, my] = hepsi.reduce((a, b) => (Math.abs(b[0] - hedef) < Math.abs(a[0] - hedef) ? b : a));
+    const t = ((e.metinYonu ?? 90) * Math.PI) / 180;
+    const yer = enIyiKonum(ekranda(mx, my), e.metin, { x: Math.cos(t), y: -Math.sin(t) });
+    etiketler.push({ x: yer.x, y: yer.y, metin: e.metin, tur: "kenar", vurgu: !!e.vurgu, kutu: yer.kutu, kaynak: `eğri "${e.metin}"`, yon: yer.yon, duz: e.duz });
+  });
 
   // ── Point labels: centre of the widest free gap around the point ──
   for (const ad of adlar) {
@@ -539,6 +627,16 @@ export function sekilYerlesim(girdi: Sekil): Yerlesim {
     }
     for (const y of yaylar) {
       if (uz(fark(y.merkez, p)) < 0.5) yonler.push(y.t1 + y.d / 2); // keep clear of angle labels
+    }
+    for (const e of egriler) {
+      // a point on a graph: block both directions along the curve
+      const j = e.yol.findIndex((q) => uz(fark(q, p)) < 2);
+      if (j >= 0) {
+        const once = e.yol[Math.max(0, j - 4)];
+        const sonra = e.yol[Math.min(e.yol.length - 1, j + 4)];
+        if (uz(fark(once, p)) > 0.5) yonler.push(aciOf(fark(once, p)));
+        if (uz(fark(sonra, p)) > 0.5) yonler.push(aciOf(fark(sonra, p)));
+      }
     }
     for (const c of cevreler) {
       // a point on a circle: block the inward direction and both tangents
@@ -608,6 +706,7 @@ export function sekilYerlesim(girdi: Sekil): Yerlesim {
     ekle(c.b.x, c.b.y);
   }
   for (const k of Object.values(N)) ekle(k.x, k.y);
+  for (const e of egriler) for (const q of e.yol) ekle(q.x, q.y);
   for (const e of elipsler) {
     ekle(e.cx - e.rx, e.cy - e.ry);
     ekle(e.cx + e.rx, e.cy + e.ry);
@@ -626,7 +725,9 @@ export function sekilYerlesim(girdi: Sekil): Yerlesim {
   const pay = 8;
   return {
     vb: { x0: Math.min(x0, ...cemberler.map((c) => c.merkez.x - c.r)) - pay, y0: Math.min(y0, ...cemberler.map((c) => c.merkez.y - c.r)) - pay, x1: Math.max(x1, ...cemberler.map((c) => c.merkez.x + c.r)) + pay, y1: Math.max(y1, ...cemberler.map((c) => c.merkez.y + c.r)) + pay },
-    boyali: (sekil.boyali ?? []).map((b) => b.map(nokta)),
+    boyali: [...(sekil.boyali ?? []).map((b) => b.map(nokta)), ...boyaliAlanlar],
+    bosNoktalar: (sekil.bosNoktalar ?? []).map(nokta),
+    egriler,
     cemberler,
     dilimler,
     elipsler,
@@ -711,7 +812,7 @@ export function sekilKontrol(y: Yerlesim): string[] {
   for (const e of y.etiketler) {
     for (const c of y.engeller) {
       if (kutuCizgiMesafesi(e.kutu, c.a, c.b) < BOSLUK_MIN) {
-        sorunlar.push(`${e.kaynak} ("${e.metin}") bir elipse değiyor`);
+        sorunlar.push(`${e.kaynak} ("${e.metin}") bir eğriye değiyor`);
         break;
       }
     }

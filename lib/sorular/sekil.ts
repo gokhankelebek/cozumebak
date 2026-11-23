@@ -89,7 +89,28 @@ export interface Sekil {
    * which are then real coordinates): arrows, x / y / O labels, no grid — a
    * grid would let the figure give the answer away.
    */
-  eksen?: { x: [number, number]; y: [number, number]; adlar?: [string, string] };
+  eksen?: { x: [number, number]; y: [number, number]; adlar?: [string, string]; /** false: no "O" at the origin */ o?: boolean };
+  /**
+   * Function graphs y = f(x) on x ∈ [x0, x1], clipped to the axis window
+   * (`eksen.y`) when there is one, so asymptotic branches stop at the frame.
+   * `metin` labels the curve near x = `metinX` (default: 80% along), placed
+   * in the free direction closest to `metinYonu` (degrees, default 90 = up).
+   */
+  egriler?: {
+    f: (x: number) => number;
+    x: [number, number];
+    vurgu?: boolean;
+    kesik?: boolean;
+    metin?: string;
+    metinX?: number;
+    metinYonu?: number;
+    /** Set the label upright (words such as "kesen"). */
+    duz?: boolean;
+  }[];
+  /** Shaded regions between two graphs on [x0, x1]: `ust` above, `alt` below (default the x-axis). */
+  alanlar?: { ust: (x: number) => number; alt?: (x: number) => number; x: [number, number] }[];
+  /** Points drawn as open circles (a value the function does not take). */
+  bosNoktalar?: string[];
   /** Point labels drawn in the accent colour (the unknown point). */
   vurguluNoktalar?: string[];
   /** Label text for a point instead of its name, e.g. { D: "D(2, 3)", Y: "12" }. */
