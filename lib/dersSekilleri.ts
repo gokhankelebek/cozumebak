@@ -1,4 +1,5 @@
 import type { Sekil } from "@/lib/sorular/sekil";
+import { metinGenisligi, YAZI } from "@/lib/sorular/sekilYerlesim";
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Lesson figures (konu anlatımı) drawn with the quiz figure engine, so lessons
@@ -167,6 +168,111 @@ const ikiKume = (aciklama: string, bolgeler: { ic: string[]; dis?: string[] }[],
     { nokta: "YB", metin: adlar[1] },
   ],
 });
+
+// ── Tree diagrams ───────────────────────────────────────────────────────────
+// A tree is laid out in pixels (the figure is then drawn 1:1): leaves evenly
+// spaced, each parent centred on its children, edges running between the node
+// labels. `o` is the branch label (a probability), written beside the branch;
+// `s` is the text after a leaf (the outcome or the product of its path);
+// `v` draws the branch and node in the accent colour.
+interface Dugum {
+  m: string;
+  o?: string;
+  v?: boolean;
+  duz?: boolean;
+  s?: string;
+  sv?: boolean;
+  c?: Dugum[];
+}
+function agacSekli(a: {
+  aciklama: string;
+  kok?: string;
+  dallar: Dugum[];
+  basliklar?: string[];
+  adim?: number; // distance between levels
+  ara?: number; // distance between leaves
+  asagi?: boolean; // grow downwards (factor trees)
+  halka?: boolean; // circle accent nodes (prime leaves)
+}): Sekil {
+  const adim = a.adim ?? 100;
+  const ara = a.ara ?? 34;
+  const noktalar: Record<string, Nk> = {};
+  const dogrular: { p: [string, string]; vurgu?: boolean }[] = [];
+  const yazilar: { nokta: string; metin: string; vurgu?: boolean; duz?: boolean }[] = [];
+  const cemberler: { merkez: string; nokta: string }[] = [];
+  const gizli: string[] = [];
+  const gen = (m: string) => (m ? metinGenisligi(m, YAZI.sayi) : 0);
+  // Leaf texts start in one column, after the widest leaf label.
+  const yapraklar = (n: Dugum): Dugum[] => (n.c?.length ? n.c.flatMap(yapraklar) : [n]);
+  const enGenisYaprak = Math.max(0, ...a.dallar.flatMap(yapraklar).map((n) => gen(n.m)));
+  // Screen-style coordinates (y down) → spec coordinates (y up).
+  const yer = (derinlik: number, capraz: number): Nk => (a.asagi ? [capraz, -derinlik] : [derinlik, -capraz]);
+  let yaprak = 0;
+  let sayac = 0;
+  const ekle = (ad: string, p: Nk) => {
+    noktalar[ad] = p;
+    gizli.push(ad);
+    return ad;
+  };
+  type Yer = { ad: string; d: number; c: number; m: string };
+  const kur = (n: Dugum, d: number): Yer => {
+    const ad = `n${sayac++}`;
+    let c: number;
+    const cocuklar: [Dugum, Yer][] = [];
+    if (n.c?.length) {
+      for (const k of n.c) cocuklar.push([k, kur(k, d + 1)]);
+      c = cocuklar.reduce((t, [, y]) => t + y.c, 0) / cocuklar.length;
+    } else c = ara * yaprak++;
+    ekle(ad, yer(d * adim, c));
+    if (n.m) yazilar.push({ nokta: ad, metin: n.m, vurgu: n.v, duz: n.duz });
+    if (n.m && n.v && a.halka) cemberler.push({ merkez: ad, nokta: ekle(`${ad}h`, yer(d * adim - 13, c)) });
+    // Leaf text after the node.
+    if (n.s && !n.c?.length) {
+      const bosluk = (a.asagi ? 10 : enGenisYaprak / 2) + 10 + gen(n.s) / 2;
+      yazilar.push({ nokta: ekle(`${ad}s`, yer(d * adim + bosluk, c)), metin: n.s, vurgu: n.sv });
+    }
+    // Edges to the children, between the labels.
+    for (const [k, y] of cocuklar) {
+      const yarim = (m: string) => (a.asagi ? (m ? 13 : 3) : m ? gen(m) / 2 + 6 : 3);
+      const b0 = yer(d * adim + yarim(n.m), c);
+      const b1 = yer((d + 1) * adim - yarim(k.m), y.c);
+      dogrular.push({ p: [ekle(`${y.ad}a`, b0), ekle(`${y.ad}b`, b1)], vurgu: k.v });
+      if (k.o) {
+        // Beside the branch's midpoint, on the outer side (away from the middle row).
+        const [x0, y0] = b0;
+        const [x1, y1] = b1;
+        const L = Math.hypot(x1 - x0, y1 - y0) || 1;
+        // Left normal for a rising branch (label up-left), right normal for a falling one (down-left).
+        const yukari = y1 >= y0;
+        const nx = (yukari ? -(y1 - y0) : y1 - y0) / L;
+        const ny = (yukari ? x1 - x0 : -(x1 - x0)) / L;
+        const w = gen(k.o) / 2;
+        const h = YAZI.sayi * 0.41;
+        const t = 5 + Math.abs(nx) * w + Math.abs(ny) * h;
+        yazilar.push({ nokta: ekle(`${y.ad}o`, [(x0 + x1) / 2 + nx * t, (y0 + y1) / 2 + ny * t]), metin: k.o, vurgu: k.v });
+      }
+    }
+    return { ad, d, c, m: n.m };
+  };
+  const kok = kur({ m: a.kok ?? "", c: a.dallar }, 0);
+  (a.basliklar ?? []).forEach((b, i) => {
+    yazilar.push({ nokta: ekle(`b${i}`, yer((i + 1) * adim, -ara * 0.9)), metin: b, duz: true });
+  });
+  const xs = Object.values(noktalar).map((p) => p[0]);
+  const ys = Object.values(noktalar).map((p) => p[1]);
+  return {
+    aciklama: a.aciklama,
+    boyut: [Math.max(...xs) - Math.min(...xs), Math.max(...ys) - Math.min(...ys)],
+    noktalar,
+    dogrular,
+    yazilar,
+    cemberler,
+    isaretli: a.kok ? [] : [kok.ad],
+    gizli,
+  };
+}
+const ikili = (sol: string, sag: string, alt: (yol: string) => Dugum[] | undefined, yol = ""): Dugum[] =>
+  [sol, sag].map((m) => ({ m, c: alt(yol + m) }));
 
 export const DERS_SEKILLERI = {
   // ── UcgenFig ──────────────────────────────────────────────────────────────
@@ -1389,6 +1495,108 @@ export const DERS_SEKILLERI = {
     vurguluNoktalar: ["P", "Q", "R"],
     etiketYonu: { P: 120, Q: 270, R: 60 },
   },
+  // ── Trees ─────────────────────────────────────────────────────────────────
+  Agac: agacSekli({
+    aciklama: "İki aşamalı olasılık ağacı: kökten A ve A' dallarına, her biri B ve B' dallarına ayrılıyor; dallarda koşullu olasılıklar",
+    adim: 120,
+    ara: 40,
+    dallar: [
+      { m: "A", o: "P(A)", c: [{ m: "B", o: "P(B|A)" }, { m: "B'", o: "P(B'|A)" }] },
+      { m: "A'", o: "P(A')", c: [{ m: "B", o: "P(B|A')" }, { m: "B'", o: "P(B'|A')" }] },
+    ],
+  }),
+  CarpmaAgaci: agacSekli({
+    aciklama: "Çarpma kuralı ağacı: 2 çorbadan her biri 3 ana yemeğe dallanıyor; 2 · 3 = 6 menü",
+    adim: 100,
+    ara: 30,
+    dallar: ["Ç_1", "Ç_2"].map((c) => ({
+      m: c,
+      c: ["A_1", "A_2", "A_3"].map((a) => ({ m: a, v: true, s: c + a })),
+    })),
+  }),
+  CarpanAgaci360: agacSekli({
+    aciklama: "360 sayısının çarpan ağacı: 360 sırayla 2, 2, 2, 3, 3 ve 5 asallarına ayrılıyor; 360 = 2³ · 3² · 5",
+    asagi: true,
+    halka: true,
+    adim: 50,
+    ara: 44,
+    kok: "360",
+    dallar: [
+      { m: "2", v: true },
+      { m: "180", c: [{ m: "2", v: true }, { m: "90", c: [{ m: "2", v: true }, { m: "45", c: [{ m: "3", v: true }, { m: "15", c: [{ m: "3", v: true }, { m: "5", v: true }] }] }] }] },
+    ],
+  }),
+  KsUcAtisAgaci: agacSekli({
+    aciklama: "Üç atışlık ağaç: her atışta vurma (V) 0,8, vuramama (V') 0,2; tam iki isabetli üç yol (VVV', VV'V, V'VV) vurgulu",
+    adim: 76,
+    ara: 30,
+    basliklar: ["1. atış", "2. atış", "3. atış"],
+    dallar: (() => {
+      const hedef = ["VVV'", "VV'V", "V'VV"];
+      const dal = (yol: string, d: number): Dugum[] =>
+        ["V", "V'"].map((m) => {
+          const y = yol + m;
+          // Compare outcome by outcome: "VVV" is not on the path "VVV'".
+          const parca = (t: string) => t.match(/V'?/g) ?? [];
+          const yolda = hedef.some((h) => parca(y).every((t, i) => parca(h)[i] === t));
+          if (d === 3) {
+            const carpim = [...y.matchAll(/V'?/g)].map((t) => (t[0] === "V" ? "0,8" : "0,2")).join("·");
+            return { m, v: yolda, s: carpim, sv: yolda };
+          }
+          return { m, v: yolda, c: dal(y, d + 1) };
+        });
+      return dal("", 1);
+    })(),
+  }),
+  KsTorbaAgaci: agacSekli({
+    aciklama: "Önce zar torbayı seçer: 1/3 olasılıkla I. torba (3K, 1B), 2/3 olasılıkla II. torba (1K, 5B); sonra torbadan top çekilir. Kırmızıya giden iki yol vurgulu",
+    adim: 120,
+    ara: 40,
+    basliklar: ["torba", "top"],
+    dallar: [
+      { m: "I (3K, 1B)", duz: true, o: "1/3", c: [{ m: "K", o: "3/4", v: true, s: "1/3·3/4 = 1/4", sv: true }, { m: "B", o: "1/4", s: "1/3·1/4 = 1/12" }] },
+      { m: "II (1K, 5B)", duz: true, o: "2/3", c: [{ m: "K", o: "1/6", v: true, s: "2/3·1/6 = 1/9", sv: true }, { m: "B", o: "5/6", s: "2/3·5/6 = 5/9" }] },
+    ],
+  }),
+  KsTestAgaci: agacSekli({
+    aciklama: "Sıklık ağacı: 1000 kişinin %4'ü (40) hasta, %96'sı (960) sağlam; hastaların %75'i (30), sağlamların %5'i (48) testte pozitif",
+    adim: 128,
+    ara: 40,
+    kok: "1000",
+    dallar: [
+      { m: "40 hasta", duz: true, o: "%4", c: [{ m: "30 pozitif", duz: true, o: "%75", v: true }, { m: "10 negatif", duz: true, o: "%25" }] },
+      { m: "960 sağlam", duz: true, o: "%96", c: [{ m: "48 pozitif", duz: true, o: "%5", v: true }, { m: "912 negatif", duz: true, o: "%95" }] },
+    ],
+  }),
+  OtkParaAgaci: agacSekli({
+    aciklama: "Üç madenî paranın art arda atılması: her para yazı (Y) ya da tura (T); dal uçlarında 8 çıktı",
+    adim: 70,
+    ara: 28,
+    basliklar: ["1. para", "2. para", "3. para"],
+    dallar: ikili("Y", "T", (y1) => ikili("Y", "T", (y2) => ikili("Y", "T", () => undefined, y2).map((d) => ({ ...d, s: y2 + d.m })), y1), ""),
+  }),
+  SkGalibiyetAgaci: agacSekli({
+    aciklama: "İlk iki seti kazanan maçı alır: set dizileri EE ve MM iki sette, EME, EMM, MEE, MEM üç sette biter",
+    adim: 80,
+    ara: 32,
+    basliklar: ["1. set", "2. set", "3. set"],
+    dallar: [
+      { m: "E", c: [{ m: "E", s: "EE", sv: true }, { m: "M", c: [{ m: "E", s: "EME", sv: true }, { m: "M", s: "EMM", sv: true }] }] },
+      { m: "M", c: [{ m: "E", c: [{ m: "E", s: "MEE", sv: true }, { m: "M", s: "MEM", sv: true }] }, { m: "M", s: "MM", sv: true }] },
+    ],
+  }),
+  PermSiralamaAgac: agacSekli({
+    aciklama: "A, B, C harflerinin bütün dizilişleri: ilk yer için 3, ikinci için 2, sonuncu için 1 seçenek; 6 diziliş",
+    adim: 70,
+    ara: 30,
+    dallar: ["A", "B", "C"].map((x) => ({
+      m: x,
+      c: ["A", "B", "C"].filter((y) => y !== x).map((y) => {
+        const z = ["A", "B", "C"].find((t) => t !== x && t !== y)!;
+        return { m: y, c: [{ m: z, v: true, s: x + y + z }] };
+      }),
+    })),
+  }),
 } satisfies Record<string, Sekil>;
 
 export type DersSekliAdi = keyof typeof DERS_SEKILLERI;
