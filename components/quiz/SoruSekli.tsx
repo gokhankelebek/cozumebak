@@ -134,8 +134,8 @@ export default function SoruSekli({ sekil }: { sekil: Sekil }) {
           y1={f(c.a.y)}
           x2={f(c.b.x)}
           y2={f(c.b.y)}
-          stroke={c.tur === "yardimci" ? YARDIMCI : KOYU}
-          strokeWidth={c.tur === "ana" ? 1.6 : 1.1}
+          stroke={c.tur === "yardimci" ? YARDIMCI : c.tur === "vurgu" ? VURGU : KOYU}
+          strokeWidth={c.tur === "vurgu" ? 2.4 : c.tur === "ana" ? 1.6 : 1.1}
           strokeDasharray={c.tur === "yardimci" ? "4 3" : undefined}
           strokeLinecap="round"
         />
