@@ -274,6 +274,136 @@ function agacSekli(a: {
 const ikili = (sol: string, sag: string, alt: (yol: string) => Dugum[] | undefined, yol = ""): Dugum[] =>
   [sol, sag].map((m) => ({ m, c: alt(yol + m) }));
 
+// ── Tables and street grids ─────────────────────────────────────────────────
+// A table laid out in pixels (drawn 1:1): a header row, a header column and a
+// full grid of thin rules. Cells are addressed [row, column]; −1 is a header.
+function tabloSekli(a: {
+  aciklama: string;
+  sutunlar: string[];
+  satirlar: string[];
+  hucre: (i: number, j: number) => string;
+  w?: number;
+  h?: number;
+  ilkW?: number;
+  kose?: string;
+  ust?: string; // caption over the data columns
+  yan?: string; // caption left of the row headers
+  duz?: boolean; // upright header words
+  hucreDuz?: boolean;
+  boya?: (i: number, j: number) => boolean;
+  vurgu?: (i: number, j: number) => boolean;
+  kesikSutun?: number;
+}): Sekil {
+  const w = a.w ?? 34;
+  const h = a.h ?? 30;
+  const ilkW = a.ilkW ?? w;
+  const R = a.satirlar.length;
+  const C = a.sutunlar.length;
+  const noktalar: Record<string, Nk> = {};
+  const gizli: string[] = [];
+  const ekle = (ad: string, p: Nk) => {
+    noktalar[ad] = p;
+    gizli.push(ad);
+    return ad;
+  };
+  const X = (j: number) => (j < 0 ? 0 : ilkW + j * w); // left edge of column j (−1 = header)
+  const Y = (i: number) => -(i < 0 ? 0 : h + i * h); // top edge of row i
+  const sag = X(C);
+  const alt = Y(R);
+  const dogrular: { p: [string, string]; ince?: boolean; kesik?: boolean }[] = [];
+  for (let i = -1; i <= R; i++) {
+    const yy = i < 0 ? 0 : Y(i);
+    dogrular.push({ p: [ekle(`ys${i}`, [0, yy]), ekle(`ye${i}`, [sag, yy])], ince: true });
+  }
+  for (let j = -1; j <= C; j++) {
+    const xx = j < 0 ? 0 : X(j);
+    dogrular.push({ p: [ekle(`xs${j}`, [xx, 0]), ekle(`xe${j}`, [xx, alt])], ince: true });
+  }
+  const yazilar: { nokta: string; metin: string; vurgu?: boolean; duz?: boolean }[] = [];
+  const boyali: string[][] = [];
+  const hucreMerkezi = (i: number, j: number): Nk => {
+    const x0 = X(j);
+    const x1 = j < 0 ? ilkW : X(j) + w;
+    const y0 = Y(i);
+    const y1 = i < 0 ? -h : Y(i) - h;
+    return [(x0 + x1) / 2, (y0 + y1) / 2];
+  };
+  const kutu = (i: number, j: number) => {
+    const x0 = X(j);
+    const x1 = j < 0 ? ilkW : X(j) + w;
+    const y0 = Y(i);
+    const y1 = i < 0 ? -h : Y(i) - h;
+    return [ekle(`b${i}_${j}a`, [x0, y0]), ekle(`b${i}_${j}b`, [x1, y0]), ekle(`b${i}_${j}c`, [x1, y1]), ekle(`b${i}_${j}d`, [x0, y1])];
+  };
+  for (let i = -1; i < R; i++) {
+    for (let j = -1; j < C; j++) {
+      if (a.boya?.(i, j)) boyali.push(kutu(i, j));
+      const metin = i < 0 && j < 0 ? a.kose ?? "" : i < 0 ? a.sutunlar[j] : j < 0 ? a.satirlar[i] : a.hucre(i, j);
+      if (!metin) continue;
+      const baslik = i < 0 || j < 0;
+      yazilar.push({
+        nokta: ekle(`t${i}_${j}`, hucreMerkezi(i, j)),
+        metin,
+        vurgu: a.vurgu?.(i, j),
+        duz: baslik ? a.duz : a.hucreDuz,
+      });
+    }
+  }
+  if (a.kesikSutun != null) {
+    const x0 = X(a.kesikSutun) + 3;
+    const x1 = X(a.kesikSutun) + w - 3;
+    const k = [ekle("k0", [x0, -3]), ekle("k1", [x1, -3]), ekle("k2", [x1, alt + 3]), ekle("k3", [x0, alt + 3])];
+    for (let i = 0; i < 4; i++) dogrular.push({ p: [k[i], k[(i + 1) % 4]], kesik: true });
+  }
+  if (a.ust) yazilar.push({ nokta: ekle("ust", [(ilkW + sag) / 2, h * 0.8]), metin: a.ust, duz: true });
+  if (a.yan) yazilar.push({ nokta: ekle("yan", [-metinGenisligi(a.yan, YAZI.sayi) / 2 - 10, (h + alt) / 2 - h / 2]), metin: a.yan, duz: true });
+  const xs = Object.values(noktalar).map((p) => p[0]);
+  const ys = Object.values(noktalar).map((p) => p[1]);
+  return {
+    aciklama: a.aciklama,
+    boyut: [Math.max(...xs) - Math.min(...xs), Math.max(...ys) - Math.min(...ys)],
+    noktalar,
+    dogrular,
+    boyali,
+    yazilar,
+    gizli,
+  };
+}
+const ZAR = ["1", "2", "3", "4", "5", "6"];
+/** Street grid m × n with a highlighted path (list of lattice points). */
+function izgaraSekli(a: { aciklama: string; m: number; n: number; yol: Nk[]; etiketler: Record<string, Nk>; vurgulu?: string[]; yonler?: Record<string, number> }): Sekil {
+  const noktalar: Record<string, Nk> = { ...a.etiketler };
+  const gizli: string[] = [];
+  const dogrular: { p: [string, string]; vurgu?: boolean; ince?: boolean }[] = [];
+  for (let j = 0; j <= a.m; j++) {
+    noktalar[`v${j}a`] = [j, 0];
+    noktalar[`v${j}b`] = [j, a.n];
+    gizli.push(`v${j}a`, `v${j}b`);
+    dogrular.push({ p: [`v${j}a`, `v${j}b`] });
+  }
+  for (let i = 0; i <= a.n; i++) {
+    noktalar[`h${i}a`] = [0, i];
+    noktalar[`h${i}b`] = [a.m, i];
+    gizli.push(`h${i}a`, `h${i}b`);
+    dogrular.push({ p: [`h${i}a`, `h${i}b`] });
+  }
+  a.yol.forEach((p, k) => {
+    noktalar[`y${k}`] = p;
+    gizli.push(`y${k}`);
+    if (k) dogrular.push({ p: [`y${k - 1}`, `y${k}`], vurgu: true });
+  });
+  return {
+    aciklama: a.aciklama,
+    boyut: [40 * a.m, 40 * a.n],
+    noktalar,
+    dogrular,
+    isaretli: Object.keys(a.etiketler),
+    vurguluNoktalar: a.vurgulu,
+    etiketYonu: a.yonler,
+    gizli,
+  };
+}
+
 export const DERS_SEKILLERI = {
   // ── UcgenFig ──────────────────────────────────────────────────────────────
   IcAcilar: {
@@ -1596,6 +1726,123 @@ export const DERS_SEKILLERI = {
         return { m: y, c: [{ m: z, v: true, s: x + y + z }] };
       }),
     })),
+  }),
+  // ── Tables ────────────────────────────────────────────────────────────────
+  OtkZarTablosu: tabloSekli({
+    aciklama: "İki zarın 6×6 tablosu: her hücrede iki zarın toplamı; toplamı 10 olan üç hücre vurgulu",
+    sutunlar: ZAR,
+    satirlar: ZAR,
+    kose: "+",
+    ust: "2. zar",
+    yan: "1. zar",
+    duz: true,
+    hucre: (i, j) => String(i + j + 2),
+    boya: (i, j) => i >= 0 && j >= 0 && i + j + 2 === 10,
+    vurgu: (i, j) => i >= 0 && j >= 0 && i + j + 2 === 10,
+  }),
+  SkZarTablosu: tabloSekli({
+    aciklama: "İki zarın 36 sıralı sonucu: köşegendeki 6 hücrede iki zar aynı (taralı), toplamı 8 olan 5 hücre vurgulu; (4, 4) iki grupta",
+    sutunlar: ZAR,
+    satirlar: ZAR,
+    w: 40,
+    ust: "mavi zar",
+    yan: "kırmızı zar",
+    duz: true,
+    hucre: (i, j) => `${i + 1},${j + 1}`,
+    boya: (i, j) => i >= 0 && i === j,
+    vurgu: (i, j) => i >= 0 && j >= 0 && i + j + 2 === 8,
+  }),
+  KombOlasilikZarEnBuyuk: tabloSekli({
+    aciklama: "İki zarın 36 sonucu, her hücrede büyük olan değer: en büyüğü en çok 4 olan 16 hücre taralı, en büyüğü tam 5 olan 9 hücre vurgulu",
+    sutunlar: ZAR,
+    satirlar: ZAR,
+    ust: "2. zar",
+    yan: "1. zar",
+    duz: true,
+    hucre: (i, j) => String(Math.max(i, j) + 1),
+    boya: (i, j) => i >= 0 && j >= 0 && Math.max(i, j) < 4,
+    vurgu: (i, j) => i >= 0 && j >= 0 && Math.max(i, j) === 4,
+  }),
+  KombOlasilikSiraliTablo: tabloSekli({
+    aciklama: "K1, K2, M1, M2 toplarından iadesiz iki çekilişin sıralı sonuç tablosu: köşegen imkânsız, aynı renkli 4 sonuç vurgulu",
+    sutunlar: ["K_1", "K_2", "M_1", "M_2"],
+    satirlar: ["K_1", "K_2", "M_1", "M_2"],
+    w: 54,
+    ust: "2. çekiş",
+    yan: "1. çekiş",
+    hucre: (i, j) => (i === j ? "×" : ["K_1", "K_2", "M_1", "M_2"][i] + ["K_1", "K_2", "M_1", "M_2"][j]),
+    boya: (i, j) => i >= 0 && i === j,
+    vurgu: (i, j) => i >= 0 && j >= 0 && i !== j && (i < 2) === (j < 2),
+  }),
+  RakamSayiArtanIzgara: tabloSekli({
+    aciklama: "1–5 rakamlarıyla yazılan iki basamaklı sayılar: rakamları kesin artan 10 hücre vurgulu, rakamları eşit 5 hücre taralı",
+    sutunlar: ["1", "2", "3", "4", "5"],
+    satirlar: ["1", "2", "3", "4", "5"],
+    ust: "birler",
+    yan: "onlar",
+    duz: true,
+    hucre: (i, j) => `${i + 1}${j + 1}`,
+    boya: (i, j) => i >= 0 && i === j,
+    vurgu: (i, j) => i >= 0 && j >= 0 && i < j,
+  }),
+  CaprazTablo: tabloSekli({
+    aciklama: "Gözlük takma ve cinsiyet çapraz tablosu; gözlük takanlar sütunu (25 + 35 = 60 kişi) vurgulu",
+    sutunlar: ["Gözlük +", "Gözlük −"],
+    satirlar: ["Kadın", "Erkek"],
+    w: 84,
+    ilkW: 74,
+    h: 34,
+    duz: true,
+    hucre: (i, j) => [["25", "15"], ["35", "25"]][i][j],
+    boya: (i, j) => j === 0,
+    vurgu: (i, j) => j === 0,
+  }),
+  KsSporTablosu: tabloSekli({
+    aciklama: "160 öğrencinin cinsiyete ve lisanslı sporcu olup olmamaya göre dağılımı; Kız satırı (72) taralı, Sporcu sütunu (50) kesikli çerçeveli",
+    sutunlar: ["Sporcu", "Sporcu değil", "Toplam"],
+    satirlar: ["Kız", "Erkek", "Toplam"],
+    w: 112,
+    ilkW: 70,
+    h: 34,
+    duz: true,
+    hucre: (i, j) => [["18", "54", "72"], ["32", "56", "88"], ["50", "110", "160"]][i][j],
+    boya: (i) => i === 0,
+    vurgu: (i, j) => (i === 0 && j === 2) || (i === 2 && j === 0),
+    kesikSutun: 0,
+  }),
+  IsaretTablosu: {
+    aciklama: "f(x) = x² − x − 6 ifadesinin işaret tablosu: kökler −2 ve 3; kökler dışında pozitif, kökler arasında negatif",
+    boyut: [320, 90],
+    noktalar: { S1: [-4.2, 0.55], S2: [0.5, 0.55], S3: [5.2, 0.55], K1: [-2, 0], K2: [3, 0], F: [-7.6, 0.55], X: [-7.6, -0.62] },
+    sayiDogrusu: { x: [-6.8, 7.8], tikler: [[-2, "−2"], [3, "3"]] },
+    yazilar: [
+      { nokta: "S1", metin: "+", vurgu: true },
+      { nokta: "S2", metin: "−" },
+      { nokta: "S3", metin: "+", vurgu: true },
+      { nokta: "F", metin: "f(x)" },
+      { nokta: "X", metin: "x" },
+    ],
+    isaretli: ["K1", "K2"],
+    gizli: ["S1", "S2", "S3", "K1", "K2", "F", "X"],
+  },
+
+  // ── Street grids ──────────────────────────────────────────────────────────
+  KombOlasilikIzgaraYol: izgaraSekli({
+    aciklama: "3×3 sokak ızgarası: A sol altta, B sağ üstte, C A'nın 2 birim sağında ve 1 birim yukarısında; vurgulu yol C'den geçiyor",
+    m: 3,
+    n: 3,
+    yol: [[0, 0], [2, 0], [2, 1], [3, 1], [3, 3]],
+    etiketler: { A: [0, 0], B: [3, 3], C: [2, 1] },
+    vurgulu: ["C"],
+    yonler: { A: 225, B: 45, C: 135 },
+  }),
+  TekrarliPermutasyonIzgara: izgaraSekli({
+    aciklama: "4 birim sağa, 3 birim yukarı giden ızgara; A sol altta, B sağ üstte; vurgulu yol S S Y S Y Y S kelimesine karşılık gelir",
+    m: 4,
+    n: 3,
+    yol: [[0, 0], [2, 0], [2, 1], [3, 1], [3, 3], [4, 3]],
+    etiketler: { A: [0, 0], B: [4, 3], C: [1, 2] },
+    yonler: { A: 225, B: 45, C: 135 },
   }),
 } satisfies Record<string, Sekil>;
 

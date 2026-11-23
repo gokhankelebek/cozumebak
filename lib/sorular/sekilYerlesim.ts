@@ -270,7 +270,7 @@ export function sekilYerlesim(girdi: Sekil): Yerlesim {
   };
   const okCizgileri: Cizgi[] = [];
   for (const d of sekil.dogrular ?? []) {
-    const tur = d.kesik ? "yardimci" : d.vurgu ? "vurgu" : "ana";
+    const tur = d.kesik ? "yardimci" : d.vurgu ? "vurgu" : d.ince ? "ince" : "ana";
     cizgiler.push({ a: nokta(d.p[0]), b: nokta(d.p[1]), tur });
     if (d.ok) okCizgileri.push(...okUcu(nokta(d.p[0]), nokta(d.p[1]), tur));
   }
