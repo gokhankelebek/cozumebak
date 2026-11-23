@@ -6,37 +6,9 @@ import { DERS_SEKILLERI } from "@/lib/dersSekilleri";
 // All coordinates hand-computed; no external libraries.
 import type { ReactElement } from "react";
 
-// --- Şekil: kutu (slot) diyagramı -------------------------------------------
-// Two rows of three slots, 5 symbols available.
-// Row 1 (tekrar serbest): 5·5·5 = 125. Row 2 (tekrar yok): 5·4·3 = 60.
-// Slots: x = 130, 185, 240 (width 40), row 1 y = 28..68, row 2 y = 92..132.
+// Drawn from lib/dersSekilleri.ts by the quiz figure engine.
 export function SkKutuDiyagrami() {
-  const xs = [130, 185, 240];
-  const rows = [
-    { y: 28, label: "Tekrar serbest", nums: ["5", "5", "5"], total: "= 125" },
-    { y: 92, label: "Tekrar yok", nums: ["5", "4", "3"], total: "= 60" },
-  ];
-  return (
-    <svg viewBox="0 0 360 150" role="img" aria-label="Kutu diyagramı: beş sembolden üç haneli dizi. Tekrar serbestse her kutuya 5 seçenek, 5 çarpı 5 çarpı 5 eşittir 125. Tekrar yoksa kutulara 5, 4 ve 3 seçenek, çarpım 60">
-      {xs.map((x, i) => (
-        <text key={`h${i}`} x={x + 20} y="18" fontSize="10" fill="#8a93a6" textAnchor="middle">{`${i + 1}. hane`}</text>
-      ))}
-      {rows.map((r, ri) => (
-        <g key={`r${ri}`}>
-          <text x="10" y={r.y + 25} fontSize="12" fill="#0e1b33" fontWeight="700">{r.label}</text>
-          {xs.map((x, i) => (
-            <g key={`b${ri}${i}`}>
-              <rect x={x} y={r.y} width="40" height="40" fill="none" stroke="#0e1b33" strokeWidth="1.6" rx="3" />
-              <text x={x + 20} y={r.y + 26} fontSize="16" fill="#e5492b" fontWeight="700" textAnchor="middle">{r.nums[i]}</text>
-            </g>
-          ))}
-          <text x="176" y={r.y + 25} fontSize="14" fill="#0e1b33" textAnchor="middle">·</text>
-          <text x="231" y={r.y + 25} fontSize="14" fill="#0e1b33" textAnchor="middle">·</text>
-          <text x="290" y={r.y + 25} fontSize="14" fill="#0e1b33" fontWeight="700">{r.total}</text>
-        </g>
-      ))}
-    </svg>
-  );
+  return <SoruSekli sekil={DERS_SEKILLERI.SkKutuDiyagrami} />;
 }
 
 // --- Şekil: iki galibiyete ulaşan kazanır (eşit olmayan dallar) --------------

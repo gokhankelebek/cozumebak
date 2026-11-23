@@ -5,125 +5,14 @@ import { DERS_SEKILLERI } from "@/lib/dersSekilleri";
 // Conventions: text/lines dark #0e1b33, accent #e5492b, grid/axis grey #8a93a6.
 // All coordinates are hand-computed; no external libraries.
 
-// ---------------------------------------------------------------------------
-// 1) Etiketleri silmek: two labelled strips collapse to one unlabelled strip.
-// Box size 28, gap 4 -> box x-positions 20, 52, 84, 116 (left block)
-// and 222, 254, 286, 318 (result block). Rows: 18 & 58 (group 1, result at 38),
-// 100 & 140 (group 2, result at 120). Arrows converge at x=205.
-const SOL_X = [20, 52, 84, 116];
-const SAG_X = [222, 254, 286, 318];
-
-function Serit({ xs, y, harfler, vurgu }: { xs: number[]; y: number; harfler: string[]; vurgu: boolean }) {
-  return (
-    <g>
-      {harfler.map((h, i) => (
-        <g key={i}>
-          <rect
-            x={xs[i]}
-            y={y}
-            width="28"
-            height="28"
-            rx="3"
-            fill="none"
-            stroke={vurgu ? "#e5492b" : "#0e1b33"}
-            strokeWidth={vurgu ? 1.8 : 1.2}
-          />
-          <text
-            x={xs[i] + 14}
-            y={y + 19}
-            fontSize="13"
-            textAnchor="middle"
-            fill={h.startsWith("A") ? "#e5492b" : "#0e1b33"}
-            fontWeight="700"
-          >
-            {h}
-          </text>
-        </g>
-      ))}
-    </g>
-  );
-}
-
+// Drawn from lib/dersSekilleri.ts by the quiz figure engine.
 export function TekrarliPermutasyonEtiketSilme() {
-  return (
-    <svg
-      viewBox="0 0 370 180"
-      role="img"
-      aria-label="Etiketleri silmek: A1 A2 B C ile A2 A1 B C dizilişleri, etiketler silinince aynı A A B C dizilişine dönüşür; B A1 C A2 ile B A2 C A1 de aynı B A C A dizilişine dönüşür"
-    >
-      {/* group 1 */}
-      <Serit xs={SOL_X} y={18} harfler={["A₁", "A₂", "B", "C"]} vurgu={false} />
-      <Serit xs={SOL_X} y={58} harfler={["A₂", "A₁", "B", "C"]} vurgu={false} />
-      <line x1="150" y1="32" x2="203" y2="52" stroke="#8a93a6" strokeWidth="1.4" />
-      <line x1="150" y1="72" x2="203" y2="52" stroke="#8a93a6" strokeWidth="1.4" />
-      <polygon points="214,52 203,47 203,57" fill="#8a93a6" />
-      <Serit xs={SAG_X} y={38} harfler={["A", "A", "B", "C"]} vurgu={true} />
-
-      {/* group 2 */}
-      <Serit xs={SOL_X} y={100} harfler={["B", "A₁", "C", "A₂"]} vurgu={false} />
-      <Serit xs={SOL_X} y={140} harfler={["B", "A₂", "C", "A₁"]} vurgu={false} />
-      <line x1="150" y1="114" x2="203" y2="134" stroke="#8a93a6" strokeWidth="1.4" />
-      <line x1="150" y1="154" x2="203" y2="134" stroke="#8a93a6" strokeWidth="1.4" />
-      <polygon points="214,134 203,129 203,139" fill="#8a93a6" />
-      <Serit xs={SAG_X} y={120} harfler={["B", "A", "C", "A"]} vurgu={true} />
-
-      <text x="160" y="96" fontSize="10" fill="#8a93a6">2 etiketli diziliş → 1 diziliş</text>
-    </svg>
-  );
+  return <SoruSekli sekil={DERS_SEKILLERI.TekrarliPermutasyonEtiketSilme} />;
 }
 
-// ---------------------------------------------------------------------------
-// 2) Boşluk yöntemi (KAPAK): K P K is placed, leaving 4 gaps; the two identical
-// A's go into 2 different gaps. Gaps (dashed boxes) at x = 20, 100, 180, 260;
-// letters at x = 60, 140, 220 (box width 28, centre +14). Row y = 40.
-const BOSLUK_X = [20, 100, 180, 260];
-const HARF_X = [60, 140, 220];
-
+// Drawn from lib/dersSekilleri.ts by the quiz figure engine.
 export function TekrarliPermutasyonBosluk() {
-  const harfler = ["K", "P", "K"];
-  const dolu = [true, false, true, false]; // A's in gap 1 and gap 3
-  return (
-    <svg
-      viewBox="0 0 310 110"
-      role="img"
-      aria-label="Boşluk yöntemi: K P K harfleri dizilmiş, aralarında ve uçlarda 4 boşluk var; iki özdeş A harfi bu boşluklardan farklı ikisine yerleştiriliyor, böylece A'lar yan yana gelmiyor"
-    >
-      {BOSLUK_X.map((x, i) => (
-        <g key={`b${i}`}>
-          <rect
-            x={x}
-            y="40"
-            width="28"
-            height="28"
-            rx="3"
-            fill="none"
-            stroke={dolu[i] ? "#e5492b" : "#8a93a6"}
-            strokeWidth={dolu[i] ? 1.8 : 1.2}
-            strokeDasharray={dolu[i] ? undefined : "4 3"}
-          />
-          {dolu[i] && (
-            <text x={x + 14} y="59" fontSize="13" textAnchor="middle" fill="#e5492b" fontWeight="700">
-              A
-            </text>
-          )}
-          <text x={x + 14} y="30" fontSize="10" textAnchor="middle" fill="#8a93a6">
-            {i + 1}. boşluk
-          </text>
-        </g>
-      ))}
-      {HARF_X.map((x, i) => (
-        <g key={`h${i}`}>
-          <rect x={x} y="40" width="28" height="28" rx="3" fill="none" stroke="#0e1b33" strokeWidth="1.2" />
-          <text x={x + 14} y="59" fontSize="13" textAnchor="middle" fill="#0e1b33" fontWeight="700">
-            {harfler[i]}
-          </text>
-        </g>
-      ))}
-      <text x="155" y="96" fontSize="11" textAnchor="middle" fill="#0e1b33">
-        Bu yerleşimin sonucu: A K P A K
-      </text>
-    </svg>
-  );
+  return <SoruSekli sekil={DERS_SEKILLERI.TekrarliPermutasyonBosluk} />;
 }
 
 // Drawn from lib/dersSekilleri.ts by the quiz figure engine.

@@ -404,6 +404,107 @@ function izgaraSekli(a: { aciklama: string; m: number; n: number; yol: Nk[]; eti
   };
 }
 
+// ── Box rows (counting: boxes, blocks, gaps) ────────────────────────────────
+// Rows of boxes laid out in pixels (drawn 1:1). A box holds a number or a
+// letter; `bosluk` is a narrow dashed slot (a gap between people), `yazi` is
+// frameless text (an arrow), `daire` a lamp. `ust`/`alt` label a box above or
+// below; `sol`/`sag` label the whole row.
+interface Kutu {
+  m?: string;
+  v?: boolean;
+  boya?: boolean;
+  w?: number;
+  yazi?: boolean;
+  bosluk?: boolean;
+  daire?: boolean;
+  ust?: string;
+  alt?: string;
+  altV?: boolean;
+}
+interface KutuSatiri {
+  k: Kutu[];
+  sol?: string;
+  sag?: string;
+  ayrac?: string;
+  x?: number;
+}
+function kutuSekli(a: { aciklama: string; satirlar: KutuSatiri[]; W?: number; H?: number; ara?: number; satirAra?: number; duz?: boolean }): Sekil {
+  const W = a.W ?? 40;
+  const H = a.H ?? 36;
+  const ara = a.ara ?? 8;
+  const satirAra = a.satirAra ?? 26;
+  const gen = (m: string) => metinGenisligi(m, YAZI.sayi);
+  const solW = Math.max(0, ...a.satirlar.map((r) => (r.sol ? gen(r.sol) + 14 : 0)));
+  const noktalar: Record<string, Nk> = {};
+  const gizli: string[] = [];
+  const dogrular: { p: [string, string]; kesik?: boolean; ince?: boolean }[] = [];
+  const yazilar: { nokta: string; metin: string; vurgu?: boolean; duz?: boolean }[] = [];
+  const boyali: string[][] = [];
+  const cemberler: { merkez: string; nokta: string }[] = [];
+  const bolgeler: { ic: string[] }[] = [];
+  let sayac = 0;
+  const ekle = (p: Nk) => {
+    const ad = `q${sayac++}`;
+    noktalar[ad] = p;
+    gizli.push(ad);
+    return ad;
+  };
+  const yaz = (p: Nk, metin: string, vurgu?: boolean, duz?: boolean) => yazilar.push({ nokta: ekle(p), metin, vurgu, duz });
+  let ust = 0;
+  a.satirlar.forEach((r) => {
+    const ustVar = r.k.some((k) => k.ust);
+    if (ustVar) ust -= 22;
+    const y0 = ust; // top of the row
+    const y1 = ust - H;
+    const yc = (y0 + y1) / 2;
+    let x = solW + (r.x ?? 0);
+    if (r.sol) yaz([solW - 12 - gen(r.sol) / 2, yc], r.sol, false, true);
+    r.k.forEach((k, i) => {
+      if (i > 0) {
+        if (r.ayrac) {
+          const g = gen(r.ayrac) + 12;
+          yaz([x + g / 2, yc], r.ayrac);
+          x += g;
+        } else x += ara;
+      }
+      const w = k.yazi ? gen(k.m ?? "") + 8 : k.bosluk ? (k.m ? 28 : 16) : (k.w ?? 1) * W;
+      const xc = x + w / 2;
+      if (k.daire) {
+        const r0 = Math.min(w, H) / 2 - 3;
+        const m = ekle([xc, yc]);
+        cemberler.push({ merkez: m, nokta: ekle([xc + r0, yc]) });
+        if (k.boya) bolgeler.push({ ic: [m] });
+      } else if (!k.yazi) {
+        const yy0 = k.bosluk ? y0 - H * 0.15 : y0;
+        const yy1 = k.bosluk ? y1 + H * 0.15 : y1;
+        const c = [ekle([x, yy0]), ekle([x + w, yy0]), ekle([x + w, yy1]), ekle([x, yy1])];
+        for (let j = 0; j < 4; j++) dogrular.push({ p: [c[j], c[(j + 1) % 4]], kesik: k.bosluk });
+        if (k.boya) boyali.push(c);
+      }
+      if (k.m) yaz([xc, yc], k.m, k.v, a.duz);
+      if (k.ust) yaz([xc, y0 + 12], k.ust, false, true);
+      if (k.alt) yaz([xc, y1 - 13], k.alt, k.altV, true);
+      x += w;
+    });
+    if (r.sag) yaz([x + 12 + gen(r.sag) / 2, yc], r.sag, false);
+    ust = y1 - satirAra - (r.k.some((k) => k.alt) ? 18 : 0);
+  });
+  const xs = Object.values(noktalar).map((p) => p[0]);
+  const ys = Object.values(noktalar).map((p) => p[1]);
+  return {
+    aciklama: a.aciklama,
+    boyut: [Math.max(...xs) - Math.min(...xs), Math.max(...ys) - Math.min(...ys)],
+    noktalar,
+    dogrular,
+    yazilar,
+    boyali,
+    cemberler,
+    bolgeler,
+    gizli,
+  };
+}
+const harfKutulari = (h: string[], v = false): Kutu[] => h.map((m) => ({ m, v }));
+
 export const DERS_SEKILLERI = {
   // ── UcgenFig ──────────────────────────────────────────────────────────────
   IcAcilar: {
@@ -1843,6 +1944,108 @@ export const DERS_SEKILLERI = {
     yol: [[0, 0], [2, 0], [2, 1], [3, 1], [3, 3], [4, 3]],
     etiketler: { A: [0, 0], B: [4, 3], C: [1, 2] },
     yonler: { A: 225, B: 45, C: 135 },
+  }),
+  // ── Box rows ──────────────────────────────────────────────────────────────
+  PermSiralamaKutu: kutuSekli({
+    aciklama: "Kutu yöntemi: 5 kişiden 3'ü 3 sandalyeye oturuyor; seçenekler 5, 4, 3 ve çarpım 60",
+    W: 70,
+    H: 44,
+    satirlar: [
+      {
+        k: [
+          { m: "5", v: true, ust: "1. sandalye" },
+          { m: "4", v: true, ust: "2. sandalye" },
+          { m: "3", v: true, ust: "3. sandalye" },
+        ],
+        ayrac: "·",
+        sag: "= 60",
+      },
+    ],
+  }),
+  SkKutuDiyagrami: kutuSekli({
+    aciklama: "Kutu diyagramı: beş sembolden üç haneli dizi; tekrar serbestse 5 · 5 · 5 = 125, tekrar yoksa 5 · 4 · 3 = 60",
+    satirlar: [
+      { sol: "tekrar serbest", k: [{ m: "5", v: true, ust: "1. hane" }, { m: "5", v: true, ust: "2. hane" }, { m: "5", v: true, ust: "3. hane" }], ayrac: "·", sag: "= 125" },
+      { sol: "tekrar yok", k: harfKutulari(["5", "4", "3"], true), ayrac: "·", sag: "= 60" },
+    ],
+  }),
+  RakamSayiCiftDurum: kutuSekli({
+    aciklama: "Basamak kutuları: birler önce doldurulur. Birler 0 ise yüzler 5, onlar 4 seçenek: 20; birler 4 ya da 6 ise yüzler 4, onlar 4, birler 2: 32",
+    W: 48,
+    satirlar: [
+      { sol: "birler = 0", k: [{ m: "5", ust: "yüzler" }, { m: "4", ust: "onlar" }, { m: "1", v: true, boya: true, ust: "birler" }], ayrac: "·", sag: "= 20" },
+      { sol: "birler = 4 veya 6", k: [{ m: "4" }, { m: "4" }, { m: "2", v: true, boya: true }], ayrac: "·", sag: "= 32" },
+    ],
+  }),
+  PermSiralamaBlok: kutuSekli({
+    aciklama: "Blok yöntemi: yan yana olması gereken Ece (E) ile Fırat (F) tek blok; blok ve diğer 5 kişi 6 birim (6!), blok içi EF ve FE (2!)",
+    satirlar: [
+      { k: [{ m: "A" }, { m: "EF", v: true, boya: true, w: 1.6 }, { m: "B" }, { m: "C" }, { m: "D" }, { m: "G" }], sag: "6!" },
+      { sol: "blok içi", k: [{ m: "EF", v: true, w: 1.6 }, { m: "FE", v: true, w: 1.6 }], sag: "2!" },
+    ],
+  }),
+  PermSiralamaBosluk: kutuSekli({
+    aciklama: "Boşluk yöntemi: 5 erkek dizilince 4'ü arada, 2'si uçlarda 6 boşluk oluşur",
+    satirlar: [
+      {
+        k: [1, 2, 3, 4, 5].flatMap((i) => [{ bosluk: true, alt: String(i), altV: true } as Kutu, { m: `E_${i}` }]).concat([{ bosluk: true, alt: "6", altV: true }]),
+      },
+    ],
+  }),
+  TekrarliPermutasyonBosluk: kutuSekli({
+    aciklama: "Boşluk yöntemi: K P K harfleri dizilmiş, 4 boşluk var; iki özdeş A harfi 1. ve 3. boşluğa konmuş, A'lar yan yana gelmiyor",
+    satirlar: [
+      {
+        k: [
+          { bosluk: true, m: "A", v: true, alt: "1" }, { m: "K" },
+          { bosluk: true, alt: "2" }, { m: "P" },
+          { bosluk: true, m: "A", v: true, alt: "3" }, { m: "K" },
+          { bosluk: true, alt: "4" },
+        ],
+      },
+    ],
+  }),
+  PermSiralamaArasinda: kutuSekli({
+    aciklama: "Altı yerlik sırada A ile B arasında tam bir kişi olan dört konum çifti: (1, 3), (2, 4), (3, 5), (4, 6)",
+    W: 34,
+    H: 30,
+    satirAra: 10,
+    satirlar: [0, 1, 2, 3].map((i) => ({
+      sol: `(${i + 1}, ${i + 3})`,
+      k: [0, 1, 2, 3, 4, 5].map((j) => ({
+        m: j === i ? "A" : j === i + 2 ? "B" : "",
+        v: j === i || j === i + 2,
+        boya: j === i || j === i + 2,
+        ust: i === 0 ? String(j + 1) : undefined,
+      })),
+    })),
+  }),
+  TekrarliPermutasyonEtiketSilme: kutuSekli({
+    aciklama: "Etiketleri silmek: A1 A2 B C ile A2 A1 B C aynı A A B C dizilişine, B A1 C A2 ile B A2 C A1 aynı B A C A dizilişine dönüşür",
+    W: 34,
+    H: 30,
+    satirAra: 8,
+    satirlar: [
+      { k: [...harfKutulari(["A_1", "A_2", "B", "C"]), { yazi: true, m: "→" }, ...harfKutulari(["A", "A", "B", "C"], true)] },
+      { k: [...harfKutulari(["A_2", "A_1", "B", "C"]), { yazi: true, m: "→" }, ...harfKutulari(["A", "A", "B", "C"], true)] },
+      { k: [...harfKutulari(["B", "A_1", "C", "A_2"]), { yazi: true, m: "→" }, ...harfKutulari(["B", "A", "C", "A"], true)] },
+      { k: [...harfKutulari(["B", "A_2", "C", "A_1"]), { yazi: true, m: "→" }, ...harfKutulari(["B", "A", "C", "A"], true)] },
+    ],
+  }),
+  BoslukYontemi: kutuSekli({
+    aciklama: "Boşluk yöntemi: 4 sönük lamba arasında ve uçlarda 5 boşluk; yanacak 3 lamba 2, 3 ve 5 numaralı boşluklara konunca sönük, yanık, sönük, yanık, sönük, sönük, yanık dizilişi oluşur",
+    W: 32,
+    H: 32,
+    satirlar: [
+      {
+        sol: "boşluklar",
+        k: [1, 2, 3, 4].flatMap((i) => [{ bosluk: true, alt: String(i), altV: [2, 3].includes(i) } as Kutu, { daire: true }]).concat([{ bosluk: true, alt: "5", altV: true }]),
+      },
+      {
+        sol: "sonuç",
+        k: [false, true, false, true, false, false, true].map((y) => ({ daire: true, boya: y })),
+      },
+    ],
   }),
 } satisfies Record<string, Sekil>;
 
