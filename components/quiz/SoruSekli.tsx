@@ -1,5 +1,5 @@
 import type { Sekil } from "@/lib/sorular/sekil";
-import { metinGenisligi, sekilYerlesim, YAZI, type Etiket } from "@/lib/sorular/sekilYerlesim";
+import { metinGenisligi, parcala, sekilYerlesim, YAZI, type Etiket } from "@/lib/sorular/sekilYerlesim";
 
 // Draws a quiz figure (server component). All placement happens in
 // lib/sorular/sekilYerlesim.ts; this file only paints it. The SVG is drawn
@@ -17,14 +17,22 @@ const f = (n: number) => Math.round(n * 10) / 10;
 // upright, as in KaTeX.
 function Yazi({ e }: { e: Etiket }) {
   const boyut = e.tur === "nokta" ? YAZI.nokta : YAZI.sayi;
-  const parcalar = e.metin.match(/[A-Za-zÇĞİÖŞÜçğıöşüα-ω]+|[^A-Za-zÇĞİÖŞÜçğıöşüα-ω]+/g) ?? [e.metin];
+  const harf = /[A-Za-zÇĞİÖŞÜçğıöşüα-ω]/;
+  // Plain and superscript runs ("2^x", "f^{-1}"), each split into letter and
+  // non-letter pieces so letters get the italic math face.
+  const parcalar = parcala(e.metin).flatMap((r) =>
+    (r.t.match(/[A-Za-zÇĞİÖŞÜçğıöşüα-ω]+|[^A-Za-zÇĞİÖŞÜçğıöşüα-ω]+/g) ?? [r.t]).map((p) => ({ p, ust: r.ust, alt: r.alt })),
+  );
+  const kaydir = (q: { ust: boolean; alt: boolean }) => (q.ust ? -boyut * 0.38 : q.alt ? boyut * 0.22 : 0);
   // Radicals: draw the vinculum over the radicand, as KaTeX does in the text.
   const taban = e.y + boyut * 0.34;
   const bas = e.x - metinGenisligi(e.metin, boyut) / 2;
-  const kokler = [...e.metin.matchAll(/√([0-9A-Za-z]+)/g)].map((m) => {
-    const x1 = bas + metinGenisligi(e.metin.slice(0, m.index! + 1), boyut);
-    return { x1: x1 - boyut * 0.04, x2: x1 + metinGenisligi(m[1], boyut) + boyut * 0.04 };
-  });
+  const kokler = /[\^_]/.test(e.metin)
+    ? []
+    : [...e.metin.matchAll(/√([0-9A-Za-z]+)/g)].map((m) => {
+        const x1 = bas + metinGenisligi(e.metin.slice(0, m.index! + 1), boyut);
+        return { x1: x1 - boyut * 0.04, x2: x1 + metinGenisligi(m[1], boyut) + boyut * 0.04 };
+      });
   return (
     <>
     <text
@@ -34,26 +42,30 @@ function Yazi({ e }: { e: Etiket }) {
       fill={e.vurgu ? VURGU : KOYU}
       textAnchor="middle"
     >
-      {parcalar.map((p, i) =>
+      {parcalar.map(({ p, ust, alt }, i) => {
+        const fark = kaydir({ ust, alt }) - (i > 0 ? kaydir(parcalar[i - 1]) : 0);
+        const dy = fark ? fark : undefined;
+        const fontSize = ust || alt ? boyut * 0.7 : undefined;
         // Point names like "d1": the trailing digits become a subscript (d₁).
-        e.duz ? (
-          <tspan key={i} fontFamily="KaTeX_Main, 'Times New Roman', serif">
+        if (e.tur === "nokta" && i > 0 && !ust && !alt && /^[0-9]+$/.test(p))
+          return (
+            <tspan key={i} fontFamily="KaTeX_Main, 'Times New Roman', serif" fontSize={boyut * 0.7} dy={boyut * 0.25}>
+              {p}
+            </tspan>
+          );
+        const italik = !e.duz && harf.test(p) && !/^(sin|cos|tan|cot|log|ln|rad)$/.test(p);
+        return (
+          <tspan
+            key={i}
+            fontFamily={italik ? "KaTeX_Math, 'Times New Roman', serif" : "KaTeX_Main, 'Times New Roman', serif"}
+            fontStyle={italik ? "italic" : undefined}
+            fontSize={fontSize}
+            dy={dy}
+          >
             {p}
           </tspan>
-        ) : e.tur === "nokta" && i > 0 && /^[0-9]+$/.test(p) ? (
-          <tspan key={i} fontFamily="KaTeX_Main, 'Times New Roman', serif" fontSize={boyut * 0.7} dy={boyut * 0.25}>
-            {p}
-          </tspan>
-        ) : /[A-Za-zÇĞİÖŞÜçğıöşüα-ω]/.test(p) && !/^(sin|cos|tan|cot|log|ln|rad)$/.test(p) ? (
-          <tspan key={i} fontFamily="KaTeX_Math, 'Times New Roman', serif" fontStyle="italic">
-            {p}
-          </tspan>
-        ) : (
-          <tspan key={i} fontFamily="KaTeX_Main, 'Times New Roman', serif">
-            {p}
-          </tspan>
-        ),
-      )}
+        );
+      })}
     </text>
     {kokler.map((k, i) => (
       <line key={i} x1={f(k.x1)} x2={f(k.x2)} y1={f(taban - boyut * 0.79)} y2={f(taban - boyut * 0.79)} stroke={e.vurgu ? VURGU : KOYU} strokeWidth={boyut * 0.045} />
@@ -128,6 +140,18 @@ export default function SoruSekli({ sekil }: { sekil: Sekil }) {
           strokeLinecap="round"
         />
       ))}
+      {y.egriler.map((e, i) => (
+        <polyline
+          key={`g${i}`}
+          points={e.yol.map((p) => `${f(p.x)},${f(p.y)}`).join(" ")}
+          fill="none"
+          stroke={e.vurgu ? VURGU : KOYU}
+          strokeWidth={1.7}
+          strokeDasharray={e.kesik ? "5 4" : undefined}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      ))}
       {y.yaylar.map((a, i) => {
         const x1 = a.merkez.x + a.r * Math.cos(a.t1);
         const y1 = a.merkez.y + a.r * Math.sin(a.t1);
@@ -146,6 +170,9 @@ export default function SoruSekli({ sekil }: { sekil: Sekil }) {
       })}
       {y.noktalar.map((p, i) => (
         <circle key={`n${i}`} cx={f(p.x)} cy={f(p.y)} r={2.6} fill={KOYU} />
+      ))}
+      {y.bosNoktalar.map((p, i) => (
+        <circle key={`b${i}`} cx={f(p.x)} cy={f(p.y)} r={3.2} fill="#fff" stroke={KOYU} strokeWidth={1.3} />
       ))}
       {y.etiketler.map((e, i) => (
         <Yazi key={`e${i}`} e={e} />
