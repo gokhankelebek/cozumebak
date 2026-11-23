@@ -41,7 +41,8 @@ export interface Sekil {
   /** Closed shapes, each a list of point names in order. */
   cokgenler?: string[][];
   /** Extra segments (diagonals, heights, extensions). */
-  dogrular?: { p: [string, string]; kesik?: boolean }[];
+  /** `vurgu` draws the segment thick in the accent colour (the line a question is about). */
+  dogrular?: { p: [string, string]; kesik?: boolean; vurgu?: boolean }[];
   /**
    * Side labels at the segment's midpoint, on the outer side. `ic` puts it on
    * the inner side; `konum` (0–1) slides it along the segment.

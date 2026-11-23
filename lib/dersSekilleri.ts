@@ -60,6 +60,96 @@ const trigTikler = {
   gizli: ["Y1b", "Y2b"],
 };
 
+// ── Diagram helpers (geometric probability / combinatorics) ────────────────
+type Nk = [number, number];
+const kutupsal = (cx: number, cy: number, r: number, derece: number): Nk => [
+  cx + r * Math.cos((derece * Math.PI) / 180),
+  cy + r * Math.sin((derece * Math.PI) / 180),
+];
+/** Intersection of lines p1p2 and p3p4. */
+function kesisim([x1, y1]: Nk, [x2, y2]: Nk, [x3, y3]: Nk, [x4, y4]: Nk): Nk {
+  const d = (x1 - x2) * (y3 - y4) - (y1 - y2) * (x3 - x4);
+  const a = x1 * y2 - y1 * x2;
+  const b = x3 * y4 - y3 * x4;
+  return [(a * (x3 - x4) - (x1 - x2) * b) / d, (a * (y3 - y4) - (y1 - y2) * b) / d];
+}
+/** A ring between radii r1 < r2 as one polygon (outer one way, inner back), for shading. */
+function halka(on: string, merkez: Nk, r1: number, r2: number, n = 72) {
+  const noktalar: Record<string, Nk> = {};
+  const dis: string[] = [];
+  const ic: string[] = [];
+  for (let i = 0; i <= n; i++) {
+    const t = (360 * i) / n;
+    noktalar[`${on}d${i}`] = kutupsal(merkez[0], merkez[1], r2, t);
+    noktalar[`${on}i${i}`] = kutupsal(merkez[0], merkez[1], r1, -t);
+    dis.push(`${on}d${i}`);
+    ic.push(`${on}i${i}`);
+  }
+  return { noktalar, poligon: [...dis, ...ic], adlar: [...dis, ...ic] };
+}
+/**
+ * An n×n×n cube painted outside, in oblique view, with its unit grid on the
+ * three visible faces (front, top, right). One corner, one edge and one face-
+ * centre unit cube are shaded and marked with their painted-face counts.
+ */
+function boyaliKup(n: number): Sekil {
+  const P: Record<string, [number, number, number]> = {};
+  const ad = (x: number, y: number, z: number) => {
+    const k = `k${x}_${y}_${z}`.replace(/\./g, "p");
+    P[k] = [x, y, z];
+    return k;
+  };
+  const dogrular: { p: [string, string] }[] = [];
+  for (let i = 0; i <= n; i++) {
+    dogrular.push({ p: [ad(i, 0, 0), ad(i, n, 0)] }, { p: [ad(0, i, 0), ad(n, i, 0)] }); // front
+    dogrular.push({ p: [ad(i, n, 0), ad(i, n, n)] }, { p: [ad(0, n, i), ad(n, n, i)] }); // top
+    dogrular.push({ p: [ad(n, i, 0), ad(n, i, n)] }, { p: [ad(n, 0, i), ad(n, n, i)] }); // right
+  }
+  const on = (x: number, y: number) => [ad(x, y, 0), ad(x + 1, y, 0), ad(x + 1, y + 1, 0), ad(x, y + 1, 0)];
+  const ust = (x: number, z: number) => [ad(x, n, z), ad(x + 1, n, z), ad(x + 1, n, z + 1), ad(x, n, z + 1)];
+  const sag = (y: number, z: number) => [ad(n, y, z), ad(n, y + 1, z), ad(n, y + 1, z + 1), ad(n, y, z + 1)];
+  const m = Math.floor((n - 1) / 2);
+  const boyali = [on(n - 1, n - 1), ust(n - 1, 0), sag(n - 1, 0), on(n - 2, n - 1), ust(n - 2, 0), on(m, m)];
+  const yazilar = [
+    { nokta: ad(n - 0.5, n - 0.5, 0), metin: "3", vurgu: true },
+    { nokta: ad(n - 1.5, n - 0.5, 0), metin: "2", vurgu: true },
+    { nokta: ad(m + 0.5, m + 0.5, 0), metin: "1", vurgu: true },
+  ];
+  return {
+    aciklama: "",
+    boyut: [300, 260],
+    noktalar: {},
+    noktalar3d: P,
+    dogrular,
+    boyali,
+    yazilar,
+    gizli: Object.keys(P),
+  };
+}
+// Regular hexagon A–F (A at the top, clockwise) around a centre.
+const altigen = (cx: number, cy: number, r: number, son = "") =>
+  Object.fromEntries(["A", "B", "C", "D", "E", "F"].map((h, i) => [h + son, kutupsal(cx, cy, r, 90 - 60 * i)])) as Record<string, Nk>;
+const BES = [90, 18, -54, -126, 162].map((t) => kutupsal(7.5, 0, 3, t));
+const BES_KESISIM = [0, 1, 2, 3, 4].map((i) => kesisim(BES[i], BES[(i + 2) % 5], BES[(i + 1) % 5], BES[(i + 4) % 5]));
+const DORT = [110, 10, -80, -170].map((t) => kutupsal(0, 0, 3, t));
+const HEDEF = halka("H", [8, 2], 0.9, 1.55);
+const KUP3 = boyaliKup(3);
+const KUP6 = boyaliKup(6);
+const kupIskelet = (dx: number, son: string) => ({
+  noktalar3d: Object.fromEntries(
+    Object.entries({ A: [0, 0, 0], B: [4, 0, 0], C: [4, 4, 0], D: [0, 4, 0], E: [0, 0, 4], F: [4, 0, 4], G: [4, 4, 4], H: [0, 4, 4] }).map(
+      ([k, [x, y, z]]) => [k + son, [x + dx, y, z]],
+    ),
+  ) as Record<string, [number, number, number]>,
+  dogrular: [
+    ...["AB", "BC", "CD", "DA", "BF", "FG", "GH", "HD", "CG"].map((e) => ({ p: [e[0] + son, e[1] + son] as [string, string] })),
+    ...["AE", "EF", "EH"].map((e) => ({ p: [e[0] + son, e[1] + son] as [string, string], kesik: true })),
+  ],
+  etiketMetni: Object.fromEntries("ABCDEFGH".split("").map((h) => [h + son, h])),
+});
+const KUP_SOL = kupIskelet(0, "");
+const KUP_SAG = kupIskelet(9, "2");
+
 export const DERS_SEKILLERI = {
   // ── UcgenFig ──────────────────────────────────────────────────────────────
   IcAcilar: {
@@ -826,6 +916,335 @@ export const DERS_SEKILLERI = {
     etiketYonu: { X2: 270, X4: 90, Y1: 180, Y2: 180 },
     gizli: trigTikler.gizli,
   },
+  // ── RasyonelFig ───────────────────────────────────────────────────────────
+  KarekokGrafik: {
+    aciklama: "y = karekök x grafiği; orijinden başlayıp giderek yatıklaşarak artan eğri",
+    boyut: [300, 200],
+    eksen: { x: [-0.8, 9.8], y: [-0.8, 3.9] },
+    noktalar: {},
+    egriler: [{ f: Math.sqrt, x: [0, 9.3], vurgu: true, metin: "y = √x", metinX: 7.5, metinYonu: 90 }],
+  },
+  Hiperbol: {
+    aciklama: "y = 1/x grafiği; eksenleri asimptot alan iki kollu hiperbol",
+    boyut: EKSENLI,
+    eksen: { x: [-4.3, 4.5], y: [-4.3, 4.5] },
+    noktalar: {},
+    egriler: [
+      { f: (x) => 1 / x, x: [-4.1, -0.22], vurgu: true },
+      { f: (x) => 1 / x, x: [0.22, 4.1], vurgu: true, metin: "y = 1/x", metinX: 1.2, metinYonu: 30 },
+    ],
+  },
+
+  // ── DonusumFig (noktaların dönüşümü) ──────────────────────────────────────
+  NoktaYansimaX: {
+    aciklama: "A(3, 2) noktasının x eksenine göre yansıması A'(3, −2)",
+    boyut: [280, 250],
+    eksen: { x: [-1.2, 5], y: [-3.2, 3.2] },
+    noktalar: { A: [3, 2], "A'": [3, -2], K: [3, 0] },
+    dogrular: [{ p: ["A", "A'"], kesik: true }],
+    esitler: [{ p: ["A", "K"] }, { p: ["K", "A'"] }],
+    isaretli: ["A", "A'"],
+    etiketMetni: { A: "A(3, 2)", "A'": "A'(3, −2)" },
+    vurguluNoktalar: ["A'"],
+    etiketYonu: { A: 0, "A'": 0 },
+    gizli: ["K"],
+  },
+  Donme90: {
+    aciklama: "P(4, 1) noktasının orijin etrafında saat yönünün tersine 90 derece dönmesiyle oluşan P'(−1, 4)",
+    boyut: [280, 250],
+    eksen: { x: [-2.6, 5.4], y: [-1, 5.4] },
+    noktalar: { O: [0, 0], P: [4, 1], "P'": [-1, 4] },
+    dogrular: [{ p: ["O", "P"], kesik: true }, { p: ["O", "P'"], kesik: true }],
+    acilar: [{ p: ["P", "O", "P'"], metin: "90°", vurgu: true, yaricap: 26 }],
+    isaretli: ["P", "P'"],
+    etiketMetni: { P: "P(4, 1)", "P'": "P'(−1, 4)" },
+    vurguluNoktalar: ["P'"],
+    gizli: ["O"],
+  },
+
+  // ── OranBolmeFig ──────────────────────────────────────────────────────────
+  OrtaNokta: {
+    aciklama: "A(2, 1) ve B(8, 7) noktaları ile orta noktaları M(5, 4); M parçayı iki eşit kısma böler",
+    boyut: EKSENLI,
+    eksen: { x: [-0.8, 9.6], y: [-0.8, 8.6] },
+    noktalar: { A: [2, 1], B: [8, 7], M: [5, 4] },
+    dogrular: [{ p: ["A", "B"] }],
+    esitler: [{ p: ["A", "M"] }, { p: ["M", "B"] }],
+    isaretli: ["A", "B", "M"],
+    etiketMetni: { A: "A(2, 1)", B: "B(8, 7)", M: "M(5, 4)" },
+    vurguluNoktalar: ["M"],
+  },
+  OranlaBolme: {
+    aciklama: "A(2, 1) ve B(8, 7) parçasını A'dan 1:2 oranında bölen P(4, 3) noktası; AP kısa, PB iki katı",
+    boyut: EKSENLI,
+    eksen: { x: [-0.8, 9.6], y: [-0.8, 8.6] },
+    noktalar: { A: [2, 1], B: [8, 7], P: [4, 3] },
+    dogrular: [{ p: ["A", "P"], vurgu: true }, { p: ["P", "B"] }],
+    kenarlar: [
+      { p: ["A", "P"], metin: "1", vurgu: true, ic: true },
+      { p: ["P", "B"], metin: "2", ic: true },
+    ],
+    isaretli: ["A", "B", "P"],
+    etiketMetni: { A: "A(2, 1)", B: "B(8, 7)", P: "P(4, 3)" },
+    vurguluNoktalar: ["P"],
+  },
+
+  // ── KombinasyonFig ────────────────────────────────────────────────────────
+  NoktalardanDogrular: {
+    aciklama: "Üçü doğrusal olmayan 6 nokta ve her ikisini birleştiren 15 doğru parçası",
+    boyut: DERS,
+    noktalar: Object.fromEntries(["A", "B", "C", "D", "E", "F"].map((h, i) => [h, kutupsal(0, 0, 3, 90 + 60 * i + (i % 2 ? 8 : 0))])),
+    dogrular: ["AB", "AC", "AD", "AE", "AF", "BC", "BD", "BE", "BF", "CD", "CE", "CF", "DE", "DF", "EF"].map((e) => ({ p: [e[0], e[1]] as [string, string] })),
+    isaretli: ["A", "B", "C", "D", "E", "F"],
+  },
+
+  // ── GeoOlasilikFig ────────────────────────────────────────────────────────
+  GeoOlDogruParcasi: {
+    aciklama: "Uzunluğu 12 olan AB doğru parçası; uçlardan en az 3 birim uzak noktalar ortadaki 6 birimlik kısımdadır",
+    boyut: [340, 120],
+    noktalar: { A: [0, 0], K1: [3, 0], K2: [9, 0], B: [12, 0] },
+    dogrular: [{ p: ["A", "K1"] }, { p: ["K1", "K2"], vurgu: true }, { p: ["K2", "B"] }],
+    kenarlar: [
+      { p: ["A", "K1"], metin: "3" },
+      { p: ["K1", "K2"], metin: "6", vurgu: true },
+      { p: ["K2", "B"], metin: "3" },
+    ],
+    isaretli: ["A", "K1", "K2", "B"],
+    etiketYonu: { A: 90, B: 90 },
+    gizli: ["K1", "K2"],
+  },
+  GeoOlKareDaire: {
+    aciklama: "Solda kareye içten teğet daire; sağda eş merkezli üç daireden oluşan hedef tahtası, r1 ile r2 arasındaki halka taralı",
+    boyut: [420, 210],
+    noktalar: {
+      S0: [0, 0], S1: [4, 0], S2: [4, 4], S3: [0, 4], M: [2, 2], R: [4, 2], L: [0, 2],
+      H: [8, 2], H1: [8.9, 2], H2: [8, 3.55], H3: [10, 2],
+      ...HEDEF.noktalar,
+    },
+    cokgenler: [["S0", "S1", "S2", "S3"]],
+    cemberler: [{ merkez: "M", nokta: "R" }, { merkez: "H", nokta: "H1" }, { merkez: "H", nokta: "H2" }, { merkez: "H", nokta: "H3" }],
+    dilimler: [{ merkez: "M", bas: "R", son: "L" }, { merkez: "M", bas: "L", son: "R" }],
+    boyali: [HEDEF.poligon],
+    dogrular: [{ p: ["M", "R"], kesik: true }, { p: ["H", "H1"] }, { p: ["H", "H2"] }],
+    kenarlar: [
+      { p: ["M", "R"], metin: "r" },
+      { p: ["S0", "S1"], metin: "2r" },
+      { p: ["H", "H1"], metin: "r_1", konum: 0.5, ic: true },
+      { p: ["H", "H2"], metin: "r_2", konum: 0.78 },
+    ],
+    isaretli: ["M", "H"],
+    gizli: ["S0", "S1", "S2", "S3", "M", "R", "L", "H", "H1", "H2", "H3", ...HEDEF.adlar],
+  },
+  GeoOlBolgeler: {
+    aciklama: "Üç kare: köşeye uzaklığı r'den az noktalar çeyrek daire; kenara uzaklığı d'den az noktalar şerit; merkeze köşelerden yakın noktalar iç kare",
+    boyut: [400, 150],
+    noktalar: {
+      a0: [0, 0], a1: [4, 0], a2: [4, 4], a3: [0, 4], aR: [2, 0], aU: [0, 2],
+      b0: [5.5, 0], b1: [9.5, 0], b2: [9.5, 4], b3: [5.5, 4], b4: [9.5, 1], b5: [5.5, 1],
+      c0: [11, 0], c1: [15, 0], c2: [15, 4], c3: [11, 4], m1: [13, 0], m2: [15, 2], m3: [13, 4], m4: [11, 2], O: [13, 2],
+    },
+    cokgenler: [["a0", "a1", "a2", "a3"], ["b0", "b1", "b2", "b3"], ["c0", "c1", "c2", "c3"]],
+    dilimler: [{ merkez: "a0", bas: "aR", son: "aU" }],
+    cemberYaylari: [{ merkez: "a0", bas: "aR", son: "aU" }],
+    boyali: [["b0", "b1", "b4", "b5"], ["m1", "m2", "m3", "m4"]],
+    dogrular: [{ p: ["b5", "b4"], kesik: true }, { p: ["m1", "m2"] }, { p: ["m2", "m3"] }, { p: ["m3", "m4"] }, { p: ["m4", "m1"] }],
+    kenarlar: [
+      { p: ["a0", "aR"], metin: "r", ic: true },
+      { p: ["b1", "b4"], metin: "d" },
+    ],
+    isaretli: ["O"],
+    etiketYonu: { O: 0 },
+    gizli: ["a0", "a1", "a2", "a3", "aR", "aU", "b0", "b1", "b2", "b3", "b4", "b5", "c0", "c1", "c2", "c3", "m1", "m2", "m3", "m4"],
+  },
+  GeoOlBenzerUcgen: {
+    aciklama: "ABC üçgeninde BC'ye paralel DE; ADE üçgeni taralı ve ABC'ye benzer, altta DBCE yamuğu kalır",
+    boyut: DERS,
+    noktalar: { A: [3.5, 5], B: [0, 0], C: [7, 0], D: [1.633, 2.333], E: [5.367, 2.333] },
+    cokgenler: [["A", "B", "C"]],
+    boyali: [["A", "D", "E"]],
+    dogrular: [{ p: ["D", "E"], vurgu: true }],
+  },
+  GeoOlCark: {
+    aciklama: "Üç dilimli çark: 1 yazan dilim 180 derece, 2 yazan 120 derece, 3 yazan 60 derece",
+    boyut: [240, 240],
+    noktalar: {
+      O: [0, 0], U: [0, 3], D: [0, -3], K: kutupsal(0, 0, 3, 150),
+      Y1: [1.5, 0], Y2: kutupsal(0, 0, 2.2, 215), Y3: kutupsal(0, 0, 1.9, 120),
+      I1: [-0.25, 3.55], I2: [0.25, 3.55], I3: [0, 3.05],
+    },
+    cemberler: [{ merkez: "O", nokta: "U" }],
+    dogrular: [{ p: ["O", "U"] }, { p: ["O", "D"] }, { p: ["O", "K"] }],
+    cokgenler: [["I1", "I2", "I3"]],
+    acilar: [
+      { p: ["D", "O", "K"], metin: "120°", yaricap: 22 },
+      { p: ["K", "O", "U"], metin: "60°", yaricap: 30 },
+    ],
+    yazilar: [
+      { nokta: "Y1", metin: "1", vurgu: true },
+      { nokta: "Y2", metin: "2", vurgu: true },
+      { nokta: "Y3", metin: "3", vurgu: true },
+    ],
+    isaretli: ["O"],
+    gizli: ["O", "U", "D", "K", "Y1", "Y2", "Y3", "I1", "I2", "I3"],
+  },
+  GeoOlBoyaliKup: { ...KUP3, aciklama: "Dış yüzeyi boyanmış 3×3×3 küp: köşedeki birim küpün 3, ayrıttakinin 2, yüz ortasındakinin 1 yüzü boyalı" },
+  GeoOlPrizma: {
+    aciklama: "Üçgen prizma: alt taban ABC, üst taban DEF; ABED yan yüzü taralı, A, B ve E köşeleri işaretli",
+    boyut: DERS,
+    noktalar: {},
+    noktalar3d: { A: [0, 0, 0], B: [4.5, 0, 0], C: [6, 0, 3], D: [0, 4.5, 0], E: [4.5, 4.5, 0], F: [6, 4.5, 3] },
+    boyali: [["A", "B", "E", "D"]],
+    dogrular: [
+      { p: ["A", "B"] }, { p: ["B", "C"] }, { p: ["D", "E"] }, { p: ["E", "F"] }, { p: ["F", "D"] },
+      { p: ["A", "D"] }, { p: ["B", "E"] }, { p: ["C", "F"] }, { p: ["A", "C"], kesik: true },
+    ],
+    isaretli: ["A", "B", "E"],
+    vurguluNoktalar: ["A", "B", "E"],
+  },
+  GeoOlKareBolge: {
+    aciklama: "Kenarı 2 olan kare örnek uzay; x + y = 1 doğrusunun altındaki taralı küçük üçgen x + y < 1 bölgesi",
+    boyut: [260, 260],
+    eksen: { x: [-0.4, 2.7], y: [-0.4, 2.7] },
+    noktalar: { S0: [0, 0], S1: [2, 0], S2: [2, 2], S3: [0, 2], K1: [1, 0], Y1: [0, 1] },
+    cokgenler: [["S0", "S1", "S2", "S3"]],
+    boyali: [["S0", "K1", "Y1"]],
+    dogrular: [{ p: ["K1", "Y1"], vurgu: true }],
+    kenarlar: [{ p: ["K1", "Y1"], metin: "x + y = 1", vurgu: true, ic: true }],
+    etiketMetni: { S1: "2", S3: "2", K1: "1", Y1: "1" },
+    etiketYonu: { S1: 290, S3: 160, K1: 270, Y1: 180 },
+    gizli: ["S0", "S2"],
+  },
+  GeoOlBulusma: {
+    aciklama: "Kenarı 40 dakika olan kare; x Ali'nin, y Bora'nın geliş dakikası. Köşegen boyunca taralı şerit |x − y| ≤ 10 bölgesi",
+    boyut: [310, 310],
+    eksen: { x: [-4, 47], y: [-4, 47] },
+    noktalar: { S0: [0, 0], S1: [40, 0], S2: [40, 40], S3: [0, 40], P1: [10, 0], P2: [40, 30], P3: [30, 40], P4: [0, 10], Y: [20, 20] },
+    cokgenler: [["S0", "S1", "S2", "S3"]],
+    boyali: [["S0", "P1", "P2", "S2", "P3", "P4"]],
+    dogrular: [{ p: ["P1", "P2"], vurgu: true }, { p: ["P4", "P3"], vurgu: true }],
+    yazilar: [{ nokta: "Y", metin: "|x − y| ≤ 10", vurgu: true }],
+    etiketMetni: { P1: "10", P4: "10", S1: "40", S3: "40" },
+    etiketYonu: { P1: 270, S1: 270, P4: 180, S3: 180 },
+    gizli: ["S0", "S2", "P2", "P3", "Y"],
+  },
+
+  // ── GeoKombFig ────────────────────────────────────────────────────────────
+  GeoKombDogrusal: {
+    aciklama: "Beş nokta: A, B, C aynı d doğrusu üzerinde, D ile E dışında; toplam 8 doğru",
+    boyut: DERS,
+    noktalar: { A: [0, 0], B: [3, 0], C: [6, 0], D: [1.5, 3.7], E: [6.6, 3.3], L: [-1.5, 0], d: [8.5, 0] },
+    dogrular: [
+      { p: ["L", "d"], vurgu: true },
+      ...["AD", "AE", "BD", "BE", "CD", "CE", "DE"].map((e) => ({ p: [e[0], e[1]] as [string, string] })),
+    ],
+    isaretli: ["A", "B", "C", "D", "E"],
+    etiketYonu: { A: 270, B: 270, C: 270, d: 270 },
+    gizli: ["L"],
+  },
+  GeoKombParalel: {
+    aciklama: "d1 üzerinde 3, d2 üzerinde 4 nokta; d1'den 2, d2'den 1 nokta kullanan üçgen taralı, her doğrudan 2 nokta kullanan dörtgen kesikli",
+    boyut: DERS,
+    noktalar: {
+      K1: [1, 4], K2: [4, 4], K3: [7, 4], L1: [0, 0], L2: [2.7, 0], L3: [5.3, 0], L4: [8, 0],
+      d1: [-1.2, 4], R1: [9.2, 4], d2: [-1.2, 0], R2: [9.2, 0],
+    },
+    dogrular: [
+      { p: ["d1", "R1"] }, { p: ["d2", "R2"] },
+      { p: ["K1", "L1"], vurgu: true }, { p: ["K2", "L1"], vurgu: true },
+      { p: ["K2", "L3"], kesik: true }, { p: ["K3", "L4"], kesik: true },
+    ],
+    boyali: [["K1", "K2", "L1"]],
+    isaretli: ["K1", "K2", "K3", "L1", "L2", "L3", "L4"],
+    etiketYonu: { K1: 90, K2: 90, K3: 90, L1: 270, L2: 270, L3: 270, L4: 270, d1: 180, d2: 180 },
+    gizli: ["R1", "R2"],
+  },
+  GeoKombKosegen: {
+    aciklama: "Düzgün altıgen ABCDEF; A köşesinden çıkan AC, AD, AE köşegenleri vurgulu, diğer altı köşegen kesikli",
+    boyut: DERS,
+    noktalar: altigen(0, 0, 3),
+    cokgenler: [["A", "B", "C", "D", "E", "F"]],
+    dogrular: [
+      { p: ["A", "C"], vurgu: true }, { p: ["A", "D"], vurgu: true }, { p: ["A", "E"], vurgu: true },
+      ...["BD", "BE", "BF", "CE", "CF", "DF"].map((e) => ({ p: [e[0], e[1]] as [string, string], kesik: true })),
+    ],
+    vurguluNoktalar: ["A"],
+  },
+  GeoKombBolge: {
+    aciklama: "Herhangi ikisi paralel olmayan, üçü bir noktadan geçmeyen üç doğru düzlemi 7 bölgeye ayırır",
+    boyut: DERS,
+    noktalar: {
+      T1: [0, 3.4], T2: [-2, 0], T3: [2, 0], U1: [0.6, 4.42], A1: [-2.7, -1.19], U2: [-0.6, 4.42], A2: [2.7, -1.19],
+      Z1: [-3.7, 0], Z2: [3.7, 0],
+      Y1: [0, 1.1], Y2: [0, 4.05], Y3: [-2.5, 1.7], Y4: [2.5, 1.7], Y5: [0, -0.75], Y6: [-3.3, -0.75], Y7: [3.3, -0.75],
+    },
+    dogrular: [{ p: ["Z1", "Z2"] }, { p: ["U1", "A1"] }, { p: ["U2", "A2"] }],
+    boyali: [["T1", "T2", "T3"]],
+    yazilar: [1, 2, 3, 4, 5, 6, 7].map((i) => ({ nokta: `Y${i}`, metin: String(i), vurgu: true })),
+    isaretli: ["T1", "T2", "T3"],
+    gizli: ["T1", "T2", "T3", "U1", "A1", "U2", "A2", "Z1", "Z2", "Y1", "Y2", "Y3", "Y4", "Y5", "Y6", "Y7"],
+  },
+  GeoKombIzgara: {
+    aciklama: "2×3 birim kare ızgarası: 3 yatay, 4 dikey çizgi; y1, y2 ile x2, x4 çizgileri seçilince vurgulu dikdörtgen belirlenir",
+    boyut: DERS,
+    noktalar: {
+      y1: [-0.35, 2], y2: [-0.35, 1], y3: [-0.35, 0], Ry1: [3.35, 2], Ry2: [3.35, 1], Ry3: [3.35, 0],
+      x1: [0, -0.35], x2: [1, -0.35], x3: [2, -0.35], x4: [3, -0.35], Tx1: [0, 2.35], Tx2: [1, 2.35], Tx3: [2, 2.35], Tx4: [3, 2.35],
+      Q1: [1, 1], Q2: [3, 1], Q3: [3, 2], Q4: [1, 2],
+    },
+    boyali: [["Q1", "Q2", "Q3", "Q4"]],
+    dogrular: [
+      { p: ["y1", "Ry1"], vurgu: true }, { p: ["y2", "Ry2"], vurgu: true }, { p: ["y3", "Ry3"] },
+      { p: ["x1", "Tx1"] }, { p: ["x2", "Tx2"], vurgu: true }, { p: ["x3", "Tx3"] }, { p: ["x4", "Tx4"], vurgu: true },
+    ],
+    etiketYonu: { y1: 180, y2: 180, y3: 180, x1: 270, x2: 270, x3: 270, x4: 270 },
+    gizli: ["Ry1", "Ry2", "Ry3", "Tx1", "Tx2", "Tx3", "Tx4", "Q1", "Q2", "Q3", "Q4"],
+  },
+  GeoKombKiris: {
+    aciklama: "Solda çember üzerinde 4 nokta: iki köşegen kiriş içte tek noktada kesişir. Sağda 5 nokta, 10 kiriş ve 5 iç kesişim noktası",
+    boyut: [400, 200],
+    noktalar: {
+      O1: [0, 0], P: DORT[0], Q: DORT[1], R: DORT[2], S: DORT[3], X: kesisim(DORT[0], DORT[2], DORT[1], DORT[3]),
+      O2: [7.5, 0], ...Object.fromEntries(BES.map((p, i) => [`B${i}`, p])), ...Object.fromEntries(BES_KESISIM.map((p, i) => [`X${i}`, p])),
+    },
+    cemberler: [{ merkez: "O1", nokta: "P" }, { merkez: "O2", nokta: "B0" }],
+    dogrular: [
+      { p: ["P", "R"] }, { p: ["Q", "S"] },
+      { p: ["P", "Q"], kesik: true }, { p: ["Q", "R"], kesik: true }, { p: ["R", "S"], kesik: true }, { p: ["S", "P"], kesik: true },
+      ...[[0, 1], [0, 2], [0, 3], [0, 4], [1, 2], [1, 3], [1, 4], [2, 3], [2, 4], [3, 4]].map(([i, j]) => ({ p: [`B${i}`, `B${j}`] as [string, string] })),
+    ],
+    isaretli: ["P", "Q", "R", "S", "X", "B0", "B1", "B2", "B3", "B4", "X0", "X1", "X2", "X3", "X4"],
+    gizli: ["O1", "P", "Q", "R", "S", "X", "O2", "B0", "B1", "B2", "B3", "B4", "X0", "X1", "X2", "X3", "X4"],
+  },
+  GeoKombAltigen: {
+    aciklama: "İki düzgün altıgen: solda AD çapı üzerinde kurulan ABD dik üçgeni, sağda birer köşe atlanarak çizilen ACE eşkenar üçgeni",
+    boyut: [420, 210],
+    noktalar: { ...altigen(0, 0, 2.6), ...altigen(6.6, 0, 2.6, "2"), M: [0, 0] },
+    cemberler: [{ merkez: "M", nokta: "A" }],
+    cokgenler: [["A", "B", "C", "D", "E", "F"], ["A2", "B2", "C2", "D2", "E2", "F2"]],
+    boyali: [["A", "B", "D"], ["A2", "C2", "E2"]],
+    dogrular: [
+      { p: ["A", "D"], vurgu: true }, { p: ["B", "D"], vurgu: true },
+      { p: ["A2", "C2"], vurgu: true }, { p: ["C2", "E2"], vurgu: true }, { p: ["E2", "A2"], vurgu: true },
+    ],
+    dikler: [["A", "B", "D"]],
+    etiketMetni: { A2: "A", B2: "B", C2: "C", D2: "D", E2: "E", F2: "F" },
+    gizli: ["M"],
+  },
+  GeoKombKup: {
+    aciklama: "İki küp: solda BD yüz köşegeni ve AG cisim köşegeni; sağda DCFE köşegen düzlemi ve ACF üçgeni",
+    boyut: [420, 230],
+    noktalar: {},
+    noktalar3d: { ...KUP_SOL.noktalar3d, ...KUP_SAG.noktalar3d },
+    dogrular: [
+      ...KUP_SOL.dogrular, ...KUP_SAG.dogrular,
+      { p: ["B", "D"] }, { p: ["A", "G"], vurgu: true },
+      { p: ["E2", "D2"], kesik: true },
+      { p: ["A2", "C2"], vurgu: true }, { p: ["C2", "F2"], vurgu: true }, { p: ["F2", "A2"], kesik: true },
+    ],
+    boyali: [["D2", "C2", "F2", "E2"]],
+    etiketMetni: { ...KUP_SOL.etiketMetni, ...KUP_SAG.etiketMetni },
+  },
+  GeoKombBoyaliKup: { ...KUP6, aciklama: "Dış yüzeyi boyanmış 6×6×6 küp: köşedeki birim küplerin 3, ayrıttakilerin 2, yüz ortasındakilerin 1 yüzü boyalı" },
 } satisfies Record<string, Sekil>;
 
 export type DersSekliAdi = keyof typeof DERS_SEKILLERI;

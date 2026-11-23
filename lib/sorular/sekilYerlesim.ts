@@ -33,7 +33,7 @@ export interface Etiket {
 export interface Cizgi {
   a: P;
   b: P;
-  tur: "ana" | "yardimci" | "ince";
+  tur: "ana" | "yardimci" | "ince" | "vurgu";
 }
 export interface Yay {
   merkez: P;
@@ -258,7 +258,7 @@ export function sekilYerlesim(girdi: Sekil): Yerlesim {
   const cokgenler = (sekil.cokgenler ?? []).map((c) => c.map(nokta));
   const cizgiler: Cizgi[] = [];
   for (const c of cokgenler) for (let i = 0; i < c.length; i++) cizgiler.push({ a: c[i], b: c[(i + 1) % c.length], tur: "ana" });
-  for (const d of sekil.dogrular ?? []) cizgiler.push({ a: nokta(d.p[0]), b: nokta(d.p[1]), tur: d.kesik ? "yardimci" : "ana" });
+  for (const d of sekil.dogrular ?? []) cizgiler.push({ a: nokta(d.p[0]), b: nokta(d.p[1]), tur: d.kesik ? "yardimci" : d.vurgu ? "vurgu" : "ana" });
   const ekranda = (x: number, y: number): P => ({ x: (x - minX) * olcek, y: (maxY - y) * olcek });
   const eksenEtiketleri: { p: P; metin: string; dx: number; dy: number }[] = [];
   const oklar: Cizgi[] = [];
