@@ -581,7 +581,9 @@ section[id]{scroll-margin-top:90px}
 .yazili-kapsam{list-style:none;margin:0;padding:0;display:grid;gap:12px}
 .yazili-kapsam li{border:1px solid var(--line);border-radius:12px;padding:14px 18px;background:var(--paper-2)}
 .yazili-kapsam .yk-title{display:inline-flex;align-items:center;gap:10px;font-family:var(--serif);font-size:1.12rem;font-weight:600;color:var(--coral-deep)}
-.yazili-kapsam a.yk-title:hover{text-decoration:underline}
+.yazili-kapsam a.yk-title:hover,.yazili-kapsam .yk-title a:hover{text-decoration:underline}
+.yazili-kapsam .yk-title a{color:inherit}
+.yk-yeni-badge{color:var(--coral-deep);border-color:var(--coral)}
 .yazili-kapsam .yk-soon{color:var(--ink);cursor:default}
 .yk-soon-badge{font-family:var(--mono);font-size:.64rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-faint);border:1px solid var(--line);border-radius:999px;padding:2px 8px}
 .yazili-kapsam .yk-not{display:block;margin-top:5px;color:var(--ink-soft);font-size:.98rem;line-height:1.55}
