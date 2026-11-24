@@ -1,0 +1,173 @@
+import { postMetadata } from "@/lib/seo";
+import JsonLd from "@/components/JsonLd";
+import { faqLd } from "@/lib/jsonLd";
+
+export const metadata = postMetadata("ikinci-yazililar-matematik");
+
+export const SSS = [
+  {
+    question: "Matematik 1. dönem 2. yazılı ne zaman?",
+    answer:
+      "9. sınıfta ülke geneli ortak sınav olarak 6 Ocak 2027 Çarşamba günü yapılır. 10, 11 ve 12. sınıflarda tarihi okul belirler; genellikle aralık sonu ile ocak ayının ilk yarısındadır. Birinci dönem 22 Ocak 2027'de bitiyor. Kesin günü okulunun duyurusundan ve e-Okul'dan öğren.",
+  },
+  {
+    question: "1. yazılının konuları 2. yazılıda da çıkar mı?",
+    answer:
+      "Evet. MEB'in konu-soru dağılım tablolarında 2. yazılı, dönem başından sınav gününe kadar işlenen bütün konuları kapsar. Yeni konuların ağırlığı daha fazladır, ama 1. yazılının konularından da soru gelir.",
+  },
+  {
+    question: "Senaryo ne demek, hangisi sorulacak?",
+    answer:
+      "MEB her sınav için birkaç senaryo yayımlar. Her senaryo, hangi konudan kaç soru sorulacağını gösteren ayrı bir dağılımdır. Okul düzeyindeki sınavlarda senaryoyu okulunun matematik zümresi seçer. Hangi senaryonun seçildiğini öğretmenine sorabilirsin.",
+  },
+  {
+    question: "9. sınıf ülke geneli ortak sınavı test mi olacak?",
+    answer:
+      "Hayır. Ülke geneli ortak yazılı sınavlar açık uçlu sorulardan oluşur ve çözüm adımları puanlanır. Bu yüzden sonucu bulmak yetmez; işlemi düzenli yazmak da puan getirir.",
+  },
+  {
+    question: "2. yazılıya kaç hafta kala çalışmaya başlamalıyım?",
+    answer:
+      "Üç hafta rahat bir süre. İlk hafta 1. yazılı kâğıdındaki hataları ve eski konuları kapat, ikinci hafta yeni konuları çözerek çalış, son hafta karışık soru çöz ve yalnızca yanlış çıkan yerleri tekrar et.",
+  },
+];
+
+<JsonLd data={faqLd(SSS)} />
+
+<BlogPost slug="ikinci-yazililar-matematik" />
+
+<p className="lead">Ara tatil bitti, sırada dönemin ikinci yazılıları var. Bu sınavın birincisinden iki farkı var: <strong>kapsam birikimli</strong>, yani 1. yazılının konuları da soruluyor; 9. sınıfta ise sınav bu kez <strong>ülke geneli</strong>. Bu rehber, 9'dan 12'ye her sınıfın 1. dönem 2. yazılısında nelerden sorumlu olduğunu, yeni gelen konuları ve üç haftalık bir hazırlık planını veriyor.</p>
+
+[Birinci yazılı rehberinde](/blog/birinci-yazililar-matematik) en pahalı hatanın yanlış konuya çalışmak olduğunu söylemiştik. İkinci yazılıda buna bir hata daha ekleniyor: **yalnızca yeni konulara çalışmak.** Önce takvimi, sonra sınıf sınıf kapsamı netleştirelim.
+
+## Takvim: kimin sınavı ne zaman?
+
+| Sınıf | Sınavın türü | Tarih |
+| --- | --- | --- |
+| **9. sınıf** | **Ülke geneli ortak sınav** | **6 Ocak 2027 Çarşamba** |
+| 10. sınıf | Okul düzeyinde ortak sınav | Okul belirler |
+| 11. sınıf | Okul düzeyinde ortak sınav | Okul belirler |
+| 12. sınıf | Okul düzeyinde ortak sınav | Okul belirler |
+
+Okul düzeyindeki sınavlar genellikle **aralık sonu ile ocak ayının ilk yarısına** toplanır. Birinci dönem 22 Ocak 2027'de bitiyor; sınav, not girişi ve mazeret sınavları bu tarihten önce tamamlanmak zorunda. Kesin günü okulun duyurur.
+
+9. sınıf için durum farklı: bu sınavı MEB merkezî olarak hazırlıyor. Türkiye'deki bütün 9. sınıflar aynı gün, aynı sorularla sınava giriyor.
+
+## 2. yazılıyı 1. yazılıdan ayıran üç şey
+
+**1. Kapsam birikimli.** MEB'in konu–soru dağılım tablolarında 2. yazılı, dönem başından sınav gününe kadar işlenen her şeyi kapsıyor. Örneğin 10. sınıfta üçgenler 1. yazılıda sorulmuştu; 2. yazılının tablosunda yine var.
+
+**2. Soru sayısı biraz artıyor.** Tablolara göre 2. yazılıda 10. sınıfta 7–11, 11. sınıfta 6–10, 12. sınıfta 5–9 soru bekleniyor. Sorular açık uçlu; yani her biri birkaç puanlık adımdan oluşuyor.
+
+**3. Senaryoyu zümre seçiyor.** MEB her sınav için birkaç **senaryo** yayımlıyor. Senaryo, hangi konudan kaç soru geleceğini gösteren bir dağılım. Okulunun matematik zümresi bunlardan birini seçiyor.
+
+> **En değerli soru:** Öğretmenine "Hocam, hangi senaryoyu kullanacağız?" diye sor. Cevap, hangi konuya ne kadar çalışacağını doğrudan söyler.
+
+## Sınıf sınıf: hangi konulardan sorumlusun?
+
+### 9. sınıf — Ülke geneli sınav, iki tema
+
+9. sınıfın 2. yazılısı ülke geneli olduğu için resmî konu–soru dağılımı sınavdan önce bir **kılavuzla** yayımlanıyor. Bu yazı yazılırken o kılavuz henüz çıkmamıştı. Ama dönem boyunca işlenen iki tema belli:
+
+**1. yazılıdan gelenler (Sayılar):**
+- [Üslü ifadeler](/konular/uslu-ifadeler-9) ve [köklü ifadeler](/konular/koklu-ifadeler-9)
+- [Kümeler ve sayı kümeleri](/konular/kumelerde-temel-kavramlar)
+- [Gerçek sayılar ve aralıklar](/konular/gercek-sayilar)
+
+**Yeni gelenler (Nicelikler ve Değişimler):**
+- [Doğrusal fonksiyonlar](/konular/dogrusal-fonksiyonlar-9): eğim, grafik, grafikten değer okuma
+- [Mutlak değer fonksiyonları](/konular/mutlak-deger-fonksiyonlari-9): V biçimli grafik ve ötelemeler
+- [Birinci dereceden denklem ve eşitsizlik problemleri](/konular/birinci-derece-problemler-9)
+
+**En sık tuzak:** Eşitsizlikte negatif sayıyla çarpıp ya da bölüp yönü çevirmemek. $-2x < 6$ ise $x > -3$ olur, $x < -3$ değil.
+
+**Ülke geneli sınava özel not:** Kâğıdını kendi öğretmenin hazırlamıyor. "Hocamız bunu sormaz" diye bir şey yok; kapsamdaki her kazanım sorulabilir. Çözümünü de seni tanımayan biri okuyacakmış gibi yaz: her adım açık, sonuç belirgin.
+
+### 10. sınıf — Üçgenlerin üstüne üç yeni blok
+
+10. sınıfın 2. yazılısı en geniş kapsamlı olanı. 1. yazılının üçgen konuları duruyor, üstüne üç yeni blok geliyor.
+
+**1. yazılıdan gelenler:**
+- [Dik üçgende trigonometrik oranlar](/konular/dik-ucgen-trigonometri-10), [yardımcı elemanlar](/konular/ucgende-yardimci-elemanlar-10), [üçgende alan](/konular/ucgende-alan-10), [sinüs ve kosinüs teoremleri](/konular/sinus-kosinus-teoremi-10)
+- [İki kategorik değişken](/konular/iki-kategorik-degisken-10): çapraz tablo okuma
+
+**Yeni gelenler:**
+- **İstatistik:** [veri toplama, yorumlama ve değerlendirme](/konular/veri-surec-10)
+- **Sayılar:** [asal çarpanlar ve bölenler](/konular/asal-carpanlar-bolenler-10), [EBOB–EKOK](/konular/ebob-ekok-10), [bölünebilme kuralları](/konular/bolunebilme-kurallari-10)
+- **Fonksiyonlar:** fonksiyon olma şartları ve [ikinci dereceden (karesel) fonksiyon](/konular/karesel-fonksiyonlar-10)
+
+**En sık tuzak:** EBOB–EKOK problemlerinde hangisinin istendiğini karıştırmak. "Eşit parçalara böl, en büyük parça" EBOB'dur; "birlikte tekrar ne zaman" EKOK'tur. Soruyu çözmeden önce hangisi olduğunu kâğıda yaz.
+
+### 11. sınıf — Çokgenler her senaryoda, trigonometri kapıda
+
+Birinci yazılıda istatistik ve dörtgenlerin başı vardı. İkinci yazılıda geometri bloğu tamamlanıyor ve bazı senaryolarda trigonometri de giriyor.
+
+**1. yazılıdan gelenler:**
+- İki nicel değişken, serpme diyagramı ve korelasyon
+- [Dörtgenlerin özellikleri](/konular/dortgenler-tyt)
+
+**Yeni gelenler:**
+- **Özel dörtgenler:** paralelkenar, eşkenar dörtgen, dikdörtgen, kare, yamuk, deltoid
+- **Çokgenler:** içbükey–dışbükey ayrımı, dışbükey çokgenlerin özellikleri ve çokgen problemleri. Bu iki başlık **yedi senaryonun yedisinde de** var.
+- **Trigonometrik referans fonksiyonlar:** [yönlü açılar, birim çember](/konular/yonlu-acilar) ve [trigonometrik fonksiyonlar](/konular/trigonometrik-fonksiyonlar). Yedi senaryonun dördünde yer alıyor; okulunun buraya gelip gelmediğini öğretmenine sor.
+
+**En sık tuzak:** Çokgen formüllerini karıştırmak. $n$ kenarlı dışbükey çokgende iç açılar toplamı $(n-2)\cdot 180°$, dış açılar toplamı her zaman $360°$, köşegen sayısı $\dfrac{n(n-3)}{2}$'dir. Üçünü tek satıra yaz ve sınavdan önce bir kez bak.
+
+### 12. sınıf — Logaritma ve dizilerin üstüne trigonometri
+
+12. sınıfta ikinci yazılı iki dünyayı birleştiriyor: 1. yazılının logaritma ve dizileri ile yeni gelen trigonometri.
+
+**1. yazılıdan gelenler:**
+- [Logaritma fonksiyonu](/konular/logaritma-fonksiyonu) ve [logaritmik denklem ve eşitsizlikler](/konular/logaritmali-denklemler)
+- [Aritmetik dizi](/konular/aritmetik-dizi) ve [geometrik dizi](/konular/geometrik-dizi)
+
+**Yeni gelenler:**
+- [Toplam–fark ve iki kat açı formülleri](/konular/toplam-fark-formulleri)
+- [Trigonometrik denklemler](/konular/trigonometrik-denklemler). Bu başlık **yedi senaryonun hepsinde** var; sınavın en garanti konusu.
+- **Dönüşümler:** analitik düzlemde öteleme, dönme ve simetri
+
+**En sık tuzak:** Trigonometrik denklemde tek çözüm yazıp bırakmak. $\sin x = \dfrac12$ denkleminin $[0, 2\pi)$ aralığında iki çözümü vardır: $\dfrac{\pi}{6}$ ve $\dfrac{5\pi}{6}$. Aralık verilmediyse genel çözümü, yani $+2k\pi$'yi de yazmalısın.
+
+**YKS notu:** Buradaki her başlık AYT'de de karşına çıkıyor. Yazılıya çalışırken [AYT trigonometri soru tiplerine](/blog/ayt-trigonometri-soru-tipleri) de göz at; aynı emekle iki sınava hazırlanırsın.
+
+## Üç haftalık hazırlık planı
+
+Sınavına yaklaşık üç hafta varsa:
+
+| Hafta | Ne yapıyorsun |
+| --- | --- |
+| **1. hafta: eskiyi kapat** | 1. yazılı kâğıdını aç. Puan kaybettiğin her soruyu yeniden çöz, o konulardan 15–20 soru daha çöz. |
+| **2. hafta: yeniyi kur** | Yeni gelen konuları sırayla çalış. Her konuda önce çözümlü örnekleri kâğıtta kendin çöz, sonra test çöz. |
+| **3. hafta: karıştır** | Eski ve yeni konulardan karışık sorular çöz. Yeni konu öğrenme; yalnızca yanlış çıkan kuralı tekrar et. |
+
+İlk haftanın eskiye ayrılması bilerek yapılmış bir tercih. Yeni konular zaten derste taze; unutulan ise eylül ve ekimde işlenenler. Üstelik o konulardaki hatalarını gösteren hazır bir belgen var: **1. yazılı kâğıdın.**
+
+## Açık uçlu sınavda puan nasıl toplanır?
+
+Yazılılar test değil. Bu, lehine kullanabileceğin bir şey:
+
+- **Adımları yaz.** Sonuç yanlış olsa bile doğru kurulan denklem, doğru yazılan formül puan alır. Boş bırakılan soru sıfırdır.
+- **Formülü önce harflerle yaz, sonra sayıları koy.** Önce $a^2=b^2+c^2-2bc\cos A$, sonra sayılar. İşlem hatası yapsan bile formül puanını alırsın.
+- **Birimi ve cevabı belirt.** Sonucun altını çiz ya da "Cevap:" diye yaz. Okuyan kişi cevabını aramak zorunda kalmasın.
+- **Süreyi soru başına böl.** 8 soru ve 40 dakikan varsa soru başına 5 dakika. Takıldığın soruyu işaretle, geç, sonda dön.
+
+## Sıkça sorulan sorular
+
+<div className="ph-sss">
+  {SSS.map((s) => (
+    <details key={s.question}>
+      <summary>{s.question}</summary>
+      <p>{s.answer}</p>
+    </details>
+  ))}
+</div>
+
+## Özetle
+
+İkinci yazılı, dönemin tamamının sınavı. Önce 1. yazılı kâğıdındaki açıkları kapat, sonra yeni konuları çözerek çalış, son hafta ikisini karıştır. Öğretmenine senaryoyu sor; 9. sınıftaysan 6 Ocak'ı takvimine yaz.
+
+Takıldığın her soruda: çözüme bak. 🧡
+
+<p style={{ fontSize: ".9rem", color: "var(--ink-faint)", marginTop: 34 }}>Kaynak notu: Kapsam ve soru sayıları, MEB'in 2026-2027 konu–soru dağılım tablolarına dayanır. 9. sınıf ülke geneli sınavının resmî dağılımı sınav öncesinde kılavuzla yayımlanacak; yayımlandığında bu yazıyı güncelleyeceğiz. Okulunun yıllık planı ve seçtiği senaryo kapsamı biraz değiştirebilir; son söz öğretmeninin duyurusundadır.</p>
+
+<BlogPostFooter slug="ikinci-yazililar-matematik" />

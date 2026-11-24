@@ -43,6 +43,26 @@ export const TAGS: Tag[] = [
 
 export const POSTS: BlogPost[] = [
   {
+    slug: "ikinci-yazililar-matematik",
+    title: "İkinci Yazılılar: Sınıf Sınıf Matematik 2. Yazılı Rehberi (2026-2027)",
+    description:
+      "1. dönem 2. yazılıda kapsam birikimli: 1. yazılının konuları da soruluyor. 9. sınıfta sınav ülke geneli ve 6 Ocak 2027'de. 10'da üçgenlerin üstüne EBOB-EKOK ve karesel fonksiyon, 11'de çokgenler ve trigonometriye giriş, 12'de trigonometrik denklemler geliyor. Sınıf sınıf konu listesi, senaryo mantığı ve üç haftalık plan.",
+    date: "2026-11-23",
+    tags: ["egitim", "calisma-teknikleri", "maarif-modeli", "meb"],
+    readingMinutes: 8,
+    relatedTopics: [
+      "dogrusal-fonksiyonlar-9",
+      "mutlak-deger-fonksiyonlari-9",
+      "ebob-ekok-10",
+      "karesel-fonksiyonlar-10",
+      "dortgenler-tyt",
+      "trigonometrik-fonksiyonlar",
+      "trigonometrik-denklemler",
+      "toplam-fark-formulleri",
+    ],
+    status: "published",
+  },
+  {
     slug: "ogretmenler-gunu-ucgen-demeyi-kimden-ogrendik",
     title: "Üçgen Demeyi Kimden Öğrendik? Bir Öğretmenler Günü Yazısı",
     description:
