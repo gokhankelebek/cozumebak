@@ -458,7 +458,8 @@ function kutuSekli(a: { aciklama: string; satirlar: KutuSatiri[]; W?: number; H?
     const y1 = ust - H;
     const yc = (y0 + y1) / 2;
     let x = solW + (r.x ?? 0);
-    if (r.sol) yaz([solW - 12 - gen(r.sol) / 2, yc], r.sol, false, true);
+    // Row labels are words (upright); a single letter is a variable (italic).
+    if (r.sol) yaz([solW - 12 - gen(r.sol) / 2, yc], r.sol, false, r.sol.length > 1);
     r.k.forEach((k, i) => {
       if (i > 0) {
         if (r.ayrac) {
@@ -467,7 +468,7 @@ function kutuSekli(a: { aciklama: string; satirlar: KutuSatiri[]; W?: number; H?
           x += g;
         } else x += ara;
       }
-      const w = k.yazi ? gen(k.m ?? "") + 8 : k.bosluk ? (k.m ? 28 : 16) : (k.w ?? 1) * W;
+      const w = k.yazi ? (k.w ? k.w * W : gen(k.m ?? "") + 8) : k.bosluk ? (k.m ? 28 : 16) : (k.w ?? 1) * W;
       const xc = x + w / 2;
       if (k.daire) {
         const r0 = Math.min(w, H) / 2 - 3;
@@ -635,6 +636,60 @@ function daireGrafigi(aciklama: string, dilimler: { ad: string; yuzde: number; v
     yazilar,
     gizli: Object.keys(noktalar),
   };
+}
+
+// ── Round tables and Pascal's triangle ──────────────────────────────────────
+// Seats around a round table, clockwise from the top; each seat is a small
+// circle with its text inside (a letter, "×" for a forbidden seat).
+function masaSekli(a: { aciklama: string; koltuk: { m?: string; v?: boolean; boya?: boolean }[]; notlar?: [number, string][] }): Sekil {
+  const n = a.koltuk.length;
+  const noktalar: Record<string, Nk> = { M: [0, 0], MR: [1.15, 0] };
+  const cemberler = [{ merkez: "M", nokta: "MR" }];
+  const yazilar: { nokta: string; metin: string; vurgu?: boolean; duz?: boolean }[] = [];
+  const bolgeler: { ic: string[] }[] = [];
+  a.koltuk.forEach((k, i) => {
+    const t = 90 - (360 * i) / n;
+    noktalar[`K${i}`] = kutupsal(0, 0, 1.75, t);
+    noktalar[`R${i}`] = kutupsal(noktalar[`K${i}`][0], noktalar[`K${i}`][1], 0.36, 0);
+    cemberler.push({ merkez: `K${i}`, nokta: `R${i}` });
+    if (k.boya) bolgeler.push({ ic: [`K${i}`] });
+    if (k.m) yazilar.push({ nokta: `K${i}`, metin: k.m, vurgu: k.v });
+  });
+  (a.notlar ?? []).forEach(([i, m], j) => {
+    const t = 90 - (360 * i) / n;
+    noktalar[`N${j}`] = kutupsal(0, 0, 2.75, t);
+    yazilar.push({ nokta: `N${j}`, metin: m, vurgu: true, duz: true });
+  });
+  return { aciklama: a.aciklama, boyut: [260, 230], noktalar, cemberler, bolgeler, yazilar, gizli: Object.keys(noktalar) };
+}
+function pascalSekli(): Sekil {
+  const C = (n: number, k: number): number => (k === 0 || k === n ? 1 : C(n - 1, k - 1) + C(n - 1, k));
+  const noktalar: Record<string, Nk> = {};
+  const yazilar: { nokta: string; metin: string; vurgu?: boolean; duz?: boolean }[] = [];
+  const vurgulu = (n: number, k: number) => (n === 5 && (k === 2 || k === 3)) || (n === 6 && k === 3);
+  for (let n = 0; n <= 6; n++) {
+    for (let k = 0; k <= n; k++) {
+      noktalar[`p${n}_${k}`] = [150 + (k - n / 2) * 44, -n * 30];
+      yazilar.push({ nokta: `p${n}_${k}`, metin: String(C(n, k)), vurgu: vurgulu(n, k) });
+    }
+    noktalar[`n${n}`] = [-42, -n * 30];
+    noktalar[`t${n}`] = [340, -n * 30];
+    yazilar.push({ nokta: `n${n}`, metin: `n = ${n}` }, { nokta: `t${n}`, metin: String(2 ** n) });
+  }
+  noktalar.ust = [340, 30];
+  yazilar.push({ nokta: "ust", metin: "toplam", duz: true });
+  const xs = Object.values(noktalar).map((q) => q[0]);
+  const ys = Object.values(noktalar).map((q) => q[1]);
+  return {
+    aciklama: "Pascal üçgeninin 0'dan 6'ya kadar satırları; her sayı üstündeki iki sayının toplamı, vurgulu örnek 10 + 10 = 20; sağda satır toplamları 1, 2, 4, …, 64",
+    boyut: [Math.max(...xs) - Math.min(...xs), Math.max(...ys) - Math.min(...ys)],
+    noktalar,
+    yazilar,
+    gizli: Object.keys(noktalar),
+  };
+}
+function bilezik(cx: number, son: string, harfler: string[]): Record<string, Nk> {
+  return Object.fromEntries(harfler.map((h, i) => [h + son, kutupsal(cx, 0, 1.3, 90 - 90 * i)]));
 }
 
 export const DERS_SEKILLERI = {
@@ -2311,6 +2366,144 @@ export const DERS_SEKILLERI = {
       gizli: ["T0", "T1", ...P.map((_, i) => `p${i}`)],
     } satisfies Sekil;
   })(),
+  // ── Venn (sayma, olasılık) ────────────────────────────────────────────────
+  DehtIkiVenn: {
+    aciklama: "1'den 12'ye kadar sayılar: A 2'nin katları (2, 4, 6, 8, 10, 12), B 3'ün katları (3, 6, 9, 12); ortak bölgede 6 ve 12, dışarıda 1, 5, 7, 11",
+    boyut: [340, 230],
+    noktalar: {
+      A: [0, 0], RA: [2, 0], B: [2.2, 0], RB: [4.2, 0],
+      U0: [-2.8, -2.6], U1: [5, -2.6], U2: [5, 2.6], U3: [-2.8, 2.6],
+      YA: [-1.3, 2.2], YB: [3.5, 2.2],
+      n2: [-1.1, 0.7], n4: [-0.4, 1.3], n8: [-1.2, -0.6], n10: [-0.4, -1.3], n6: [1.1, 0.5], n12: [1.1, -0.5],
+      n3: [3.2, 0.5], n9: [3.2, -0.6], n1: [-2.4, 2.2], n5: [4.6, 2.2], n7: [-2.4, -2.2], n11: [4.55, -2.2],
+    },
+    cokgenler: [["U0", "U1", "U2", "U3"]],
+    cemberler: [{ merkez: "A", nokta: "RA" }, { merkez: "B", nokta: "RB" }],
+    bolgeler: [{ ic: ["A", "B"] }],
+    yazilar: [
+      { nokta: "YA", metin: "A" },
+      { nokta: "YB", metin: "B" },
+      ...[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((n) => ({ nokta: `n${n}`, metin: String(n), vurgu: n === 6 || n === 12 })),
+    ],
+    gizli: ["A", "RA", "B", "RB", "U0", "U1", "U2", "U3", "YA", "YB", ...[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((n) => `n${n}`)],
+  },
+  DehtUcVennSayim: {
+    aciklama: "Üç kümeli Venn: tek kümedeki eleman 1 kez, iki kümedeki 2 − 1 kez, üç kümedeki 3 − 3 + 1 kez sayılır; her bölge sonunda tam 1 kez",
+    boyut: [300, 290],
+    noktalar: {
+      // Centres 1 apart, radius 1.25; labels at each region's most open point.
+      A: [0, 0.577], B: [-0.5, -0.289], C: [0.5, -0.289], RA: [1.25, 0.577], RB: [0.75, -0.289], RC: [1.75, -0.289],
+      YA: [0, 2.15], YB: [-1.9, -1.45], YC: [1.9, -1.45],
+      t1: [0, 1.38], t2: [-1.18, -0.69], t3: [1.2, -0.64], t4: [-0.89, 0.49], t5: [0.89, 0.5], t6: [0, -1.02], t7: [0, 0],
+    },
+    cemberler: [{ merkez: "A", nokta: "RA" }, { merkez: "B", nokta: "RB" }, { merkez: "C", nokta: "RC" }],
+    bolgeler: [{ ic: ["A", "B", "C"] }],
+    yazilar: [
+      { nokta: "YA", metin: "A" }, { nokta: "YB", metin: "B" }, { nokta: "YC", metin: "C" },
+      { nokta: "t1", metin: "1" }, { nokta: "t2", metin: "1" }, { nokta: "t3", metin: "1" },
+      { nokta: "t4", metin: "2−1" }, { nokta: "t5", metin: "2−1" }, { nokta: "t6", metin: "2−1" },
+      { nokta: "t7", metin: "3−3+1", vurgu: true },
+    ],
+    gizli: ["A", "B", "C", "RA", "RB", "RC", "YA", "YB", "YC", "t1", "t2", "t3", "t4", "t5", "t6", "t7"],
+  },
+  OtkVennBolgeleri: {
+    aciklama: "Örnek uzay S içinde kesişen A ve B olayları; dört ayrık bölge: yalnız A, A ∩ B, yalnız B ve hiçbiri",
+    boyut: [340, 220],
+    noktalar: {
+      A: [0, 0], RA: [2, 0], B: [2.4, 0], RB: [4.4, 0],
+      U0: [-2.6, -2.5], U1: [5, -2.5], U2: [5, 2.5], U3: [-2.6, 2.5],
+      YS: [-2.25, 2.15], YA: [-1.5, 2.1], YB: [3.9, 2.1],
+      r1: [-0.9, 0], r2: [1.2, 0], r3: [3.3, 0], r4: [3.9, -2.15],
+    },
+    cokgenler: [["U0", "U1", "U2", "U3"]],
+    cemberler: [{ merkez: "A", nokta: "RA" }, { merkez: "B", nokta: "RB" }],
+    bolgeler: [{ ic: ["A", "B"] }],
+    yazilar: [
+      { nokta: "YS", metin: "S" }, { nokta: "YA", metin: "A" }, { nokta: "YB", metin: "B" },
+      { nokta: "r1", metin: "yalnız A", duz: true },
+      { nokta: "r2", metin: "A ∩ B", vurgu: true },
+      { nokta: "r3", metin: "yalnız B", duz: true },
+      { nokta: "r4", metin: "hiçbiri", duz: true },
+    ],
+    gizli: ["A", "RA", "B", "RB", "U0", "U1", "U2", "U3", "YS", "YA", "YB", "r1", "r2", "r3", "r4"],
+  },
+
+  // ── Round tables ──────────────────────────────────────────────────────────
+  DehtYuvarlakMasa: masaSekli({
+    aciklama: "Altı sandalyeli yuvarlak masa: A en üstte sabit; A'nın iki yanı ve tam karşısı B için yasak (×), kalan iki sandalye B için uygun",
+    koltuk: [{ m: "A", boya: true }, { m: "×", v: true }, { m: "B?" }, { m: "×", v: true }, { m: "B?" }, { m: "×", v: true }],
+  }),
+  DaireselKomsu: masaSekli({
+    aciklama: "Sekiz sandalyeli yuvarlak masa: B en altta; hemen sağı ve hemen solu B'nin yanındaki iki sandalye, tam karşısı bir sandalye",
+    koltuk: [{ m: "A?", v: true }, {}, {}, { m: "A?", v: true }, { m: "B", boya: true }, { m: "A?", v: true }, {}, {}],
+    notlar: [[3, "hemen sağı"], [5, "hemen solu"], [0, "tam karşısı"]],
+  }),
+  DaireselBosluk: {
+    aciklama: "Yuvarlak masadaki 5 kişinin arasında 5 boşluk; düz sırada oturan 5 kişinin arasında ve uçlarında 6 boşluk",
+    boyut: [400, 180],
+    noktalar: {
+      M: [0, 0], ...Object.fromEntries([0, 1, 2, 3, 4].map((i) => [`k${i}`, kutupsal(0, 0, 1.4, 90 - 72 * i)])),
+      ...Object.fromEntries([0, 1, 2, 3, 4].map((i) => [`b${i}`, kutupsal(0, 0, 1.85, 54 - 72 * i)])),
+      ...Object.fromEntries([0, 1, 2, 3, 4].map((i) => [`s${i}`, [3.2 + i * 0.9, 0]])),
+      ...Object.fromEntries([0, 1, 2, 3, 4, 5].map((i) => [`g${i}`, [2.75 + i * 0.9, -0.45]])),
+    } as Record<string, Nk>,
+    cemberler: [{ merkez: "M", nokta: "k0" }],
+    isaretli: [0, 1, 2, 3, 4].flatMap((i) => [`k${i}`, `s${i}`]),
+    yazilar: [
+      ...[0, 1, 2, 3, 4].map((i) => ({ nokta: `b${i}`, metin: String(i + 1), vurgu: true })),
+      ...[0, 1, 2, 3, 4, 5].map((i) => ({ nokta: `g${i}`, metin: String(i + 1), vurgu: true })),
+    ],
+    gizli: ["M", ...[0, 1, 2, 3, 4].flatMap((i) => [`k${i}`, `b${i}`, `s${i}`]), ...[0, 1, 2, 3, 4, 5].map((i) => `g${i}`)],
+  },
+  DaireselKolye: {
+    aciklama: "Bilezik kesikli eksen çevresinde ters çevrilince saat yönündeki ABCD okuması ADCB olur; bilezikte ikisi aynı nesnedir",
+    boyut: [380, 170],
+    noktalar: {
+      M1: [0, 0], M2: [5, 0], E1: [0, 1.75], E2: [0, -1.75], Q: [2.5, 0],
+      ...bilezik(0, "", ["A", "B", "C", "D"]),
+      ...bilezik(5, "2", ["A", "D", "C", "B"]),
+    },
+    cemberler: [{ merkez: "M1", nokta: "A" }, { merkez: "M2", nokta: "A2" }],
+    dogrular: [{ p: ["E1", "E2"], kesik: true }],
+    isaretli: ["A", "B", "C", "D", "A2", "B2", "C2", "D2"],
+    yazilar: [{ nokta: "Q", metin: "=" }],
+    etiketMetni: { A2: "A", B2: "B", C2: "C", D2: "D" },
+    gizli: ["M1", "M2", "E1", "E2", "Q"],
+  },
+
+  // ── Grid with a closed street, Pascal, binomial terms ─────────────────────
+  TekrarliPermutasyonKapaliYol: (() => {
+    const t = izgaraSekli({
+      aciklama: "5 birim sağa, 3 birim yukarı giden ızgara; A sol altta, B sağ üstte, C A'nın 2 birim sağında ve 1 birim yukarısında; (3, 2)–(4, 2) sokağı kapalı (×)",
+      m: 5,
+      n: 3,
+      yol: [],
+      etiketler: { A: [0, 0], B: [5, 3], C: [2, 1] },
+      vurgulu: ["C"],
+      yonler: { A: 225, B: 45, C: 315 },
+    });
+    // The closed street (3, 2)–(4, 2) is crossed out with a small accent ×.
+    const d = 0.13;
+    return {
+      ...t,
+      noktalar: { ...t.noktalar, X1: [3.5 - d, 2 - d], X2: [3.5 + d, 2 + d], X3: [3.5 - d, 2 + d], X4: [3.5 + d, 2 - d] },
+      dogrular: [...(t.dogrular ?? []), { p: ["X1", "X2"], vurgu: true }, { p: ["X3", "X4"], vurgu: true }],
+      gizli: [...(t.gizli ?? []), "X1", "X2", "X3", "X4"],
+    } satisfies Sekil;
+  })(),
+  BinomPascal: pascalSekli(),
+  BinomTerimSirasi: kutuSekli({
+    aciklama: "(a + b)⁵ açılımının 6 terimi: a⁵, 5a⁴b, 10a³b², 10a²b³, 5ab⁴, b⁵; her kutunun üstünde baştan sırası ve k, altında sondan sırası; vurgulu kutu baştan 5., sondan 2. terim (k = 4)",
+    W: 62,
+    H: 34,
+    satirAra: 4,
+    satirlar: [
+      { sol: "baştan", k: [0, 1, 2, 3, 4, 5].map((i) => ({ yazi: true, w: 1, m: `${i + 1}.` })) },
+      { sol: "k", k: [0, 1, 2, 3, 4, 5].map((i) => ({ yazi: true, w: 1, m: String(i), v: i === 4 })) },
+      { k: ["a^5", "5a^4b", "10a^3b^2", "10a^2b^3", "5ab^4", "b^5"].map((m, i) => ({ m, v: i === 4, boya: i === 4 })) },
+      { sol: "sondan", k: [0, 1, 2, 3, 4, 5].map((i) => ({ yazi: true, w: 1, m: `${6 - i}.` })) },
+    ],
+  }),
 } satisfies Record<string, Sekil>;
 
 export type DersSekliAdi = keyof typeof DERS_SEKILLERI;
