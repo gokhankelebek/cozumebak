@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { getTopic, trackMeta, getUnit, type Track } from "@/lib/curriculum";
 import { getPost, getTag } from "@/lib/blog";
-import { getYazili, SEASON } from "@/lib/yazili";
+import { getYazili, SEASON, SINAVLAR } from "@/lib/yazili";
 import { getQuizCount } from "@/lib/sorular";
 
 export const SITE_URL = "https://cozumebak.com";
@@ -214,9 +214,9 @@ export function postMetadata(slug: string): Metadata {
 
 /** Metadata for the /yazili-sinavlar hub. */
 export function yaziliHubMetadata(): Metadata {
-  const title = "Yazılı Sınavlar — 1. Dönem 1. Yazılı Matematik Konuları";
+  const title = "Yazılı Sınavlar — Matematik 1. ve 2. Yazılı Konuları";
   const description =
-    "9, 10, 11 ve 12. sınıf matematik 1. dönem 1. yazılı konuları, sınav tarihleri ve çalışma planı. Her sınıf için ÖSYM ve Maarif Modeli'ne uygun kapsam, tuzaklar ve çözümlü kaynaklar.";
+    "9, 10, 11 ve 12. sınıf matematik 1. dönem 1. ve 2. yazılı konuları, sınav tarihleri ve çalışma planı. Her sınıf için Maarif Modeli'ne uygun kapsam, tuzaklar ve çözümlü kaynaklar.";
   const url = "/yazili-sinavlar";
   return {
     title,
@@ -224,6 +224,8 @@ export function yaziliHubMetadata(): Metadata {
     keywords: [
       "yazılı sınav matematik",
       "1. dönem 1. yazılı konuları",
+      "1. dönem 2. yazılı konuları",
+      "matematik 2. yazılı",
       "matematik yazılı konuları",
       "birinci yazılı matematik",
       `${SEASON.year} yazılı konuları`,
@@ -247,16 +249,18 @@ export function yaziliMetadata(slug: string): Metadata {
   if (!y) {
     return { title: "Yazılı Sınav", robots: { index: false, follow: true } };
   }
-  const title = `${y.gradeLabel} Matematik 1. Dönem 1. Yazılı Konuları`;
-  const description = `${y.gradeLabel} matematik 1. yazılı konuları (${y.tema}), sınav tarihi, nasıl sorulur, sık yapılan hatalar ve 2 haftalık çalışma planı. ${SEASON.year} Maarif Modeli'ne uygun.`;
+  const sinav = SINAVLAR[y.sinav ?? 1];
+  const no = y.sinav ?? 1;
+  const title = `${y.gradeLabel} Matematik ${sinav.term} Konuları`;
+  const description = `${y.gradeLabel} matematik ${no}. yazılı konuları (${y.tema}), sınav tarihi, nasıl sorulur, sık yapılan hatalar ve ${sinav.planSure} çalışma planı. ${SEASON.year}${y.grade === "12" ? "" : " Maarif Modeli'ne uygun"}.`;
   const url = `/yazili-sinavlar/${slug}`;
   return {
     title,
     description,
     keywords: [
-      `${y.gradeLabel} matematik 1. yazılı`,
-      `${y.gradeLabel} matematik 1. yazılı konuları`,
-      `${y.gradeLabel} 1. dönem 1. yazılı`,
+      `${y.gradeLabel} matematik ${no}. yazılı`,
+      `${y.gradeLabel} matematik ${no}. yazılı konuları`,
+      `${y.gradeLabel} 1. dönem ${no}. yazılı`,
       `${y.gradeLabel} matematik yazılı`,
       y.tema,
     ],

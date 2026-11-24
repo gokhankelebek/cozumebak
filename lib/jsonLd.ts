@@ -5,7 +5,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 import { getTopic, getUnit, trackMeta, breadcrumb } from "@/lib/curriculum";
 import { getPost, tagsOf } from "@/lib/blog";
-import { getYazili } from "@/lib/yazili";
+import { getYazili, SINAVLAR } from "@/lib/yazili";
 import { getSoruTipleri } from "@/lib/soru-tipleri";
 import { SITE_URL, SITE_NAME, lessonDescription } from "@/lib/seo";
 
@@ -104,7 +104,7 @@ export function yaziliBreadcrumbLd(slug: string) {
   const crumbs: { name: string; item?: string }[] = [
     { name: "Anasayfa", item: abs("/") },
     { name: "Yazılı Sınavlar", item: abs("/yazili-sinavlar") },
-    ...(y ? [{ name: `${y.gradeLabel} Matematik 1. Yazılı` }] : []),
+    ...(y ? [{ name: `${y.gradeLabel} Matematik ${SINAVLAR[y.sinav ?? 1].kisa}` }] : []),
   ];
   return {
     "@context": "https://schema.org",
@@ -127,7 +127,7 @@ export function yaziliLd(slug: string) {
     "@context": "https://schema.org",
     "@type": "LearningResource",
     "@id": url,
-    name: `${y.gradeLabel} Matematik 1. Dönem 1. Yazılı Konuları`,
+    name: `${y.gradeLabel} Matematik ${SINAVLAR[y.sinav ?? 1].term} Konuları`,
     description: y.lead,
     url,
     inLanguage: "tr-TR",

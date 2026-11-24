@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getYazili, SEASON } from "@/lib/yazili";
+import { getYazili, digerYazili, SEASON, SINAVLAR } from "@/lib/yazili";
 import { getTopic } from "@/lib/curriculum";
 import { getSoruTipleri } from "@/lib/soru-tipleri";
 import JsonLd from "@/components/JsonLd";
@@ -13,6 +13,9 @@ import { yaziliBreadcrumbLd, yaziliLd, yaziliFaqLd } from "@/lib/jsonLd";
 export default function YaziliSinav({ slug }: { slug: string }) {
   const y = getYazili(slug);
   if (!y) return null;
+  const sinav = SINAVLAR[y.sinav ?? 1];
+  const diger = digerYazili(y);
+  const yeniVar = y.kapsam.some((k) => k.yeni);
 
   return (
     <main className="konu container yazili">
@@ -25,15 +28,15 @@ export default function YaziliSinav({ slug }: { slug: string }) {
         {" › "}
         <Link href="/yazili-sinavlar">Yazılı Sınavlar</Link>
         {" › "}
-        <strong>{y.gradeLabel} 1. Yazılı</strong>
+        <strong>{y.gradeLabel} {sinav.kisa}</strong>
       </nav>
 
       <header className="konu-head">
         <p className="eyebrow">{SEASON.year} · {y.tema}</p>
-        <h1>{y.gradeLabel} Matematik 1. Dönem 1. Yazılı Konuları</h1>
+        <h1>{y.gradeLabel} Matematik {sinav.term} Konuları</h1>
         <div className="chips">
-          <span>{SEASON.term}</span>
-          <span>{SEASON.windowLabel}</span>
+          <span>{sinav.term}</span>
+          <span>{y.windowLabel ?? sinav.windowLabel}</span>
           <Link href={`/${y.track}-sinif`}>{y.gradeLabel} tüm konular →</Link>
         </div>
       </header>
@@ -43,17 +46,16 @@ export default function YaziliSinav({ slug }: { slug: string }) {
       <section aria-label="Sınav takvimi" className="yazili-takvim">
         <h2>Sınav ne zaman?</h2>
         <p>{y.takvimNotu}</p>
-        <p className="yazili-mazeret">
-          Sınavı kaçırırsan mazeret sınavları genelde kasımın son haftasında yapılır;
-          kesin tarihi yine okulun duyurur.
-        </p>
+        <p className="yazili-mazeret">{sinav.mazeret}</p>
       </section>
 
       <section aria-label="Konu kapsamı">
-        <h2>1. yazılı konu kapsamı</h2>
+        <h2>{sinav.kisa} konu kapsamı</h2>
         <p className="yazili-kapsam-note">
-          Aşağıdaki başlıklar bu yazılının çekirdeğini oluşturur. Kesin kapsam
-          okulunuzun yıllık planına göre biraz değişebilir.
+          {y.kapsamNotu ??
+            "Aşağıdaki başlıklar bu yazılının çekirdeğini oluşturur. Kesin kapsam okulunuzun yıllık planına göre biraz değişebilir."}
+          {yeniVar &&
+            " Kapsam birikimlidir: “Yeni” etiketli başlıklar bu sınavla geliyor, diğerleri 1. yazılıda da sorulmuştu."}
         </p>
         <ul className="yazili-kapsam">
           {y.kapsam.map((k, i) => {
@@ -61,9 +63,10 @@ export default function YaziliSinav({ slug }: { slug: string }) {
             return (
               <li key={i}>
                 {topic ? (
-                  <Link href={`/konular/${k.topic}`} className="yk-title">
-                    {topic.title}
-                  </Link>
+                  <span className="yk-title">
+                    <Link href={`/konular/${k.topic}`}>{topic.title}</Link>
+                    {k.yeni && <span className="yk-soon-badge yk-yeni-badge">Yeni</span>}
+                  </span>
                 ) : (
                   <span className="yk-title yk-soon">
                     {k.label}
@@ -115,7 +118,7 @@ export default function YaziliSinav({ slug }: { slug: string }) {
       </section>
 
       <section aria-label="Çalışma planı">
-        <h2>İki haftalık çalışma planı</h2>
+        <h2>{sinav.planBaslik}</h2>
         <ol className="yazili-plan">
           {y.plan.map((p, i) => (
             <li key={i}>
@@ -147,6 +150,17 @@ export default function YaziliSinav({ slug }: { slug: string }) {
                 );
               })}
           </ul>
+        </section>
+      )}
+
+      {diger && (
+        <section aria-label="Diğer yazılı" className="yazili-blogcta">
+          <p>
+            {(y.sinav ?? 1) === 1 ? "Sırada ikinci yazılı mı var? " : "Birinci yazılının konularına dönmek için: "}
+            <Link href={`/yazili-sinavlar/${diger.slug}`}>
+              {diger.gradeLabel} matematik {SINAVLAR[diger.sinav ?? 1].kisa.toLocaleLowerCase("tr")} konuları →
+            </Link>
+          </p>
         </section>
       )}
 
