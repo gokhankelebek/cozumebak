@@ -474,6 +474,9 @@ function kutuSekli(a: { aciklama: string; satirlar: KutuSatiri[]; W?: number; H?
         const r0 = Math.min(w, H) / 2 - 3;
         const m = ekle([xc, yc]);
         cemberler.push({ merkez: m, nokta: ekle([xc + r0, yc]) });
+        // Keep the circle inside the figure's extent so it is drawn 1:1.
+        ekle([xc - r0, yc + r0]);
+        ekle([xc + r0, yc - r0]);
         if (k.boya) bolgeler.push({ ic: [m] });
       } else if (!k.yazi) {
         const yy0 = k.bosluk ? y0 - H * 0.15 : y0;
@@ -2504,6 +2507,237 @@ export const DERS_SEKILLERI = {
       { sol: "sondan", k: [0, 1, 2, 3, 4, 5].map((i) => ({ yazi: true, w: 1, m: `${6 - i}.` })) },
     ],
   }),
+  // ── Counting lists and tables ─────────────────────────────────────────────
+  GadDortDurum: tabloSekli({
+    aciklama: "3 nesne 2 kutuya, kutular boş kalabilir: nesneler ve kutular farklı 8, nesneler farklı kutular özdeş 4, nesneler özdeş kutular farklı 4, ikisi de özdeş 2 dağıtım",
+    sutunlar: ["kutular farklı", "kutular özdeş"],
+    satirlar: ["nesneler farklı", "nesneler özdeş"],
+    w: 124,
+    ilkW: 128,
+    h: 36,
+    duz: true,
+    hucre: (i, j) => [["8", "4"], ["4", "2"]][i][j],
+  }),
+  GadAdliAdsiz: kutuSekli({
+    aciklama: "Dört kişinin Mavi ve Kırmızı adlı iki takıma ikişer ayrılmasının 6 yolu; adlar silinince ikişer eşleşip 3 adsız ayırmaya iner",
+    W: 44,
+    H: 30,
+    satirAra: 10,
+    satirlar: [
+      ["AB", "CD"],
+      ["AC", "BD"],
+      ["AD", "BC"],
+    ].map(([x, y], i) => ({
+      k: [
+        { m: x, boya: true, ust: i === 0 ? "Mavi" : undefined },
+        { m: y, ust: i === 0 ? "Kırmızı" : undefined },
+        { yazi: true, m: "  " },
+        { m: y, boya: true, ust: i === 0 ? "Mavi" : undefined },
+        { m: x, ust: i === 0 ? "Kırmızı" : undefined },
+        { yazi: true, m: "→" },
+        { yazi: true, m: `{${x}, ${y}}`, v: true },
+      ],
+    })),
+  }),
+  GadCubukYildiz: kutuSekli({
+    aciklama: "Çubuk ve yıldız gösterimi: 4 yıldız ve 2 çubuktan oluşan her dizi bir dağıtımdır; örneğin ★★|★|★ Ayşe 2, Bora 1, Cem 1 demektir",
+    W: 22,
+    H: 30,
+    ara: 0,
+    satirAra: 6,
+    satirlar: [
+      { k: "★★|★|★".split(""), sag: "(2, 1, 1)" },
+      { k: "|★★★★|".split(""), sag: "(0, 4, 0)" },
+      { k: "★★★★||".split(""), sag: "(4, 0, 0)" },
+    ].map((r) => ({ ...r, k: r.k.map((c) => ({ yazi: true, w: 1, m: c, v: c === "|" })) })),
+  }),
+  SiralamaGruplari: kutuSekli({
+    aciklama: "A, B, C, D'den 3 harfin 24 sıralı dizilişi kullandıkları harf kümesine göre 4 satırda; her satırda aynı üç harfin 6 sıralanışı, 24 ÷ 6 = 4 seçim",
+    W: 44,
+    H: 28,
+    ara: 4,
+    satirAra: 6,
+    satirlar: ["ABC", "ABD", "ACD", "BCD"].map((k) => {
+      const [x, y, z] = k.split("");
+      return {
+        sol: `{${x}, ${y}, ${z}}`,
+        k: [x + y + z, x + z + y, y + x + z, y + z + x, z + x + y, z + y + x].map((m) => ({ m })),
+        sag: "6",
+      };
+    }),
+  }),
+  KaleYerlesimi: tabloSekli({
+    aciklama: "5×5 tahtada birbirini tehdit etmeyen 3 kale: 2, 4 ve 5. satırlar ile a, c ve e sütunları; kaleler 2c, 4a ve 5e karelerinde",
+    sutunlar: ["a", "b", "c", "d", "e"],
+    satirlar: ["1", "2", "3", "4", "5"],
+    hucre: (i, j) => ((i === 1 && j === 2) || (i === 3 && j === 0) || (i === 4 && j === 4) ? "K" : ""),
+    boya: (i, j) => (i === 1 && j === 2) || (i === 3 && j === 0) || (i === 4 && j === 4),
+    vurgu: (i, j) => i >= 0 && j >= 0,
+  }),
+  KombOlasilikEtiket: kutuSekli({
+    aciklama: "İki top iki kutuya atılıyor: etiketli 4 eş olasılıklı sonuç; etiketler silinince (2, 0), (1, 1), (0, 2) kalır, olasılıkları 1/4, 2/4, 1/4",
+    W: 56,
+    H: 30,
+    satirAra: 8,
+    satirlar: [
+      ["T_1T_2", "", "(2, 0)", "1/4"],
+      ["T_1", "T_2", "(1, 1)", "2/4"],
+      ["T_2", "T_1", "(1, 1)", "2/4"],
+      ["", "T_1T_2", "(0, 2)", "1/4"],
+    ].map(([a, b, c, d], i) => ({
+      k: [
+        { m: a, ust: i === 0 ? "1. kutu" : undefined },
+        { m: b, ust: i === 0 ? "2. kutu" : undefined },
+        { yazi: true, m: "→" },
+        { yazi: true, w: 1.2, m: c, v: c === "(1, 1)" },
+      ],
+      sag: d,
+    })),
+  }),
+  BinomSecim: tabloSekli({
+    aciklama: "(a + b)³ açılımında 8 seçim b sayısına göre gruplanır: aaa; aab, aba, baa; abb, bab, bba; bbb; grup büyüklükleri 1, 3, 3, 1 katsayılardır",
+    sutunlar: ["0 tane b", "1 tane b", "2 tane b", "3 tane b"],
+    satirlar: ["", "", "", "katsayı"],
+    w: 76,
+    ilkW: 70,
+    duz: true,
+    hucre: (i, j) => [["aaa", "aab", "abb", "bbb"], ["", "aba", "bab", ""], ["", "baa", "bba", ""], ["1", "3", "3", "1"]][i][j],
+    vurgu: (i) => i === 3,
+    boya: (i) => i === 3,
+  }),
+  DehtDuzensizListe: tabloSekli({
+    aciklama: "Dört kişinin hiçbirinin kendi eşyasını almadığı 9 dağıtım, birinci kişinin aldığı eşyaya göre üç sütunda",
+    sutunlar: ["1. kişi → 2", "1. kişi → 3", "1. kişi → 4"],
+    satirlar: ["", "", ""],
+    w: 116,
+    ilkW: 0,
+    duz: true,
+    hucre: (i, j) => [["2143", "3412", "4321"], ["2341", "3142", "4123"], ["2413", "3421", "4312"]][i][j],
+  }),
+  DehtGuvercinTorba: kutuSekli({
+    aciklama: "Aynı renkten 3 top için en kötü durum: 2 kırmızı (K), 2 mavi (M) ve tek yeşil (Y) top çekilmiş, toplam 5; 6. top kırmızı ya da mavidir",
+    W: 34,
+    H: 34,
+    satirlar: [
+      {
+        k: [{ daire: true, m: "K" }, { daire: true, m: "K" }, { daire: true, m: "M" }, { daire: true, m: "M" }, { daire: true, m: "Y" }, { yazi: true, m: "+" }, { daire: true, m: "?", boya: true, v: true, alt: "6. top", altV: true }],
+      },
+    ],
+  }),
+  SkBayrakListesi: kutuSekli({
+    aciklama: "Üç dikey şeritli 12 bayrak: kırmızı (K), lacivert (L), gri (G); komşu şeritler farklı renkte; her satırda ilk şerit sabit, 4 bayrak",
+    W: 54,
+    H: 30,
+    ara: 10,
+    satirAra: 8,
+    satirlar: (["K", "L", "G"] as const).map((x) => {
+      const r = ["K", "L", "G"].filter((c) => c !== x);
+      const bayraklar = r.flatMap((y) => ["K", "L", "G"].filter((z) => z !== y).map((z) => x + y + z));
+      return { k: bayraklar.map((m) => ({ m })), sag: "4" };
+    }),
+  }),
+  RakamSayiSayfaBloklari: tabloSekli({
+    aciklama: "Sayfa numaralama blokları: 1–9 arası 9 sayı × 1 rakam = 9; 10–99 arası 90 × 2 = 180; 100–999 arası 900 × 3 = 2700; blok sonlarında toplam 9, 189, 2889",
+    sutunlar: ["sayı adedi", "basamak", "rakam", "toplam"],
+    satirlar: ["1–9", "10–99", "100–999"],
+    w: 82,
+    ilkW: 74,
+    duz: true,
+    hucre: (i, j) => [["9", "1", "9", "9"], ["90", "2", "180", "189"], ["900", "3", "2700", "2889"]][i][j],
+    vurgu: (i, j) => j === 3,
+  }),
+  FonkSayiCiftSayim: tabloSekli({
+    aciklama: "Önce her kutuya bir top koyma yöntemi aynı dağılımı iki kez sayar: Yol 1'de önce 1, sonra 4 numaralı top K1'e; Yol 2'de tersi; ikisi de K1 = {1, 4}, K2 = {2}, K3 = {3}",
+    sutunlar: ["1. tur", "2. tur", "sonuç"],
+    satirlar: ["Yol 1", "Yol 2"],
+    duz: true,
+    w: 130,
+    ilkW: 64,
+    h: 34,
+    hucre: (i, j) => [["1, 2, 3", "4 → K_1", "K_1 = {1, 4}"], ["4, 2, 3", "1 → K_1", "K_1 = {1, 4}"]][i][j],
+    vurgu: (i, j) => j === 2,
+  }),
+  FonkSayiSecim: {
+    aciklama: "A = {a, b, c} kümesinin her elemanı B = {1, 2, 3, 4} kümesinden bir görüntü seçer; kesik çizgiler bütün seçenekler, oklar bir fonksiyon: f(a) = 2, f(b) = 2, f(c) = 4",
+    boyut: [300, 220],
+    noktalar: {
+      MA: [0, 0], MB: [4, 0], YA: [0, 2.35], YB: [4, 2.35],
+      a: [0, 1], b: [0, 0], c: [0, -1], n1: [4, 1.5], n2: [4, 0.5], n3: [4, -0.5], n4: [4, -1.5],
+      ...Object.fromEntries(["a", "b", "c"].map((x, i) => [`s${x}`, [0.25, 1 - i]])),
+      ...Object.fromEntries([1, 2, 3, 4].map((n) => [`h${n}`, [3.75, 2.5 - n]])),
+    } as Record<string, Nk>,
+    elipsler: [{ merkez: "MA", rx: 0.85, ry: 1.75 }, { merkez: "MB", rx: 0.85, ry: 2.1 }],
+    dogrular: [
+      ...["a", "b", "c"].flatMap((x) => [1, 2, 3, 4].map((n) => ({ p: [`s${x}`, `h${n}`] as [string, string], kesik: true }))),
+      { p: ["sa", "h2"], vurgu: true, ok: true },
+      { p: ["sb", "h2"], vurgu: true, ok: true },
+      { p: ["sc", "h4"], vurgu: true, ok: true },
+    ],
+    yazilar: [{ nokta: "YA", metin: "A" }, { nokta: "YB", metin: "B" }],
+    isaretli: ["a", "b", "c", "n1", "n2", "n3", "n4"],
+    etiketMetni: { n1: "1", n2: "2", n3: "3", n4: "4" },
+    etiketYonu: { a: 180, b: 180, c: 180, n1: 0, n2: 0, n3: 0, n4: 0 },
+    gizli: ["MA", "MB", "YA", "YB", "sa", "sb", "sc", "h1", "h2", "h3", "h4"],
+  },
+  FonkSayiOrtenGrup: {
+    aciklama: "Dört elemanlı A'dan üç elemanlı B'ye örten fonksiyon: aynı görüntüyü paylaşan 1 ve 2 kesikli kutuda gruplanıp b'ye; 3 c'ye, 4 a'ya gidiyor",
+    boyut: [300, 220],
+    noktalar: {
+      MA: [0, 0], MB: [4, 0], YA: [0, 2.35], YB: [4, 2.35],
+      p1: [0, 1.5], p2: [0, 0.5], p3: [0, -0.5], p4: [0, -1.5], a: [4, 1], b: [4, 0], c: [4, -1],
+      G0: [-0.45, 0.15], G1: [0.45, 0.15], G2: [0.45, 1.85], G3: [-0.45, 1.85],
+      s12: [0.5, 1], s3: [0.25, -0.5], s4: [0.25, -1.5], ha: [3.75, 1], hb: [3.75, 0], hc: [3.75, -1],
+    },
+    elipsler: [{ merkez: "MA", rx: 0.85, ry: 2.1 }, { merkez: "MB", rx: 0.85, ry: 1.75 }],
+    dogrular: [
+      { p: ["G0", "G1"], kesik: true }, { p: ["G1", "G2"], kesik: true }, { p: ["G2", "G3"], kesik: true }, { p: ["G3", "G0"], kesik: true },
+      { p: ["s12", "hb"], vurgu: true, ok: true },
+      { p: ["s3", "hc"], vurgu: true, ok: true },
+      { p: ["s4", "ha"], vurgu: true, ok: true },
+    ],
+    yazilar: [{ nokta: "YA", metin: "A" }, { nokta: "YB", metin: "B" }],
+    isaretli: ["p1", "p2", "p3", "p4", "a", "b", "c"],
+    etiketMetni: { p1: "1", p2: "2", p3: "3", p4: "4" },
+    etiketYonu: { p1: 180, p2: 180, p3: 180, p4: 180, a: 0, b: 0, c: 0 },
+    gizli: ["MA", "MB", "YA", "YB", "G0", "G1", "G2", "G3", "s12", "s3", "s4", "ha", "hb", "hc"],
+  },
+  GadBayrakYerleri: (() => {
+    // Pixel units (drawn 1:1). Poles at x = 0, 120, 240; flags hang right of the pole.
+    const noktalar: Record<string, Nk> = {};
+    const dogrular: { p: [string, string] }[] = [];
+    const yazilar: { nokta: string; metin: string; vurgu?: boolean }[] = [];
+    const cokgenler: string[][] = [];
+    const bayraklar: [number, number, string][] = [[0, -22, "a"], [0, -62, "b"], [120, -22, "c"]];
+    const yerler: [number, number][] = [[0, -12], [0, -52], [0, -92], [120, -12], [120, -52], [240, -12]];
+    [0, 120, 240].forEach((x, i) => {
+      noktalar[`D${i}a`] = [x, 0];
+      noktalar[`D${i}b`] = [x, -170];
+      dogrular.push({ p: [`D${i}a`, `D${i}b`] });
+    });
+    bayraklar.forEach(([x, y, m], i) => {
+      const c = [`F${i}a`, `F${i}b`, `F${i}c`, `F${i}d`];
+      noktalar[c[0]] = [x, y];
+      noktalar[c[1]] = [x + 38, y];
+      noktalar[c[2]] = [x + 38, y - 24];
+      noktalar[c[3]] = [x, y - 24];
+      cokgenler.push(c);
+      noktalar[`F${i}m`] = [x + 19, y - 12];
+      yazilar.push({ nokta: `F${i}m`, metin: m });
+    });
+    yerler.forEach(([x, y], i) => {
+      noktalar[`Y${i}`] = [x - 16, y - (i === 2 || i === 4 ? 4 : 0) + 2];
+      yazilar.push({ nokta: `Y${i}`, metin: String(i + 1), vurgu: true });
+    });
+    return {
+      aciklama: "Üç direk: birincide a ve b, ikincide c bayrağı, üçüncü boş; dördüncü bayrak birinci direkte 3, ikincide 2, üçüncüde 1 yere asılabilir, toplam 6 yer",
+      boyut: [278, 170],
+      noktalar,
+      dogrular,
+      cokgenler,
+      yazilar,
+      gizli: Object.keys(noktalar),
+    } satisfies Sekil;
+  })(),
 } satisfies Record<string, Sekil>;
 
 export type DersSekliAdi = keyof typeof DERS_SEKILLERI;
