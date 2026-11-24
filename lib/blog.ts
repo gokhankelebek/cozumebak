@@ -43,6 +43,17 @@ export const TAGS: Tag[] = [
 
 export const POSTS: BlogPost[] = [
   {
+    slug: "ogretmenler-gunu-ucgen-demeyi-kimden-ogrendik",
+    title: "Üçgen Demeyi Kimden Öğrendik? Bir Öğretmenler Günü Yazısı",
+    description:
+      "\"Müselles\" nasıl \"üçgen\" oldu? Atatürk'ün 1937'de yazdığı 44 sayfalık Geometri kitabının hikâyesi, 24 Kasım'ın neden Öğretmenler Günü olduğu ve iyi bir öğretmenin aslında ne yaptığı: bilgiyi söylenebilir kılmak. Öğretmenine çiçekten daha iyi ne verebileceğin de yazının sonunda.",
+    date: "2026-11-24",
+    tags: ["egitim"],
+    readingMinutes: 6,
+    relatedTopics: ["ucgenler-tyt", "ucgende-alan-10", "acilar-dogrular", "cember-daire-tyt", "dogrusal-fonksiyonlar-9"],
+    status: "published",
+  },
+  {
     slug: "maarif-turev-integral-logaritma-var-mi",
     title: "Maarif Modelinde Türev, İntegral ve Logaritma Var mı? (YKS 2027 ve 2028)",
     description:
