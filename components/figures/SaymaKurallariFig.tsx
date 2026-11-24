@@ -56,32 +56,7 @@ export function SkYolAgi() {
   );
 }
 
-// --- Şekil: üç şeritli bayraklar (listele, sonra say) -----------------------
-// 3 colors: K (kırmızı #e5492b), L (lacivert #0e1b33), G (gri #8a93a6).
-// Adjacent stripes differ → 3·2·2 = 12 flags. Row = first stripe color.
-// Flag (42×40) at x = 24 + 80·col, y = 16 + 62·row; letters below at y + 54.
+// Drawn from lib/dersSekilleri.ts by the quiz figure engine.
 export function SkBayrakListesi() {
-  const col: Record<string, string> = { K: "#e5492b", L: "#0e1b33", G: "#8a93a6" };
-  const letters = ["K", "L", "G"];
-  const flags: string[][] = [];
-  for (const a of letters)
-    for (const b of letters)
-      for (const c of letters) if (a !== b && b !== c) flags.push([a, b, c]);
-  return (
-    <svg viewBox="0 0 330 200" role="img" aria-label="Üç dikey şeritli 12 bayrağın listesi: kırmızı, lacivert ve gri renkleriyle komşu şeritler farklı renkte. Her satır ilk şeridin rengine göre 4 bayrak içeriyor">
-      {flags.map((f, i) => {
-        const x = 24 + 80 * (i % 4);
-        const y = 16 + 62 * Math.floor(i / 4);
-        return (
-          <g key={`f${i}`}>
-            {f.map((c, j) => (
-              <rect key={j} x={x + 14 * j} y={y} width="14" height="40" fill={col[c]} />
-            ))}
-            <rect x={x} y={y} width="42" height="40" fill="none" stroke="#0e1b33" strokeWidth="1" />
-            <text x={x + 21} y={y + 54} fontSize="10" fill="#0e1b33" textAnchor="middle">{f.join(" ")}</text>
-          </g>
-        );
-      })}
-    </svg>
-  );
+  return <SoruSekli sekil={DERS_SEKILLERI.SkBayrakListesi} />;
 }
