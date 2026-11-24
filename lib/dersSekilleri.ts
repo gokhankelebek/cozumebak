@@ -490,7 +490,8 @@ function kutuSekli(a: { aciklama: string; satirlar: KutuSatiri[]; W?: number; H?
       if (k.alt) yaz([xc, y1 - 13], k.alt, k.altV, true);
       x += w;
     });
-    if (r.sag) yaz([x + 12 + gen(r.sag) / 2, yc], r.sag, false);
+    // A result like "= 60" is math; a phrase like "birlerden başla" is upright.
+    if (r.sag) yaz([x + 12 + gen(r.sag) / 2, yc], r.sag, false, /[a-zçğıöşü]{3,}/.test(r.sag));
     ust = y1 - satirAra - (r.k.some((k) => k.alt) ? 18 : 0);
   });
   const xs = Object.values(noktalar).map((p) => p[0]);
@@ -693,6 +694,68 @@ function pascalSekli(): Sekil {
 }
 function bilezik(cx: number, son: string, harfler: string[]): Record<string, Nk> {
   return Object.fromEntries(harfler.map((h, i) => [h + son, kutupsal(cx, 0, 1.3, 90 - 90 * i)]));
+}
+
+// ── Flowcharts and other free layouts (pixels, y down, drawn 1:1) ───────────
+interface AkisDugum {
+  id: string;
+  m: string | string[];
+  tur: "oval" | "kutu" | "karar";
+  x: number;
+  y: number;
+  w: number;
+  h: number;
+  v?: boolean;
+}
+function akisSekli(a: {
+  aciklama: string;
+  dugumler: AkisDugum[];
+  oklar: { yol: Nk[]; kesik?: boolean; vurgu?: boolean; ucsuz?: boolean }[];
+  etiketler?: { p: Nk; m: string; v?: boolean; duz?: boolean }[];
+}): Sekil {
+  const noktalar: Record<string, Nk> = {};
+  const gizli: string[] = [];
+  let sayac = 0;
+  const ekle = ([x, y]: Nk) => {
+    const ad = `f${sayac++}`;
+    noktalar[ad] = [x, -y];
+    gizli.push(ad);
+    return ad;
+  };
+  const dogrular: { p: [string, string]; kesik?: boolean; vurgu?: boolean; ok?: boolean }[] = [];
+  const elipsler: { merkez: string; rx: number; ry: number }[] = [];
+  const yazilar: { nokta: string; metin: string; vurgu?: boolean; duz?: boolean }[] = [];
+  const kapali = (pts: Nk[]) => {
+    const ad = pts.map(ekle);
+    for (let i = 0; i < ad.length; i++) dogrular.push({ p: [ad[i], ad[(i + 1) % ad.length]] });
+  };
+  for (const d of a.dugumler) {
+    const { x, y, w, h } = d;
+    ekle([x - w / 2, y - h / 2]);
+    ekle([x + w / 2, y + h / 2]);
+    if (d.tur === "oval") elipsler.push({ merkez: ekle([x, y]), rx: w / 2, ry: h / 2 });
+    else if (d.tur === "kutu") kapali([[x - w / 2, y - h / 2], [x + w / 2, y - h / 2], [x + w / 2, y + h / 2], [x - w / 2, y + h / 2]]);
+    else kapali([[x, y - h / 2], [x + w / 2, y], [x, y + h / 2], [x - w / 2, y]]);
+    const satirlar = Array.isArray(d.m) ? d.m : [d.m];
+    satirlar.filter(Boolean).forEach((m, i) => yazilar.push({ nokta: ekle([x, y + (i - (satirlar.length - 1) / 2) * 17]), metin: m, vurgu: d.v, duz: true }));
+  }
+  for (const o of a.oklar) {
+    const ad = o.yol.map(ekle);
+    for (let i = 0; i + 1 < ad.length; i++)
+      dogrular.push({ p: [ad[i], ad[i + 1]], kesik: o.kesik, vurgu: o.vurgu, ok: !o.ucsuz && i === ad.length - 2 });
+  }
+  for (const e of a.etiketler ?? []) yazilar.push({ nokta: ekle(e.p), metin: e.m, vurgu: e.v, duz: e.duz ?? true });
+  const xs = Object.values(noktalar).map((q) => q[0]);
+  const ys = Object.values(noktalar).map((q) => q[1]);
+  return {
+    aciklama: a.aciklama,
+    boyut: [Math.max(...xs) - Math.min(...xs), Math.max(...ys) - Math.min(...ys)],
+    noktalar,
+    dogrular,
+    elipsler,
+    yazilar,
+    gizli,
+  };
 }
 
 export const DERS_SEKILLERI = {
@@ -2734,6 +2797,185 @@ export const DERS_SEKILLERI = {
       noktalar,
       dogrular,
       cokgenler,
+      yazilar,
+      gizli: Object.keys(noktalar),
+    } satisfies Sekil;
+  })(),
+  // ── Flowcharts ────────────────────────────────────────────────────────────
+  GectiKaldiAkis: akisSekli({
+    aciklama: "Geçti-Kaldı akış şeması: Başla, notu al, n ≥ 50 mi kararı; evet ise Geçti, hayır ise Kaldı yazılır, sonra Bitir",
+    dugumler: [
+      { id: "bas", m: "Başla", tur: "oval", x: 130, y: 20, w: 90, h: 32 },
+      { id: "al", m: "Notu al: n", tur: "kutu", x: 130, y: 84, w: 130, h: 34 },
+      { id: "k", m: "n ≥ 50 ?", tur: "karar", x: 130, y: 160, w: 130, h: 60 },
+      { id: "g", m: "\"Geçti\" yaz", tur: "kutu", x: 50, y: 250, w: 100, h: 34 },
+      { id: "kl", m: "\"Kaldı\" yaz", tur: "kutu", x: 210, y: 250, w: 100, h: 34 },
+      { id: "son", m: "Bitir", tur: "oval", x: 130, y: 370, w: 90, h: 32 },
+    ],
+    oklar: [
+      { yol: [[130, 36], [130, 67]] },
+      { yol: [[130, 101], [130, 130]] },
+      { yol: [[65, 160], [50, 160], [50, 233]], vurgu: true },
+      { yol: [[195, 160], [210, 160], [210, 233]], vurgu: true },
+      { yol: [[50, 267], [50, 310], [130, 310]], ucsuz: true },
+      { yol: [[210, 267], [210, 310], [130, 310]], ucsuz: true },
+      { yol: [[130, 310], [130, 354]] },
+    ],
+    etiketler: [
+      { p: [26, 196], m: "Evet", v: true },
+      { p: [236, 196], m: "Hayır", v: true },
+    ],
+  }),
+  DonguAkis: akisSekli({
+    aciklama: "Döngü akış şeması: toplam = 0, sayac = 1; sayac ≤ 5 olduğu sürece toplama sayac eklenip sayac 1 artırılır; koşul bozulunca toplam yazılır",
+    dugumler: [
+      { id: "bas", m: "Başla", tur: "oval", x: 140, y: 20, w: 90, h: 32 },
+      { id: "ilk", m: "toplam = 0, sayac = 1", tur: "kutu", x: 140, y: 84, w: 190, h: 34 },
+      { id: "k", m: "sayac ≤ 5 ?", tur: "karar", x: 140, y: 164, w: 150, h: 64 },
+      { id: "g", m: ["toplam = toplam + sayac", "sayac = sayac + 1"], tur: "kutu", x: 140, y: 262, w: 210, h: 52 },
+      { id: "y", m: "toplam yaz", tur: "kutu", x: 320, y: 262, w: 100, h: 34 },
+      { id: "son", m: "Bitir", tur: "oval", x: 320, y: 340, w: 90, h: 32 },
+    ],
+    oklar: [
+      { yol: [[140, 36], [140, 67]] },
+      { yol: [[140, 101], [140, 132]] },
+      { yol: [[140, 196], [140, 236]], vurgu: true },
+      { yol: [[35, 262], [14, 262], [14, 164], [65, 164]], vurgu: true },
+      { yol: [[215, 164], [320, 164], [320, 245]] },
+      { yol: [[320, 279], [320, 324]] },
+    ],
+    etiketler: [
+      { p: [118, 216], m: "Evet", v: true },
+      { p: [262, 150], m: "Hayır" },
+    ],
+  }),
+  AkisSemasi: kutuSekli({
+    aciklama: "x = 4 girdisiyle a = x + 1, b = 2a, c = b − 3 adımları; kutuların altında güncel değerler 4, 5, 10, 7; çıktı 7",
+    W: 74,
+    H: 34,
+    satirlar: [
+      {
+        k: [
+          { m: "x = 4", alt: "4", altV: true },
+          { m: "a = x + 1", w: 1.2, alt: "5", altV: true },
+          { m: "b = 2a", alt: "10", altV: true },
+          { m: "c = b − 3", w: 1.2, alt: "7", altV: true, boya: true },
+        ],
+        ayrac: "→",
+      },
+    ],
+  }),
+  OnbirKurali: kutuSekli({
+    aciklama: "8294 için 11 kuralı: birler basamağından başlayıp rakamlara dönüşümlü +, −, +, − işareti; 4 − 9 + 2 − 8 = −11, 11'in katı",
+    W: 40,
+    H: 40,
+    satirAra: 6,
+    satirlar: [
+      { k: [["8", "−"], ["2", "+"], ["9", "−"], ["4", "+"]].map(([m, a]) => ({ m, alt: a, altV: true })), sag: "← birlerden başla" },
+      { k: [{ yazi: true, m: "4 − 9 + 2 − 8 = −11", v: true }] },
+    ],
+  }),
+  KsIkiCocuk: kutuSekli({
+    aciklama: "İki çocuklu ailede dört durum KK, KE, EK, EE (ilk harf büyük çocuk); 'en az biri kız' yalnız EE'yi eler, P(KK) = 1/3; 'büyük çocuk kız' EK ve EE'yi eler, P(KK) = 1/2",
+    W: 40,
+    H: 32,
+    satirAra: 8,
+    satirlar: [
+      { sol: "en az biri kız", k: ["KK", "KE", "EK", "EE"].map((m) => ({ m, v: m === "KK", boya: m !== "EE" })), sag: "P(KK) = 1/3" },
+      { sol: "büyük çocuk kız", k: ["KK", "KE", "EK", "EE"].map((m) => ({ m, v: m === "KK", boya: m === "KK" || m === "KE" })), sag: "P(KK) = 1/2" },
+    ],
+  }),
+  SurecDongusu: akisSekli({
+    aciklama: "İstatistiksel araştırma süreci döngüsü: soru belirleme, veri toplama, bulgulara ulaşma, değerlendirme; değerlendirmeden ilk adıma dönen kesikli ok döngüyü gösterir",
+    dugumler: [
+      { id: "1", m: ["soru", "belirleme"], tur: "kutu", x: 45, y: 30, w: 90, h: 50 },
+      { id: "2", m: ["veri", "toplama"], tur: "kutu", x: 160, y: 30, w: 90, h: 50 },
+      { id: "3", m: ["bulgulara", "ulaşma"], tur: "kutu", x: 275, y: 30, w: 90, h: 50 },
+      { id: "4", m: "değerlendirme", tur: "kutu", x: 395, y: 30, w: 110, h: 50 },
+    ],
+    oklar: [
+      { yol: [[90, 30], [115, 30]] },
+      { yol: [[205, 30], [230, 30]] },
+      { yol: [[320, 30], [340, 30]] },
+      { yol: [[395, 55], [395, 92], [45, 92], [45, 55]], kesik: true },
+    ],
+  }),
+  SayiKumeleri: akisSekli({
+    aciklama: "İç içe sayı kümeleri: ℕ ⊂ ℤ ⊂ ℚ ⊂ ℝ; irrasyonel sayılar (√2, π, e) ℝ'nin içinde, ℚ'nun dışında",
+    dugumler: [
+      { id: "R", m: "", tur: "kutu", x: 160, y: 130, w: 320, h: 260 },
+      { id: "Q", m: "", tur: "kutu", x: 108, y: 132, w: 196, h: 196 },
+      { id: "Z", m: "", tur: "kutu", x: 104, y: 143, w: 160, h: 158 },
+      { id: "N", m: "", tur: "kutu", x: 98, y: 143, w: 120, h: 86 },
+    ],
+    oklar: [],
+    etiketler: [
+      { p: [14, 16], m: "ℝ" },
+      { p: [22, 48], m: "ℚ" },
+      { p: [36, 80], m: "ℤ" },
+      { p: [50, 116], m: "ℕ", v: true },
+      { p: [98, 150], m: "0, 1, 2, …" },
+      { p: [104, 205], m: "−3, −2, −1" },
+      { p: [130, 49], m: "1/2, −3/4" },
+      { p: [262, 112], m: "irrasyonel" },
+      { p: [262, 136], m: "√2, π, e" },
+    ],
+  }),
+  SkYolAgi: (() => {
+    // Roads as gentle arcs between towns: y = straight line + k·sin(πt).
+    const yol = (a: Nk, b: Nk, k: number) => (x: number) => {
+      const t = (x - a[0]) / (b[0] - a[0]);
+      return a[1] + (b[1] - a[1]) * t + k * Math.sin(Math.PI * t);
+    };
+    const A: Nk = [0, 0];
+    const B: Nk = [150, 60];
+    const C: Nk = [300, 0];
+    const egriler = [
+      ...[-18, 0, 18].map((k) => ({ f: yol(A, B, k), x: [A[0], B[0]] as [number, number] })),
+      ...[-27, -9, 9, 27].map((k) => ({ f: yol(B, C, k), x: [B[0], C[0]] as [number, number] })),
+      ...[-62, -84].map((k) => ({ f: yol(A, C, k), x: [A[0], C[0]] as [number, number], vurgu: true })),
+    ];
+    return {
+      aciklama: "Yol ağı: A ile B arasında 3, B ile C arasında 4 yol; ayrıca A ile C arasında B'ye uğramayan 2 doğrudan yol",
+      boyut: [300, 150],
+      noktalar: { A, B, C, Y1: [40, 66], Y2: [258, 70], Y3: [150, -110] },
+      egriler,
+      yazilar: [
+        { nokta: "Y1", metin: "3 yol", duz: true },
+        { nokta: "Y2", metin: "4 yol", duz: true },
+        { nokta: "Y3", metin: "2 doğrudan yol", duz: true, vurgu: true },
+      ],
+      isaretli: ["A", "B", "C"],
+      etiketYonu: { A: 180, B: 90, C: 0 },
+      gizli: ["Y1", "Y2", "Y3"],
+    } satisfies Sekil;
+  })(),
+  DaireselDonme: (() => {
+    const noktalar: Record<string, Nk> = {};
+    const cemberler: { merkez: string; nokta: string }[] = [];
+    const yazilar: { nokta: string; metin: string; vurgu?: boolean; duz?: boolean }[] = [];
+    const satirlar = [["ABC", "CAB", "BCA"], ["ACB", "BAC", "CBA"]];
+    satirlar.forEach((r, i) => {
+      r.forEach((dizi, j) => {
+        const cx = j * 96;
+        const cy = -i * 118;
+        const ad = `m${i}${j}`;
+        noktalar[ad] = [cx, cy];
+        noktalar[`${ad}r`] = [cx + 20, cy];
+        cemberler.push({ merkez: ad, nokta: `${ad}r` });
+        [90, -30, 210].forEach((t, k) => {
+          noktalar[`${ad}s${k}`] = kutupsal(cx, cy, 34, t);
+          yazilar.push({ nokta: `${ad}s${k}`, metin: dizi[k], vurgu: dizi[k] === "A" });
+        });
+      });
+      noktalar[`e${i}`] = [300, -i * 118];
+      yazilar.push({ nokta: `e${i}`, metin: `${i + 1}. diziliş`, duz: true, vurgu: true });
+    });
+    return {
+      aciklama: "Üç kişinin yuvarlak masaya oturuşu: altı doğrusal sıralama iki satırda; her satırdaki üç masa birbirinin döndürülmüşü, yalnız iki farklı dairesel diziliş var",
+      boyut: [360, 200],
+      noktalar,
+      cemberler,
       yazilar,
       gizli: Object.keys(noktalar),
     } satisfies Sekil;
