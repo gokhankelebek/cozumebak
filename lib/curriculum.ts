@@ -478,6 +478,64 @@ export function breadcrumb(slug: string): Crumb[] {
   return crumbs;
 }
 
+// ── Same topic at another level ───────────────────────────────────────────────
+// A 9th-grade lesson and its TYT/AYT counterpart are different pages written
+// for different readers. Each group lists the lessons that cover one topic, so
+// a lesson can point at the others ("Aynı konu, başka düzeyde" in KonuNav).
+// A slug may appear in one group only.
+export const AYNI_KONU: string[][] = [
+  ["ebob-ekok-10", "ebob-ekok"],
+  ["trigonometrik-denklemler", "trigonometrik-denklemler-ayt"],
+  ["cemberin-analitik-incelenmesi", "cember-analitik-ayt"],
+  ["ustel-fonksiyon", "ustel-fonksiyon-ayt"],
+  ["logaritma-fonksiyonu", "logaritma-kavrami-ayt"],
+  ["logaritmali-denklemler", "logaritmik-denklem-ayt"],
+  ["dizi-kavrami", "dizi-kavrami-ayt"],
+  ["aritmetik-dizi", "aritmetik-dizi-ayt"],
+  ["geometrik-dizi", "geometrik-dizi-ayt"],
+  ["turevin-tanimi-12", "turevin-tanimi"],
+  ["turev-alma-kurallari-12", "turev-alma-kurallari"],
+  ["birinci-derece-problemler-9", "birinci-derece-denklem-tyt"],
+  ["ikinci-derece-denklem-esitsizlik-10", "ikinci-derece-denklem-sistemleri-11", "ikinci-derece-esitsizlikler-11", "ikinci-derece-denklem-ayt", "ikinci-derece-esitsizlik-ayt"],
+  ["karesel-fonksiyonlar-10", "ikinci-derece-fonksiyonlar"],
+  ["uslu-ifadeler-9", "uslu-ifadeler"],
+  ["koklu-ifadeler-9", "koklu-ifadeler"],
+  ["yonlu-acilar", "birim-cember-ayt"],
+  ["kumelerde-temel-kavramlar", "kumeler-tyt", "temel-kavramlar"],
+  ["mutlak-deger-fonksiyonlari-9", "mutlak-deger-tyt", "ozel-fonksiyonlar-ayt"],
+  ["ucgende-acilar", "ucgende-kenar-aci-bagintilari", "ucgenler-tyt"],
+  ["ucgende-eslik-benzerlik-9", "ucgende-alan-10", "ucgende-benzerlik-alan"],
+  ["tales-oklid-pisagor-9", "dik-ucgen-pisagor"],
+  ["bolunebilme-kurallari-10", "bolme-bolunebilme"],
+  ["asal-carpanlar-bolenler-10", "asal-carpanlar-bolen-sayisi"],
+  ["ters-fonksiyon", "bileske-ters-fonksiyon-ayt"],
+  ["fonksiyon-kavrami-tyt", "fonksiyon-cesitleri-ayt"],
+  ["trigonometrik-fonksiyonlar", "trigonometrik-fonksiyonlar-ayt"],
+  ["sinus-kosinus-teoremi-10", "ucgende-trigonometri-ayt"],
+  ["iki-nokta-uzaklik-10", "iki-nokta-arasi-uzaklik"],
+  ["belirsiz-integral", "integral-kavrami"],
+  ["belirli-integral", "integralde-alan", "belirli-integral-teoremi"],
+  ["sayma-permutasyon-10", "sayma-kurallari", "permutasyon-siralama"],
+  ["kombinasyon-10", "kombinasyon-secme", "permutasyon-kombinasyon-tyt"],
+  ["kosullu-olasilik", "kosullu-olasilik-sorulari"],
+  ["bagimli-bagimsiz-olaylar-10", "olasilik-tyt", "olasilik-temel-kavramlar"],
+  ["tek-degiskenli-veri-9", "veri-yorumlama-9", "veri-istatistik-tyt"],
+  ["prizma-piramit-11", "silindir-koni-kure-11", "kati-cisimler-tyt"],
+  ["cemberde-acilar", "cember-daire-tyt"],
+  ["mantik-onermeler-9", "mantik-tyt"],
+];
+
+/** Published lessons that cover the same topic at another level. */
+export function sameTopicOtherLevels(slug: string): Topic[] {
+  const group = AYNI_KONU.find((g) => g.includes(slug));
+  if (!group) return [];
+  return group
+    .filter((s) => s !== slug)
+    .map((s) => getTopic(s))
+    .filter((t): t is Topic => !!t && t.status === "published");
+}
+
+
 /** Prev/next within the SAME unit, published-only (lessons never dead-end). */
 export function siblings(slug: string): { prev?: Topic; next?: Topic } {
   const topic = getTopic(slug);
