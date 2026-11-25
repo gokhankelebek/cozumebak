@@ -20,6 +20,8 @@ export interface BlogPost {
   slug: string; // unique → /blog/<slug>
   title: string;
   description: string; // meta description + card + RSS summary (1–2 sentences)
+  seoTitle?: string; // <title> override; the page H1 and cards keep `title`
+  seoDescription?: string; // meta description override; cards and RSS keep `description`
   date: string; // ISO published date (YYYY-MM-DD)
   updated?: string; // ISO last-updated date
   tags: string[]; // references Tag.slug
@@ -188,6 +190,9 @@ export const POSTS: BlogPost[] = [
     title: "11. Sınıfa Maarif Modeli ile Başlıyorsun: Matematikte Ne Değişti?",
     description:
       "2026-2027'de Maarif Modeli 11. sınıfa geldi: MEB'in resmî programına göre 11. sınıf matematiği artık 5 tema ve 206 ders saati — üstel-logaritma 12'den indi, çember ve katı cisimler 12'ye taşındı. Ders saatlerinin gösterdiği takvim, ne geldi-ne gitti tablosu, elle çözülmüş iki örnek ve YKS 2028'e girecek ilk kuşak için somut bir 11. sınıf planı.",
+    seoTitle: "11. Sınıf Matematik Maarif Modeli: Konular ve Değişenler",
+    seoDescription:
+      "Maarif Modeli'nde 11. sınıf matematik konuları: 5 tema, 206 ders saati. Logaritma 12'den indi, çember ve katı cisimler 12'ye gitti. Tablo, örnekler ve plan.",
     date: "2026-08-31",
     tags: ["maarif-modeli", "mufredat", "meb", "yks"],
     readingMinutes: 8,
@@ -206,6 +211,9 @@ export const POSTS: BlogPost[] = [
     title: "YKS 2027 Matematik: Yıla Hangi Konudan Başlamalı?",
     description:
       "Ağustos bitiyor, okul açılıyor ve YKS 2027'ye yaklaşık 10 ayın var. Yılın en önemli kararı 'günde kaç saat' değil, 'hangi sırayla' — çünkü sınav her konuyu eşit ağırlıkta sormuyor. 2018–2025 gerçek sınavlarından çıkardığımız AYT ve TYT konu ağırlıklarıyla yılı doğru sıraya koyuyoruz; bir de Maarif paniğine dair net cevap: 2027'de integral hâlâ sınavda.",
+    seoTitle: "YKS 2027 Matematik Konuları: Hangi Konudan Başlamalı?",
+    seoDescription:
+      "YKS 2027 matematikte hangi konu ne kadar soruluyor? 2018–2025 sınavlarından TYT ve AYT konu ağırlıkları, çalışma sırası ve net cevap: integral hâlâ sınavda.",
     date: "2026-08-13",
     tags: ["yks", "calisma-teknikleri", "maarif-modeli"],
     readingMinutes: 8,
@@ -313,6 +321,9 @@ export const POSTS: BlogPost[] = [
     title: "Çıkararak Derinleşmek: Maarif Modeli Matematik Müfredatında Ne Değişti?",
     description:
       "Türkiye Yüzyılı Maarif Modeli ile matematik programı içerik temelli yapıdan beceri temelli yapıya geçti: beş alan becerisi, %35 sadeleştirme, integralin çıkarılması ve 'değişimin matematiği'.",
+    seoTitle: "Maarif Modeli Matematik Müfredatı: Ne Değişti, Neler Kalktı?",
+    seoDescription:
+      "Maarif Modeli'nde matematikte ne değişti? Program yaklaşık %35 sadeleşti, integral çıkarıldı, limit ve türev genişledi. Beş alan becerisi ve değişen konular.",
     date: "2026-06-05",
     tags: ["maarif-modeli", "mufredat", "meb", "egitim"],
     readingMinutes: 8,
