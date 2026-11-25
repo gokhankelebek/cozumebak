@@ -45,6 +45,7 @@ function trackTag(track: Track): string {
 export function lessonTitle(slug: string): string {
   const topic = getTopic(slug);
   if (!topic) return "Konu";
+  if (topic.seoTitle) return topic.seoTitle;
   const t = topic.title;
   // Avoid "(…) (AYT)" when the title already ends in a parenthetical.
   const tag = t.endsWith(")") ? `– ${trackTag(topic.track)}` : `(${trackTag(topic.track)})`;
@@ -61,6 +62,7 @@ export function lessonTitle(slug: string): string {
 export function lessonDescription(slug: string): string {
   const topic = getTopic(slug);
   if (!topic) return "";
+  if (topic.seoDescription) return topic.seoDescription;
   const tag = trackTag(topic.track);
   // Manifest count = worked examples + quiz on the page; the bank alone is ~6.
   const n = topic.questionCount ?? getQuizCount(slug);
@@ -171,18 +173,20 @@ export function postMetadata(slug: string): Metadata {
   if (!post) {
     return { title: "Yazı", robots: { index: false, follow: true } };
   }
+  const title = post.seoTitle ?? post.title;
+  const description = post.seoDescription ?? post.description;
   const url = `/blog/${slug}`;
   const isDraft = post.status === "draft";
   const ogImage = {
     url: `/api/og?slug=${slug}&type=blog`,
     width: 1200,
     height: 630,
-    alt: post.title,
+    alt: title,
   };
 
   return {
-    title: post.title,
-    description: post.description,
+    title,
+    description,
     keywords: post.tags,
     authors: [{ name: SITE_NAME }],
     alternates: {
@@ -192,8 +196,8 @@ export function postMetadata(slug: string): Metadata {
     robots: isDraft ? { index: false, follow: true } : undefined,
     openGraph: {
       type: "article",
-      title: `${post.title} | ${SITE_NAME}`,
-      description: post.description,
+      title: `${title} | ${SITE_NAME}`,
+      description,
       url,
       siteName: SITE_NAME,
       locale: "tr_TR",
@@ -205,8 +209,8 @@ export function postMetadata(slug: string): Metadata {
     },
     twitter: {
       card: "summary_large_image",
-      title: post.title,
-      description: post.description,
+      title,
+      description,
       images: [ogImage.url],
     },
   };
