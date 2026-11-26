@@ -4,12 +4,21 @@ import { publishedPosts, allTagsWithCounts } from "@/lib/blog";
 import { coveredTopics } from "@/lib/soru-tipleri";
 import { yaziliSlugs } from "@/lib/yazili";
 import { SITE_URL } from "@/lib/seo";
+import LASTMOD from "@/lib/lastmod.json";
 
 // Manifest-derived sitemap. Published lessons get a high priority; "soon" stubs
 // are included at low priority so crawlers discover the URL structure (their
-// pages carry robots: noindex until content lands). lastModified comes from the
-// topic's `updated` field when set, otherwise the build date — so every
-// redeploy refreshes the freshness signal.
+// pages carry robots: noindex until content lands). lastModified is the date
+// the page's own sources last changed (lib/lastmod.json, written by
+// `npm run lastmod`), or the topic's `updated` field when that is later. Only
+// pages missing from that file (new ones) and the hubs fall back to the build
+// date: a lastmod that is "today" on every deploy gets ignored by Google.
+const lastmod = LASTMOD as Record<string, string>;
+function changed(path: string, fallback: Date, updated?: string): Date {
+  const d = [lastmod[path], updated].filter(Boolean).sort().at(-1);
+  return d ? new Date(d) : fallback;
+}
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const buildDate = new Date();
 
@@ -25,9 +34,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
 
   const tools: MetadataRoute.Sitemap = [
-    { url: `${SITE_URL}/yks-puan-hesaplama`, lastModified: buildDate, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${SITE_URL}/tercih-robotu`, lastModified: buildDate, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${SITE_URL}/hedef-net`, lastModified: buildDate, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${SITE_URL}/yks-puan-hesaplama`, lastModified: changed("/yks-puan-hesaplama", buildDate), changeFrequency: "monthly", priority: 0.8 },
+    { url: `${SITE_URL}/tercih-robotu`, lastModified: changed("/tercih-robotu", buildDate), changeFrequency: "monthly", priority: 0.8 },
+    { url: `${SITE_URL}/hedef-net`, lastModified: changed("/hedef-net", buildDate), changeFrequency: "monthly", priority: 0.8 },
   ];
 
   const corporate: MetadataRoute.Sitemap = [
@@ -37,7 +46,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/sss",
   ].map((path) => ({
     url: `${SITE_URL}${path}`,
-    lastModified: buildDate,
+    lastModified: changed(path, buildDate),
     changeFrequency: "yearly" as const,
     priority: 0.4,
   }));
@@ -62,14 +71,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const published = publishedTopics().map((t) => ({
     url: `${SITE_URL}/konular/${t.slug}`,
-    lastModified: t.updated ? new Date(t.updated) : buildDate,
+    lastModified: changed(`/konular/${t.slug}`, buildDate, t.updated),
     changeFrequency: "monthly" as const,
     priority: 0.7,
   }));
 
   const soon = soonTopics().map((t) => ({
     url: `${SITE_URL}/konular/${t.slug}`,
-    lastModified: t.updated ? new Date(t.updated) : buildDate,
+    lastModified: changed(`/konular/${t.slug}`, buildDate, t.updated),
     changeFrequency: "monthly" as const,
     priority: 0.2,
   }));
@@ -85,7 +94,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
   const soruTipleri = coveredTopics().map((slug) => ({
     url: `${SITE_URL}/soru-tipleri/${slug}`,
-    lastModified: buildDate,
+    lastModified: changed(`/soru-tipleri/${slug}`, buildDate),
     changeFrequency: "monthly" as const,
     priority: 0.7,
   }));
@@ -102,7 +111,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
   const yazili = yaziliSlugs().map((slug) => ({
     url: `${SITE_URL}/yazili-sinavlar/${slug}`,
-    lastModified: buildDate,
+    lastModified: changed("/yazili-sinavlar", buildDate),
     changeFrequency: "weekly" as const,
     priority: 0.7,
   }));

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getTopic, getUnit, trackMeta, siblings, topicsByUnit } from "@/lib/curriculum";
+import { getTopic, getUnit, trackMeta, siblings, topicsByUnit, sameTopicOtherLevels } from "@/lib/curriculum";
 import { postsForTopic } from "@/lib/blog";
 import { getSoruTipleri, relatedBySoruTipi } from "@/lib/soru-tipleri";
 import { PageFeedback } from "@/components/FeedbackForm";
@@ -7,7 +7,8 @@ import { PageFeedback } from "@/components/FeedbackForm";
 // Manifest-driven lesson navigation. Author writes only <KonuNav slug="..."/>
 // at the bottom of the MDX. Renders, in order: a link to this topic's
 // /soru-tipleri page (when a KB exists — otherwise those high-intent pages are
-// internally orphaned), related blog posts, same-unit topics, cross-unit topics
+// internally orphaned), related blog posts, the same topic at other levels,
+// same-unit topics, cross-unit topics
 // from the soru-tipleri `kombinasyon` graph, then prev/next. Prev/next are
 // published-only (lessons never link to a stub). When a side is missing, falls
 // back to a "back to unit" link so the reader never hits a dead end. Reuses the
@@ -31,8 +32,12 @@ export default function KonuNav({ slug }: { slug: string }) {
   // the soru-tipleri knowledge graph. Excludes same-unit topics (already listed
   // above) and keeps only published lessons. Capped so the block stays a
   // pointer, not a dump.
+  // The same topic written for another grade or exam (9. sınıf ↔ TYT ↔ AYT).
+  const otherLevels = sameTopicOtherLevels(slug);
+  const otherLevelSlugs = new Set(otherLevels.map((t) => t.slug));
+
   const linkedTopics = relatedBySoruTipi(slug)
-    .filter((s) => !sameUnitSlugs.has(s))
+    .filter((s) => !sameUnitSlugs.has(s) && !otherLevelSlugs.has(s))
     .map((s) => getTopic(s))
     .filter((t): t is NonNullable<typeof t> => !!t && t.status === "published")
     .slice(0, 6);
@@ -66,6 +71,21 @@ export default function KonuNav({ slug }: { slug: string }) {
             {relatedPosts.map((p) => (
               <li key={p.slug}>
                 <Link href={`/blog/${p.slug}`}>{p.title}</Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+      {otherLevels.length > 0 && (
+        <section className="konu-related" aria-label="Aynı konu, başka düzeyde">
+          <h2>Aynı konu, başka düzeyde</h2>
+          <ul>
+            {otherLevels.map((t) => (
+              <li key={t.slug}>
+                <Link href={`/konular/${t.slug}`}>
+                  {t.title}
+                  <span className="rel-track"> · {trackMeta(t.track).label}</span>
+                </Link>
               </li>
             ))}
           </ul>
