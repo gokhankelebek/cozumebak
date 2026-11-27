@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { getSoruTipleri } from "@/lib/soru-tipleri";
+import { isGradeTopic } from "@/lib/curriculum";
 
 // "Sınavda Tuzaklar" — surfaces the soru-tipleri knowledge base on lesson
 // pages. Each line pairs an ÖSYM archetype with the classic student mistake
@@ -26,8 +27,9 @@ export default function Tuzaklar({ slug }: { slug: string }) {
     <aside className="tuzaklar" aria-label="Sınavda tuzaklar">
       <p className="tuzaklar-eyebrow">Sınavda Tuzaklar</p>
       <p className="tuzaklar-sub">
-        ÖSYM bu konuda çeldiricileri tam şu hatalar üzerine kurar — sorulara
-        başlamadan bir kez oku:
+        {isGradeTopic(slug)
+          ? "Yazılıda puan en çok şu hatalarla gider; sorulara başlamadan bir kez oku:"
+          : "ÖSYM bu konuda çeldiricileri tam şu hatalar üzerine kurar — sorulara başlamadan bir kez oku:"}
       </p>
       <ul>
         {rows.map((r) => (

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { getSoruTipleri } from "@/lib/soru-tipleri";
 import { getQuizCount } from "@/lib/sorular";
-import { getTopic } from "@/lib/curriculum";
+import { getTopic, isGradeTopic } from "@/lib/curriculum";
 
 // ─────────────────────────────────────────────────────────────────────────────
 // /soru-tipleri/<slug> body — renders the teacher's full archetype catalogue
@@ -28,11 +28,13 @@ export default function SoruTipleri({ slug }: { slug: string }) {
 
   const topic = getTopic(slug);
   const quizCount = getQuizCount(slug);
+  // Grade lessons are examined by the school (yazılı), TYT/AYT ones by ÖSYM.
+  const okul = isGradeTopic(slug);
 
   return (
     <div className="st">
       <p className="st-intro">
-        Aşağıda ÖSYM'nin bu konuyu sorma biçimleri var: her tipin nasıl
+        Aşağıda {okul ? "yazılılarda bu konunun sorulma" : "ÖSYM'nin bu konuyu sorma"} biçimleri var: her tipin nasıl
         tanınacağı, adım adım çözüm yolu ve öğrencilerin düştüğü tuzaklar. Önce
         oku, sonra{" "}
         {quizCount ? (
@@ -74,7 +76,7 @@ export default function SoruTipleri({ slug }: { slug: string }) {
 
             {t.celdiriciler.length > 0 && (
               <div className="st-tuzak">
-                <p className="st-label">ÖSYM'nin kurduğu tuzaklar</p>
+                <p className="st-label">{okul ? "Sık yapılan hatalar" : "ÖSYM'nin kurduğu tuzaklar"}</p>
                 <ul>
                   {t.celdiriciler.map((c, j) => (
                     <li key={j}>

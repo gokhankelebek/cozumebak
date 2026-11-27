@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getTopic, getUnit, trackMeta, siblings, topicsByUnit, sameTopicOtherLevels } from "@/lib/curriculum";
+import { getTopic, getUnit, trackMeta, siblings, topicsByUnit, sameTopicOtherLevels, isGradeTopic } from "@/lib/curriculum";
 import { postsForTopic } from "@/lib/blog";
 import { getSoruTipleri, relatedBySoruTipi } from "@/lib/soru-tipleri";
 import { PageFeedback } from "@/components/FeedbackForm";
@@ -58,7 +58,7 @@ export default function KonuNav({ slug }: { slug: string }) {
           <ul>
             <li>
               <Link href={`/soru-tipleri/${slug}`}>
-                {topic.title} — ÖSYM soru tipleri ve tuzakları ({kb.tipler.length} tip)
+                {topic.title} — {isGradeTopic(slug) ? "yazılı" : "ÖSYM"} soru tipleri ve tuzakları ({kb.tipler.length} tip)
               </Link>
             </li>
           </ul>

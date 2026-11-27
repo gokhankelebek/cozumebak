@@ -7,7 +7,7 @@ import { SITE_NAME } from "@/lib/seo";
 export const metadata: Metadata = {
   title: "Soru Tipleri ve Tuzaklar",
   description:
-    "ÖSYM'nin her konuyu sorma biçimleri: soru tipleri, adım adım çözüm yöntemleri ve öğrencilerin düştüğü tuzaklar. TYT ve AYT matematik.",
+    "Her konunun sınavda sorulma biçimleri: soru tipleri, adım adım çözüm yöntemleri ve öğrencilerin düştüğü tuzaklar. TYT, AYT ve 9. sınıf matematik.",
   alternates: { canonical: "/soru-tipleri" },
 };
 
@@ -42,7 +42,7 @@ export default function SoruTipleriHub() {
         <h1 className="hero-title">Soru Tipleri ve Tuzaklar</h1>
         <p className="hero-sub">
           Bir konuyu bilmek ayrı, o konudan gelen soruyu tanımak ayrı. Burada
-          ÖSYM'nin her konuyu sorma biçimlerini topladık: {totalTypes} soru
+          ÖSYM'nin ve okul yazılılarının her konuyu sorma biçimlerini topladık: {totalTypes} soru
           tipi, çözüm yöntemleriyle ve öğrencilerin düştüğü tuzaklarla birlikte.
         </p>
       </header>

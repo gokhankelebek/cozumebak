@@ -438,6 +438,12 @@ export function trackMeta(track: Track): TrackMeta {
   return m;
 }
 
+/** True for grade lessons (9–12): their exams are school exams, not ÖSYM's. */
+export function isGradeTopic(slug: string): boolean {
+  const t = getTopic(slug);
+  return !!t && trackMeta(t.track).kind === "grade";
+}
+
 export function topicsByTrack(track: Track): Topic[] {
   return TOPICS.filter((t) => t.track === track);
 }
