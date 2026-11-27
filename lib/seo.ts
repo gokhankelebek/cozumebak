@@ -135,8 +135,17 @@ export function soruTipleriMetadata(slug: string): Metadata {
   }
   const tm = trackMeta(topic.track);
   const unit = getUnit(topic.unit);
-  const title = `${topic.title} — Soru Tipleri ve Tuzaklar`;
-  const description = `${topic.title} konusunda ÖSYM'nin sorduğu soru tipleri, adım adım çözüm yöntemleri ve öğrencilerin düştüğü tuzaklar. ${tm.label}${unit ? " · " + unit.title : ""}.`;
+  const title =
+    tm.kind === "grade"
+      ? [
+          `${topic.title} Soru Tipleri ve Çözümleri (${tm.label})`,
+          `${topic.title} Soru Tipleri (${tm.label})`,
+        ].find((c, i, a) => c.length <= TITLE_MAX - ` | ${SITE_NAME}`.length || i === a.length - 1)!
+      : `${topic.title} — Soru Tipleri ve Tuzaklar`;
+  const description =
+    tm.kind === "grade"
+      ? `${topic.title} konusunda yazılıda çıkan soru tipleri, adım adım çözüm yöntemleri ve sık yapılan hatalar. ${tm.label} matematik${unit ? " · " + unit.title : ""}.`
+      : `${topic.title} konusunda ÖSYM'nin sorduğu soru tipleri, adım adım çözüm yöntemleri ve öğrencilerin düştüğü tuzaklar. ${tm.label}${unit ? " · " + unit.title : ""}.`;
   const url = `/soru-tipleri/${slug}`;
   const ogImage = { url: `/api/og?slug=${slug}`, width: 1200, height: 630, alt: title };
 

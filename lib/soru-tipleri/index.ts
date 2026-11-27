@@ -76,6 +76,10 @@ import integralKavrami from "./integral-kavrami";
 import integralDegiskenDegistirme from "./integral-degisken-degistirme";
 import belirliIntegralTeoremi from "./belirli-integral-teoremi";
 import integraldeAlan from "./integralde-alan";
+import dogrusalFonksiyonlar9 from "./dogrusal-fonksiyonlar-9";
+import mutlakDegerFonksiyonlari9 from "./mutlak-deger-fonksiyonlari-9";
+import birinciDereceProblemler9 from "./birinci-derece-problemler-9";
+import gercekSayilar from "./gercek-sayilar";
 
 // Curriculum order (limit → türev), matching the AYT ünite flow.
 const KB: Record<string, TopicSoruTipleri> = {
@@ -152,6 +156,12 @@ const KB: Record<string, TopicSoruTipleri> = {
   [kumelerTyt.slug]: kumelerTyt,
   [mantikTyt.slug]: mantikTyt,
   [katiCisimlerTyt.slug]: katiCisimlerTyt,
+  // 9. sınıf (Maarif) — 2026-11-27. Okul yazılıları ve ülke geneli ortak sınav
+  // için; arketipler ÖSYM kataloğundan değil, programın öğrenme çıktılarından.
+  [gercekSayilar.slug]: gercekSayilar,
+  [dogrusalFonksiyonlar9.slug]: dogrusalFonksiyonlar9,
+  [mutlakDegerFonksiyonlari9.slug]: mutlakDegerFonksiyonlari9,
+  [birinciDereceProblemler9.slug]: birinciDereceProblemler9,
 };
 
 export function getSoruTipleri(slug: string): TopicSoruTipleri | undefined {

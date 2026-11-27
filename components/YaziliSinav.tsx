@@ -135,7 +135,7 @@ export default function YaziliSinav({ slug }: { slug: string }) {
 
       {y.soruTipleri && y.soruTipleri.some((s) => getSoruTipleri(s)) && (
         <section aria-label="Soru tipleri" className="konu-related">
-          <h2>Bu konuların ÖSYM soru tipleri</h2>
+          <h2>Bu konuların soru tipleri</h2>
           <ul>
             {y.soruTipleri
               .filter((s) => getSoruTipleri(s))

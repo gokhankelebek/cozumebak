@@ -154,7 +154,7 @@ export const YAZILILAR: YaziliGrade[] = [
       { soru: "Hangi konulardan sorumluyum?", cevap: "Sayılar temasının ilk başlıkları: kümeler, gerçek sayılar, üslü ifadeler ve köklü ifadeler. Kesin kapsam okulun yıllık planına göre biraz değişebilir." },
       { soru: "Sınav test mi, klasik mi olacak?", cevap: "Çoğu okul yazılısı açık uçlu (klasik) ve çözüm adımlarının puanlandığı sorulardan oluşur; bazı okullar karma yapar. Her adımı yazmayı alışkanlık hâline getir." },
     ],
-    soruTipleri: ["koklu-ifadeler", "uslu-ifadeler"],
+    soruTipleri: ["gercek-sayilar", "koklu-ifadeler", "uslu-ifadeler"],
   },
   // ── 10. Sınıf ──────────────────────────────────────────────────────────────
   {
@@ -343,7 +343,7 @@ YAZILILAR.push(
       { soru: "1. yazılının konuları yine çıkar mı?", cevap: "Evet. Sınav dönemin tamamını kapsar; 1. yazılıda sorulan sayılar temasından da soru gelir." },
       { soru: "Bu sınavın notu karneye girer mi?", cevap: "Evet. Ülke geneli ortak sınav, o dersin dönem içindeki yazılılarından biri olarak değerlendirilir ve dönem puanına katılır." },
     ],
-    soruTipleri: ["koklu-ifadeler", "uslu-ifadeler"],
+    soruTipleri: ["dogrusal-fonksiyonlar-9", "mutlak-deger-fonksiyonlari-9", "birinci-derece-problemler-9", "gercek-sayilar", "koklu-ifadeler", "uslu-ifadeler"],
   },
   // ── 10. Sınıf ──────────────────────────────────────────────────────────────
   {
